@@ -10,7 +10,7 @@
 |sum()|return the sum of an iterable data|iterable|int|X|
 |type()|return the type of object|object|type|X|  
 
-# Keyword
+# Key functions
 * **del**
     * delete object
         ```python
@@ -48,3 +48,17 @@
         |%^10d, %^5f, %^20s|width of the field</br>center aligned|
         |%.2f, %5.2f|width of the field</br>decimal place of the float|
         |%.3s, %10.2s|width of the field</br>num of printed chr from the left|
+
+* **enumerate()**
+
+* **map()**
+
+* **filter()**
+
+* **zip()**
+
+* **lambda()**
+
+* **reduce()**
+
+//generator (수식 for in iterable if) or def ... yield
