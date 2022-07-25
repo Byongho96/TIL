@@ -115,14 +115,14 @@
   |.strip('s')|remove chr bf/af of the string|str|X|
   |.rstrip()|remove space af of the string|str|X|
   |.lstrip()|remove space bf of the string|str|X|
-  |.replace('s1','s2')|replace 's1' to 's2' in the strobject|str|X|
+  |.replace('s1','s2',[count])|replace 's1' to 's2' in the str object [count]times|str|X|
   |.split('s')|divide string by 's'|list|X|
   |.splitlines()|divide string by line|list|X|
   |.join(iterbale)|combine iterbale object with string|str|X|
   |.center(i, 'c')|center aligned with i-width filled with 'c'|str|X|
   |.ljust(i, 'c')|left aligned with i-width filled with 'c'|str|X|
   |.rjust(i, 'c')|right aligned with i-width filled with 'c'|str|X|
-  |.xfill(i)|right aligned with i-width filled with '0'|str|X|
+  |.zfill(i)|right aligned with i-width filled with '0'|str|X|
 ### None
 * **Basic**
   * Means that there is no value
@@ -173,7 +173,8 @@
   |.copy()|return the shallow copy|list|X|
   |.count()|number of elements|int|X|
   |.index(obj, start, end)|find index of 's' from the left</br>error when doesn't exist|int|X|
-  |.insert(i, obj)|insert obj in l[i]|None|O|
+  |.insert(i, obj)|insert obj in l[i];
+  if [i]is bigger than length >> insert at the last|None|O|
   |.pop(i)|pop l[i]|obj|O|
   |.remove(obj)|remove obj in l|None|O|
   |.reverse()|reverse the list|None|O|
@@ -194,6 +195,12 @@
     * `my_tuple[0]` 
   * Immutable
     * `my_tuple = (1, 2, 3);  my_tuple[0]='a'; # error` 
+    *
+      ```python
+      day_name = ('월', '화', '수')
+      day_name += True, False
+      >>> ('월', '화', '수', True, False) # original day_name is deleted
+      ```
   * Iterable
     * `for _ in my_tuple:`
 * **Typecasting**
@@ -264,7 +271,7 @@
   |.clear()|clear the dict|None|O|
   |.copy()|return the shallow copy|dict|X|
   |dict.fromkeys(iterable, value)|make dict that has itms of iterable as key|dict|X|
-  |.get(key)|get value of key|obj|X|
+  |.get(key,[default=None])|get value of key;if there is no key return [default]|obj|X|
   |.items()|return [(key, items)]|dict_items|X|
   |.keys()|return [keys,]|dict_keys|X|
   |.values()|return [items,]|dict_values|X|
@@ -316,6 +323,7 @@
   |A.symmetric_differnece_update(B)|`A = A ^ B`|None|O|
   |A.union(B)|return `A + B`|set|X|
   |A.update(B)|`A = A + B`|None|O|
+  ==B is an iterable object(set, tuple, list ...)==
 ---
 ## Operator
 ### Priority of operators
@@ -375,3 +383,8 @@ data**
 |<<|move bit left == *2|
 |>>|move bit right == //2|
 ---
+### Copy
+1. b = a # both are linked to the same object
+2. b = a[:] # shallow copy. only works in the 1st dimension
+3. b = copy.copy() # same as number 2
+4. b = copy.deepcopy() 

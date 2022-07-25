@@ -2,6 +2,7 @@
 
 |Function|description|input|output|change|
 |---|---|---|---|---|
+|dir()|show all the varibales and functions(mehtods) in the object|object|list;['variables', fucntions]|X|
 |id()|return the memory address|object|int|X|
 |len()|return the number of imtes in container|container|int|X|
 |min()|return the minimum of an iterable data|iterable|object|X|
@@ -11,10 +12,6 @@
 |type()|return the type of object|object|type|X|
 
 # Key functions
-* **dir(object)**
-    * show all the varibales and functions(mehtods) in the object
-    * return **list**
-    * ['variables', fucntions]
 * **del**
     * delete object
         ```python
@@ -52,6 +49,7 @@
         |%^10d, %^5f, %^20s|width of the field</br>center aligned|
         |%.2f, %5.2f|width of the field</br>decimal place of the float|
         |%.3s, %10.2s|width of the field</br>num of printed chr from the left|
+* **sorted**
 
 * **enumerate(iterable, start=0)**
 : return iterable elements paired with int that start with 'start' parameter
