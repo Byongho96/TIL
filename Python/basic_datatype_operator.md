@@ -123,6 +123,7 @@
   |.ljust(i, 'c')|left aligned with i-width filled with 'c'|str|X|
   |.rjust(i, 'c')|right aligned with i-width filled with 'c'|str|X|
   |.zfill(i)|right aligned with i-width filled with '0'|str|X|
+  ==s.strips('chars'): delete all the characters that can be made by combinations of chars, until face the other characters.==
 ### None
 * **Basic**
   * Means that there is no value
