@@ -1,4 +1,4 @@
-## Object-Oriented_Programming
+## Object_Oriented_Programming
 : see programming as a collection of objects which can handle data and communicate with each others.
 * Abstracition: provide interfaces to hadle the object
 * Encapsulation: block access to certain infromation
@@ -15,6 +15,8 @@
     4. Encapsulation
 
 ---
+## Class
+: the blueprint of the object
 
 ## Object
 : Data uploaded on memory based on the definition of the class
@@ -22,6 +24,19 @@
 * how's it different from instance?
     * Class == Type
     * Object == Instance of the class
+
+```python
+class Person:
+    pass
+
+print(type(Person))  # <class 'type'>
+
+person1 = Person()
+
+print(isinstance(person1, Person)) # True
+print(type(person1))    # <class '__main__.Person'>
+                        # __main__: indicates that class Person is defined in the current module(.py)
+```
 ---
 
 ## Basic Grammer
@@ -34,12 +49,23 @@
 ## Attributes(variables)
 * Class variables
     * shared by all the objects
-    * <class>.<variable>
+    * `<class>.<variable>`
     * not recommended >>> <instance>.<variable>
 * Instance variable
     * hogged by a object
     * ==defined in the constructor==
-    * <instance>.<variable>
+    * `<instance>.<variable>`
+
+```python
+class Person:
+    name = 'lee'
+
+person1 = Person()
+person1.age = 23
+
+print(dir(person1.__class__)) # 클래스 속성 검색
+print(vars(person1)) # 인스턴스 변수 검색
+```
 
 ---
 ## Methods(functions)
@@ -66,7 +92,32 @@
     * Decorator
     : made for using **decorating function** easily
         * Deocraitin function
-        : function that gets a function as a parameter 
+        : function that ==gets a function as a parameter==, and ==retrun a function==
+        ```python
+        def hello():
+            print("hello")
+
+        def add_print(original):    # if add_print(original()) : meaning 'I'm gonna use return vale of original function
+            def wrapper():
+                print("function starts")
+                original()
+                print("function ends")
+            return wrapper
+        ###################################
+        add_print(hello)()
+        # function starts
+        # hello
+        # function ends
+        ###################################
+        @add_print
+        def print_hello():
+            print('hello')
+        
+        print_hello()
+        # function starts
+        # hello
+        # function ends
+        ```
 * **Static mehtod**
     * not using any variables
     * `@staticmethod` is used before `def`
@@ -100,6 +151,7 @@ print(obj.staticmethod()) # O
 ```
 ---
 ## Some magic methods
+: built-in functions could use return value of some magic methods
 * **Construtor(__init__)**
 : the method used for making objects
 * 
@@ -229,12 +281,36 @@ print(FirstChild.mro())
     * can be called by self class or the child calsses
     * can be overrided from the child classes
     * it's ==not mandatory==
+    ```python
+    class Person:
+        def __init__(self, name, age):
+            self.name = name
+            self._age = age
+
+        def get_age(self):
+            return self._age
+        
+        def set_age(slef, age):
+            if age < 0:
+                raise ValueError
+            self._age = age
+        
+        p1 = Person('김사피', 30)
+        print(p1.get_age())     # 30
+
+        ## It can be reached and also modified. Just recommendation
+        print(p1._age)          # 30
+        p1._age = 40
+        print(p1._age)          # 40
+    ```
 * **Private Member**
     * starts with '__'
     * can only be called by self class
     * can't be overrided from the child classes
+    * Really makes Error
 
-* **getter and setter**
+* **getter and setter** : something like API
+[reference link](https://www.daleseo.com/python-property/)
     * **getter method**
         * for reading the variable
         * use `@property`
