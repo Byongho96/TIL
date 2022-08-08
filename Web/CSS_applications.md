@@ -222,37 +222,13 @@
 * fixed-top, fixed-bottom
 * sticky-top
 ## 4-7. flex
+* d-flex
+* justify-content-{}
+* align-itmens-{}
+* align-self-{}
 ## 4-8. grid
----
-## Buttons
-type = 
----
-row
-col
-row-cols
-## navbar
-navbar, navbar-expand-lg
-container-fluid
-navbar-brand
-navbar-toggler
-data-bs-toggle
-data-bs-target
-aria-controls
-aria-expanded
-aria-label
-navbar-toggler-icon
-navbar-collase
-collapse
-nav-item
-nav-link
-active
-aria-current
-## carousel
-data-bs-ride
-## modal
-fade
-## grid
-row-cols-
-g-
-row parent
-//row를 한개만 지정하는 이유
+* container
+* row
+* row-cols-*
+* col-*
+* g-* (gx-*, gy-*)
