@@ -66,7 +66,7 @@ def CountingSort(arr, k):
         counts[arr[i]] += 1
     # accumulate counts array
     for i in range(1, len(counts)):
-        counts += counts[i-1]
+        counts[i] += counts[i-1]
     # make results from behind of arr
     # stable sort
     for i in range (len(result)-1, -1, -1):
