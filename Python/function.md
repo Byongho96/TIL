@@ -1,3 +1,7 @@
+## !important
+### 1. pass by reference parameter: mutable data
+### 2. pass by value parameter: immutable data
+### 3. for, while, if: is not the function.(not-local area)
 ## function
 : a code block that can excute specific function(literally)
 * Built-in function
