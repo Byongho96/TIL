@@ -222,6 +222,7 @@ public class Dog {
     <package>
         <.java>
             <class>
+            <class>
         <.java>
             <class>
     <pacakge2>
@@ -229,6 +230,9 @@ public class Dog {
             <class>
         <.java>
             <class>
+//public class should be on in the .java
+// but class can be more than one
+// eclipse makes multiple class file after compiling
 ```
 ### 7-1. import
 **process for using a class in another package**
@@ -364,3 +368,281 @@ public class Manager {
 ```
 ---
 ## 9. Inheritance
+**Making a new class which contains all the attributes of another class**
+* Java doesn't support multiple inheritance
+    * but by using 'interface' and 'abstract class', it can be supported
+* Child class can use the Parent class's fields and mehtods except private
+* Object class is the parent class of all the class
+    * java.lang.Object
+    ```java
+    public class Person {
+        String name;
+        int age;
+
+        public void eat() {
+            System.out.println("Eating food");
+        }
+    }
+
+    public class Student extends Person { 
+        String major;
+        
+        public void study() {
+            System.out.println("Studying");
+        }
+    }
+    ```
+### 9-1. super()
+**call the parent class's constructor**
+* it's automatically excuted in the constructor
+    * object -> parent1 object -> parent2 object -> child object 
+```java
+public class Person {
+        String name;
+        int age;
+
+        public Person() {
+            //super()
+            System.out.println("Person.constructor is excuted")
+        }
+    }
+
+public class Student extends Person { 
+        String major;
+        
+        public Student() {
+            //super()
+            System.out.println("Student.constructor is excuted")
+        }
+    }
+```
+```java
+public class MainTest {
+    public static void main(String[] args) {
+        student st = new Student();
+        // Person.constructor is excuted
+        // Student.constructor is excuted
+    }
+}
+```
+### 9-2. super
+**Indicating parent class**
+```java
+public class Person {
+        String name;
+        int age;
+
+        public void eat() {
+            System.out.println("Eating food");
+        }
+    }
+
+public class Student extends Person { 
+        String major;
+        
+        public void study() {
+            super.eat() //Person.eat()
+            System.out.println("Studying");
+        }
+    }
+```
+```java
+public class MainTest {
+    public static void main(String[] args) {
+        student st = new Student();
+        
+        st.study();
+        // Eating food
+        // Studying
+    }
+}
+```
+### 9-3. Overriding
+**Re-define parent class's method**
+* name of the method, data type, and parameters all should be the same
+* `@Override`: comments for compiler
+* the range of child's access modifier should bigger than parents'
+    * vice versa is possible
+```java
+public class Person {
+        String name;
+        int age;
+
+        public void eat() {
+            System.out.println("Eating food");
+        }
+    }
+
+public class Student extends Person { 
+        String major;
+        
+        @Override // highly recommended
+        public void eat() {
+            System.out.println("Eating knowledge");
+        }
+    }
+```
+```java
+public class MainTest {
+    public static void main(String[] args) {
+        student st = new Student();
+        
+        st.eat();
+        // Eating knowledge
+    }
+}
+```
+### 9-4. final
+* **final class**: can't be inherited
+* **final method**: can't be overrided
+* **final variable**: can't be changed
+    * UPPER_AND_UNDRBAR
+---
+## 10. Polymorphism
+**can refer to child class' object with parent class**
+* becuase every child object is constructed on the parent classes' objects
+    ```java
+    // Object -> Person -> Student
+    Student st = new Student("kim", 25);
+    Person p = new Student("kim", 25);
+    Object ob = new Student("kim", 25);
+
+    //Error: PErson() object doesn't generate Student object
+    Student st = new Person("kim", 25);
+## 10-1. Usage
+* **Array containing different data types**
+    ```java
+    Person[] persons = new Person[3];
+
+    persons[0] = new Person();
+    persons[1] = new Student();
+    persons[2] = new Student();
+    // [Person(), Student(), Student()]
+    ```
+* **Arguments can be any data type**
+* If the paramter is declared as Object, it can get any kind of data types
+    ```java
+    public void println(Object x) {
+        String s = String.valueOf(X);
+        synchronized (this) {
+            print(S);
+            newLine();
+        }
+    }
+
+    public void main(String[] args) {
+        public void println(Person p);
+        public void println(Student st);
+    }
+    ```
+### 10-2. Type Casting
+* **smaller -> bigger**
+    * implicit type casting
+    * but some data cannot'be referenced even if it's on the memory
+    ```java
+    // Object -> Person -> Student
+    public void main(String[] args) {
+        Person person = new Person();
+        Object obj = person;
+    }
+    ```
+* **bigger -> smaller**
+    * explicit type casting
+    * data which is not on the memory can't be used
+    ```java
+    // Object -> Person -> Student
+    public void main(String[] args) {
+        Person p = new Student();
+        Student st = (Student)p;
+
+        Person p2 = new Person();
+        Student st2 = (Student)p;
+    }
+    ```
+* **Dynamic Binding**
+    * Overrided mehtod is excuted, even if the method is referenced by the bigger class
+        ```java
+        class SuperClass {
+            String x = "super";
+
+            public void method() {
+                System.out.println("super class method")
+            }
+        }
+
+        class SubClass extends SuperClass {
+            String x = "sub";
+
+            @Override
+            public void method() {
+                System.out.println("sub class method")
+            }
+        }
+
+        public class PrintObject { 
+            public static void main(String[] args) {
+                SubClass subClass = new SubClass();
+
+                SuperClass superClass = subClass;
+                System.out.println(superClass.x);
+                superClass.method();
+                //super
+                //sub class method
+            }
+        }
+        ```
+        ```java
+        class UserInfo {
+            String name = "Kim";
+
+            @Override
+            public String toString() { 
+                return "Name: " + this.name;
+            }
+        }
+
+        class MemeberInfo extends UserInfo {
+            String grade = "A";
+
+            @Override
+            public String toString() { 
+                return super.toString() + ", grade: " + grade;
+            }
+        }
+
+        public class PrintObject { 
+            public static void main(String[] args) {
+                Object member = new MemberInfo();
+                System.out.print("Info: " + member);
+                //Info: name: Kim, grade: A
+            }
+        }
+        ```
+
+### 10-3. [objectName] instanceof [ClassName]
+**Check the object is the instance of the class**
+```java
+// Object -> Person -> Student
+public void main(String[] args) {
+    Person p = new Student();
+    // True
+    if (p instnace of Student) {
+        Student st = (Student)p;
+    }
+
+    Person p2 = new Person();
+    // False
+    if (p2 instnace of Student) {
+        Student st2 = (Student)p;
+    }
+}
+```
+---
+## 11. Abstract class
+
+
+---
+## 12. Interface
+
+---
+[활용제한자]
