@@ -639,10 +639,105 @@ public void main(String[] args) {
 ```
 ---
 ## 11. Abstract class
+**There is a method that should be always overrided**
+* You can't just erase the method, because then you can't use dynamic biding at all
+* Make a bluprint of an object which is partially made
+    * specialized for inheritance
+    * the child class has two options
+        * override
+        * be abstract class too
+```java
+// Can't generate object with abstract class without overriding
+public abstract class Chef {
+    String nae;
+    int age;
+    String speciality;
+    
+    public void eat() {
+        System.out.println("Eating food");
+    }
+    // abstract method
+    public abstract void cook();
+}
 
+public class KFoodChef extends Chef {
+    @Override
+    public void cook() {
+        System.out.println("Cooking K-food");
+    }
+}
 
+public class JFoodChef extends Chef {
+    @Override
+    public void cook() {
+        System.out.println("Cooking J-food");
+    }
+}
+```
+```java
+public class ChefTest {
+    // Dynamic binding is available
+    // Stabilize the class and objects by coercing
+    public static void main(String[] args) {
+        Chef c = new KFoodChef();
+        c.cook();
+
+        // Chef c2 = new Chef(); : Error
+        // anonymous class
+        Chef ce = new Chef() {
+            @Override
+            public void cook() {
+                System.out.println("Cooking food");
+            }
+        }
+    }
+}
+```
 ---
 ## 12. Interface
+**All the methods are abstract**
+* All the variables are **final and constant**
+* All the methods are **abstract**
+* declared with `interface`
+* **interface -> class**: inherited with `implements`
+* **interface -> interface**: Multiple-inheritance is possible
+    * All the methods have to be overrided
+```java
+public interface MyInterface1 {
+    public static final int MEMBER1 =10;
+    //public static final: automatically
+    //static cause it's constant -> be on the class area memory
+    int MEMBER2 =10;
 
+    public abstract void method1(int param);
+    //public abstract: automatically
+    void method2(int param);
+}
+
+public interface MyInterface2 {
+}
+```
+```java
+// Multiple Inhertiance: Interface -> Interface
+interface MyInterface3 extends MyInterface1, MyInterface2 {
+
+}
+// Multiple Inhertiance: Interface -> class
+// Override
+class MyClass implements MyInterface1, MyInteface2, MyInterface3 {
+    @Override
+    public void method1(int para){}
+    @Override
+    public void method2(int para){}
+}
+```
+```java
+public class MainTest {
+    public static void main(String[] args) {
+        //Interface can't make objcets
+        //MyInterface2 m = new MyInterface2(); Error
+    }
+}
+
+```
 ---
-[활용제한자]
