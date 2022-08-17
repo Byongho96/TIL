@@ -123,8 +123,10 @@ def bm_match(txt, pat):
 				result.append(pt)
 			pt -= 1
 			pp -= 1
-  # Link below
-	pt += skip[ord(txt[pt])] if skip[ord(txt[pt])] > len(pat) - pp else len(pat) - pp
+    # if (the order of 'c' in the 'pattern' from the behind) > (the order of 'c' in the 'txt section' from the behind) 
+    # for the normal case -> skip as the table
+    # for the abnormal case -> skip just one
+	  pt += skip[ord(txt[pt])] if skip[ord(txt[pt])] > len(pat) - pp else len(pat) - pp
 	
 	return -1
 ```
