@@ -310,3 +310,5 @@ for i in range(1<<n): #2**n bit
                 else:
                     return BinarySearch2(a, middle+1,end, key)
         ```
+
+.
