@@ -141,3 +141,6 @@ def bm_match(txt, pat):
 ## 4. Compression
 ### 4-1. Run-length Encoding
 ### 4-2. 허프만 코딩
+
+---
+## 5. Palindrome
