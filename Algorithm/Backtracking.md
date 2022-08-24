@@ -1,3 +1,4 @@
+## Backtracking
 : similar to ==DFS but reduce the number of cases== with appropriate condtion(pruning)
 * Recursive function: when the depth is not deep
 * Iteration with stack: when the dpeth is deep
@@ -151,10 +152,4 @@ print(answer)   # 10
 ```
 
 **n-Queen**
-```python
-
-```
-
-**Maze Game**
-```python
-```
+[BaekJoon_9663_N-Queen](../../Baekjoon/9663_N_Queen.py)

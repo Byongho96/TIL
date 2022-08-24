@@ -186,5 +186,38 @@
         adjList[a].append(b)
         adjList[b].append(a)
     ```
+### 3-5. Postfix notation
+* infix notation: A + B
+* postfix notation: AB+
+* infix -> postfix
+    * the order
+        |operator|order|
+        |---|---|
+        |*|2|
+        |/|2|
+        |+|1|
+        |-|1|
+        |(|0|
+    * get a token
+        * if operand: print
+        * if operator
+            * if '(':
+                * push
+            * elif ')':
+                * append(pop) until '('
+                * pop '('
+            * elif order(the operator) > order(stack[top]):
+                * push
+            * else:
+                * append(pop) until lower operator
+
+        ```python
 
 
+        ```
+* operation
+    * if operand: push
+    * if operator:
+        * n1 = stack.pop
+        * n2 = stack.pop
+        * stack.push(result)
