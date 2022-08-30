@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1>받았다</h1>
+<p>이거슬 >>> {{data}}</p>
+<a href="{% url 'articles:throw' %}">Try again?</a>
+{% comment %} <a href="/throw/">Try again?</a> {% endcomment %}
+{% endblock content %}
