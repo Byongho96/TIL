@@ -741,3 +741,6 @@ public class MainTest {
 
 ```
 ---
+
+## 13. Generic
+
