@@ -1,5 +1,13 @@
-동적웹페이지
-정적웹페이지
+## 1. Django
+### 1-1. Framework
+* collection of codes for developing specific service
+  * to use the framework, we have to follow the rules made by the producer
+  * similar to library but more larger and detailed
+### 1-2. Django
+* Dynamic Web framework made with Pyton
+  * especially for back-end
+* Dynamic web page
+  * preprocessing the data(ex.html) according to the users' requests
 
 
 ## 2. MTV Design Pattern
@@ -111,7 +119,7 @@ for dynamic web pate
   * Filters
   * Tags
   * Comments
-### 7-2. Viarable
+### 7-2. Variables
 * views.py
   * `context = {'variable_name': 'data'}`
   * `render(request, template_name, context)`
@@ -145,27 +153,247 @@ for dynamic web pate
 ![referring templates](images/refering_templates.PNG)
 
 ## 8. Sending and Retrieving the data(Client & Server)
-* HTML form's attributes
+
+### 8-1. Sending thd data(Client)
+* HTML `<form>` attributes
   * action
     * where to send
     * URL
   * method
     * how to send
     * GET or POST
+      * GET is for reading the data -> query string is exposed in url
+      * POST is for modifying the database
+* Sending data in json form {key:value}
+  * **key == name**
+  * **value == input**
+* example
+```django
+<!-- catch.html -->
+{% extends 'base.html' %}
+  <form action = "#" method = "GET">
+    <label for="message">message</label>
+    <input type="text" id="message" name="message">
+    <input type="submit">
+  </form> 
+{% block content %}
+{% endblock %}
+```
 
-* Send data in json form {name:input}
-* the receiving function should get the data
-  * Ex. `data = request.GET.get('message')` in view.py
+### 8-2. Retrieving the data(Server)
+* the receiving functions
+  * Ex. `data = request.GET.get('message')`
+* django variable in html
+  * {{key}}
+```python
+# http://127.0.0.1:8000/catch/?message=데이터
+def catch(request):
+  print(request) # <WSGIRequest: GET '/catch/?message=%EB%8D%B0%EC%9D%B4%ED%84%B0%21'>
+  # UTF-8 한글 인코딩 3byte 마지막 %21 == '!'
+  print(type(request)) # <class 'django.core.handlers.wsgi.WSGIReqeust'>
+  print(request.GET) # <QueryDict: {'message': ['데이터']}>
+  print(reqeust.GET.get('message')) # '데이터'
+
+```
+* example
+```python
+def catch(request):
+  message = request.GET.get('message')
+  context = {
+    'message': message,
+  }
+  return render(request, 'catch.html', context)
+```
+```django
+<!-- catch.html -->
+{% extends 'base.html' %}
+  <h2>I got {{message}}</h2>  
+{% block content %}
+{% endblock %}
+```
 
 ## 9. Variable routing
+* Using **part of url** as **variable**
+* announcement
+  * <type:variable_name>
+  * types
+    * str: default
+    * int
+    * slug
+    * uuid
+    * path
+* example
+```python
+# urls.py
+urlpatterns = [
+  paht('hello/<str:name>/', views.hello),
+]
+```
+```python
+# views.py
+def hello(reqeust, name):
+  context = {
+    'name': name,
+  }
+  return render(request, 'hello.html', context)
+```
+```python
+# hello.html
+<h1>Hello {{name}}!</h1>
+```
 
-## 10. 
-1. urls
-app_names=""
-url(name="")
-나중에
-a href="{% url 'articles:dinner' %}">to the /dinner/</a> 
+## 10. App URL mapping
+* The URL received by the project is classified according to the app(the part before the first trailing slash)
+* example
+```python
+# projcet/urls.py
+from django.contrib import admin
+from dajngo.urls import path, include
 
-2. templates탐색
-샌드위치 구조
-앱 > templates > 앱 이름 그대로
+urlpatterns = [
+  path('admin/', admin.stie.urls),
+  path('app1/', inlcude(app1.urls)),
+  path('app2/', inlcude(app2.urls)),
+]
+```
+```python
+# app1/urls.py
+from dajngo.urls import path
+from . import views
+
+urlpatterns = [
+  path('index/', views.index) # http://127.0.0.1:8000/app1/index/
+]
+```
+
+## 11. Namespace
+### 11-1. URL namespace
+* naming the path() in the urls.py
+```python
+# app1/urls.py
+from dajngo.urls import path
+from . import views
+
+urlpatterns = [
+  path('index/', views.index, name='index'),
+  path('greeting/', views.greeting, name='greeting'),
+  path('throw/', views.throw, name='throw'),
+]
+```
+```django
+<!-- catch.html -->
+{% extends 'base.html' %}
+  <form action = "{% url 'throw' %}" method = "GET">
+    <label for="message">message</label>
+    <input type="text" id="message" name="message">
+    <input type="submit">
+  </form> 
+{% block content %}
+{% endblock %}
+```
+### 11-2. App namespace
+* adding the app_name to the urls, so that you can use the same url name in different apps
+```python
+# app1/urls.py
+from dajngo.urls import path
+from . import views
+
+app_name = 'app1'
+urlpatterns = [
+  path('index/', views.index, name='index'),
+  path('greeting/', views.greeting, name='greeting'),
+  path('throw/', views.throw, name='throw'),
+]
+```
+```django
+<!-- catch.html -->
+{% extends 'base.html' %}
+  <form action = "{% url 'app1:throw' %}" method = "GET">
+    <label for="message">message</label>
+    <input type="text" id="message" name="message">
+    <input type="submit">
+  </form> 
+{% block content %}
+{% endblock %}
+```
+
+### 11-3. Template namespace
+* Django find templates according to the order in the settings.py.INSTALLED_APPS
+* Sandwich structure
+  * app/templates/app/html.html
+```python
+# articles/views.py
+return render(request, 'articles/index.html')
+```
+## 12. Database
+### 12-1. Term
+* Schema
+  * structure of the table
+    ![django_schema](./images/Django_schema.jpg)
+* Table
+  * field
+    * attributes(column)
+  * record
+    * data(row)
+  ![django_table](./images/Django_table.jpg)
+* PK(Primary Key)
+  * the unique fields that distinguish a record from others
+* Query
+  * cmd for accessing the data
+## 13. Model
+### 13-1. Definition
+* Layout of the database
+* Django access to the data through Model
+* User can define the fields and attributes of the model
+### 13-2. models.py
+**Schema of the data**
+```python
+# app/model.py
+from django.db import models
+
+# Article inherits model.Model
+class Article(models.Model):
+    title = models.CharField(max_length=10)
+    content = models.TextField()
+```
+### 13-3. Migrations
+* `python manage.py makemigrations`
+  * make blueprints of DB
+* `python manage.py migrate`
+  * make a DB from the blueprint
+* `python manage.py showmigrations`
+  * if there's[X], it means migrate is completed
+
+### 13-4. ORM(Object-Relational-Mapping)
+**programming that translate data between diffrent OOP**
+* Users can manage data through python not using SQL
+### 13-5. modiefying models.py
+1. revise the model
+2. makemigrations
+  * Django require us to set the default for previous data
+    * 1)django will recommend default field
+    * 2)put default field in the model by my self
+3. migrate
+---
+## 14. QuerySet.API
+* API produced by Django which help us to manage the data
+* **Model_class.objects.query_API**
+  * objects
+    * inteface for the DB query
+![ORM](./images/ORM.jpg)
+---
+## 15. Admin Site
+**page for administrator provided by Django**
+* make admin account
+  1. `python manage.py createsuperuser`
+    * email is optional
+* Access to the admin page
+  * /admin/
+* Register model into admin.py
+  ```python
+  # articles/admin.py
+  from django.contrib import admin
+  from .models import Article
+
+  admin.site.register(Article)
+  ```
