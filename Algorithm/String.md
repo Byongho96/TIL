@@ -135,12 +135,63 @@ def bm_match(txt, pat):
 ---
 ## 3. Encryption
 ### 3-1. Caesar cipher
-### 3-2. bit array - xor
+* string combination of 'A~Z'and 'a~z', and the key is n
+```python
+def Caesar(string, n):
+  string = list(string)
 
+  for i in range(len(string)):
+    if string[i].isupper():
+      s[i] = chr((ord(string[i]) - ord('A') + n) % 26 + ord('A'))
+    elif string[i].islower():
+      s[i] = chr((ord(string[i]) - ord('a') + n) % 26 + ord('a'))
+    
+  return ''.join(string)
+
+```
+### 3-2. bit array - xor
+|a|b|a^b|(a\^b)^b|
+|---|---|---|---|
+|0|0|0|0|
+|0|1|1|0|
+|1|0|1|1|
+|1|1|0|1|
 ---
 ## 4. Compression
 ### 4-1. Run-length Encoding
-### 4-2. 허프만 코딩
+```python
+def RLE(string):
+  string += chr(ord(string[-1]) + 1)
+  encoded ''
+  cnt = 1
+  for i in range(1, len(string)):
+    if string[i] == string[i-1]:
+      cnt += 1
+    else:
+      encoded += string[i-1] + str(cnt)
+      cnt = 1
 
+  return encoded
+```
+### 4-2. Huffman_Coding
+[허프만코딩_블로그설명](len(string))
+* distinctive prefix
 ---
 ## 5. Palindrome
+* the longest parlindrome in the string
+```python
+def longestPalindorme(s):
+  def expand(left, right):
+    while left >= 0 and right < len(s) and s[left] == s[right]:
+      left -= 1
+      right += 1
+    return s[left + 1:right]
+  
+  if len(s) < 2 or s == s[::-1]:
+    return s
+
+  result = ''
+  for i in range(len(s)-1):
+    result = max(result, expand(i, i+1), expand(i, i+2), key=len)
+  return result
+```

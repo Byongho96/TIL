@@ -148,6 +148,134 @@
     * O(h) 
         * average: O(log N)
         * worst: O(log N)
+* Python implementation
+```python
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+class BST:
+    # 생성자
+    def __init__(self, root):
+        self.root = root
+    # 추가
+    def insert(self, value):
+        self.cur = self.root
+        while True:
+            if value < self.cur.value:
+                if self.cur.left:
+                    self.cur = self.cur.left
+                else:
+                    self.cur.left = Node(value)
+                    break
+            else:
+                if self.cur.right:
+                    self.cur = self.cur.right
+                else:
+                    self.cur.right = Node(value)
+                    break
+    # 검색
+    def search(self. value):
+        self.cur = self.root
+        while self.cur:
+            if value == self.cur.value:
+                return True
+            elif value < self.cur.value:
+                self.cur = self.cur.left
+            else:
+                self.cur = self.cur.right
+        return False
+
+    # 삭제
+    def delete(self, value):
+        # 노드 검색
+        is_exist = False
+        self.cur = self.root
+        self.par = None
+        while self.cur:
+            if value == self.cur.value:
+                is_exist = True
+                break
+            elif value < self.cur.value:
+                self.par = self.cur
+                self.cur = self.cur.left
+            else:
+                self.par = self.cur
+                self.cur = self.cur.right
+        if is_search == False:
+            return False
+
+        # 자식 노드가 없을 때
+        if self.cur.left == None and self.cur.right == None
+            # 부모의 왼쪽 자식일 때
+            if value < self.par.value:
+                self.par.left = None
+            # 부모의 오른쪽 자식일 때
+            else:
+                self.par.right = None
+
+        # 왼쪽 자식 노드만 있을 때
+        elif self.cur.left and self.cur.right == None
+             # 부모의 왼쪽 자식일 때
+            if value < self.par.value:
+                self.par.left = self.cur.left
+            # 부모의 오른쪽 자식일 때
+            else:
+                self.par.right = self.cur.left
+
+        # 오른쪽 자식 노드만 있을 때
+        elif self.cur.left == None and self.cur.right
+             # 부모의 왼쪽 자식일 때
+            if value < self.par.value:
+                self.par.left = self.cur.right
+            # 부모의 오른쪽 자식일 때
+            else:
+                self.par.right = self.cur.left
+
+        # 자식 노드 2개
+        else:
+            # 왼쪽 서브트리 중 가장 오른쪽
+            # 오른쪽 서브트리 중 가장 왼쪽
+            self.change = self.cur.right
+            self.change_par = self.cur
+            while change.left:
+                self.change_par = self.cur
+                self.change = self.cur.left
+
+            if self.change.right:
+                self.change_par.left = self.change.right
+            else:
+                self.change_par.left = self.None
+            
+             # 부모의 왼쪽 자식일 때
+            if value < self.par.value:
+                self.par.left = self.change
+                self.change.left = self.change.left
+                self.change.right = self.change.right
+            # 부모의 오른쪽 자식일 때
+            else:
+                self.par.right = self.cur.left
+                self.change.left = self.change.left
+                self.change.right = self.change.right
+        return True
+
+
+
+
+
+    # 출력
+    def dump(self):
+        def inorder(node):
+            if node:
+                inorder(node.left)
+                print(node.value)
+                inorder(node.right)
+        root = self.root
+        inorder(root)
+
+```
 
 ## 3. heap
 ### 3-1. definitoin
@@ -156,4 +284,78 @@
     * parent node > child node
 * min heap
     * parent node < child node
+* Python implementation
+```python
+class Heap:
+    def __init__(self):
+        self.heap = [None]
+    
+    def insert(self, value):
+        self.append(value)
+        index = len(self.heap) - 1
+        while index != 1:
+            par_index = self.parent(index)
+            if self.heap[par_index] < self.heap[index]:
+                self.swqp(par_index, index)
+                index = par_index
+            else:
+                break
+    
+    def delete(self):
+        index = len(self.heap) - 1
+        if len(heap) == 0:
+            return False
+        self.swap(1, index)
+        max_value = self.heap.pop()
+        self.maxHeapify(0)
+        return max_value
 
+    def maxHeapify(self, i):
+        left = self.left(i)
+        right = self.right(i)
+        mx_idx = i
+
+        if left < len(self.heap) and self.heap[mx_idx] < self.heap[left]:
+            mx_idx = left
+        if right < len(self.heap) and self.heap[mx_idx] < self.heap[right]:
+            mx_idx = right
+        
+        if mx_idx != i:
+            self.swap(i, mx_idx)
+            self.maxHeapify(mx_idx)
+
+    def swap(self, i, j):
+        self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
+    
+    def parent(self, i):
+        return i // 2
+    
+    def left(self.i):
+        return 2 * i
+    
+    def right(self.i):
+        return 2 * i + 1
+
+```
+### 3-2. Djkstra with heapq
+```python
+import heapq
+import sys
+
+def dijkstra(start):
+    distance = [sys.maxsize for _ in range(N)]
+    distance[start] = 0
+    q = []
+    heapq.heappush(q, (0, start))
+    while q:
+        # 힙의 데이터 최단거리 추출
+        dist, now = heapq.heappop(q)
+        # 업데이트 되기 전 정보이면 무시
+        if dinstance[now] < dist:
+            continue
+        for w in adjLst[now]:
+            cost = dist + w[1]
+            if cost < distance[w[0]]:
+                distance[w[0]] = cost
+                heapq.heappush(q, (cost, w[0]))
+```
