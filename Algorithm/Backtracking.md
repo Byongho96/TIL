@@ -111,6 +111,26 @@ ans_lst = []
 
 backtrack(arr, 0, NMAX)
 ```
+* 1~5 개 중 3개를 골라 순열 만들기
+```python
+def permu_backtracking(n,r):
+    if n == r:
+        print(permu)
+    else:
+        for i in range(N):
+            if not used[i]:
+                used[i] = 1
+                permu[n] = arr[i]
+                permu_backtracking(n+1, r):
+                used[i] = 0
+
+N = 5
+r =3
+arr = [i for i in range(1, N + 1)]
+used= [0] * N
+permu= [0] * N
+permu_backtracking(0, r):
+```
 ```python
 def backtrack(n, N):
     if n == N:
@@ -150,6 +170,7 @@ answer = 0
 subset_sum(0, len(A), 0, 10)
 print(answer)   # 10
 ```
+* Pascal
 
 **n-Queen**
 [BaekJoon_9663_N-Queen](../../Baekjoon/9663_N_Queen.py)
