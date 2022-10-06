@@ -363,6 +363,8 @@ class Article(models.Model):
   * make a DB from the blueprint
 * `python manage.py showmigrations`
   * if there's[X], it means migrate is completed
+* `python manage.py sqlmigrate [app_name] [migration.file_name]`
+  * show sql query of the migration file
 
 ### 13-4. ORM(Object-Relational-Mapping)
 **programming that translate data between diffrent OOP**
