@@ -95,7 +95,7 @@ admin.site.register(Article)
 ### 4-1. Session(django_session)
 * Create
     * Login
-        * AuthentificaitonFrom
+        * AuthentificaitonForm
             * built-in form for login
             * username and password
         * login(request, user, backend=None)
@@ -110,7 +110,7 @@ admin.site.register(Article)
 ### 4-2. User(accounts.user)
 * Create
     * Signup
-        * UserCreationFrom
+        * UserCreationForm
             * It should be overrided with accounts.User
             ```python
             # accounts/forms.py
@@ -125,7 +125,7 @@ admin.site.register(Article)
             ```
 * Update
     * info
-        * UserChangeFrom
+        * UserChangeForm
             * It should be overrided with accounts.User
             ```python
             # accounts/forms.py
