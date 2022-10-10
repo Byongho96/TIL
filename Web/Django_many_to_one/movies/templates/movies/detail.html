@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="text-center">DETAIL</h1>
+  <hr>
+  <div class="d-flex justify-content-center">
+    <img class="w-50" src={{ movie.poster_url }} alt={{movie.title}}>
+  </div>
+  <p>{{ movie.title }}</p>
+  <p>Audience: {{ movie.audience }}</p>
+  <p>Release Dates: {{ movie.release_date }}</p>
+  <p>Genre: {{ movie.genre }}</p>
+  <p>Score: {{ movie.score }}</p>
+  <p>{{ movie.description }}</p>
+  {% if user == movie.accounts %}
+  <a class="btn btn-info" href=" {% url 'movies:update' movie.pk %} ">UPDATE</a>
+  <form class = "d-inline" action=" {% url 'movies:delete' movie.pk %} " method="POST">
+    {% csrf_token %}
+    <input class="btn btn-danger" type="submit" value="DELETE">
+  </form>
+  {% endif %}
+  <div class="mt-3">
+    <a href=" {% url 'movies:index' %} ">BACK</a>
+  </div>
+  <hr>
+  <p>{{ movie.accounts }}님의 한줄평: {{ movie.recommendation }}</p>
+  <hr>
+  <h4>댓글 목록</h4>
+  <ul>
+    {% for comment in comments %}
+    <li>
+      {{ comment.accounts }}: {{ comment.content }}
+      {% if user == comment.accounts %}
+      <form class="d-inline" action=" {% url 'movies:comments_delete' movie.pk comment.pk %} " method="POST">
+        {% csrf_token %}
+        <input type="submit" value="DELETE">
+      </form>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  <form action=" {% url 'movies:comments_create' movie.pk %} " method = "POST">
+    {% csrf_token %}
+    {{ comment_form }}
+    <input type="submit" value="댓글달기">
+  </form>
+{% endblock content %}

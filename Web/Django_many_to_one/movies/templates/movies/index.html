@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load bootstrap5 %}
+
+{% block content %}
+  <h1>Movies List</h1>
+  <a class="btn btn-info"href=" {% url 'movies:create' %} ">CREATE</a>
+  <hr>
+
+  {% for movie in movies %}
+    <p><a href=" {% url 'movies:detail' movie.pk %} ">{{ movie.title }}</a></p>
+    <p>{{ movie.score }}</p>
+    <p>{{ movie.accounts }}님의 한줄평: {{ movie.recommendation }}</p>
+    <hr>
+  {% endfor %}
+{% endblock content %}

@@ -338,6 +338,24 @@ def dijkstra(s):
                 distance[next[0]] = cost
                 heapq.heappush(q, (cost, i[0]))
 ```
+<!-- * shortest path
+```python
+def bfs(v):
+    distance = [INF] * (N)
+    q =deque()
+
+    q.append(v)
+    distance[v] = 0
+
+    while q:
+        v = q.popleft()
+        for w, d in adjLst[v]:
+            if distance[w] > distance[v] + w:
+                distance[w] = distance[v] + w
+                q.append(w)
+
+    return distance[-1]
+``` -->
 ### 2-4. Bellman-Ford
 * minus edge, and minus cycle
     * 방문하지 않은 노드 뿐만 아니라, 모든 간선에 대해서 최단거리를 확인
