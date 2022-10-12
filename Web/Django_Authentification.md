@@ -35,6 +35,7 @@ AUTH_USER_MODEL = 'accounts.User'   # default = 'auth.User'
 ```python
 # accounts/admin.py
 from .models import User
+from django.contirb.auth.admin import UserAdmin
 
 # It should be registered to the admin site as same as the other models
 admin.site.register(User, UserAdmin)
