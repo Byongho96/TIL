@@ -329,7 +329,7 @@ def dijkstra(s):
     distance[s] = 0
 
     while heap:
-        d, v = heapq.heappop(heap)
+        dist, now = heapq.heappop(heap)
         if distance[now] < dist:    # 현재 노드가 처리된적 있다면 무시 
             continue
         for next in adjLst[now]:   # 현재 노드의 주변 노드를 탐색
