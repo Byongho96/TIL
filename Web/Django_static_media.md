@@ -113,7 +113,7 @@ It's required because the server which actually runs the program doesn't know wh
             * the arguments are fixed like above
             * pk can't be used in the function becuase the function is excuted before saved
 * form.py
-    When the form is made, <input> tag of the ImageField has `accept` attrs which is for setting the type of files the form will be accepted
+    When the form is made, \<input> tag of the ImageField has `accept` attrs which is for setting the type of files the form will be accepted
     * `accept="image/*"`
 * views.py
     ```python
@@ -162,7 +162,7 @@ Resizing the uploaded image to use storage space efficiently
     * `pip install dajngo-imagekit`
 2. **add to INSTALLED_APPS**
     * `INSTALLED_APPS = ['imagekit', ]`
-#### 2.6.2. Make Thumbnail Without Saving The Original IMAGE
+#### 2.6.2. Make Thumbnail Without Saving the Original Image
 * models.py
     ```python
     from imagekit.processors import Thumbnail
@@ -178,7 +178,7 @@ Resizing the uploaded image to use storage space efficiently
         )
     ```
     * There're many functions in the imagekit library.
-#### 2.6.3. Make Thumbnail With Saving The Original IMAGE
+#### 2.6.3. Make Thumbnail With Saving the Original Image
 * models.py
     ```python
     from imagekit.processors import Thumbnail

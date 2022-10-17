@@ -16,7 +16,7 @@ class Patient(models.Model):
 ```
 If one patient want to make a reservation with 2 diffrent doctors
 |id|name|doctor_id|
-|---|---|---|
+|:---:|:---:|:---:|
 |1|Alex|1|
 |1|Alex|2|
 * We can't distingush whether the first Alex and the second Alex is the same person
