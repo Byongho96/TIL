@@ -53,16 +53,19 @@ class Patient(models.Model):
 * Additional table
     * AppName_patient_doctors
     * it looks same as the intermediary model
-    |id|ptient_id|doctor_id|
-    |---|---|---|
+        |id|ptient_id|doctor_id|
+        |---|---|---|
 * create a record
     * `patient1.doctors.add(doctor1)`
     * `doctor1.patient_set.add(patient1)`
 * read data
     * if doctor1 wants to read all the reservation
         * `doctor1.patient_set.all()`
+        * `doctor1.patient_set.get(id=doctor_id)`
+            * in many to many relationships, Django automatically recognize the 'id' as the other class' object id
     * if patient1 wants to read all the reservation
         * `patient1.doctors.all()`
+        * `doctor1.patient_set.get(id=patient_id)`
 * remove data
     * if doctor1 wants to cancel the reservation with patient1
         * `doctor1.patient_set.remove(patient1)`
