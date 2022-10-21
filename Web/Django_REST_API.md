@@ -172,7 +172,7 @@ serilaize
           )
       return JsonResponse(articles_json, safe=False)
   ```
-  * **JsonREsponse()**
+  * **JsonResponse()**
     * JSON-encoded response를 만드는 클래스
     * =='safe'== parameter
       * Default: True
