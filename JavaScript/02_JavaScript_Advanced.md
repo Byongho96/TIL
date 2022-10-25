@@ -7,28 +7,29 @@ DOM
 : Structured and Represented HTML documents as objects. So that develpoers can access elements of a document with a programming language.
 ![DOM](./images/DOM.png)
 
-#### 1.2.1. DOM object
-**window**
-the top-level object referring a tab in browser.
+### 1.3. Special DOM objects
+Every <> in a html document can be selected as an object.
+However, there are some special object which is out of a document.
+* **window**
+  the top-level object referring a tab in browser.
+  * **[methods and properties](https://www.w3schools.com/jsref/obj_window.asp)**
+    * window.open()
+      * opens a new tab
+    * window.alert()
+      * shows an alerting window
+    * window.print()
+      * shows a tab for printing
 
-* **Methods**
-  * window.open()
-    * opens a new tab
-  * window.alert()
-    * shows an alerting window
-  * window.print()
-    * shows a tab for printing
+* **document**
+  one of the properties of window, the top-level object of a document
+  * **[methods and properties](https://www.w3schools.com/js/js_htmldom_document.asp)**
 
-**document object**
-the top-level object of a document.
+* navigator, location, history, screen, etc
 
-* **Attributes**
-  * document.title
-    * \<title></title>
-  * win
-    * shows an alerting window
-  * window.print()
-    * shows a tab for printing
+### 1.3. Handling DOM
+
+#### 1.3.1. Select
+#### 1.3.2. Manipulation
 
 
 
