@@ -38,6 +38,11 @@ The environment that help JavaScript being asynchronous
 Axios
 : The library for asynchrnous HTTP communciation. Can be installed with npm in node.js, and can be used with CDN in browser.
 
+### 2.0. XHR
+XHR(XMLHttpRequest)
+: JavaScript API that makes AJAX requests.
+But it is not convenient to use, so that most send XHR requests using libraries such as Axios
+
 ### 2.1. The Structure of Axios
 ```html
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -117,3 +122,175 @@ work1()
 ```
 
 ## 4. AJAX
+
+### 4.1. AJAX(Asynchronous Javascript And XML)
+AJAX
+: Asynchronous web communication technology
+* sends a request to the server without having to reload the entire screen.
+* updates a portion of the HTML by receiving the data.
+
+### 4.2. Follow and Like
+**data-\* attributes**
+* By creating custom data, data can be exchanged between HTML and DOM.
+* All the custom data can be accessed through dataset attributes in JavaScript.
+  ```html
+  <div data-my-id="my-data"></div>
+  <script>
+    const myId = event.target.dataset.myId
+  </script>
+  ```
+**csrf-token**
+* csrf token is in the hidden input tag which name is "csrfmiddlewaretoken"
+
+#### 4.2.1. Follow
+```html
+<div>
+  팔로워 : <span id="followers-count">{{ person.followers.all|length }}</span> / 팔로잉 : <span id="followings-count">{{ person.followings.all|length }}</span>
+</div>
+<div>
+  <form id="follow-form" data-user-id="{{ person.pk }}">
+    {% csrf_token %}
+    {% if request.user in person.followers.all %}
+      <input type="submit" value="언팔로우">
+    {% else %}
+      <input type="submit" value="팔로우">
+    {% endif %}
+  </form>
+<div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const form = document.querySelector('#follow-form')
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+    
+    form.addEventListener('submit', function (event) {
+      event.preventDefault()
+
+      const userId = event.target.dataset.userId
+    
+      axios({
+        method: 'post',
+        url: `/accounts/${userId}/follow/`,
+        headers: {'X-CSRFToken': csrftoken,}
+      })
+        .then((response) => {
+          const isFollowed = response.data.is_followed
+          const followBtn = document.querySelector('#follow-form > input[type=submit]')
+          if (isFollowed === true) {
+            followBtn.value = '언팔로우'
+          } else {
+            followBtn.value = '팔로우'
+          }
+    
+          // 팔로우, 팔로워 인원 수 
+          const followersCountTag = document.querySelector('#followers-count')
+          const followingsCountTag = document.querySelector('#followings-count')
+          const followersCount = response.data.followers_count
+          const followingsCount = response.data.followings_count
+          followersCountTag.innerText = followersCount
+          followingsCountTag.innerText = followingsCount
+        })
+        .catch((error) => {
+          console.log(error.response)
+        })
+    })
+  </script>
+```
+```python
+@require_POST
+def follow(request, user_pk):
+    if request.user.is_authenticated:
+        User = get_user_model()
+        me = request.user
+        you = User.objects.get(pk=user_pk)
+        if me != you:
+            if you.followers.filter(pk=me.pk).exists():
+                you.followers.remove(me)
+                is_followed = False
+            else:
+                you.followers.add(me)
+                is_followed = True
+            context = {
+                'is_followed': is_followed,
+                'followers_count': you.followers.count(),
+                'followings_count': you.followings.count(),
+            }
+            return JsonResponse(context)
+        return redirect('accounts:profile', you.username)
+    return redirect('accounts:login')
+```
+
+#### 4.2.2. Like
+```html
+{% for article in articles %}
+  <p>
+    <b>작성자 : <a href="{% url 'accounts:profile' article.user %}">{{ article.user }}</a></b>
+  </p>
+  <p>글 번호 : {{ article.pk }}</p>
+  <p>제목 : {{ article.title }}</p>
+  <p>내용 : {{ article.content }}</p>
+  <div>
+    <form class="like-forms" data-article-id="{{ article.pk }}">
+      {% csrf_token %}
+      {% if request.user in article.like_users.all %}
+        <input type="submit" value="좋아요 취소" id="like-{{ article.pk }}">
+      {% else %}
+        <input type="submit" value="좋아요" id="like-{{ article.pk }}">
+      {% endif %}
+    </form>
+  </div>
+  <a href="{% url 'articles:detail' article.pk %}">상세 페이지</a>
+  <hr>
+{% endfor %}
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  const forms = document.querySelectorAll('.like-forms')
+  const csrftoken = document.querySelector('input[name=csrfmiddlewaretoken]').value
+
+  forms.forEach((form) => {
+    form.addEventListener('submit', function (event) {
+      event.preventDefault()
+
+      const articleId = event.target.dataset.articleId
+
+      axios({
+        method: 'post',
+        url: `http://127.0.0.1:8000/articles/${articleId}/likes/`,
+        headers: {'X-CSRFToken': csrftoken},
+      })
+        .then((response) => {
+          const isLiked = response.data.is_liked
+          const likeBtn = document.querySelector(`#like-${articleId}`)
+
+          if (isLiked === true) {
+            likeBtn.value = '좋아요 취소'
+          } else {
+            likeBtn.value = '좋아요'
+          }
+        })
+        .catch((error) => {
+          console.log(error.response)
+        })
+    })
+  })
+</script>
+```
+```python
+@require_POST
+def likes(request, article_pk):
+    if request.user.is_authenticated:
+        article = Article.objects.get(pk=article_pk)
+
+        if article.like_users.filter(pk=request.user.pk).exists():
+            article.like_users.remove(request.user)
+            is_liked = False
+        else:
+            article.like_users.add(request.user)
+            is_liked = True
+        context = {
+            'is_liked': is_liked,
+        }
+        return JsonResponse(context)
+    return redirect('accounts:login')
+```
