@@ -40,7 +40,7 @@ from django.contirb.auth.admin import UserAdmin
 # It should be registered to the admin site as same as the other models
 admin.site.register(User, UserAdmin)
 ```
- ```python
+```python
 # articles/admin.py
 from django.contrib import admin
 from .models import Article
@@ -48,7 +48,7 @@ from .models import Article
 admin.site.register(Article)
 ```
 ### 2-3. DB
-    * accounts.user table
+* accounts.user table
 
 ---
 ## 3. HTTP Cookies
@@ -96,7 +96,7 @@ admin.site.register(Article)
 ### 4-1. Session(django_session)
 * Create
     * Login
-        * AuthentificaitonForm
+        * AuthenticaitonForm
             * built-in form for login
             * username and password
         * login(request, user, backend=None)
@@ -122,7 +122,7 @@ admin.site.register(Article)
             class CustomUserCreationFrom(UserCreationForm):
 
                 class Meta(UserCreationForm.Meta):
-                    model = get_ser_model()
+                    model = get_user_model()
             ```
 * Update
     * info
@@ -137,7 +137,7 @@ admin.site.register(Article)
             class CustomUserCreationFrom(UserCreationForm):
 
                 class Meta(UserChangeForm.Meta):
-                    model = get_ser_model()
+                    model = get_user_model()
                     # limit the infro which the user can change by its own
                     fields = ('email', 'first_name', 'last_name')
             ```
@@ -189,7 +189,7 @@ admin.site.register(Article)
     }
     return render(request, 'accounts/login.html', context)
     ```
-    ```django
+    ```html
     <h1>Login</h1>
     <!--
     자기 자신의 주소로 요청을 보내서 next쿼리를 유지시켜 줌
