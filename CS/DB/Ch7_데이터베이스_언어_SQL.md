@@ -24,7 +24,7 @@ SQL의 데이터 정의 기능은 테이블과 관련되어 있다.
   |SMALLINT|INT보다 작은 정수|
   |CHAR(n) or CHARACTER(n)|길이가 N인 고정 길이의 문자열|
   |VARCHAR(n) or CHARACTER VARYING(n)|최대 길이가 n인 가변 길이의 문자열|
-  |NUMERIC(p,s)|고정소수점 실수<br>p는 소숫점 제외한 전체 숫자 길이, s는 소숫점 이하 숫자 ㄱ리이|
+  |NUMERIC(p,s)|고정소수점 실수<br>p는 소숫점 제외한 전체 숫자 길이, s는 소숫점 이하 숫자 길이|
   |FLOAT(n)|길이가 n인 부동 소숫점 실수|
   |REAL|부동 소숫점 실수|
   |DATE|연,월,일로 표현되는 날짜|
@@ -96,7 +96,7 @@ SQL의 데이터 정의 기능은 테이블과 관련되어 있다.
   ```
 3. 주문 테이블은 주문번호, 주문고객, 주문제품, 수량, 배송지, 주문이랒 속성으로 구성되고, 주문번호 속성이 기본키다. 주문고객 속성이 고객 테이블의 고객아이디 속성을 참조하는 외래키이고, 주문제품 속성이 제품 테이블의 제품번호 속성을 참조하는 외래키가 되도록 주문 테이블을 생성해보자.
   ```SQL
-  CREATE TABLE order {
+  CREATE TABLE orders {
     num CHAR(3) NOT NULL,
     customer VARCHAR(20),
     product CHAR(3),
@@ -208,16 +208,16 @@ WHERE 키워드와 함께 비교 연산자와 논리 연산자를 이요하여 �
   FROM product
   WHERE manufacturer = '한빛제과';
   ```
-* order 테이블에서 apple고객이 15개 이상 주문한 주문제품, 수량, 주문일자를 검색해보자
+* orders 테이블에서 apple고객이 15개 이상 주문한 주문제품, 수량, 주문일자를 검색해보자
   ```sql
   SELECT name, quantity, ordered_at
-  FROM order
+  FROM orders
   WHERE customer = 'apple' AND quantity >= 15;
   ``` 
-* order 테이블에서 apple고객이 주문했거나 15개 이상 주문된 제품의 주문제품, 수량, 주문일자, 주문고객을 검색해보자
+* orders 테이블에서 apple고객이 주문했거나 15개 이상 주문된 제품의 주문제품, 수량, 주문일자, 주문고객을 검색해보자
   ```sql
   SELECT name, quantity, ordered_at, customer
-  FROM order
+  FROM orders
   WHERE customer = 'apple' OR quantity >= 15;
   ``` 
 * product 테이블에서 단가가 2000원 이상이면서 3000원 이하인 제품의 제품명, 단가, 제조업체를 검색해보자
@@ -273,10 +273,10 @@ ORDER BY 키워드 뒤에 정렬 기준이 되는 속성을 지정하고, 오름
   FROM customer
   ORDER BY age DESC;
   ```
-* order 테이블에서 수량이 10개 이상인 주문의 주문고객, 주문제품, 수량, 주문일자를 검색해보자. 단, 주문 제품을 기준으로 오름차순 정렬하고, 동일 제품은 수량을 기준으로 내림차순 정렬해보자.
+* orders 테이블에서 수량이 10개 이상인 주문의 주문고객, 주문제품, 수량, 주문일자를 검색해보자. 단, 주문 제품을 기준으로 오름차순 정렬하고, 동일 제품은 수량을 기준으로 내림차순 정렬해보자.
   ```sql
   SELECT customer, product, qunatity, ordered_at
-  FROM order
+  FROM orders
   WHERE quantity >= 10
   ORDER BY product ASC, quantity DESC;
   ```
@@ -336,7 +336,7 @@ ORDER BY 키워드와 함게 그룹짓는 속성 리스트를 지정하고, HAVI
 * 주문 테이블에서 주문제품별 수량의 합계를 검색해보자.
   ```sql
   SELECT product, SUM(quantity) AS total_quantity
-  FROM order
+  FROM orders
   GROUP BY product;
   ```
 * 주문 테이블에서 제조업체별로 제조한 제품의 갯수와 제품 중 가장 비싼 단가를 검색하되, 제품의 갯수는 제품수(num_products)라는 이름으로 출력하고 가장 비싼 단가는 최고가(max_price)라는 이름으로 출력해보자.
@@ -361,12 +361,12 @@ ORDER BY 키워드와 함게 그룹짓는 속성 리스트를 지정하고, HAVI
 ```sql
 -- Error
 SELECT product, customer, SUM(quantity) AS total_quantity
-FROM order
+FROM orders
 GROUP BY product;
 ```
 ```sql
 SELECT product, customer, SUM(quantity) AS total_quantity
-FROM order
+FROM orders
 GROUP BY product, customer;
 ```
 **여러 테이블에 대한 조인 검색**
@@ -377,34 +377,34 @@ GROUP BY product, customer;
   * banana 고객이 주문한 제품의 이름을 검색해보자.
   ```sql
   SELECT product.name
-  FROM product, order
-  WHERE order.customer = 'banana' AND product.num = order.product;
+  FROM product, orders
+  WHERE orders.customer = 'banana' AND product.num = orders.product;
   ```
   * 고명석 고객이 주문한 제품의 제품명을 검색해보자.
     ```sql
     SELECT product.name
-    FROM customer, product, order
-    WHERE customer.name = '고명석' AND customer.id = order.customer AND product.num = order.product;
+    FROM customer, product, orders
+    WHERE customer.name = '고명석' AND customer.id = orders.customer AND product.num = orders.product;
     ```
 * WHERE 별칭1.속성1 = 별칭2.속성2
   * 나이가 30세 이상인 고객이 주문한 제품 번호와 주문일자를 검색해보자.
   ```sql
-  SELECT order.product, order.ordered_at
-  FROM customer c, order o
+  SELECT orders.product, orders.ordered_at
+  FROM customer c, orders o
   WHERE c.age >= 30 AND c.id = o.customer;
   ```
 * FROM 테이블1 INNER JOIN 테이블2 ON 조인조건
   * 나이가 30세 이상인 고객이 주문한 제품 번호와 주문일자를 검색해보자.
   ```sql
-  SELECT order.product, order.ordered_at
-  FROM customer INNER JOIN order ON customer.id = order.customer
+  SELECT orders.product, orders.ordered_at
+  FROM customer INNER JOIN orders ON customer.id = orders.customer
   WHERE c.age >= 30;
   ```
 * FROM 테이블1 LEFT | RIGHT | FULL OUTER JOIN 테이블2 ON 조인조건
   * 모든 고객들의 고객이름과 주문제품, 주문일자를 검색해보자.
   ```sql
-  SELECT customer.name, order.product, order.ordered_at
-  FROM customer LEFT OUTER JOIN order ON customer.id = order.customer
+  SELECT customer.name, orders.product, orders.ordered_at
+  FROM customer LEFT OUTER JOIN orders ON customer.id = orders.customer
   ```
 **부속 질의문을 이용한 검색**
 SELECT문의 WHERE절 안에 또 다른 SELECT 문을 포함할 수 있다. 이를 부속 질의문(sub query)라고 한다. 
@@ -447,7 +447,7 @@ SELECT문의 WHERE절 안에 또 다른 SELECT 문을 포함할 수 있다. 이�
   FROM product
   WHERE num = (
     SELECT product
-    FROM order
+    FROM orders
     WHERE customer = 'banana'
   );
 * 대한식품이 제조한 모든 제품의 단가보다 비싼 제품의 제품명, 단가, 제조업체를 검색해보자.
@@ -468,8 +468,8 @@ SELECT문의 WHERE절 안에 또 다른 SELECT 문을 포함할 수 있다. 이�
   FROM customer
   WHERE EXISTS (
     SELECT *
-    FROM order
-    WHERE ordered_at = '2022-03-15' AND order.customer = custmoer.id
+    FROM orders
+    WHERE ordered_at = '2022-03-15' AND orders.customer = custmoer.id
   );
   ```
 * 2022년 3월 15일에 제품을 주문하지 않은 고객의 고객의 고객이름을 검색해보자.
@@ -478,14 +478,94 @@ SELECT문의 WHERE절 안에 또 다른 SELECT 문을 포함할 수 있다. 이�
   FROM customer
   WHERE NOT EXISTS (
     SELECT *
-    FROM order
-    WHERE ordered_at = '2022-03-15' AND order.customer = custmoer.id
+    FROM orders
+    WHERE ordered_at = '2022-03-15' AND orders.customer = custmoer.id
   );
   ```
 #### 7.3.2. 데이터의 삽입
-#### 7.3.3. 데이터의 수정
-#### 7.3.4. 데이터의 삭제
+**데이터 직접 삽입**
+```sql
+INSERT
+INTO 테이블_이름[(속성_리스트)]
+VALUES 속성값_리스트;
+```
+INTO 키워드와 함께 삽입할 테이블 이름을 제시한 이후, 속성의 이름을 나열하는데 이 나열 순서대로 VALUES 키워드 다음의 속성 값들이 차례대로 삽입된다. 따라서 ==INTO절의 속성 이름과 VALUES 절의 속성 값은 순서대로 일대일 대응되야한다.== INTO절의 속성 리스트가 생략된 경우, 테이블의 정의된 모든 속성들에 대한 값을 순서대로 속성 값에 삽입해야한다.
+* 고객 테이블에 고객아이디가 strawberry, 고객 이름이 최유경, 나이가 30세, 등급이 vip, 직업이 공무원, 적립금이 100원인 새로운 고객의 정보를 삽입해보자.
+  ```sql
+  INSERT
+  INTO customer
+  VALUES ('strawberry', '최유경', 30, 'vip', '공무원', 100);
+  ```
+* 고객 테이블에 고객아이디가 tomato, 고객 이름이 정은심, 나이가 36세, 등급이 gold, 적립금은 4000원, 직업은 아직 모르는 새로운 고객의 정보를 삽입해보자.
+  ```sql
+  INSERT
+  INTO customer(id, name, age, grade, reserves);
+  VALUES ('tomato', '정은심', 36, 'gold', 4000);
+  ```
+**부속 질의문을 이요한 데이터 삽입**
+다른 어떤 테이블에서 SELECT문으로 검색한 데이터를 데입한다. 이 때, 속성 리스트와 속성값 리스트는 역시 일대일 대응관계이다.
+```sql
+INSERT
+INTO 테이블_이름[(속성_리스트)]
+SELECT 문;
+```
 
+#### 7.3.3. 데이터의 수정
+```sql
+UPDATE 테이블_이름
+SET 속성_이름1 = 값1, 속성_이름=값2, ...
+[ WHERE 조건 ];
+```
+특정 속성의 값을 수정한다. 어떤 투플에 대해 수정을 진행할 지는 WHERE문으로 제한한다. WHERE문이 없을 경우, 모든 투플에 대해 수정이 이뤄진다.
+* 제품 테이블에서 제품번호가 p03인 제품의 제품명을 통큰파이로 수정해보자.
+  ```sql
+  UPDATE customer
+  SET name = '통큰파이'
+  WHERE num = 'p02';
+  ```
+* 제품 테이블에 있는 모든 제품의 단가를 10% 인상해보자.
+  ```sql
+  UPDATE product
+  SET price = price * 1.1;
+  ```
+* 정소화 고객이 주문한 제품의 주문수량을 5개로 수정해보자.
+  ```sql
+  UPDATE orders
+  SET quantity = 5
+  WHERE customer IN (
+    SELECT id
+    FROM customer
+    WHERE name = "정소화"
+  );
+  ```
+#### 7.3.4. 데이터의 삭제
+```sql
+DELETE
+FROM 테이블_이름
+[WHERE 조건];
+```
+WHERE절에서 제시한 조건을 만족하는 투플을 삭제한다. WHERE 절이 없을 경우, 모든 투플을 삭제하여 빈 테이블로 만든다.
+* 주문일자가 2022년 5월 22일인 주문 내역을 삭제해보자.
+  ```sql
+  DELETE
+  FROM orders
+  WHERE ordered_at = '2022-05-22';
+  ```
+* 정소화 고객이 주문한 내역을 주문 테이블에서 삭제해보자.
+  ```sql
+  DELETE
+  FROM orders
+  WHERE customer IN (
+    SELECT id
+    FROM customer
+    WHERE name = '정소화'
+  );
+  ```
+* 주문 테이블에 있는 모든 내용을 삭제해보자.
+  ```sql
+  DELETE
+  FROM orders;
+  ```
 ---
 ### 7.4. 뷰
 #### 7.4.1. 뷰의 개념
