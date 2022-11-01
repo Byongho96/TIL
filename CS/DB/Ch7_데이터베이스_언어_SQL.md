@@ -569,12 +569,121 @@ WHERE절에서 제시한 조건을 만족하는 투플을 삭제한다. WHERE �
 ---
 ### 7.4. 뷰
 #### 7.4.1. 뷰의 개념
+뷰(view)
+: 다른 테이블을 기반으로 만들어진 가상 테이블이다. 즉 물리적으로 저장된 테이블이 아닌, 기존의 테이블을 가공하여 논리적으로 만든 테이블이다. 그러면서도 일반 테이블처럼 조작할 수 있다.
 #### 7.4.2. 뷰의 생성
+```sql
+CREATE VIEW 뷰_이름[(속성_리스트)]
+AS SELECT 문
+[WITH CHECK OPTION];
+```
+CREATE VIEW 키워드와 함께 생성할 뷰의 이름을 제시한 후, 뷰를 구성하는 속성의 **이름**을 괄호 안에 나열한다. 이름 리스트를 생략할 시, SELECT 절에 나열된 속성의 이름을 그대로 사용한다.
+AS 키워드와 함께 SELECT 구문을 제시한다.
+WITH CHECK OPTION을 삽입하면, 뷰에 삽입이나 수정 연산 시, AS SELECT 구문에 걸었던 뷰의 제약조건을 적용한다.
+* customer 테이블에서 등급이 vip인 고객의 고객아이디, 고객이름, 나이, 등급으로 구성된 뷰를 excellent_customer이라는 이름으로 생성해보자.
+  ```sql
+  CREATE VIEW excellent_customer
+  AS  SELECT id, name, age, grade
+      FROM customer
+      WHERE grade = "vip"
+  WITH CHECK OPTION;
+  ```
+* product 테이블에서 제조업체별 제품수로 구성된 뷰를 업체별제품수라는 이름으로 생성해보자.
+  ```sql
+  CREATE num_products_company(manufacturer, num_products)
+  AS  SELECT manufacturer, COUNT(*)
+      FROM product
+      GROUP BY manufacturer
+  WITH CHECK OPTION;
+  ```
 #### 7.4.3. 뷰의 활용
+**데이터 검색**
+뷰도 일반 테이블처럼 검색할 수 있다.
+* 우수고객 뷰에서 나이가 20세 이상인 고객에 대한 모든 내용을 검색해보자.
+  ```sql
+  SELECT *
+  FROM excellent_customer
+  WHERE age >= 20;
+  ```
+**데이터 삽입, 수정, 삭제**
+뷰도 일반 테이블처럼 데이터를 삽입/수정/삭제할 수 있지만, ==기존 테이블도 같이 수정되기 때문에, 기존 테이블의 투플을 어떻게 수정할지 알 수 없다면 연산을 수행할 수 없다.==
+1. 기존 테이블의 기본키와 NOT NULL필드로 지정된 속성을 포함하지 않으면 삽입/수정이 불가능하다.
+2. 집계함수로 새로 계산된 내용을 포함하고 있는 뷰는 변경할 수 없다.
+3. DISTINCT 키워드를 포함하여 정의한 뷰는 변경할 수 없다.
+4. GROUP BY 절을 포함하여 정의한 뷰는 변경할 수 없다.
+4. 여러개의 테이블을 조인하여 정의한 뷰는 변경할 수 없는 경우가 많다.
+
+**뷰의 장점**
+* 자주 사용하는 특정 제약조건의 투플들을 SELECT와 FROM 절만으로 쉽게 접근할 수 있다.
+* 사용자 요구에 맞는 다양한 뷰를 정의하고 해당 뷰에만 접근을 허락함으로써, 데이터의 보안을 강화할 수 있다.
+
 #### 7.4.4. 뷰의 삭제
+```sql
+DROP VIEW 뷰_이름;
+```
+뷰는 삭제하더라도 기본 테이블에 영향을 끼치지 않는다. 다만 뷰를 참조하는 테이블의 제약조건이 있다면, 삭제가 되지 않을 수도 있다.
 
 ---
 ### 7.5. 삽입 SQL
 #### 7.5.1. 삽입 SQL의 개념과 특징
+삽입 SQL(Embedded SQL)
+: C, C++, JAVA와 같은 프로그래밍 언어의 코드안에 삽입하여 사용하는 SQL문
+
+**삽입 SQL 특징**
+* 코드에서 일반 명령문이 위치할 수 있는 곳이면 어디든지 삽입할 수 있다.
+* 일반 명령문과 구별하기 위해 삽입 SQL문 앞에 EXEC SQL을 붙인다.
+* 프로그램에 선언되 일반 변수를 SQL문에서 사용할 수 있다. 단 SQL의 테이블/속성 이름과 구분하기 위해 ':'을 앞에 붙인다.
+
 #### 7.4.2. 커서가 필요 없는 삽입 SQL
+한 개의 행만을 반환하는 SELECT 문이나 CREATE / INSERT / DELETE / UPDATE 문이 해당한다.
+```c
+int main() {
+
+  // 1. SQL구문 안에서 사용할 변수를 EXEC SQL BEBIN/END DECLARE SECTION 문장 사이에서 선언한다.
+  EXEC SQL BEBIN DECLARE SECTION;
+    char p_no[4], p_name[21];   // 변수는 대입할 속성의 데이터 타입과 동일하게 선언한다. 지금은 null문자를 포함하는 C언어의 특징상 문자열의 길이가 +1 증가했다.
+    int price;
+  EXEC SQL END DECLARE SECTION;
+
+  printf("제품번호를 입력하세요: ");
+  scanf("%s", p_no);
+
+  EXEC SQL SELECT name, price INTO :p_name, :price  // 2. INTO 키워드를 사용하여 검색 결과를 변수에 대입한다. 
+    FROM product
+    WHERE num = :p_no;
+
+  printf("\n 제품명 = %s", p_name);
+  printf("\n 단가 = %d", price);
+
+  return 0;
+}
+```
 #### 7.4.3. 커서가 필요한 삽입 SQL
+한 개 이상의 행을 반환하는 SELECT 문의 경우, 커서를 사용하여 한 행씩 차례로 접근할 수 있다.
+
+1. DELCARE 명령어를 사용하여 SELECT문에 커서를 할당한다.
+  ```sql
+  EXEC SQL DECLARE 커서_이름 CURSOR FOR SELECT 문;
+
+  EXEC SQL DECLARE product_cursor CURSOR FOR SELECT name, price FROM product;
+  ```
+2. OPEN 명령어를 사용하여 커서에 연결된 SELECT문을 실행한다.
+  ```sql
+  EXEC SQL OPEN 커서_이름;
+  
+  EXEC SQL OPEN product_cursor;
+  ```
+3. FETCH 명령어를 사용하여 커서를 한 행씩 옮긴다.
+  ```sql
+  EXEC SQL OPEN 커서_이름 INTO 변수_리스트;
+  
+  EXEC SQL OPEN product_cursor INTO :p_name, :price;
+  ```
+4. CLOSE 명령어를 사용하여 커서를 닫느다.
+  ```sql
+  EXEC SQL CLOSE 커서_이름;
+  
+  EXEC SQL CLOSE product_cursor;
+  ```
+
+
