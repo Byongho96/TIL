@@ -86,7 +86,7 @@ However, there are some special object which is out of a document.
 * inserts a set of Node or string objects ==just before the Element==
 **Element.getAttribute(attributeName)**
 * returns the value of a specified attribute on the element.
-* If the given attribute does not exist, the value returned will either be null or ""
+* If the given attribute does not exist, the value returned will either be null or " "
 **Element.setAttribute(name, value)**
 * sets the value of an attribute on the specified element
 * If the attribute already exists, the value is updated.
@@ -222,19 +222,6 @@ const myObj = {
 myObj.muFunc()  // myObj, 1
 ```
 
-### 3.2. Method
-* this === the object called the method
-```javaScript
-const myObj = {
-  data: 1,
-  myFunc() {
-    console.log(this)       // myObj
-    console.log(this.data)  // 1
-  }
-}
-
-myObj.muFunc()  // myObj, 1
-```
 
 ### 3.3. Nested
 * **Simple Call**
@@ -255,7 +242,7 @@ myObj.muFunc()  // myObj, 1
   ```
 * **Arrow Function**
   `this` in an arrow function indciates ==the static scope which is one step above.==
-  Unlike the basic functions, it is important for arrow functions where the function is declared.**(lexical scope, static scope)**
+  Unlike the basic functions, it is important for arrow functions where the function is declared.**(lexical scope)**
   ```javascript
   const myObj = {
     numbers: [1],
@@ -316,7 +303,7 @@ In the case of addEventListner, `this` in the function with 'function' keyword i
   munchikin.attack()  // kitty punch. 프로토타입 체인이 선언되면 임의로 끊을 수 없다.
   ```
 
-4. new 키워드를 이요하여 함수를 마치 클래스처럼 사용하여 객체를 정의할 수 있다. 또한 객체의 prototype 속성에 프로토타입 속성값을 추가할 수 있다. ES6
+4. new 키워드를 이용하여 함수를 마치 클래스처럼 사용하여 객체를 정의할 수 있다. 또한 객체의 prototype 속성에 프로토타입 속성값을 추가할 수 있다. ES6
   ```javascript
   function Cat(name, age) {
     this.name = name
@@ -368,7 +355,7 @@ In the case of addEventListner, `this` in the function with 'function' keyword i
     prices: [10, 50, 100]
     printPrices: function() {
       this.prices.forEach(function(price)) {    // myPrice
-        console.log(price * this.exchangeRate)  // 가리키는 대상이 없음. window를 가리킴
+        console.log(price * this.exchangeRate) 
       }.bind(this)  // 지금 위치의 this랑 안에 위치랑 같은 bind 시켜
     }
   }

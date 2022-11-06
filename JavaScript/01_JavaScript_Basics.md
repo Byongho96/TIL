@@ -86,8 +86,10 @@ Technically, semicolons should be inserted, but ASI(Automatic Semicolon Insertio
 **let**
 * allows re-assignment
 * block scope
+
 **const**
 * block scope
+
 **var**
 * the default keyword
 * allows re-declaration, re-assignment
@@ -117,7 +119,7 @@ for integers and floats
 
 **String**
 for strings
-* '' and "" both can be used
+* ' and " both can be used
 * two strings can be combined with '+'
 * ` (template literal)
     * variable can be inserted in the string by using `${}`
@@ -269,7 +271,7 @@ for (const key in fruits) {
 ```javascript
 const numbers = [5, 1, 4, 7]
 
-for (const number in numbers) {
+for (const number of numbers) {
     console.log(number) // 5, 1, 4, 7
 }
 ```
@@ -565,7 +567,7 @@ const result = arr.some((ele) => {
 })  // true
 ```
 
-**some**
+**every**
 return false if at least one of the elements doesn't satisfy the callback function
 ```javascript
 const arr = [1, 2, 3, 4, 5]
@@ -580,7 +582,7 @@ const result = arr.every((ele) => {
 |---|---|
 |for loop|approach by index<br>break,continue O|
 |for...of|approach by element<br>break,continue O|
-|for loop|approach by element, index<br>break,continue X|
+|forEach|approach by element, index<br>break,continue X|
 ---
 
 ## 5. Object
@@ -588,7 +590,7 @@ const result = arr.every((ele) => {
 Object is a collection of properties expressed with pairs of key and vaule
 * key
     * only string
-    * ''can be omitted, if there's no space in the name
+    * ' can be omitted, if there's no space in the name
 * value
     * any data type
 * approaching elements

@@ -2,12 +2,13 @@
 **Synchornous**
 * Do things in order
 * Wait for the response to a request.
+
 **ASynchornous**
 * Process in parallel
 * Don't Wait for the response -> Better user experience
 
 ### 1.1. Asynchronous JavaScript
-JavaScript is a single-thread language, but it can handle asynchronously.
+JavaScript is a single-thread language, but it can handle things asynchronously.
 ```javascript
 function slowRequest(callBack) {
   console.log('1. A long time process started')
@@ -28,7 +29,7 @@ console.log('3. Another short process')
 ```
 
 ### 1.2. JavaScript Runtime
-The environment that help JavaScript being asynchronous
+The environment that helps JavaScript being asynchronous
 1. All tasks are processed after entering the **Call Stack**.
 2. If a long-lasting task enters the stack, it is sent to the **Web API** and processed separately.
 3. Tasks that have been processed in Web API are sequentially entered into the **Task Queue**.
@@ -41,7 +42,7 @@ Axios
 ### 2.0. XHR
 XHR(XMLHttpRequest)
 : JavaScript API that makes AJAX requests.
-But it is not convenient to use, so that most send XHR requests using libraries such as Axios
+But it is not convenient to use, so the most send XHR requests using libraries such as Axios which created XHR much easily.
 
 ### 2.1. The Structure of Axios
 ```html
