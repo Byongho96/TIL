@@ -123,10 +123,13 @@ It indicates **Vue instance.** Vue instance is made from Vue class which contain
 
 ## 2.2. Vue Instance Attributes
 
+**Example Code**
+
 ```js
 const app = new Vue({
   el: "#app",
   data: {
+    number: 0,
     number1: 100,
     number2: 100,
   },
@@ -138,6 +141,11 @@ const app = new Vue({
   methods: {
     add_method: function () {
       return this.number1 + this.number2
+    },
+    watch: {
+      number: function (val, oldVal) {
+        console.log(val, oldVal)
+      },
     },
   },
 })
@@ -165,6 +173,85 @@ const app = new Vue({
 - The elements of the 'methods' attribute act like instance methods.
 - <mark>Methods must not be declared as arrwo function!</mark> If then `this` in the mehtod whill indicates window, but not vueInstance.
 
+### 2.2.5. **watch**
+
+- The elements of the 'methods' attribute are functions which detect a change of a certain data.
+- The name of the key should be same to the detecting data
+- The function gets two parameters automatically. The first value is the changed value, and the second value is the previous value.
+- The function can be replaced with a vue method by allocating the name of the method as a string to `handler` key's value.
+- `deep: true`is for detecting elements of Array or Object.
+
+```js
+const app = new Vue({
+  el: "#app",
+  data: {
+    number: 0,
+    name: "",
+    myObj: { completed: true },
+  },
+  methods: {
+    nameChange: function () {
+      console.log("name is changed")
+    },
+
+    itemChange: function () {
+      this.myObj.completed = !this.myObj.completed
+    },
+  },
+  watch: {
+    number: function (val, oldVal) {
+      console.log(val, oldVal)
+    },
+
+    name: {
+      handler: "nameChange",
+    },
+
+    myObj: {
+      handler: function (val) {
+        console.log(val)
+      },
+      deep: true,
+    },
+  },
+})
+```
+
+### 2.2.6. **filters**
+
+Methods that gets the data before `|` as the parameter in JavaScript expression(interpolation or v-bind). It can be used consecutively.
+
+```js
+<div id="app">
+  <p>{{ numbers | getOddNums | getUnderTenNums }}</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    },
+    filters: {
+      getOddNums: function (nums) {
+        const oddNums = nums.filter((num) => {
+          return num % 2
+        })
+        return oddNums
+      },
+
+      getUnderTenNums: function (nums) {
+        const underTen = nums.filter((num) => {
+          return num < 10
+        })
+        return underTen
+      }
+    }
+  })
+</script>
+```
+
 ## 2.3. Template Syntax
 
 How to bind DOM to Vue instance
@@ -172,6 +259,8 @@ How to bind DOM to Vue instance
 ### 2.3.1. Declarative Rendering
 
 The part written with '{{ }}' is binded with data in the vue instance. JavaScript can be used in the area.
+
+**Example Code**
 
 ```html
 <div id="app">
@@ -192,7 +281,10 @@ The part written with '{{ }}' is binded with data in the vue instance. JavaScrip
 
 ### 2.3.2. Raw HTML
 
-If you want to a string as HTML syntax. You should use 'v-html' directive
+If you want to a string as HTML syntax, 'v-html' directive can be one of solutions. But It **MUST NOT** be used contents which users input or provide.
+<mark>[XSS attack](http://blog.plura.io/?p=7614)</mark>
+
+**Example Code**
 
 ```html
 <div id="app">
@@ -213,43 +305,16 @@ If you want to a string as HTML syntax. You should use 'v-html' directive
 </script>
 ```
 
-# 3. Directives
+# 3. Vue Directives
 
-## 2.2. Declarative Rendering
+![vue_directives](./images/vue_directives.jpg)
+The attributes which starts with 'v-' get **JavaScript expression** as the value. The role of the directive is that what to do reactively when the expression value changes.
 
-Vue 객체
-미리 정의 된 속성과 메소드를 이용
+## 3.1. v-text
 
-Vue instace를 만들 대는 하나의 객체를 집어 넣는다.
+It functions similar to template interpolation '{{ }}'
 
-선언적 렌더링: 아예 html에다가 데이터를 집어 넣음
-
-```html
-<body>
-  d
-  <div id="app">
-    {{ message + ' Byongho'}}
-    <!--  JS문법의 영역이다. -->
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
-  <script>
-    const vm = new Vue({
-      el: "#app", // 나 여기에 인스턴스를 붙일 꺼고, 그 요소에서는 메소드를 사용가능하다.
-      data: {
-        // 자기가 가지고 있는 데이터를 미리 정의하고, Vue가 이를 감지해서 DOM에 반영
-        message: "Hello, vue!",
-      },
-    })
-    vm.message = "Hello," // 바로 반영
-  </script>
-</body>
-```
-
-# Vue Directives
-
-디렉티브: vue가 가진 기능을 사용하겠금 하는 속성!
-v-text
+**Example Code**
 
 ```html
 <body>
@@ -270,429 +335,237 @@ v-text
 </body>
 ```
 
-coumputed
+## 3.2. v-show & v-if
+
+### 3.2.1. v-show
+
+Toggle the value of 'display' attribute of the element according to the value of JavaScript expression (Boolean). It still can be found in DOM. **Expensive initial load. Cheap toggle.**
+
+- True: none;
+- False: original_value;
+
+### 3.2.2. v-if
+
+If the the value of JavaScript expression is false, the element is not be rendered at all. **Cheap initial load. Expensive toggle.**
+
+**Example Code**
 
 ```html
-<body>
-  <div id="app">
-    <h3>금액: {{money}}</h3>
-    <h3>포인트: {{point}}</h3>
-  </div>
+<div id="app3">
+  <p v-show="isActive">v_show</p></p>
+  <p v-if="isActive">v_if</p>
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
-  <script>
-    new Vue({
-      el: "#app",
-      data: {
-        money: 50000,
-        ratio: 0.05,
-        // point: this.money * this.ratio  // Nan. data가 변경될 때마다, 새롭게 계산되어 재정의 되어야 할 경우 v-computed속성을 사용한다.
-      },
-      computed: {
-        // 확장된 데이터라고 생각!! 함수나 메소드보다는
-        // point: function() {
-        //   return this.money * this.ratio
-        // }
-        point() {
-          return this.money * this.ratio
-        },
-      },
-    })
-  </script>
-</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+  // v-show && v-if
+  const app3 = new Vue({
+    el: '#app3',
+    data: {
+      isActive: false,
+    },
+  })
+</script>
 ```
 
-v-on: === @
+## 3.3. v-for
+
+The JavaScript format looks like this: `for .. in ..`
+
+**:key**
+It's the attribute which should be added with v-for directive.
+The key of each element must be **distinguishable from other elements.** It's also recommended to use **the value that each element actually contains**, not such like the index value.
+
+**Example Code**
 
 ```html
-<body>
-  <div id="app">
-    <button id="myBtn">Click me</button>
-    <p id="myElem">0</p>
+<div id="app">
+  <h2>String</h2>
+  <div v-for="char in myStr">{{ char }}</div>
+  <div v-for="(char, index) in myStr" :key="index">
+    <p>{{ index }}th character '{{ char }}'</p>
   </div>
 
-  <script>
-    // Vanilla JS
-    const myBtn = document.querySelector("#myBtn")
-    const myElem = document.querySelector("#myElem")
-    let value = parseInt(myElem.innerText) // it was 0, not {{ myNum }}
-
-    myBtn.addEventListener("click", function (event) {
-      value += 1
-      myElem.innerText = value
-    })
-  </script>
-</body>
-```
-
-```html
-<body>
-  <div id="app">
-    <button id="myBtn" v-on:click="plusNum">Click me</button>
-    <p id="myElem">{{ myNum }}</p>
+  <h2>Array</h2>
+  <div v-for="(item, index) in myArr" :key="`ssafy-${index}`">
+    <p>{{ index }}th item {{ item }}</p>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
+  <div v-for="(item, index) in myArr2" :key="`arry-${index}`">
+    <p>{{ index }}th item</p>
+    <p>{{ item.name }}</p>
+  </div>
 
-  <script>
-    // Vue.js
-    const vm = new Vue({
-      el: "#app",
-      data: {
-        myNum: 0,
+  <h2>Object</h2>
+  <div v-for="value in myObj">
+    <p>{{ value }}</p>
+  </div>
+
+  <div v-for="(value, key) in myObj" :key="key">
+    <p>{{ key }} : {{ value }}</p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      // 1. String
+      myStr: "Hello, World!",
+
+      // 2-1. Array
+      myArr: ["python", "django", "vue.js"],
+
+      // 2-2. Array with Object
+      myArr2: [
+        { id: 1, name: "python", completed: true },
+        { id: 2, name: "django", completed: true },
+        { id: 3, name: "vue.js", completed: false },
+      ],
+
+      // 3. Object
+      myObj: {
+        name: "harry",
+        age: 27,
       },
-      methods: {
-        // plusNum: function() {
-        //   this.myNum += 1
-        // }
-        plusNum() {
-          this.myNum += 1
-        },
-
-        // plusNum: () => {
-        //   this.myNum += 1
-        // }
-        // 이거 안됨. arrow function을 쓰면 메서드가 정의된 곳의 하나 상위의 객체를 가리킨다.
-        // 근데 하나 상위의 객체가 Vue 아냐? function일때 methods인거고
-
-        // 우리는 Vue라는 인스턴스가 어더한 구조를 가지고 있는지 살펴보아야 한다.
-        // 콘솔창에서 찍어보면 모든 나란히 병렬적으로 vue인스턴스에 바로 붙는다.
-        // 즉 구조상으로 plusNum은 바로 vue객체 안쪽에 있음.
-        // 그래서 다들 메서드 정의 시에는 화살표 함수 쓰지 말라고 하는 것!
-      },
-    })
-    console.log(vm)
-  </script>
-</body>
+    },
+  })
+</script>
 ```
 
-v-bind: === :
-속성을 바인드 하고 싶을 때
+## 3.4. v-on
+
+Its function is similar to `addEventListener()`. The JavaScript expression function is excuted when the event corresponding to the argument occurs. The callback function also gets the `event` as the first parameter.
+**It can be abbreviated to '@'.**
+
+**Example Code**
 
 ```html
+<div id="app">
+  <button v-on:click="number++">increase Number</button>
+  <p>{{ number }}</p>
+
+  <button @click="checkActive(isActive)">check isActive</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      number: 0,
+      isActive: false,
+    },
+    methods: {
+      toggleActive: function () {
+        this.isActive = !this.isActive
+      },
+
+      checkActive: function (check) {
+        console.log(check)
+      },
+    },
+  })
+</script>
+```
+
+## 3.5. v-bind
+
+It binds the basic **html attributes** to **Vue data**. **It can be abbreviated to ':'.**
+
+### 3.5.1. :class
+
+- **Conditional Biding**
+
+  - {'className': 'jsExpression'}
+
+- **Multiple Binding**
+  - ['jsExpression', 'jsExpression', 'jsExpression', ...]
+
+**Example Code**
+
+```html
+<div id="app2">
+  <a v-bind:href="url">Go To GOOGLE</a>
+
+  <p :class="redTextClass">Red Letter</p>
+  <p :class="{ 'red-text': true }">Red Letter</p>
+
+  <p v-bind:class="[redTextClass, borderBlack]">Red Letter in a Black Box</p>
+
+  <p :class="theme">Mode</p>
+  <button @click="darkModeToggle">dark Mode {{ isActive }}</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+  const app2 = new Vue({
+    el: "#app2",
+    data: {
+      url: "https://www.google.com/",
+      redTextClass: "red-text",
+      borderBlack: "border-black",
+      isActive: true,
+      theme: "dark-mode",
+    },
+    methods: {
+      darkModeToggle() {
+        this.isActive = !this.isActive
+        if (this.isActive) {
+          this.theme = "dark-mode"
+        } else {
+          this.theme = "white-mode"
+        }
+      },
+    },
+  })
+</script>
+
 <style>
-  #before {
-    background-color: greenyellow;
+  .red-text {
+    color: red;
   }
-  #after {
-    background-color: yellow;
+  .border-black {
+    border: solid 1px black;
+  }
+
+  .dark-mode {
+    color: white;
+    background-color: black;
+  }
+
+  .white-mode {
+    color: black;
+    background-color: white;
   }
 </style>
-
-<body>
-  <div id="app">
-    <p id="`${elemId}`" @click="clicked">Click me</p>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
-
-  <script>
-    // Vue.js
-    new Vue({
-      el: "#app",
-      data: {
-        elemId: "before",
-      },
-      methods: {
-        clicked() {
-          this.elemId = "after"
-        },
-      },
-    })
-  </script>
-</body>
 ```
 
-```html
-<style>
-  #before {
-    background-color: greenyellow;
-  }
-  #after {
-    background-color: yellow;
-  }
-</style>
+## 3.6. v-model
 
-<body>
-  <div id="app">
-    <p :id="elemId" @click="clicked">Click me</p>
-  </div>
+<mark>Bidirectional Binding.</mark> If the user inputs value, the data is applied to the binded data, and vice versa.
 
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
+**Limitation**
+In the case of combinatorial characters, the results are reflected only when one character is completed.
 
-  <script>
-    // Vue.js
-    new Vue({
-      el: "#app",
-      data: {
-        elemId: "before",
-      },
-      methods: {
-        clicked() {
-          this.elemId = "after"
-        },
-      },
-    })
-  </script>
-</body>
-```
+**Example Code**
 
 ```html
-<style>
-  .errorColor {
-    color: tomato;
-  }
-</style>
+<div id="app">
+  <h2>2. Input <-> Data</h2>
+  <h3>{{ myMessage2 }}</h3>
+  <input v-model="myMessage2" type="text" />
+  <hr />
+</div>
 
-<body>
-  <div id="app">
-    <h3 :class="errorText">ERROR</h3>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
-
-  <script>
-    new Vue({
-      el: "#app",
-      data: {
-        isError: false,
-      },
-      computed: {
-        errorText() {
-          return this.isError ? "errorColor" : null
-        },
-      },
-    })
-  </script>
-</body>
-```
-
-v-if:
-조건에 따라 태그를 조작
-data or computed의 값
-
-```html
-<body>
-  <div id="app">
-    <div v-if="seen">Wait a second, please</div>
-    <div v-else=>Welcome!</div>
-
-    <div v-if="member === 'Kim'">Wait a second, please</div>
-    <div v-else-if="member === 'harry'">Welcome!</div>
-    <div v-else>Who's this?</div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
-
-  <script>
-    new Vue({
-      el: '#app',
-      data: {
-        seen: true,
-        member: 'harry',
-      }
-    })
-  </script>
-</body>
-```
-
-v-show:
-요소가 dom에 있지만 style="display: none" 처리된다.\
-
-```html
-<body>
-  <div id="app">
-    <div v-if="seen">being seen</div>
-    <div v-show="seen">being seen</div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
-
-  <script>
-    new Vue({
-      el: "#app",
-      data: {
-        seen: false,
-      },
-    })
-  </script>
-</body>
-```
-
-v-model
-사용자의 input값이 data를 바꿈 -> 바뀐 데이터가 dom에 적용
-또한, 연결된 data값의 변경이 input의 value를 바꿈. 3가지가 바인딩(input - data - dom)
-
-```html
-<body>
-  <div id="app">
-    <input type="text" @input="inputFunc" />
-    <p>{{message}}</p>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
-
-  <script>
-    new Vue({
-      el: "#app",
-      data: {
-        message: "",
-      },
-      methods: {
-        inputFunc(event) {
-          // event발생시 event객체를 콜백함수의 첫번째 인자로 받음. event 안써도 되기는 하네
-          console.log(event)
-          this.message = event.target.value
-        },
-      },
-    })
-  </script>
-</body>
-```
-
-```html
-<body>
-  <div id="app">
-    <input v-model="message" />
-    <p>{{message}}</p>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
-
-  <script>
-    new Vue({
-      el: "#app",
-      data: {
-        message: "",
-      },
-    })
-  </script>
-</body>
-```
-
-watch
-data만 감시하고 coupted는 못받네
-언제씀??? 두개는 상호호환가능.
-couputed는 데이터의 가공
-watch는 변경될 때 실행해야하는 무거운 작업
-
-```html
-<body>
-  <div id="app">
-    <h1>{{num}}</h1>
-    <h1>{{doubleNum}}</h1>
-    <button @click="plus">+</button>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
-
-  <script>
-    new Vue({
-      el: "#app",
-      data: {
-        num: 0,
-      },
-      computed: {
-        doubleNum() {
-          return this.num * 2
-        },
-      },
-      methods: {
-        plus() {
-          this.num++
-        },
-      },
-      watch: {
-        num(newValue, oldValue) {
-          console.log(oldValue, newValue)
-        },
-        // doubleNum(newValue, oldValue) {
-        //   console.log(oldValue, newValue)
-        // }
-      },
-    })
-  </script>
-</body>
-```
-
-v-for
-
-```html
-<body>
-  <div id="app">
-    <ul>
-      <li v-for="fruit in fruits">{{ fruit }}</li>
-    </ul>
-    <ul>
-      <li v-for="(fruit, index) in fruits">{{ index }} - {{ fruit }}</li>
-    </ul>
-    <ul>
-      <li v-for="(todo, index) in todos">
-        {{ index + 1 }} - {{ todo.context }}
-      </li>
-    </ul>
-
-    <ul>
-      <li v-for="todo in todos" v-if="!todo.completed">{{ todo.context }}</li>
-    </ul>
-    <!-- Not Recommended -->
-    <!--
-      v-for가 v-if보다 먼저 실행되야함. vue3부터 근데 v-if가 우선순위가 높아짐.
-      그래서 두개로 나눠서 하기를 추천
-    -->
-    <ul>
-      <template v-for="todo in todos">
-        <li v-if="!todo.completed">{{ todo.context }}</li>
-      </template>
-    </ul>
-    <!-- template속성은 실제 DOM에서 표시되지는 않음 -->
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
-
-  <script>
-    new Vue({
-      el: "#app",
-      data: {
-        fruits: ["apple", "banana", "coconut"],
-        todos: [
-          { id: 1, context: "todo1", completed: false },
-          { id: 2, context: "todo2", completed: true },
-          { id: 3, context: "todo3", completed: false },
-        ],
-      },
-    })
-  </script>
-</body>
-```
-
-돔의 변경 사항을 추적할 때, key가 정해져있으면 훨신 빨리 추적한다.
-
-```html
-<body>
-  <div id="app">
-    <ul>
-      <template v-for="(todo,idx) in todos" :key="`todo-${idx}`">
-        <li v-if="!todo.completed">{{ todo.context }}</li>
-      </template>
-    </ul>
-    <!-- template속성은 실제 DOM에서 표시되지는 않음 -->
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
-
-  <script>
-    new Vue({
-      el: "#app",
-      data: {
-        fruits: ["apple", "banana", "coconut"],
-        todos: [
-          { id: 1, context: "todo1", completed: false },
-          { id: 2, context: "todo2", completed: true },
-          { id: 3, context: "todo3", completed: false },
-        ],
-      },
-    })
-  </script>
-</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      myMessage2: "",
+    },
+  })
+</script>
 ```
