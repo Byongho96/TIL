@@ -91,7 +91,6 @@ Then how can we create the same environment when we pull the project from git? T
 JavaScript compiler which transform ES6+ codes into ES5 codes.
 
 **Why?**
-
 JavaScript has developed through a complicated history, so sometimes it does not work per browser even if it follows the latest syntax. Therefore, it was decided to translate the latest code into old code that works anywhere.
 
 ### 1.3.5. package-lock.json
@@ -136,8 +135,10 @@ One .vue file is one component, and one vue instance is in one component. Theref
 
 1. Create a component(.vue) in 'src/components/' directory naming with PascalCase
    [SFC component naming guide](https://v2.vuejs.org/v2/style-guide/?redirect=true#Single-file-component-filename-casing-strongly-recommended)
-2. Add `name` attribute to the instance with the file name
+
+2. Add `name` attribute to the instance.
    `{ name: '{file_name}'}`
+
 3. Add a element in the template tag.
 
 **Example Code**
@@ -168,7 +169,9 @@ One .vue file is one component, and one vue instance is in one component. Theref
 1. `import {instance_name} from '{directory}'`
    1-1. {instance_name} is the name value which was defined in the instance
    1-2. '@' points 'src/' in diretory path
+
 2. Add the imported instance in the `components` attribute
+
 3. Use the component in the template as a element
 
 **Example Code**
