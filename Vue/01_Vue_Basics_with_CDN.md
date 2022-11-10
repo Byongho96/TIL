@@ -8,7 +8,7 @@ Making user interface with a single-page application.
 
 The web page or the web app which receives only one HTML file from a server and responds to multilple user requests.
 
-**How?**
+**How?**  
 By using CSR(Client Side Rendering) method.
 
 ### 1.1.2. SSR(Server Side Rendering)
@@ -23,9 +23,9 @@ A server renders html documents and send it to the client.
 
 **Procedure**
 
-- Client(Browser) receives only one html file at first and re-rendering the html with JavScript
-- Required data is requested to the server through AJAX, and the server responses with JSON
-- JSON data is processed with JavaScript at the client side
+1. Client(Browser) receives only one html file at first and re-rendering the html with JavScript
+2. Required data is requested to the server through AJAX, and the server responses with JSON
+3. JSON data is processed with JavaScript at the client side
 
 **Characteristics**
 
@@ -55,18 +55,18 @@ It's not necessary to use front-end framework, but it's strongly recommended for
 
 It's recommended to use Vue2 so far, because the new version is not being used widely yet.
 
-**CDN**
+- **CDN**
 
-- Paste the script below before the main \<script> code. [Vue2 CDN Link](https://v2.vuejs.org/v2/guide/)
-- <mark>We will learn the basics of Vue with this method in this chapter.</mark>
-  ```html
-  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-  ```
+  - Paste the script below before the main \<script> code. [Vue2 CDN Link](https://v2.vuejs.org/v2/guide/)
+  - <mark>We will learn the basics of Vue with this method in this chapter.</mark>
 
-**`npm install`**
+    ```html
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    ```
 
-- You can make a Vue project and write the code according to the format.
-- This method will be discussed in the next chapter.
+* **`npm install`**
+  - You can make a Vue project and write the code according to the format.
+  - This method will be discussed in the next chapter.
 
 # 2. Vue Instance
 
@@ -86,9 +86,8 @@ It indicates **DOM.** Cosidering that The DOM is the same as the html document. 
 
 It indicates **Vue instance.** Vue instance is made from Vue class which contains a variety of methods defined by Vue.
 
-**Roles**
-
-- Intermediates between view and model by **being attached to an element in DOM** and **cotaining JS code in the instance.**
+**Roles**  
+Intermediates between view and model by **being attached to an element in DOM** and **cotaining JS code in the instance.**
 
 **Code Example**
 
@@ -181,76 +180,76 @@ const app = new Vue({
 - The function can be replaced with a vue method by allocating the name of the method as a string to `handler` key's value.
 - `deep: true`is for detecting elements of Array or Object.
 
-```js
-const app = new Vue({
-  el: "#app",
-  data: {
-    number: 0,
-    name: "",
-    myObj: { completed: true },
-  },
-  methods: {
-    nameChange: function () {
-      console.log("name is changed")
+  ```js
+  const app = new Vue({
+    el: "#app",
+    data: {
+      number: 0,
+      name: "",
+      myObj: { completed: true },
     },
-
-    itemChange: function () {
-      this.myObj.completed = !this.myObj.completed
-    },
-  },
-  watch: {
-    number: function (val, oldVal) {
-      console.log(val, oldVal)
-    },
-
-    name: {
-      handler: "nameChange",
-    },
-
-    myObj: {
-      handler: function (val) {
-        console.log(val)
+    methods: {
+      nameChange: function () {
+        console.log("name is changed")
       },
-      deep: true,
+
+      itemChange: function () {
+        this.myObj.completed = !this.myObj.completed
+      },
     },
-  },
-})
-```
+    watch: {
+      number: function (val, oldVal) {
+        console.log(val, oldVal)
+      },
+
+      name: {
+        handler: "nameChange",
+      },
+
+      myObj: {
+        handler: function (val) {
+          console.log(val)
+        },
+        deep: true,
+      },
+    },
+  })
+  ```
 
 ### 2.2.6. **filters**
 
-Methods that gets the data before `|` as the parameter in JavaScript expression(interpolation or v-bind). It can be used consecutively.
+- Methods that gets the data before `|` as the parameter in JavaScript expression(interpolation or v-bind). It can be used consecutively.
 
-```js
-<div id="app">
-  <p>{{ numbers | getOddNums | getUnderTenNums }}</p>
-</div>
+  ```js
+  <div id="app">
+    <p>{{ numbers | getOddNums | getUnderTenNums }}</p>
+  </div>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-<script>
-  const app = new Vue({
-    el: '#app',
-    data: {
-      numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-    },
-    filters: {
-      getOddNums: function (nums) {
-        const oddNums = nums.filter((num) => {
-          return num % 2
-        })
-        return oddNums
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
       },
+      filters: {
+        getOddNums: function (nums) {
+          const oddNums = nums.filter((num) => {
+            return num % 2
+          })
+          return oddNums
+        },
 
-      getUnderTenNums: function (nums) {
-        const underTen = nums.filter((num) => {
-          return num < 10
-        })
-        return underTen
+        getUnderTenNums: function (nums) {
+          const underTen = nums.filter((num) => {
+            return num < 10
+          })
+          return underTen
+        }
       }
-    }
-  })
-</script>
-```
+    })
+  </script>
+  ```
 
 ## 2.3. Template Syntax
 
@@ -307,7 +306,7 @@ If you want to a string as HTML syntax, 'v-html' directive can be one of solutio
 
 # 3. Vue Directives
 
-![vue_directives](./images/vue_directives.jpg)
+![vue_directives](./images/vue_directives.jpg)  
 The attributes which starts with 'v-' get **JavaScript expression** as the value. The role of the directive is that what to do reactively when the expression value changes.
 
 ## 3.1. v-text
@@ -339,14 +338,16 @@ It functions similar to template interpolation '{{ }}'
 
 ### 3.2.1. v-show
 
-Toggle the value of 'display' attribute of the element according to the value of JavaScript expression (Boolean). It still can be found in DOM. **Expensive initial load. Cheap toggle.**
+**Expensive initial load. Cheap toggle.**  
+Toggle the value of 'display' attribute of the element according to the value of JavaScript expression (Boolean). It still can be found in DOM.
 
 - True: none;
 - False: original_value;
 
 ### 3.2.2. v-if
 
-If the the value of JavaScript expression is false, the element is not be rendered at all. **Cheap initial load. Expensive toggle.**
+**Cheap initial load. Expensive toggle.**  
+If the the value of JavaScript expression is false, the element is not be rendered at all.
 
 **Example Code**
 
@@ -546,7 +547,7 @@ It binds the basic **html attributes** to **Vue data**. **It can be abbreviated 
 
 <mark>Bidirectional Binding.</mark> If the user inputs value, the data is applied to the binded data, and vice versa.
 
-**Limitation**
+**Limitation**  
 In the case of combinatorial characters, the results are reflected only when one character is completed.
 
 **Example Code**

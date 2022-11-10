@@ -20,21 +20,21 @@ The CLI (@vue/cli) provides the vue command in your terminal. It provides the ab
 
 ### 1.2.1. Vue CLI Start
 
-**Install**  
-`npm install -g @vue/cli`
+- **Install**  
+  `npm install -g @vue/cli`
 
-**Create a project**  
-`vue create my-project`  
-The project folder is created as a local repository. However, if the project is created in a local repository, the .git/ will not be created.
+- **Create a project**  
+  `vue create my-project`  
+  The project folder is created as a local repository. However, if the project is created in a local repository, the .git/ will not be created.
 
-**Select preset**  
-`Default ([Vue 2] babel, eslint)` is recommended
+* **Select preset**  
+  `Default ([Vue 2] babel, eslint)` is recommended
 
-**Change directory to the project folder**  
-`cd {folder_name}/`
+* **Change directory to the project folder**  
+  `cd {folder_name}/`
 
-**Run the server**  
-`npm run serve`
+* **Run the server**  
+  `npm run serve`
 
 ## 1.3 Sturctue of the Vue Project
 
@@ -149,14 +149,12 @@ One .vue file is one component, and one vue instance is in one component. Theref
 
 ### 2.3.3. Importing a Vue Component
 
-**Proceduree**
+**Procedure**
 
-1. `import {instance_name} from '{directory}'`
-   1-1. {instance_name} is the name value which was defined in the instance
+1. `import {instance_name} from '{directory}'`  
+   1-1. {instance_name} is the name value which was defined in the instance  
    1-2. '@' points 'src/' in diretory path
-
 2. Add the imported instance in the `components` attribute
-
 3. Use the component in the template as a element
 
 **Example Code**
@@ -209,10 +207,8 @@ All props form a one-way-down binding <mark>between the child property and the p
    </template>
    ```
 
-2. Add the prop to the sub component instance
-
-   2-1. The name of the prop is the conversion of kebab-case property name to PascalCase
-
+2. Add the prop to the sub component instance  
+   2-1. The name of the prop is the conversion of kebab-case property name to PascalCase  
    2-2. [Mark the data type](https://vuejs.org/guide/components/props.html#runtime-type-checks)
 
 3. Use the prop like data(declarative rendering)
@@ -244,10 +240,8 @@ Technically, Vue doesn't support passing data from a child component to the pare
 
 ### 3.2.1. Procedures of Emmitting Events
 
-1. Use [$emit](https://vuejs.org/api/component-instance.html#emit) method of the vue instance <code>\$emit({event_name}: string, ...args: any[]): void</code>
-
-   1-1. Name the {event_name} with kebab-case cause it's gonna be used in the html context of the parent component
-
+1. Use [$emit](https://vuejs.org/api/component-instance.html#emit) method of the vue instance <code>\$emit({event_name}: string, ...args: any[]): void</code>  
+   1-1. Name the {event_name} with kebab-case cause it's gonna be used in the html context of the parent component  
    1-2. Enter the data to be pssed from the second argument.
 
    ```html
@@ -270,10 +264,8 @@ Technically, Vue doesn't support passing data from a child component to the pare
    </script>
    ```
 
-2. Add event listener(v-on) to the sub-component tag.
-
-   2-1. The event name was defined in the sub-component's $emit method.
-
+2. Add event listener(v-on) to the sub-component tag.  
+   2-1. The event name was defined in the sub-component's $emit method.  
    2-2. Input the callback function as the value
 
    ```html
