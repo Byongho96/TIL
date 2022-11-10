@@ -22,19 +22,25 @@ The CLI (@vue/cli) provides the vue command in your terminal. It provides the ab
 ### 1.2.1. Vue CLI Start
 
 **Install**
+
 `npm install -g @vue/cli`
 
 **Create a project**
+
 `vue create my-project`
+
 The project folder is created as a local repository. However, if the project is created in a local repository, the .git/ will not be created.
 
 **Select preset**
+
 `Default ([Vue 2] babel, eslint)` is recommended
 
 **Change directory to the project folder**
+
 `cd {folder_name}/`
 
 **Run the server**
+
 `npm run serve`
 
 ## 1.3 Sturctue of the Vue Project
@@ -46,30 +52,38 @@ The collection of modules for running node.js environment. The folder is too hea
 Then how can we create the same environment when we pull the project from git? There is a ['package-lock.json'](#135-package-lockjson) file which functions similar to Python's requirements.txt.
 
 - **Webpack**
+
   ![2_Webpack](./images/2_WebPack.PNG)
   a static moudle bundler, which is for solving dependency issues with modules. It analyzes the modules and converts them into several static files.
 
 ### 1.3.2. public/
 
 - **favicon.ico**
+
   The image source for the favicon
 
 - **index.html**
+
   The basic html file of the Vue project. It's connected to the App.vue
+
   ![2_index_html](./images/2_index_html.PNG)
 
 ### 1.3.3. src/
 
 - **assets/**
+
   The directory for storing static assets such as image files
 
 - **components/**
+
   The directory for storing sub-components of the App.vue
 
 - **App.vue**
+
   The top-level component
 
 - **main.js**
+
   The entry point where the webpack starts its process. It also connects the index.html to the App.vue.
 
 ### 1.3.4. babel.config.js
@@ -77,11 +91,13 @@ Then how can we create the same environment when we pull the project from git? T
 JavaScript compiler which transform ES6+ codes into ES5 codes.
 
 **Why?**
+
 JavaScript has developed through a complicated history, so sometimes it does not work per browser even if it follows the latest syntax. Therefore, it was decided to translate the latest code into old code that works anywhere.
 
 ### 1.3.5. package-lock.json
 
 It is automatically generated for any operations where npm modifies either the node_modules tree, or package.json. It describes the exact tree that was generated, such that subsequent installs are able to generate identical trees, regardless of intermediate dependency updates.
+
 **This file is needed to create an accurate runtime environment.** If there's 'package-lock.json', `npm install` cmd install it instead of 'package.json'
 
 ### 1.3.6. package.json
@@ -92,9 +108,9 @@ It has infromation about config settings such as a dependencies list.
 
 ## 2.1. Component
 
-Divided pieces of UI which are independent and reusable
-A web page is made with components nested in a tree structure.
-![2_components](./images/2_components.PNG)
+Divided pieces of UI which are independent and reusable. A web page is made with components nested in a tree structure.
+
+![2_components](./images/2_Components.PNG)
 
 ## 2.2. SFC
 
@@ -190,46 +206,52 @@ All props form a one-way-down binding <mark>between the child property and the p
 ### 3.1.1. Procedures of Passing Props
 
 1. Add a attribute to the component tag.
+
    1-1. Name the attribute with kebab-case
+
    1-2. The value of the attribute should be the data to be sent down.
+
    1-3. v-bind can be applied to the attribute
 
-```html
-// Parent.vue
-<template>
-  <div id="app">
-    <h1>This is the parent component</h1>
-    <!-- 1. Add a attribute -->
-    <MyChild static-prop="This is a prop" />
-  </div>
-</template>
-```
+   ```html
+   // Parent.vue
+   <template>
+     <div id="app">
+       <h1>This is the parent component</h1>
+       <!-- 1. Add a attribute -->
+       <MyChild static-prop="This is a prop" />
+     </div>
+   </template>
+   ```
 
 2. Add the prop to the sub component instance
+
    2-1. The name of the prop is the conversion of kebab-case property name to PascalCase
+
    2-2. [Mark the data type](https://vuejs.org/guide/components/props.html#runtime-type-checks)
+
 3. Use the prop like data(declarative rendering)
 
-```html
-// MyChild.vue
-<template>
-  <div>
-    <h1>This is a child component</h1>
-    <!-- 3. Use the prop -->
-    <p>{{ staticProp }}</p>
-  </div>
-</template>
+   ```html
+   // MyChild.vue
+   <template>
+     <div>
+       <h1>This is a child component</h1>
+       <!-- 3. Use the prop -->
+       <p>{{ staticProp }}</p>
+     </div>
+   </template>
 
-<script>
-  export default {
-    name: "MyChild",
-    // 2. Add the prop
-    props: {
-      staticProps: String,
-    },
-  }
-</script>
-```
+   <script>
+     export default {
+       name: "MyChild",
+       // 2. Add the prop
+       props: {
+         staticProps: String,
+       },
+     }
+   </script>
+   ```
 
 ## 3.2. Emit Events
 
@@ -238,59 +260,63 @@ Technically, Vue doesn't support passing data from a child component to the pare
 ### 3.2.1. Procedures of Emmitting Events
 
 1. Use [$emit](https://vuejs.org/api/component-instance.html#emit) method of the vue instance <code>\$emit({event_name}: string, ...args: any[]): void</code>
+
    1-1. Name the {event_name} with kebab-case cause it's gonna be used in the html context of the parent component
+
    1-2. Enter the data to be pssed from the second argument.
 
-```html
-// MyChild.vue
-<script>
-  export default {
-    ...
-    data: function() {
-      return {
-        childData: null,
-      }
-    }
-    methods: {
-      childToParent: function () {
-        // 1. use the $emit method
-        this.$emit('child-to-parent', this.childData)
-      },
-    },
-  }
-</script>
-```
+   ```html
+   // MyChild.vue
+   <script>
+     export default {
+       ...
+       data: function() {
+         return {
+           childData: null,
+         }
+       }
+       methods: {
+         childToParent: function () {
+           // 1. use the $emit method
+           this.$emit('child-to-parent', this.childData)
+         },
+       },
+     }
+   </script>
+   ```
 
 2. Add event listener(v-on) to the sub-component tag.
+
    2-1. The event name was defined in the sub-component's $emit method.
+
    2-2. Input the callback function as the value
 
-```html
-// Parent.vue
-<template>
-  <div>
-    <h1>This is the parent component</h1>
-    <!-- 2. Add an event listener -->
-    <MyChild @child-to-parent="getData">
-  </div>
-</template>
-```
+   ```html
+   // Parent.vue
+   <template>
+     <div>
+       <h1>This is the parent component</h1>
+       <!-- 2. Add an event listener -->
+       <MyChild @child-to-parent="getData">
+     </div>
+   </template>
+   ```
 
-3. The callback function defined in `mehthods` gets the data passed as its parameters
+3. The callback function defined in `methods` gets the data passed as its parameters
 
-```html
-// Parent.vue
-<script>
-  import MyChild from "./components/MyChild.vue"
+   ```html
+   // Parent.vue
+   <script>
+     import MyChild from "./components/MyChild.vue"
 
-  export default {
-    name: "Parent",
-    // 3. Define the callback function
-    methods: {
-      getData(data) {
-        console.log(data)
-      },
-    },
-  }
-</script>
-```
+     export default {
+       name: "Parent",
+       // 3. Define the callback function
+       methods: {
+         getData(data) {
+           console.log(data)
+         },
+       },
+     }
+   </script>
+   ```
