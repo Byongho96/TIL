@@ -72,7 +72,7 @@ It's recommended to use Vue2 so far, because the new version is not being used w
 
 ## 2.1. MVVM Pattern
 
-![MVVM_pattern](./images/MVVM_pattern.PNG)
+![01_mvvm_pattern.PNG](./images/01_mvvm_pattern.PNG)
 
 ### 2.1.1. Model
 
@@ -171,6 +171,7 @@ const app = new Vue({
 
 - The elements of the 'methods' attribute act like instance methods.
 - <mark>Methods must not be declared as arrwo function!</mark> If then `this` in the mehtod whill indicates window, but not vueInstance.
+- As a matter of fact, all the fucntions in the methods exists right under the vue instance, so **`this` in the methods indicates the vue instance.**
 
 ### 2.2.5. **watch**
 
@@ -306,7 +307,7 @@ If you want to a string as HTML syntax, 'v-html' directive can be one of solutio
 
 # 3. Vue Directives
 
-![vue_directives](./images/vue_directives.jpg)  
+![01_vue_directives.jpg](./images/01_vue_directives.jpg)  
 The attributes which starts with 'v-' get **JavaScript expression** as the value. The role of the directive is that what to do reactively when the expression value changes.
 
 ## 3.1. v-text

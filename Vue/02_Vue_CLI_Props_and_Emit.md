@@ -22,19 +22,15 @@ The CLI (@vue/cli) provides the vue command in your terminal. It provides the ab
 
 - **Install**  
   `npm install -g @vue/cli`
-
 - **Create a project**  
   `vue create my-project`  
-  The project folder is created as a local repository. However, if the project is created in a local repository, the .git/ will not be created.
-
-* **Select preset**  
-  `Default ([Vue 2] babel, eslint)` is recommended
-
-* **Change directory to the project folder**  
-  `cd {folder_name}/`
-
-* **Run the server**  
-  `npm run serve`
+   The project folder is created as a local repository. However, if the project is created in a local repository, the .git/ will not be created.
+- **Select preset**  
+   `Default ([Vue 2] babel, eslint)` is recommended
+- **Change directory to the project folder**  
+   `cd {folder_name}/`
+- **Run the server**  
+   `npm run serve`
 
 ## 1.3 Sturctue of the Vue Project
 
@@ -46,7 +42,7 @@ Then how can we create the same environment when we pull the project from git? T
 
 - **Webpack**
 
-  ![2_Webpack](./images/2_WebPack.PNG)  
+  ![02_webpack.PNG](./images/02_webpack.PNG)  
   a static moudle bundler, which is for solving dependency issues with modules. It analyzes the modules and converts them into several static files.
 
 ### 1.3.2. public/
@@ -57,7 +53,7 @@ Then how can we create the same environment when we pull the project from git? T
 - **index.html**  
   The basic html file of the Vue project. It's connected to the App.vue
 
-  ![2_index_html](./images/2_index_html.PNG)
+  ![02_index_html.PNG](./images/02_index_html.PNG)
 
 ### 1.3.3. src/
 
@@ -96,7 +92,7 @@ It has infromation about config settings such as a dependencies list.
 
 Divided pieces of UI which are independent and reusable. A web page is made with components nested in a tree structure.
 
-![2_components](./images/2_Components.PNG)
+![02_components.PNG](./images/02_components.PNG)
 
 ## 2.2. SFC
 
@@ -106,7 +102,7 @@ One .vue file is one component, and one vue instance is in one component. Theref
 
 ### 2.3.1. Structure of Vue component
 
-![2_structure_vue_component](./images/2_structure_vue_component.PNG)
+![02_structure_vue_component.PNG](./images/02_structure_vue_component.PNG)
 
 - **html**
   - A body part of the html doc
