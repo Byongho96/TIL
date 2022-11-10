@@ -12,7 +12,6 @@ The virtual machine environment(software platform) on which codes are excuted, s
 ### 1.1.2. NPM(Node Package Manager)
 
 The default pacakage manger of JavaScript. Package manager helps the developers intall external libraries and manages the packages installed.
-
 In the case of Vue, when the new package is installed through npm, it's automatically registered at ['package-lock.json'](#135-package-lockjson)
 
 ## 1.2. Vue CLI
@@ -21,26 +20,20 @@ The CLI (@vue/cli) provides the vue command in your terminal. It provides the ab
 
 ### 1.2.1. Vue CLI Start
 
-**Install**
-
+**Install**  
 `npm install -g @vue/cli`
 
-**Create a project**
-
-`vue create my-project`
-
+**Create a project**  
+`vue create my-project`  
 The project folder is created as a local repository. However, if the project is created in a local repository, the .git/ will not be created.
 
-**Select preset**
-
+**Select preset**  
 `Default ([Vue 2] babel, eslint)` is recommended
 
-**Change directory to the project folder**
-
+**Change directory to the project folder**  
 `cd {folder_name}/`
 
-**Run the server**
-
+**Run the server**  
 `npm run serve`
 
 ## 1.3 Sturctue of the Vue Project
@@ -53,44 +46,38 @@ Then how can we create the same environment when we pull the project from git? T
 
 - **Webpack**
 
-  ![2_Webpack](./images/2_WebPack.PNG)
+  ![2_Webpack](./images/2_WebPack.PNG)  
   a static moudle bundler, which is for solving dependency issues with modules. It analyzes the modules and converts them into several static files.
 
 ### 1.3.2. public/
 
-- **favicon.ico**
-
+- **favicon.ico**  
   The image source for the favicon
 
-- **index.html**
-
+- **index.html**  
   The basic html file of the Vue project. It's connected to the App.vue
 
   ![2_index_html](./images/2_index_html.PNG)
 
 ### 1.3.3. src/
 
-- **assets/**
-
+- **assets/**  
   The directory for storing static assets such as image files
 
-- **components/**
-
+- **components/**  
   The directory for storing sub-components of the App.vue
 
-- **App.vue**
-
+- **App.vue**  
   The top-level component
 
-- **main.js**
-
+- **main.js**  
   The entry point where the webpack starts its process. It also connects the index.html to the App.vue.
 
 ### 1.3.4. babel.config.js
 
 JavaScript compiler which transform ES6+ codes into ES5 codes.
 
-**Why?**
+**Why?**  
 JavaScript has developed through a complicated history, so sometimes it does not work per browser even if it follows the latest syntax. Therefore, it was decided to translate the latest code into old code that works anywhere.
 
 ### 1.3.5. package-lock.json
@@ -135,10 +122,8 @@ One .vue file is one component, and one vue instance is in one component. Theref
 
 1. Create a component(.vue) in 'src/components/' directory naming with PascalCase
    [SFC component naming guide](https://v2.vuejs.org/v2/style-guide/?redirect=true#Single-file-component-filename-casing-strongly-recommended)
-
 2. Add `name` attribute to the instance.
    `{ name: '{file_name}'}`
-
 3. Add a element in the template tag.
 
 **Example Code**
@@ -208,12 +193,9 @@ All props form a one-way-down binding <mark>between the child property and the p
 
 ### 3.1.1. Procedures of Passing Props
 
-1. Add a attribute to the component tag.
-
-   1-1. Name the attribute with kebab-case
-
-   1-2. The value of the attribute should be the data to be sent down.
-
+1. Add a attribute to the component tag.  
+   1-1. Name the attribute with kebab-case  
+   1-2. The value of the attribute should be the data to be sent down.  
    1-3. v-bind can be applied to the attribute
 
    ```html
