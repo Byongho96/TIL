@@ -86,7 +86,7 @@ Where **Vue rotuer related information** is written. In particular, there is a `
   ```
   - ['lazy-loading'](https://kyounghwan01.github.io/blog/Vue/vue/lazy-loading/#%E1%84%8B%E1%85%B5%E1%84%80%E1%85%A5%E1%86%BA%E1%84%8B%E1%85%B3%E1%86%AF-%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB-%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%B2) does not load components at the time of the first build, but loads components when actually approaching them. **The first loading speed is faster.**
 
-### 1.3.3. src/Views/
+### 1.3.3. src/views/
 
 This folder stores Vue components like 'src/components/'. But the only difference is that this folder stores only the components mapped to the `routes` array in index.js. It's just a semantic distinction. It's recommended to name the components in this folder **to end with 'View'**.
 
@@ -314,18 +314,40 @@ Detects parameters change of url corresponding to component path
 
 # 4. 404 Not Found
 
-When there's no
+When there's no matching url. Vue just doesn't render the \<router-view> tag. Therfore additional code is required.
 
 ## 4.1. URL Not Matched
 
-## 4.2. No Resource
+**views/NotFound404.vue**
 
-# 5. Practice
+```html
+<template>
+  <div>
+    <h1>404 Not Found</h1>
+  </div>
+</template>
 
-## 4.1. Index
+<script>
+  export default {
+    name: 'NotFound404',
+  }
+</script>
+```
 
-## 4.2. Index
+**router/index.js**
 
-## 4.3. Index
-
-## 4.4. Index
+```js
+const routes = [
+  ...{
+    path: '/404',
+    name: 'NotFound404',
+    component: NotFound404,
+  },
+  ...// All the urls not matched above will be redirected to NotFound404
+  {
+    path: '*',
+    name: '/404',
+    component: NotFound404,
+  },
+]
+```
