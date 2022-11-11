@@ -253,8 +253,26 @@ export default router
 
 Works for the specific route
 
+```js
+const routes = [
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView,
+    beforeEach(to, from, next) {
+      if (isLoggined === true) {
+        console.log('loggined')
+        next({ name: 'home' })
+      } else {
+        next()
+      }
+    },
+  },
+]
+```
+
 - **beforeEnter(to, from ,next)**  
-  The inner logic is exucted each time you move to the route object
+   The inner logic is exucted each time you move to the route object
   - **to**  
     information about the route to move
   - **from**  
@@ -267,9 +285,42 @@ Works for the specific route
 
 Detects parameters change of url corresponding to component path
 
-## 3.4. 404 Not Found
+```html
+<script>
+  export default {
+    name: 'HelloView',
+    data() {
+      return {
+        userName: this.$route.params.userName,
+      }
+    },
+    beforeRouteUpdate(to, from, next) {
+      this.userName = to.params.userName
+      next()
+    },
+  }
+</script>
+```
 
-# 4. Practice
+- **beforeRouteUpdate(to, from ,next)**  
+  Even if there is no change in the route object, internal logic is executed if the url address is changed.
+  - **to**  
+    information about the route to move
+  - **from**  
+    inforamtion about the current route
+  - **next**
+    - **If the beforeEnter function is declared, route conversion occurs only when the 'next()' is executed**
+    - receives a route object as an argument
+
+# 4. 404 Not Found
+
+When there's no
+
+## 4.1. URL Not Matched
+
+## 4.2. No Resource
+
+# 5. Practice
 
 ## 4.1. Index
 
