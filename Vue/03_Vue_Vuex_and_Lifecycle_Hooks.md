@@ -40,20 +40,20 @@ If you follow the [commands above](#121-cli-procedures), `src/store/index.js` wi
 ![03_vuex_instance_vue_instance.PNG](./images/03_vuex_instance_vue_instance.PNG)
 
 - **state**
-  - corresponds to the **data** in the vue instance.
+  - corresponds to the **data** in the Vue instance.
   - There's dat which is manged in the centralized storage.
   - It can be accessed from othe components by `vueInstance.$store.state`
 - **getters**
-  - corresponds to the **computed** in the vue instance.
+  - corresponds to the **computed** in the Vue instance.
   - It also chaches the processed data.
   - All the functions in the mutations get `state`, `getter` as the first two arguments.
 - **mutations**
-  - corresponds to the **methods** in the vue instance, and it only **0can change the state.**
+  - corresponds to the **methods** in the Vue instance, and it only **0can change the state.**
   - To specify the moment when the state is changed, all the functions in the mutations should be **synchronous**.
   - All the functions in the mutations get `state` as the first argument.
   - It can be called through `vuexInstance.commit()` method.
 - **actions**
-  - corresponds to the **methods** in the vue instance, and it **should not change the state.**
+  - corresponds to the **methods** in the Vue instance, and it **should not change the state.**
   - A function in the actions can contain **asynchronous** process. If it calls a function in the mutations to change the state.
   - All the functions in the actions get `context` as the first argument.
     It can be called through `vuexInstance.dispatch()` method.
@@ -76,7 +76,7 @@ If you follow the [commands above](#121-cli-procedures), `src/store/index.js` wi
 ```js
 export default new Vuex.Store({
   state: {
-    message: "message in store",
+    message: 'message in store',
   },
   getters: {
     messageLength(state) {
@@ -90,7 +90,7 @@ export default new Vuex.Store({
   },
   actions: {
     changeMessage(context, message) {
-      context.commit("CHANGE_MESSAGE", message)
+      context.commit('CHANGE_MESSAGE', message)
     },
   },
   modules: {},
@@ -104,13 +104,17 @@ export default new Vuex.Store({
   <div id="app">
     <h1>{{ message }}</h1>
     <h3>message length: {{ messageLength }}</h3>
-    <input type="text" @keyup.enter="changeMessage" v-model="inputData" />
+    <input
+      type="text"
+      @keyup.enter="changeMessage"
+      v-model="inputData"
+    />
   </div>
 </template>
 
 <script>
   export default {
-    name: "App",
+    name: 'App',
     data() {
       return {
         inputData: null,
@@ -127,7 +131,7 @@ export default new Vuex.Store({
     methods: {
       changeMessage() {
         const newMessage = this.inputData
-        this.$store.dispatch("changeMessage", newMessage)
+        this.$store.dispatch('changeMessage', newMessage)
         this.inputData = null
       },
     },
@@ -144,16 +148,16 @@ There are several points which can be specified in the lifecyle of a Vue instanc
 ![03_lifecycle_hooks.PNG](./images/03_lifecycle_hooks.PNG)
 
 - **create**  
-  The point when the vue instance is created
+  The point when the Vue instance is created
 
 - **mount**  
-  The point when the vue instance is linked to the DOM
+  The point when the Vue instance is linked to the DOM
 
 - **update**  
   The point when the DOM is updated
 
 - **destroy**  
-  The point when the vue instance is destroyed
+  The point when the Vue instance is destroyed
 
 **Example code**
 
@@ -207,7 +211,7 @@ The library which has function for automatically storing and reloading Vuex stat
 
 ```js
 // index.js
-import createPersistedState from "vuex-persistedstate"
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
@@ -223,9 +227,9 @@ export default new Vuex.STore({
 ### 3.2.1. index.js
 
 ```js
-import Vue from "vue"
-import Vuex from "vuex"
-import createPersistedState from "vuex-persistedstate"
+import Vue from 'vue'
+import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
@@ -281,15 +285,15 @@ export default new Vuex.Store({
         title: todoTitle,
         isCompleted: false,
       }
-      context.commit("CREATE_TODO", todoItem)
+      context.commit('CREATE_TODO', todoItem)
       // context.dispatch('saveTodosToLocalStorage')
     },
     deleteTodo(context, todoItem) {
-      context.commit("DELETE_TODO", todoItem)
+      context.commit('DELETE_TODO', todoItem)
       // context.dispatch('saveTodosToLocalStorage')
     },
     updateTodoStatus(context, todoItem) {
-      context.commit("UPDATE_TODO_STATUS", todoItem)
+      context.commit('UPDATE_TODO_STATUS', todoItem)
       // context.dispatch('saveTodosToLocalStorage')
     },
     // // createPersistedState() replaced this function.
@@ -323,11 +327,11 @@ export default new Vuex.Store({
 </template>
 
 <script>
-  import TodoList from "@/components/TodoList"
-  import TodoForm from "@/components/TodoForm"
+  import TodoList from '@/components/TodoList'
+  import TodoForm from '@/components/TodoForm'
 
   export default {
-    name: "App",
+    name: 'App',
     components: {
       TodoList,
       TodoForm,
@@ -345,7 +349,7 @@ export default new Vuex.Store({
     },
     methods: {
       loadTodos() {
-        this.$store.dispatch("loadTodos")
+        this.$store.dispatch('loadTodos')
       },
     },
   }
@@ -368,13 +372,17 @@ export default new Vuex.Store({
 ```html
 <template>
   <div>
-    <input type="text" v-model.trim="todoTitle" @keyup.enter="createTodo" />
+    <input
+      type="text"
+      v-model.trim="todoTitle"
+      @keyup.enter="createTodo"
+    />
   </div>
 </template>
 
 <script>
   export default {
-    name: "TodoForm",
+    name: 'TodoForm',
     data() {
       return {
         todoTitle: null,
@@ -383,7 +391,7 @@ export default new Vuex.Store({
     methods: {
       createTodo() {
         if (this.todoTitle) {
-          this.$store.dispatch("createTodo", this.todoTitle)
+          this.$store.dispatch('createTodo', this.todoTitle)
         }
         this.todoTitle = null
       },
@@ -397,15 +405,19 @@ export default new Vuex.Store({
 ```html
 <template>
   <div>
-    <TodoListItem v-for="(todo, index) in todos" :key="index" :todo="todo" />
+    <TodoListItem
+      v-for="(todo, index) in todos"
+      :key="index"
+      :todo="todo"
+    />
   </div>
 </template>
 
 <script>
-  import TodoListItem from "@/components/TodoListItem"
+  import TodoListItem from '@/components/TodoListItem'
 
   export default {
-    name: "TodoList",
+    name: 'TodoList',
     components: {
       TodoListItem,
     },
@@ -437,17 +449,17 @@ export default new Vuex.Store({
 
 <script>
   export default {
-    name: "TodoListItem",
+    name: 'TodoListItem',
     props: {
       todo: Object,
     },
     methods: {
       deleteTodo() {
-        this.$store.dispatch("deleteTodo", this.todo)
+        this.$store.dispatch('deleteTodo', this.todo)
         // this.$store.commit('DELETE_TODO', this.todo)
       },
       updateTodoStatus() {
-        this.$store.dispatch("updateTodoStatus", this.todo)
+        this.$store.dispatch('updateTodoStatus', this.todo)
       },
     },
   }

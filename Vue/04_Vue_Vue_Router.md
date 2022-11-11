@@ -41,22 +41,240 @@ vue add router              // Apply Vue router to the Vue project
 
 - ![04_vue_router_cli_warning.PNG](./images/04_vue_router_cli_warning.PNG)  
   Just recommend you to commit before processing
-- ![04_vue_router_cli_history_mode.PNG](./images/04_vue_router_cli_history_mode.PNG)
+- ![04_vue_router_cli_history_mode.PNG](./images/04_vue_router_cli_history_mode.PNG)  
+  Hash mode is the mode that shows url as we normally use. Also You can track url visit records.
 
-# 2. Navigation Guard
+## 1.3. Structure of Vue Router Related Files
 
-## 2.1. Global Guard
+### 1.3.1. App.vue
 
-## 2.2. Component Guard
+```html
+<template>
+  <div id="app">
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </nav>
+    <router-view />
+  </div>
+</template>
+```
 
-## 2.3. 404 Not Found
+- **router-link**
+  - Although it is expressed as **\<a>** in DOM. But it's not the same because it doesn't reload the whole page
+  - When the tag is clicked, it routes the page to the url specified in 'to' attribute
+- **router-view**
+  - Specifies where the components mapped to routes will be rendered
 
-# 2. Practice
+### 1.3.2. router/index.js
 
-## 3.1. Index
+Where **Vue rotuer related information** is written. In particular, there is a `routes` array which elements are [**route object**](https://im-nc2u.tistory.com/entry/Vue-Router-Router-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%EC%99%80-Route-%EA%B0%9D%EC%B2%B4-%EB%B9%84%EA%B5%90). Route object has properties including a url and a component, which means a url and a component are matched. It's similar to Django's urls.py file.
 
-## 3.2. Index
+![04_vue_index_django_urls.PNG](./images/04_vue_index_django_urls.PNG)
 
-## 3.3. Index
+- **Route Object**
+  - **path**
+    - a url
+  - **name**
+    - a distinguisable name of the route object
+  - **component**
+    - a component
 
-## 3.4. Index
+* **lazy-loading**
+  ```js
+  component: () => import('../views/AboutView.vue')
+  ```
+  - ['lazy-loading'](https://kyounghwan01.github.io/blog/Vue/vue/lazy-loading/#%E1%84%8B%E1%85%B5%E1%84%80%E1%85%A5%E1%86%BA%E1%84%8B%E1%85%B3%E1%86%AF-%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB-%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%B2) does not load components at the time of the first build, but loads components when actually approaching them. **The first loading speed is faster.**
+
+### 1.3.3. src/Views/
+
+This folder stores Vue components like 'src/components/'. But the only difference is that this folder stores only the components mapped to the `routes` array in index.js. It's just a semantic distinction. It's recommended to name the components in this folder **to end with 'View'**.
+
+# 2. URL Navigation
+
+## 2.1. Declarative Navigation
+
+Declarative navigation method can be used with \<router-link> by adding 'to' attirbute.
+
+```html
+<template>
+  <div id="app">
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link :to="{ name: 'home'}">Home</router-link>
+    </nav>
+    <router-view />
+  </div>
+</template>
+```
+
+- **to**
+  - insert the url to be routed
+- **:to**
+  - insert the object with the 'name' key announced in `routes` array.
+
+## 2.2. Programmatic Navigation
+
+Programmatic navigation uses a [Router object](https://im-nc2u.tistory.com/entry/Vue-Router-Router-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%EC%99%80-Route-%EA%B0%9D%EC%B2%B4-%EB%B9%84%EA%B5%90)'s mehtod. `this.$router.push()` push the URL to move into the history stack, which means moving to the new url.
+
+```html
+<template>
+  <div id="app">
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <button @click="toHome">Home</button>
+    </nav>
+    <router-view />
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'App',
+    methods: {
+      toHome() {
+        this.$router.push({ name: 'home' })
+      },
+    },
+  }
+</script>
+```
+
+- **router.push()**
+  - receives **an object with the name of the target Route object** as a argument.
+
+## 2.3. Dynmaic Route Matching
+
+You can use part of url as a variable.
+
+### 2.3.1. Declare a Varibale
+
+```js
+const routes = [
+  {
+    path: '/hello/:userName',
+    name: 'hello',
+    component: MovieView,
+  },
+]
+```
+
+- add **' : '** in front of the string that you want to announce as a vairable.
+
+### 2.3.2. Pass a Variable
+
+```html
+<template>
+  <div id="app">
+    <nav>
+      <router-link :to="{ name: 'home', params: { userName: 'Harry'}}"
+        >Hello</router-link
+      >
+      <button @click="toHello">Hello</button>
+    </nav>
+    <router-view />
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'App',
+    methods: {
+      toHello() {
+        this.$router.push({ name: 'hello', params: { userName: 'Harry' } })
+      },
+    },
+  }
+</script>
+```
+
+- Add a 'params' key in the original object. and the 'params' has an object of parameters as the value.
+
+### 2.3.3. Receive a Variable
+
+```html
+<template>
+  <div>
+    <h1>Hello, {{ $route.params.userName }}</h1>
+    <h1>Hello, {{ userName }}</h1>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'Hello',
+    data() {
+      return {
+        userName: this.$route.params.userName,
+      }
+    },
+  }
+</script>
+```
+
+- You can get variables by **accessing the Route object**.
+
+# 3. Navigation Guard
+
+Setting logic that occurs **when url changes**
+
+## 3.1. Global Guard
+
+Works across the App
+
+```js
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes,
+})
+
+router.beforeEach((to, from, next) => {
+  console.log('to', to)
+  console.log('from', from)
+  console.log('next', next)
+  next()
+})
+
+export default router
+```
+
+- **router.beforeEach(to, from ,next)**  
+  The inner logic is exucted each time you move from one Route object to another
+  - **to**  
+    information about the route to move
+  - **from**  
+    inforamtion about the current route
+  - **next**
+    - **If the beforeEach function is declared, route conversion occurs only when the 'next()' is executed**
+    - receives a route object as an argument
+
+## 3.2. Router Guard
+
+Works for the specific route
+
+- **beforeEnter(to, from ,next)**  
+  The inner logic is exucted each time you move to the route object
+  - **to**  
+    information about the route to move
+  - **from**  
+    inforamtion about the current route
+  - **next**
+    - **If the beforeEnter function is declared, route conversion occurs only when the 'next()' is executed**
+    - receives a route object as an argument
+
+## 3.3. Component Guard
+
+Detects parameters change of url corresponding to component path
+
+## 3.4. 404 Not Found
+
+# 4. Practice
+
+## 4.1. Index
+
+## 4.2. Index
+
+## 4.3. Index
+
+## 4.4. Index
