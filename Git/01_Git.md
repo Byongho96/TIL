@@ -126,7 +126,7 @@ local repository는 다음 3가지의 작업영역으로 동작한다.
 
 ### 2.2.2. Commit Message with VI Editor
 
-![vi 에디터 모드](./assets/vi.PNG)
+<img alt="vi" src = "./assets/vi.PNG" width="400">
 
 1. `git commit -m`
 2. vi editor가 command mode로 열리면, `i`키를 눌러서 edit mode로 진입한다.
@@ -163,7 +163,7 @@ git은 기본적으로 폴더가 비었을 경우 해당 폴더를 관리하지 
 
 **특정 Commit을 가리키는 포인터**
 
-![git-branch](./assets/git-branch.png)
+<img alt="git-branch" src = "./assets/git-branch.png" width="400">
 
 **하나의 commit이 여러 개의 자식(다음)commit을 가질 수 있다.** 즉 git은 commit 내역을 트리구조처럼 쌓을 수 있다. 이는 여러 명의 개발자가 하나의 프로젝트에 대해 각기 다른 기능 개발을 가능하게 하며, 그 과정에서 메인코드를 안전하게 보호한다.
 
@@ -264,9 +264,9 @@ git으로 버전관리가 되고 있는 파일만 되돌릴 수 있다.
 
 - Staging area에 새로 올라온 내용이 없으면, vi editor 창에서 직전 커밋의 메시지만 수정한다.
 
-  - [vi editor 사용 절차](#222-commit-message-with-vi-editor)
-    ![0](./assets/vim_cli.PNG)
-    ![1](./assets/git_amend.PNG)
+  - [vi editor 사용 절차](#222-commit-message-with-vi-editor)  
+    <img alt="cli" src = "./assets/vim_cli.PNG" width="600">
+    <img alt="git_amend" src = "./assets/git_amend.PNG" width="600">
 
 - Staging area에 새로 올라온 내용이 있으면, 현재 staging area를 직전 커밋에 포함시킨다.
 
@@ -360,7 +360,7 @@ git으로 버전관리가 되고 있는 파일만 되돌릴 수 있다.
 ## 7.1. Git Flow
 
 git flow는 주로 기업의 대형 프로젝트에서 사용된다.
-![git flow](./assets/git_flow.jpg)
+<img alt="git_flow" src = "./assets/git_flow.jpg" width="600">
 
 - **master**
   - 상용화된 코드가 있는 브랜치
@@ -380,7 +380,7 @@ git flow는 주로 기업의 대형 프로젝트에서 사용된다.
 ## 7.2. Github Flow
 
 github flow는 주로 소규모 프로젝트 개발해서 ㅍ사용된다.
-![github flow](./assets/github_flow.jpg)
+<img alt="github_flow" src = "./assets/github_flow.jpg" width="400">
 
 - **master**
   - 메인 코드가 존재하는 브랜치
