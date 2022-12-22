@@ -3,54 +3,55 @@
 since 2022.08.
 
 - 🐱 [Git](./Git/01_Git.md)
-  <br>
 
 - 📚 Langauges
-  _ 🐍 Python
-  _ [Data Types & Operators](./Python/01_Python_Basics_Datatypes_Operators.md)
-  _ [Control Statements](./Python/02_Python_Basics_ControlStatements.md)
-  _ [Functions](./Python/03_Python_Function.md)
-  _ [Object-Oriented Programming](./Python/04_Python_OOP.md)
-  _ [Error Hadnling](./Python/05_Python_Error_Handling.md)
-  _ Appendix
-  _ [Bult-in Functions](./Python/Appendix_01_Python_Builtin_Functions.md)
-  _ [Modules](./Python/Appendix_02_Python_Modules.md)
-  _ ☕ Java
-  _ [Basics](./Java/01_Java_Basics.md)
-  _ [Object-Oriented Programming](./Java/02_Java_OOP.md)
-  _ 📒 JavaScript
-  _ [Basics](./JavaScript/01_JavaScript_Basics.md)
-  _ [Advanced](./JavaScript/02_JavaScript_Advanced.md)
-  _ [Asynchornous](./JavaScript/03_JavaScript_Asynchronous.md)
-  <br>
+
+  - 🐍 Python
+    - [Data Types & Operators](./Python/01_Python_Basics_Datatypes_Operators.md)
+    - [Control Statements](./Python/02_Python_Basics_ControlStatements.md)
+    - [Functions](./Python/03_Python_Function.md)
+    - [Object-Oriented Programming](./Python/04_Python_OOP.md)
+    - [Error Hadnling](./Python/05_Python_Error_Handling.md)
+    - Appendix
+    - [Bult-in Functions](./Python/Appendix_01_Python_Builtin_Functions.md)
+    - [Modules](./Python/Appendix_02_Python_Modules.md)
+  - ☕ Java
+    - [Basics](./Java/01_Java_Basics.md)
+    - [Object-Oriented Programming](./Java/02_Java_OOP.md)
+  - 📒 JavaScript
+    - [Basics](./JavaScript/01_JavaScript_Basics.md)
+    - [Advanced](./JavaScript/02_JavaScript_Advanced.md)
+    - [Asynchornous](./JavaScript/03_JavaScript_Asynchronous.md)
 
 - 📊 Data Structure & Algorithm
-  _ 💾 Data Structure
-  _ [List](./Algorithm/List.md)
-  _ [Stack](./Algorithm/Stack.md)
-  _ [String](./Algorithm/String.md)
-  _ [Tree](./Algorithm/Tree.md)
-  _ 🎮 Algorithm \* [BruteForce vs Greedy](./Algorithm/BruteForce_Greedy.md)
-  <br>
+
+  - 💾 Data Structure
+    - [List](./Algorithm/List.md)
+    - [Stack](./Algorithm/Stack.md)
+    - [String](./Algorithm/String.md)
+    - [Tree](./Algorithm/Tree.md)
+  - 🎮 Algorithm
+    - [BruteForce vs Greedy](./Algorithm/BruteForce_Greedy.md)
 
 - 💻 Web
-  _ 📸 HTML / CSS
-  _ [HTML](./Web/01_HTML.md)
-  _ [CSS Basics](./Web/02_CSS_Basics.md)
-  _ [CSS Advanced](./Web/03_CSS_Advanced.md)
-  _ 🤠 Django
-  _ [Basics](./Django/01_Django_Basics.md)
-  _ [CRUD](./Django/02_Django_CRUD.md)
-  _ [CRUD with ModelForm](./Django/03_Django_CRUD_ModelForm.md)
-  _ [Authentication](./Django/04_Django_Authentification.md)
-  _ [SQL](./Django/05_SQL.md)
-  _ [QuerySet API](./Django/06_Django_QuerySet_API.md)
-  _ [1:N Relationship](./Django/07_Django_Many_to_One.md)
-  _ [M:N Relationship](./Django/08_Django_Many_to_Many.md)
-  _ [Static & Media](./Django/09_Django_Static_Media.md)
-  _ [Fixtures](./Django/10_Django_Fixtures.md)
-  _ [REST API](./Django/11_Django_REST_API.md) \* 💚 Vue
-  <br>
+
+  - 📸 HTML / CSS
+    - [HTML](./Web/01_HTML.md)
+    - [CSS Basics](./Web/02_CSS_Basics.md)
+    - [CSS Advanced](./Web/03_CSS_Advanced.md)
+  - 🤠 Django
+    - [Basics](./Django/01_Django_Basics.md)
+    - [CRUD](./Django/02_Django_CRUD.md)
+    - [CRUD with ModelForm](./Django/03_Django_CRUD_ModelForm.md)
+    - [Authentication](./Django/04_Django_Authentification.md)
+    - [SQL](./Django/05_SQL.md)
+    - [QuerySet API](./Django/06_Django_QuerySet_API.md)
+    - [1:N Relationship](./Django/07_Django_Many_to_One.md)
+    - [M:N Relationship](./Django/08_Django_Many_to_Many.md)
+    - [Static & Media](./Django/09_Django_Static_Media.md)
+    - [Fixtures](./Django/10_Django_Fixtures.md)
+    - [REST API](./Django/11_Django_REST_API.md)
+  - 💚 Vue
 
 - 📖 Computer Science
   - 📁 Database

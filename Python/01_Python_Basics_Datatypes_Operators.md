@@ -12,11 +12,11 @@
   - [3.3. String Type](#33-string-type)
   - [3.4. None](#34-none)
 - [4. Container Data Types](#4-container-data-types)
-  - [4.1. List](#41-list)
-  - [4.2. Tuple](#42-tuple)
-  - [4.3. Range](#43-range)
-  - [4.4. Dictionary](#44-dictionary)
-  - [4.5. Set](#45-set)
+  - [4.1. List Type](#41-list-type)
+  - [4.2. Tuple Type](#42-tuple-type)
+  - [4.3. Range Type](#43-range-type)
+  - [4.4. Dictionary Type](#44-dictionary-type)
+  - [4.5. Set Type](#45-set-type)
   - [4.5. Typecasting table](#45-typecasting-table)
   - [4.6. Copy Mutable Data](#46-copy-mutable-data)
 - [5. Operators](#5-operators)
@@ -199,7 +199,7 @@
 - **Non-Sequence**  
   data isn't ordered == can't use index
 
-## 4.1. List
+## 4.1. List Type
 
 - **Basics**
   - produce
@@ -246,7 +246,7 @@
   |.reverse()|reverse the list|None|O|
   |.sort(reverse=False)|sor the list|None|O|
 
-## 4.2. Tuple
+## 4.2. Tuple Type
 
 - **Basics**
   ```python
@@ -287,7 +287,7 @@
   |.count()|number of elements|int|X|
   |.index(obj, start, end)|find index of 's' from the left</br>error when doesn't exist|int|X|
 
-## 4.3. Range
+## 4.3. Range Type
 
 - **Basics**
   ```python
@@ -312,7 +312,7 @@
   print(set(t))   # {1, 2, 3, 4}
   ```
 
-## 4.4. Dictionary
+## 4.4. Dictionary Type
 
 - **Basics**
 
@@ -357,7 +357,7 @@
     - if key is a number
       `x.update({1:900, 2:800})`
 
-## 4.5. Set
+## 4.5. Set Type
 
 - **Basics**
   ```python
