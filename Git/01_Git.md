@@ -24,7 +24,7 @@
   - [4.1. Working Directory](#41-working-directory)
   - [4.2. Staging Area](#42-staging-area)
     - [4.3. Repository](#43-repository)
-- [5. Git Reset & Revert](#5-git-reset-revert)
+- [5. Git Reset & Revert](#5-git-reset--revert)
   - [5.1. Git Reset](#51-git-reset)
   - [5.2. Git Revert](#52-git-revert)
 - [6. Remote Repository (GitHub)](#6-remote-repository-github)
@@ -392,7 +392,7 @@ github flow는 주로 소규모 프로젝트 개발해서 ㅍ사용된다.
 
 # 8. CRLF
 
-[OS별 crlf 설정에 관한 블로그 글](https://parkgaebung.tistory.com/70)
+[OS별 crlf 설정에 관한 블로그 글](https://parkgaebung.tistory.com/70)  
 OS 별로 줄바꿈을 위한 이스케이프 명령어 수가 다르다.
 
 - **Windows**: '/r'(캐리지 리턴, CR) + '/n'(줄 바꿈, LF)
@@ -400,9 +400,9 @@ OS 별로 줄바꿈을 위한 이스케이프 명령어 수가 다르다.
 
 운영체제를 달리하며 프로젝트를 개발할 경우, 개행문자를 처리하는 방법에 대한 설정이 필요하다. 그렇지 않으면 코드 변화가 없음에도 파일들이 commit될 수 있다.
 
-- Windows
-  `git config -global core.autocrlf true`
+- Windows  
+  `git config -global core.autocrlf true`  
   커밋 시 CRLF를 LF로 변환하고, 저장소에서 가져올 때는 LF를 CRLF로 변환한다.
-- Linux, Mac
-  `git config -global core.autocrlf true`
+- Linux, Mac  
+  `git config -global core.autocrlf true`  
   커밋 시 CRLF를 LF로 변환한다.

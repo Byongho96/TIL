@@ -9,12 +9,12 @@ since 2022.08.
   - 🐍 Python
     - [Data Types & Operators](./Python/01_Python_Basics_Datatypes_Operators.md)
     - [Control Statements](./Python/02_Python_Basics_ControlStatements.md)
-    - [Functions](./Python/03_Python_Function.md)
-    - [Object-Oriented Programming](./Python/04_Python_OOP.md)
+    - [Function](./Python/03_Python_Function.md)
+    - [Object Oriented Programming](./Python/04_Python_OOP.md)
     - [Error Hadnling](./Python/05_Python_Error_Handling.md)
     - Appendix
-    - [Bult-in Functions](./Python/Appendix_01_Python_Builtin_Functions.md)
-    - [Modules](./Python/Appendix_02_Python_Modules.md)
+      - [Bult-in Functions](./Python/Appendix_01_Python_Builtin_Functions.md)
+      - [Modules](./Python/Appendix_02_Python_Modules.md)
   - ☕ Java
     - [Basics](./Java/01_Java_Basics.md)
     - [Object-Oriented Programming](./Java/02_Java_OOP.md)
