@@ -140,9 +140,9 @@ Cookie s a small piece of data that works on a web service. It's **issued by the
 `from django.contrib.auth import login`
 
 - Generate seesion_key and seesion_data, and save data in django.session table  
-  <img alt="session_table" src= "./images/django_session_table.jpg" width="500">
+  <img alt="session_table" src= "./images/django_session_table.jpg">
 - Set session cookie {'sessionid':session_key}  
-  <img alt="sessionid_cookie" src= "./images/sessionid_cookie.jpg" width="500">
+  <img alt="sessionid_cookie" src= "./images/sessionid_cookie.jpg">
 
 ---
 
