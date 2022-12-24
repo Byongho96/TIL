@@ -6,11 +6,11 @@
 - [2. Built-in functions2](#2-built-in-functions2)
   - [2.1. del](#21-del)
   - [2.2. print](#22-print)
-  - [2.3. enumerate(iterable, start=0)](#23-enumerate-iterable--start-0-)
-  - [2.4. map(function, iterable)](#24-map-function--iterable-)
-  - [2.5. filter(function, iterable)](#25-filter-function--iterable-)
-  - [2.6. zip(\*iterable)](#26-zip---iterable-)
-  - [2.7. lambda \*paramter: function](#27-lambda---paramter--function)
+  - [2.3. enumerate(iterable, start=0)](#23-enumerateiterable-start0)
+  - [2.4. map(function, iterable)](#24-mapfunction-iterable)
+  - [2.5. filter(function, iterable)](#25-filterfunction-iterable)
+  - [2.6. zip(\*iterable)](#26-zipiterable)
+  - [2.7. lambda paramter: function](#27-lambda-paramter-function)
 
 ---
 
@@ -94,6 +94,6 @@ pair elements in different iterable object according to its index number
 - when the len of iterable objects are different >> take short as a standard
 - return **zip object**
 
-## 2.7. lambda \*paramter: function
+## 2.7. lambda paramter: function
 
-use for define a simple function \* only a simple conditinal statement can be used
+used for defining a simple function

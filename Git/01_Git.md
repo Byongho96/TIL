@@ -360,6 +360,7 @@ git으로 버전관리가 되고 있는 파일만 되돌릴 수 있다.
 ## 7.1. Git Flow
 
 git flow는 주로 기업의 대형 프로젝트에서 사용된다.
+
 <img alt="git_flow" src = "./assets/git_flow.jpg" width="600">
 
 - **master**
@@ -379,7 +380,8 @@ git flow는 주로 기업의 대형 프로젝트에서 사용된다.
 
 ## 7.2. Github Flow
 
-github flow는 주로 소규모 프로젝트 개발해서 ㅍ사용된다.
+github flow는 주로 소규모 프로젝트 개발해서 사용된다.
+
 <img alt="github_flow" src = "./assets/github_flow.jpg" width="400">
 
 - **master**
