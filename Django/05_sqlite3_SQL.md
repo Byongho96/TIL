@@ -1,4 +1,4 @@
-# sqlite3 SQL
+# SQLite3 SQL
 
 ## Index
 
@@ -39,10 +39,10 @@
 ## 1.2. Structure
 
 - **Schema**
-  - The outline of a table
+  - The outline of a table  
     <img alt="Schema" src="./images/Schema.jpg" width="200">
 - **Table**
-  - The collection of data based on schema
+  - The collection of data based on schema  
     <img alt="Table" src="./images/Table.jpg" width="400">
     - Field (column)
       - Attributes of data
@@ -138,10 +138,10 @@ CREATE TABLE table_name (
   - <mark>But for **compatibility** with other RDBMS</mark>, It's strongly recommend to announce the datatype.
 - **Static, Rigid Typing**
   - IF the datatype is announce, type casting occurs automatically.
-  - For example, when you put '123' in INTEGER column, it's typecasted into 123
+  - For example, when you put '123' in INTEGER column, it's typecasted into 123  
     <img alt='sqlite_typecasting' src="./images/sqlite_typecasting.jpg" width="400">
 - **Type Affinity**
-  - sqlite3 automatically recognizes various types of data as its own five data types.
+  - sqlite3 automatically recognizes various types of data as its own five data types.  
     <img alt='Type_affinity' src="./images/Type_affinity.jpg" width="600">
 
 ## 3.2. ALTER TABLE

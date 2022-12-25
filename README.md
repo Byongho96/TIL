@@ -44,7 +44,7 @@ since 2022.08.
     - [CRUD](./Django/02_Django_CRUD.md)
     - [CRUD with ModelForm](./Django/03_Django_CRUD_ModelForm.md)
     - [Authentication](./Django/04_Django_Authentication.md)
-    - [sqlite3 SQL](./Django/05_sqlite3_SQL.md)
+    - [SQLite3 SQL](./Django/05_SQLite3_SQL.md)
     - [QuerySet API](./Django/06_Django_QuerySet.md)
     - [1:N Relationship](./Django/07_Django_Many_to_One.md)
     - [M:N Relationship](./Django/08_Django_Many_to_Many.md)
