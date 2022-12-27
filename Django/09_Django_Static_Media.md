@@ -1,198 +1,266 @@
-## 1. Static Files
-### 1.1. Static Files
-Files that does not have to go through additional process before being shown to the user
-* media file
-* javascript file
-* CSS file
+# Django Static Media
 
-### 1.2. Web Server and Static Files
-To reqeust static files in the server on web, we should know the address(url) of the files
+## Index
 
-### 1.3. Static Files with Django
-1. **check INSTALLED_APPS in settings.py**
-    * `INSTALLED_APPS = [ django.contrib.staticfile, ... ]`
-    * usually it's already set
-2. **set STATIC_DIRS in settings.py**
-    * Default: []
-    * set additional directories excpet 'app/static/'
-    ```python
-    STATICFILES_DIRS = [
-        BASE_DIR / 'static',
-    ]
-    ```
-3. **set STATIC_URL in settings.py**
-    * usually it's already set as `STATIC_URL = '/static/'`
-4. **make 'static/app_name/' folder in the app and save the image there/**
-    * my_app/static/sample_img.jpg
+- [1. Static Files](#1-static-files)
+  - [1.1. Static Files](#11-static-files)
+  - [1.2. Static Files with Django](#12-static-files-with-django)
+  - [1.3. Deploy Static Files](#13-deploy-static-files)
+    - [1.3.1. STATIC_ROOT](#131-static-root)
+    - [1.3.2. Procedure](#132-procedure)
+- [2. Media Files](#2-media-files)
+  - [2.1. ImageField()](#21-imagefield)
+    - [2.1.2. FileField()](#212-filefield)
+  - [2.2. Before Using Media Files](#22-before-using-media-files)
+- [3. Image File CRUD](#3-image-file-crud)
+  - [3.1. Create](#31-create)
+  - [3.2. READ](#32-read)
+  - [3.3. UPDATE](#33-update)
+- [4. Image Resizing](#4-image-resizing)
+  - [4.1. Django Imagekit](#41-django-imagekit)
+  - [4.2. Make Thumbnail Without Saving the Original Image](#42-make-thumbnail-without-saving-the-original-image)
+  - [4.3. Make Thumbnail With Saving the Original Image](#43-make-thumbnail-with-saving-the-original-image)
+
+---
+
+# 1. Static Files
+
+## 1.1. Static Files
+
+**Files that do not require additional processing before being shown to the user.** To request a static file to the server, we should know the address(url) of the file
+
+- **Examples**
+  - media file
+  - javascript file
+  - CSS file
+
+## 1.2. Static Files with Django
+
+1. **Check `INSTALLED_APPS` in settings.py**  
+   It is set by default.
+   ```python
+   INSTALLED_APPS = [
+    django.contrib.staticfile,
+    ... ]
+   ```
+2. **Set `STATIC_DIRS` in settings.py**  
+   It's about setting an additional static file path in addition to the app path.
+   ```python
+   # Default: []
+   STATICFILES_DIRS = [
+       BASE_DIR / 'static',
+   ]
+   ```
+3. **Set `STATIC_URL` in settings.py**  
+   The path corresponding to `STATIC_ROOT`. It is set to `STATIC_URL = '/static/'` by default.
+4. **Make 'static/app_name/' folder for each app to divide namespace**  
+   `my_app/static/my_app/sample_img.jpg`
 5. **print with static templates tags**
-    ```html
-    {% extends 'must_be_on_the_top.html' %}
-    <!-- import static -->
-    {% load static %}
 
-    <img src="{% static 'app_name/img_name.jpg' %} alt="smple image"">
-    ```  
+   ```html
+   {% extends 'must_be_on_the_top.html' %}
+   <!-- import static -->
+   {% load static %}
+   <img src="{% static 'app_name/img_name.jpg' %}" />
+   ```
 
-### 1.4. Deploy Static Files
-#### 1.4.1. STATIC_ROOT
-where all the static files are collected when the command `collectstatic` is excuted, usually before deploy the proeject. The default is `None`.
-If `DEBUG = TRUE`, STATIC_ROOT is not applied.
+## 1.3. Deploy Static Files
 
-It's required because the server which actually runs the program doesn't know where the static files are, unlike Django.
+### 1.3.1. STATIC_ROOT
 
-#### 1.4.2. Procedure
-1. **set STATIC_ROOT in settings.py**
-    * `STATIC_ROOT = BASE_DIR / 'staticfiles'`
-2. **run the cmd**
-    * `python manage.py collectstatic`
+**Where all the static files are collected** when the command `collectstatic` is excuted. The default is `None`. If `DEBUG = TRUE`, STATIC_ROOT is not applied.
 
+It's required because the server which actually runs the project doesn't know where the static files are.
 
-## 2. Image Upload
-### 2.1. ImageField()
-* The model field for uploading image
-* Inherit FilreField + Check the vaildity of the uploaded image
-* The instance of ImageField is string with a maximum length of 100
-    * The string is the path of the file after MEDIA_ROOT
-    * When the same name of image is saved in the exactly the same directory, a random string is added to the name
+### 1.3.2. Procedure
 
-#### 2.1.2. FileField()
-* FileField(upload_to'', storage=None, max_length=100, **options)
-    * upload_to
-        * Set up the detailed path (path after MEDIA_ROOT)
+1. **Set `STATIC_ROOT` in settings.py**
+   ```python
+   STATIC_ROOT = BASE_DIR / 'staticfiles'
+   ```
+2. **Run the cmd**  
+   `python manage.py collectstatic`
 
-### 2.2. Before using FileField / ImageField 
-1. **Set MEDIA_ROOT**
-    * Default: ''
-    * The absolute path where the images uploaded by users will be stored
-    * It must be different from STATIC_ROOT
-    ```python
-    MEDIA_ROOT = BASE_DIR / 'media'
-    ```
-2.  **Set MEDIA_URL**
-    * Default: ''
-    * the front of the URL of media files, similar with what STATIC_URL does
-    *  It must be different from STATIC_URL
+---
 
-3. **link MEDIA_URL to MEDIA_ROOT**
-    ```python
-    # project/urls.py
-    from django.conf import settings
-    from django.conf.urls.static import static
+# 2. Media Files
 
-    urlpatterns = [
-        ...,
-    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    ```
-4. **install Pillow library**
-    * `pip install Pillow`
+**The static files which are uploaded by the user.**
 
-### 2.3. Create
-* models.py
-    ```python
-    class Article(models.Model):
-        image = models.ImageField(blank=True, upload_to='images/')
-    ```
-    * blank
-        * The field can be '', and it still can pass the validation test.
-        * validation-related
-    * null
-        * Save the falsy value as NULL.(as long as the falsy value passed the validation test)
-        * Database-related
-    * upload_to(optional)
-        * Set up the detailed path (path after MEDIA_ROOT)
-        * `upload_to = '%Y/%m/%d/`
-            * Python time module
-        * You also can call a function for delciately naming the folder
-            ```python
-            def articles_image_path(instance, filename):
-                return f'images/{instance.user.username/{filename}'
-            
-            class Article(models.Model):
-                image = models.ImageField(blank=True, upload_to=articles_image_path)
-            ```
-            * the arguments are fixed like above
-            * pk can't be used in the function becuase the function is excuted before saved
-* form.py
-    When the form is made, \<input> tag of the ImageField has `accept` attrs which is for setting the type of files the form will be accepted
-    * `accept="image/*"`
-* views.py
-    ```python
-    def created(request):
-        if request.method == 'POST':
-            form = ArticleForm(request.POST, request.FILES)
-        ...
-    ```
-    * BaseModelForm(data=None, files=None, ..., instance=None)
-* create.html
-    ```html
-    <form action="#" method="POST" enctyp="multipart/form-data">
-    ```
-    * enctype
-        * Default: aplication/x-www-from-rulencoded
-        * Set the encoding type of the form
+## 2.1. ImageField()
 
-### 2.4. READ
-* detail.html
-    ```html
-    {% if article.image %}
-        <img src="{{ article.image.url }}" alt="{{ article.image }}">
-    {% endif %}
-    ```
+- **The model field for image files.**
+- It inherits FileField and has a function of checking the validity of an image file.
+- **The instance of ImageField is a string with a maximum length of 100**
+  - The string is the path after `MEDIA_ROOT`
+  - When the same name of image is saved in the exactly the same directory, a random string is added to the name
 
-### 2.5. UPDATE
-Strictly speaking, it's not updating but a replacement
-The previous file remains. To manage these files, you can use addtional libraries
-* update.html
-    ```html
-    <form action="#" method="POST" enctyp="multipart/form-data">
-    ```
-* views.py
-    ```python
-    def update(request):
-        article = Article.objects.get(pk=pk)
-        if request.method == 'POST':
-            form = ArticleForm(request.POST, request.FILES, instance=article)
-    ...
-    ```
+### 2.1.2. FileField()
 
-### 2.6. Image Resizing
+**FileField(upload_to='', storage=None, max_length=100, \*\*options)**
+
+- **upload_to**
+  - setting the detailed path (path after MEDIA_ROOT)
+
+## 2.2. Before Using Media Files
+
+1. **Set `MEDIA_ROOT`**  
+   The absolute path where all the media files will be stored. It must be different from `STATIC_ROOT`
+
+   ```python
+   # Default: ''
+   MEDIA_ROOT = BASE_DIR / 'media'
+   ```
+
+2. **Set `MEDIA_URL`**  
+   The path corresponding to `MEDIA_ROOT`. It must be different from STATIC_URL.  
+   `MEDIA_URL = '/media/'`
+
+3. **Link MEDIA_URL to MEDIA_ROOT**
+
+   ```python
+   # project/urls.py
+   from django.conf import settings
+   from django.conf.urls.static import static
+
+   urlpatterns = [
+       ...,
+   ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+   ```
+
+4. **Install Pillow library**  
+   The libarary which is necessary for processing image files in Python.  
+   `pip install Pillow`
+
+---
+
+# 3. Image File CRUD
+
+## 3.1. Create
+
+- **models.py**
+
+  ```python
+  class Article(models.Model):
+      image = models.ImageField(blank=True, upload_to='images/')
+  ```
+
+  - **blank**
+
+    - The field can be blank, and '' can pass the validation test.
+    - validation-related
+
+  - **upload_to(optional)**
+
+    - Sets the detailed path (path after MEDIA_ROOT)
+      - Example of using Python time module  
+        `upload_to = '%Y/%m/%d/`
+    - A functon can be used as the parameter.
+
+      ```python
+      def articles_image_path(self, filename):
+          return f'images/{self.user.username}/{filename}'
+
+      class Article(models.Model):
+          image = models.ImageField(blank=True, upload_to=articles_image_path)
+      ```
+
+      - The arguments are fixed like above. [Django doc about upload_to](https://docs.djangoproject.com/en/4.1/ref/models/fields/#filefield)
+      - pk can't be used in the function becuase the function is excuted before saved
+
+- **create.html**
+
+  ```html
+  <form action="#" method="POST" enctyp="multipart/form-data"></form>
+  ```
+
+  - **enctype**
+    - Sets the encoding type of the form
+    - Default: aplication/x-www-from-rulencoded
+
+- **views.py**
+  ```python
+  def created(request):
+      if request.method == 'POST':
+          form = ArticleForm(request.POST, request.FILES)
+      ...
+  ```
+  - BaseModelForm(data=None, files=None, ..., instance=None)
+
+## 3.2. READ
+
+- **detail.html**
+  ```html
+  {% if article.image %}
+  <img src="{{ article.image.url }}" alt="{{ article.image }}" />
+  {% endif %}
+  ```
+
+## 3.3. UPDATE
+
+**Strictly speaking, it's not updating but a replacement**
+The manage the previous file, you should use an addtional library like [django-cleanup](https://pypi.org/project/django-cleanup/)
+
+- **update.html**
+  ```html
+  <form action="#" method="POST" enctyp="multipart/form-data"></form>
+  ```
+- **views.py**
+  ```python
+  def update(request):
+      article = Article.objects.get(pk=pk)
+      if request.method == 'POST':
+          form = ArticleForm(request.POST, request.FILES, instance=article)
+  ...
+  ```
+
+---
+
+# 4. Image Resizing
+
 Resizing the uploaded image to use storage space efficiently
-#### 2.6.1. Preset
-1. **install dajngo-imagekit**
-    * `pip install dajngo-imagekit`
-2. **add to INSTALLED_APPS**
-    * `INSTALLED_APPS = ['imagekit', ]`
-#### 2.6.2. Make Thumbnail Without Saving the Original Image
-* models.py
-    ```python
-    from imagekit.processors import Thumbnail
-    from imagekit.models import ProcessedImageField
 
-    class Article(models.Model):
-        image = ProcessedIamgeField(
-            blank=True,
-            upload_to='thumbnails/',
-            processors=[Thumbnail(200, 300)],   # pixel : width, height
-            format='JPEG',
-            options={'quality':80}              # resolution
-        )
-    ```
-    * There're many functions in the imagekit library.
-#### 2.6.3. Make Thumbnail With Saving the Original Image
-* models.py
-    ```python
-    from imagekit.processors import Thumbnail
-    from imagekit.models import ProcessedImageField, ImageSpecField
+## 4.1. Django Imagekit
 
-    class Article(models.Model):
-        image = models.ImageField(blank=True)
-        image_thumbnail = ProcessedIamgeField(
-            source='image',
-            processors=[Thumbnail(200, 300)],   # pixel : width, height
-            format='JPEG',
-            options={'quality':80}              # resolution
-        )
-    ```
-    * The column of the image_thumbnail is not created
-    * Even thhe file is not created until the field is used in the .html
-        * In a CACHE folder
+1. **Install dajngo-imagekit**
+   - `pip install dajngo-imagekit`
+2. **Add to INSTALLED_APPS**
+   - `INSTALLED_APPS = ['imagekit', ]`
+
+## 4.2. Make Thumbnail Without Saving the Original Image
+
+- **models.py**
+
+  ```python
+  from imagekit.processors import Thumbnail
+  from imagekit.models import ProcessedImageField
+
+  class Article(models.Model):
+      image = ProcessedIamgeField(
+          blank=True,
+          upload_to='thumbnails/',
+          processors=[Thumbnail(200, 300)],   # pixel : width, height
+          format='JPEG',
+          options={'quality':80}              # resolution
+      )
+  ```
+
+## 4.3. Make Thumbnail With Saving the Original Image
+
+- **models.py**
+
+  ```python
+  from imagekit.processors import Thumbnail
+  from imagekit.models import ProcessedImageField, ImageSpecField
+
+  class Article(models.Model):
+      image = models.ImageField(blank=True)
+      image_thumbnail = ProcessedImageField(
+          source='image',
+          processors=[Thumbnail(200, 300)],   # pixel : width, height
+          format='JPEG',
+          options={'quality':80}              # resolution
+      )
+  ```
+
+  - **The column of the `image_thumbnail` is not created.** Only a cache file is created in the cache folder when the field is used.
