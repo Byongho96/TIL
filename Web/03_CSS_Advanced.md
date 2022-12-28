@@ -24,12 +24,12 @@
 - [3. Grid](#3-grid)
   - [3.1. Declaration](#31-declaration)
   - [3.2. Shape Definition](#32-shape-definition)
-    - [3.2.1. grid-template-column/rows](#321-grid-template-column-rows)
-    - [3.2.2. grid-auto-columns/rows](#322-grid-auto-columns-rows)
+    - [3.2.1. grid-template-columns/rows](#321-grid-template-columnsrows)
+    - [3.2.2. grid-auto-columns/rows](#322-grid-auto-columnsrows)
     - [3.2.3. grid-auto-flow](#323-grid-auto-flow)
     - [3.2.4. gap](#324-gap)
   - [3.3. Cell Placement](#33-cell-placement)
-    - [3.3.1. grid-column/rows-\*](#331-grid-column-rows---)
+    - [3.3.1. grid-column/rows-\*](#331-grid-columnrows-)
     - [3.3.2. gird-template-areas](#332-gird-template-areas)
   - [3.4. Align](#34-align-1)
     - [3.4.1. justify-content](#341-justify-content-1)
@@ -255,7 +255,7 @@ Grid 컨테이너에 `display: grid;`를 선언한다.
 
 ## 3.2. Shape Definition
 
-### 3.2.1. grid-template-column/rows
+### 3.2.1. grid-template-columns/rows
 
 ```css
 .container {

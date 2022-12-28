@@ -62,7 +62,7 @@
 
 ## 1.3. HTTP Response Status Code
 
-[HTTP Response Status Code Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+[HTTP Response Status Code Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)  
 특정 HTTP 요청에 대한 서버의 처리결과를 나타내며, 크게 5개의 그룹으로 나뉜다.
 
 - Informational Responses (100~199)

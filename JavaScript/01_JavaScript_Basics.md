@@ -39,7 +39,7 @@
   **The language being used in various areas**
 - sever programming, mobile service, block chain, etc...
 
-### 1.2. The History of JavaSCript
+### 1.2. The History of JavaScript
 
 - 1993, Mosaic Web Browser
   - GUI web browser
