@@ -60,12 +60,14 @@ since 2022.08.
 - 📖 Computer Science
   - 📁 Database
     김연희, 『데이터베이스 개론』, 한빛아카데미
-    - [Ch1. 데이터베이스 기본 개념](./CS/DB/Ch1_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EA%B8%B0%EB%B3%B8_%EA%B0%9C%EB%85%90.md)
-    - [Ch2. 데이터베이스 관리 시스템](./CS/DB/Ch2_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EA%B4%80%EB%A6%AC_%EC%8B%9C%EC%8A%A4%ED%85%9C.md)
-    - [Ch3. 데이터베이스 시스템](./CS/DB/Ch3_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%8B%9C%EC%8A%A4%ED%85%9C.md)
-    - [Ch4. 데이터 모델링](./CS/DB/Ch4_%EB%8D%B0%EC%9D%B4%ED%84%B0_%EB%AA%A8%EB%8D%B8%EB%A7%81.md)
-    - [Ch5. 관계 데이터 모델](./CS/DB/Ch5_%EA%B4%80%EA%B3%84_%EB%8D%B0%EC%9D%B4%ED%84%B0_%EB%AA%A8%EB%8D%B8.md)
-    - [Ch6. 관계 데이터 연산](./CS/DB/Ch6_%EA%B4%80%EA%B3%84_%EB%8D%B0%EC%9D%B4%ED%84%B0_%EC%97%B0%EC%82%B0.md)
-    - [Ch7. 데이터베이스 언어 SQL](./CS/DB/Ch7_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%96%B8%EC%96%B4_SQL.md)
-    - [Ch8. 데이터베이스 언어 SQL](./CS/DB/Ch8_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%84%A4%EA%B3%84.md)
+    - [Ch1. 데이터베이스 기본 개념](./CS/DB/Ch01_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EA%B8%B0%EB%B3%B8_%EA%B0%9C%EB%85%90.md)
+    - [Ch2. 데이터베이스 관리 시스템](./CS/DB/Ch02_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EA%B4%80%EB%A6%AC_%EC%8B%9C%EC%8A%A4%ED%85%9C.md)
+    - [Ch3. 데이터베이스 시스템](./CS/DB/Ch03_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%8B%9C%EC%8A%A4%ED%85%9C.md)
+    - [Ch4. 데이터 모델링](./CS/DB/Ch04_%EB%8D%B0%EC%9D%B4%ED%84%B0_%EB%AA%A8%EB%8D%B8%EB%A7%81.md)
+    - [Ch5. 관계 데이터 모델](./CS/DB/Ch05_%EA%B4%80%EA%B3%84_%EB%8D%B0%EC%9D%B4%ED%84%B0_%EB%AA%A8%EB%8D%B8.md)
+    - [Ch6. 관계 데이터 연산](./CS/DB/Ch06_%EA%B4%80%EA%B3%84_%EB%8D%B0%EC%9D%B4%ED%84%B0_%EC%97%B0%EC%82%B0.md)
+    - [Ch7. 데이터베이스 언어 SQL](./CS/DB/Ch07_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%96%B8%EC%96%B4_SQL.md)
+    - [Ch8. 데이터베이스 설계](./CS/DB/Ch08_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%84%A4%EA%B3%84.md)
+    - [Ch9. 정규화](./CS/DB/Ch09_%EC%A0%95%EA%B7%9C%ED%99%94.md)
+    - [Ch10. 회복과 병행 제어](./CS/DB/Ch10_%ED%9A%8C%EB%B3%B5%EA%B3%BC_%EB%B3%91%ED%96%89_%EC%A0%9C%EC%96%B4.md)
   - 📞 Network

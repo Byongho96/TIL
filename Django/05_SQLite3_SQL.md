@@ -137,11 +137,11 @@ CREATE TABLE table_name (
   - Therefore, about the same column, if 1 is put, it becomes an integer, and if '1'is put, it becomes a string
   - <mark>But for **compatibility** with other RDBMS</mark>, It's strongly recommend to announce the datatype.
 - **Static, Rigid Typing**
-  - IF the datatype is announce, type casting occurs automatically.
+  - If the datatype is announced, type casting occurs automatically.
   - For example, when you put '123' in INTEGER column, it's typecasted into 123  
     <img alt='sqlite_typecasting' src="./images/sqlite_typecasting.jpg" width="400">
 - **Type Affinity**
-  - sqlite3 automatically recognizes various types of data as its own five data types.  
+  - SQLite3 automatically recognizes various types of data as its own five data types.  
     <img alt='Type_affinity' src="./images/Type_affinity.jpg" width="600">
 
 ## 3.2. ALTER TABLE
