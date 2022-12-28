@@ -1,234 +1,508 @@
+# CSS Advanced
+
+## Index
+
+- [1. Float](#1-float)
+- [2. Flexbox](#2-flexbox)
+  - [2.1. Declaration](#21-declaration)
+  - [2.2. From Definition](#22-from-definition)
+    - [2.2.1. flex-direction](#221-flex-direction)
+    - [2.2.2. flex-wrap](#222-flex-wrap)
+    - [2.2.3. flex-flow](#223-flex-flow)
+  - [3.4. Align](#34-align)
+    - [3.4.1. justify-content](#341-justify-content)
+    - [3.4.2. justify-items](#342-justify-items)
+    - [3.4.3. justify-self](#343-justify-self)
+    - [3.4.4. align-content](#344-align-content)
+    - [3.4.5. align-items](#345-align-items)
+    - [3.4.6. align-self](#346-align-self)
+  - [2.4. Width](#24-width)
+    - [2.4.1. flex-basis](#241-flex-basis)
+    - [2.4.2. flex-grow](#242-flex-grow)
+    - [2.4.3. flex-shrink](#243-flex-shrink)
+    - [2.4.4. flex](#244-flex)
+- [3. Grid](#3-grid)
+  - [3.1. Declaration](#31-declaration)
+  - [3.2. Shape Definition](#32-shape-definition)
+    - [3.2.1. grid-template-column/rows](#321-grid-template-column-rows)
+    - [3.2.2. grid-auto-columns/rows](#322-grid-auto-columns-rows)
+    - [3.2.3. grid-auto-flow](#323-grid-auto-flow)
+    - [3.2.4. gap](#324-gap)
+  - [3.3. Cell Placement](#33-cell-placement)
+    - [3.3.1. grid-column/rows-\*](#331-grid-column-rows---)
+    - [3.3.2. gird-template-areas](#332-gird-template-areas)
+  - [3.4. Align](#34-align-1)
+    - [3.4.1. justify-content](#341-justify-content-1)
+    - [3.4.2. justify-items](#342-justify-items-1)
+    - [3.4.3. justify-self](#343-justify-self-1)
+    - [3.4.4. align-content](#344-align-content-1)
+    - [3.4.5. align-items](#345-align-items-1)
+    - [3.4.6. align-self](#346-align-self-1)
+
+---
+
 # 1. Float
-: move to z=1 dimension, and work as in-line block
-: BUT inline elements surround the floated elements
-: Other block elements acts as the floated elements are gone
-```css
-.float {
-    float: left;
-    float: right;
-    float: none;
-}
-```
+
+[CSS Float Mozilla](https://developer.mozilla.org/ko/docs/Web/CSS/float)
+
 ---
 
 # 2. Flexbox
-## 2-1. Composition
-* **axis**
-    * main axis
-    * cross axis
-* **element**
-    * Flex container
-    * Flex item
-## 2-2. Declaration
-* apply `display: flex` on the flex container
-    ```css
-    .container {
-        display: flex;
-        display: inline-flex;
-    }
-    ```
-    * `inline-flex` makes **the container** ==act like inline-block==
-* all the elements take up the space ==as big as their contents==
-* the height of elements are set ==as the longest one==
-## 2-3. flex-direction
- ```css
-    .container {
-        display: flex;
-        flex-direction: row; /*default*/
-        flex-direction: row-reverse;
-        flex-direction: column;
-        flex-direction: column-reverse;
-    }
-```
-![flex-direction](images/flex-direction.jpg)
-## 2-4. flex-wrap
- ```css
-    .container {
-        display: flex;
-        flex-wrap: nowrap;  /*default*/
-        flex-wrap: wrap;
-        flex-wrap: wrap-reverse;
-    }
-```
-![nowrap](images/nowrap.jpg)
-![wrap](images/wrap.jpg)
-![wrap-reverse](images/wrap-reverse.jpg)
-## 2-5. flex-flow
-* flex-flow = flex-direction + flex-wrap
-    ```css
-    .container {
-        flex-flow: row nowrap;
-    }
-    ```
-## 2-6. Assign space
-* **justify-contet** (main axis)
-* **align-content** (cross axis)
-    * flex-start: start of the axis
-    * flex-end: end of the axis
-    * center: center of the axis
-    * space-between: assign the same space between elements
-    * space-around: assign the same space around elements
-    * space-evenly: assign the same space between and end of elements
-    ![assign space](images/assign_space.jpg)
-## 2-6. align-items
-**align according to ==cross axis==**
-* **align-items** (all the items)
-* **align-self** (each item)
-    * stretch: strech all the items as long as the container's height
-    * flex-start: start of the cross axis
-    * flex-end: end of the cross axis
-    * center: center of the cross axis
-    * baseline: align as texts' baselines are at the same height 
-## 2-6. etc
-* **flex-grow**
-    * distribute the remaining space
-    ```css
-    .item:nth-child(1){flex-grow:1}
-    .item:nth-child(2){flex-grow:1}
-    .item:nth-child(3){flex-grow:0}
-    .item:nth-child(4){flex-grow:2}
-    /* the remaining area is distributed in ration of 1:1:0:2*/
-    ```
-* **order**
-    * align elements according to its order
-    * if the order value is not assigned, ==default = 0==
-    * if the order valuse is the same,
-    ==according to its' code order==
----
-# 3. Grid
-## 3-1. Declaration
-* the conatainer should be decided
-    ```css
-    .container {
-        display: grid;
-        display: inline-grid;
-    }
-    ```
-## 3-2. Define shape
-* **grid-template-rows**
-    ```css
-    .container {
-        grid-template-columns: 200px 200px 500px;
-        /* grid-template-columns: 1fr 1fr 1fr */
-        /* grid-template-columns: repeat(3, 1fr) */
-        /* grid-template-columns: 200px 1fr */
-        /* grid-template-columns: 100px 200px auto */
-        grid-auto-rows: minmax(100px, auto);
-        /* automatically add rows */
-    }
-    ```
-* **grid-template-columns**
-    ```css
-    .container {
-        grid-template-rows: 200px 200px 500px;
-        /* grid-template-rows: 1fr 1fr 1fr */
-        /* grid-template-rows: repeat(3, 1fr) */
-        /* grid-template-rows: 200px 1fr */
-        /* grid-template-rows: 100px 200px auto */
-    }
-    ```
-* **grid-column, grid-row**
-    ```css
-        .item:nth-child(1) {
-            grid-column: 1 / 3;
-            grid-row: 1 / 2;
-            /* grid-column-start: 1;
-            grid-column-end: 3;
-            grid-row-start: 1;
-            grid-row-end: 2; */
-            /* grid-column: 1 / span 2;
-            grid-row: 1 / span 1; */
-        }
-    ```
-    ![grid-column,row](images/grid.jpg)
-## 3-3. Align items
-**items are aligned in their cell position**
-* **align-items**(vertical axis)
-* **justify-items**(horizontal axis)
-    * stretch
-    * start
-    * center
-    * end
-## 3-4. Align content
-**all the items are aligned in the container area**
-* **align-content**(vertical axis)
-* **justify-content**(horizontal axis)
-    * stretch
-    * start
-    * center
-    * end
-## 3-5. Align self
-**each item is aligned in their cell position**
-* **align-self**(vertical axis)
-* **justify-self**(horizontal axis)
-    * stretch
-    * start
-    * center
-    * end
----
-# 4. Bootstrap
-**the colleoction of css class selectors**
-## 4-1. CDN
-**Content Delivery Network**
-* Deliver the data from the nearest server from the end-user
-* You can include bootstrap via CDN
-## 4-2. Spacing
-**{property}{sides}-{size}**
-* **property**
-    * **m** - for margin
-    * **p** - for padding
-* **sides**
-    * **t** - for top
-    * **b** - for bottom
-    * **s** - for start
-    * **e** - for end
-    * **x** - for start and end
-    * **y** - for top and end
-    * **_** - for 4 sides
-* **size**
-    * **0** - for 0
-    * **1** - for 0.25 * rem = 4px
-    * **2** - for 0.5  * rem = 8px
-    * **3** - for 1.0  * rem = 16px
-    * **4** - for 1.5  * rem = 24px
-    * **5** - for 3.0  * rem = 48px
-    * **auto** - for auto
 
-## 4-3. color
-![bootstrap color](images/bootstrap_color.jpg)
-## 4-4. text
-* **align**
-    * text-start
-    * text-center
-    * text-end
-    * text-justify
-    * text-nowrap (at the container)
-* **font-weight**
-    * fw-bold
-    * fw-normal
-    * fw-light
-    * fst-italic
-## 4-5. display
-* d-inline
-* d-inline-block
-* d-block
-* d-none
-## 4-6. position
-* position-static
-* position-relative
-* position-absolute
-* position-fixed
-* position-sticky
-* fixed-top, fixed-bottom
-* sticky-top
-## 4-7. flex
-* d-flex
-* justify-content-{}
-* align-itmens-{}
-* align-self-{}
-## 4-8. grid
-* container
-* row
-* row-cols-*
-* col-*
-* g-* (gx-*, gy-*)
+[flexbox에 관한 블로그 글](https://studiomeal.com/archives/197)
+
+## 2.1. Declaration
+
+컨테이너에 `display: flex`를 적용한다.
+
+- **width**는 content 크기만큼 차지한다.
+- **height**는 container 높이만큼 늘어난다.
+
+```css
+.container {
+  display: flex;
+  display: inline-flex; /* 컨테이너 자체가 inline-block */
+}
+```
+
+## 2.2. From Definition
+
+### 2.2.1. flex-direction
+
+main axis의 방향을 결정한다.
+
+```css
+.container {
+  display: flex;
+  flex-direction: row; /*default*/
+  flex-direction: row-reverse;
+  flex-direction: column;
+  flex-direction: column-reverse;
+}
+```
+
+<img src="./images/flex-direction.jpg" width=1200>
+
+### 2.2.2. flex-wrap
+
+줄바꿈 속성을 결정한다.
+
+```css
+.container {
+  display: flex;
+  flex-wrap: nowrap; /*default*/
+  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
+}
+```
+
+<img src="./images/flex-wrap.jpg" width=500>
+
+### 2.2.3. flex-flow
+
+flex-direction과 flex-wrap을 한 번에 지정한다.
+
+```css
+.container {
+  flex-flow: row nowrap;
+}
+```
+
+## 3.4. Align
+
+### 3.4.1. justify-content
+
+메인축 방향으로 컨텐츠 배열방식 지정
+
+```css
+.container {
+  justify-content: flex-start;
+  justify-content: flex-end;
+  justify-content: center;
+  justify-content: space-between;
+  justify-content: space-around;
+  justify-content: space-evenly;
+}
+```
+
+<img src="./images/assign_space.jpg" width="500">
+
+### 3.4.2. justify-items
+
+flex에서는 쓰이지 않음
+
+### 3.4.3. justify-self
+
+flex에서는 쓰이지 않음
+
+### 3.4.4. align-content
+
+`flex-wrap: wrap;`인 상태에서 행이 2줄 이상일 때, 수직축 방향으로 컨텐츠 배열방식 지정
+
+```css
+.container {
+  align-content: flex-start;
+  align-content: flex-end;
+  align-content: center;
+  align-content: space-between;
+  align-content: space-around;
+  align-content: space-evenly;
+}
+```
+
+<img src="./images/align-content.jpg" width="500">
+
+### 3.4.5. align-items
+
+한 개의 열에서 컨텐츠들의 수직 정렬을 지정한다.
+
+```css
+.container {
+  align-items: stretch;
+  align-items: flex-start;
+  align-items: flex-end;
+  align-items: center;
+  align-items: baseline;
+}
+```
+
+<img src="./images/align-items.jpg" width="500">
+
+### 3.4.6. align-self
+
+한 개의 열에서 개별 컨텐츠의 수직 정렬을 지정한다.
+
+```css
+.container {
+  align-self: stretch;
+  align-self: flex-start;
+  align-self: flex-end;
+  align-self: center;
+  align-self: baseline;
+}
+```
+
+## 2.4. Width
+
+### 2.4.1. flex-basis
+
+기본(최소)너비를 설정한다.
+
+```css
+.item {
+  flex-basis: auto; /* 기본값 */
+  flex-basis: 0;
+  flex-basis: 50%;
+  flex-basis: 300px;
+  flex-basis: 10rem;
+  flex-basis: content;
+}
+```
+
+### 2.4.2. flex-grow
+
+한 행을 채우도록하는 컨텐츠 너비를 분배방식을 지정
+
+**flex-basis를 제외한 여백 부분**을 flex-grow에 지정된 숫자의 비율로 아이템이 나누어 가진다. 따라서 원하는 비율대로 너비를 나누기 위해서는 flex-basis를 0으로 설정한다.
+
+```css
+.item {
+  flex-grow: 1;
+  /* flex-grow: 0; */ /* 기본값 */
+}
+```
+
+<img src="./images/flex-grow.jpg" width="500">
+
+### 2.4.3. flex-shrink
+
+아이템이 flex-basis보다 작아질 수 있는지를 결정합니다.
+
+**기본값이 1이기 때문에 아이템의 크기는 flex-basis보다 작아질 수 있다.** flex-shrink가 0일 경우, 아이템의 크기가 flex-basis보다 작아지지 않는다.
+
+### 2.4.4. flex
+
+flex-grow, flex-shrink, flex-basis를 한 번에 쓸 수 있는 축약형 속성.
+
+```css
+.item {
+  flex: 1;
+  /* flex-grow: 1; flex-shrink: 1; flex-basis: 0%; */
+  flex: 1 1 auto;
+  /* flex-grow: 1; flex-shrink: 1; flex-basis: auto; */
+  flex: 1 500px;
+  /* flex-grow: 1; flex-shrink: 1; flex-basis: 500px; */
+}
+```
+
+---
+
+# 3. Grid
+
+[Grid System에 관한 블로그 글](https://studiomeal.com/archives/533)
+[Grid System Youtube](https://www.youtube.com/watch?v=9zBsdzdE4sM)
+
+## 3.1. Declaration
+
+Grid 컨테이너에 `display: grid;`를 선언한다.
+
+```css
+.container {
+  display: grid;
+  display: inline-grid; /* 컨테이너 자체가 inline-block */
+}
+```
+
+## 3.2. Shape Definition
+
+### 3.2.1. grid-template-column/rows
+
+```css
+.container {
+  grid-template-columns: 200px 200px 500px;
+  /* grid-template-columns: 1fr 1fr 1fr */
+  /* grid-template-columns: repeat(3, 1fr) */
+  /* grid-template-columns: 200px 1fr */
+  /* grid-template-columns: 100px 200px auto */
+
+  grid-template-rows: 200px 200px 500px;
+  /* grid-template-rows: 1fr 1fr 1fr */
+  /* grid-template-rows: repeat(3, 1fr) */
+  /* grid-template-rows: 200px 1fr */
+  /* grid-template-rows: 100px 200px auto */
+}
+```
+
+- **repeat(반복횟수, 반복값)**
+- **minmax(최소, 최대)**
+  ```css
+  .container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, minmax(100px, auto));
+  }
+  ```
+- **auto-fill**
+  - 설정된 너비가 허용하는 최대한 컬럼 생성
+    ```css
+    .container {
+      grid-template-columns: repeat(auto-fill, minmax(20%, auto));
+    }
+    ```
+- **auto-fit**
+  - 설정된 너비가 허용하는 최대한 컬럼 생성하고, 남는 공간을 채움
+
+### 3.2.2. grid-auto-columns/rows
+
+지정하지 않은 column, row에 대한 값을 설정
+
+- **grid-auto-columns**
+  ```css
+  .container {
+    grid-template-columns: 50px;
+    grid-auto-columns: 1fr 2fr;
+  }
+  .item:nth-child(1) {
+    grid-column: 2;
+  }
+  .item:nth-child(2) {
+    grid-column: 3;
+  }
+  .item:nth-child(3) {
+    grid-column: 4;
+  }
+  .item:nth-child(4) {
+    grid-column: 5;
+  }
+  .item:nth-child(5) {
+    grid-column: 6;
+  }
+  .item:nth-child(6) {
+    grid-column: 7;
+  }
+  ```
+  <img src="./images/grid-auto-columns.jpg">
+- **grid-auto-rows**
+  ```css
+  .container {
+    /* 1 ~ 3 행 */
+    grid-template-rows: repeat(3, minmax(100px, auto));
+    /* 4 ~ 행 */
+    grid-auto-rows: minmax(100px, auto);
+  }
+  ```
+
+### 3.2.3. grid-auto-flow
+
+[grid-auto-flow Mozilla](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow)
+
+아이템이 배치되는 순서를 설정
+
+### 3.2.4. gap
+
+셀 사이의 간격을 설정
+
+```css
+.container {
+  row-gap: 10px;
+  /* row의 간격을 10px로 */
+  column-gap: 20px;
+  /* column의 간격을 20px로 */
+}
+```
+
+```css
+.container {
+  gap: 10px 20px;
+  /* row-gap: 10px; column-gap: 20px; */
+  gap: 20px;
+  /* row-gap: 20px; column-gap: 20px; */
+}
+```
+
+## 3.3. Cell Placement
+
+### 3.3.1. grid-column/rows-\*
+
+해당 셀의 그리드 시작 라인과 끝 라인 을 지정
+
+```css
+.item:nth-child(1) {
+  grid-column-start: 1;
+  grid-column-end: 3; /* -1일 경우 가장 끝 라인 */
+  grid-row-start: 1;
+  grid-row-end: 2; /* -1일 경우 가장 끝 라인 */
+}
+```
+
+```css
+.item:nth-child(1) {
+  grid-column: 1 / 3;
+  grid-row: 1; /* end를 생략하면 1칸 */
+}
+```
+
+```css
+.item:nth-child(1) {
+  /* 1번 라인에서 2칸 */
+  grid-column: 1 / span 2;
+  /* 1번 라인에서 3칸 */
+  grid-row: 1 / span 3;
+}
+```
+
+### 3.3.2. gird-template-areas
+
+셀의 각 영역에 이름을 붙이고, 해당 영역을 요소에서 `grid-area`속성의 값을 준다.
+
+```css
+.container {
+  grid-template-areas:
+    'header header header'
+    '   a    main    b   '
+    '   .     .      .   '
+    'footer footer footer';
+}
+
+/* 속성 값에 따옴표 생략 */
+.header {
+  grid-area: header;
+}
+.sidebar-a {
+  grid-area: a;
+}
+.main-content {
+  grid-area: main;
+}
+.sidebar-b {
+  grid-area: b;
+}
+.footer {
+  grid-area: footer;
+}
+```
+
+## 3.4. Align
+
+### 3.4.1. justify-content
+
+**Grid 아이템들의 너비를 모두 합한 값이 Grid 컨테이너의 너비보다 작을 때,** 모든 아이템을 가로 방향으로 정렬.
+
+```css
+.container {
+  justify-content: stretch;
+  /* justify-content: start; */
+  /* justify-content: center; */
+  /* justify-content: end; */
+  /* justify-content: space-between; */
+  /* justify-content: space-around; */
+  /* justify-content: space-evenly; */
+}
+```
+
+### 3.4.2. justify-items
+
+컨텐츠를 각 셀 안에서, 가로축 방향으로 정렬
+
+```css
+.container {
+  justify-items: stretch;
+  /* justify-items: start; */
+  /* justify-items: center; */
+  /* justify-items: end; */
+}
+```
+
+### 3.4.3. justify-self
+
+개별 아이템의 셀 안에서, 가로축 방향으로 정렬
+
+```css
+.item {
+  justify-self: stretch;
+  /* justify-self: start; */
+  /* justify-self: center; */
+  /* justify-self: end; */
+}
+```
+
+### 3.4.4. align-content
+
+**Grid 아이템들의 높이를 모두 합한 값이 Grid 컨테이너의 높이보다 작을 때**, 모든 아이템을 세로 방향으로 정렬
+
+```css
+.container {
+  align-content: stretch;
+  /* align-content: start; */
+  /* align-content: center; */
+  /* align-content: end; */
+  /* align-content: space-between; */
+  /* align-content: space-around; */
+  /* align-content: space-evenly; */
+}
+```
+
+### 3.4.5. align-items
+
+컨텐츠를 각 셀 안에서, 세로축 방향으로 정렬
+
+```css
+.container {
+  align-items: stretch;
+  /* align-items: start; */
+  /* align-items: center; */
+  /* align-items: end; */
+}
+```
+
+### 3.4.6. align-self
+
+개별 아이템의 셀 안에서, 세로축 방향으로 정렬
+
+```css
+.item {
+  align-self: stretch;
+  /* align-self: start; */
+  /* align-self: center; */
+  /* align-self: end; */
+}
+```

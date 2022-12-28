@@ -23,8 +23,8 @@
     - [2.4.3. Example](#243-example)
     - [2.4.4. Client의 JSON 수신](#244-client의-json-수신)
 - [3. Django REST Framework, Single Model](#3-django-rest-framework-single-model)
-- [4. Django REST Framework, N:1 Relationship](#4-django-rest-framework-n-1-relationship)
-- [5. Django REST Framework, N:1 Relation, Dereference](#5-django-rest-framework-n-1-relation-dereference)
+- [4. Django REST Framework, N:1 Relationship](#4-django-rest-framework-n1-relationship)
+- [5. Django REST Framework, N:1 Relation, Dereference](#5-django-rest-framework-n1-relation-dereference)
 
 ---
 

@@ -52,6 +52,10 @@ since 2022.08.
     - [Fixtures](./Django/10_Django_Fixtures.md)
     - [REST API](./Django/11_Django_REST_API.md)
   - 💚 Vue
+    - [Basics with CDN](./Vue/01_Vue_Basics_with_CDN.md)
+    - [CLI and Props & Emit](./Django/02_Vue_CLI_Props_and_Emit.md)
+    - [Vuex and Lifecycle Hooks](./Django/03_Vue_Vuex_and_Lifecycle_Hooks.md)
+    - [Router](./Django/04_Vue_Vue_Router.md)
 
 - 📖 Computer Science
   - 📁 Database
