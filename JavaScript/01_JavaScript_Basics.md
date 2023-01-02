@@ -1,45 +1,77 @@
+# JavaScript Basics
+
+## Index
+
 - [1. Intro](#1-intro)
-  - [1.1. Reasons to Learn](#11-reasons-to-learn)
-  - [1.2. The History of JavaSCript](#12-the-history-of-javascript)
-  - [1.3. Excute JavaScript](#13-excute-javascript)
-- [2. Basic Grammer](#2-basic-grammer)
+  - [1.1. What is JavaScript?](#11-what-is-javascript)
+  - [1.2. The History of JavaScript](#12-the-history-of-javascript)
+  - [1.3. Write to HTML Script](#13-write-to-html-script)
+  - [1.4. When to Run JS](#14-when-to-run-js)
+    - [1.4.1. Synchronous execution](#141-synchronous-execution)
+    - [1.4.2. DOMContentLoaded](#142-domcontentloaded)
+    - [1.4.3. load](#143-load)
+    - [1.4.4. aysnc / defer](#144-aysnc-defer)
+- [2. Data Type and Operators](#2-data-type-and-operators)
   - [2.1. Semicolon](#21-semicolon)
-  - [2.2. Indent and Code Block](#22-indent-and-code-block)
-  - [2.3. Comments](#23-comments)
-  - [2.4. Indentifier](#24-indentifier)
-  - [2.5. Variable Declaration Keywords](#25-variable-declaration-keywords)
-  - [2.6. Data Types](#26-data-types)
-  - [2.7. Operators](#27-operators)
-  - [2.8. Conditional Statements](#28-conditional-statements)
-  - [2.9. Loop](#29-loop)
-- [3. Function](#3-function)
-  - [3.1. Fucntion declaration](#31-fucntion-declaration)
-  - [3.2. Fucntion expression](#32-fucntion-expression)
-  - [3.3. Arguments](#33-arguments)
-  - [3.4. Arrow Function](#34-arrow-function)
-  - [3.5. IIFE(Immediately Invoked Function Expression)](#35-iife-immediately-invoked-function-expression-)
-- [4. Array](#4-array)
-  - [4.1. Array](#41-array)
-  - [4.2. Methods of Array (Basics)](#42-methods-of-array--basics-)
-  - [4.3. Array Helper Methods (Advanced)](#43-array-helper-methods--advanced-)
-- [5. Object](#5-object)
-  - [5.1. Object](#51-object)
-  - [5.2. ES6 Grammer about Object](#52-es6-grammer-about-object)
-  - [5.3. Object and JSON](#53-object-and-json)
+  - [2.2. Comment](#22-comment)
+  - [2.3. Indentifier](#23-indentifier)
+  - [2.4. Variable Declaration Keywords](#24-variable-declaration-keywords)
+  - [2.5. Data Types](#25-data-types)
+  - [2.6. Operators](#26-operators)
+    - [2.6.1. Assignment Operators](#261-assignment-operators)
+    - [2.6.2. Relational Operators](#262-relational-operators)
+    - [2.6.3. Equality Operators](#263-equality-operators)
+    - [2.6.4. Identity Operators](#264-identity-operators)
+    - [2.6.5. Logical Operators](#265-logical-operators)
+    - [2.6.6. Ternary Operators](#266-ternary-operators)
+- [3. Control Statements](#3-control-statements)
+  - [3.1. Conditional Statements](#31-conditional-statements)
+    - [3.1.1. if](#311-if)
+    - [3.1.2. switch](#312-switch)
+  - [3.2. Loop](#32-loop)
+    - [3.2.1. while](#321-while)
+    - [3.2.2. for](#322-for)
+    - [3.2.3. for ... in](#323-for--in)
+    - [3.2.4. for ... of](#324-for--of)
+- [4. Function](#4-function)
+  - [4.1. First-class Fucntion](#41-first-class-fucntion)
+  - [4.2. Fucntion Declaration](#42-fucntion-declaration)
+  - [4.3. Fucntion expression](#43-fucntion-expression)
+  - [4.4. Arguments](#44-arguments)
+    - [4.4.1. The Number of Arguments](#441-the-number-of-arguments)
+    - [4.4.2. Default Arguments](#442-default-arguments)
+    - [4.4.3. Rest Parameters](#443-rest-parameters)
+  - [4.5. Arrow Function](#45-arrow-function)
+  - [4.6. IIFE](#46-iife)
+- [5. Array](#5-array)
+  - [5.1. Array](#51-array)
+    - [5.2. Methods](#52-methods)
+  - [5.3. Array Helper Methods](#53-array-helper-methods)
+  - [5.4. Array Loop](#54-array-loop)
+- [6. Object](#6-object)
+  - [6.1. Object](#61-object)
+  - [6.2. ES6 Grammer](#62-es6-grammer)
+    - [6.2.1. Property Initializer Shorthand](#621-property-initializer-shorthand)
+    - [6.2.2 Concise Method](#622-concise-method)
+    - [6.2.3. Computed Property Name](#623-computed-property-name)
+    - [6.2.4. Destructing Assignment](#624-destructing-assignment)
+  - [6.3. JSON](#63-json)
+
+---
+
+# 1. Intro
 
 [MDN JavaScript Docs](https://developer.mozilla.org/ko/docs/Web/JavaScript)
 
-## 1. Intro
+## 1.1. What is JavaScript?
 
-### 1.1. Reasons to Learn
+**The base language for the front-end web programming**
 
-**The base language of the front-end web**
+- The language that makes HTML documents look more dynamic
+- Also the language being used in various areas, thanks to node.js
+  - sever programming, mobile service, block chain, etc...
 
-- the language that makes HTML documents look more dynamic
-  **The language being used in various areas**
-- sever programming, mobile service, block chain, etc...
-
-### 1.2. The History of JavaScript
+## 1.2. The History of JavaScript
 
 - 1993, Mosaic Web Browser
   - GUI web browser
@@ -55,12 +87,14 @@
 - 2001-2004, Firefox with ActionScript3 and etc...
   - jQuery library is for transcripting the code to fit each browser engine
 - 2008, Chrome with V8
-  - V8 translates JavaScript fast
+  - V8 translates JavaScript very fast
 - 2015, ECMAScript6, the standard made with Chrome
 
-### 1.3. Excute JavaScript
+## 1.3. Write to HTML Script
 
-- \<script>
+The JS code can be written in \<script> tags.
+
+- **Internal**
   ```html
   <body>
     <script>
@@ -68,8 +102,8 @@
     </script>
   </body>
   ```
-- \<script src>
-  - usually it'sr written after the body tag
+
+* **External**
   ```html
   <html>
     <body>
@@ -77,128 +111,175 @@
     </body>
   </html>
   ```
-- Web browser
-  - f12 > console
-- node.js
-  - `node file_name.js`
-  - `npm install package_name`
+
+## 1.4. When to Run JS
+
+[참고한 블로그 글](https://velog.io/@kim_unknown_/JavaScript-DOM-Defer-Async)
+
+### 1.4.1. Synchronous execution
+
+HTML documents are executed sequentially from the top. Therefore, if the script that takes a long time to load is at the top, the entire page loading time is increased.
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="app.js"></script>
+  </head>
+  <body>
+    <div id="hello">hello</div>
+  </body>
+</html>
+```
+
+### 1.4.2. DOMContentLoaded
+
+It is an event that occurs in the `document` **when the DOM is constructed**. However the event doesn't wait for CSS, img source and Subframes loading.
+
+```html
+<script>
+  function ready() {
+    alert('DOM이 준비되었습니다!')
+
+    // 이미지가 로드되기 전에 실행된다.
+    alert(`이미지 사이즈: ${img.offsetWidth}x${img.offsetHeight}`)
+  }
+
+  document.addEventListener('DOMContentLoaded', ready)
+</script>
+
+<img id="img" src="img_src" />
+```
+
+### 1.4.3. load
+
+The load event of a window object is executed **when all resources such as style and image are loaded.** The load evnet can be modified by overriding `onload` property.
+
+```html
+<script>
+  window.onload = function () {
+    alert('페이지 전체가 로드되었습니다.')
+
+    // 이미지까지 모두 로드된 후에 실행
+    alert(`이미지 사이즈: ${img.offsetWidth}x${img.offsetHeight}`)
+  }
+</script>
+
+<img id="img" src="img_src" />
+```
+
+### 1.4.4. aysnc / defer
+
+- **async**
+  Load scripts asynchronously in the background. When the load is complete, the script is executed.
+
+- **defer**
+
+Load scripts asynchronously in the background. When the DOM is constructed, all the loaded scripts are executed in order.
+
+<img src="./images/async_defer.jpg" width=600>
 
 ---
 
-## 2. Basic Grammer
+# 2. Data Type and Operators
 
 **Style Guide**
 [Airbnb Style Javascript Guide](https://github.com/airbnb/javascript)
 
-### 2.1. Semicolon
+## 2.1. Semicolon
 
-Technically, semicolons should be inserted, but ASI(Automatic Semicolon Insertion) inserts semicolons by its own.
+Technically, semicolons should be inserted, but **ASI(Automatic Semicolon Insertion)** inserts semicolons automatically.
 
-### 2.2. Indent and Code Block
+## 2.2. Comment
 
-**Indent**
+- **One-line**
 
-- Java script indents 2 spaces
-  **Code Block**
-- means `{}` which is used for if, for, function, and etc...
+  - //
 
-### 2.3. Comments
+- **multiple-lines**
 
-**One-line**
+  - /\* \*/
 
-- //
-  **multiple-lines**
-- /\* \*/
+## 2.3. Indentifier
 
-### 2.4. Indentifier
+**The variable name to distinguish variables**
 
-**Indentfier**
-: the variable name to distinguish variables
+- **Naming Rules**
 
-- starts with characters, $ or \_
-- is case-sensitive (distinguishing upper and lower cases)
-- starts with a lower case except Class
+  - Starts with `characters, $, _`
+  - Case-sensitive
+  - **Notation**
+    - **camelCase**: variable, instance, function
+    - **PascalCase**: class
+    - **SNAKE_CASE**: constant
 
-**Types of Notation**
+## 2.4. Variable Declaration Keywords
 
-- **camelCase**
-  - for variables, instances, functions
-- **PascalCase**
-  - for Classes
-- **SNAKE_CASE**
-  - for constants
+- **var**
 
-### 2.5. Variable Declaration Keywords
+  - The default keyword
+  - Re-declaration, Re-assignment
+  - Function scope
+  - <mark>Hoisting, not recommended</mark>
 
-**let**
+- **let**
 
-- allows re-assignment
-- block scope
+  - Re-assignment
+  - Block scope
 
-**const**
+- **const**
 
-- block scope
+  - Block scope
 
-**var**
+## 2.5. Data Types
 
-- the default keyword
-- allows re-declaration, re-assignment
-- function scope
-- wouldn't be used because of the hoisting
+<img src="./images/datatypes.jpg" width=800>
 
-### 2.6. Data Types
+- <mark>All the non-primitive types are Objects</mark>
 
-![data types](./images/datatypes.jpg)
+* **Number**
 
-- Non-primitive types are all Objects
+  - `Infinity`
+    - a very large number
+  - `NaN` (Not a Number)
+    - When the variable can't be read as a number
+      - `Number(undefined)`
+    - Imaginary number
+      - `Math.sqrt(-1)`
+    - When an operand is NaN
+      - `7 * NaN`
+    - The result can't be defined
+      - `0 * Infinity`
+    - Containing a string for the calculation which is not addition
+      - `'A' * 3`
 
-**Number**
-for integers and floats
+* **String**
 
-- Infinity
-  - a very large number
-- NaN (Not a Number)
-  - means that the result of the operation is incorrect
-    - can't be read as a number
-      - Number(undefined)
-    - imaginary number
-      - Math.sqrt(-1)
-    - an operand is NaN
-      - 7 \*\* NaN
-    - can't be defined
-      - 0 \* Infinity
-    - containing a string for calculation which is not addition
-      - 'A' \* 3
+  - Both `'` and `"` can be used
+  - Strings can be combined with `+`
+  - Template literals (`` ` ``)
+    - multi-line strings
+    - string interpolation
+      - `` `My name is ${name}` ``
 
-**String**
-for strings
+* **Empty Value**
 
-- ' and " both can be used
-- two strings can be combined with '+'
-- ` (template literal)
-  - variable can be inserted in the string by using `${}`
-    - \`My name is ${name}`
-  - new lines are also allowed
+  - **null**
+    - Specified by developer
+    ```js
+    console.log(typeof null) // object, BUT IT'S PRIMITIVE DATA TYPE
+    ```
+  - **undefined**
+    - Specified by engine
 
-**Empty Value**
-There're two data types for exrpessing empty value
+* **Boolean**
+  - `true`
+  - `false`
 
-- **null**
-  - object, **BUT IT'S PRIMITIVE DATA TYPE**
-  - Develoer ==intentionally== expresses no value
-- **undefined**
-  - undefined
-  - javascript ==automatically==
-    inserts into a variable
+## 2.6. Operators
 
-**Boolean**
-
-- true
-- false
-
-### 2.7. Operators
-
-**Assignment Operator**
+### 2.6.1. Assignment Operators
 
 ```javascript
 let c = 0
@@ -212,7 +293,7 @@ c++ // 71
 c-- // 70
 ```
 
-**Relational Operator**
+### 2.6.2. Relational Operators
 
 ```javascript
 3 > 2 // true
@@ -223,8 +304,9 @@ c-- // 70
 'Z' < 'a' // true
 ```
 
-**Equality Operator**
-Automatic type casting occurs, so not be used frequently
+### 2.6.3. Equality Operators
+
+Automatic type casting occurs, so should not be used frequently
 
 ```javascript
 const a = 1
@@ -234,7 +316,7 @@ console.log(a == b) // true
 console.log(a == true) // true
 ```
 
-**Identity Operator**
+### 2.6.4. Identity Operators
 
 ```javascript
 const a = 1
@@ -244,7 +326,7 @@ console.log(a === b) // false
 console.log(a === Number(b)) // true
 ```
 
-**Logical Operator**
+### 2.6.5. Logical Operators
 
 ```javascript
 true && false // false
@@ -256,7 +338,7 @@ false || false // false
 !true // false
 ```
 
-**Ternary Operator**
+### 2.6.6. Ternary Operators
 
 ```javascript
 true ? 1 : 2 // 1
@@ -265,9 +347,11 @@ false ? 1 : 2 // 2
 result = Math.PI > 4 ? 'Yes' : 'No' // No
 ```
 
-### 2.8. Conditional Statements
+# 3. Control Statements
 
-**if statement**
+## 3.1. Conditional Statements
+
+### 3.1.1. if
 
 ```javascript
 const name = 'Park'
@@ -281,7 +365,7 @@ if (name == 'Kim') {
 }
 ```
 
-**swith statement**
+### 3.1.2. switch
 
 ```javascript
 const name = 'Park'
@@ -304,9 +388,9 @@ switch (name) {
 // the 'break' should be used appropriately
 ```
 
-### 2.9. Loop
+## 3.2. Loop
 
-**while**
+### 3.2.1. while
 
 ```javascript
 let i = 0
@@ -317,7 +401,7 @@ while (i < 6) {
 }
 ```
 
-**for**
+### 3.2.2. for
 
 ```javascript
 // i is re-assgined, so it should be declared with 'let'
@@ -326,11 +410,9 @@ for (let i = 0; i < 6; i++) {
 }
 ```
 
-**for...in**
+### 3.2.3. for ... in
 
-- used for Objects
-- can also be used for Array, but
-  dosen't guarantee to search in order
+**The loop for Object**
 
 ```javascript
 const fruits = { a: 'appple', b: 'banana' }
@@ -341,9 +423,9 @@ for (const key in fruits) {
 }
 ```
 
-**for...of**
+### 3.2.4. for ... of
 
-- used for Array, Set, String
+**The loop for Array, Set, String**
 
 ```javascript
 const numbers = [5, 1, 4, 7]
@@ -355,13 +437,47 @@ for (const number of numbers) {
 
 ---
 
-## 3. Function
+# 4. Function
 
-It's the first type object which is one of reference types(non-primitive types).
+## 4.1. First-class Fucntion
 
-### 3.1. Fucntion declaration
+**Assigning a function to a variable**
 
-It's not usually used, because the hoisting occurs
+```js
+const foo = () => {
+  console.log('foobar')
+}
+foo() // Invoke it using the variable
+// foobar
+```
+
+**Passing a function as an argument**
+
+```js
+function sayHello() {
+  return 'Hello, '
+}
+function greeting(helloMessage, name) {
+  console.log(helloMessage() + name)
+}
+// Pass `sayHello` as an argument to `greeting` function
+greeting(sayHello, 'JavaScript!')
+// Hello, JavaScript!
+```
+
+**Returning a function**
+
+```js
+function sayHello() {
+  return () => {
+    console.log('Hello!')
+  }
+}
+```
+
+## 4.2. Fucntion Declaration
+
+<mark>Not recommended</mark>, becuase of the hoisting
 
 ```javascript
 function add(num1, num2) {
@@ -371,7 +487,9 @@ function add(num1, num2) {
 add(2, 7)
 ```
 
-### 3.2. Fucntion expression
+## 4.3. Fucntion expression
+
+**Recommended**
 
 ```javascript
 const add = function (num1, num2) {
@@ -381,20 +499,19 @@ const add = function (num1, num2) {
 add(2, 7)
 ```
 
-- you can mark the name of the function, however it's not used for calling but for debugging
+```javascript
+//Just for debugging purposes
+const add = function numAdd(num1, num2) {
+  return num1 + num2
+}
 
-  ```javascript
-  const add = function namedAdd(num1, num2) {
-    return num1 + num2
-  }
+add(2, 7)
+numAdd(2, 7) // ReferenceError
+```
 
-  add(2, 7)
-  namedAdd(2, 7) // ReferenceError
-  ```
+## 4.4. Arguments
 
-### 3.3. Arguments
-
-**The Number of Arguments**
+### 4.4.1. The Number of Arguments
 
 ```javascript
 const noArgs = function () {
@@ -416,7 +533,7 @@ const threeArgs = fucntion (arg1, arg2, arg3) {
 twoArgs(1)          // [1, undefined, undefined]
 ```
 
-**Default Arguments**
+### 4.4.2. Default Arguments
 
 ```javascript
 const greeting = function (name = 'Anonymous') {
@@ -426,9 +543,9 @@ const greeting = function (name = 'Anonymous') {
 greeting() // Hi, Anonymous
 ```
 
-**Rest Parameters**
+### 4.4.3. Rest Parameters
 
-- gets the undefined number of arguments as an array
+Get the undefined number of arguments as an **Array**
 
 ```javascript
 const restOpr = function (arg1, arg2, ...restArgs) {
@@ -439,65 +556,70 @@ restArgs(1, 2, 3, 4, 5) // [1, 2, [3, 4, 5]]
 restArgs(1, 2) // [1, 2, []]
 ```
 
-### 3.4. Arrow Function
-
-1. Fucntion keyword can be omitted
-2. If there's only one parameter, () can be omitted
-3. IF the content of the function is one-line, return and {} can be omitted
-
-   - but if the return value is Object, {} can't be omitted or () should be added
-
-   ```javascript
-   let returnObject = () => {
-     return { key: 'vluae' }
-   }
-
-   returnObject = () => ({ key: 'value' })
-   ```
+## 4.5. Arrow Function
 
 ```javascript
 const greeting = function (name) {
   return `Hi ${name}`
 }
-
-// Step 1.
-const greeting = (name) => {
-  return `Hi ${name}`
-}
-
-// Step 2.
-const greeting = (name) => {
-  return `Hi ${name}`
-}
-
-// Step 3.
-const greeting = (name) => `Hi ${name}`
 ```
 
-### 3.5. IIFE(Immediately Invoked Function Expression)
+- **Procedure**
 
-IIFE is excuted at the same moment when it's declared.
-It can't be called again, so it's usually decalared as an anonymous function.
+  1. `function` keyword can be omitted
+     ```js
+     // Step 1.
+     const greeting = (name) => {
+       return `Hi ${name}`
+     }
+     ```
+  2. <mark>Not Recommended</mark>. If there's only one parameter, `()` can be omitted.
+
+     ```js
+     // Step 2.
+     const greeting = (name) => {
+       return `Hi ${name}`
+     }
+     ```
+
+  3. If the content of the function is one-line, `return` and `{}` can be omitted
+
+     ```js
+     // Step 3.
+     const greeting = (name) => `Hi ${name}`
+     ```
+
+     However if the return value is **Object**, `return` and `{}` can't be omitted or `()` should be added
+
+     ```javascript
+     let returnObject = () => {
+       return { key: 'vluae' }
+     }
+
+     returnObject = () => ({ key: 'value' })
+     ```
+
+## 4.6. IIFE
+
+**Immediately Invoked Function Expression** is excuted at the same moment when it's declared. It can't be called again
 
 ```javascript
 ;(function (num) {
   return num ** 3
-})(2)(
-  // 8
-
-  (num) => num ** 3
-)(2) // 8
+})(2) // 8
+;((num) => num ** 3)(2) // 8
 ```
 
 ---
 
-## 4. Array
+# 5. Array
 
-### 4.1. Array
+## 5.1. Array
 
-Array contains data types in order. Each object can be reached with the index, but there isn't negative index.
+Array contains various data types in order.  
+Each data can be reached with the index, but there isn't negative index.
 
-```javascript
+```js
 const numbers = [1, 2, 3, 4, 5]
 
 console.log(numbers[0]) // 1
@@ -506,11 +628,11 @@ console.log(numbers.length) // 5
 console.log(nunbers[numbers.length - 1]) // 5
 ```
 
-### 4.2. Methods of Array (Basics)
+### 5.2. Methods
 
 **reverse**
 
-```javascript
+```js
 const numbers = [1, 2, 3, 4, 5]
 
 numbers.reverse() // [5, 4, 3, 2, 1]
@@ -518,7 +640,7 @@ numbers.reverse() // [5, 4, 3, 2, 1]
 
 **push, pop**
 
-```javascript
+```js
 const numbers = [1, 2, 3, 4, 5]
 
 numbers.push(100) // [1, 2, 3, 4, 5, 100]
@@ -527,7 +649,7 @@ numbers.pop() // [1, 2, 3, 4, 5]
 
 **includes**
 
-```javascript
+```js
 const numbers = [1, 2, 3, 4, 5]
 
 result = numbers.includes(1) //  true
@@ -536,7 +658,7 @@ result = numbers.includes(100) //  false
 
 **indexOf**
 
-```javascript
+```js
 const numbers = [1, 2, 3, 4, 5]
 
 result = numbers.indexOf(3) // 2
@@ -545,7 +667,7 @@ result = numbers.indexOf(100) // -1
 
 **join**
 
-```javascript
+```js
 const numbers = [1, 2, 3, 4, 5]
 
 number.join() // 1,2,3,4,5
@@ -553,19 +675,19 @@ numbers.join('') // 12345
 numbers.jojin(' ') // 1 2 3 4 5
 ```
 
-### 4.3. Array Helper Methods (Advanced)
+## 5.3. Array Helper Methods
 
-Methods below travel elements in the array, and get a function as the first parameter.
-`callback(element[, index, array])`
+Methods below travel elements of an Array, and get a function as the first parameter.
 
-- element: element
-- index: index
-- array: the array (it doesn't change during the loop)
+- `callback(currentValue[, index[, array]])`
+  - element: element
+  - index: index
+  - array: the array (it doesn't change during the loop)
 
-**forEach**
-travel the array inserting each element in the function
+**forEach**  
+The forEach() method executes a provided function once for each array element.
 
-```javascript
+```js
 const colors = ['R', 'G', 'B']
 
 // 1.
@@ -585,10 +707,10 @@ colors.forEach((color) => {
 })
 ```
 
-**map**
-travel the array inserting each element in the function, and return a list of results
+**map**  
+The map() method creates **a new array** populated with the results of calling a provided function on every element in the calling array.
 
-```javascript
+```js
 const colors = [1, 2, 3]
 
 // 1.
@@ -612,10 +734,10 @@ const doubleNumbers = numbers.map((number) => {
 console.log(doubleNumbers) // [2, 4, 6]
 ```
 
-**filter**
-travel the array inserting each element in the function, and return a list of elements which result was true
+**filter**  
+The filter() method creates **a shallow copy** of a portion of a given array, filtered down to just the elements from the given array that pass the test implemented by the provided function.
 
-```javascript
+```js
 const colors = [
   { name: 'cucumber', type: 'vegetable' },
   { name: 'banana', type: 'fruit' },
@@ -642,13 +764,12 @@ const fruits = products.filter((product) => {
 })
 ```
 
-**reduce**
-travel the array inserting each element in the function, and return the value which the results are accumulated as.
+**reduce**  
+The reduce() method executes a user-supplied "reducer" callback function on each element of the array, in order, passing in the return value from the calculation on the preceding element.
+
 `reduce(callback()[, initialValue])`
 
-- If the intialValue is set, use it as the first value, else array[0] is used as the first value
-
-```javascript
+```js
 const tests = [90, 90, 80, 77]
 
 // 1.
@@ -660,10 +781,10 @@ const sum = tests.reduce(function (total, x) {
 const sum = tests.reduce((total, x) => total + x, 0)
 ```
 
-**find**
-return the first element which satisfies the fucntion. If there isn't at all, it returns undefined.
+**find**  
+The find() method returns **the first element** in the provided array that satisfies the provided testing function. If no values satisfy the testing function, `undefined` is returned.
 
-```javascript
+```js
 const people = [
   { name: 'Tony', age: 45 },
   { name: 'Steve', age: 32 },
@@ -681,10 +802,10 @@ const people = people.find((person) => {
 })
 ```
 
-**some**
-return true if at least one of the elements satisfies the callback function
+**some**  
+The some() method tests whether **at least one element** in the array passes the test implemented by the provided function.
 
-```javascript
+```js
 const arr = [1, 2, 3, 4, 5]
 
 // 1.
@@ -694,9 +815,9 @@ const result = arr.some((ele) => {
 ```
 
 **every**
-return false if at least one of the elements doesn't satisfy the callback function
+The every() method tests whether **all elements** in the array pass the test implemented by the provided function.
 
-```javascript
+```js
 const arr = [1, 2, 3, 4, 5]
 
 // 1.
@@ -705,30 +826,29 @@ const result = arr.every((ele) => {
 }) // false
 ```
 
-| method   | characteristics                                |
-| -------- | ---------------------------------------------- |
-| for loop | approach by index<br>break,continue O          |
-| for...of | approach by element<br>break,continue O        |
-| forEach  | approach by element, index<br>break,continue X |
+## 5.4. Array Loop
+
+| method   | characteristics                                    |
+| -------- | -------------------------------------------------- |
+| for      | approach by index<br>`break`,`continue` O          |
+| for...of | approach by element<br>`break`,`continue` O        |
+| forEach  | approach by element, index<br>`break`,`continue` X |
 
 ---
 
-## 5. Object
+# 6. Object
 
-### 5.1. Object
+## 6.1. Object
 
-Object is a collection of properties expressed with pairs of key and vaule
+Object is a collection of data expressed with pairs of key and value. The value can be approacehd with the key.
 
-- key
-  - only string
-  - ' can be omitted, if there's no space in the name
-- value
-  - any data type
-- approaching elements
-  - `object.property` or `object['property']`
-  - if there's space in the property name, the former one can't be used.
+- **key**
+  - <mark>String<mark>
+  - `'` or `"` can be omitted, if there's no space in the name
+- **value**
+  - Any Data type
 
-```javascript
+```js
 const me = {
     name: 'jack',
     phone: '01012345678',
@@ -745,9 +865,10 @@ console.log(me.samsung products)            // Error
 console.log(me.['samsung products'].buds)   // buds pro
 ```
 
-### 5.2. ES6 Grammer about Object
+## 6.2. ES6 Grammer
 
-**Property Initializer Shorthand**
+### 6.2.1. Property Initializer Shorthand
+
 If the name of the value varibale is the same to the name of key, it can be shortened
 
 ```javascript
@@ -766,8 +887,9 @@ console.log(bookShop)
 // }
 ```
 
-**Concise Method**
-the function keyword can be omitted, when the function is assgined in an Object
+### 6.2.2 Concise Method
+
+The `function` keyword can be omitted, when the function is assgined with the same name of its key.
 
 ```javascript
 const obj = {
@@ -779,8 +901,9 @@ const obj = {
 obj.greeting() // Hi!
 ```
 
-**Computed Property Name**
-the name of the key can be assigned dynamically
+### 6.2.3. Computed Property Name
+
+The name of the key can be assigned dynamically
 
 ```javascript
 const key = 'country'
@@ -791,11 +914,12 @@ const myObj = {
 }
 
 console.log(myObj) // { country: ['Korea', 'America'] }
-console.log(muObj.country) //  ['Korea', 'America']
+console.log(myObj.country) //  ['Korea', 'America']
 ```
 
-**Destructing Assignment**
-A value of the object can be assigned to the variable which has the same name to the key
+### 6.2.4. Destructing Assignment
+
+The value of an object can be assigned to the variables which has the same name to the key
 
 ```javascript
 const person = {
@@ -811,9 +935,9 @@ const { phone } = person
 const { name, id, phone } = person
 ```
 
-### 5.3. Object and JSON
+## 6.3. JSON
 
-```javascript
+```js
 const jsObject = {
   coffee: 'Americano',
   iceCream: 'Choco',

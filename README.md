@@ -11,13 +11,13 @@ since 2022.08.
     - [Control Statements](./Python/02_Python_Basics_ControlStatements.md)
     - [Function](./Python/03_Python_Function.md)
     - [Object Oriented Programming](./Python/04_Python_OOP.md)
-    - [Error Hadnling](./Python/05_Python_Error_Handling.md)
+    - [Error Handling](./Python/05_Python_Error_Handling.md)
     - Appendix
       - [Bult-in Functions](./Python/Appendix_01_Python_Builtin_Functions.md)
       - [Modules](./Python/Appendix_02_Python_Modules.md)
   - ☕ Java
     - [Basics](./Java/01_Java_Basics.md)
-    - [Object-Oriented Programming](./Java/02_Java_OOP.md)
+    - [Object Oriented Programming](./Java/02_Java_OOP.md)
   - 📒 JavaScript
     - [Basics](./JavaScript/01_JavaScript_Basics.md)
     - [Advanced](./JavaScript/02_JavaScript_Advanced.md)
@@ -53,9 +53,9 @@ since 2022.08.
     - [REST API](./Django/11_Django_REST_API.md)
   - 💚 Vue
     - [Basics with CDN](./Vue/01_Vue_Basics_with_CDN.md)
-    - [CLI and Props & Emit](./Django/02_Vue_CLI_Props_and_Emit.md)
-    - [Vuex and Lifecycle Hooks](./Django/03_Vue_Vuex_and_Lifecycle_Hooks.md)
-    - [Router](./Django/04_Vue_Vue_Router.md)
+    - [CLI and Props & Emit](./Vue/02_Vue_CLI_Props_and_Emit.md)
+    - [Vuex and Lifecycle Hooks](./Vue/03_Vue_Vuex_and_Lifecycle_Hooks.md)
+    - [Router](./Vue/04_Vue_Vue_Router.md)
 
 - 📖 Computer Science
   - 📁 Database

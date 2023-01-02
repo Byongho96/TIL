@@ -9,13 +9,13 @@
     - [2.2.1. flex-direction](#221-flex-direction)
     - [2.2.2. flex-wrap](#222-flex-wrap)
     - [2.2.3. flex-flow](#223-flex-flow)
-  - [3.4. Align](#34-align)
-    - [3.4.1. justify-content](#341-justify-content)
-    - [3.4.2. justify-items](#342-justify-items)
-    - [3.4.3. justify-self](#343-justify-self)
-    - [3.4.4. align-content](#344-align-content)
-    - [3.4.5. align-items](#345-align-items)
-    - [3.4.6. align-self](#346-align-self)
+  - [2.3. Align](#23-align)
+    - [2.3.1. justify-content](#231-justify-content)
+    - [2.3.2. justify-items](#232-justify-items)
+    - [2.3.3. justify-self](#233-justify-self)
+    - [2.3.4. align-content](#234-align-content)
+    - [2.3.5. align-items](#235-align-items)
+    - [2.3.6. align-self](#236-align-self)
   - [2.4. Width](#24-width)
     - [2.4.1. flex-basis](#241-flex-basis)
     - [2.4.2. flex-grow](#242-flex-grow)
@@ -30,7 +30,7 @@
     - [3.2.4. gap](#324-gap)
   - [3.3. Cell Placement](#33-cell-placement)
     - [3.3.1. grid-column/rows-\*](#331-grid-columnrows-)
-    - [3.3.2. gird-template-areas](#332-gird-template-areas)
+    - [3.3.2. grid-template-areas](#332-grid-template-areas)
   - [3.4. Align](#34-align-1)
     - [3.4.1. justify-content](#341-justify-content-1)
     - [3.4.2. justify-items](#342-justify-items-1)
@@ -108,9 +108,9 @@ flex-direction과 flex-wrap을 한 번에 지정한다.
 }
 ```
 
-## 3.4. Align
+## 2.3. Align
 
-### 3.4.1. justify-content
+### 2.3.1. justify-content
 
 메인축 방향으로 컨텐츠 배열방식 지정
 
@@ -127,15 +127,15 @@ flex-direction과 flex-wrap을 한 번에 지정한다.
 
 <img src="./images/assign_space.jpg" width="500">
 
-### 3.4.2. justify-items
+### 2.3.2. justify-items
 
 flex에서는 쓰이지 않음
 
-### 3.4.3. justify-self
+### 2.3.3. justify-self
 
 flex에서는 쓰이지 않음
 
-### 3.4.4. align-content
+### 2.3.4. align-content
 
 `flex-wrap: wrap;`인 상태에서 행이 2줄 이상일 때, 수직축 방향으로 컨텐츠 배열방식 지정
 
@@ -152,7 +152,7 @@ flex에서는 쓰이지 않음
 
 <img src="./images/align-content.jpg" width="500">
 
-### 3.4.5. align-items
+### 2.3.5. align-items
 
 한 개의 열에서 컨텐츠들의 수직 정렬을 지정한다.
 
@@ -168,7 +168,7 @@ flex에서는 쓰이지 않음
 
 <img src="./images/align-items.jpg" width="500">
 
-### 3.4.6. align-self
+### 2.3.6. align-self
 
 한 개의 열에서 개별 컨텐츠의 수직 정렬을 지정한다.
 
@@ -186,7 +186,7 @@ flex에서는 쓰이지 않음
 
 ### 2.4.1. flex-basis
 
-기본(최소)너비를 설정한다.
+아이템의 기본(최소)너비를 설정한다.
 
 ```css
 .item {
@@ -239,7 +239,7 @@ flex-grow, flex-shrink, flex-basis를 한 번에 쓸 수 있는 축약형 속성
 
 # 3. Grid
 
-[Grid System에 관한 블로그 글](https://studiomeal.com/archives/533)
+[Grid System에 관한 블로그 글](https://studiomeal.com/archives/533)  
 [Grid System Youtube](https://www.youtube.com/watch?v=9zBsdzdE4sM)
 
 ## 3.1. Declaration
@@ -390,7 +390,7 @@ Grid 컨테이너에 `display: grid;`를 선언한다.
 }
 ```
 
-### 3.3.2. gird-template-areas
+### 3.3.2. grid-template-areas
 
 셀의 각 영역에 이름을 붙이고, 해당 영역을 요소에서 `grid-area`속성의 값을 준다.
 
