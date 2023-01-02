@@ -1,11 +1,11 @@
 # Index
 
 - [1. Promise](#1-promise)
-  - [1.1. Promise(executor)](#11-promise-executor-)
+  - [1.1. Promise(executor)](#11-promiseexecutor)
 - [2. Aysnc & Await](#2-aysnc-await)
   - [2.1. async](#21-async)
   - [2.2. await](#22-await)
-  - [2.3. try / catch](#23-try-catch)
+  - [2.3. try / catch](#23-try--catch)
 - [3. Example](#3-example)
   - [3.1. Chaining 처리, Hard Code](#31-chaining-처리-hard-code)
     - [3.1.1. Promise](#311-promise)
@@ -67,7 +67,7 @@ async 코드 내의 await함수가 선언된 경우, 해당 함수가 끝날 때
 
 ## 2.3. try / catch
 
-async와 await 키워드를 사용하는 경우, try/catch 구문을 사용하여 예외처리할 수 있따.
+async와 await 키워드를 사용하는 경우, 보통의 코드처럼 try/catch 구문을 사용하여 예외처리할 수 있다.
 
 ---
 

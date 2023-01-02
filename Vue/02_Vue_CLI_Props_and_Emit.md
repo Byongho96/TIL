@@ -1,3 +1,35 @@
+# Vue Prop and Emit
+
+## Index
+
+- [1. Vue CLI](#1-vue-cli)
+  - [1.1. Node.js](#11-nodejs)
+    - [1.1.1. Runtime Environment](#111-runtime-environment)
+    - [1.1.2. NPM(Node Package Manager)](#112-npmnode-package-manager)
+  - [1.2. Vue CLI](#12-vue-cli)
+    - [1.2.1. Vue CLI Start](#121-vue-cli-start)
+  - [1.3 Sturctue of the Vue Project](#13-sturctue-of-the-vue-project)
+    - [1.3.1. node_modules/](#131-node-modules)
+    - [1.3.2. public/](#132-public)
+    - [1.3.3. src/](#133-src)
+    - [1.3.4. babel.config.js](#134-babelconfigjs)
+    - [1.3.5. package-lock.json](#135-package-lockjson)
+    - [1.3.6. package.json](#136-packagejson)
+- [2. Single File Component](#2-single-file-component)
+  - [2.1. Component](#21-component)
+  - [2.2. SFC](#22-sfc)
+  - [2.3. Vue Component](#23-vue-component)
+    - [2.3.1. Structure of Vue component](#231-structure-of-vue-component)
+    - [2.3.2. Making a Vue Component](#232-making-a-vue-component)
+    - [2.3.3. Importing a Vue Component](#233-importing-a-vue-component)
+- [3. Pass Props & Emit Events](#3-pass-props--emit-events)
+  - [3.1. Pass Props](#31-pass-props)
+    - [3.1.1. Procedures of Passing Props](#311-procedures-of-passing-props)
+  - [3.2. Emit Events](#32-emit-events)
+    - [3.2.1. Procedures of Emmitting Events](#321-procedures-of-emmitting-events)
+
+---
+
 # 1. Vue CLI
 
 ## 1.1. Node.js
@@ -86,6 +118,8 @@ It is automatically generated for any operations where npm modifies either the n
 
 It has infromation about config settings such as a dependencies list.
 
+---
+
 # 2. Single File Component
 
 ## 2.1. Component
@@ -133,10 +167,10 @@ One .vue file is one component, and one vue instance is in one component. Theref
 </template>
 
 <script>
-  import MyComponentItem from "@/components/MyComponentItem"
+  import MyComponentItem from '@/components/MyComponentItem'
 
   export default {
-    name: "MyComponent",
+    name: 'MyComponent',
   }
 </script>
 
@@ -161,16 +195,16 @@ One .vue file is one component, and one vue instance is in one component. Theref
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <!-- 3. 보여주기 -->
-    <MyComponent />
+    <HelloWorld />
   </div>
 </template>
 
 <script>
   // 1. 불러오기
-  import HelloWorld from "./components/HelloWorld.vue"
+  import HelloWorld from './components/HelloWorld.vue'
 
   export default {
-    name: "App",
+    name: 'App',
     components: {
       // 2. 등록하기
       HelloWorld,
@@ -178,6 +212,8 @@ One .vue file is one component, and one vue instance is in one component. Theref
   }
 </script>
 ```
+
+---
 
 # 3. Pass Props & Emit Events
 
@@ -221,7 +257,7 @@ All props form a one-way-down binding <mark>between the child property and the p
 
    <script>
      export default {
-       name: "MyChild",
+       name: 'MyChild',
        // 2. Add the prop
        props: {
          staticProps: String,
@@ -280,10 +316,10 @@ Technically, Vue doesn't support passing data from a child component to the pare
    ```html
    // Parent.vue
    <script>
-     import MyChild from "./components/MyChild.vue"
+     import MyChild from './components/MyChild.vue'
 
      export default {
-       name: "Parent",
+       name: 'Parent',
        // 3. Define the callback function
        methods: {
          getData(data) {

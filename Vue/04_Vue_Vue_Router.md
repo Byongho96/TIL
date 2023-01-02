@@ -1,3 +1,33 @@
+# Vue Router
+
+## Index
+
+- [1. Vue Router](#1-vue-router)
+  - [1.1. Routing](#11-routing)
+    - [1.1.1. Routing in SSR](#111-routing-in-ssr)
+    - [1.1.2. Routing in CSR / SPA](#112-routing-in-csr--spa)
+  - [1.2. Vue Router](#12-vue-router)
+    - [1.2.1. Vue Router Start](#121-vue-router-start)
+  - [1.3. Structure of Vue Router Related Files](#13-structure-of-vue-router-related-files)
+    - [1.3.1. App.vue](#131-appvue)
+    - [1.3.2. router/index.js](#132-routerindexjs)
+    - [1.3.3. src/views/](#133-srcviews)
+- [2. URL Navigation](#2-url-navigation)
+  - [2.1. Declarative Navigation](#21-declarative-navigation)
+  - [2.2. Programmatic Navigation](#22-programmatic-navigation)
+  - [2.3. Dynmaic Route Matching](#23-dynmaic-route-matching)
+    - [2.3.1. Declare a Varibale](#231-declare-a-varibale)
+    - [2.3.2. Pass a Variable](#232-pass-a-variable)
+    - [2.3.3. Receive a Variable](#233-receive-a-variable)
+- [3. Navigation Guard](#3-navigation-guard)
+  - [3.1. Global Guard](#31-global-guard)
+  - [3.2. Router Guard](#32-router-guard)
+  - [3.3. Component Guard](#33-component-guard)
+- [4. 404 Not Found](#4-404-not-found)
+  - [4.1. URL Not Matched](#41-url-not-matched)
+
+---
+
 # 1. Vue Router
 
 ## 1.1. Routing
@@ -89,6 +119,8 @@ Where **Vue rotuer related information** is written. In particular, there is a `
 ### 1.3.3. src/views/
 
 This folder stores Vue components like 'src/components/'. But the only difference is that this folder stores only the components mapped to the `routes` array in index.js. It's just a semantic distinction. It's recommended to name the components in this folder **to end with 'View'**.
+
+---
 
 # 2. URL Navigation
 
@@ -214,6 +246,8 @@ const routes = [
 
 - You can get variables by **accessing the Route object**.
 
+---
+
 # 3. Navigation Guard
 
 Setting logic that occurs **when url changes**
@@ -311,6 +345,8 @@ Detects parameters change of url corresponding to component path
   - **next**
     - **If the beforeEnter function is declared, route conversion occurs only when the 'next()' is executed**
     - receives a route object as an argument
+
+---
 
 # 4. 404 Not Found
 

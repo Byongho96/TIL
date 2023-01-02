@@ -1,3 +1,31 @@
+# Vuex and Lifecycle Hooks
+
+## Index
+
+- [1. Vuex](#1-vuex)
+  - [1.1. Stage Management](#11-stage-management)
+    - [1.1.1. Limitations of Pass Props & Emit Events](#111-limitations-of-pass-props--emit-events)
+    - [1.1.2. Centralized Store](#112-centralized-store)
+  - [1.2. Start Vuex](#12-start-vuex)
+    - [1.2.1. CLI Procedures](#121-cli-procedures)
+    - [1.2.2. Strcuture of Vuex Instance](#122-strcuture-of-vuex-instance)
+    - [1.2.3. Data Flow through Vuex](#123-data-flow-through-vuex)
+  - [1.3. Practice Vuex](#13-practice-vuex)
+- [2. Lifecycle Hooks](#2-lifecycle-hooks)
+  - [2.1. Lifecycle Hooks](#21-lifecycle-hooks)
+- [3. Todo List CRUD Practice with Vuex](#3-todo-list-crud-practice-with-vuex)
+  - [3.1. Local Storage](#31-local-storage)
+    - [3.1.1. Window.localStorage](#311-windowlocalstorage)
+    - [3.1.2. vuex-persistedstate](#312-vuex-persistedstate)
+  - [3.2. Code](#32-code)
+    - [3.2.1. index.js](#321-indexjs)
+    - [3.2.2. App.vue](#322-appvue)
+    - [3.2.3. TodoForm.vue](#323-todoformvue)
+    - [3.2.3. TodoList.vue](#323-todolistvue)
+    - [3.2.3. TodoListItem.vue](#323-todolistitemvue)
+
+---
+
 # 1. Vuex
 
 ## 1.1. Stage Management
@@ -104,11 +132,7 @@ export default new Vuex.Store({
   <div id="app">
     <h1>{{ message }}</h1>
     <h3>message length: {{ messageLength }}</h3>
-    <input
-      type="text"
-      @keyup.enter="changeMessage"
-      v-model="inputData"
-    />
+    <input type="text" @keyup.enter="changeMessage" v-model="inputData" />
   </div>
 </template>
 
@@ -138,6 +162,8 @@ export default new Vuex.Store({
   }
 </script>
 ```
+
+---
 
 # 2. Lifecycle Hooks
 
@@ -178,6 +204,8 @@ export default {
   },
 }
 ```
+
+--
 
 # 3. Todo List CRUD Practice with Vuex
 
@@ -372,11 +400,7 @@ export default new Vuex.Store({
 ```html
 <template>
   <div>
-    <input
-      type="text"
-      v-model.trim="todoTitle"
-      @keyup.enter="createTodo"
-    />
+    <input type="text" v-model.trim="todoTitle" @keyup.enter="createTodo" />
   </div>
 </template>
 
@@ -405,11 +429,7 @@ export default new Vuex.Store({
 ```html
 <template>
   <div>
-    <TodoListItem
-      v-for="(todo, index) in todos"
-      :key="index"
-      :todo="todo"
-    />
+    <TodoListItem v-for="(todo, index) in todos" :key="index" :todo="todo" />
   </div>
 </template>
 
@@ -439,8 +459,7 @@ export default new Vuex.Store({
   <div>
     <span
       @click="updateTodoStatus"
-      :class="{ 'is-completed': todo.isCompleted }"
-    >
+      :class="{ 'is-completed': todo.isCompleted }">
       {{ todo.title }}
     </span>
     <button @click="deleteTodo">Delete</button>

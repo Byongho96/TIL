@@ -1,3 +1,43 @@
+# Vue Basics with CDN
+
+## Index
+
+- [1. Intro](#1-intro)
+  - [1.1. What is Front-end Development?](#11-what-is-front-end-development)
+    - [1.1.1. SPA(Single Page Appplication)](#111-spasingle-page-appplication)
+    - [1.1.2. SSR(Server Side Rendering)](#112-ssrserver-side-rendering)
+    - [1.1.3. CSR(Client Side Rendering)](#113-csrclient-side-rendering)
+  - [1.2. What is Front-end Framework?](#12-what-is-front-end-framework)
+    - [1.2.1. Vue](#121-vue)
+    - [1.2.2. How to start Vue?](#122-how-to-start-vue)
+- [2. Vue Instance](#2-vue-instance)
+  - [2.1. MVVM Pattern](#21-mvvm-pattern)
+    - [2.1.1. Model](#211-model)
+    - [2.1.2. View](#212-view)
+    - [2.1.3. View Model](#213-view-model)
+  - [2.2. Vue Instance Attributes](#22-vue-instance-attributes)
+    - [2.2.1. el](#221-el)
+    - [2.2.2. data](#222-data)
+    - [2.2.3. computed](#223-computed)
+    - [2.2.4. methods](#224-methods)
+    - [2.2.5. watch](#225-watch)
+    - [2.2.6. filters](#226---filters--)
+  - [2.3. Template Syntax](#23-template-syntax)
+    - [2.3.1. Declarative Rendering](#231-declarative-rendering)
+    - [2.3.2. Raw HTML](#232-raw-html)
+- [3. Vue Directives](#3-vue-directives)
+  - [3.1. v-text](#31-v-text)
+  - [3.2. v-show & v-if](#32-v-show--v-if)
+    - [3.2.1. v-show](#321-v-show)
+    - [3.2.2. v-if](#322-v-if)
+  - [3.3. v-for](#33-v-for)
+  - [3.4. v-on](#34-v-on)
+  - [3.5. v-bind](#35-v-bind)
+    - [3.5.1. :class](#351-class)
+  - [3.6. v-model](#36-v-model)
+
+---
+
 # 1. Intro
 
 ## 1.1. What is Front-end Development?
@@ -68,6 +108,8 @@ It's recommended to use Vue2 so far, because the new version is not being used w
   - You can make a Vue project and write the code according to the format.
   - This method will be discussed in the next chapter.
 
+---
+
 # 2. Vue Instance
 
 ## 2.1. MVVM Pattern
@@ -103,19 +145,19 @@ Intermediates between view and model by **being attached to an element in DOM** 
     // Vue instance
     const app = new Vue({
       // add this object to the #app element
-      el: "#app",
+      el: '#app',
       // JavaScript Syntax
       data: {
-        message: "Hello, Vue!",
+        message: 'Hello, Vue!',
       },
       methods: {
         arrowBye: () => {
-          this.message = "Arrow Function?"
+          this.message = 'Arrow Function?'
           console.log(this)
         },
       },
     })
-    vm.message = "Hello," // available
+    vm.message = 'Hello,' // available
   </script>
 </body>
 ```
@@ -126,7 +168,7 @@ Intermediates between view and model by **being attached to an element in DOM** 
 
 ```js
 const app = new Vue({
-  el: "#app",
+  el: '#app',
   data: {
     number: 0,
     number1: 100,
@@ -150,48 +192,48 @@ const app = new Vue({
 })
 ```
 
-### 2.2.1. **el**
+### 2.2.1. el
 
 - The Vue instance will be attached(mounted) to the element selected as the value of 'el' key
 - The Vue instance is only effective with the selected element
 
-### 2.2.2. **data**
+### 2.2.2. data
 
-- The elements of the 'data' attribute act like instance varibles
+- The elements in the `data` attribute act like instance variables.
 - Data can be rendered with '{{}}' in the view
 - The elements of the 'data' object can be accessed through `vueInstance(this).$data.key`, and **it can be shortened as `vueInstance(this).key`**
 
-### 2.2.3. **computed**
+### 2.2.3. computed
 
-- The function elements in the 'computed' also act like instance vairiables
+- The functions in the `computed` also act like instance vairiables
 - But it's different from 'data' in that it stores the return value of the function which processes the original data
 - It's also different from methods, cause it only excutes the function when the related data is changed
 
-### 2.2.4. **methods**
+### 2.2.4. methods
 
-- The elements of the 'methods' attribute act like instance methods.
-- <mark>Methods must not be declared as arrwo function!</mark> If then `this` in the mehtod whill indicates window, but not vueInstance.
+- The functions in the `methods` act like instance methods.
+- **Methods must not be declared as arrow function!** If then `this` in the method whill indicates window, but not the vueInstance.
 - As a matter of fact, all the fucntions in the methods exists right under the vue instance, so **`this` in the methods indicates the vue instance.**
 
-### 2.2.5. **watch**
+### 2.2.5. watch
 
-- The elements of the 'methods' attribute are functions which detect a change of a certain data.
-- The name of the key should be same to the detecting data
-- The function gets two parameters automatically. The first value is the changed value, and the second value is the previous value.
-- The function can be replaced with a vue method by allocating the name of the method as a string to `handler` key's value.
+- The functions in `watch` detect the change of a certain data.
+- **The name of the key should be same to the detecting data.**
+- The function gets two parameters automatically. The first value is the changed value, and the second value is the original value.
+- The function can be replaced with methods by allocating the name of the method as a string to `handler` key's value.
 - `deep: true`is for detecting elements of Array or Object.
 
   ```js
   const app = new Vue({
-    el: "#app",
+    el: '#app',
     data: {
       number: 0,
-      name: "",
+      name: '',
       myObj: { completed: true },
     },
     methods: {
       nameChange: function () {
-        console.log("name is changed")
+        console.log('name is changed')
       },
 
       itemChange: function () {
@@ -204,7 +246,7 @@ const app = new Vue({
       },
 
       name: {
-        handler: "nameChange",
+        handler: 'nameChange',
       },
 
       myObj: {
@@ -217,9 +259,9 @@ const app = new Vue({
   })
   ```
 
-### 2.2.6. **filters**
+### 2.2.6. filters
 
-- Methods that gets the data before `|` as the parameter in JavaScript expression(interpolation or v-bind). It can be used consecutively.
+- Methods that gets the data before `|` as a parameter in JavaScript expression(interpolation or v-bind). It can be used consecutively.
 
   ```js
   <div id="app">
@@ -271,9 +313,9 @@ The part written with '{{ }}' is binded with data in the vue instance. JavaScrip
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <script>
   const app = new Vue({
-    el: "#app",
+    el: '#app',
     data: {
-      msg: "Text interpolation",
+      msg: 'Text interpolation',
     },
   })
 </script>
@@ -281,7 +323,7 @@ The part written with '{{ }}' is binded with data in the vue instance. JavaScrip
 
 ### 2.3.2. Raw HTML
 
-If you want to a string as HTML syntax, 'v-html' directive can be one of solutions. But It **MUST NOT** be used contents which users input or provide.
+If you want to a string as HTML syntax, 'v-html' directive can be one of solutions. But It **MUST NOT** be used contents which the user inputs or provides.
 <mark>[XSS attack](http://blog.plura.io/?p=7614)</mark>
 
 **Example Code**
@@ -297,13 +339,15 @@ If you want to a string as HTML syntax, 'v-html' directive can be one of solutio
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <script>
   const app = new Vue({
-    el: "#app",
+    el: '#app',
     data: {
       rawHTML: '<span style="color: red;">Red Letters</span>',
     },
   })
 </script>
 ```
+
+---
 
 # 3. Vue Directives
 
@@ -326,7 +370,7 @@ It functions similar to template interpolation '{{ }}'
   <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
   <script>
     new Vue({
-      el: "#app",
+      el: '#app',
       data: {
         myNum: 0,
       },
@@ -411,24 +455,24 @@ The key of each element must be **distinguishable from other elements.** It's al
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <script>
   const app = new Vue({
-    el: "#app",
+    el: '#app',
     data: {
       // 1. String
-      myStr: "Hello, World!",
+      myStr: 'Hello, World!',
 
       // 2-1. Array
-      myArr: ["python", "django", "vue.js"],
+      myArr: ['python', 'django', 'vue.js'],
 
       // 2-2. Array with Object
       myArr2: [
-        { id: 1, name: "python", completed: true },
-        { id: 2, name: "django", completed: true },
-        { id: 3, name: "vue.js", completed: false },
+        { id: 1, name: 'python', completed: true },
+        { id: 2, name: 'django', completed: true },
+        { id: 3, name: 'vue.js', completed: false },
       ],
 
       // 3. Object
       myObj: {
-        name: "harry",
+        name: 'harry',
         age: 27,
       },
     },
@@ -454,7 +498,7 @@ Its function is similar to `addEventListener()`. The JavaScript expression funct
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <script>
   const app = new Vue({
-    el: "#app",
+    el: '#app',
     data: {
       number: 0,
       isActive: false,
@@ -474,7 +518,7 @@ Its function is similar to `addEventListener()`. The JavaScript expression funct
 
 ## 3.5. v-bind
 
-It binds the basic **html attributes** to **Vue data**. **It can be abbreviated to ':'.**
+It binds the basic **html attributes** to the **JS code**. **It can be abbreviated to ':'.**
 
 ### 3.5.1. :class
 
@@ -503,21 +547,21 @@ It binds the basic **html attributes** to **Vue data**. **It can be abbreviated 
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <script>
   const app2 = new Vue({
-    el: "#app2",
+    el: '#app2',
     data: {
-      url: "https://www.google.com/",
-      redTextClass: "red-text",
-      borderBlack: "border-black",
+      url: 'https://www.google.com/',
+      redTextClass: 'red-text',
+      borderBlack: 'border-black',
       isActive: true,
-      theme: "dark-mode",
+      theme: 'dark-mode',
     },
     methods: {
       darkModeToggle() {
         this.isActive = !this.isActive
         if (this.isActive) {
-          this.theme = "dark-mode"
+          this.theme = 'dark-mode'
         } else {
-          this.theme = "white-mode"
+          this.theme = 'white-mode'
         }
       },
     },
@@ -564,9 +608,9 @@ In the case of combinatorial characters, the results are reflected only when one
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <script>
   const app = new Vue({
-    el: "#app",
+    el: '#app',
     data: {
-      myMessage2: "",
+      myMessage2: '',
     },
   })
 </script>

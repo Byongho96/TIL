@@ -11,7 +11,7 @@
   - [2.2. Promise and Await](#22-promise-and-await)
 - [3. AJAX](#3-ajax)
   - [3.1. AJAX](#31-ajax)
-  - [3.2. data-\* attribute](#32-data-attribute)
+  - [3.2. data-\* attribute](#32-data--attribute)
   - [3.3. Example with Django](#33-example-with-django)
     - [3.3.1. Follow](#331-follow)
     - [3.3.2. Like](#332-like)
