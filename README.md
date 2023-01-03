@@ -51,11 +51,13 @@ since 2022.08.
     - [Static & Media](./Django/09_Django_Static_Media.md)
     - [Fixtures](./Django/10_Django_Fixtures.md)
     - [REST API](./Django/11_Django_REST_API.md)
+    - [REST Authentication](./Django/12_Django_REST_Authentication.md)
   - 💚 Vue
     - [Basics with CDN](./Vue/01_Vue_Basics_with_CDN.md)
     - [CLI and Props & Emit](./Vue/02_Vue_CLI_Props_and_Emit.md)
     - [Vuex and Lifecycle Hooks](./Vue/03_Vue_Vuex_and_Lifecycle_Hooks.md)
     - [Router](./Vue/04_Vue_Vue_Router.md)
+  - :electron: React with Project
 
 - 📖 Computer Science
   - 📁 Database

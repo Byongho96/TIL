@@ -1,12 +1,27 @@
-## 1. Brute-Force
-* Permutation
-* Combination
-* Powerset
-* Backtracking
-* Dynamic Programming(memoization, tabulation)
-* BFS, DFS
-### 1-1. Perumutation
-* iteration
+# 0. Intro
+
+알고리즘은 크게 2가지로 분류할 수 있다.
+
+모든 경우의 수를 고려하여 최적해를 찾아내는 **완전탐색(Brute-Force)기반 알고리즘**, 그리고 지역적인 최적값 선택의 연속으로 전역적인 최적해를 찾아내는 **탐욕(Greedy)알고리즘**이 있다.
+
+단, 탐욕 알고리즘이 적용되기 위해서는 제약조건이 있다.
+
+- 앞의 선택이 이후의 선택에 영향을 주지 않는다.
+- 문제에 대한 최적해가 부분문제에 대해서도 최적해이다.
+
+# 1. Brute-Force
+
+- Permutation
+- Combination
+- Powerset
+- Backtracking
+- Dynamic Programming(memoization, tabulation)
+- BFS, DFS
+
+## 1.1. Permutation
+
+**Iteration**
+
 ```python
 # {1, 2, 3}
 for i1 in range(1, 4):
@@ -16,7 +31,9 @@ for i1 in range(1, 4):
                 if i3 != i2 and i3 != i1:
                     print(i1, i2, i3)
 ```
-* recursive(Johnson-Trotter, Minimum-change)
+
+- recursive(Johnson-Trotter, Minimum-change)
+
 ```python
 # array p[] with N elements
 def perm(n, N):
@@ -28,7 +45,9 @@ def perm(n, N):
         perm(n+1, N)
         p[n], p[i] = p[i], p[n]
 ```
-* recursive sorted
+
+- recursive sorted
+
 ```python
 # array p[] with N elements
 used = [0] * N
@@ -44,8 +63,11 @@ def perm(n, N):
             pern(n+1, N)
             used[i] = 0
 ```
-### 1-2. Combinations
-* recursive
+
+## 1.2. Combinations
+
+- recursive
+
 ```python
 # arr : len(arr) == N
 # comb : len(comb) == R
@@ -61,8 +83,11 @@ def comb(n, r):
         comb(n-1, r)
 comb(N, R)
 ```
+
 ### 1-3. Powerset
-* iteration
+
+- iteration
+
 ```python
 # a set of 4 elements
 bit = [0] * 4
@@ -76,7 +101,9 @@ for i1 in range(2):
                 bit[3] = i4
                 print(bit)
 ```
-* binary counting iteration
+
+- binary counting iteration
+
 ```python
 arr = [3, 6, 7, 1, 5, 4]
 n = len(arr)
@@ -87,7 +114,9 @@ for i in range(1<<n): # 2**n == 부분집합의 갯수
             print(arr[j], end=' ')
     print()
 ```
-* recursive
+
+- recursive
+
 ```python
 arr = [0] * N
 def powerset(n):
@@ -99,9 +128,12 @@ def powerset(n):
     arr[n] = 1
     powerset(n+1)
 ```
+
 ### 1-4. Backtracking
-* Brute-force with prunning
-* N-Queen
+
+- Brute-force with prunning
+- N-Queen
+
 ```python
 def N_Queen(n):
     if n == N:
@@ -117,8 +149,11 @@ def N_Queen(n):
             q2.pop()
             q3.pop()
 ```
+
 ### 1-5. DFS
-* recursive
+
+- recursive
+
 ```python
 def DFS_recursive(v)
     visited[v] = 1
@@ -126,7 +161,9 @@ def DFS_recursive(v)
         if not visited[w]:
             DFS_recursive[w]
 ```
-* iteration(path)
+
+- iteration(path)
+
 ```python
 def DFS_iteration(v):
     visited = [0] * N
@@ -146,13 +183,15 @@ def DFS_iteration(v):
             else:
                 break
 ```
-* iteration(selection)
-* Not technically DFS, but for brute force
+
+- iteration(selection)
+- Not technically DFS, but for brute force
+
 ```python
 def DFS_iteration2(v):
     visited = [0] * N
     stk = []
-    
+
     stk.append(v)
     visited[v] = 1
     while stk:
@@ -162,11 +201,12 @@ def DFS_iteration2(v):
                 stk.append(w)
                 visited[w] = 1
 ```
+
 ```python
 def DFS_iteration2(v):
     visited = [0] * N
     stk = []
-    
+
     stk.append(v)
     while stk:
         v = stk.pop()
@@ -177,16 +217,19 @@ def DFS_iteration2(v):
                 if not visited[w]:
                     stk.append(w)
 ```
+
 ### 1-6. BFS
-* iteration
+
+- iteration
+
 ```python
 def bfs(v):
     visited = [0] * N
     q = deque()
-    
+
     q.append(v)
     visited[v] = 1
-    
+
     while q:
         v = q.popleft()
         for w in adjLst[v]:
@@ -194,7 +237,9 @@ def bfs(v):
                 visited[w] = visited[v] + 1
                 q.append(w)
 ```
-* shortest path
+
+- shortest path
+
 ```python
 def bfs(v):
     distance = [INF] * (N)
@@ -212,9 +257,13 @@ def bfs(v):
 
     return distance[-1]
 ```
+
 ## 2. Greedy(Proved)
+
 ### 2-1. Prim
-* Basic
+
+- Basic
+
 ```python
 def prim(s):
     weight = [INF] * (V + 1)
@@ -234,10 +283,12 @@ def prim(s):
         for adj, w in adjLst[i_min]:
             if not MST[adj]:
                 weight[adj] = min(weight[adj], w)
-    
+
     print(sum(weight))
 ```
-* heap
+
+- heap
+
 ```python
 def prim(start, edges):
     mst = []
@@ -245,7 +296,7 @@ def prim(start, edges):
     for w, n1, n2 in edges:
         adjLst[n1].append((w, n1, n2))
         adjLst[n2].append((w, n2, n1))
-    
+
     connected = set(start)
     edges_heap = adjLst[s]
     heapify(edges_heap)
@@ -260,8 +311,11 @@ def prim(start, edges):
                 if edge[2] not in connected:
                     heappush(edges_heap, edge)
 ```
+
 ### 2-2. Kruskal
-* Kruskal
+
+- Kruskal
+
 ```python
 V, E = map(int, input().split())
 par = [i for i in range(V + 1)]
@@ -297,8 +351,11 @@ for a, b, w in edges:
 
 print(weight)
 ```
+
 ### 2-3. Dijkstra
-* Basic
+
+- Basic
+
 ```python
 def dijkstra(s):
     distance = [INF] * (V+1)
@@ -317,10 +374,12 @@ def dijkstra(s):
         for w, d in adjLst[i_min]:
             # if not visited[w]:
             distance[w] = min(distance[w], distance[i_min] + d)
-            
+
     return distance[-1]
 ```
-* heap
+
+- heap
+
 ```python
 def dijkstra(s):
     distance = [INF] * (V+1)
@@ -330,7 +389,7 @@ def dijkstra(s):
 
     while heap:
         dist, now = heapq.heappop(heap)
-        if distance[now] < dist:    # 현재 노드가 처리된적 있다면 무시 
+        if distance[now] < dist:    # 현재 노드가 처리된적 있다면 무시
             continue
         for next in adjLst[now]:   # 현재 노드의 주변 노드를 탐색
             cost = dist + next[1]
@@ -338,6 +397,7 @@ def dijkstra(s):
                 distance[next[0]] = cost
                 heapq.heappush(q, (cost, i[0]))
 ```
+
 <!-- * shortest path
 ```python
 def bfs(v):
@@ -356,10 +416,13 @@ def bfs(v):
 
     return distance[-1]
 ``` -->
+
 ### 2-4. Bellman-Ford
-* minus edge, and minus cycle
-    * 방문하지 않은 노드 뿐만 아니라, 모든 간선에 대해서 최단거리를 확인
-    * N개의 정점에 대해서 N번째 갱신 시, 테이블의 변화가 있다면 음수 사이클이 존재
+
+- minus edge, and minus cycle
+  - 방문하지 않은 노드 뿐만 아니라, 모든 간선에 대해서 최단거리를 확인
+  - N개의 정점에 대해서 N번째 갱신 시, 테이블의 변화가 있다면 음수 사이클이 존재
+
 ```python
 def Bellman_Ford(s):
     dist[s] = 0
@@ -385,8 +448,11 @@ if Bellman_Ford(1): # 음의 순환
 else:
     print(destination)
 ```
+
 ### 2-5. Floyd-Warshall
-* 모든 정점에서 모든 정점으로의 최단 경로
+
+- 모든 정점에서 모든 정점으로의 최단 경로
+
 ```python
 graph = [[INF] * (n + 1) for _ in range(n + 1)]
 
@@ -404,12 +470,15 @@ for k in range(1, n+1):
 
 print[s][e]
 ```
+
 ### 2-7. Huffman tree
 
 ## 3. Topological Sorting
-* 사이클이 없는 방향 그래프에서 모든 노드를 방향성에 거스르지 않도록 순차나열
-* 진입차수(Indegree): 들어오는 간선 갯수
-* 진출차수(Outdegree): 나가는 간선 갯수
+
+- 사이클이 없는 방향 그래프에서 모든 노드를 방향성에 거스르지 않도록 순차나열
+- 진입차수(Indegree): 들어오는 간선 갯수
+- 진출차수(Outdegree): 나가는 간선 갯수
+
 ```python
 indgegree = [0] * (V+1)
 adjLSt = [[] for _ in range(V+1)]
@@ -434,7 +503,7 @@ def topology_sort():
             indegree[i] -= 1
             if indegree[i] == 0:
                 q.append(i)
-    
+
     return result
 
 topology_sort()
