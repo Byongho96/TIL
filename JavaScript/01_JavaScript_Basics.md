@@ -2,6 +2,8 @@
 
 ## Index
 
+- [JavaScript Basics](#javascript-basics)
+  - [Index](#index)
 - [1. Intro](#1-intro)
   - [1.1. What is JavaScript?](#11-what-is-javascript)
   - [1.2. The History of JavaScript](#12-the-history-of-javascript)
@@ -10,7 +12,7 @@
     - [1.4.1. Synchronous execution](#141-synchronous-execution)
     - [1.4.2. DOMContentLoaded](#142-domcontentloaded)
     - [1.4.3. load](#143-load)
-    - [1.4.4. aysnc / defer](#144-aysnc-defer)
+    - [1.4.4. aysnc / defer](#144-aysnc--defer)
 - [2. Data Type and Operators](#2-data-type-and-operators)
   - [2.1. Semicolon](#21-semicolon)
   - [2.2. Comment](#22-comment)
@@ -55,6 +57,7 @@
     - [6.2.2 Concise Method](#622-concise-method)
     - [6.2.3. Computed Property Name](#623-computed-property-name)
     - [6.2.4. Destructing Assignment](#624-destructing-assignment)
+    - [6.2.5. Unpacking Parameters](#625-unpacking-parameters)
   - [6.3. JSON](#63-json)
 
 ---
@@ -933,6 +936,47 @@ const { id } = person
 const { phone } = person
 
 const { name, id, phone } = person
+```
+
+### 6.2.5. Unpacking Parameters
+
+Objects passed into function parameters can also be unpacked into variables, which may then be accessed within the function body. As for object assignment, the destructuring syntax allows for the new variable to have the same name
+
+```javascript
+const user = {
+  id: 42,
+  displayName: 'jdoe',
+  fullName: {
+    firstName: 'Jane',
+    lastName: 'Doe',
+  },
+}
+
+function userId({ id }) {
+  return id
+}
+
+console.log(userId(user)) // 42
+```
+
+You can also define the name of the unpacked variable. Here we unpack the property named displayName, and rename it to dname for use within the function body.
+
+```javascript
+function userDisplayName({ displayName: dname }) {
+  return dname
+}
+
+console.log(userDisplayName(user)) // `jdoe`
+```
+
+Nested objects can also be unpacked. The example below shows the property fullname.firstName being unpacked into a variable called name.
+
+```javascript
+function whois({ displayName, fullName: { firstName: name } }) {
+  return `${displayName} is ${name}`
+}
+
+console.log(whois(user)) // "jdoe is Jane"
 ```
 
 ## 6.3. JSON
