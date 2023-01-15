@@ -362,7 +362,6 @@ def dijkstra(s):
     visited = [0] * (V+1)
 
     distance[s] = 0
-    visited[s] = 1
     for _ in range(V):
         mn = INF
         i_min = -1
