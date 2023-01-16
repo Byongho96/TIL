@@ -1,4 +1,4 @@
-# 1. Theme
+# 1. ThemeProvider
 
 ```js
 // theme.js

@@ -1,8 +1,28 @@
+# React Router <!-- omit in toc -->
+
+[react-router-dom](https://reactrouter.com/en/main/start/overview)
+
+## Index <!-- omit in toc -->
+
+- [1. Router](#1-router)
+  - [1.1. 설치 및 세팅](#11-설치-및-세팅)
+  - [1.2. 사용 방법](#12-사용-방법)
+    - [1.2.1. Routes](#121-routes)
+    - [1.2.2. Switch (v5)](#122-switch-v5)
+  - [1.3. 페이지 이동](#13-페이지-이동)
+    - [1.3.1. Link](#131-link)
+    - [1.3.2. useNavigate](#132-usenavigate)
+    - [1.3.3. redirect](#133-redirect)
+    - [1.3.4. Navigate](#134-navigate)
+- [2. Nested Routes](#2-nested-routes)
+- [3. URL Parameter](#3-url-parameter)
+- [4. Protected Route](#4-protected-route)
+
+---
+
 # 1. Router
 
 ## 1.1. 설치 및 세팅
-
-(react-router)[https://reactrouter.com/en/main]
 
 1. `npm install react-router-dom@6`
 2. index.js파일
@@ -64,6 +84,8 @@ function App(){
 
 ## 1.3. 페이지 이동
 
+[react router redirect](https://www.copycat.dev/blog/react-router-redirect/)
+
 ### 1.3.1. Link
 
 - a 태그와 다르게 페이지를 전체 reload하지 않는다.
@@ -95,7 +117,7 @@ function App(){
 
 ### 1.3.3. redirect
 
-컴포넌트 바깥에서 쓰일 수 있다.
+컴포넌트 바깥에서 loader 혹은 action에서 쓰일 수 있다.
 
 ```js
 import { redirect } from 'react-router-dom'
@@ -106,6 +128,19 @@ const loader = async () => {
     return redirect('/login')
   }
 }
+```
+
+### 1.3.4. Navigate
+
+선언적 방식으로 리다이렉트 한다. v5까지 존재했던 `<Reidrect />` 컴포넌트를 대체한다.
+
+```js
+<Routes>
+  <Route path="/" element={<h1>Home Page Component</h1>} />
+  <Route path="/login" element={<h1>Login Page Component</h1>} />
+  // New line
+  <Route path="*" element={<Navigate to="/" />} />
+</Routes>
 ```
 
 ---

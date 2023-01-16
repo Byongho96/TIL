@@ -1,3 +1,18 @@
+# React Ajax <!-- omit in toc -->
+
+## Index <!-- omit in toc -->
+
+- [1. axios instance](#1-axios-instance)
+  - [1.1. 생성](#11-생성)
+  - [1.2. 메소드](#12-메소드)
+  - [1.3. Config](#13-config)
+- [2. axios intercepotor](#2-axios-intercepotor)
+  - [2.1. 기본구조](#21-기본구조)
+  - [2.2. interceptor 추가 및 제거](#22-interceptor-추가-및-제거)
+- [3. 사용예시](#3-사용예시)
+
+---
+
 # 1. axios instance
 
 ## 1.1. 생성
