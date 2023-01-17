@@ -2,6 +2,8 @@
 
 ## 목차
 
+- [Git](#git)
+  - [목차](#목차)
 - [1. 용어 정리](#1-용어-정리)
   - [1.1. Git](#11-git)
   - [1.2. Git Web Service](#12-git-web-service)
@@ -24,7 +26,7 @@
   - [4.1. Working Directory](#41-working-directory)
   - [4.2. Staging Area](#42-staging-area)
     - [4.3. Repository](#43-repository)
-- [5. Git Reset & Revert](#5-git-reset--revert)
+- [5. Git Reset \& Revert](#5-git-reset--revert)
   - [5.1. Git Reset](#51-git-reset)
   - [5.2. Git Revert](#52-git-revert)
 - [6. Remote Repository (GitHub)](#6-remote-repository-github)
@@ -182,10 +184,11 @@ git은 기본적으로 폴더가 비었을 경우 해당 폴더를 관리하지 
 
 ### 3.1.2. Branch 생성
 
-| 명령어                                 | 의미                                    |
-| -------------------------------------- | --------------------------------------- |
-| git branch \<branch_name>              | 새로운 이름의 브랜치 생성               |
-| git branch \<branch_name> \<commit ID> | 특정 커밋을 기준으로 새로운 브랜치 생성 |
+| 명령어                                  | 의미                                    |
+| --------------------------------------- | --------------------------------------- |
+| git branch \<branch_name>               | 새로운 이름의 브랜치 생성               |
+| git branch \<branch_name> \<commit ID>  | 특정 커밋을 기준으로 새로운 브랜치 생성 |
+| git push origin --delete \<branch_name> | 원격 저장소의 브랜치를 삭제             |
 
 ### 3.1.3. Branch 변경
 
