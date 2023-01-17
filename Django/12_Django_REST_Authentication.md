@@ -64,7 +64,7 @@ Cross-Origin Resource Sharing (CORS) is **an HTTP-header based mechanism that** 
           ...
      ]
 
-     # CORS_ALLOWED_ALL_ORIGINS = True
+     # CORS_ALLOW_ALL_ORIGINS = True
      ```
 
 ---
