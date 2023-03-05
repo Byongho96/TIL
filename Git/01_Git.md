@@ -83,6 +83,9 @@ local repository는 다음 3가지의 작업영역으로 동작한다.
 
 ## 2.1. Git 명령어
 
+- remote repository의 별칭은 `origin`이 default이다.
+- fork한 레포지토리에 대해 원본 레포지토리를 추가할 경우, 통상적으로 `upstream`을 사용한다.
+
 | CLI 명령어                                            | 의미                                                                   |
 | ----------------------------------------------------- | ---------------------------------------------------------------------- |
 | git init                                              | 현재 폴더에 git 시스템을 적용 == local repository를 생성함             |
@@ -94,7 +97,7 @@ local repository는 다음 3가지의 작업영역으로 동작한다.
 | git add \<file>                                       | 특정 파일의 변경사항을 add                                             |
 | git add .                                             | 모든 파일의 변경사항을 add                                             |
 | git commit -m "\{commit messagge}"                    | 간단한 메시지와 함께 현재 staged 상태를 커밋                           |
-| git push origin \<local branch name>                  | remote repo에 local 브랜치와 동일한 브랜치를 생성 및 push              |
+| git push \<remote_repo_alias> \<local branch name>    | remote repo에 local 브랜치와 동일한 브랜치를 생성 및 push              |
 | git clone <remote repo address>                       | remote repo를 local repo로 복사                                        |
 | git pull                                              | remote repo의 추가 커밋을 local repo로 복사                            |
 | git remote add \<remote_repo_alias> <remote_repo_url> | 현재 로컬 repo에 연동되는 remote repo를 별칭(default: origin)으로 추가 |
@@ -184,11 +187,11 @@ git은 기본적으로 폴더가 비었을 경우 해당 폴더를 관리하지 
 
 ### 3.1.2. Branch 생성
 
-| 명령어                                  | 의미                                    |
-| --------------------------------------- | --------------------------------------- |
-| git branch \<branch_name>               | 새로운 이름의 브랜치 생성               |
-| git branch \<branch_name> \<commit ID>  | 특정 커밋을 기준으로 새로운 브랜치 생성 |
-| git push origin --delete \<branch_name> | 원격 저장소의 브랜치를 삭제             |
+| 명령어                                                | 의미                                    |
+| ----------------------------------------------------- | --------------------------------------- |
+| git branch \<branch_name>                             | 새로운 이름의 브랜치 생성               |
+| git branch \<branch_name> \<commit ID>                | 특정 커밋을 기준으로 새로운 브랜치 생성 |
+| git push \<remote_repo_alias> --delete \<branch_name> | 원격 저장소의 브랜치를 삭제             |
 
 ### 3.1.3. Branch 변경
 
