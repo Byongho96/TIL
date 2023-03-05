@@ -3,6 +3,9 @@
 since 2022.08.
 
 - 🐱 [Git](./Git/01_Git.md)
+- 🐋 Docker
+- :older_man: Jenkins
+- :negative_squared_cross_mark: Nginx
 
 - 📚 Langauges
 
@@ -21,17 +24,13 @@ since 2022.08.
   - 📒 JavaScript
     - [Basics](./JavaScript/01_JavaScript_Basics.md)
     - [Advanced](./JavaScript/02_JavaScript_Advanced.md)
-    - [Asynchornous](./JavaScript/03_JavaScript_Asynchronous.md)
+    - [Asynchronous](./JavaScript/03_JavaScript_Asynchronous.md)
 
 - 📊 Data Structure & Algorithm
 
   - 💾 Data Structure
-    - [List](./Algorithm/List.md)
-    - [Stack](./Algorithm/Stack.md)
-    - [String](./Algorithm/String.md)
-    - [Tree](./Algorithm/Tree.md)
   - 🎮 Algorithm
-    - [BruteForce vs Greedy](./Algorithm/BruteForce_Greedy.md)
+    - [Dijkstra](./Algorithm/Dijkstra.md)
 
 - 💻 Web
 

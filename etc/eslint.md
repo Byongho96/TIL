@@ -1,27 +1,41 @@
-# 1. eslint와 Prettier
+# ESLint와 Prettier
 
-## 1.1. 역할
+## Index
 
-- **eslint**
+- [ESLint와 Prettier](#eslint와-prettier)
+  - [Index](#index)
+- [1.기능](#1기능)
+- [2. 설치 및 설정](#2-설치-및-설정)
+  - [2.1. ESLint](#21-eslint)
+  - [2.2. Prettier](#22-prettier)
+  - [2.3. ESlint와 Prettier](#23-eslint와-prettier)
+- [3. Husky](#3-husky)
+- [4. 참고자료](#4-참고자료)
 
-  - **코드 포맷팅**
-    - 코드의 가독성을 높인다. prettier와 겹치는 기능
-  - **코드 품질**
-    - 코도의 일부 문법 상을 오류를 파악하고 이를 수정한다.
+---
 
-- **prettier**
-  - **코드 포맷팅**
-    - 코드의 가독성을 높인다
+# 1.기능
 
-## 1.2. eslint 수동 설치 및 셋팅
+- **ESLint**
 
-[수동 설치 및 셋팅 Youtube](https://www.youtube.com/watch?v=Y3kjHM7d3Zo)
+  - **코드 포맷팅**  
+    코드의 가독성을 높인다. prettier와 겹치는 기능
+  - **코드 품질**  
+    코도의 일부 문법 상을 오류를 파악하고 이를 수정한다.
 
-1. eslint 설치  
-   `npm install eslint`
-2. eslint 설정 파일 생성  
-   `touch .eslintrc.js`
-3. eslint 적용 룰 설정
+- **Prettier**
+  - **코드 포맷팅**  
+    코드의 가독성을 높인다
+
+---
+
+# 2. 설치 및 설정
+
+## 2.1. ESLint
+
+1. VScode에 ESLint 익스텐션 설치
+2. VScode 설정에서 Eslint: Auto Fix On Save 체크
+3. ESlint 설정 파일 루트 경로에 생성 [ESLint Rule](https://eslint.org/docs/latest/rules/)
 
    ```js
    // .eslintrc.js
@@ -33,106 +47,81 @@
    }
    ```
 
-   [eslint 규칙](https://eslint.org/docs/latest/rules/)
+## 2.2. Prettier
 
-   - 체크박스 : 추천 규칙
-   - 렌치 : --fix 옵션 적용 시 자동 수정
+1. VScode에 Prettier 익스텐션 설치
+2. VScode 설정에서 Editor: Format On Save 체크
+3. Prettier 설정파일 루트 경로에 생성 [Prettier Configuration](https://prettier.io/docs/en/configuration.html)
 
-4. package.json에 eslint 적용 및 수정 기능 추가
    ```js
-   {'scripts': {'lint': 'eslint src --fix'}}
+   {
+     "trailingComma": "all",
+     "tabWidth": 2,
+     "semi": true,
+     "singleQuote": true
+   }
    ```
-5. 코드 검사  
-   `npm run eslint`
 
-## 1.3. 코드 검사 자동화
+## 2.3. ESlint와 Prettier
 
-### 1.3.1. ㅇ
+ESLint에서 Prettier와 충돌하는 규칙을 비활성화함으로써 Prettier의 규칙을 따름
 
-eslint-config-prettier : eslint에서 prettier와 충돌할 수 있는 rule을 꺼버림 ✅
-코드 오류를 잡는데는 eslint, 코드 포맷팅에는 prettier를 사용하는 방법이다.
-eslint-plugin-prettier : prettier를 eslint의 rules로 동작하게 함
-포맷팅 문제도 오류로 출력되어서 오류 메시지가 지나치게 많아지며 느리다.
-prettier-eslint : prettier를 실행하고 나서 eslint --fix를 실행함
-prettier를 단독으로 실행하는 것 보다 훨씬 느리다.
-렌치가 있으면 수정이 가능--fix로, 체크박스가 있는 것은 추천
-
-prettier는 정말 가독성을 위해
-프리티어는 eslint와 통합. 프리티어의 포맷팅 규칙을 eslint로 추가하고
-충돌하는 규칙이 있으면 프리티어
-
-`npm install eslint-config-prettier eslint-plugin-prettier`
+1. `yarn add eslint-config-prettier`
+2. ESLint 설정파일에 extends에 prettier 추가
 
 ```js
-module.exports = {
-  extends: ['eslint:recommended', 'plugin:prettier/recommended'],
-  env: {
-    browser: true,
+ "eslintConfig": {
+   "extends": [
+     "react-app",
+     "prettier"
+   ]
+ },
+```
+
+3. ESLint 개별적으로 Rule 설정 가능
+
+```js
+  "eslintConfig": {
+    ...
+    "rules": {
+      "react/jsx-filename-extension": 0,
+      "no-unused-vars": 1
+    }
   },
-}
 ```
 
-자동화로 코드 검사
+4. 파일 상단에 주석을 달아서 특정 Rule 비활성화 가능
+   ```js
+   // eslint-disable-next-line no-unsued-vars
+   ```
 
-깃 훅: 깃 명령어를 사용하기 전에, 특정 명렁어 실행. 실패할 경우 이후 명령어가 실행이 안됨
+---
 
-`npm install husky`
+# 3. Husky
 
-package.json
+깃 명령어가 실행되기 전에, 사용자가 지정한 특정 명령어가 실행되도록 설정할 수 있는 라이브러리. 만일 사용자가 지정한 명령어가 실패할 경우 이후 명령어가 실행되지 않는다.
 
-```js
-'husky': {
-  'hooks': {
-    // 'pre-commit': 'echo \'커밋 전에 이 메시지를 출력\''
-    'pre-commit': 'npm run lint'
-  }
-}
-```
+1. `npm install husky`
+2. `npm install lint-staged`  
+   커밋 시 staged된 파일(변경된 파일)에 대해서만 ESLint 검사를 실행
+3. package.json에 husky 등록
+   ```js
+   // pacakge.json
+   'husky': {
+     'hooks': {
+       // 'pre-commit': 'echo \'커밋 전에 이 메시지를 출력\''
+       'pre-commit': 'lint-staged'
+     }
+   }
+   'lint-staged': {
+     '*.js': 'npm run lint'
+   }
+   ```
 
-커밋할때 변경된 파일 만 린트를 수행
-`npm install lint-staged`
+---
 
-```js
-'husky': {
-  'hooks': {
-    // 'pre-commit': 'echo \'커밋 전에 이 메시지를 출력\''
-    'pre-commit': 'lint-staged'
-  }
-}
-'lint-staged': {
-  '*.js': 'npm run lint'
-}
-```
+# 4. 참고자료
 
-마지막으로 그냥 vscode에서 검사하는 방법
-
-익스텐션으로 eslint설치
-
-설정파일에
-setttings.json
-
-```js
-{
-  // 검사
-  'eslint.enable':true,
-  // 수정
-  'editor.codeActionsOnSave' :{
-    'source.fixAll.eslint': true
-  }
-}
-```
-
-설정에서 format on save 를 클릭해서 할 수도 있음
-
-////
-질문에 다ㅐ한 답에 대해 하여 eslint를 설치하고 파일을 만듬
-`npm init @eslint/config`
-
-아래와 같은 주석 아닌 주석을 상단에 달아서 특정 설정을 비활성화 할 수 있음
-
-```js
-// eslint-disable-next-line no-unsued-vars
-```
-
-[eslint & prttier 연동 참고자료](https://velog.io/@yrnana/prettier%EC%99%80-eslint%EB%A5%BC-%EA%B5%AC%EB%B6%84%ED%95%B4%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EC%9E%90)
-[eslint & prettier 설치 가이드](https://react.vlpt.us/basic/27-useful-tools.html)
+- [ESlint & prettier 설치 가이드](https://react.vlpt.us/basic/27-useful-tools.html)
+- [ESlint & prettier 연동 참고자료](https://velog.io/@yrnana/prettier%EC%99%80-eslint%EB%A5%BC-%EA%B5%AC%EB%B6%84%ED%95%B4%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EC%9E%90)
+- [ESlint수동 설치 및 셋팅 Youtube](https://www.youtube.com/watch?v=Y3kjHM7d3Zo)
