@@ -29,7 +29,9 @@ since 2022.08.
 - 📊 Data Structure & Algorithm
 
   - 💾 Data Structure
+    - [Heap](./Data%20Structure/Heap.md)
   - 🎮 Algorithm
+    - [BFS](./Algorithm/BFS.md)
     - [Dijkstra](./Algorithm/Dijkstra.md)
 
 - 💻 Web
