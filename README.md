@@ -2,12 +2,14 @@
 
 since 2022.08.
 
-- 🐱 [Git](./Git/01_Git.md)
-- 🐋 Docker
-- :older_man: Jenkins
-- :negative_squared_cross_mark: Nginx
+- :hammer_and_wrench: Tools
 
-- 📚 Langauges
+  - :large_orange_diamond: [Git](./Tools/Git.md)
+  - 🐋 [Docker](./Tools/Docker.md)
+  - :negative_squared_cross_mark: [Nginx](./Tools/Nginx.md)
+  - :unicorn: [Gunicorn](./Tools/Gunicorn.md)
+
+- :books: Langauges
 
   - 🐍 Python
     - [Data Types & Operators](./Python/01_Python_Basics_Datatypes_Operators.md)
@@ -26,17 +28,19 @@ since 2022.08.
     - [Advanced](./JavaScript/02_JavaScript_Advanced.md)
     - [Asynchronous](./JavaScript/03_JavaScript_Asynchronous.md)
 
-- 📊 Data Structure & Algorithm
+- :chart_with_upwards_trend: Data Structure & Algorithm
 
-  - 💾 Data Structure
+  - 💾 [Data Structure](./Data%20Structure/)
+    - [Tree](./Data%20Structure/Tree.md)
     - [Heap](./Data%20Structure/Heap.md)
-  - 🎮 Algorithm
+  - 🎮 [Algorithm](./Arlgorithm/)
+    - [Backtracking](./Algorithm/Backtracking.md)
     - [BFS](./Algorithm/BFS.md)
     - [Dijkstra](./Algorithm/Dijkstra.md)
 
 - 💻 Web
 
-  - 📸 HTML / CSS
+  - :bookmark: HTML / CSS
     - [HTML](./Web/01_HTML.md)
     - [CSS Basics](./Web/02_CSS_Basics.md)
     - [CSS Advanced](./Web/03_CSS_Advanced.md)
@@ -80,3 +84,4 @@ since 2022.08.
     - [Ch9. 정규화](./CS/DB/Ch09_%EC%A0%95%EA%B7%9C%ED%99%94.md)
     - [Ch10. 회복과 병행 제어](./CS/DB/Ch10_%ED%9A%8C%EB%B3%B5%EA%B3%BC_%EB%B3%91%ED%96%89_%EC%A0%9C%EC%96%B4.md)
   - 📞 Network
+- :scroll: [etc](./etc/)
