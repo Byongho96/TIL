@@ -1,0 +1,3 @@
+- 🎮 Algorithm
+  - [BFS](./Algorithm/BFS.md)
+  - [Dijkstra](./Algorithm/Dijkstra.md)
