@@ -37,68 +37,126 @@ Docker를 이용하면 환경에 구애받지 않고, 정형화된 방식으로 
 
 도커 파일은 Docker Image를 만드는 명령문을 가지는 문서이다. 모든 도커 파일은 base 이미지를 바탕으로 생성되며, 이미 생성된 이미지를 확장하여 사용할 수도 있다.
 
-```
+```c
+// base 이미지 지정
 FROM <이미지>:<태그>
 
-MAINTAINER 이미지를 생성한 개발자 정보를 나타냅니다.
-WORKDIR <이동할 경로>
+// 컨테이너 내부 작업 디렉토리 지정
+// 이후 명령문들의 기준
+WORKDIR <내부 디렉토리>
 
+// shell 커맨드
 RUN ["<커맨드>", "<파라미터1>", "<파라미터2>"]
 RUN <전체 커맨드>
 
+// 파일 및 폴더 복사
+COPY <src> <dest>
 
-ADD
+// 빌드 및 컨테이너 동작 시 유효한 환경변수 지정
+ENV <키> <값>
+ENV <키>=<값>
 
-COPY
+// docker build 커맨드에서 --build-arg 옵션을 통해 넘길 수 있는 인자를 정의
+ARG <이름>
+ARG <이름>=<기본값>
 
-EXPOSE
+// 컨테이너로 들어오는 트래픽을 리스닝할 포트 지정
+// 프로토콜 TCP(default) / UDP
+EXPOSE <포트>
+EXPOSE <포트>/<프로토콜>
 
+// 컨테이너를 실행시킬 때 default로 실행시킬 shell 커맨드
+// docker run과 함께 커맨드 인자를 입력하면, 실행되지 않음
 CMD ["<커맨드>","<파라미터1>","<파라미터2>"]
+CMD <전체 커맨드>
 
-ENTRYPOINT
+// 컨테이너를 실행시킬 때 항상 실행되어야 하는 shell 커맨드
+ENTRYPOINT ["<커맨드>", "<파라미터1>", "<파라미터2>"]
+ENTRYPOINT <전체 커맨드>
+
+// CMD와 ENTRYPOINT 혼합
+// docker run docker_image -> index.js 실행
+// docker run docker_image main.js -> main.js 실행
+ENTRYPOINT ["node"]
+CMD ["index.js"]
 ```
 
 ## 1.3. 명령어
 
-| 명령어                         | 설명                       |
-| ------------------------------ | -------------------------- |
-| docker build -t [이미지 이름]  | Dockerfile에서 이미지 빌드 |
-| docker image history           | Dockerfile에서 이미지 빌드 |
-| docker image ls                | Dockerfile에서 이미지 빌드 |
-| docker image prune             | Dockerfile에서 이미지 빌드 |
-| docker image pull              | Dockerfile에서 이미지 빌드 |
-| docker image push              | Dockerfile에서 이미지 빌드 |
-| docker image rm                | Dockerfile에서 이미지 빌드 |
-| docker image tag               | Dockerfile에서 이미지 빌드 |
-| docker build -t mybuild:0.0 ./ | Dockerfile에서 이미지 빌드 |
+| 명령어                                   | 설명                             |
+| ---------------------------------------- | -------------------------------- |
+| docker build -t [이미지명] [이미지 경로] | Dockerfile로 이미지 빌드         |
+| docker image inspect [이미지명]          | Docker이미지 상세 정보 조회      |
+| docker image ls [옵션]                   | Docker 이미지 목록 출력          |
+| docker image pull [이미지명]             | Docker 이미지 다운로드           |
+| docker image push [사용자명/이미지명]    | Docker 이미지 푸시               |
+| docker image rm [이미지명]               | Docker 이미지 삭제               |
+| docker image prune [옵션]                | 사용하지 않는 docker 이미지 삭제 |
+
+- docker run 옵션
+  - **-i, --interactive**  
+    표준 입력(stdin)을 활성화
+  - **--name**  
+     컨테이너 이름 설정
+  * **-d, --detach**  
+    Detached 모드. 컨테이너를 백그라운드로 실행
+  * **-p, --publish**  
+    호스트와 컨테이너의 포트를 연결
+    <호스트 포트>:<컨테이너 포트>
+  * **-v, --volume**  
+    컨테이너 마운트 설정
+    <호스트 경로/볼륨>:<컨테이너 경로>
+  * **-u, --user**  
+    컨테이너의 리눅스 사용자 계정 설정
+  * **-e, --env**  
+    컨테이너 내 환경 변수를 설정
 
 # 2. 컨테이너
 
 ## 2.1. 개요
 
-Docker container is a lightweight, standalone, executable package that includes everything needed to run an application, including the code, system tools, libraries, and runtime. Containers are isolated from one another and bundle their own application, tools, libraries and configuration files, but share the underlying operating system kernel. Containers allow applications to run reliably in different computing environments.
+도커 컨테이너는 하나의 독립적인 어플리케이션 구동 환경이다. 하나의 이미지를 통해 여러 개의 컨테이너를 실행시킬 수 있다.
 
 ## 2.2. 명령어
+
+| 명령어                                    | 설명                                      |
+| ----------------------------------------- | ----------------------------------------- |
+| docker run [옵션] [이미지명]              | Docker 임지로 컨테이너 실행               |
+| docker ps                                 | 실행중인 Docker 컨테이너 목록 출력        |
+| docker ps -a                              | 모든 Docker 컨테이너 목록 출력            |
+| docker start [컨테이너명/ID]              | Docker 컨테이너 실행                      |
+| docker stop [컨테이너명/ID]               | Docker 컨테이너 멈춤                      |
+| docker restart [컨테이너명/ID]            | Docker 컨테이너 재시작                    |
+| docker attach [컨테이너명/ID]             | Docker 컨테이너 접속                      |
+| docker exec -it [컨테이너명/ID] /bin/bash | bash 언어를 사용하여 Docker 컨테이너 접속 |
+| docker image pull [이미지명]              | Docker 이미지 다운로드                    |
+| docker image push [사용자명/이미지명]     | Docker 이미지 푸시                        |
+| docker rm [컨테이너명/ID]                 | Docker 컨테이너 삭제                      |
+| docker prune [컨테이너명/ID]              | 사용되지 않는 Docker 컨테이너 삭제        |
+| docker logs [컨테이너명/ID]               | 실행중인 Docker 로그 기록 조회            |
+| docker logs -f [컨테이너명/ID]            | Docker 로그 기록 강제 조회                |
 
 # 3. DockerHub
 
 ## 3.1. 개요
 
+대표적인 도커 이미지 서버로써 도커 이미지를 서버에 저장하고, 필요 시에 다운받아 사용할 수 있따.
+
 ## 3.2. 명령어
 
-| 명령어                                      | 설명                       |
-| ------------------------------------------- | -------------------------- |
-| docker login -u [ID]                        | Dockerfile에서 이미지 빌드 |
-| ocker search [이미지명]                     | Dockerfile에서 이미지 빌드 |
-| docker push [도커 허브 ID/이미지 명]:[태그] | Dockerfile에서 이미지 빌드 |
+| 명령어                                      | 설명                          |
+| ------------------------------------------- | ----------------------------- |
+| docker login -u [ID]                        | DockerHub 로그인              |
+| docker search [이미지명]                    | DockerHub에서 이미지 검색     |
+| docker push [도커 허브 ID/이미지 명]:[태그] | DockerHub에 이미지 업로드     |
+| docker pull [이미지명]                      | DockerHub에서 이미지 다운로드 |
+| docker loguout                              | DockerHub 로그아웃            |
 
 # 4. Volume
 
 ## 4.1. 개요
 
-위의 절차에서는 바인드 마운트를 사용하여 시스템 경로와 컨테이너 내부 경로를 연결하였다. 바인드 마운트와 도커 볼륨은 거의 유사하다.
-
-하지만 바인드 마운트는 호스트의 특정 경로를 설정해서 매핑해줄수 있는 한편, 볼륨은 지정된 경로 `/var/lib/docker/volumes/[볼륨이름]/_data` 에만 매핑이 가능하다. 볼륨은 장점은 도커 명령어를 통해 더 간편하게 관리가 가능하다.
+바인드 마운트와 도커 볼륨은 거의 유사하다. 두 방식 모드 호스트의 경로(디렉토리)를 도커 컨테이너 내부에서 공유해서 사용할 수 있다는 공통점이 있따. 다만 바인드 마운트는 호스트의 특정 경로를 설정해서 매핑해줄수 있는 한편, 볼륨은 지정된 경로 `/var/lib/docker/volumes/[볼륨이름]/_data` 에만 매핑이 가능하다. 볼륨은 장점은 도커 명령어를 통해 더 간편하게 관리가 가능하다.
 
 ## 4.2. 명령어
 
