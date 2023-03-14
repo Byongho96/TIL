@@ -93,24 +93,6 @@ CMD ["index.js"]
 | docker image rm [이미지명]               | Docker 이미지 삭제               |
 | docker image prune [옵션]                | 사용하지 않는 docker 이미지 삭제 |
 
-- docker run 옵션
-  - **-i, --interactive**  
-    표준 입력(stdin)을 활성화
-  - **--name**  
-     컨테이너 이름 설정
-  * **-d, --detach**  
-    Detached 모드. 컨테이너를 백그라운드로 실행
-  * **-p, --publish**  
-    호스트와 컨테이너의 포트를 연결
-    <호스트 포트>:<컨테이너 포트>
-  * **-v, --volume**  
-    컨테이너 마운트 설정
-    <호스트 경로/볼륨>:<컨테이너 경로>
-  * **-u, --user**  
-    컨테이너의 리눅스 사용자 계정 설정
-  * **-e, --env**  
-    컨테이너 내 환경 변수를 설정
-
 # 2. 컨테이너
 
 ## 2.1. 개요
@@ -135,6 +117,26 @@ CMD ["index.js"]
 | docker prune [컨테이너명/ID]              | 사용되지 않는 Docker 컨테이너 삭제        |
 | docker logs [컨테이너명/ID]               | 실행중인 Docker 로그 기록 조회            |
 | docker logs -f [컨테이너명/ID]            | Docker 로그 기록 강제 조회                |
+
+- docker run 옵션
+  - **-i, --interactive**  
+    표준 입력(stdin)을 활성화
+  - **--name**  
+     컨테이너 이름 설정
+  * **-d, --detach**  
+    Detached 모드. 컨테이너를 백그라운드로 실행
+  * **-p, --publish**  
+    호스트와 컨테이너의 포트를 연결
+    <호스트 포트>:<컨테이너 포트>
+  * **-v, --volume**  
+    컨테이너 마운트 설정
+    <호스트 경로/볼륨>:<컨테이너 경로>
+  * **-u, --user**  
+    컨테이너의 리눅스 사용자 계정 설정
+  * **-e, --env**  
+    컨테이너 내 환경 변수를 설정
+  * **--restart**  
+    프로세스 종료시 재시작 정책 설정
 
 # 3. DockerHub
 
