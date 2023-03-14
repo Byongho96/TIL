@@ -7,6 +7,8 @@
   - [1.2. Nginx 설치](#12-nginx-설치)
 - [2. 폴더구조](#2-폴더구조)
   - [2.1. nginx.conf](#21-nginxconf)
+    - [2.1.1. conf.d/](#211-confd)
+    - [2.1.2. sites-enabled/](#212-sites-enabled)
 - [3. Directives](#3-directives)
   - [3.1. Block Directive](#31-block-directive)
   - [3.2. Simple Directvie](#32-simple-directvie)
@@ -16,6 +18,7 @@
   - [5.2. reverse proxy](#52-reverse-proxy)
   - [5.3. load balancing](#53-load-balancing)
   - [5.4. HTTP caching](#54-http-caching)
+  - [6. certbot](#6-certbot)
 
 # 1. 개요
 
@@ -74,6 +77,10 @@ nginx/
 ├── conf.d/
 │   ├── default.conf
 │   └── templates/
+├── sites-available/
+│   └── default.conf
+├── sites-enabled/
+│   └── default.conf
 ├── h5bp/
 │   ├── basic.conf
 │   ├── location/
@@ -87,9 +94,9 @@ nginx/
 ## 2.1. nginx.conf
 
 Nginx의 메인(최상단) 설정 파일이다. 아래 요약된 설정파일을 보면 하단에 `include /etc/nginx/conf.d/*.conf;`명령어가 있는 것을 볼 수 있다.
-해당 명령어로 인해서 **conf.d/ 폴더 하위에 있는 `*.conf` nginx 설정파일들은 모두 http 블록 다이렉티브 안에 선언된다.**
+해당 명령어로 인해서 **conf.d/ 폴더와 sites-enabled/ 폴더 하위에 있는 `*.conf` nginx 설정파일들은 모두 http 블록 다이렉티브 안에 선언된다.**
 
-```c
+```
 user www-data;
 worker_processes auto;
 pid /run/nginx.pid;
@@ -125,6 +132,39 @@ http {
 
 ```
 
+### 2.1.1. conf.d/
+
+conf.d/ 디렉토리에는 모든 웹 사이트와 웹 어플리케이션에 적용할 전역적인 `*.conf`파일을 생성한다. 이 폴더 하위에 생성된 설정 파일들은 자동적으로 nginx에 등록된다.
+
+### 2.1.2. sites-enabled/
+
+sites-enabled/ 디렉토리에는 웹 사이트/웹 어플리케이션 별로 적용할 지역적인 `*.conf`파일을 생성한다. **하지만 해당 디렉토리에 직접 설정파일을 두지 않고, sites-availables 폴더에 작성한 뒤 심볼링 링크를 걸어준다.**
+이렇게 함으로써 웹사이트별 모든 설정파일 들을 sites-availables에 쌓아두는 동시에, 필요에 따라 링크를 생성/삭제하여 적용여부를 결정할 수 있다.
+
+- **웹사이트 개별 설정 파일 작성**
+
+  ```bash
+  sudo vi /etc/nginx/sites-available/myite.conf
+  ```
+
+- **소프트 링크 생성**
+
+  ```bash
+  sudo ln -s /etc/nginx/sites-available/mysite.conf /etc/nginx/sites-enabled/
+  ```
+
+- **소프트 링크 삭제**  
+  아래 명령어를 실행해도 링크만 끊을 뿐, 실제 원본 설정파일이 삭제되지는 않는다.
+  ```bash
+  sudo rm /etc/nginx/sites-enabled/mysite.conf
+  ```
+
+* **nginx 재시작**
+
+  ```bash
+  sudo service nginx restart
+  ```
+
 # 3. Directives
 
 [Nginx 공식문서 주요 module Directvie](https://nginx.org/en/docs/http/ngx_http_core_module.html)
@@ -147,22 +187,22 @@ http {
   }
   ```
 
-  위 코드에서 실제 호스트의 도메인이 아닌 이름으로 server_name을 설정하면, DNS에 도메인가 호스트가 매핑되어있지 않기 때문에 요청이 가지 않는 것이 당연하다
+위 코드에서 실제 호스트의 도메인이 아닌 이름으로 server_name을 설정하면, DNS에 도메인가 호스트가 매핑되어있지 않기 때문에 요청이 가지 않는 것이 당연하다
 
-  ```c
-  127.0.0.1 localhost
-  127.0.0.1 helloworld.com
+```c
+127.0.0.1 localhost
+127.0.0.1 helloworld.com
 
-  # The following lines are desirable for IPv6 capable hosts
-  ::1 ip6-localhost ip6-loopback
-  fe00::0 ip6-localnet
-  ff00::0 ip6-mcastprefix
-  ff02::1 ip6-allnodes
-  ff02::2 ip6-allrouters
-  ff02::3 ip6-allhosts
-  ```
+# The following lines are desirable for IPv6 capable hosts
+::1 ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts
+```
 
-  다만, local환경에서 요청을 보낼 경우, 위처럼 `/etc/hosts` 파일에 도메인과 ip주소를 매핑함으로써 DNS서버 앞단에서 도메인에 대한 ip주소를 임의 설정할 수 있다.
+다만, local환경에서 요청을 보낼 경우, 위처럼 `/etc/hosts` 파일에 도메인과 ip주소를 매핑함으로써 DNS서버 앞단에서 도메인에 대한 ip주소를 임의 설정할 수 있다.
 
 - **location block**
   사용자 요청에 대해 엔드포인트 별로 설정할 수 있다. 기본적으로 prefix 규칙을 따르지만, `=`연산자를 붙여서 엔드포인트가 완전히 일치할 경우만 정의해줄 수 있다.
@@ -335,13 +375,13 @@ server {
 }
 ```
 
-- **server block**  
+- **server block**
   포트 80에서 my_website.com 도메인을 수신하는 서버 블록을 정의한다.
-- **location block**  
+- **location block**
   '/' 로 모든 엔드포인트에 대해 설정한다.
-- **proxy_pass**  
+- **proxy_pass**
   10.0.0.1:8000 으로 서버로 요청을 프록시합니다.
-- **proxy_set_header**  
+- **proxy_set_header**
   나가는 요청의 호스트 및 X-Real-IP 헤더를 설정한다. $remote_addr는 클라이언트 주소를 의미한다. 이를 통해 요청이 백엔드 서버로 올바르게 라우팅되고 올바른 클라이언트 IP 주소가 기록되도록 할 수 있다.
 
 ## 5.3. load balancing
@@ -367,13 +407,13 @@ http {
 }
 ```
 
-- **upstream block**  
+- **upstream block**
   upstream 블록을 my_backend라고 이름 짓고, Nginx가 요청을 밸런싱할 서버를 담는다.
 
-- **proxy_pass**  
+- **proxy_pass**
   proxy_pass 디렉티브를 사용하여 my_backend 업스트림을 프록싱할 대상으로 지정한다.
 
-- **proxy_set_header**  
+- **proxy_set_header**
   나가는 요청의 호스트 및 X-Real-IP 헤더를 설정한다. $remote_addr는 클라이언트 주소를 의미한다.
 
 위 예시에서 Nginx는 라운드 로빈 방식으로 요청을 3개의 백엔드 서버에 밸런싱하여, 각 서버는 동일한 양의 수신 트래픽을 나눠가진다.
@@ -426,3 +466,51 @@ http {
 
 - **proxy_cache_bypass**
   캐시에서 응답을 가져오지 않는 조건을 정의한다.
+
+## 6. certbot
+
+certbot을 nginx에 등록하여 자동으로 인증서를 발급받고 nginx에 등록할 수 있다.
+
+[https://certbot.eff.org/](https://certbot.eff.org/)
+위 사이트에 접속하여 Software(nginx), System(Ubuntu) 선택 후 가이드를 따라 진행할 수 있다.
+
+- **core 설치 (EC2에 설치 되어있음)**
+
+  ```bash
+  sudo snap install core
+  sudo snap refresh core
+  ```
+
+- **certbot 설치**
+
+  ```bash
+  sudo snap install --classic certbot
+  ```
+
+- **심볼릭(바로 가기) 링크 생성**
+
+  ```bash
+  sudo ln -s /snap/bin/certbot /usr/bin/certbot
+  ```
+
+- **nginx 등록**
+
+  ```bash
+  sudo certbot --nginx
+  ```
+
+- **이메일 입력**
+
+  <img alt="certbot 이메일 입력" src="./assets/certbot_agreement.jpg" width="500">
+
+- **동의 (y입력)**
+
+  <img alt="certbot 이메일 입력" src="./assets/certbot_email.jpg" width="500">
+
+- **도메인 선택**
+
+  <img alt="certbot 이메일 입력" src="./assets/certbot_domain.jpg" width="500">
+
+```
+
+```

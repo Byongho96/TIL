@@ -5,6 +5,7 @@ since 2022.08.
 - :hammer_and_wrench: Tools
 
   - :large_orange_diamond: [Git](./Tools/Git.md)
+  - :penguin: [Linux](./Tools/Linux.md)
   - 🐋 [Docker](./Tools/Docker.md)
   - :negative_squared_cross_mark: [Nginx](./Tools/Nginx.md)
   - :unicorn: [Gunicorn](./Tools/Gunicorn.md)

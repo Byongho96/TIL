@@ -1,15 +1,76 @@
-Gunicorn is a Python Web Server Gateway Interface (WSGI) HTTP server. It is a lightweight server that is used to run Python web applications. Gunicorn is designed to be easy to use, efficient, and scalable.
+# Gunicorn
 
-When a Python web application is developed, it needs a way to communicate with a web server in order to handle requests and responses. Gunicorn acts as a middleman between the web server and the Python application. It receives HTTP requests from the web server, passes them to the Python application for processing, and then returns the response to the web server.
+# 1. 개요
 
-Gunicorn is known for its ability to handle multiple requests simultaneously, making it a good choice for applications that need to handle high traffic. It is also relatively easy to configure and can be used with a variety of web frameworks, such as Flask and Django.
+Gunicorn 은 파이썬 웹 어플리케이션을 위한 WSGI(Web Server Gateway Interface) HTTP 서버이다.
 
-sudo ln -s /etc/nginx/sites-available/django_test /etc/nginx/sites-enabled
+Gunicorn은 클라이언트의 요청을 받아 WSGI 인터페이스를 통해 웹 어플리케이션과 연결한다. 또한 Gunicorn은 워커 프로세스를 사용하여 병렬로 요청을 처리함으로써, 서버의 처리 능력을 향상 시켜 다수의 요청을 대한 응답 시간을 줄인다.
 
-The command "sudo ln -s /etc/nginx/sites-available/django_test /etc/nginx/sites-enabled" creates a symbolic link between the configuration file "django_test" in the "sites-available" directory and the "sites-enabled" directory in the Nginx configuration.
+# 2. 설치 및 세팅
 
-In Nginx, the "sites-available" directory contains the configuration files for all the websites or web applications that Nginx can serve. However, these configuration files are not active by default. The "sites-enabled" directory contains symbolic links to the configuration files that are currently active or enabled.
+- **gunicorn 설치**
 
-By running the command "sudo ln -s /etc/nginx/sites-available/django_test /etc/nginx/sites-enabled", a symbolic link named "django_test" is created in the "sites-enabled" directory, which points to the actual configuration file in the "sites-available" directory. This makes the configuration file active, and Nginx can now serve the website or web application defined in that configuration file.
+  - [https://docs.gunicorn.org/en/stable/install.html](https://docs.gunicorn.org/en/stable/install.html)
 
-It's important to note that this command assumes that the file "django_test" exists in the "sites-available" directory and that the Nginx server is installed and running on the system.
+  ```bash
+  pip install gunicorn
+  ```
+
+- **파이썬 프로젝트 연결**
+
+  ```bash
+  gunicorn --bind 0.0.0.0:8000 {Django 마스터 앱}.wsgi:application
+  ```
+
+  ```python
+  # settings.py
+
+  ALLOWED_HOSTS = [
+      # 할당된 EC2 인스턴스의 IP주소 입력. 현재 예시의 경우 아래와 같이 입력
+  		'13.209.9.14',
+  ]
+  ```
+
+- **gnicorn service 파일 작성**
+
+  ```bash
+  sudo vi /etc/systemd/system/gunicorn.service
+  ```
+
+  ```
+  [Unit]
+  Description=gunicorn daemon
+  After=network.target
+
+  [Service]
+  User=ubuntu
+  Group=www-data
+  WorkingDirectory=/home/ubuntu/{프로젝트 폴더}
+  ExecStart=/home/ubuntu/{프로젝트 폴더}/venv/bin/gunicorn \
+          --workers 3 \
+          --bind 127.0.0.1:8000 \
+          {마스터 앱}.wsgi:application
+
+  [Install]
+  WantedBy=multi-user.target
+  ```
+
+- **시스템 데몬 재시작(설정 파일 반영)**
+
+  ```bash
+  sudo systemctl daemon-reload
+  ```
+
+- **gunicorn 서비스 실행 및 등록**
+
+  ```bash
+  sudo systemctl start gunicorn
+  sudo systemctl enable gunicorn
+  sudo systemctl status gunicorn.service
+
+  # 중지
+  # sudo systemctl stop gunicorn
+
+  # 재시작
+  # sudo systemctl restart gunicorn
+  ```
