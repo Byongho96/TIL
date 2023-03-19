@@ -16,6 +16,11 @@
 - [4. Volume](#4-volume)
   - [4.1. 개요](#41-개요)
   - [4.2. 명령어](#42-명령어)
+- [5. Docker Compose](#5-docker-compose)
+  - [5.1. 개요](#51-개요)
+  - [5.2. docker-compose](#52-docker-compose)
+  - [5.3. 활용](#53-활용)
+    - [5.3.1. blue-green](#531-blue-green)
 
 # 0. Docker
 
@@ -203,6 +208,73 @@ CMD ["index.js"]
       "Source": [호스트 경로],
       "Destination": [컨테이너 내부 경로],
       ...
-  }
+    }
   ]
   ```
+
+# 5. Docker Compose
+
+## 5.1. 개요
+
+## 5.2. docker-compose
+
+```c
+
+```
+
+```c
+version: "3.2"
+services:
+  front:
+    container_name: imfine-front # 프론트엔드 서버 컨테이너 이름
+    image: imfine-front #프론트엔드 서버 이미지 이름
+    volumes:
+      - /etc/localtime:/etc/localtime
+    ports:
+      - [프론트앤드 서버 포트번호]:[도커 내의 포트번호]
+
+  back:
+    container_name: imfine-back # 백엔드 서버 컨테이너 이름
+    image: imfine-back # 백엔드 서버 이미지 이름
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://[MariaDB 컨테이너 이름]:[도커에서 연동할 포트번호]/imfine
+      - SPRING_DATASOURCE_USERNAME=[MariaDB 계정이름]
+      - SPRING_DATASOURCE_PASSWORD=[계정의 비밀번호]
+    ports:
+      - [백엔드 서버 포트번호]:[도커 내의 포트번호]
+    volumes:
+      - [연동할 실제 위치]:/home/resource
+      - /etc/localtime:/etc/localtime
+    depends_on:
+      - [MariaDB 컨테이너 이름]
+      - [redis 컨테이너 이름]
+
+  mariadb:
+    container_name: [MariaDB 컨테이너 이름]
+    image: mariadb
+    volumes:
+      - [연동할 실제 위치]:/var/lib/mysql
+      - /etc/localtime:/etc/localtime
+    environment:
+      - MYSQL_DATABASE=[DB이름]
+      - MYSQL_ROOT_PASSWORD=[계정의 비밀번호]
+    ports:
+      - [port]:3306
+
+  redis:
+    container_name: [redis 컨테이너 이름]
+    image: redis
+    volumes:
+      - [연동할 실제 위치]:/data
+      - /etc/localtime:/etc/localtime
+    ports:
+      - [port]:6379
+```
+
+## 5.3. 활용
+
+### 5.3.1. blue-green
+
+- **blue**
+- **green**
+- **deploy.sh**
