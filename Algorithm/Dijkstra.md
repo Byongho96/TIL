@@ -103,7 +103,7 @@ heap을 사용할 경우, 시간복잡도 결정인자가 노드 갯수(V)에서
           continue
 
       # 인접 노드들의 거리 재계산하여 heap에 push
-      for adj, weight in adjLst[now]:
+      for adj, weight in adjLst[nearest]:
           new_dist = dist + weight
           if new_dist < distance[adj]:
               distance[adj] = new_dist

@@ -10,7 +10,6 @@ since 2022.08.
   - :negative_squared_cross_mark: [Nginx](./Tools/Nginx.md)
   - :unicorn: [Gunicorn](./Tools/Gunicorn.md)
   - :older_man: [Jenkins](./Tools/Jenkins.md)
-  - :orange: [Jupyter Notebook](./Tools/JupyterNotebook.md)
 
 - :books: Langauges
 

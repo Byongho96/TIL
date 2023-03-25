@@ -18,9 +18,8 @@
   - [4.2. 명령어](#42-명령어)
 - [5. Docker Compose](#5-docker-compose)
   - [5.1. 개요](#51-개요)
-  - [5.2. docker-compose](#52-docker-compose)
-  - [5.3. 활용](#53-활용)
-    - [5.3.1. blue-green](#531-blue-green)
+  - [5.2. YAML 파일](#52-yaml-파일)
+  - [5.3. 명령어](#53-명령어)
 
 # 0. Docker
 
@@ -132,10 +131,10 @@ CMD ["index.js"]
     Detached 모드. 컨테이너를 백그라운드로 실행
   * **-p, --publish**  
     호스트와 컨테이너의 포트를 연결
-    <호스트 포트>:<컨테이너 포트>
+    [호스트 포트]:[컨테이너 포트]
   * **-v, --volume**  
     컨테이너 마운트 설정
-    <호스트 경로/볼륨>:<컨테이너 경로>
+    [호스트 경로/볼륨]:[컨테이너 경로]
   * **-u, --user**  
     컨테이너의 리눅스 사용자 계정 설정
   * **-e, --env**  
@@ -216,65 +215,89 @@ CMD ["index.js"]
 
 ## 5.1. 개요
 
-## 5.2. docker-compose
+Docker Compose는 여러 개의 도커 컨테이너를 관리할 수 있는 명령어를 제공한다.
+YAML 파일을 작성함으로써 여러 개의 도커 컨테이너를 묶고, 컨테이너 간의 관계를 정의할 수 있고, Docker Compose는 이 yaml 파일을 인자로 받는 명령어를 제공한다.
 
-```c
+## 5.2. YAML 파일
 
-```
+```yaml
+# 사용하는 도커 버전에 따라 yaml 파일 포맷의 버전을 설정한다.
+version: '3.2'
 
-```c
-version: "3.2"
+# 어플리 케이션에 사용할 service 목록을 정의한다
 services:
-  front:
-    container_name: imfine-front # 프론트엔드 서버 컨테이너 이름
-    image: imfine-front #프론트엔드 서버 이미지 이름
-    volumes:
-      - /etc/localtime:/etc/localtime
-    ports:
-      - [프론트앤드 서버 포트번호]:[도커 내의 포트번호]
-
+  # 기본 컨테이너 이름 (container_name 옵션이 없을 경우)
   back:
-    container_name: imfine-back # 백엔드 서버 컨테이너 이름
-    image: imfine-back # 백엔드 서버 이미지 이름
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:mariadb://[MariaDB 컨테이너 이름]:[도커에서 연동할 포트번호]/imfine
-      - SPRING_DATASOURCE_USERNAME=[MariaDB 계정이름]
-      - SPRING_DATASOURCE_PASSWORD=[계정의 비밀번호]
-    ports:
-      - [백엔드 서버 포트번호]:[도커 내의 포트번호]
-    volumes:
-      - [연동할 실제 위치]:/home/resource
-      - /etc/localtime:/etc/localtime
+    # 의존 관계 설정, 컨테이너 이름
     depends_on:
-      - [MariaDB 컨테이너 이름]
-      - [redis 컨테이너 이름]
+      - mysql
 
-  mariadb:
-    container_name: [MariaDB 컨테이너 이름]
-    image: mariadb
+    # 빌드 옵션
+    build:
+      context: . # 빌드할 파일들이 존재하는 경로를 지정
+      dockerfile: ./dir # dockerfile이 여러개거나 context의 위치와 다를 경우
+
+    # 컨테이너를 실행할 이미지 이름 설정
+    # 빌드 옵션이 있을 경우, 빌드한 결과 이미지 이름으로 사용
+    image: imfine-back
+
+    # 컨테이너 이름 지정
+    container_name: imfine-back
+
+    # 포트 매핑
+    ports:
+      - 8000:8000
+
+    # 볼륨 마운팅
     volumes:
-      - [연동할 실제 위치]:/var/lib/mysql
       - /etc/localtime:/etc/localtime
+
+    # 환경변수 설정
     environment:
-      - MYSQL_DATABASE=[DB이름]
-      - MYSQL_ROOT_PASSWORD=[계정의 비밀번호]
-    ports:
-      - [port]:3306
+      - WORDPRESS_DB_HOST:db:3306
+      - WORDPRESS_DB_NAME:db:word
+      - WORDPRESS_DB_USER:word_user
+      - WORDPRESS_DB_PASSWORD=123456
 
-  redis:
-    container_name: [redis 컨테이너 이름]
-    image: redis
+  mysql:
+    image: mysql:5.7
     volumes:
-      - [연동할 실제 위치]:/data
-      - /etc/localtime:/etc/localtime
-    ports:
-      - [port]:6379
+      - ./db_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWROD=123456
+      - MYSQL_DATABASE=word
+      - MYSQL_USER=word_user
+      - MYSQL_PASSWORD=123456
 ```
 
-## 5.3. 활용
+## 5.3. 명령어
 
-### 5.3.1. blue-green
+docker-compose 명령어는 참조할 수 있는 docker-compose.yaml 파일이 존재해야 한다. 특정 yaml파일에 대한 결과를 보고 싶으면 인자로 넘겨준다.
 
-- **blue**
-- **green**
-- **deploy.sh**
+-
+
+| 명령어                    | 설명                                                                   |
+| ------------------------- | ---------------------------------------------------------------------- |
+| docker-compose build      | docker-compose 파일에 정의된 이미지를 빌드                             |
+| docker-compose up         | docker-compose 파일에 정의된 서비스를 실행                             |
+| docker-compose down       | docker-compose 파일에 정의된 서비스를 종료 (컨테이너 제거)             |
+| docker-compose down --rmi | docker-compose 파일에 정의된 서비스를 종료하고 이미지까지 제거         |
+| docker-compose start      | docker-compose 파일에 정의된 서비스를 시작 (컨테이너 시작)             |
+| docker-compose stop       | docker-compose 파일에 정의된 서비스를 정지 (컨테이너 정지)             |
+| docker-compose restart    | docker-compose 파일에 정의된 서비스를 재시작 (컨테이너 재시작)         |
+| docker-compose ps         | docker-compose 파일에 정의된 실행중인 서비스 상태 확인 (컨테이너 목록) |
+| docker-compose ps -a      | docker-compose 파일에 정의된 모든 서비스 상태 확인 (컨테이너 목록)     |
+| docker-compose logs       | docker-compose 파일에 정의된 서비스들의 로그를 확인                    |
+
+```bash
+
+docker compose ps
+NAME            IMAGE     COMMAND           SERVICE    CREATED         STATUS          PORTS
+example-foo-1   alpine    "/entrypoint.…"   foo        4 seconds ago   Up 2 seconds    0.0.0.0:8080->80/tcp
+
+
+docker compose ps --all
+NAME            IMAGE     COMMAND           SERVICE    CREATED         STATUS          PORTS
+example-foo-1   alpine    "/entrypoint.…"   foo        4 seconds ago   Up 2 seconds    0.0.0.0:8080->80/tcp
+example-bar-1   alpine    "/entrypoint.…"   bar        4 seconds ago   exited (0)
+```
