@@ -13,6 +13,7 @@ Pipeline Scripts는 크게 Declarative Pipeline과 Scripted Pipeline 두 가지 
 
 ## 2.1. Pipeline script
 
+```pipeline
 pipeline {
 
 agent none
@@ -123,3 +124,4 @@ values 'chrome', 'edge', 'firefox', 'safari'
 }
 // ...
 }
+```

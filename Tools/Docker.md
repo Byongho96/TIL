@@ -274,8 +274,6 @@ services:
 
 docker-compose 명령어는 참조할 수 있는 docker-compose.yaml 파일이 존재해야 한다. 특정 yaml파일에 대한 결과를 보고 싶으면 인자로 넘겨준다.
 
--
-
 | 명령어                    | 설명                                                                   |
 | ------------------------- | ---------------------------------------------------------------------- |
 | docker-compose build      | docker-compose 파일에 정의된 이미지를 빌드                             |
@@ -288,6 +286,8 @@ docker-compose 명령어는 참조할 수 있는 docker-compose.yaml 파일이 �
 | docker-compose ps         | docker-compose 파일에 정의된 실행중인 서비스 상태 확인 (컨테이너 목록) |
 | docker-compose ps -a      | docker-compose 파일에 정의된 모든 서비스 상태 확인 (컨테이너 목록)     |
 | docker-compose logs       | docker-compose 파일에 정의된 서비스들의 로그를 확인                    |
+
+**docker-compose ps 출력 예시**
 
 ```bash
 

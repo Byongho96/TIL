@@ -22,21 +22,53 @@
 
 # 4. 예시
 
-백트래킹의 경우, 문제 조건에 따라 다양한 형태로 구현이 가능하기 때문에 구현 예시를 보여준다.
+백트래킹의 경우, 크게 **종료조건, 가지치기(가능할 경우), 자식 상태 탐색**에 대응하는 로직을 가진다.
+문제 상황에 따라 다양하게 수정 및 적용이 가능하다. 아래는 백트래킹의 예시 중 하나인 백준의 알파 틱택토 문제에 대한 정답 로직을 첨부한다.
 
-모든 경우, **종료조건, 가지치기(가능할 경우), 자식 상태 탐색**에 대응하는 로직은 공통적으로 존재한다.
+[백준 16571번 알파 틱택토](https://www.acmicpc.net/problem/16571)
+백트래킹이 완전탐색 기반 알고리즘이라는 것을 잘 활용한 문제이다. 다음 자식 상태의 모든 값을 비교하여 최선의 결과를 반환함으로써 최종 결과 또한 최선의 결과를 도출한다.
 
 - **Python**
 
   ```python
-  def bactracking(node):
+  '''
+  <input>
+  N: 최대 단계
+  step: 현재 단계
+  board: 틱택토 현재 상황
 
-    if node == answer:
-        return
+  <output>
+  0: 현재 플레이어의 패배
+  1: 비김
+  2: 현재 플레이어의 승리
+  '''
+  def backtracking(N, step, board, player1, player2):
 
-    if node is
-        return
+    current = player1
+    previous = player2
+    if step % 2:
+        current = player2
+        previous = player1
 
-    for adj in adjLst[node]:
-        if not visited
+    # 종료조건1: 승패 판정
+    if isWin(board, previous):
+        return 0
+
+    # 종료조건2: 게임이 더 진행될 수 없는 경우
+    if N == step:
+        return 1
+
+    # 내가 둘 수 있는 경우의 수 중 최선을 반납
+    best_result = 0
+    for n in range(9):
+        i, j = divmod(n, 3)
+        if not board[i][j]:
+            board[i][j] = current
+            result = 2 - backtracking(N, step + 1, board, player1, player2)
+            board[i][j] = 0
+            best_result = max(best_result, result)
+            if best_result == 2:
+                break
+
+    return best_result
   ```
