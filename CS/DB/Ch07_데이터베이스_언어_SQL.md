@@ -18,8 +18,8 @@
     - [7.3.1.6. 정렬 검색](#7316-정렬-검색)
     - [7.3.1.7. 집계 함수를 이용한 검색](#7317-집계-함수를-이용한-검색)
     - [7.3.1.8. 그룹 별 검색](#7318-그룹-별-검색)
-    - [7.3.1.9. 여러 테이블에 대한 조인 검색](#7319-여러-테이블에-대한-조인-검색)
-    - [7.3.1.10. 부속 질의문을 이용한 검색](#73110-부속-질의문을-이용한-검색)
+    - [7.3.1.9. 조인 검색](#7319-조인-검색)
+    - [7.3.1.10. 부속 질의문 검색](#73110-부속-질의문-검색)
   - [7.3.2. 데이터 삽입](#732-데이터-삽입)
   - [7.3.3. 데이터 수정](#733-데이터-수정)
   - [7.3.4. 데이터 삭제](#734-데이터-삭제)
@@ -448,7 +448,7 @@ FROM 테이블_리스트
 [ ORDER BY 속성_리스트 [ ASC | DESC ] ]
 ```
 
-ORDER BY 키워드와 함게 그룹짓는 속성 리스트를 지정하고, HAVING 키워드를 이용하여 그룹에 대한 조건을 걸 수 있다.
+ORDER BY 키워드와 함게 그룹짓는 속성 리스트를 지정하고, HAVING 키워드를 이용하여 그룹에 대한 조건을 걸 수 있다.  
 보통 그룹을 나누는 기준이 되는 속성을 SELECT절에도 작성하여 결과테이블에서 확인이 용이하도록 한다. 또한 집계함수나 GROUP BY 절에 있는 속성 외의 속성을 SELECT 절에 사용할 수 없다. 생각해보니 안그러면 결과 테이블만 보았을 때, 무엇을 기준으로 그룹지어졌는지 알 수가 없다.
 
 ```sql
@@ -489,55 +489,56 @@ GROUP BY Product, Customer;
   GROUP BY grade HAVING AVG(reserves) >= 1000;
   ```
 
-#### 7.3.1.9. 여러 테이블에 대한 조인 검색
+#### 7.3.1.9. 조인 검색
 
 <mark style='background-color: #fff5b1'>조인 속성의 이름은 달라도 되지만 도메인은 반드시 같아야 한다.</mark> 따라서 일반적으로 테이블의 관계를 나타내는 외래키를 조인 속성으로 이용한다.
 
-- WHERE 테이블1.속성1 = 테이블2.속성2  
+- **WHERE 테이블1.속성1 = 테이블2.속성2**  
   속성명이 테이블간에 겹치지 않을 경우 테이블 명은 생략할 수 있다.
   - banana 고객이 주문한 제품의 이름을 검색해보자.
     ```sql
     SELECT Product.name
     FROM Product, Orders
-    WHERE Orders.Customer = 'banana' AND Product.num = Orders.Product;
+    WHERE Orders.customer = 'banana' AND Product.num = Orders.product;
     ```
   - 고명석 고객이 주문한 제품의 제품명을 검색해보자.
     ```sql
     SELECT Product.name
     FROM Customer, Product, Orders
-    WHERE Customer.name = '고명석' AND Customer.id = Orders.Customer AND Product.num = Orders.Product;
+    WHERE Customer.name = '고명석' AND Customer.id = Orders.customer AND Product.num = Orders.product;
     ```
-- WHERE 별칭1.속성1 = 별칭2.속성2
+- **WHERE 별칭1.속성1 = 별칭2.속성2**
   - 나이가 30세 이상인 고객이 주문한 제품 번호와 주문일자를 검색해보자.
-  ```sql
-  SELECT Orders.Product, Orders.ordered_at
-  FROM Customer c, Orders o
-  WHERE c.age >= 30 AND c.id = o.Customer;
-  ```
-- FROM 테이블1 INNER JOIN 테이블2 ON 조인조건
+    ```sql
+    SELECT Orders.product, Orders.ordered_at
+    FROM Customer c, Orders o
+    WHERE c.age >= 30 AND c.id = o.customer;
+    ```
+- **FROM 테이블1 INNER JOIN 테이블2 ON 조인조건**
   - 나이가 30세 이상인 고객이 주문한 제품 번호와 주문일자를 검색해보자.
-  ```sql
-  SELECT Orders.Product, Orders.ordered_at
-  FROM Customer INNER JOIN Orders ON Customer.id = Orders.Customer
-  WHERE c.age >= 30;
-  ```
-- FROM 테이블1 LEFT | RIGHT | FULL OUTER JOIN 테이블2 ON 조인조건
+    ```sql
+    SELECT Orders.product, Orders.ordered_at
+    FROM Customer INNER JOIN Orders ON Customer.id = Orders.customer
+    WHERE c.age >= 30;
+    ```
+- **FROM 테이블1 [LEFT | RIGHT | FULL] OUTER JOIN 테이블2 ON 조인조건**
 
   - 모든 고객들의 고객이름과 주문제품, 주문일자를 검색해보자.
 
-  ```sql
-  SELECT Customer.name, Orders.Product, Orders.ordered_at
-  FROM Customer LEFT OUTER JOIN Orders ON Customer.id = Orders.Customer
-  ```
+    ```sql
+    SELECT Customer.name, Orders.product, Orders.ordered_at
+    FROM Customer LEFT OUTER JOIN Orders ON Customer.id = Orders.customer
+    ```
 
-#### 7.3.1.10. 부속 질의문을 이용한 검색
+#### 7.3.1.10. 부속 질의문 검색
 
-SELECT문의 WHERE절 안에 또 다른 SELECT 문을 포함할 수 있다. 이를 부속 질의문(sub query)라고 한다.
-부속 질의문은 괄호로 묶어 작성하고 ORDER BY 절을 사용할 수 없으며, 상의 질의문보다 먼저 수행된다.
-결과를 하나 혹은 하나 이상의 행으로 반환하느냐에 따라서 상의 질의문과 연결하는 사용가능 연산자의 종류가 달라진다.
-|단일 행 부속 질의문 연산자|
-|---|
-|=, <>, <, >, <=, =>|
+> SELECT문의 WHERE절 안에 또 다른 SELECT 문을 포함할 수 있다. 이를 부속 질의문(sub query)라고 한다.
+
+부속 질의문은 괄호로 묶어 작성하고 ORDER BY 절을 사용할 수 없으며, 상의 질의문보다 먼저 수행된다. 결과를 하나 혹은 하나 이상의 행으로 반환하느냐에 따라서 상의 질의문과 연결하는 사용가능 연산자의 종류가 달라진다.
+
+| 단일 행 부속 질의문 연산자 |
+| -------------------------- |
+| =, <>, <, >, <=, =>        |
 
 | 다중 행 부속 질의문 연산자          | 의미                                    |
 | ----------------------------------- | --------------------------------------- |
@@ -589,7 +590,7 @@ SELECT문의 WHERE절 안에 또 다른 SELECT 문을 포함할 수 있다. 이�
   ```
 - 2022년 3월 15일에 제품을 주문한 고객의 고객이름을 검색해보자.
   레코드를 EXISTS에 넣어 반환값이 있을 때에만 해당 레코드의 속성값을 출력한다.
-  따라써 sub query에서 SELECT 속성은 \*를 이용하여 모두 선택한다.
+  따라서 sub query에서 SELECT 속성은 \*를 이용하여 모두 선택한다.
   ```sql
   SELECT name
   FROM Customer
@@ -612,36 +613,47 @@ SELECT문의 WHERE절 안에 또 다른 SELECT 문을 포함할 수 있다. 이�
 
 ### 7.3.2. 데이터 삽입
 
-**데이터 직접 삽입**
+- **데이터 직접 삽입**
 
-```sql
-INSERT
-INTO 테이블_이름[(속성_리스트)]
-VALUES 속성값_리스트;
-```
-
-INTO 키워드와 함께 삽입할 테이블 이름을 제시한 이후, 속성의 이름을 나열하는데 이 나열 순서대로 VALUES 키워드 다음의 속성 값들이 차례대로 삽입된다. 따라서 ==INTO절의 속성 이름과 VALUES 절의 속성 값은 순서대로 일대일 대응되야한다.== INTO절의 속성 리스트가 생략된 경우, 테이블의 정의된 모든 속성들에 대한 값을 순서대로 속성 값에 삽입해야한다.
-
-- 고객 테이블에 고객아이디가 strawberry, 고객 이름이 최유경, 나이가 30세, 등급이 vip, 직업이 공무원, 적립금이 100원인 새로운 고객의 정보를 삽입해보자.
   ```sql
   INSERT
-  INTO Customer
-  VALUES ('strawberry', '최유경', 30, 'vip', '공무원', 100);
+  INTO 테이블_이름[(속성_리스트)]
+  VALUES 속성값_리스트;
   ```
-- 고객 테이블에 고객아이디가 tomato, 고객 이름이 정은심, 나이가 36세, 등급이 gold, 적립금은 4000원, 직업은 아직 모르는 새로운 고객의 정보를 삽입해보자.
-  ```sql
-  INSERT
-  INTO Customer(id, name, age, grade, reserves);
-  VALUES ('tomato', '정은심', 36, 'gold', 4000);
-  ```
-  **부속 질의문을 이요한 데이터 삽입**
+
+  INTO 키워드와 함께 삽입할 테이블 이름을 제시한 이후, 속성의 이름을 나열하는데 이 나열 순서대로 VALUES 키워드 다음의 속성 값들이 차례대로 삽입된다. 따라서 <mark style='background-color: #fff5b1'>INTO절의 속성 이름과 VALUES 절의 속성 값은 순서대로 일대일 대응되야한다.</mark> INTO절의 속성 리스트가 생략된 경우, 테이블의 정의된 모든 속성들에 대한 값을 순서대로 속성 값에 삽입해야한다.
+
+  - 고객 테이블에 고객아이디가 strawberry, 고객 이름이 최유경, 나이가 30세, 등급이 vip, 직업이 공무원, 적립금이 100원인 새로운 고객의 정보를 삽입해보자.
+    ```sql
+    INSERT
+    INTO Customer
+    VALUES ('strawberry', '최유경', 30, 'vip', '공무원', 100);
+    ```
+  - 고객 테이블에 고객아이디가 tomato, 고객 이름이 정은심, 나이가 36세, 등급이 gold, 적립금은 4000원, 직업은 아직 모르는 새로운 고객의 정보를 삽입해보자.
+
+    ```sql
+    INSERT
+    INTO Customer(id, name, age, grade, reserves);
+    VALUES ('tomato', '정은심', 36, 'gold', 4000);
+    ```
+
+- **부속 질의문을 이용한 데이터 삽입**  
   다른 어떤 테이블에서 SELECT문으로 검색한 데이터를 데입한다. 이 때, 속성 리스트와 속성값 리스트는 역시 일대일 대응관계이다.
 
-```sql
-INSERT
-INTO 테이블_이름[(속성_리스트)]
-SELECT 문;
-```
+  ```sql
+  INSERT
+  INTO 테이블_이름[(속성_리스트)]
+  SELECT 문;
+  ```
+
+  - 한빛제과에서 제조한 제품의 제품명, 재고량, 단가를 제품 테이블에서 검색하여 한빛제품 테이블에 삽입해보자
+    ```sql
+    INSERT
+    INTO 한빛제품(제품명, 재고량, 단가)
+    SELECT 제품명, 재고량, 단가
+    FROM 제품
+    WHERE 제조업체 == '한빛제과';
+    ```
 
 ### 7.3.3. 데이터 수정
 
@@ -722,8 +734,8 @@ AS SELECT 문
 ```
 
 CREATE VIEW 키워드와 함께 생성할 뷰의 이름을 제시한 후, 뷰를 구성하는 속성의 **이름**을 괄호 안에 나열한다. 이름 리스트를 생략할 시, SELECT 절에 나열된 속성의 이름을 그대로 사용한다.
-AS 키워드와 함께 SELECT 구문을 제시한다.
-WITH CHECK OPTION을 삽입하면, 뷰에 삽입이나 수정 연산 시, AS SELECT 구문에 걸었던 뷰의 제약조건을 적용한다.
+AS 키워드와 함께 SELECT 구문을 제시한다.  
+WITH CHECK OPTION을 삽입하면, 뷰에 삽입이나 수정 연산 시, AS SELECT 구문 안의 WHERE문에 걸었던 뷰의 제약조건을 위반하면 수행되지 않도록 제약조건을 건다.
 
 - Customer 테이블에서 등급이 vip인 고객의 고객아이디, 고객이름, 나이, 등급으로 구성된 뷰를 excellent_customer이라는 이름으로 생성해보자.
   ```sql
@@ -744,28 +756,29 @@ WITH CHECK OPTION을 삽입하면, 뷰에 삽입이나 수정 연산 시, AS SEL
 
 ### 7.4.3. 뷰의 활용
 
-**데이터 검색**
-뷰도 일반 테이블처럼 검색할 수 있다.
+- **데이터 검색**  
+  뷰도 일반 테이블처럼 검색할 수 있다.
 
-- 우수고객 뷰에서 나이가 20세 이상인 고객에 대한 모든 내용을 검색해보자.
-  ```sql
-  SELECT *
-  FROM excellent_customer
-  WHERE age >= 20;
-  ```
-  **데이터 삽입, 수정, 삭제**
-  뷰도 일반 테이블처럼 데이터를 삽입/수정/삭제할 수 있지만, ==기존 테이블도 같이 수정되기 때문에, 기존 테이블의 투플을 어떻게 수정할지 알 수 없다면 연산을 수행할 수 없다.==
+  - 우수고객 뷰에서 나이가 20세 이상인 고객에 대한 모든 내용을 검색해보자.
+    ```sql
+    SELECT *
+    FROM excellent_customer
+    WHERE age >= 20;
+    ```
 
-1. 기존 테이블의 기본키와 NOT NULL필드로 지정된 속성을 포함하지 않으면 삽입/수정이 불가능하다.
-2. 집계함수로 새로 계산된 내용을 포함하고 있는 뷰는 변경할 수 없다.
-3. DISTINCT 키워드를 포함하여 정의한 뷰는 변경할 수 없다.
-4. GROUP BY 절을 포함하여 정의한 뷰는 변경할 수 없다.
-5. 여러개의 테이블을 조인하여 정의한 뷰는 변경할 수 없는 경우가 많다.
+- **데이터 삽입, 수정, 삭제**  
+  뷰도 일반 테이블처럼 데이터를 삽입/수정/삭제할 수 있지만, <mark style='background-color: #fff5b1'>기존 테이블도 같이 수정되기 때문에, 기존 테이블의 투플을 어떻게 수정할지 알 수 없다면 연산을 수행할 수 없다.</mark>
 
-**뷰의 장점**
+  1. 기존 테이블의 기본키와 NOT NULL필드로 지정된 속성을 포함하지 않으면 삽입/수정이 불가능하다.
+  2. 집계함수로 새로 계산된 내용을 포함하고 있는 뷰는 변경할 수 없다.
+  3. DISTINCT 키워드를 포함하여 정의한 뷰는 변경할 수 없다.
+  4. GROUP BY 절을 포함하여 정의한 뷰는 변경할 수 없다.
+  5. 여러개의 테이블을 조인하여 정의한 뷰는 변경할 수 없는 경우가 많다.
 
-- 자주 사용하는 특정 제약조건의 투플들을 SELECT와 FROM 절만으로 쉽게 접근할 수 있다.
-- 사용자 요구에 맞는 다양한 뷰를 정의하고 해당 뷰에만 접근을 허락함으로써, 데이터의 보안을 강화할 수 있다.
+- **뷰의 장점**
+
+  - 자주 사용하는 특정 제약조건의 투플들을 SELECT와 FROM 절만으로 쉽게 접근할 수 있다.
+  - 사용자 요구에 맞는 다양한 뷰를 정의하고 해당 뷰에만 접근을 허락함으로써, 데이터의 보안을 강화할 수 있다.
 
 ### 7.4.4. 뷰의 삭제
 
@@ -773,20 +786,17 @@ WITH CHECK OPTION을 삽입하면, 뷰에 삽입이나 수정 연산 시, AS SEL
 DROP VIEW 뷰_이름;
 ```
 
-뷰는 삭제하더라도 기본 테이블에 영향을 끼치지 않는다. 다만 뷰를 참조하는 테이블의 제약조건이 있다면, 삭제가 되지 않을 수도 있다.
+뷰는 삭제하더라도 기본 테이블에 영향을 끼치지 않는다. 다만 삭제할 뷰를 참조하는 제약조건이 있다면, 삭제가 되지 않을 수도 있다.
 
 ## 7.5. 삽입 SQL
 
 ### 7.5.1. 삽입 SQL의 개념과 특징
 
-삽입 SQL(Embedded SQL)
-: C, C++, JAVA와 같은 프로그래밍 언어의 코드안에 삽입하여 사용하는 SQL문
-
-**삽입 SQL 특징**
+> C, C++, JAVA와 같은 프로그래밍 언어의 코드안에 삽입하여 사용하는 SQL문
 
 - 코드에서 일반 명령문이 위치할 수 있는 곳이면 어디든지 삽입할 수 있다.
 - 일반 명령문과 구별하기 위해 삽입 SQL문 앞에 EXEC SQL을 붙인다.
-- 프로그램에 선언되 일반 변수를 SQL문에서 사용할 수 있다. 단 SQL의 테이블/속성 이름과 구분하기 위해 ':'을 앞에 붙인다.
+- 프로그램에 선언된 일반 변수를 SQL문에서 사용할 수 있다. 단 SQL 문에서 일반 변수를 사용할 때는 테이블/속성 이름과 구분하기 위해 앞에 ':'을 붙인다.
 
 ### 7.4.2. 커서가 필요 없는 삽입 SQL
 
@@ -817,36 +827,44 @@ int main() {
 
 ### 7.4.3. 커서가 필요한 삽입 SQL
 
-한 개 이상의 행을 반환하는 SELECT 문의 경우, 커서를 사용하여 한 행씩 차례로 접근할 수 있다.
+한 개 이상의 행을 반환하는 **SELECT 문**의 경우, 커서를 사용하여 한 행씩 차례로 접근할 수 있다.
 
 1. DELCARE 명령어를 사용하여 SELECT문에 커서를 할당한다.
 
-```sql
-EXEC SQL DECLARE 커서_이름 CURSOR FOR SELECT 문;
+   ```sql
+   EXEC SQL DECLARE 커서_이름 CURSOR FOR SELECT 문;
+   ```
 
-EXEC SQL DECLARE product_cursor CURSOR FOR SELECT name, price FROM Product;
-```
+   ```sql
+   EXEC SQL DECLARE product_cursor CURSOR FOR SELECT name, price FROM Product;
+   ```
 
 2. OPEN 명령어를 사용하여 커서에 연결된 SELECT문을 실행한다.
 
-```sql
-EXEC SQL OPEN 커서_이름;
+   ```sql
+   EXEC SQL OPEN 커서_이름;
+   ```
 
-EXEC SQL OPEN product_cursor;
-```
+   ```sql
+   EXEC SQL OPEN product_cursor;
+   ```
 
-3. FETCH 명령어를 사용하여 커서를 한 행씩 옮긴다.
+3. FETCH 명령어를 사용하여 커서를 한 행씩 옮긴다. (검색된 테이블의 다음행을 변수에 담는다.)
 
-```sql
-EXEC SQL OPEN 커서_이름 INTO 변수_리스트;
+   ```sql
+   EXEC SQL OPEN 커서_이름 INTO 변수_리스트;
+   ```
 
-EXEC SQL OPEN product_cursor INTO :p_name, :price;
-```
+   ```sql
+   EXEC SQL OPEN product_cursor INTO :p_name, :price;
+   ```
 
 4. CLOSE 명령어를 사용하여 커서를 닫느다.
 
-```sql
-EXEC SQL CLOSE 커서_이름;
+   ```sql
+   EXEC SQL CLOSE 커서_이름;
+   ```
 
-EXEC SQL CLOSE product_cursor;
-```
+   ```sql
+   EXEC SQL CLOSE product_cursor;
+   ```

@@ -85,5 +85,8 @@ since 2022.08.
     - [Ch8. 데이터베이스 설계](./CS/DB/Ch08_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%84%A4%EA%B3%84.md)
     - [Ch9. 정규화](./CS/DB/Ch09_%EC%A0%95%EA%B7%9C%ED%99%94.md)
     - [Ch10. 회복과 병행 제어](./CS/DB/Ch10_%ED%9A%8C%EB%B3%B5%EA%B3%BC_%EB%B3%91%ED%96%89_%EC%A0%9C%EC%96%B4.md)
+    - [Ch11. 보안과 권한 관리](./CS/DB/Ch11_%EB%B3%B4%EC%95%88%EA%B3%BC_%EA%B6%8C%ED%95%9C_%EA%B4%80%EB%A6%AC.md)
+    - [Ch12. 데이터베이스 응용 기술](./CS/DB/Ch12_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%9D%91%EC%9A%A9_%EA%B8%B0%EC%88%A0.md)
+    - [Ch13. 데이터 과학과 빅데이터](./CS/DB/Ch13_%EB%8D%B0%EC%9D%B4%ED%84%B0_%EA%B3%BC%ED%95%99%EA%B3%BC_%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0.md)
   - 📞 Network
 - :scroll: [etc](./etc/)
