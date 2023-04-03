@@ -9,7 +9,6 @@ since 2022.08.
   - 🐋 [Docker](./Tools/Docker.md)
   - :negative_squared_cross_mark: [Nginx](./Tools/Nginx.md)
   - :unicorn: [Gunicorn](./Tools/Gunicorn.md)
-  - :older_man: [Jenkins](./Tools/Jenkins.md)
 
 - :books: Langauges
 
@@ -39,6 +38,7 @@ since 2022.08.
     - [Backtracking](./Algorithm/Backtracking.md)
     - [BFS](./Algorithm/BFS.md)
     - [Dijkstra](./Algorithm/Dijkstra.md)
+    - [DP](./Algorithm/DP.md)
 
 - 💻 Web
 
@@ -89,4 +89,6 @@ since 2022.08.
     - [Ch12. 데이터베이스 응용 기술](./CS/DB/Ch12_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%9D%91%EC%9A%A9_%EA%B8%B0%EC%88%A0.md)
     - [Ch13. 데이터 과학과 빅데이터](./CS/DB/Ch13_%EB%8D%B0%EC%9D%B4%ED%84%B0_%EA%B3%BC%ED%95%99%EA%B3%BC_%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0.md)
   - 📞 Network
+    - [Ch1. 네트워크 첫걸음](./CS/Network/Ch01_네트워크_첫걸음.md)
+    - [Ch2. 네트워크의 기본 규칙](./CS/Network/Ch02_네트워크의_기본_규칙.md)
 - :scroll: [etc](./etc/)
