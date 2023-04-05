@@ -165,6 +165,8 @@
 - Huffan's Code (Greedy Algoritm)
 - [백준 2263번 트리의 순회](https://www.acmicpc.net/problem/2263)  
    중위 순회 + 후위 순회 -> 전위 순회
+- [백준 4256번 트리](https://www.acmicpc.net/problem/4256)  
+   전위 순회 + 중위 순회 -> 후위 순회
 
 # 3. 활용
 
