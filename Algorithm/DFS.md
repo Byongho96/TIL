@@ -29,7 +29,8 @@ E: 간선의 갯수
 
 # 4. 구현
 
-- **Python 코드**
+- **Python 코드**  
+  단순히 모든 노드를 완전탐색하는 DFS 알고리즘이다.
 
   ```python
   '''
@@ -61,4 +62,43 @@ E: 간선의 갯수
                   stack.append(adj)
 
       return False # 목적 노드를 도달할 수 없음
+  ```
+
+  지나온 경로를 기억할 수 있는 DFS 알고리즘이다
+
+  ```python
+  '''
+  N     : 노드 갯수
+  start : 시작 노드
+  end   : 끝 노드
+  adjLst: 특정 노드의 인접 노드를 알 수 있는 컨테이너 자료
+  '''
+  def dfs_while(N, start, end, adjLst):
+    visited = [False] * 100
+    stack = []
+
+    node = start
+    visited[node] = True
+
+    while True:
+        # 종료 조건
+        if node == end:
+            path = stack + [node]
+            return path
+
+        # 인접 노드 탐색
+        for adj in adjLst[node]:
+            if not visited[adj]:
+                stack.append(node)
+                node = adj
+                visited[node] = True
+                break
+
+        # 인접 노드 없을 시, 부모 상태 노드로 후퇴
+        else:
+            if stack:
+                node = stack.pop()
+            else: # 모든 노드 탐색 완료 시, 반복문 break
+                break
+    return False
   ```
