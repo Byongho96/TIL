@@ -65,6 +65,7 @@ heap을 사용할 경우, 시간복잡도 결정인자가 노드 갯수(V)에서
             if not visited[node] and distance[node] < mn:
                 mn = distance[node]
                 nearest = node
+
         visited[nearest] = True    # 해당 노드 거리 확정
 
         # 새로 거리 확정된 노드의 인접 노드들 거리 갱신
@@ -75,7 +76,7 @@ heap을 사용할 경우, 시간복잡도 결정인자가 노드 갯수(V)에서
     return distance
   ```
 
-## 4.2. Basic
+## 4.2. with Heap
 
 - **Python 코드**
 
@@ -101,6 +102,8 @@ heap을 사용할 경우, 시간복잡도 결정인자가 노드 갯수(V)에서
       # 이미 거리 계산이 완료된 노드 무시하기: Basic Dijkstra에서 visited 배열을 기능을 담당
       if distance[nearest] < dist:
           continue
+
+      # 해당 노드 거리가 확정되는 시점
 
       # 인접 노드들의 거리 재계산하여 heap에 push
       for adj, weight in adjLst[nearest]:
