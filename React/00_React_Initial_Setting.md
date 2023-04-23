@@ -26,12 +26,12 @@ npx create-react-app my-app --template typescript
 ```
 
 - **npx**  
-  npm 패키지를 실행하기 위한 도구입니다.  
+  npm 패키지를 실행하기 위한 도구이다.  
   차이점은 npx는 로컬이나 글로벌에 설치되어 있지 않은 node 패키지도 실행할 수 있다. 또한 이 때, 해당 패키지를 설치하지 않기 때문에 항상 최신 버전의 node 패키지를 실행시킨다.  
   그러한 관점에서 create-react-app은 자주 업데이트 되는 모듈이기 때문에 npx를 통해 실행시키는 것이 적합하다. 공식문서에서도 만일 `npm install -g create-react-app`을 통해 global하게 create-react-app을 설치한 적이 있으면, 이를 uninstall하고 npx로 실행시키길 권장한다.
 
 - **--template typescript**  
-  해당 옵션을 이용해 typescript용 리액트 템플릿을 제공받을 수 있다.
+  해당 옵션을 이용해 typescript 버전의 리액트 템플릿을 제공받을 수 있다.
 
 # 2. eslint & prettier
 
@@ -47,7 +47,7 @@ npx create-react-app my-app --template typescript
    npm init @eslint/config
    ```
 
-   위 명령어를 실행할 경우, 프론트엔드 프레임워크, typescript 사용여부 등 다양한 사용자 선택 요청이 터미널 상에 연쇄적으로 나타난다. 자신의 프로젝트에 맞게 선택한다.
+   위 명령어를 실행할 경우, 프론트엔드 프레임워크, typescript 사용여부 등 다양한 사용자 선택 요청이 나타난다. 자신의 프로젝트에 맞게 선택하면 된다.
 
 2. **.eslintrc 확인**
 
@@ -66,7 +66,7 @@ npx create-react-app my-app --template typescript
    - **extends**
      일종의 rules 패키지이다. 자주 사용되는 rule 설정을 하나의 이름으로 모아서 제공한다.
    - **rules**  
-     [eslint rules](https://eslint.org/docs/latest/rules)에 기재된 rule을 개별적으로 적용시킬 수 있기 때문에 extends 설정 이후 규칙을 미세조정할 수 있다. rule의 강도는 다음과 같이 3가지로 구분된다.
+     [eslint rules](https://eslint.org/docs/latest/rules)에 기재된 rule을 개별적으로 적용시킬 수 있기 때문에 extends 설정 이후 규칙을 미세조정하는 용도로 사용된다. rule의 강도는 다음과 같이 3가지로 구분된다.
 
      - "off" or 0: 해당 rule을 적용시키지 않는다.
      - "warn" or 1: 경고 문구만을 표시한다.
@@ -90,9 +90,7 @@ prettier는 eslint와 비슷하게 개발자들간의 코드 스타일링을 통
    echo {}> .prettierrc.json
    ```
 
-   위 명령어로 프로젝트 루트 경로에 .prettierrc.json 파일을 생성한다.
-
-   [prettierrc 설정 옵션 문서](https://prettier.io/docs/en/options.html)에서 설정가능한 옵션들을 확인할 수 있으며, [기본설정](https://prettier.io/docs/en/configuration.html)은 다음과 같다.
+   위 명령어로 프로젝트 루트 경로에 .prettierrc.json 파일을 생성한다. [prettierrc 설정 옵션 문서](https://prettier.io/docs/en/options.html)에서 설정가능한 옵션들을 확인할 수 있으며, [기본설정](https://prettier.io/docs/en/configuration.html)은 다음과 같다.
 
    ```json
    {
@@ -104,7 +102,7 @@ prettier는 eslint와 비슷하게 개발자들간의 코드 스타일링을 통
    ```
 
 3. **.prettierignore 생성**  
-    .prettierignore을 통해 prettier을 적용시키지 않을 문서를 정의할 수 있다.
+    .prettierignore을 통해 prettier을 적용시키지 않을 문서를 설정할 수 있다.
 
    ```
    # Ignore artifacts:
@@ -130,7 +128,7 @@ prettier는 eslint와 비슷하게 개발자들간의 코드 스타일링을 통
    check 옵션은 prettier 포맷팅에 대해 검사만 하고, 코드를 실제 수정하지는 않는다.
 
 5. **prettier editor 적용**  
-   실제 사용하는 editor상에서 prettier을 적용함으로써 수정된 코드를 바로바로 확인할 수 있다. 각 에디터별 prettier 적용방법을 [여기](https://prettier.io/docs/en/editors.html)에서 확인할 수 있고, 대표적인 vsCode의 경우 **Prettier - Code formatter** 플러그인을 설치하면 된다.
+   사용하는 editor에 prettier을 적용해, 수정된 코드를 바로 바로 확인할 수도 있다. 각 에디터별 prettier 적용방법을 [여기](https://prettier.io/docs/en/editors.html)에서 확인할 수 있고, 대표적인 vsCode의 경우 **Prettier - Code formatter** 플러그인을 설치하면 된다.
 
 6. **eslint-config-prettier 적용**  
    eslint와 prettier 간 충돌이 일어날 때, prettier의 규칙을 따르도록 eslint-config-prettier 패키지를 설치한다.
@@ -139,7 +137,7 @@ prettier는 eslint와 비슷하게 개발자들간의 코드 스타일링을 통
    npm install --save-dev eslint-config-prettier
    ```
 
-   .eslintrc파일은 다음과 같이 수정한다.
+   패키지 설치 후, .eslintrc 파일을 다음과 같이 수정한다.
 
    ```json
    {
@@ -150,9 +148,7 @@ prettier는 eslint와 비슷하게 개발자들간의 코드 스타일링을 통
 7. **Git hook 적용**  
    (최근 리액트 프로젝트에서 해당 내용은 적용하지 못했다. husky를 사용하기 위해서는 package.json과 .git이 동일 위치에 있어야 한다. 하지만 우리 프로젝트는 리액트 프로젝트가 .git위치에 비해 1개 depth 하단에 있다. 이에 대한 해결책이 [husky 공식문서](https://typicode.github.io/husky/#/?id=custom-directory)의 custom directory항목에 있었지만, 따라해도 해결되지 않았다.)
 
-   코드 스타일링이 맞지 않으면 git merge시 불필요한 충돌이 일어난다. 따라서 git pre-commit hook에 `prettier --write`명령어를 실행함으로써 모든 커밋의 code 포맷을 맞출 수 있다.
-
-   [husky](https://github.com/typicode/husky)와 [lint-staged](https://github.com/okonet/lint-staged)는 각각 Git hook과 Git에 등록된 파일을 관리하기 위한 도구이다.
+   코드 스타일링이 맞지 않으면 git merge시 불필요한 충돌이 일어난다. 따라서 git pre-commit hook에 `prettier --write`명령어를 실행함으로써 모든 커밋의 code 포맷을 맞출 수 있다.[husky](https://github.com/typicode/husky)와 [lint-staged](https://github.com/okonet/lint-staged)는 각각 Git hook과 Git에 등록된 파일을 관리하기 위한 도구이다.
 
    ```bash
    # --save-dev 옵션이 해당 패키지가
@@ -178,7 +174,7 @@ prettier는 eslint와 비슷하게 개발자들간의 코드 스타일링을 통
 
 # 3. React Router
 
-React 프로젝트에서 가장 보편적으로 쓰이는 라우팅 라이브러리이다. [React Router 공식문서](https://reactrouter.com/en/main/routers/create-browser-router)에 튜토리얼이 아주 장황하고 이상하게 설명되어 있다. 그래서 문제가 발생하지 않을 정도의 정말 핵심만 임의로 정리했다.
+React 프로젝트에서 가장 보편적으로 쓰이는 라우팅 라이브러리이다. [React Router 공식문서](https://reactrouter.com/en/main/routers/create-browser-router)에 튜토리얼이 아주 장황하고 이상하게 설명되어 있다. 임의로 핵심만 골라 정리했다.
 
 1. **react-router-dom 설치**
 
@@ -233,7 +229,7 @@ React 프로젝트에서 가장 보편적으로 쓰이는 라우팅 라이브러
 
 # 4. React Global Store
 
-리액트 전역 저장소 중 가장 빈번하게 쓰이는 Recoil과 Redux Toolkit 두가지가 있다. 둘 중 프로젝트에 적합한 전역 저장소를 설치한다.
+Recoil과 Redux Toolkit은 리액트에서 잘 쓰이는 전역 저장소이다. 둘 중 프로젝트에 적합한 전역 저장소를 설치한다.
 
 ## 4.1. Recoil
 
@@ -302,9 +298,7 @@ React 프로젝트에서 가장 보편적으로 쓰이는 라우팅 라이브러
 
 # 5. Axios
 
-Single Page Application으로 동작하는 React 프로젝트에서 서버로 AJAX요청을 날리는 것은 거의 필수이다.
-
-Axios는 node.js에서 사용할 수 있는 Promise 기반 HTTP 클라이언트 라이브러리로, 클라이언트(브라우저)에서는 XMLHttpRequests를 생성한다.
+Single Page Application으로 동작하는 React 프로젝트에서 서버로 AJAX요청을 날리는 것은 거의 필수이다. Axios는 node.js에서 사용할 수 있는 Promise 기반 HTTP 클라이언트 라이브러리로, 클라이언트(브라우저)에서는 XMLHttpRequests를 생성한다.
 
 1. **axios 설치**
 
@@ -353,7 +347,7 @@ Axios는 node.js에서 사용할 수 있는 Promise 기반 HTTP 클라이언트 
 
 # 6. CSS styling
 
-CSS 스타일링 방법은 매우 다양하다. 본인의 프로젝트에 적합한 CSS 스타일링을 찾아 관련 라이브러리를 설치한다.
+CSS 스타일링 방법은 매우 다양하다. 자신의 프로젝트에 적합한 CSS 스타일링을 찾아 관련 라이브러리를 설치한다.
 
 ## 6.1. Sass
 
@@ -361,6 +355,6 @@ CSS 스타일링 방법은 매우 다양하다. 본인의 프로젝트에 적합
 npm install node-sass
 ```
 
-sass기본적으로 Ruby라는 객체지향언어에서 실행된다. 따라서 node-sass는 Ruby 없이 Sass를 사용할 수 있게 해주는 노드 패키지 중 하나입니다.
+sass는 원래 Ruby라는 객체지향언어에서 실행된다. node-sass는 이러한 Ruby 없이 Sass를 사용할 수 있게 해주는 노드 패키지 중 하나이다.
 
 ## 6.2. Styled Component

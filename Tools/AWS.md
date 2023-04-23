@@ -9,8 +9,7 @@ AWS 계정을 만들고, EC2를 생성 및 설정하는 기초적인 방법을 �
   - [1.2. IAM 계정](#12-iam-계정)
 - [2. EC2](#2-ec2)
   - [2.1. EC2 생성](#21-ec2-생성)
-  - [2.2. .ssh key](#22-ssh-key)
-  - [2.3. connect](#23-connect)
+  - [2.2. ssh connect](#22-ssh-connect)
 - [3. 도메인 연동](#3-도메인-연동)
   - [3.1. Gabia](#31-gabia)
   - [3.2. Elastic IP](#32-elastic-ip)
@@ -161,11 +160,100 @@ AWS 회원가입은 알아서 하자.
 
 # 2. EC2
 
+EC2란 AWS의 컴퓨팅 자원을 이용하는 IaaS 클라우드 서비스이다. EC2는 사용자가 선택한 운영 체제에서 실행되au, CPU, 메모리, 스토리지 및 네트워크 용량 등을 선택할 수 있다.
+
 ## 2.1. EC2 생성
 
-## 2.2. .ssh key
+1.  **EC2 생성화면 진입**
 
-## 2.3. connect
+    <img src="./assets/AWS_EC2.jpg" width=700/>
+
+    <img src="./assets/AWS_launch_instances.jpg" width=700/>
+
+    위와 같은 절차로 EC2를 생성하는 화면에 들어간다.
+
+2.  **EC2 생성**
+
+    <img src="./assets/AWS_launch_an_instance_1.jpg" width=700/>
+
+    <img src="./assets/AWS_launch_an_instance_2.jpg" width=700/>
+
+    <img src="./assets/AWS_launch_an_instance_3.jpg" width=700/>
+
+    - **Name**  
+      생성할 EC2 instance의 이름을 기입한다.
+    - **OS**  
+      EC2의 운영체제를 선택한다. Amazon Linux와 Ubuntu모두 Linux를 기반으로 한 운영체제이다. 이 둘 간에는 지원하는 서비스, 그리고 약간의 명령어 차이가 있다. 이 문서에서는 Ubuntu로 선택하고 진행한다.
+    - **Amazon Machine Image**  
+      EC2의 vCPU수, 메모리, 네트워크 용량 그리고 **가격**이 결정되는 중요한 항목이다! Free tier을 사용하고 싶으면, Free tier eligible 항목을 꼭 확인하자.  
+      요금은 [여기](https://aws.amazon.com/ko/ec2/pricing/on-demand/)서 확인할 수 있다. 표시되는 요금에 24\*30 을 곱해서 대략적인 한달 요금을 예측할 수 있다.
+    - **Key pair**  
+      EC2 인스턴스에 연결시킬 Key를 고른다. 인스턴스에 접속하는 편리한 수단이 되기 때문에 생성하는 것을 추천하며, 개인적으로 기존의 Key 보다는 각 인스턴스마다 각각 생성해서 쓴다.(Create new key pair)
+
+    <img src="./assets/AWS_launch_an_instance_4.jpg" width=700/>
+
+    - **Key pair name**  
+      생성할 키 페어의 이름을 기입한다.
+    - **Key pair type**  
+      Key에 사용되는 암호화 방식을 결정한다. 둘 다 공개키 암호화 알고리즘이다. RSA는 가장 대표적인 공개키 암호화 알고리즘이고, ED25519는 비교적 최근에 개발된 알고리즘이라고 한다. ED25519가 암호화/복호화 속도가 좀 더 빠르지만 사용범위가 RSA에 비해 작은 듯 하다.
+    - **Private key file format**  
+      key 파일의 포맷을 설정한다. 일반적으로 .pem는 Linux의 SSH 클라이언트 용으로, .ppk는 Windows의 SSH 클라이언트 용으로 사용된다고 한다.
+
+    Create key pair 버튼을 누르면 자동적으로 key가 다운로드 된다. **이를 잘 보관해 두자!**
+
+    <img src="./assets/AWS_launch_an_instance_5.jpg" width=700/>
+
+    - **Firewall (security group)**  
+      방화벽 관련 보안 그룹을 설정해야 한다. 잘 모르겠으면 그냥 Create security group을 선택한다.
+    - **Allow SSH traffic from**  
+      방금 위에서 발급 받은 key 페어로 EC2에 접속하도록 하기 위해서는 체크해야 한다. 보안 상의 이슈로 접근 가능 IP주소를 Anywhere로 설정하지 말라지만, 나는 언제 어디서 EC2에 접속해야할지 모른다는 불안감에 그냥 Anywhere로 설정했다.
+
+    <img src="./assets/AWS_launch_an_instance_6.jpg" width=700/>
+
+    - **Configure storage**  
+      정확히 어떤 storage용량을 말하는지 잘 모르겠다. [info 링크](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Storage.html?icmpid=docs_ec2_console)를 타고 들어가면 EFS, EBS, S3에 대한 설명이 나오는데, 이들 간의 용량이 어떻게 분배되는지, 또 어떻게 분배할 수 있을지를 모르겠다.  
+      다만 나중에 수정하려고 했을 때 용량 증가는 가능해도 감소는 안되었다.
+
+    <img src="./assets/AWS_launch_an_instance_7.jpg" width=700/>
+
+    마지막으로 Summary를 확인하고 Launch instance 버튼을 누르면 EC2 인스턴스가 생성된다.
+
+## 2.2. ssh connect
+
+발급 받은 .pem key를 이용해서 ssh 클라이언트를 통해 EC2에 접속해본다. 참고로 EC2에 접속하는 방법은 이외에도 다양하다.
+
+1.  **EC2 인스턴스 ID 클릭**
+
+    <img src="./assets/AWS_connect_instance_1.jpg" width=700/>
+
+    EC2 인스턴스의 ID를 클릭해 들어간다.
+
+2.  **Connect 클릭**
+
+    <img src="./assets/AWS_connect_instance_2.jpg" width=700/>
+
+3.  **EC2 Instance Connect**
+
+    <img src="./assets/AWS_connect_instance_3.jpg" width=700/>
+
+    EC2 Instance Connect 항목을 통해, AWS Console 웹페이지에서도 EC2 Instance에 접속할 수 있다. 우측 하단의 Connect 버튼만 누르면 된다. 하지만 개인적으로 사용했을 때, 갑자기 튕기는 등 사용성이 좋지 않았다.
+
+4.  **SSH client**
+
+    <img src="./assets/AWS_connect_instance_4.jpg" width=700/>
+
+    - **Example**  
+      해당 항목의 코드를 복사한다. 예시 코드인 이유는 해당 코드에는 사용자 이름이 기본값(ubuntu)로 주어지기 때문이다. 나중에 다른 사용자로 로그인하고 싶으면, 해당 값을 수정한다.
+
+5.  **Bash shell**
+
+    <img src="./assets/AWS_connect_instance_5.jpg" width=700/>
+
+    Bash shell을 열어 방금 복사한 코드를 붙여넣는다. 해당 컴퓨터에서 처음 접속하거나 IP주소가 변경되었을 경우에는 위의 화면처럼 질문이 나타나는데, 간단하게 말해 공개 키를 검증하는 과정이라고 생각하면 된다. 솔직히 나도 잘 모르겠다. yes라고 입력한다.
+
+    <img src="./assets/AWS_connect_instance_6.jpg" width=700/>
+
+    위와 같이 화면이 나타나면 EC2 내부에 진입한 것이다! `exit`명령어를 입력해서 나올 수 있다.
 
 # 3. 도메인 연동
 
