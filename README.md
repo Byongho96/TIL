@@ -65,6 +65,7 @@ since 2022.08.
     - [Vuex and Lifecycle Hooks](./Vue/03_Vue_Vuex_and_Lifecycle_Hooks.md)
     - [Router](./Vue/04_Vue_Vue_Router.md)
   - :electron: React
+    - [Initial Setting](./React/00_React_Initial_Setting.md)
     - [Basics(+useState, useEffect)](./React/01_React_useState_useEffect.md)
     - [Hooks](./React/02_React_Hooks.md)
     - [Router](./React/03_React_Router.md)

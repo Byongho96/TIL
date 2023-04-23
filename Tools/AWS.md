@@ -16,8 +16,8 @@ AWS 계정을 만들고, EC2를 생성 및 설정하는 기초적인 방법을 �
   - [3.2. Elastic IP](#32-elastic-ip)
   - [3.3. Route53](#33-route53)
 - [4. https](#4-https)
-  - [4.1. Nginx 설치](#41-nginx-설치)
-  - [4.2. configuration 파일](#42-configuration-파일)
+  - [4.1. Nginx](#41-nginx)
+  - [4.2. Inbound Rule](#42-inbound-rule)
   - [4.3. certbot](#43-certbot)
 
 # 1. AWS
@@ -177,8 +177,8 @@ AWS 회원가입은 알아서 하자.
 
 # 4. https
 
-## 4.1. Nginx 설치
+## 4.1. Nginx
 
-## 4.2. configuration 파일
+## 4.2. Inbound Rule
 
 ## 4.3. certbot
