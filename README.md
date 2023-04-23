@@ -6,9 +6,9 @@ since 2022.08.
 
   - :large_orange_diamond: [Git](./Tools/Git.md)
   - :penguin: [Linux](./Tools/Linux.md)
+  - :relaxed: [AWS](./Tools/AWS.md)
   - 🐋 [Docker](./Tools/Docker.md)
   - :negative_squared_cross_mark: [Nginx](./Tools/Nginx.md)
-  - :unicorn: [Gunicorn](./Tools/Gunicorn.md)
 
 - :books: Langauges
 
