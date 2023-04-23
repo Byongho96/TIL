@@ -132,7 +132,7 @@ prettier는 eslint와 비슷하게 개발자들간의 코드 스타일링을 통
 5. **prettier editor 적용**  
    실제 사용하는 editor상에서 prettier을 적용함으로써 수정된 코드를 바로바로 확인할 수 있다. 각 에디터별 prettier 적용방법을 [여기](https://prettier.io/docs/en/editors.html)에서 확인할 수 있고, 대표적인 vsCode의 경우 **Prettier - Code formatter** 플러그인을 설치하면 된다.
 
-6. **eslint-config-prettier 적용**
+6. **eslint-config-prettier 적용**  
    eslint와 prettier 간 충돌이 일어날 때, prettier의 규칙을 따르도록 eslint-config-prettier 패키지를 설치한다.
 
    ```bash
@@ -186,8 +186,8 @@ React 프로젝트에서 가장 보편적으로 쓰이는 라우팅 라이브러
    npm install react-router-dom
    ```
 
-2. **index.tsx 수정**
-   [<BrouserRouter>](https://reactrouter.com/en/main/router-components/browser-router)는 현재 브라우저의 url주소를 브라우저의 history stack에 저장한다.
+2. **index.tsx 수정**  
+   [\<BrouserRouter>](https://reactrouter.com/en/main/router-components/browser-router)는 현재 브라우저의 url주소를 브라우저의 history stack에 저장한다.
 
    ```ts
    import React from 'react'
@@ -207,8 +207,8 @@ React 프로젝트에서 가장 보편적으로 쓰이는 라우팅 라이브러
    )
    ```
 
-3. **App.tsx 수정**
-   [<Rotues>](https://reactrouter.com/en/main/components/routes)는 history의 현재 location이 수정될 때마다 하위 <Route> 순회하며 UI에 렌더링할 컴포넌트를 찾는다.
+3. **App.tsx 수정**  
+   [\<Rotues>](https://reactrouter.com/en/main/components/routes)는 history의 현재 location이 수정될 때마다 하위 <Route> 순회하며 UI에 렌더링할 컴포넌트를 찾는다.
 
    ```ts
    import React from 'react'
@@ -308,48 +308,48 @@ Axios는 node.js에서 사용할 수 있는 Promise 기반 HTTP 클라이언트 
 
 1. **axios 설치**
 
-```bash
-npm install axios
-```
+   ```bash
+   npm install axios
+   ```
 
 2. **axios instance 생성**
 
-[axios instance](https://axios-http.com/docs/instance)를 생성할 경우, axios interceptor와 같은 편리한 기능을 사용할 수 있다.
+   [axios instance](https://axios-http.com/docs/instance)를 생성할 경우, axios interceptor와 같은 편리한 기능을 사용할 수 있다.
 
-```js
-// Create instance
-const instance = axios.create({
-  baseURL: 'https://some-domain.com/api/',
-  timeout: 1000,
-  headers: { 'X-Custom-Header': 'foobar' },
-})
+   ```js
+   // Create instance
+   const instance = axios.create({
+     baseURL: 'https://some-domain.com/api/',
+     timeout: 1000,
+     headers: { 'X-Custom-Header': 'foobar' },
+   })
 
-// Add a request interceptor
-instance.interceptors.request.use(
-  function (config) {
-    // Do something before request is sent
-    return config
-  },
-  function (error) {
-    // Do something with request error
-    return Promise.reject(error)
-  }
-)
+   // Add a request interceptor
+   instance.interceptors.request.use(
+     function (config) {
+       // Do something before request is sent
+       return config
+     },
+     function (error) {
+       // Do something with request error
+       return Promise.reject(error)
+     }
+   )
 
-// Add a response interceptor
-instance.interceptors.response.use(
-  function (response) {
-    // Any status code that lie within the range of 2xx cause this function to trigger
-    // Do something with response data
-    return response
-  },
-  function (error) {
-    // Any status codes that falls outside the range of 2xx cause this function to trigger
-    // Do something with response error
-    return Promise.reject(error)
-  }
-)
-```
+   // Add a response interceptor
+   instance.interceptors.response.use(
+     function (response) {
+       // Any status code that lie within the range of 2xx cause this function to trigger
+       // Do something with response data
+       return response
+     },
+     function (error) {
+       // Any status codes that falls outside the range of 2xx cause this function to trigger
+       // Do something with response error
+       return Promise.reject(error)
+     }
+   )
+   ```
 
 # 6. CSS styling
 
