@@ -9,15 +9,14 @@ AWS 계정을 만들고, EC2를 생성 및 설정하는 기초적인 방법을 �
   - [1.2. IAM 계정](#12-iam-계정)
 - [2. EC2](#2-ec2)
   - [2.1. EC2 생성](#21-ec2-생성)
-  - [2.2. ssh connect](#22-ssh-connect)
+  - [2.2. Inbound Rule](#22-inbound-rule)
+  - [2.3. ssh connect](#23-ssh-connect)
 - [3. 도메인 연동](#3-도메인-연동)
-  - [3.1. Gabia](#31-gabia)
-  - [3.2. Elastic IP](#32-elastic-ip)
-  - [3.3. Route53](#33-route53)
+  - [3.1. Elastic IP](#31-elastic-ip)
+  - [3.2. Gabia](#32-gabia)
 - [4. https](#4-https)
   - [4.1. Nginx](#41-nginx)
-  - [4.2. Inbound Rule](#42-inbound-rule)
-  - [4.3. certbot](#43-certbot)
+  - [4.2. certbot](#42-certbot)
 
 # 1. AWS
 
@@ -218,7 +217,11 @@ EC2란 AWS의 컴퓨팅 자원을 이용하는 IaaS 클라우드 서비스이다
 
     마지막으로 Summary를 확인하고 Launch instance 버튼을 누르면 EC2 인스턴스가 생성된다.
 
-## 2.2. ssh connect
+## 2.2. Inbound Rule
+
+인바운드 규칙은 인스턴스로 들어오는 네트워크 트래픽을 제어한다. 참고로 반대로 아웃바운드 규칙은 인스턴스에서 외부로 나가는 네트워크 트래픽을 제어한다.
+
+## 2.3. ssh connect
 
 발급 받은 .pem key를 이용해서 ssh 클라이언트를 통해 EC2에 접속해본다. 참고로 EC2에 접속하는 방법은 이외에도 다양하다.
 
@@ -257,16 +260,14 @@ EC2란 AWS의 컴퓨팅 자원을 이용하는 IaaS 클라우드 서비스이다
 
 # 3. 도메인 연동
 
-## 3.1. Gabia
+Gabia에서 도메인을 구매하고 Rtoue
 
-## 3.2. Elastic IP
+## 3.1. Elastic IP
 
-## 3.3. Route53
+## 3.2. Gabia
 
 # 4. https
 
 ## 4.1. Nginx
 
-## 4.2. Inbound Rule
-
-## 4.3. certbot
+## 4.2. certbot
