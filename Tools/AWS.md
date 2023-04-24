@@ -393,15 +393,12 @@ Nginx는 Apache보다 빠른 성능으로 최근 각광받고 있는 웹서버�
    ```c
    server {
         listen 80;
-        server_name {서버IP주소};
-
-        location /static/ {
-                alias {정적파일 위치};
-        }
+        server_name {서버 IP 주소} {서버 도메인 이름};
 
         location / {
-                include proxy_params;
-                proxy_pass http://127.0.0.1:8000;
+             root {정적 파일 위치 디렉토리};
+             index {정적 파일};
+             try_files $uri $uri/ /{정적 파일};
         }
    }
    ```
@@ -413,7 +410,7 @@ Nginx는 Apache보다 빠른 성능으로 최근 각광받고 있는 웹서버�
    sudo ln -s /etc/nginx/sites-available/{설정파일 이름} /etc/nginx/sites-enabled
 
    # 소프트 링크 해제
-   sudo rm /etc/nginx/sites-enabled/{설정파일 이름}
+   # sudo rm /etc/nginx/sites-enabled/{설정파일 이름}
    ```
 
    `/etc/nginx/sites-available`에 생성된 파일은 실제 `/etc/nginx/sites-enabled`에 로드되어야 동작한다. 이를 위해 [소프트 링크](https://github.com/Byongho96/TIL/blob/master/Tools/Linux.md#5-%EB%A7%81%ED%81%AC)를 생성한다.
@@ -472,10 +469,16 @@ Nginx는 Apache보다 빠른 성능으로 최근 각광받고 있는 웹서버�
    - 기본 nginx 설정파일이 http를 https로 리다이렉트로 되도록 자동 수정되며
    - ssl인증서가 만료 전에 자동 갱신되는 작업이 cronjob에 등록된다.
 
-   만일 위와 같은 추가작업을 원하지 않고, 인증서가 발급받기를 원한다면 아래처럼 `certonly`를 추가한다.
+   만일 위와 같은 추가작업을 원하지 않고, 인증서가 발급 받기를 원한다면 아래처럼 `certonly`를 추가한다.
 
    ```bash
    sudo certbot certonly --nginx
    ```
 
-7. **요청 응답**
+7. **결과 확인**
+
+   ```bash
+   vi /etc/nginx/sites-available/{설정파일 이름}
+   ```
+
+   위 명령어로 원래 작성한 설정파일이 어떻게 바뀌었는 지 확인해보자.
