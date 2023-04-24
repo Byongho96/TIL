@@ -351,10 +351,15 @@ CSS 스타일링 방법은 매우 다양하다. 자신의 프로젝트에 적합
 
 ## 6.1. Sass
 
-```bash
-npm install node-sass
-```
-
 sass는 원래 Ruby라는 객체지향언어에서 실행된다. node-sass는 이러한 Ruby 없이 Sass를 사용할 수 있게 해주는 노드 패키지 중 하나이다.
+
+1. **Sass 설치**
+
+   ```bash
+   npm install node-sass
+   ```
+
+   - **Node 버전 확인**  
+     node-sass는 현재 환경의 node.js 버전에 대응되서 설치된다. 노드 버전이 다르면 node-sass가 install 되지 않을 수 있기 때문에 주의해야한다.
 
 ## 6.2. Styled Component
