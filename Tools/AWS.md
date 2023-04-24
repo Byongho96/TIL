@@ -169,9 +169,9 @@ EC2란 AWS의 컴퓨팅 자원을 이용하는 IaaS 클라우드 서비스이다
 
     <img src="./assets/AWS_launch_instances.jpg" width=700/>
 
-    위와 같은 절차로 EC2를 생성하는 화면에 들어간다.
+    위와 같은 절차로 EC2를 생성하는 화면에 들어간다. **인스턴스 생성 전, 상단의 지역을 반드시 확인하자!**
 
-2.  **EC2 생성**
+1.  **EC2 생성**
 
     <img src="./assets/AWS_launch_an_instance_1.jpg" width=700/>
 
@@ -219,7 +219,32 @@ EC2란 AWS의 컴퓨팅 자원을 이용하는 IaaS 클라우드 서비스이다
 
 ## 2.2. Inbound Rule
 
-인바운드 규칙은 인스턴스로 들어오는 네트워크 트래픽을 제어한다. 참고로 반대로 아웃바운드 규칙은 인스턴스에서 외부로 나가는 네트워크 트래픽을 제어한다.
+인바운드 규칙은 인스턴스로 들어오는 네트워크 트래픽을 제어한다. 반대로 아웃바운드 규칙은 인스턴스에서 외부로 나가는 네트워크 트래픽을 제어한다. EC2의 특정 포트로 접근하기 위해서는 이 인바운드 규칙을 편집해야 한다.
+
+1.  **EC2 인스턴스 ID 클릭**
+
+    <img src="./assets/AWS_connect_instance_1.jpg" width=700/>
+
+2.  **Security 탭의 Security groups 클릭**
+
+    <img src="./assets/AWS_inbound_rule_1.jpg" width=700/>
+
+3.  **Inbound rules 탭의 Edit inbound rules 클릭**
+
+    <img src="./assets/AWS_inbound_rule_2.jpg" width=700/>
+
+4.  **규칙 편집**
+
+    <img src="./assets/AWS_inbound_rule_3.jpg" width=700/>
+
+    프로젝트에 맞게 인바운드 규칙을 편집하고 저장한다. 위 규칙을 설명하면 아래와 같다.
+
+    - **SSH**  
+      22번 포트의 ssh 클라이언트에 접근하기 위한 규칙이다. **이 규칙이 있어야 .pem 키로 EC2에 로그인할 수 있다.**
+    - **HTTP**  
+      80번 포트로 http 프로토콜을 통해 접근하기 위한 규칙이다.
+    - **HTTPS**  
+      443번 포트로 https 프로토콜을 통해 접근하기 위한 규칙이다.
 
 ## 2.3. ssh connect
 
@@ -260,14 +285,197 @@ EC2란 AWS의 컴퓨팅 자원을 이용하는 IaaS 클라우드 서비스이다
 
 # 3. 도메인 연동
 
-Gabia에서 도메인을 구매하고 Rtoue
+AWS에서 Elastic IP를 할당받아 EC2에 연결하고, 해당 IP를 가비아에서 산 도메인의 DNS 레코드에 등록한다. 아래는 관련된 용어 설명이다.
+
+- **Hosted Zone**  
+  호스트 영역은 특정 도메인 이름에 대한 DNS 레코드 집합을 관리한다.
+- **DNS Record**  
+  도메인 이름을 IP 주소와 연결하는 데 사용되는 데이터 항목으로 다양한 유형이 있다.
+
+  - **A 레코드**  
+    도메인 이름을 IPv4 주소와 연결한다.
+  - **CNAME 레코드**  
+    도메인 이름을 다른 호스트 이름으로 매핑한다. 예를 들어, www.example.com의 CNAME 레코드를 webserver.example.com으로 매핑하면, www.example.com로도 webserver.example.com에 접속할 수 있습니다.
+  - **NS 레코드**  
+    도메인 이름의 DNS 서버를 나타내며 이를 사용하여 도메인 이름을 IP 주소로 변환한다.
 
 ## 3.1. Elastic IP
 
+1.  **Elastic IP 할당 페이지 진입**
+
+    <img src="./assets/AWS_allocate_elastic_IP_1.jpg" width=700/>
+
+2.  **Elastic IP 할당**
+
+    <img src="./assets/AWS_allocate_elastic_IP_2.jpg" width=700/>
+
+    - **Network Border Group**  
+      자신이 서비스하려는 지역을 선택한다. 서울은 ap-northeast-2이다.
+
+3.  **EC2 연동 페이지 진입**
+
+    <img src="./assets/AWS_allocate_elastic_IP_4.jpg" width=700/>
+
+4.  **EC2 선택**
+
+    <img src="./assets/AWS_allocate_elastic_IP_5.jpg" width=700/>
+
+    - **Resource typw**  
+      Instance를 선택해 특정 인스턴스에 IP를 할당한다.
+    - **Instance**  
+      연동하려는 실제 인스턴스를 선택한다.
+
 ## 3.2. Gabia
+
+1.  **도메인 이름 선택**
+
+    <img src="./assets/AWS_gabia_1.jpg" width=700/>
+
+2.  **서비스 신청**
+
+    <img src="./assets/AWS_gabia_2.jpg" width=700/>
+
+    - **신청정보**  
+      실제 처음 화면에서 나온 가격으로 결제하려면, **3년으로 선택되어 있는 기간을 1년으로 바꿔야 한다.**
+    - **서비스 관리 정보**  
+      따로 네임서버가 없으면 가비아 네임서버를 이용하자. 만일 Route53의 호스트 존을 연결하고 싶다면, '타사 네임서버 사용'을 클릭하고 Route53에서 생성한 NS 레코드를 나중에 설정페이지에서 등록한다.
+
+3.  **My가비아에서 도메인 선택**
+
+    <img src="./assets/AWS_gabia_3.jpg" width=700/>
+
+4.  **네임서버 확인 후 도메인 연결 선택**
+
+    <img src="./assets/AWS_gabia_4.jpg" width=700/>
+
+    - **네임서버**  
+      도메인 신청화면에서 가비아 네임서버를 선택했을 경우, 네임서버가 기본으로 등록되어 있는지 확인한다.
+
+5.  **도메인 선택**
+
+    <img src="./assets/AWS_gabia_5.jpg" width=700/>
+
+6.  **레코드 수정 선택**
+
+    <img src="./assets/AWS_gabia_6.jpg" width=700/>
+
+7.  **레코드 입력**
+
+    <img src="./assets/AWS_gabia_7.jpg" width=700/>
+
+    A타입의 DNS 레코드를 선택하고, 할당받은 EC2의 Elastic IP를 입력한다. 호스트는 기본적으로 @을 넣고, 다른 호스트를 추가하고 싶을 경우 원하는대로 추가하면 된다.
 
 # 4. https
 
+http요청을 https로 리다이렉트 시켜 사이트가 https 프로토콜을 위에서 동작시키기 위해 Nginx와 certbot을 사용한다.
+
 ## 4.1. Nginx
 
+Nginx는 Apache보다 빠른 성능으로 최근 각광받고 있는 웹서버이다. Nginx는 하나의 프로세스가 이벤트 기반으로 요청을 비동기식으로 처리하는 반면, Apache는 하나의 프로세스가 하나의 요청을 담당~~하~~했기 때문이다. Apache도 최근 이벤트 기반 아키텍처를 도입했지만 여전히 전체적인 성능은 Nginx가 앞선다.
+
+1. **Nginx와 vim 설치**
+
+   ```bash
+   sudo apt update
+   sudo apt install nginx vim
+   ```
+
+   nginx와 vim(문서 편집기)를 설치한다.
+
+2. **Nginx 설정파일 생성**
+
+   ```bash
+   sudo vi /etc/nginx/sites-available/{설정파일 이름}
+   ```
+
+   `/etc/nginx/sites-available` 경로에 아래와 같은 예시의 nginx 설정파일을 작성한다. 개인적으로 설정파일 이름은 **사이트 이름**으로 설정하는 걸 추천한다.
+
+   ```c
+   server {
+        listen 80;
+        server_name {서버IP주소};
+
+        location /static/ {
+                alias {정적파일 위치};
+        }
+
+        location / {
+                include proxy_params;
+                proxy_pass http://127.0.0.1:8000;
+        }
+   }
+   ```
+
+3. **Nginx 설정파일 등록**
+
+   ```bash
+   # 소프트 링크 생성
+   sudo ln -s /etc/nginx/sites-available/{설정파일 이름} /etc/nginx/sites-enabled
+
+   # 소프트 링크 해제
+   sudo rm /etc/nginx/sites-enabled/{설정파일 이름}
+   ```
+
+   `/etc/nginx/sites-available`에 생성된 파일은 실제 `/etc/nginx/sites-enabled`에 로드되어야 동작한다. 이를 위해 [소프트 링크](https://github.com/Byongho96/TIL/blob/master/Tools/Linux.md#5-%EB%A7%81%ED%81%AC)를 생성한다.
+
+4. **Nginx 재시작**
+   ```bash
+   sudo systemctl restart nginx
+   systemctl status nginx.service
+   ```
+   수정한 설정파일을 반영하기 위해 nginx를 재시작한다.
+
 ## 4.2. certbot
+
+[letsencrypt](https://github.com/Byongho96/TIL/blob/master/Tools/Nginx.md#5-feature)는 SSL 인증서를 제공하는 무료 인증 기관이며, [certbot 공식문서](https://certbot.eff.org/)은 Let's Encrypt 인증서를 자동으로 발급하고 갱신하는데 사용되는 오픈 소스 도구이다.
+
+[certbot 공식문서](https://certbot.eff.org/)에서 본인이 사용할 웹서버와 EC2환경을 선택한 뒤, 따라 설치하는 것을 권장한다. 아래는 2023.04.24 기준 [Nginx, Ubunt20 설정](https://certbot.eff.org/instructions?ws=nginx&os=ubuntufocal)을 따라 설치한 내용이다.
+
+1. **snapd 설치**  
+   snapd는 리눅스의 패키지 관리자 중 하나이다. 우분투는 기본적으로 snapd가 설치되어 있지만, 혹시라도 설치되어 있지 않을 경우 [이 문서](https://snapcraft.io/docs/installing-snap-on-ubuntu)를 참고한다.
+
+2. **snapd 최신 버전 확인**
+
+   ```bash
+   sudo snap install core; sudo snap refresh cores
+   ```
+
+   위 명령어를 실행시켜 현재 snapd가 최신버전을 따르도록 한다.
+
+3. **다른 패키지를 통한 certbot 설치 내역 삭제**  
+   혹시라도 다른 패키지로 certbot을 설치한 적이 있다면, 명령어 실행 시 충돌을 방지하기 위해 삭제해야한다.  
+   `sudo apt-get remove certbot`, `sudo dnf remove certbot`, `sudo yum remove certbot`
+
+4. **certbot 설치**
+
+   ```bash
+   sudo snap install --classic certbot
+   ```
+
+5. **certbot 명령어 활성화**
+
+   ```bash
+   sudo ln -s /snap/bin/certbot /usr/bin/certbot
+   ```
+
+   위 명령어를 통해 certbot 명령어를 활성화 시킨다.
+
+6. **certbot 실행**
+
+   ```bash
+   sudo certbot --nginx
+   ```
+
+   위 명령어를 실행하면
+
+   - ssl인증서가 발급될 뿐 아니라,
+   - 기본 nginx 설정파일이 http를 https로 리다이렉트로 되도록 자동 수정되며
+   - ssl인증서가 만료 전에 자동 갱신되는 작업이 cronjob에 등록된다.
+
+   만일 위와 같은 추가작업을 원하지 않고, 인증서가 발급받기를 원한다면 아래처럼 `certonly`를 추가한다.
+
+   ```bash
+   sudo certbot certonly --nginx
+   ```
+
+7. **요청 응답**
