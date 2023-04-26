@@ -33,6 +33,17 @@ npx create-react-app my-app --template typescript
 - **--template typescript**  
   해당 옵션을 이용해 typescript 버전의 리액트 템플릿을 제공받을 수 있다.
 
+[CRA 공식문서](https://create-react-app.dev/docs/importing-a-component/#absolute-imports)를 보면 `tsconfig.json`파일을 수정해서 프로젝트의 절대경로를 수정할 수 있다.
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "src"
+  },
+  "include": ["src"]
+}
+```
+
 # 2. eslint & prettier
 
 협업 개발환경에서 개발자들간 코드 스타일링을 통일시키고, 코드의 품질을 높이기 위해서 eslint와 prettier을 사용한다.
