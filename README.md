@@ -9,6 +9,7 @@ since 2022.08.
   - :relaxed: [AWS](./Tools/AWS.md)
   - 🐋 [Docker](./Tools/Docker.md)
   - :negative_squared_cross_mark: [Nginx](./Tools/Nginx.md)
+  - :red_square: [Redis](./Tools/Redis.md)
 
 - :books: Langauges
 

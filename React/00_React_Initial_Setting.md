@@ -362,15 +362,37 @@ CSS 스타일링 방법은 매우 다양하다. 자신의 프로젝트에 적합
 
 ## 6.1. Sass
 
-sass는 원래 Ruby라는 객체지향언어에서 실행된다. node-sass는 이러한 Ruby 없이 Sass를 사용할 수 있게 해주는 노드 패키지 중 하나이다.
+[Create React App 공식문서](https://create-react-app.dev/docs/adding-a-sass-stylesheet)에 Sass 관련 설정이 자세하게 나와있다.
 
 1. **Sass 설치**
 
    ```bash
-   npm install node-sass
+   npm uninstall node-sass
+    npm install sass
    ```
 
-   - **Node 버전 확인**  
-     node-sass는 현재 환경의 node.js 버전에 대응되서 설치된다. 노드 버전이 다르면 node-sass가 install 되지 않을 수 있기 때문에 주의해야한다.
+   node-sass 지원이 중단되었으므로 sass 패키지 사용을 권장하고 있다.
+
+2. **SASS_PATH 추가**
+
+   프로젝트 루트 경로에 .env 파일을 만들고 참조하고자 하는 Sass 상대경로를 아래와 같이 추가한다.
+
+   ```env
+   # Linux
+   SASS_PATH=path1:path2:path3
+
+   # Window는 세미콜론(;)으로 경로를 구분한다
+   SASS_PATH=path1;path2;path3
+   ```
+
+3. **CSS 초기화**
+
+   index.css에 다음을 import함으로써 브라우저별 css를 초기화 할 수 있다.
+
+   ```css
+   @import-normalize; /* bring in normalize.css styles */
+
+   /* rest of app styles */
+   ```
 
 ## 6.2. Styled Component
