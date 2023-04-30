@@ -2,6 +2,8 @@
 
 ## Index
 
+- [CSS Advanced](#css-advanced)
+  - [Index](#index)
 - [1. Float](#1-float)
 - [2. Flexbox](#2-flexbox)
   - [2.1. Declaration](#21-declaration)
@@ -31,13 +33,16 @@
   - [3.3. Cell Placement](#33-cell-placement)
     - [3.3.1. grid-column/rows-\*](#331-grid-columnrows-)
     - [3.3.2. grid-template-areas](#332-grid-template-areas)
-  - [3.4. Align](#34-align-1)
+  - [3.4. Align](#34-align)
     - [3.4.1. justify-content](#341-justify-content)
     - [3.4.2. justify-items](#342-justify-items)
     - [3.4.3. justify-self](#343-justify-self)
     - [3.4.4. align-content](#344-align-content)
     - [3.4.5. align-items](#345-align-items)
     - [3.4.6. align-self](#346-align-self)
+- [4. 가상 선택자](#4-가상-선택자)
+- [5. 애니메이션](#5-애니메이션)
+- [6. 사용자 지정 속성](#6-사용자-지정-속성)
 
 ---
 
@@ -506,3 +511,16 @@ Grid 컨테이너에 `display: grid;`를 선언한다.
   /* align-self: end; */
 }
 ```
+
+# 4. 가상 선택자
+
+[YouTube part1](https://www.youtube.com/watch?v=zGiirUiWslI)
+[YouTube part2](https://www.youtube.com/watch?v=xoRbkm8XgfQ)
+
+# 5. 애니메이션
+
+[YouTube](https://www.youtube.com/watch?v=YszONjKpgg4&t=731s)
+
+# 6. 사용자 지정 속성
+
+[MDN Docs](https://developer.mozilla.org/ko/docs/Web/CSS/Using_CSS_custom_properties#%EA%B8%B0%EB%B3%B8_%EC%82%AC%EC%9A%A9%EB%B2%95)

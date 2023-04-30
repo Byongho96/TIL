@@ -158,6 +158,12 @@ local repository는 다음 3가지의 작업영역으로 동작한다.
 - <폴더이름>/
   - 폴더 단위로 git 반영을 무시한다.
 
+이미 한 번 staged된 파일의 git index 공간에서 관리되기 때문에 .gitignore에 추가해 working directory에서 더 이상 올리지 않더라도, git index의 캐싱된 파일이 계속해서 추적되어 올라간다. 아래와 같은 명령어로 캐싱된 파일을 삭제해준다.
+
+```bash
+git rm --cached {파일명}
+```
+
 ## 2.4. .gitkeep
 
 git은 기본적으로 폴더가 비었을 경우 해당 폴더를 관리하지 않는다. **단, .gitkeep 파일을 가진 폴더는 비어있을지라도 git이 관리한다.**
