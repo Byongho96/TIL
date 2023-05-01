@@ -25,7 +25,11 @@
 
 # 2. 설치
 
+[Redis 공식문서](https://redis.io/docs/getting-started/installation/)에 설치 방법이 OS 별로 나와있다.
+
 ## 2.1. Linux
+
+[Redis Linux 설치 방법](https://redis.io/docs/getting-started/installation/install-redis-on-linux/)참고.
 
 ```bash
 # https://packages.redis.io/gpg 로 부터 GPG 공개키를 가져온다.
