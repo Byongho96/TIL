@@ -47,6 +47,7 @@ since 2022.08.
     - [HTML](./Web/01_HTML.md)
     - [CSS Basics](./Web/02_CSS_Basics.md)
     - [CSS Advanced](./Web/03_CSS_Advanced.md)
+    - [Sass(Scss)](./Web/04_Sass.md)
   - 🤠 Django
     - [Basics (MTV Design Pattern)](./Django/01_Django_Basics_MTV.md)
     - [CRUD](./Django/02_Django_CRUD.md)
@@ -93,4 +94,6 @@ since 2022.08.
   - 📞 Network
     - [Ch1. 네트워크 첫걸음](./CS/Network/Ch01_네트워크_첫걸음.md)
     - [Ch2. 네트워크의 기본 규칙](./CS/Network/Ch02_네트워크의_기본_규칙.md)
+    - [Ch3. 물리 계층](./CS/Network/Ch03_물리_계층_데이터를_전기_신호로_변환하기.md)
+    - [Ch4. 데이터 링크 계층](./CS/Network/Ch04_데이터_링크_계층_랜에서_데이터_전송하기.md)
 - :scroll: [etc](./etc/)
