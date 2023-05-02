@@ -32,10 +32,11 @@ since 2022.08.
 
 - :chart_with_upwards_trend: Data Structure & Algorithm
 
-  - 💾 [Data Structure](./Data%20Structure/)
+  - 💾 Data Structure
     - [Tree](./Data%20Structure/Tree.md)
     - [Heap](./Data%20Structure/Heap.md)
-  - 🎮 [Algorithm](./Arlgorithm/)
+  - 🎮 Algorithm
+    - [Sorting](./Algorithm/Sorting.md)
     - [Backtracking](./Algorithm/Backtracking.md)
     - [BFS](./Algorithm/BFS.md)
     - [Dijkstra](./Algorithm/Dijkstra.md)
@@ -68,12 +69,6 @@ since 2022.08.
     - [Router](./Vue/04_Vue_Vue_Router.md)
   - :electron: React
     - [Initial Setting](./React/00_React_Initial_Setting.md)
-    - [Basics(+useState, useEffect)](./React/01_React_useState_useEffect.md)
-    - [Hooks](./React/02_React_Hooks.md)
-    - [Router](./React/03_React_Router.md)
-    - [Redux Toolkit](./React/04_React_Redux_Toolkit.md)
-    - [Ajax](./React/05_React_Ajax.md)
-    - [Styled Components](./React/06_React_Styled_Components.md)
 
 - 📖 Computer Science
   - 📁 Database
