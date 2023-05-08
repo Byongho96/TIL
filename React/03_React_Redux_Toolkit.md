@@ -1,99 +1,129 @@
-# Redux
-
 # Redux Toolkit
 
-slice : 작은 스토어
-store : 큰 스토어
+- [Redux Toolkit](#redux-toolkit)
+- [1. Redux Toolkit 기본 사용](#1-redux-toolkit-기본-사용)
+- [2. Redux Toolkit 비동기](#2-redux-toolkit-비동기)
+  - [2.1. 목표](#21-목표)
+  - [2.2. createAsyncThunk](#22-createasyncthunk)
+  - [실전 예제](#실전-예제)
 
-```js
-import { createSlice } from '@reduxjs/toolkit'
+# 1. Redux Toolkit 기본 사용
 
-// 불변성 유지를 위해서 디스트럭팅 해서 다시 묶는 이런 작업 ㄴㄴ
-const counterSlice = createSlice({
-  name: 'cntSlice',
-  initialState: { value: 0 },
-  reducers: {
-    up: (state, action) => {
-      //   state.value = state.value + action.step
-      state.value = state.value + action.payload
+- **Slice 생성**
+  slice는 하나의 데이터에 대한 작은 저장소라고 생각할 수 있다.
+
+  ```js
+  import { createSlice } from '@reduxjs/toolkit'
+
+  // useReducer와 비슷하게 초깃갓과, reducer을 전달
+  const counterSlice = createSlice({
+    name: 'cntSlice',
+    initialState: { value: 0 },
+    reducers: {
+      // 각가의 reducer가 하나의 type에 대응
+      up: (state, action) => {
+        // 1) 액션 크리에이터를 사용할 경우
+        state.value = state.value + action.payload
+        // 2) 액션 크리에이터를 사용하지 않을 경우
+        // state.value = state.value + action.step
+      },
     },
-  },
-})
-
-export default counterSlice
-export const { up } = counterSlice.actions // 이것도 액션 크리에이터
-```
-
-```js
-import { configureStore } from '@reduxjs/toolkit'
-import counterSlice from './counterSlice'
-
-const store = configureStore({
-  reducer: {
-    counter: counterSlice.reducer, // 왼쪽이름이 나중에 state를 읽을 때
-  },
-})
-
-export default store
-```
-
-```js
-import { Provider } from 'react-redux'
-import store from './store'
-
-export default function App() {
-  return (
-    <Provider store={store}>
-      <Counter />
-    </Provider>
-  )
-}
-```
-
-```js
-import { useSelector, useDispatch } from 'react-redux'
-import { up } from './counterSlice'
-
-export default function Counter() {
-  const dispatch = useDispatch()
-  const count = useSelector((state) => {
-    return state.counter.value
   })
 
-  function countUp() {
-    // dispatch({ type: 'cntSlice/up', step: 1 })
+  export default counterSlice
+  export const { up } = counterSlice.actions // action creator라고 부르며, 이를 통해 컴포넌트 단에서 더 간편한게 action을 생성할 수 있다.
+  ```
 
-    //redux toolkit의 액션 크리에이터
-    dispatch(cntSlice.actions.up(2)) // payload라는 값에 담겨서 감
-    dispatch(up(2)) // payload라는 값에 담겨서 감
+- **Store 생성**
+
+  redux는 여러 개의 slice를 모아 단 하나의 store에서 관리한다.
+
+  ```js
+  import { configureStore } from '@reduxjs/toolkit'
+  import counterSlice from './counterSlice'
+
+  const store = configureStore({
+    reducer: {
+      // 왜 reducer를 넣어주는지는 잘모르겠음..
+      counter: counterSlice.reducer, // 왼쪽이름이 나중에 state를 읽을 때 사용된다
+    },
+  })
+
+  export default store
+  ```
+
+- **Provider 생성**
+
+  store값을 읽고자 하는 컴포넌트의 최상윗단에 Provider로 공급한다.
+
+  ```js
+  import { Provider } from 'react-redux'
+  import store from './store'
+
+  export default function App() {
+    return (
+      <Provider store={store}>
+        <Counter />
+      </Provider>
+    )
   }
+  ```
 
-  return (
-    <div>
-      {count}
-      <button onClick={countUp}>+</button>
-    </div>
-  )
-}
-```
+- **컴포넌트 사용**
 
-# Redux Toolkit 비동기
+  ```js
+  import { useSelector, useDispatch } from 'react-redux'
+  import counterSlice, { up } from './counterSlice'
 
-리덕스 툴킷 안에 이미 Thunk라는 기능이 내장되어있음. 비동기적인 작업을 할 때 필요함.
+  export default function Counter() {
+    // store로부터 상태를 읽어온다.
+    const count = useSelector((state) => {
+      return state.counter.value
+    })
 
-[https://www.youtube.com/watch?v=K-3sBc2pUJ4]
+    // reducer를 발동시킬 dispatch
+    const dispatch = useDispatch()
+
+    function countUp() {
+      // 1. 액션 직접 입력
+      // dispatch({ type: 'cntSlice/up', step: 1 }) // type에서 slice의 name을 사용한다.
+
+      // 2. 액션 크리에이터 사용
+      dispatch(couterSlice.actions.up(2)) // 인자는 자동으로 payload라는 값에 담겨서 감
+
+      // 3. 액션 크리에이터 사용
+      dispatch(up(2)) // 인자는 자동으로 payload라는 값에 담겨서 감
+    }
+
+    return (
+      <div>
+        {count}
+        <button onClick={countUp}>+</button>
+      </div>
+    )
+  }
+  ```
+
+# 2. Redux Toolkit 비동기
+
+리덕스 툴킷 안에 이미 Thunk라는 기능이 내장되어있어 비동기 reducer를 생성할 수 있다.
+
+## 2.1. 목표
+
+동기적 reducer로도 아래처럼 비동기적인 state업데이트를 구현할 수능 있다.
 
 ```js
 const status = useSelector((state)=> {
   return state.counter.status
 })
-const status = useSelector((state)=> {
+const value = useSelector((state)=> {
   return state.counter.value
 })
 
+// 비동기 요청의 반환 값을 받은 뒤, state를 동기 reducer로 업데이트한다.
 async function fetchValue() {
   const res = await fetch('https://api/example')
-  const data = await res.json() //json 을 js 객체로 변환하는 함수
+  const data = await res.json()
   dispatch(set(data.value))
 }
 
@@ -103,18 +133,18 @@ return (
 )
 ```
 
-중복과 유지보수
+하지만 코드의 불필요한 중복을 줄이고 유지 보수를 용이하게 하기 위해서, 아래처럼 비동기 로직을 reducer 자체에 포함시키고자 한다.
 
 ```js
 const status = useSelector((state)=> {
   return state.counter.status
 })
-const status = useSelector((state)=> {
+const vlaue = useSelector((state)=> {
   return state.counter.value
 })
 
 async function fetchValue() {
-  dispatch(asyncFetchReducer()) // 비동기 함수를 리듀서에 정의
+  dispatch(asyncFetchReducer()) // 비동기 reducer 호출
 }
 
 return (
@@ -123,13 +153,15 @@ return (
 )
 ```
 
-**createAsyncThunk는 비동기 함수를 처리하는 액션을 만들다. action creater**
+## 2.2. createAsyncThunk
+
+createAsyncThunk를 통해 비동기 함수를 처리하는 액션을 만들다. action creater\*\*
 
 ```js
 const asyncUpFetch = createAsyncThunk(
-  'counterSlice/asyncUpFetch', // 타입
+  'counterSlice/asyncUpFetch', // 타입 정의
   async () => {
-    const resp = await fetch('https://~~~')
+    const resp = await fetch('https://api/example')
     const data = await resp.json()
     return data.value
   }
@@ -176,7 +208,7 @@ const counterSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(asyncUpFetch.fullfilled, (state, action) => {
-      state.vlaue = state.value + action.payload // payload는 액션의 결과가 온다
+      state.value = state.value + action.payload // payload는 액션의 결과가 온다
       state.status = 'complete'
     })
   },
