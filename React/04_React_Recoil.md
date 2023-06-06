@@ -10,6 +10,7 @@
 - [2. Selectors](#2-selectors)
   - [2.1. Selectors 생성](#21-selectors-생성)
   - [2.1. Selectors 읽기](#21-selectors-읽기)
+  - [2.2. Selectors 수정하기](#22-selectors-수정하기)
 - [3. Asynchronous](#3-asynchronous)
 
 # 1. Atoms
@@ -28,7 +29,7 @@ export default todoListState = atom({
   default: [],
 })
 
-export default {todoListState}
+export { todoListState }
 ```
 
 - **key**  
@@ -204,6 +205,8 @@ const filteredTodoListState = selector({
 export { filteredTodoListState }
 ```
 
+[Selector 세부 문서](https://recoiljs.org/docs/api-reference/core/selector/)
+
 - **get**  
   get 속성은 get 함수를 내부적으로 전달받으며, 전달 받은 get 함수를 통해 다른 **atoms**나 **selectors**를 구독할 수 있다.  
   위의 예시에서 filteredTodoListState 는 `todoListFilterState`와 `todoListState`를 구독하고 있다.
@@ -212,7 +215,7 @@ export { filteredTodoListState }
 
 atoms와 동일하게 컴포넌트 단에서 `useRecoilValue`를 이용해서 값을 참조할 수 있다.
 
-말했던 것처럼 soure of truth는 atom이고, selector는 atom으로부터 파생된 값이다. 따라서 아래 예시에서 `TodoListFilters`컴포넌트에서 `filter` atom이 수정되면, `filter`를 구독하는 `filteredTodoListState`가
+말했던 것처럼 soure of truth는 atom이고, selector는 atom으로부터 파생된 값이다. 따라서 아래 예시에서 `TodoListFilters`컴포넌트에서 `filter` atom이 수정되면, `filter`를 구독하는 `filteredTodoListState`도 자동으로 수정된다.
 
 ```js
 import { useRecoilState } from 'recoil'
@@ -254,6 +257,10 @@ function TodoListFilters() {
   )
 }
 ```
+
+## 2.2. Selectors 수정하기
+
+[Selector가 set 속성을 가질 때만 수정할 수 있다.](https://recoiljs.org/docs/api-reference/core/selector/)
 
 1. 이미 선언된 아톰을 구독하고 있다가 함수를 실행
 2. 서버와의 비동기적인 통신이 가능

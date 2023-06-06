@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 .header {
+=======
+/* .header {
+>>>>>>> 0689e4abb54d841b29e31d5c51a501053659aed5
   position: absolute;
   padding: 0px 20px;
 }
@@ -13,4 +17,8 @@
 
 .menu_name:hover {
   cursor: pointer;
+<<<<<<< HEAD
 }
+=======
+} */
+>>>>>>> 0689e4abb54d841b29e31d5c51a501053659aed5
