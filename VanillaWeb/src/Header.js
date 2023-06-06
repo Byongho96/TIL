@@ -1,4 +1,4 @@
-// import styles from './Header.scss'
+import styles from './Header.module.scss'
 
 class Header {
   constructor($body) {
@@ -21,14 +21,14 @@ class Header {
   render() {
     const header = document.createElement('header')
     const home_menu = this.createMenuElem(
-      'header header_left',
-      'menu_name',
+      `${styles.header} ${styles.header_left}`,
+      `${styles.menu_name}`,
       'menu_home',
       'HOME'
     )
     const signup_menu = this.createMenuElem(
-      'header header_right',
-      'menu_name',
+      `${styles.header} ${styles.header_right}`,
+      `${styles.menu_name}`,
       'menu_signup',
       'SIGNUP'
     )
