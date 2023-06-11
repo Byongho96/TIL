@@ -1,0 +1,14 @@
+.tape {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 200vw;
+  padding: 0.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+  white-space: nowrap;
+
+  &.black {
+    color: red;
+    background-color: black;
+  }
+}

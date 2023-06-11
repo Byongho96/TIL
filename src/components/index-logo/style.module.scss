@@ -1,0 +1,14 @@
+.index-logo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+
+  font-size: 9rem;
+  font-weight: bold;
+  color: gray;
+
+  > p::first-letter {
+    font-weight: bold;
+    color: black;
+  }
+}

@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 8rem 0rem;
+}
+
+.logo {
+  height: 30rem;
+}
+
+.tape-first {
+  transform: rotate(2deg) translateY(2em);
+}
+
+.tape-second {
+  transform: rotate(-6deg) translateY(-2em);
+}

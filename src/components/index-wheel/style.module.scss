@@ -1,0 +1,56 @@
+@import '../../styles/_animations.scss';
+
+$number-of-lists: 15; // number of rotating lists
+$font-size: 4rem; // font size of list items
+$radius: 38rem; // radius of circle
+$offset: 4rem; // offset from circle border
+
+.categories {
+  @include animation-rotate-counter-clockwise(30s); // 회전 애니메이션
+
+  position: relative;
+  // 바깥 원 그리기
+  width: 2 * $radius;
+  height: 2 * $radius;
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+
+  &.stop {
+    animation-play-state: paused;
+  }
+
+  // 안쪽 원 그리기
+  &::after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(2 * $radius / 3);
+    height: calc(2 * $radius / 3);
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  > li {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3rem;
+    font-size: $font-size;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  @for $i from 1 through $number-of-lists {
+    $angle: calc(360deg / $number-of-lists) * $i;
+
+    > li:nth-child(#{$i}) {
+      transform: translate(-50%, -50%)
+        rotate(#{$angle})
+        translate(-$radius + $offset);
+      color: if($i % 5 == 0, red, black);
+    }
+  }
+}

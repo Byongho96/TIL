@@ -1,0 +1,336 @@
+// 'slow' | 'normal' | 'fast'에 따라서 duration 값 반환
+@function func-animation-speed($speed) {
+  @if $speed == 'slow' {
+    @return 1s;
+  } @else if $speed == 'normal' {
+    @return 0.5s;
+  } @else if $speed == 'fast' {
+    @return 0.2s;
+  } @else {
+    @return 0;
+  }
+}
+
+@mixin animation(
+  $delay,
+  $duration,
+  $animation,
+  $function,
+  $direction: normal,
+  $fillmode: forwards,
+  $iteration: 1
+) {
+  animation-delay: $delay;
+  animation-duration: $duration;
+  animation-name: $animation;
+  animation-timing-function: $function;
+  animation-direction: $direction; // 애니메이션의 진행 방향
+  animation-fill-mode: $fillmode; // 애니메이션이 끝난 뒤의 상태
+  animation-iteration-count: $iteration; // 애니메이션 반복 횟수
+}
+
+// 아래로 내려오면서 보이는 애니메이션
+@mixin animation-slide-in-down($speed: 'normal', $distance: 100%, $delay: 0) {
+  @include animation(
+    $delay,
+    func-animation-speed($speed),
+    animation-slide-in-down,
+    ease-in-out
+  );
+
+  @keyframes animation-slide-in-down {
+    0% {
+      opacity: 0;
+      transform: translateY(-$distance);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+// 위로 올라오면서 보이는 애니메이션
+@mixin animation-slide-in-up($speed: 'normal', $distance: 100%, $delay: 0) {
+  @include animation(
+    $delay,
+    func-animation-speed($speed),
+    animation-slide-in-up,
+    ease-in-out
+  );
+
+  @keyframes animation-slide-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY($distance);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+// 왼쪽으로 들어오면서 보이는 애니메이션
+@mixin animation-slide-in-left($speed: 'normal', $distance: 100%, $delay: 0) {
+  @include animation(
+    $delay,
+    func-animation-speed($speed),
+    animation-slide-in-left,
+    ease-in
+  );
+
+  @keyframes animation-slide-in-left {
+    0% {
+      opacity: 0;
+      transform: translateX($distance);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+// 오른쪽으로 들어오면서 보이는 애니메이션
+@mixin animation-slide-in-right($speed: 'normal', $distance: 100%, $delay: 0) {
+  @include animation(
+    $delay,
+    func-animation-speed($speed),
+    animation-slide-in-right,
+    ease-in
+  );
+
+  @keyframes animation-slide-in-right {
+    0% {
+      opacity: 0;
+      transform: translateX(-$distance);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+// 아래로 나가면서 안보이는 애니메이션
+@mixin animation-slide-out-down($speed: 'normal', $distance: 100%, $delay: 0) {
+  @include animation(
+    $delay,
+    func-animation-speed($speed),
+    animation-slide-out-down,
+    ease-out
+  );
+
+  @keyframes animation-slide-out-down {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY($distance);
+    }
+  }
+}
+
+// 위로 올라가면서 안보이는 애니메이션
+@mixin animation-slide-out-up($speed: 'normal', $distance: 100%, $delay: 0) {
+  @include animation(
+    $delay,
+    func-animation-speed($speed),
+    animation-slide-out-up,
+    ease-out
+  );
+
+  @keyframes animation-slide-out-up {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-$distance);
+    }
+  }
+}
+
+// 왼쪽으로 나가면서 안보이는 애니메이션
+@mixin animation-slide-out-left($speed: 'normal', $distance: 100%, $delay: 0) {
+  @include animation(
+    $delay,
+    func-animation-speed($speed),
+    animation-slide-out-left,
+    ease-out
+  );
+
+  @keyframes animation-slide-out-left {
+    0% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(-$distance);
+    }
+  }
+}
+
+// 오른쪽으로 나가면서 안보이는 애니메이션
+@mixin animation-slide-out-right($speed: 'normal', $distance: 100%, $delay: 0) {
+  @include animation(
+    $delay,
+    func-animation-speed($speed),
+    animation-slide-out-right,
+    ease-out
+  );
+
+  @keyframes animation-slide-out-right {
+    0% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX($distance);
+    }
+  }
+}
+
+// 흐려졌다가 선명해지는 애니메이션
+@mixin animation-clear($speed: 'normal', $delay: 0) {
+  @include animation(
+    $delay,
+    func-animation-speed($speed),
+    animation-clear,
+    ease-out
+  );
+
+  @keyframes animation-clear {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+// 왼쪽으로 흐르는 애니메이션
+@mixin animation-right-flowing(
+  $speed: 10s,
+  $start: 0%,
+  $end: 100%,
+  $delay: 0s
+) {
+  @include animation(
+    $delay,
+    $speed,
+    animation-left-flowing,
+    linear,
+    normal,
+    none,
+    infinite
+  );
+
+  @keyframes animation-right-flowing {
+    0% {
+      transform: translateX($start);
+    }
+
+    100% {
+      transform: translateX(-$end);
+    }
+  }
+}
+
+// 오른쪽으로 흐르는 애니메이션
+@mixin animation-left-flowing($speed: 2s, $start: 0%, $end: 100%, $delay: 0s) {
+  @include animation(
+    $delay,
+    $speed,
+    animation-left-flowing,
+    linear,
+    normal,
+    none,
+    infinite
+  );
+
+  @keyframes animation-left-flowing {
+    0% {
+      transform: translateX($start);
+    }
+
+    100% {
+      transform: translateX(-$end);
+    }
+  }
+}
+
+// 둥둥 떠있는 애니메이션
+@mixin animation-floating($speed: 2s, $distance: 100%, $delay: 0s) {
+  @include animation(
+    $delay,
+    $speed,
+    animation-floating,
+    ease-in-out,
+    alternate,
+    none,
+    infinite
+  );
+
+  @keyframes animation-floating {
+    0% {
+      transform: translateY(-$distance);
+    }
+
+    100% {
+      transform: translateY($distance);
+    }
+  }
+}
+
+// 회전하는 흐르는 애니메이션
+@mixin animation-rotate-clockwise($speed: 2s, $delay: 0s) {
+  @include animation(
+    $delay,
+    $speed,
+    animation-left-flowing,
+    linear,
+    normal,
+    none,
+    infinite
+  );
+
+  @keyframes animation-left-flowing {
+    0% {
+      transform: rotate(0);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@mixin animation-rotate-counter-clockwise($speed: 2s, $delay: 0s) {
+  @include animation(
+    $delay,
+    $speed,
+    animation-left-flowing,
+    linear,
+    normal,
+    none,
+    infinite
+  );
+
+  @keyframes animation-left-flowing {
+    0% {
+      transform: rotate(0);
+    }
+
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+}

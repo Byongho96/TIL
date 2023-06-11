@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 6rem;
+  border-bottom: 5px solid red;
+}
+
+.nav-links {
+  display: flex;
+  gap: 3rem;
+}
+
+.nav-link-text {
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 900;
+  color: black;
+}
