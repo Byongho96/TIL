@@ -1,0 +1,556 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.10.0"/><style data-href="/TIL/styles.1d065b2755830a643a9f.css" data-identity="gatsby-global-css">a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{border:0;font-size:100%;font:inherit;margin:0;padding:0;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:"";content:none}table{border-collapse:collapse;border-spacing:0}@media(prefers-color-scheme:dark){.markdown-body{--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-brackethighlighter-unmatched:#f85149;--color-prettylights-syntax-invalid-illegal-text:#f0f6fc;--color-prettylights-syntax-invalid-illegal-bg:#8e1519;--color-prettylights-syntax-carriage-return-text:#f0f6fc;--color-prettylights-syntax-carriage-return-bg:#b62324;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-markup-list:#f2cc60;--color-prettylights-syntax-markup-heading:#1f6feb;--color-prettylights-syntax-markup-italic:#c9d1d9;--color-prettylights-syntax-markup-bold:#c9d1d9;--color-prettylights-syntax-markup-deleted-text:#ffdcd7;--color-prettylights-syntax-markup-deleted-bg:#67060c;--color-prettylights-syntax-markup-inserted-text:#aff5b4;--color-prettylights-syntax-markup-inserted-bg:#033a16;--color-prettylights-syntax-markup-changed-text:#ffdfb6;--color-prettylights-syntax-markup-changed-bg:#5a1e02;--color-prettylights-syntax-markup-ignored-text:#c9d1d9;--color-prettylights-syntax-markup-ignored-bg:#1158c7;--color-prettylights-syntax-meta-diff-range:#d2a8ff;--color-prettylights-syntax-brackethighlighter-angle:#8b949e;--color-prettylights-syntax-sublimelinter-gutter-mark:#484f58;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-fg-subtle:#6e7681;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:hsla(215,8%,47%,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-attention-subtle:rgba(187,128,9,.15);--color-danger-fg:#f85149;color-scheme:dark}}@media(prefers-color-scheme:light){.markdown-body{--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-brackethighlighter-unmatched:#82071e;--color-prettylights-syntax-invalid-illegal-text:#f6f8fa;--color-prettylights-syntax-invalid-illegal-bg:#82071e;--color-prettylights-syntax-carriage-return-text:#f6f8fa;--color-prettylights-syntax-carriage-return-bg:#cf222e;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-markup-list:#3b2300;--color-prettylights-syntax-markup-heading:#0550ae;--color-prettylights-syntax-markup-italic:#24292f;--color-prettylights-syntax-markup-bold:#24292f;--color-prettylights-syntax-markup-deleted-text:#82071e;--color-prettylights-syntax-markup-deleted-bg:#ffebe9;--color-prettylights-syntax-markup-inserted-text:#116329;--color-prettylights-syntax-markup-inserted-bg:#dafbe1;--color-prettylights-syntax-markup-changed-text:#953800;--color-prettylights-syntax-markup-changed-bg:#ffd8b5;--color-prettylights-syntax-markup-ignored-text:#eaeef2;--color-prettylights-syntax-markup-ignored-bg:#0550ae;--color-prettylights-syntax-meta-diff-range:#8250df;--color-prettylights-syntax-brackethighlighter-angle:#57606a;--color-prettylights-syntax-sublimelinter-gutter-mark:#8c959f;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-fg-subtle:#6e7781;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-attention-subtle:#fff8c5;--color-danger-fg:#cf222e;color-scheme:light}}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;word-wrap:break-word;background-color:var(--color-canvas-default);color:var(--color-fg-default);font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Noto Sans,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5;margin:0}.markdown-body h1:hover .anchor .octicon-link:before,.markdown-body h2:hover .anchor .octicon-link:before,.markdown-body h3:hover .anchor .octicon-link:before,.markdown-body h4:hover .anchor .octicon-link:before,.markdown-body h5:hover .anchor .octicon-link:before,.markdown-body h6:hover .anchor .octicon-link:before{background-color:currentColor;content:" ";display:inline-block;height:16px;-webkit-mask-image:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z"/></svg>');mask-image:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z"/></svg>');width:16px}.markdown-body details,.markdown-body figcaption,.markdown-body figure{display:block}.markdown-body summary{display:list-item}.markdown-body [hidden]{display:none!important}.markdown-body a{background-color:transparent;color:var(--color-accent-fg);text-decoration:none}.markdown-body abbr[title]{border-bottom:none;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}.markdown-body b,.markdown-body strong{font-weight:var(--base-text-weight-semibold,600)}.markdown-body dfn{font-style:italic}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);font-size:2em;font-weight:var(--base-text-weight-semibold,600);margin:.67em 0;padding-bottom:.3em}.markdown-body mark{background-color:var(--color-attention-subtle);color:var(--color-fg-default)}.markdown-body small{font-size:90%}.markdown-body sub,.markdown-body sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}.markdown-body sub{bottom:-.25em}.markdown-body sup{top:-.5em}.markdown-body img{background-color:var(--color-canvas-default);border-style:none;box-sizing:content-box;max-width:100%}.markdown-body code,.markdown-body kbd,.markdown-body pre,.markdown-body samp{font-family:monospace;font-size:1em}.markdown-body figure{margin:1em 40px}.markdown-body hr{background:transparent;background-color:var(--color-border-default);border:0;box-sizing:content-box;height:.25em;margin:24px 0;overflow:hidden;padding:0}.markdown-body input{font:inherit;font-family:inherit;font-size:inherit;line-height:inherit;margin:0;overflow:visible}.markdown-body [type=button],.markdown-body [type=reset],.markdown-body [type=submit]{-webkit-appearance:button}.markdown-body [type=checkbox],.markdown-body [type=radio]{box-sizing:border-box;padding:0}.markdown-body [type=number]::-webkit-inner-spin-button,.markdown-body [type=number]::-webkit-outer-spin-button{height:auto}.markdown-body [type=search]::-webkit-search-cancel-button,.markdown-body [type=search]::-webkit-search-decoration{-webkit-appearance:none}.markdown-body ::-webkit-input-placeholder{color:inherit;opacity:.54}.markdown-body ::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}.markdown-body a:hover{text-decoration:underline}.markdown-body ::placeholder{color:var(--color-fg-subtle);opacity:1}.markdown-body hr:after,.markdown-body hr:before{content:"";display:table}.markdown-body hr:after{clear:both}.markdown-body table{border-collapse:collapse;border-spacing:0;display:block;max-width:100%;overflow:auto;width:-webkit-max-content;width:max-content}.markdown-body td,.markdown-body th{padding:0}.markdown-body details summary{cursor:pointer}.markdown-body details:not([open])>:not(summary){display:none!important}.markdown-body [role=button]:focus,.markdown-body a:focus,.markdown-body input[type=checkbox]:focus,.markdown-body input[type=radio]:focus{box-shadow:none;outline:2px solid var(--color-accent-fg);outline-offset:-2px}.markdown-body [role=button]:focus:not(:focus-visible),.markdown-body a:focus:not(:focus-visible),.markdown-body input[type=checkbox]:focus:not(:focus-visible),.markdown-body input[type=radio]:focus:not(:focus-visible){outline:1px solid transparent}.markdown-body [role=button]:focus-visible,.markdown-body a:focus-visible,.markdown-body input[type=checkbox]:focus-visible,.markdown-body input[type=radio]:focus-visible{box-shadow:none;outline:2px solid var(--color-accent-fg);outline-offset:-2px}.markdown-body a:not([class]):focus,.markdown-body a:not([class]):focus-visible,.markdown-body input[type=checkbox]:focus,.markdown-body input[type=checkbox]:focus-visible,.markdown-body input[type=radio]:focus,.markdown-body input[type=radio]:focus-visible{outline-offset:0}.markdown-body kbd{background-color:var(--color-canvas-subtle);border-bottom-color:var(--color-neutral-muted);border:1px solid var(--color-neutral-muted);border-radius:6px;box-shadow:inset 0 -1px 0 var(--color-neutral-muted);color:var(--color-fg-default);display:inline-block;font:11px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;line-height:10px;padding:3px 5px;vertical-align:middle}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{font-weight:var(--base-text-weight-semibold,600);line-height:1.25;margin-bottom:16px;margin-top:24px}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);font-size:1.5em;padding-bottom:.3em}.markdown-body h2,.markdown-body h3{font-weight:var(--base-text-weight-semibold,600)}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h4,.markdown-body h5{font-weight:var(--base-text-weight-semibold,600)}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em;font-weight:var(--base-text-weight-semibold,600)}.markdown-body p{margin-bottom:10px;margin-top:0}.markdown-body blockquote{border-left:.25em solid var(--color-border-default);color:var(--color-fg-muted);margin:0;padding:0 1em}.markdown-body ol,.markdown-body ul{margin-bottom:0;margin-top:0;padding-left:2em}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code,.markdown-body pre,.markdown-body samp,.markdown-body tt{font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;font-size:12px}.markdown-body pre{word-wrap:normal;margin-bottom:0;margin-top:0}.markdown-body .octicon{fill:currentColor;display:inline-block;overflow:visible!important;vertical-align:text-bottom}.markdown-body input::-webkit-inner-spin-button,.markdown-body input::-webkit-outer-spin-button{-webkit-appearance:none;appearance:none;margin:0}.markdown-body:after,.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;line-height:1;margin-left:-20px;padding-right:4px}.markdown-body .anchor:focus{outline:none}.markdown-body blockquote,.markdown-body details,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-bottom:16px;margin-top:0}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown-body h3 tt,.markdown-body h4 code,.markdown-body h4 tt,.markdown-body h5 code,.markdown-body h5 tt,.markdown-body h6 code,.markdown-body h6 tt{font-size:inherit;padding:0 .2em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ol.no-list,.markdown-body ul.no-list{list-style-type:none;padding:0}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=A]{list-style-type:upper-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body ol[type=I]{list-style-type:upper-roman}.markdown-body div>ol:not([type]),.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-bottom:0;margin-top:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{font-size:1em;font-style:italic;font-weight:var(--base-text-weight-semibold,600);margin-top:16px;padding:0}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table th{font-weight:var(--base-text-weight-semibold,600)}.markdown-body table td,.markdown-body table th{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:transparent}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{background-color:transparent;max-width:none;vertical-align:text-top}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{border:1px solid var(--color-border-default);display:block;float:left;margin:13px 0 0;overflow:hidden;padding:7px;width:auto}.markdown-body span.frame span img{display:block;float:left}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);display:block;padding:5px 0 0}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}.markdown-body span.align-center span img{margin:0 auto;text-align:center}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}.markdown-body span.align-right span img{margin:0;text-align:right}.markdown-body span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}.markdown-body span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;font-size:85%;margin:0;padding:.2em .4em;white-space:break-spaces}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre code{font-size:100%}.markdown-body pre>code{background:transparent;border:0;margin:0;padding:0;white-space:pre;word-break:normal}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;font-size:85%;line-height:1.45;overflow:auto;padding:16px}.markdown-body pre code,.markdown-body pre tt{word-wrap:normal;background-color:transparent;border:0;display:inline;line-height:inherit;margin:0;max-width:auto;overflow:visible;padding:0}.markdown-body .csv-data td,.markdown-body .csv-data th{font-size:12px;line-height:1;overflow:hidden;padding:5px;text-align:left;white-space:nowrap}.markdown-body .csv-data .blob-num{background:var(--color-canvas-default);border:0;padding:10px 8px 9px;text-align:right}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:var(--base-text-weight-semibold,600)}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{border-top:1px solid var(--color-border-default);color:var(--color-fg-muted);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes ol ul{display:inline-block;margin-top:16px;padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{border:2px solid var(--color-accent-emphasis);border-radius:6px;bottom:-8px;content:"";left:-24px;pointer-events:none;position:absolute;right:-8px;top:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body .pl-c{color:var(--color-prettylights-syntax-comment)}.markdown-body .pl-c1,.markdown-body .pl-s .pl-v{color:var(--color-prettylights-syntax-constant)}.markdown-body .pl-e,.markdown-body .pl-en{color:var(--color-prettylights-syntax-entity)}.markdown-body .pl-s .pl-s1,.markdown-body .pl-smi{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .pl-ent{color:var(--color-prettylights-syntax-entity-tag)}.markdown-body .pl-k{color:var(--color-prettylights-syntax-keyword)}.markdown-body .pl-pds,.markdown-body .pl-s,.markdown-body .pl-s .pl-pse .pl-s1,.markdown-body .pl-sr,.markdown-body .pl-sr .pl-cce,.markdown-body .pl-sr .pl-sra,.markdown-body .pl-sr .pl-sre{color:var(--color-prettylights-syntax-string)}.markdown-body .pl-smw,.markdown-body .pl-v{color:var(--color-prettylights-syntax-variable)}.markdown-body .pl-bu{color:var(--color-prettylights-syntax-brackethighlighter-unmatched)}.markdown-body .pl-ii{background-color:var(--color-prettylights-syntax-invalid-illegal-bg);color:var(--color-prettylights-syntax-invalid-illegal-text)}.markdown-body .pl-c2{background-color:var(--color-prettylights-syntax-carriage-return-bg);color:var(--color-prettylights-syntax-carriage-return-text)}.markdown-body .pl-sr .pl-cce{color:var(--color-prettylights-syntax-string-regexp);font-weight:700}.markdown-body .pl-ml{color:var(--color-prettylights-syntax-markup-list)}.markdown-body .pl-mh,.markdown-body .pl-mh .pl-en,.markdown-body .pl-ms{color:var(--color-prettylights-syntax-markup-heading);font-weight:700}.markdown-body .pl-mi{color:var(--color-prettylights-syntax-markup-italic);font-style:italic}.markdown-body .pl-mb{color:var(--color-prettylights-syntax-markup-bold);font-weight:700}.markdown-body .pl-md{background-color:var(--color-prettylights-syntax-markup-deleted-bg);color:var(--color-prettylights-syntax-markup-deleted-text)}.markdown-body .pl-mi1{background-color:var(--color-prettylights-syntax-markup-inserted-bg);color:var(--color-prettylights-syntax-markup-inserted-text)}.markdown-body .pl-mc{background-color:var(--color-prettylights-syntax-markup-changed-bg);color:var(--color-prettylights-syntax-markup-changed-text)}.markdown-body .pl-mi2{background-color:var(--color-prettylights-syntax-markup-ignored-bg);color:var(--color-prettylights-syntax-markup-ignored-text)}.markdown-body .pl-mdr{color:var(--color-prettylights-syntax-meta-diff-range);font-weight:700}.markdown-body .pl-ba{color:var(--color-prettylights-syntax-brackethighlighter-angle)}.markdown-body .pl-sg{color:var(--color-prettylights-syntax-sublimelinter-gutter-mark)}.markdown-body .pl-corl{color:var(--color-prettylights-syntax-constant-other-reference-link);text-decoration:underline}.markdown-body g-emoji{display:inline-block;font-family:Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;font-size:1em;font-style:normal!important;font-weight:var(--base-text-weight-normal,400);line-height:1;min-width:1ch;vertical-align:-.075em}.markdown-body g-emoji img{height:1em;width:1em}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item label{font-weight:var(--base-text-weight-normal,400)}.markdown-body .task-list-item.enabled label{cursor:pointer}.markdown-body .task-list-item+.task-list-item{margin-top:4px}.markdown-body .task-list-item .handle{display:none}.markdown-body .task-list-item-checkbox{margin:0 .2em .25em -1.4em;vertical-align:middle}.markdown-body .contains-task-list:dir(rtl) .task-list-item-checkbox{margin:0 -1.6em .25em .2em}.markdown-body .contains-task-list{position:relative}.markdown-body .contains-task-list:focus-within .task-list-item-convert-container,.markdown-body .contains-task-list:hover .task-list-item-convert-container{clip:auto;display:block;height:24px;overflow:visible;width:auto}.markdown-body ::-webkit-calendar-picker-indicator{filter:invert(50%)}._404-module--notice--90d00{color:gray;font-size:8rem;font-weight:700;text-align:center}.about-module--container--307c9{display:flex;flex-direction:column;overflow:hidden;padding:8rem 0}.about-module--logo--3c6f5{height:30rem}.about-module--tape-first--94c2b{transform:rotate(2deg) translateY(2em)}.about-module--tape-second--f7c53{transform:rotate(-6deg) translateY(-2em)}.index-module--container--d86ba{overflow:hidden;padding:5rem 7rem;position:relative}.index-module--wheel--817ae{bottom:-35rem;position:absolute;right:-25rem}.style-module--index-logo--98cf0{color:gray;display:flex;flex-direction:column;font-size:9rem;font-weight:700;gap:.1rem}.style-module--index-logo--98cf0>p:first-letter{color:#000;font-weight:700}.style-module--container--24ac7{display:flex;flex-direction:column;min-height:100vh}.style-module--container--24ac7>div:nth-child(2){flex:1 1}.style-module--container--bc714{border-bottom:5px solid red;display:flex;justify-content:space-between;padding:1.5rem 6rem}.style-module--nav-links--64532{display:flex;gap:3rem}.style-module--nav-link-text--1f74e{color:#000;font-size:2rem;font-weight:900;text-decoration:none}.style-module--container--ddcb6{align-items:center;display:flex;justify-content:center}.style-module--about-logo--f5187{color:gray;font-size:8rem;font-weight:700;text-align:center}.style-module--tape--e4318{animation-delay:0s;animation-direction:normal;animation-duration:10s;animation-fill-mode:none;animation-iteration-count:infinite;animation-name:style-module--animation-left-flowing--38b9f;animation-timing-function:linear;display:flex;font-size:2.5rem;font-weight:700;justify-content:space-evenly;padding:.9rem 0 1.2rem;width:200vw}@keyframes style-module--animation-left-flowing--38b9f{0%{transform:translateX(0)}to{transform:translateX(-50%)}}.style-module--tape--e4318.style-module--red--4d929{background-color:#fff;border:3px solid red;color:red}.style-module--tape--e4318.style-module--black--d61a9{background-color:#000;color:#fff}.style-module--categories--8e8ce{animation-delay:0s;animation-direction:normal;animation-duration:30s;animation-fill-mode:none;animation-iteration-count:infinite;animation-name:style-module--animation-left-flowing--4cc64;animation-timing-function:linear;border-radius:50%;box-shadow:0 0 10px 10px rgba(0,0,0,.2);height:76rem;position:relative;width:76rem}@keyframes style-module--animation-left-flowing--4cc64{0%{transform:rotate(0)}to{transform:rotate(-1turn)}}.style-module--categories--8e8ce.style-module--stop--4e766{animation-play-state:paused}.style-module--categories--8e8ce:after{border-radius:50%;box-shadow:0 0 10px 10px rgba(0,0,0,.2);content:"";display:block;height:25.3333333333rem;left:50%;position:absolute;top:50%;transform:translate(-50%,-50%);width:25.3333333333rem}.style-module--categories--8e8ce>li{cursor:pointer;font-size:4rem;font-weight:600;left:50%;position:absolute;top:50%;width:3rem}.style-module--categories--8e8ce>li:first-child{color:#000;transform:translate(-50%,-50%) rotate(24deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(2){color:#000;transform:translate(-50%,-50%) rotate(48deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(3){color:#000;transform:translate(-50%,-50%) rotate(72deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(4){color:#000;transform:translate(-50%,-50%) rotate(96deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(5){color:red;transform:translate(-50%,-50%) rotate(120deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(6){color:#000;transform:translate(-50%,-50%) rotate(144deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(7){color:#000;transform:translate(-50%,-50%) rotate(168deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(8){color:#000;transform:translate(-50%,-50%) rotate(192deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(9){color:#000;transform:translate(-50%,-50%) rotate(216deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(10){color:red;transform:translate(-50%,-50%) rotate(240deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(11){color:#000;transform:translate(-50%,-50%) rotate(264deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(12){color:#000;transform:translate(-50%,-50%) rotate(288deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(13){color:#000;transform:translate(-50%,-50%) rotate(312deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(14){color:#000;transform:translate(-50%,-50%) rotate(336deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(15){color:red;transform:translate(-50%,-50%) rotate(1turn) translate(-34rem)}.style-module--container--16db0{display:flex;height:100%;padding:3rem 5rem 0}.style-module--container--36f8e{display:flex;flex-direction:column;width:30rem}.style-module--container--36f8e ul{margin-left:1rem}.style-module--categories--86b38{display:flex;flex-direction:column;gap:1rem}.style-module--category--d0bec{color:#000;font-size:1.2rem;font-weight:600;text-decoration:none}.style-module--posts--bdaf4{display:flex;flex-direction:column;gap:.5rem}.style-module--post--8179a{color:#9d9d9d;font-size:1.2rem;font-weight:600;text-decoration:none}.style-module--container--514a1{cursor:pointer;display:flex;flex-direction:column;gap:1rem;height:7rem;padding:1rem;transition:all .2s ease-in-out}.style-module--container--514a1:hover{background-color:rgba(255,253,223,.561);scale:1.05}.style-module--title--dce33{color:#000;font-size:1.5rem;font-weight:600}.style-module--excerpt--5fd4c{color:#000;font-size:1rem}</style><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/TIL/sitemap-index.xml"/><link rel="icon" href="/TIL/favicon-32x32.png?v=53aa06cf17e4239d0dba6ffd09854e02" type="image/png"/><link rel="manifest" href="/TIL/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/TIL/icons/icon-48x48.png?v=53aa06cf17e4239d0dba6ffd09854e02"/><link rel="apple-touch-icon" sizes="72x72" href="/TIL/icons/icon-72x72.png?v=53aa06cf17e4239d0dba6ffd09854e02"/><link rel="apple-touch-icon" sizes="96x96" href="/TIL/icons/icon-96x96.png?v=53aa06cf17e4239d0dba6ffd09854e02"/><link rel="apple-touch-icon" sizes="144x144" href="/TIL/icons/icon-144x144.png?v=53aa06cf17e4239d0dba6ffd09854e02"/><link rel="apple-touch-icon" sizes="192x192" href="/TIL/icons/icon-192x192.png?v=53aa06cf17e4239d0dba6ffd09854e02"/><link rel="apple-touch-icon" sizes="256x256" href="/TIL/icons/icon-256x256.png?v=53aa06cf17e4239d0dba6ffd09854e02"/><link rel="apple-touch-icon" sizes="384x384" href="/TIL/icons/icon-384x384.png?v=53aa06cf17e4239d0dba6ffd09854e02"/><link rel="apple-touch-icon" sizes="512x512" href="/TIL/icons/icon-512x512.png?v=53aa06cf17e4239d0dba6ffd09854e02"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="style-module--container--24ac7"><div class="style-module--container--bc714"><a class="style-module--nav-link-text--1f74e" href="/TIL/">Byongho96</a><nav><ul class="style-module--nav-links--64532"><li><a class="style-module--nav-link-text--1f74e" href="/TIL/">Home</a></li><li><a class="style-module--nav-link-text--1f74e" href="/TIL/about/">About</a></li><li><a class="style-module--nav-link-text--1f74e" href="/TIL/posts/">Posts</a></li></ul></nav></div><div class="style-module--container--16db0"><ul class="style-module--container--36f8e style-module--categories--86b38"><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Algorithm/">Algorithm</a><ul><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/First/">First</a><ul class="style-module--categories--86b38"></ul></li></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Computational Thinking/">Computational Thinking</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/CS/">CS</a><ul><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Network/">Network</a><ul class="style-module--categories--86b38"></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/DB/">DB</a><ul class="style-module--categories--86b38"></ul></li></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Data Structure/">Data Structure</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Django/">Django</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/etc/">etc</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Java/">Java</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/JavaScript/">JavaScript</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Python/">Python</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/React/">React</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Spring/">Spring</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Static Site/">Static Site</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Tools/">Tools</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Vue/">Vue</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Web/">Web</a><ul></ul></li></ul><div><div class="markdown-body"><h1>Nginx <!-- omit from toc --></h1>
+<h2>Index <!-- omit from toc --></h2>
+<ul>
+<li><a href="#1-%EA%B0%9C%EC%9A%94">1. 개요</a>
+<ul>
+<li><a href="#11-event-driven">1.1. Event-driven</a></li>
+<li><a href="#12-nginx-%EC%84%A4%EC%B9%98">1.2. Nginx 설치</a></li>
+</ul>
+</li>
+<li><a href="#2-%ED%8F%B4%EB%8D%94%EA%B5%AC%EC%A1%B0">2. 폴더구조</a>
+<ul>
+<li><a href="#21-nginxconf">2.1. nginx.conf</a>
+<ul>
+<li><a href="#211-confd">2.1.1. conf.d/</a></li>
+<li><a href="#212-sites-enabled">2.1.2. sites-enabled/</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#3-directives">3. Directives</a>
+<ul>
+<li><a href="#31-block-directive">3.1. Block Directive</a></li>
+<li><a href="#32-simple-directvie">3.2. Simple Directvie</a></li>
+</ul>
+</li>
+<li><a href="#4-variable">4. Variable</a></li>
+<li><a href="#5-feature">5. feature</a>
+<ul>
+<li><a href="#51-ssl-certificate">5.1. ssl certificate</a></li>
+<li><a href="#52-reverse-proxy">5.2. reverse proxy</a></li>
+<li><a href="#53-load-balancing">5.3. load balancing</a></li>
+<li><a href="#54-http-caching">5.4. HTTP caching</a></li>
+<li><a href="#6-certbot">6. certbot</a></li>
+</ul>
+</li>
+</ul>
+<h1>1. 개요</h1>
+<p>Nginx는 오픈 소스 <strong>웹 서버(Web server)</strong> 프로그램이다. 따라서 정적 파일 요청을 수행할 수 있을 뿐 아니라, 동적 요청에 대해서도 많은 트래픽을 효율적으로 처리함으로써 웹 어플리케이션 서버(WAS)에 과부하를 줄여준다.</p>
+<p>Nginx는 대표적으로 리버스 프록시(reverse proxy), 로드 밸런서(load balancer), HTTP 캐싱(HTTP cahce) 기능을 수행할 수 있다. 이러한 기능등을 백서버의 안정성과 확장성을 가져다준다.</p>
+<ul>
+<li>
+<p><strong>리버스 프록시(reverse proxy)</strong><br>
+클라이언트 요청을 대신 받아 내부 서버로 전달해주는 것을 말한다. 따라서 Nginx에 SSL 인증서를 적용함으로써 Nginx가 수신 SSL 연결을 처리/해독하고 프록시 서버의 응답을 암호화하도록 할 수 있다.</p>
+</li>
+<li>
+<p><strong>로드 밸런싱(load balancing)</strong><br>
+클라이언트의 요청을 여러 개의 내부 서버에 분산하여 프록싱할 수 있다. 이를 통해 하나의 서버가 과부하되는 것을 방지할 수 있다.</p>
+</li>
+<li>
+<p><strong>HTTP 캐싱(HTTP Chacing)</strong><br>
+프록시 서버의 응답에서 수신한 콘텐츠를 메모리에 캐싱함으로써, 이후 동일 요청에 대해 프록시 서버에 연결할 필요 없이 빠르게 응답할 수 있다.</p>
+</li>
+</ul>
+<h2>1.1. Event-driven</h2>
+<p>Nginx가 Apache와의 차이점이자 강점은 event-driven 웹 서버라는 것이다.</p>
+<p>먼저 기존 Apache의 경우, 하나의 요청에 대해 하나의 프로세스가 연결된다(1:1). 따라서 커넥션이 증가함에 따라 운용되는 프로세스 수가 증가하기 때문에 메모리 부족 현상이 일어나기 쉽다.</p>
+<p>반면 <strong>Nginx는 하나의 프로세스가 여러개의 요청을 처리할 수 있다(1:N).</strong> Nginx는 요청을 하나의 event로 간주하고 이를 event loop가 관리하도록 한다. 요청이 들어오는 대로 event loop는 요청을 queue에 추가하고 순서대로 처리한다. 만일 특정 요청을 수행하는데 오랜 시간이 걸릴 경우 이를 Thread pool에 넘김으로써 비동기적으로 진행시키고, 그 사이에 다른 요청들을 수행한다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 797px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/TIL/static/51e71a2698ee56e2d2200f8318542742/2f5f2/Nginx_event_loop.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 70%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAOABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAQACBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHuOVGZf//EABgQAQADAQAAAAAAAAAAAAAAAAABEBES/9oACAEBAAEFAprUuWP/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAZEAADAQEBAAAAAAAAAAAAAAAAAREhMaH/2gAIAQEAAT8hZ8yEmpejZHYktIP/2gAMAwEAAgADAAAAEITP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGxABAAICAwAAAAAAAAAAAAAAAQARITFBUYH/2gAIAQEAAT8Q4yztgTQsO0QrHpMCIY5i7RvdDiKbt9n/2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Nginx Event Loop"
+        title=""
+        src="/TIL/static/51e71a2698ee56e2d2200f8318542742/2f5f2/Nginx_event_loop.jpg"
+        srcset="/TIL/static/51e71a2698ee56e2d2200f8318542742/e07e9/Nginx_event_loop.jpg 200w,
+/TIL/static/51e71a2698ee56e2d2200f8318542742/066f9/Nginx_event_loop.jpg 400w,
+/TIL/static/51e71a2698ee56e2d2200f8318542742/2f5f2/Nginx_event_loop.jpg 797w"
+        sizes="(max-width: 797px) 100vw, 797px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<p>위의 내용은 <strong>브라우저의 event loop와도 매우 유사하게 동작한다.</strong></p>
+<ul>
+<li>다만 브라우저는 사용자 입력에 대한 이벤트를 처리하는데 초점을 맞추고, Nginx는 네트워크 I/O동작을 처리하는데 초점을 맞춘다.</li>
+<li>또한 브라우저는 단일 스레드만을 가지고 실행되지만, Nginx는 하나의 Master Process가 여러개의 Worker Process(Thread)를 생성할 수 있다.</li>
+</ul>
+<h2>1.2. Nginx 설치</h2>
+<p>아래 명령어는 리눅스 기반으로 작성되었다.</p>
+<ol>
+<li><strong>Package 업데이트</strong>
+<pre><code class="language-bash">sudo apt-get update
+</code></pre>
+</li>
+<li><strong>Nginx 설치</strong>
+<pre><code class="language-bash">sudo apt-get install nginx
+</code></pre>
+</li>
+<li><strong>Nginx 설치 확인</strong>
+<pre><code class="language-bash">sudo nginx -v
+</code></pre>
+</li>
+</ol>
+<h1>2. 폴더구조</h1>
+<p>Nginx는 설치되었을 때 기본적으로 다음과 같은 폴더 구조를 가진다.</p>
+<p><a href="https://github.com/h5bp/server-configs-nginx">폴더 구조 설명 github</a></p>
+<pre><code class="language-bash">nginx/
+├── conf.d/
+│   ├── default.conf
+│   └── templates/
+├── sites-available/
+│   └── default.conf
+├── sites-enabled/
+│   └── default.conf
+├── h5bp/
+│   ├── basic.conf
+│   ├── location/
+│   └── .../
+├── custom.d/
+│   └── .../
+├── mime.types
+└── nginx.conf
+</code></pre>
+<h2>2.1. nginx.conf</h2>
+<p>Nginx의 메인(최상단) 설정 파일이다. 아래 요약된 설정파일을 보면 하단에 <code>include /etc/nginx/conf.d/*.conf;</code>명령어가 있는 것을 볼 수 있다.
+해당 명령어로 인해서 <strong>conf.d/ 폴더와 sites-enabled/ 폴더 하위에 있는 <code>*.conf</code> nginx 설정파일들은 모두 http 블록 다이렉티브 안에 선언된다.</strong></p>
+<pre><code>user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;
+
+events {
+        worker_connections 768;
+        # multi_accept on;
+}
+
+http {
+
+        ##
+        # Basic Settings
+        ##
+
+        sendfile on;
+        tcp_nopush on;
+        tcp_nodelay on;
+        keepalive_timeout 65;
+        types_hash_max_size 2048;
+        # server_tokens off;
+
+        ...
+
+        ##
+        # Virtual Host Configs
+        ##
+
+        include /etc/nginx/conf.d/*.conf;
+        include /etc/nginx/sites-enabled/*;
+}
+
+</code></pre>
+<h3>2.1.1. conf.d/</h3>
+<p>conf.d/ 디렉토리에는 모든 웹 사이트와 웹 어플리케이션에 적용할 전역적인 <code>*.conf</code>파일을 생성한다. 이 폴더 하위에 생성된 설정 파일들은 자동적으로 nginx에 등록된다.</p>
+<h3>2.1.2. sites-enabled/</h3>
+<p>sites-enabled/ 디렉토리에는 웹 사이트/웹 어플리케이션 별로 적용할 지역적인 <code>*.conf</code>파일을 생성한다. <strong>하지만 해당 디렉토리에 직접 설정파일을 두지 않고, sites-availables 폴더에 작성한 뒤 심볼링 링크를 걸어준다.</strong>
+이렇게 함으로써 웹사이트별 모든 설정파일 들을 sites-availables에 쌓아두는 동시에, 필요에 따라 링크를 생성/삭제하여 적용여부를 결정할 수 있다.</p>
+<ul>
+<li>
+<p><strong>웹사이트 개별 설정 파일 작성</strong></p>
+<pre><code class="language-bash">sudo vi /etc/nginx/sites-available/myite.conf
+</code></pre>
+</li>
+<li>
+<p><strong>소프트 링크 생성</strong></p>
+<pre><code class="language-bash">sudo ln -s /etc/nginx/sites-available/mysite.conf /etc/nginx/sites-enabled/
+</code></pre>
+</li>
+<li>
+<p><strong>소프트 링크 삭제</strong><br>
+아래 명령어를 실행해도 링크만 끊을 뿐, 실제 원본 설정파일이 삭제되지는 않는다.</p>
+<pre><code class="language-bash">sudo rm /etc/nginx/sites-enabled/mysite.conf
+</code></pre>
+</li>
+</ul>
+<ul>
+<li>
+<p><strong>nginx 재시작</strong></p>
+<pre><code class="language-bash">sudo service nginx restart
+</code></pre>
+</li>
+</ul>
+<h1>3. Directives</h1>
+<p><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html">Nginx 공식문서 주요 module Directvie</a></p>
+<p>커맨드창 <code>nginx -t</code> 명령어를 통해 nginx 문법을 검사할 수 있다.</p>
+<h2>3.1. Block Directive</h2>
+<ul>
+<li>
+<p><strong>http block</strong><br>
+http 프로토콜 내에서 동작함을 정의한다. 따라서 http 프로토콜 요청으로 동작하는 웹 서버 관련 설정은 모두 http 블록 안에서 정의된다.
+앞서 말한 <code>include /etc/nginx/conf.d/*.conf;</code> 또한 http 블록 내에서 선언되었기 때문에 <code>conf.d</code> 폴더 내의 설정파일들은 모두 http 프로토콜로 동작함을 전제한다.</p>
+</li>
+<li>
+<p><strong>server block</strong><br>
+서버 기능을 설정하는 블록으로 어떤 도메인과 port로 요청을 받을지 결정한다.</p>
+<pre><code class="language-c">server {
+        listen  82;  // 포트 번호
+        server_name "helloworld.com";  // 도메인
+        // return을 따로 설정하지 않을 경우, nginx 자체 기본 html파일이 리턴된다.
+}
+</code></pre>
+<p>위 코드에서 실제 호스트의 도메인이 아닌 이름으로 server_name을 설정하면, DNS에 도메인가 호스트가 매핑되어있지 않기 때문에 요청이 가지 않는 것이 당연하다</p>
+<pre><code class="language-c">127.0.0.1 localhost
+127.0.0.1 helloworld.com
+
+# The following lines are desirable for IPv6 capable hosts
+::1 ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts
+</code></pre>
+<p>다만, local환경에서 요청을 보낼 경우, 위처럼 <code>/etc/hosts</code> 파일에 도메인과 ip주소를 매핑함으로써 DNS서버 앞단에서 도메인에 대한 ip주소를 임의 설정할 수 있다.</p>
+</li>
+<li>
+<p><strong>location block</strong><br>
+사용자 요청에 대해 엔드포인트 별로 설정할 수 있다. 기본적으로 prefix 규칙을 따르지만, <code>=</code>연산자를 붙여서 엔드포인트가 완전히 일치할 경우만 정의해줄 수 있다.</p>
+<pre><code class="language-c">server {
+	  listen  82;
+        server_name "helloworld.com";
+
+        location / {
+            return 200 "hello world";
+        }
+        location /a/ {
+            return 200 "hello world-a";
+        }
+        locatioin /b {
+            return 200 "hello world-b";
+        }
+        location = /c/ {
+            return 200 "hello world-c";
+        }
+}
+</code></pre>
+<p>위와 같이 설정하였을 때, curl요청에 대한 응답 예시이다.</p>
+<pre><code class="language-bash">curl helloworld.com:82/
+    hello world
+
+curl helloworld.com:82/a
+    hello world
+
+curl helloworld.com:82/a/
+    hello world-a
+
+curl helloworld.com:82/b
+    hello world-b
+
+curl helloworld.com:82/c/
+    hello world-c
+
+curl helloworld.com:82/c/c
+    NotFound
+</code></pre>
+</li>
+</ul>
+<h2>3.2. Simple Directvie</h2>
+<ul>
+<li><strong>root</strong><br>
+<strong>요청에 대해 root 폴더 경로를 지정</strong>한다.
+아래 설정에서는 <code>/i/top.gif</code> 요청에 대해 <code>/data/w3/i/top.gif</code> 파일이 리턴된다.
+<pre><code class="language-c">location /i/ {
+	  root /data/w3;  // 상대경로와 절대경로 모두 사용 가
+}
+</code></pre>
+</li>
+<li><strong>index</strong><br>
+<strong>요청된 경로에 대한 기본 파일</strong>을 지정한다. 따라서 요청에 특정 파일이 명시되지 않아도 기본 파일을 반환한다.
+여러개의 파일을 지정할 수 있으며 nginx는 순서대로 읽는다.
+<pre><code class="language-c">location / {
+    index index.$geo.html index.html;
+}
+</code></pre>
+</li>
+<li><strong>try files</strong><br>
+<strong>사용자 요청에 대한 (동적인)기본 파일을 지정한다.</strong> 사용자의 요청에 대한 파일을 동적으로 찾고, 모두 존재하지 않을 시 기본파일로 리다이렉트 할수 있다.
+<pre><code class="language-c">location / {
+    try_files $uri $uri/ /index.html;
+}
+</code></pre>
+<ol>
+<li>요청된 URL에 대한 정적 파일 찾기 (<strong><code>$uri</code></strong>)</li>
+<li>요청된 URL에 대한 디렉토리 찾기 (<strong><code>$uri/</code></strong>)</li>
+<li><strong><code>/index.html</code></strong> 참조하기</li>
+</ol>
+</li>
+</ul>
+<h1>4. Variable</h1>
+<p><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#variables">Nginx 공식문서 Embedded Variables</a>
+Nginx는 설정 파일에서 사용할 수 있는 기본 변수들을 제공한다.</p>
+<ul>
+<li><strong>$uri</strong><br>
+현재 요청된 URI를 저장한다.
+<pre><code class="language-c">http://example.com/about
+=> /about
+</code></pre>
+</li>
+<li><strong>$request_uri</strong><br>
+HTTP 요청 URI와 쿼리 문자열을 포함한 전체 요청 URI를 저장한다.
+<pre><code class="language-c">http://example.com/about?foo=bar
+=> /about?foo=bar
+</code></pre>
+</li>
+<li><strong>$host</strong><br>
+요청에 대한 호스트(도메인)이름을 저장한다.
+<pre><code class="language-c">http://www.example.com/
+=> www.example.com
+</code></pre>
+</li>
+<li><strong>$server_name</strong><br>
+server_name으로 지정된 값을 저장한다.
+<pre><code class="language-c">server {
+				server_name example.com
+}
+=> example.com
+</code></pre>
+</li>
+</ul>
+<h1>5. feature</h1>
+<h2>5.1. ssl certificate</h2>
+<ul>
+<li>
+<p><strong>Nginx 중지</strong><br>
+인증서를 발급 받기 위해서는 nginx를 중지하여 port가 점유되지 않은 상태로 만들어야 한다.</p>
+<pre><code class="language-bash">sudo systemctl stop nginx
+</code></pre>
+</li>
+<li>
+<p><strong>letsencrypt 설치</strong></p>
+<pre><code class="language-bash">sudo apt-get install letsencrypt
+</code></pre>
+</li>
+<li>
+<p><strong>ssl 인증서 발급</strong></p>
+<pre><code class="language-bash">sudo letsencrypt certonly --standalone -d [도메인주소]
+</code></pre>
+</li>
+<li>
+<p><strong>ssl 인증서 확인</strong></p>
+<pre><code class="language-bash">sudo cd /etc/letsencrypt/live/[도메인]
+</code></pre>
+</li>
+<li>
+<p><strong>ssl 인증서 nginx 적용</strong></p>
+<pre><code class="language-bash">cd /etc/nginx/conf.d
+sudo vim [파일명].conf
+</code></pre>
+<p><a href="https://www.youtube.com/watch?v=X3Pr5VATOyA">유튜브 영상, How to Set Up SSL with NGINX</a></p>
+<pre><code class="language-bash">server {
+	listen 80;
+	server_name [도메인 네임];
+	return 301 https://$server_name$request_uri;
+}
+
+server {
+	listen 443 ssl;
+	server_name [도메인 네임];
+
+	ssl_certificate /etc/nginx/ssl/example.crt;
+	ssl_certification_key /etc/nginx/ssl/example.key;
+
+	location / {
+		...
+	}
+}
+</code></pre>
+</li>
+</ul>
+<h2>5.2. reverse proxy</h2>
+<pre><code class="language-c">server {
+    listen 80;
+    server_name my_website.com;
+
+    location / {
+        proxy_pass http://10.0.0.1:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+</code></pre>
+<ul>
+<li><strong>server block</strong><br>
+포트 80에서 my_website.com 도메인을 수신하는 서버 블록을 정의한다.</li>
+<li><strong>location block</strong><br>
+'/' 로 모든 엔드포인트에 대해 설정한다.</li>
+<li><strong>proxy_pass</strong><br>
+10.0.0.1:8000 으로 서버로 요청을 프록시합니다.</li>
+<li><strong>proxy_set_header</strong><br>
+나가는 요청의 호스트 및 X-Real-IP 헤더를 설정한다. $remote_addr는 클라이언트 주소를 의미한다. 이를 통해 요청이 백엔드 서버로 올바르게 라우팅되고 올바른 클라이언트 IP 주소가 기록되도록 할 수 있다.</li>
+</ul>
+<h2>5.3. load balancing</h2>
+<pre><code class="language-c">http {
+    upstream my_backend {
+        server 10.0.0.1:8080;
+        server 10.0.0.2:8080;
+        server 10.0.0.3:8080;
+    }
+
+    server {
+        listen 80;
+        server_name my_website.com;
+
+        location / {
+            proxy_pass http://my_backend;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+        }
+    }
+}
+</code></pre>
+<ul>
+<li>
+<p><strong>upstream block</strong><br>
+upstream 블록을 my_backend라고 이름 짓고, Nginx가 요청을 밸런싱할 서버를 담는다.</p>
+</li>
+<li>
+<p><strong>proxy_pass</strong><br>
+proxy_pass 디렉티브를 사용하여 my_backend 업스트림을 프록싱할 대상으로 지정한다.</p>
+</li>
+<li>
+<p><strong>proxy_set_header</strong><br>
+나가는 요청의 호스트 및 X-Real-IP 헤더를 설정한다. $remote_addr는 클라이언트 주소를 의미한다.</p>
+</li>
+</ul>
+<p>위 예시에서 Nginx는 라운드 로빈 방식으로 요청을 3개의 백엔드 서버에 밸런싱하여, 각 서버는 동일한 양의 수신 트래픽을 나눠가진다.</p>
+<h2>5.4. HTTP caching</h2>
+<p><a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache">Nginx 공식문서 http proxy module</a></p>
+<p>HTTP Caching은 cache key를 이용해서 이뤄진다. cache key는 HTTP 요청 method, URI, header등을 조합해서 만들 수 있다.</p>
+<pre><code class="language-c">http {
+    proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=my_cache:10m inactive=60m;
+    proxy_cache_key "$scheme$request_method$host$request_uri";
+
+    server {
+        listen 80;
+        server_name my_website.com;
+
+        location / {
+            proxy_cache my_cache;
+            proxy_cache_valid 200 60m;
+            proxy_cache_valid 404 1m;
+            proxy_cache_bypass $http_pragma;
+            proxy_cache_revalidate on;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_pass http://10.0.0.1:8080;
+        }
+    }
+}
+</code></pre>
+<ul>
+<li>
+<p><strong>proxy_cache_path</strong><br>
+HTTP 캐시의 위치 설정.
+캐시 경로는 /var/cache/nginx이고,
+level=1:2는 캐싱 경로의 하위 디렉토리 크기를 결정한다.
+또한 my_cache라는 10MB의 크기를 가진 공유 메모리 영역을 만든다.
+마지막으로 캐싱된 항목은 60분까지 접근 되지 않아도 캐시에 저장된다.</p>
+</li>
+<li>
+<p><strong>proxy_cache_key</strong><br>
+$scheme(http/https), $request_method(요청 메소드), $host(호스트), $request_uri(URI)를 조합하여 캐시 키를 생성한다.</p>
+</li>
+<li>
+<p><strong>proxy_cache</strong><br>
+캐싱에 사용되는 공유 메모리 영역을 정의한다.</p>
+</li>
+<li>
+<p><strong>proxy_cache_valid</strong><br>
+응답을 캐싱할 기간을 설정한다.
+상태 코드가 200인 성공 응답은 60분 동안, 상태 코드가 404인 실패 응답은 1분 동안 저장한다.</p>
+</li>
+<li>
+<p><strong>proxy_cache_bypass</strong><br>
+캐시에서 응답을 가져오지 않는 조건을 정의한다.</p>
+</li>
+</ul>
+<h2>6. certbot</h2>
+<p>certbot을 nginx에 등록하여 자동으로 인증서를 발급받고 nginx에 등록할 수 있다.</p>
+<p><a href="https://certbot.eff.org/">https://certbot.eff.org/</a>
+위 사이트에 접속하여 Software(nginx), System(Ubuntu) 선택 후 가이드를 따라 진행할 수 있다.</p>
+<ul>
+<li>
+<p><strong>core 설치 (EC2에 설치 되어있음)</strong></p>
+<pre><code class="language-bash">sudo snap install core
+sudo snap refresh core
+</code></pre>
+</li>
+<li>
+<p><strong>certbot 설치</strong></p>
+<pre><code class="language-bash">sudo snap install --classic certbot
+</code></pre>
+</li>
+<li>
+<p><strong>심볼릭 링크 생성</strong></p>
+<pre><code class="language-bash">sudo ln -s /snap/bin/certbot /usr/bin/certbot
+</code></pre>
+</li>
+<li>
+<p><strong>nginx 등록</strong></p>
+<pre><code class="language-bash">sudo certbot --nginx
+</code></pre>
+</li>
+<li>
+<p><strong>이메일 입력</strong></p>
+<span class="gatsby-resp-image-wrapper" style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 679px; ">
+      <a class="gatsby-resp-image-link" href="/TIL/static/0906ed71885e8b0266f18ea725d4d8b9/30e56/certbot_agreement.jpg" style="display: block" target="_blank" rel="noopener">
+    <span class="gatsby-resp-image-background-image" style="padding-bottom: 39.49999999999999%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAIABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAcqAqD//xAAVEAEBAAAAAAAAAAAAAAAAAAAAIf/aAAgBAQABBQKIj//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABQQAQAAAAAAAAAAAAAAAAAAABD/2gAIAQEABj8Cf//EABoQAAICAwAAAAAAAAAAAAAAAAABIfAxcZH/2gAIAQEAAT8hdQXge/T/2gAMAwEAAgADAAAAEPAP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGxABAAICAwAAAAAAAAAAAAAAAQDRIYFBUaH/2gAIAQEAAT8QR5TdI932kz4FrU//2Q=='); background-size: cover; display: block;"></span>
+  <img class="gatsby-resp-image-image" alt="certbot 이메일 입력" title="" src="/TIL/static/0906ed71885e8b0266f18ea725d4d8b9/30e56/certbot_agreement.jpg" srcset="/TIL/static/0906ed71885e8b0266f18ea725d4d8b9/e07e9/certbot_agreement.jpg 200w,
+/TIL/static/0906ed71885e8b0266f18ea725d4d8b9/066f9/certbot_agreement.jpg 400w,
+/TIL/static/0906ed71885e8b0266f18ea725d4d8b9/30e56/certbot_agreement.jpg 679w" sizes="(max-width: 679px) 100vw, 679px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;" loading="lazy" decoding="async">
+  </a>
+    </span>
+</li>
+<li>
+<p><strong>동의 (y입력)</strong></p>
+<span class="gatsby-resp-image-wrapper" style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 679px; ">
+      <a class="gatsby-resp-image-link" href="/TIL/static/bddce7b5ae5a18fb339d3958ebc91ebd/30e56/certbot_email.jpg" style="display: block" target="_blank" rel="noopener">
+    <span class="gatsby-resp-image-background-image" style="padding-bottom: 19.499999999999996%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAEABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAByoCQf//EABYQAAMAAAAAAAAAAAAAAAAAAAAQEf/aAAgBAQABBQIq/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQAGPwJ//8QAGRAAAgMBAAAAAAAAAAAAAAAAAAERIWGB/9oACAEBAAE/IU7J4cP/2gAMAwEAAgADAAAAEAAP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGRAAAwEBAQAAAAAAAAAAAAAAAAERIWGR/9oACAEBAAE/EKNiynLwON2D/9k='); background-size: cover; display: block;"></span>
+  <img class="gatsby-resp-image-image" alt="certbot 이메일 입력" title="" src="/TIL/static/bddce7b5ae5a18fb339d3958ebc91ebd/30e56/certbot_email.jpg" srcset="/TIL/static/bddce7b5ae5a18fb339d3958ebc91ebd/e07e9/certbot_email.jpg 200w,
+/TIL/static/bddce7b5ae5a18fb339d3958ebc91ebd/066f9/certbot_email.jpg 400w,
+/TIL/static/bddce7b5ae5a18fb339d3958ebc91ebd/30e56/certbot_email.jpg 679w" sizes="(max-width: 679px) 100vw, 679px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;" loading="lazy" decoding="async">
+  </a>
+    </span>
+</li>
+<li>
+<p><strong>도메인 선택</strong></p>
+<span class="gatsby-resp-image-wrapper" style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 676px; ">
+      <a class="gatsby-resp-image-link" href="/TIL/static/7e5ff8e74df8b223eebeb5d1d32f6b58/afcad/certbot_domain.jpg" style="display: block" target="_blank" rel="noopener">
+    <span class="gatsby-resp-image-background-image" style="padding-bottom: 9.499999999999998%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAACABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAByQQD/8QAFhAAAwAAAAAAAAAAAAAAAAAAAAEQ/9oACAEBAAEFAoz/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAQ/9oACAEBAAY/An//xAAXEAEBAQEAAAAAAAAAAAAAAAAAEQEx/9oACAEBAAE/IZiOn//aAAwDAQACAAMAAAAQg8//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAaEAADAAMBAAAAAAAAAAAAAAAAASExYZGh/9oACAEBAAE/EIYXNiSxCeD/2Q=='); background-size: cover; display: block;"></span>
+  <img class="gatsby-resp-image-image" alt="certbot 이메일 입력" title="" src="/TIL/static/7e5ff8e74df8b223eebeb5d1d32f6b58/afcad/certbot_domain.jpg" srcset="/TIL/static/7e5ff8e74df8b223eebeb5d1d32f6b58/e07e9/certbot_domain.jpg 200w,
+/TIL/static/7e5ff8e74df8b223eebeb5d1d32f6b58/066f9/certbot_domain.jpg 400w,
+/TIL/static/7e5ff8e74df8b223eebeb5d1d32f6b58/afcad/certbot_domain.jpg 676w" sizes="(max-width: 676px) 100vw, 676px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;" loading="lazy" decoding="async">
+  </a>
+    </span>
+</li>
+</ul></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/Tools/Nginx.md/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+          <script
+            id="gatsby-chunk-mapping"
+          >
+            window.___chunkMapping="{\"app\":[\"/app-3dc445281ef8e942be71.js\"],\"component---src-pages-404-tsx\":[\"/component---src-pages-404-tsx-0de118bf3de454f88100.js\"],\"component---src-pages-about-tsx\":[\"/component---src-pages-about-tsx-0832ff78e9380eba9c03.js\"],\"component---src-pages-index-tsx\":[\"/component---src-pages-index-tsx-22199b632640cd905fd5.js\"],\"component---src-pages-posts-tsx\":[\"/component---src-pages-posts-tsx-1f9057fb22f90aca4324.js\"],\"component---src-templates-post-group-tsx\":[\"/component---src-templates-post-group-tsx-196bfaeb3ac4946b15e3.js\"],\"component---src-templates-post-tsx\":[\"/component---src-templates-post-tsx-dc7f8495a57aced00653.js\"]}";
+          </script>
+        <script>window.___webpackCompilationHash="42aced002e2b2fdb8e70";</script><script src="/TIL/webpack-runtime-413cde4a896ca185d829.js" async></script><script src="/TIL/framework-e7a380555a9a54b312b6.js" async></script><script src="/TIL/app-3dc445281ef8e942be71.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>

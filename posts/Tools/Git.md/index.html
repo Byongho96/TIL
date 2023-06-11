@@ -1,0 +1,703 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.10.0"/><style data-href="/TIL/styles.1d065b2755830a643a9f.css" data-identity="gatsby-global-css">a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{border:0;font-size:100%;font:inherit;margin:0;padding:0;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:"";content:none}table{border-collapse:collapse;border-spacing:0}@media(prefers-color-scheme:dark){.markdown-body{--color-prettylights-syntax-comment:#8b949e;--color-prettylights-syntax-constant:#79c0ff;--color-prettylights-syntax-entity:#d2a8ff;--color-prettylights-syntax-storage-modifier-import:#c9d1d9;--color-prettylights-syntax-entity-tag:#7ee787;--color-prettylights-syntax-keyword:#ff7b72;--color-prettylights-syntax-string:#a5d6ff;--color-prettylights-syntax-variable:#ffa657;--color-prettylights-syntax-brackethighlighter-unmatched:#f85149;--color-prettylights-syntax-invalid-illegal-text:#f0f6fc;--color-prettylights-syntax-invalid-illegal-bg:#8e1519;--color-prettylights-syntax-carriage-return-text:#f0f6fc;--color-prettylights-syntax-carriage-return-bg:#b62324;--color-prettylights-syntax-string-regexp:#7ee787;--color-prettylights-syntax-markup-list:#f2cc60;--color-prettylights-syntax-markup-heading:#1f6feb;--color-prettylights-syntax-markup-italic:#c9d1d9;--color-prettylights-syntax-markup-bold:#c9d1d9;--color-prettylights-syntax-markup-deleted-text:#ffdcd7;--color-prettylights-syntax-markup-deleted-bg:#67060c;--color-prettylights-syntax-markup-inserted-text:#aff5b4;--color-prettylights-syntax-markup-inserted-bg:#033a16;--color-prettylights-syntax-markup-changed-text:#ffdfb6;--color-prettylights-syntax-markup-changed-bg:#5a1e02;--color-prettylights-syntax-markup-ignored-text:#c9d1d9;--color-prettylights-syntax-markup-ignored-bg:#1158c7;--color-prettylights-syntax-meta-diff-range:#d2a8ff;--color-prettylights-syntax-brackethighlighter-angle:#8b949e;--color-prettylights-syntax-sublimelinter-gutter-mark:#484f58;--color-prettylights-syntax-constant-other-reference-link:#a5d6ff;--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-fg-subtle:#6e7681;--color-canvas-default:#0d1117;--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:hsla(215,8%,47%,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-attention-subtle:rgba(187,128,9,.15);--color-danger-fg:#f85149;color-scheme:dark}}@media(prefers-color-scheme:light){.markdown-body{--color-prettylights-syntax-comment:#6e7781;--color-prettylights-syntax-constant:#0550ae;--color-prettylights-syntax-entity:#8250df;--color-prettylights-syntax-storage-modifier-import:#24292f;--color-prettylights-syntax-entity-tag:#116329;--color-prettylights-syntax-keyword:#cf222e;--color-prettylights-syntax-string:#0a3069;--color-prettylights-syntax-variable:#953800;--color-prettylights-syntax-brackethighlighter-unmatched:#82071e;--color-prettylights-syntax-invalid-illegal-text:#f6f8fa;--color-prettylights-syntax-invalid-illegal-bg:#82071e;--color-prettylights-syntax-carriage-return-text:#f6f8fa;--color-prettylights-syntax-carriage-return-bg:#cf222e;--color-prettylights-syntax-string-regexp:#116329;--color-prettylights-syntax-markup-list:#3b2300;--color-prettylights-syntax-markup-heading:#0550ae;--color-prettylights-syntax-markup-italic:#24292f;--color-prettylights-syntax-markup-bold:#24292f;--color-prettylights-syntax-markup-deleted-text:#82071e;--color-prettylights-syntax-markup-deleted-bg:#ffebe9;--color-prettylights-syntax-markup-inserted-text:#116329;--color-prettylights-syntax-markup-inserted-bg:#dafbe1;--color-prettylights-syntax-markup-changed-text:#953800;--color-prettylights-syntax-markup-changed-bg:#ffd8b5;--color-prettylights-syntax-markup-ignored-text:#eaeef2;--color-prettylights-syntax-markup-ignored-bg:#0550ae;--color-prettylights-syntax-meta-diff-range:#8250df;--color-prettylights-syntax-brackethighlighter-angle:#57606a;--color-prettylights-syntax-sublimelinter-gutter-mark:#8c959f;--color-prettylights-syntax-constant-other-reference-link:#0a3069;--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-fg-subtle:#6e7781;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-attention-subtle:#fff8c5;--color-danger-fg:#cf222e;color-scheme:light}}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;word-wrap:break-word;background-color:var(--color-canvas-default);color:var(--color-fg-default);font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Noto Sans,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5;margin:0}.markdown-body h1:hover .anchor .octicon-link:before,.markdown-body h2:hover .anchor .octicon-link:before,.markdown-body h3:hover .anchor .octicon-link:before,.markdown-body h4:hover .anchor .octicon-link:before,.markdown-body h5:hover .anchor .octicon-link:before,.markdown-body h6:hover .anchor .octicon-link:before{background-color:currentColor;content:" ";display:inline-block;height:16px;-webkit-mask-image:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z"/></svg>');mask-image:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z"/></svg>');width:16px}.markdown-body details,.markdown-body figcaption,.markdown-body figure{display:block}.markdown-body summary{display:list-item}.markdown-body [hidden]{display:none!important}.markdown-body a{background-color:transparent;color:var(--color-accent-fg);text-decoration:none}.markdown-body abbr[title]{border-bottom:none;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}.markdown-body b,.markdown-body strong{font-weight:var(--base-text-weight-semibold,600)}.markdown-body dfn{font-style:italic}.markdown-body h1{border-bottom:1px solid var(--color-border-muted);font-size:2em;font-weight:var(--base-text-weight-semibold,600);margin:.67em 0;padding-bottom:.3em}.markdown-body mark{background-color:var(--color-attention-subtle);color:var(--color-fg-default)}.markdown-body small{font-size:90%}.markdown-body sub,.markdown-body sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}.markdown-body sub{bottom:-.25em}.markdown-body sup{top:-.5em}.markdown-body img{background-color:var(--color-canvas-default);border-style:none;box-sizing:content-box;max-width:100%}.markdown-body code,.markdown-body kbd,.markdown-body pre,.markdown-body samp{font-family:monospace;font-size:1em}.markdown-body figure{margin:1em 40px}.markdown-body hr{background:transparent;background-color:var(--color-border-default);border:0;box-sizing:content-box;height:.25em;margin:24px 0;overflow:hidden;padding:0}.markdown-body input{font:inherit;font-family:inherit;font-size:inherit;line-height:inherit;margin:0;overflow:visible}.markdown-body [type=button],.markdown-body [type=reset],.markdown-body [type=submit]{-webkit-appearance:button}.markdown-body [type=checkbox],.markdown-body [type=radio]{box-sizing:border-box;padding:0}.markdown-body [type=number]::-webkit-inner-spin-button,.markdown-body [type=number]::-webkit-outer-spin-button{height:auto}.markdown-body [type=search]::-webkit-search-cancel-button,.markdown-body [type=search]::-webkit-search-decoration{-webkit-appearance:none}.markdown-body ::-webkit-input-placeholder{color:inherit;opacity:.54}.markdown-body ::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}.markdown-body a:hover{text-decoration:underline}.markdown-body ::placeholder{color:var(--color-fg-subtle);opacity:1}.markdown-body hr:after,.markdown-body hr:before{content:"";display:table}.markdown-body hr:after{clear:both}.markdown-body table{border-collapse:collapse;border-spacing:0;display:block;max-width:100%;overflow:auto;width:-webkit-max-content;width:max-content}.markdown-body td,.markdown-body th{padding:0}.markdown-body details summary{cursor:pointer}.markdown-body details:not([open])>:not(summary){display:none!important}.markdown-body [role=button]:focus,.markdown-body a:focus,.markdown-body input[type=checkbox]:focus,.markdown-body input[type=radio]:focus{box-shadow:none;outline:2px solid var(--color-accent-fg);outline-offset:-2px}.markdown-body [role=button]:focus:not(:focus-visible),.markdown-body a:focus:not(:focus-visible),.markdown-body input[type=checkbox]:focus:not(:focus-visible),.markdown-body input[type=radio]:focus:not(:focus-visible){outline:1px solid transparent}.markdown-body [role=button]:focus-visible,.markdown-body a:focus-visible,.markdown-body input[type=checkbox]:focus-visible,.markdown-body input[type=radio]:focus-visible{box-shadow:none;outline:2px solid var(--color-accent-fg);outline-offset:-2px}.markdown-body a:not([class]):focus,.markdown-body a:not([class]):focus-visible,.markdown-body input[type=checkbox]:focus,.markdown-body input[type=checkbox]:focus-visible,.markdown-body input[type=radio]:focus,.markdown-body input[type=radio]:focus-visible{outline-offset:0}.markdown-body kbd{background-color:var(--color-canvas-subtle);border-bottom-color:var(--color-neutral-muted);border:1px solid var(--color-neutral-muted);border-radius:6px;box-shadow:inset 0 -1px 0 var(--color-neutral-muted);color:var(--color-fg-default);display:inline-block;font:11px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;line-height:10px;padding:3px 5px;vertical-align:middle}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{font-weight:var(--base-text-weight-semibold,600);line-height:1.25;margin-bottom:16px;margin-top:24px}.markdown-body h2{border-bottom:1px solid var(--color-border-muted);font-size:1.5em;padding-bottom:.3em}.markdown-body h2,.markdown-body h3{font-weight:var(--base-text-weight-semibold,600)}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h4,.markdown-body h5{font-weight:var(--base-text-weight-semibold,600)}.markdown-body h5{font-size:.875em}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em;font-weight:var(--base-text-weight-semibold,600)}.markdown-body p{margin-bottom:10px;margin-top:0}.markdown-body blockquote{border-left:.25em solid var(--color-border-default);color:var(--color-fg-muted);margin:0;padding:0 1em}.markdown-body ol,.markdown-body ul{margin-bottom:0;margin-top:0;padding-left:2em}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code,.markdown-body pre,.markdown-body samp,.markdown-body tt{font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;font-size:12px}.markdown-body pre{word-wrap:normal;margin-bottom:0;margin-top:0}.markdown-body .octicon{fill:currentColor;display:inline-block;overflow:visible!important;vertical-align:text-bottom}.markdown-body input::-webkit-inner-spin-button,.markdown-body input::-webkit-outer-spin-button{-webkit-appearance:none;appearance:none;margin:0}.markdown-body:after,.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{float:left;line-height:1;margin-left:-20px;padding-right:4px}.markdown-body .anchor:focus{outline:none}.markdown-body blockquote,.markdown-body details,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-bottom:16px;margin-top:0}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:var(--color-fg-default);vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown-body h3 tt,.markdown-body h4 code,.markdown-body h4 tt,.markdown-body h5 code,.markdown-body h5 tt,.markdown-body h6 code,.markdown-body h6 tt{font-size:inherit;padding:0 .2em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body summary h4 .anchor,.markdown-body summary h5 .anchor,.markdown-body summary h6 .anchor{margin-left:-40px}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ol.no-list,.markdown-body ul.no-list{list-style-type:none;padding:0}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=A]{list-style-type:upper-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body ol[type=I]{list-style-type:upper-roman}.markdown-body div>ol:not([type]),.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-bottom:0;margin-top:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{font-size:1em;font-style:italic;font-weight:var(--base-text-weight-semibold,600);margin-top:16px;padding:0}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table th{font-weight:var(--base-text-weight-semibold,600)}.markdown-body table td,.markdown-body table th{border:1px solid var(--color-border-default);padding:6px 13px}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:transparent}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{background-color:transparent;max-width:none;vertical-align:text-top}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{border:1px solid var(--color-border-default);display:block;float:left;margin:13px 0 0;overflow:hidden;padding:7px;width:auto}.markdown-body span.frame span img{display:block;float:left}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);display:block;padding:5px 0 0}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}.markdown-body span.align-center span img{margin:0 auto;text-align:center}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}.markdown-body span.align-right span img{margin:0;text-align:right}.markdown-body span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}.markdown-body span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;font-size:85%;margin:0;padding:.2em .4em;white-space:break-spaces}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre code{font-size:100%}.markdown-body pre>code{background:transparent;border:0;margin:0;padding:0;white-space:pre;word-break:normal}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;font-size:85%;line-height:1.45;overflow:auto;padding:16px}.markdown-body pre code,.markdown-body pre tt{word-wrap:normal;background-color:transparent;border:0;display:inline;line-height:inherit;margin:0;max-width:auto;overflow:visible;padding:0}.markdown-body .csv-data td,.markdown-body .csv-data th{font-size:12px;line-height:1;overflow:hidden;padding:5px;text-align:left;white-space:nowrap}.markdown-body .csv-data .blob-num{background:var(--color-canvas-default);border:0;padding:10px 8px 9px;text-align:right}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:var(--base-text-weight-semibold,600)}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{border-top:1px solid var(--color-border-default);color:var(--color-fg-muted);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes ol ul{display:inline-block;margin-top:16px;padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{border:2px solid var(--color-accent-emphasis);border-radius:6px;bottom:-8px;content:"";left:-24px;pointer-events:none;position:absolute;right:-8px;top:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body .pl-c{color:var(--color-prettylights-syntax-comment)}.markdown-body .pl-c1,.markdown-body .pl-s .pl-v{color:var(--color-prettylights-syntax-constant)}.markdown-body .pl-e,.markdown-body .pl-en{color:var(--color-prettylights-syntax-entity)}.markdown-body .pl-s .pl-s1,.markdown-body .pl-smi{color:var(--color-prettylights-syntax-storage-modifier-import)}.markdown-body .pl-ent{color:var(--color-prettylights-syntax-entity-tag)}.markdown-body .pl-k{color:var(--color-prettylights-syntax-keyword)}.markdown-body .pl-pds,.markdown-body .pl-s,.markdown-body .pl-s .pl-pse .pl-s1,.markdown-body .pl-sr,.markdown-body .pl-sr .pl-cce,.markdown-body .pl-sr .pl-sra,.markdown-body .pl-sr .pl-sre{color:var(--color-prettylights-syntax-string)}.markdown-body .pl-smw,.markdown-body .pl-v{color:var(--color-prettylights-syntax-variable)}.markdown-body .pl-bu{color:var(--color-prettylights-syntax-brackethighlighter-unmatched)}.markdown-body .pl-ii{background-color:var(--color-prettylights-syntax-invalid-illegal-bg);color:var(--color-prettylights-syntax-invalid-illegal-text)}.markdown-body .pl-c2{background-color:var(--color-prettylights-syntax-carriage-return-bg);color:var(--color-prettylights-syntax-carriage-return-text)}.markdown-body .pl-sr .pl-cce{color:var(--color-prettylights-syntax-string-regexp);font-weight:700}.markdown-body .pl-ml{color:var(--color-prettylights-syntax-markup-list)}.markdown-body .pl-mh,.markdown-body .pl-mh .pl-en,.markdown-body .pl-ms{color:var(--color-prettylights-syntax-markup-heading);font-weight:700}.markdown-body .pl-mi{color:var(--color-prettylights-syntax-markup-italic);font-style:italic}.markdown-body .pl-mb{color:var(--color-prettylights-syntax-markup-bold);font-weight:700}.markdown-body .pl-md{background-color:var(--color-prettylights-syntax-markup-deleted-bg);color:var(--color-prettylights-syntax-markup-deleted-text)}.markdown-body .pl-mi1{background-color:var(--color-prettylights-syntax-markup-inserted-bg);color:var(--color-prettylights-syntax-markup-inserted-text)}.markdown-body .pl-mc{background-color:var(--color-prettylights-syntax-markup-changed-bg);color:var(--color-prettylights-syntax-markup-changed-text)}.markdown-body .pl-mi2{background-color:var(--color-prettylights-syntax-markup-ignored-bg);color:var(--color-prettylights-syntax-markup-ignored-text)}.markdown-body .pl-mdr{color:var(--color-prettylights-syntax-meta-diff-range);font-weight:700}.markdown-body .pl-ba{color:var(--color-prettylights-syntax-brackethighlighter-angle)}.markdown-body .pl-sg{color:var(--color-prettylights-syntax-sublimelinter-gutter-mark)}.markdown-body .pl-corl{color:var(--color-prettylights-syntax-constant-other-reference-link);text-decoration:underline}.markdown-body g-emoji{display:inline-block;font-family:Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;font-size:1em;font-style:normal!important;font-weight:var(--base-text-weight-normal,400);line-height:1;min-width:1ch;vertical-align:-.075em}.markdown-body g-emoji img{height:1em;width:1em}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item label{font-weight:var(--base-text-weight-normal,400)}.markdown-body .task-list-item.enabled label{cursor:pointer}.markdown-body .task-list-item+.task-list-item{margin-top:4px}.markdown-body .task-list-item .handle{display:none}.markdown-body .task-list-item-checkbox{margin:0 .2em .25em -1.4em;vertical-align:middle}.markdown-body .contains-task-list:dir(rtl) .task-list-item-checkbox{margin:0 -1.6em .25em .2em}.markdown-body .contains-task-list{position:relative}.markdown-body .contains-task-list:focus-within .task-list-item-convert-container,.markdown-body .contains-task-list:hover .task-list-item-convert-container{clip:auto;display:block;height:24px;overflow:visible;width:auto}.markdown-body ::-webkit-calendar-picker-indicator{filter:invert(50%)}._404-module--notice--90d00{color:gray;font-size:8rem;font-weight:700;text-align:center}.about-module--container--307c9{display:flex;flex-direction:column;overflow:hidden;padding:8rem 0}.about-module--logo--3c6f5{height:30rem}.about-module--tape-first--94c2b{transform:rotate(2deg) translateY(2em)}.about-module--tape-second--f7c53{transform:rotate(-6deg) translateY(-2em)}.index-module--container--d86ba{overflow:hidden;padding:5rem 7rem;position:relative}.index-module--wheel--817ae{bottom:-35rem;position:absolute;right:-25rem}.style-module--index-logo--98cf0{color:gray;display:flex;flex-direction:column;font-size:9rem;font-weight:700;gap:.1rem}.style-module--index-logo--98cf0>p:first-letter{color:#000;font-weight:700}.style-module--container--24ac7{display:flex;flex-direction:column;min-height:100vh}.style-module--container--24ac7>div:nth-child(2){flex:1 1}.style-module--container--bc714{border-bottom:5px solid red;display:flex;justify-content:space-between;padding:1.5rem 6rem}.style-module--nav-links--64532{display:flex;gap:3rem}.style-module--nav-link-text--1f74e{color:#000;font-size:2rem;font-weight:900;text-decoration:none}.style-module--container--ddcb6{align-items:center;display:flex;justify-content:center}.style-module--about-logo--f5187{color:gray;font-size:8rem;font-weight:700;text-align:center}.style-module--tape--e4318{animation-delay:0s;animation-direction:normal;animation-duration:10s;animation-fill-mode:none;animation-iteration-count:infinite;animation-name:style-module--animation-left-flowing--38b9f;animation-timing-function:linear;display:flex;font-size:2.5rem;font-weight:700;justify-content:space-evenly;padding:.9rem 0 1.2rem;width:200vw}@keyframes style-module--animation-left-flowing--38b9f{0%{transform:translateX(0)}to{transform:translateX(-50%)}}.style-module--tape--e4318.style-module--red--4d929{background-color:#fff;border:3px solid red;color:red}.style-module--tape--e4318.style-module--black--d61a9{background-color:#000;color:#fff}.style-module--categories--8e8ce{animation-delay:0s;animation-direction:normal;animation-duration:30s;animation-fill-mode:none;animation-iteration-count:infinite;animation-name:style-module--animation-left-flowing--4cc64;animation-timing-function:linear;border-radius:50%;box-shadow:0 0 10px 10px rgba(0,0,0,.2);height:76rem;position:relative;width:76rem}@keyframes style-module--animation-left-flowing--4cc64{0%{transform:rotate(0)}to{transform:rotate(-1turn)}}.style-module--categories--8e8ce.style-module--stop--4e766{animation-play-state:paused}.style-module--categories--8e8ce:after{border-radius:50%;box-shadow:0 0 10px 10px rgba(0,0,0,.2);content:"";display:block;height:25.3333333333rem;left:50%;position:absolute;top:50%;transform:translate(-50%,-50%);width:25.3333333333rem}.style-module--categories--8e8ce>li{cursor:pointer;font-size:4rem;font-weight:600;left:50%;position:absolute;top:50%;width:3rem}.style-module--categories--8e8ce>li:first-child{color:#000;transform:translate(-50%,-50%) rotate(24deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(2){color:#000;transform:translate(-50%,-50%) rotate(48deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(3){color:#000;transform:translate(-50%,-50%) rotate(72deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(4){color:#000;transform:translate(-50%,-50%) rotate(96deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(5){color:red;transform:translate(-50%,-50%) rotate(120deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(6){color:#000;transform:translate(-50%,-50%) rotate(144deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(7){color:#000;transform:translate(-50%,-50%) rotate(168deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(8){color:#000;transform:translate(-50%,-50%) rotate(192deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(9){color:#000;transform:translate(-50%,-50%) rotate(216deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(10){color:red;transform:translate(-50%,-50%) rotate(240deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(11){color:#000;transform:translate(-50%,-50%) rotate(264deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(12){color:#000;transform:translate(-50%,-50%) rotate(288deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(13){color:#000;transform:translate(-50%,-50%) rotate(312deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(14){color:#000;transform:translate(-50%,-50%) rotate(336deg) translate(-34rem)}.style-module--categories--8e8ce>li:nth-child(15){color:red;transform:translate(-50%,-50%) rotate(1turn) translate(-34rem)}.style-module--container--16db0{display:flex;height:100%;padding:3rem 5rem 0}.style-module--container--36f8e{display:flex;flex-direction:column;width:30rem}.style-module--container--36f8e ul{margin-left:1rem}.style-module--categories--86b38{display:flex;flex-direction:column;gap:1rem}.style-module--category--d0bec{color:#000;font-size:1.2rem;font-weight:600;text-decoration:none}.style-module--posts--bdaf4{display:flex;flex-direction:column;gap:.5rem}.style-module--post--8179a{color:#9d9d9d;font-size:1.2rem;font-weight:600;text-decoration:none}.style-module--container--514a1{cursor:pointer;display:flex;flex-direction:column;gap:1rem;height:7rem;padding:1rem;transition:all .2s ease-in-out}.style-module--container--514a1:hover{background-color:rgba(255,253,223,.561);scale:1.05}.style-module--title--dce33{color:#000;font-size:1.5rem;font-weight:600}.style-module--excerpt--5fd4c{color:#000;font-size:1rem}</style><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/TIL/sitemap-index.xml"/><link rel="icon" href="/TIL/favicon-32x32.png?v=53aa06cf17e4239d0dba6ffd09854e02" type="image/png"/><link rel="manifest" href="/TIL/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/TIL/icons/icon-48x48.png?v=53aa06cf17e4239d0dba6ffd09854e02"/><link rel="apple-touch-icon" sizes="72x72" href="/TIL/icons/icon-72x72.png?v=53aa06cf17e4239d0dba6ffd09854e02"/><link rel="apple-touch-icon" sizes="96x96" href="/TIL/icons/icon-96x96.png?v=53aa06cf17e4239d0dba6ffd09854e02"/><link rel="apple-touch-icon" sizes="144x144" href="/TIL/icons/icon-144x144.png?v=53aa06cf17e4239d0dba6ffd09854e02"/><link rel="apple-touch-icon" sizes="192x192" href="/TIL/icons/icon-192x192.png?v=53aa06cf17e4239d0dba6ffd09854e02"/><link rel="apple-touch-icon" sizes="256x256" href="/TIL/icons/icon-256x256.png?v=53aa06cf17e4239d0dba6ffd09854e02"/><link rel="apple-touch-icon" sizes="384x384" href="/TIL/icons/icon-384x384.png?v=53aa06cf17e4239d0dba6ffd09854e02"/><link rel="apple-touch-icon" sizes="512x512" href="/TIL/icons/icon-512x512.png?v=53aa06cf17e4239d0dba6ffd09854e02"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="style-module--container--24ac7"><div class="style-module--container--bc714"><a class="style-module--nav-link-text--1f74e" href="/TIL/">Byongho96</a><nav><ul class="style-module--nav-links--64532"><li><a class="style-module--nav-link-text--1f74e" href="/TIL/">Home</a></li><li><a class="style-module--nav-link-text--1f74e" href="/TIL/about/">About</a></li><li><a class="style-module--nav-link-text--1f74e" href="/TIL/posts/">Posts</a></li></ul></nav></div><div class="style-module--container--16db0"><ul class="style-module--container--36f8e style-module--categories--86b38"><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Algorithm/">Algorithm</a><ul><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/First/">First</a><ul class="style-module--categories--86b38"></ul></li></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Computational Thinking/">Computational Thinking</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/CS/">CS</a><ul><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Network/">Network</a><ul class="style-module--categories--86b38"></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/DB/">DB</a><ul class="style-module--categories--86b38"></ul></li></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Data Structure/">Data Structure</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Django/">Django</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/etc/">etc</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Java/">Java</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/JavaScript/">JavaScript</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Python/">Python</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/React/">React</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Spring/">Spring</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Static Site/">Static Site</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Tools/">Tools</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Vue/">Vue</a><ul></ul></li><li class="style-module--categories--86b38"><a class="style-module--category--d0bec" href="/TIL/posts/Web/">Web</a><ul></ul></li></ul><div><div class="markdown-body"><h1>Git</h1>
+<h2>목차</h2>
+<ul>
+<li><a href="#git">Git</a>
+<ul>
+<li><a href="#%EB%AA%A9%EC%B0%A8">목차</a></li>
+</ul>
+</li>
+<li><a href="#1-%EC%9A%A9%EC%96%B4-%EC%A0%95%EB%A6%AC">1. 용어 정리</a>
+<ul>
+<li><a href="#11-git">1.1. Git</a></li>
+<li><a href="#12-git-web-service">1.2. Git Web Service</a></li>
+<li><a href="#13-repository">1.3. Repository</a></li>
+</ul>
+</li>
+<li><a href="#2-git-%EA%B8%B0%EC%B4%88-%EC%82%AC%EC%9A%A9%EB%B2%95">2. Git 기초 사용법</a>
+<ul>
+<li><a href="#21-git-%EB%AA%85%EB%A0%B9%EC%96%B4">2.1. Git 명령어</a></li>
+<li><a href="#22-git-commit-message">2.2. Git Commit Message</a>
+<ul>
+<li><a href="#221-commit-message-rule">2.2.1. Commit Message Rule</a></li>
+<li><a href="#222-commit-message-with-vi-editor">2.2.2. Commit Message with VI Editor</a></li>
+</ul>
+</li>
+<li><a href="#23-gitignore">2.3. .gitignore</a></li>
+<li><a href="#24-gitkeep">2.4. .gitkeep</a></li>
+</ul>
+</li>
+<li><a href="#3-git-branch">3. Git Branch</a>
+<ul>
+<li><a href="#31-git-branch-%EB%AA%85%EB%A0%B9%EC%96%B4">3.1. Git Branch 명령어</a>
+<ul>
+<li><a href="#311-branch-%EC%A1%B0%ED%9A%8C">3.1.1. Branch 조회</a></li>
+<li><a href="#312-branch-%EC%83%9D%EC%84%B1">3.1.2. Branch 생성</a></li>
+<li><a href="#313-branch-%EB%B3%80%EA%B2%BD">3.1.3. Branch 변경</a></li>
+<li><a href="#314-branch-%EC%82%AD%EC%A0%9C">3.1.4. Branch 삭제</a></li>
+<li><a href="#315-branch-%EB%B3%91%ED%95%A9">3.1.5. Branch 병합</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-git-undoing">4. Git Undoing</a>
+<ul>
+<li><a href="#41-working-directory">4.1. Working Directory</a></li>
+<li><a href="#42-staging-area">4.2. Staging Area</a>
+<ul>
+<li><a href="#43-repository">4.3. Repository</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#5-git-reset--revert">5. Git Reset &#x26; Revert</a>
+<ul>
+<li><a href="#51-git-reset">5.1. Git Reset</a></li>
+<li><a href="#52-git-revert">5.2. Git Revert</a></li>
+</ul>
+</li>
+<li><a href="#6-remote-repository-github">6. Remote Repository (GitHub)</a>
+<ul>
+<li><a href="#61-github-merge">6.1. Github merge</a></li>
+<li><a href="#62-open-source-contribute">6.2. Open Source (Contribute)</a></li>
+</ul>
+</li>
+<li><a href="#7-work-flow">7. Work Flow</a>
+<ul>
+<li><a href="#71-git-flow">7.1. Git Flow</a></li>
+<li><a href="#72-github-flow">7.2. Github Flow</a></li>
+</ul>
+</li>
+<li><a href="#8-crlf">8. CRLF</a></li>
+</ul>
+<hr>
+<h1>1. 용어 정리</h1>
+<h2>1.1. Git</h2>
+<p><strong>컴퓨터 파일의 변경 사항을 추적하고, 여러 명의 사용자 간의 파일 작업을 조율하기 위한 분산버전 관리 시스템.</strong></p>
+<p>시스템 자체는 클라이언트-서버 시스템과 달리, 중앙 서버에 독립적으로 동작한다. 즉, 사용자 개인의 작업환경(폴더)에서 <mark>파일의 변화를 추적</mark>하는 저장소를 생성할 수 있다. commit이 이루어질 때 변경된 파일 자체가 아닌 변경된 사항만을 저장함으로써 가볍고 빠르게 버전을 관리할 수 있다.</p>
+<h2>1.2. Git Web Service</h2>
+<p><strong>git 저장소를 클라이언트-서버 모델로 지원하는 웹 서비스.</strong></p>
+<p>다른 사람과의 코드 공유를 위해, git 시스템을 클라이언트-서버 구조로 네트워크와 결합한 서비스이다. 대표적으로 GitHub, GitLab, BitBucket 등이 있다.</p>
+<ul>
+<li><strong>GitHub</strong><br>
+MS에서 제공하는 오픈 Git 서비스로써, 전세계의 많은 개발자들이 코드공유를 위해 활발하게 사용하고 있으며</li>
+<li><strong>GitLab</strong><br>
+레포지토리의 접근 권한을 개인이 제어할 수 있어 기업에서 많이 쓰인다.</li>
+</ul>
+<h2>1.3. Repository</h2>
+<p><strong>git으로 버전 관리가 되는 폴더</strong></p>
+<p><strong>local repository</strong>란, 사용자 개인의 컴퓨터에 존재하는 repository를 말하고, <strong>remote repository</strong>란, git servcie 서버에 존재하는 respository를 말한다. (이 둘은 많은 경우, 서로 연동된다.)</p>
+<p>local repository는 다음 3가지의 작업영역으로 동작한다.</p>
+<ul>
+<li><strong>Working Directory</strong>
+<ul>
+<li><strong>사용자가 작업하는 실제 폴더</strong></li>
+<li>한 번도 <code>add</code>되지 않은 파일은 'Untracked'로 분류되고, 마지막 커밋으로부터 변경사항이 생긴 파일은 'Modified'로 분류된다.</li>
+</ul>
+</li>
+<li><strong>Staging Area</strong>
+<ul>
+<li><strong><mark>한 개의 커밋</mark>으로 남길 변경사항들을 모은 영역</strong></li>
+<li><code>add</code>명령어로 working directory의 변경사항을 staging area에 올릴 수 있다.</li>
+<li>변경사항들이 staging area에 올라가는 것을 'staged'되었다고 표현한다.</li>
+</ul>
+</li>
+<li><strong>Repository</strong>
+<ul>
+<li><strong>.git 폴더. 커밋(버전)들이 저장되는 곳</strong></li>
+<li><code>commit</code>명령어로 staging area에 있는 모든 변경사항을 하나의 커밋으로 repository에 남길 수 있다.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1>2. Git 기초 사용법</h1>
+<h2>2.1. Git 명령어</h2>
+<ul>
+<li>remote repository의 별칭은 <code>origin</code>이 default이다.</li>
+<li>fork한 레포지토리에 대해 원본 레포지토리를 추가할 경우, 통상적으로 <code>upstream</code>을 사용한다.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>CLI 명령어</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git init</td>
+<td>현재 폴더에 git 시스템을 적용 == local repository를 생성함</td>
+</tr>
+<tr>
+<td>git status</td>
+<td>레포지토리의 git 상태</td>
+</tr>
+<tr>
+<td>git log</td>
+<td>모든 커밋 내역을 출력</td>
+</tr>
+<tr>
+<td>git log --oneline</td>
+<td>모든 커밋 내역을 간단하게 출력</td>
+</tr>
+<tr>
+<td>git log --oneline --graph</td>
+<td>모든 커밋 내역을 간단하게 그래프 형태로 출력</td>
+</tr>
+<tr>
+<td>git diff &#x3C;log A id> &#x3C;log B id></td>
+<td>커밋 A -> 커밋 B의 차이점 출력</td>
+</tr>
+<tr>
+<td>git add &#x3C;file></td>
+<td>특정 파일의 변경사항을 add</td>
+</tr>
+<tr>
+<td>git add .</td>
+<td>모든 파일의 변경사항을 add</td>
+</tr>
+<tr>
+<td>git commit -m "{commit messagge}"</td>
+<td>간단한 메시지와 함께 현재 staged 상태를 커밋</td>
+</tr>
+<tr>
+<td>git push &#x3C;remote_repo_alias> &#x3C;local branch name></td>
+<td>remote repo에 local 브랜치와 동일한 브랜치를 생성 및 push</td>
+</tr>
+<tr>
+<td>git clone <remote repo address></td>
+<td>remote repo를 local repo로 복사</td>
+</tr>
+<tr>
+<td>git pull</td>
+<td>remote repo의 추가 커밋을 local repo로 복사</td>
+</tr>
+<tr>
+<td>git remote add &#x3C;remote_repo_alias> &#x3C;remote_repo_url></td>
+<td>현재 로컬 repo에 연동되는 remote repo를 별칭(default: origin)으로 추가</td>
+</tr>
+</tbody>
+</table>
+<h2>2.2. Git Commit Message</h2>
+<ul>
+<li><code>git commit -m "commit_message"</code><br>
+커밋 메시지를 간단하게 한 줄로 작성할 수 있다.</li>
+</ul>
+<ul>
+<li><code>git commit -m</code><br>
+<mark>vi 에디터</mark>에서 더 길고 자세한 커밋 메시지를 작성할 수 있다.</li>
+</ul>
+<h3>2.2.1. Commit Message Rule</h3>
+<ul>
+<li>commit 유형 지정
+<ul>
+<li>FEAT: 새로운 기능 추가</li>
+<li>FIX: 버그 수정</li>
+<li>DOCS: 문서 수정</li>
+<li>STYLE: 스타일 관련 수정</li>
+<li>REFACOTR: 리팩토링(기능 변화 없이, 가독성 및 유지보수를 위한 수정)</li>
+<li>TEST: 테스트 코드 추가</li>
+<li>CHORE: 빌드 업무, 패키지 매니저 등 자잘한 수정</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>제목과 본문은 빈 행으로 분리</li>
+<li>제목 행은 50자로 제한</li>
+<li>제목 행의 첫 글자는 대문자로 시작</li>
+<li>제목 행 끝에 마침표는 넣지 않는다</li>
+<li>제목 행은 명령문으로 입력</li>
+<li>본문은 72자마다 끊어서 입력</li>
+<li>본문에는 어떻게 보다는 무엇과 왜를 설명</li>
+</ul>
+<h3>2.2.2. Commit Message with VI Editor</h3>
+<img alt="vi" src="./assets/vi.PNG" width="400">
+<ol>
+<li>
+<p><code>git commit -m</code></p>
+</li>
+<li>
+<p>vi editor가 command mode로 열리면, <code>i</code>키를 눌러서 edit mode로 진입한다.</p>
+</li>
+<li>
+<p>edit 모드에서 commit 메시지를 작성한다.</p>
+<pre><code>&#x3C;제목>
+# 빈 행으로 분리. 주석은 커밋 메시지에 포함되지 않는다.
+&#x3C;본문>
+</code></pre>
+</li>
+<li>
+<p>commit 메시지를 다 작성하면 <code>esc</code>를 눌러 command mode로 돌아온다.</p>
+</li>
+<li>
+<p><code>:wq</code>를 입력하고 <code>Enter</code>를 눌러 커밋을 남긴다.</p>
+<ul>
+<li>w는 저장을 의미하고, q는 에디터 종료를 의미한다.</li>
+</ul>
+</li>
+</ol>
+<h2>2.3. .gitignore</h2>
+<p><strong>.gitignore에 기입된 파일들은 git이 관리하지 않는다.</strong></p>
+<p><a href="https://www.toptal.com/developers/gitignore/">gitignore.io</a>에 접속하여 운영체제, 개발환경, 프로그래밍 언어 등을 입력하여 기본적인 .gitignore 파일을 작성할 수 있다.</p>
+<ul>
+<li>&#x3C;파일이름>.확장자
+<ul>
+<li>'* 와 같은 와일드카드 사용이 가능하다</li>
+</ul>
+</li>
+<li>&#x3C;폴더이름>/
+<ul>
+<li>폴더 단위로 git 반영을 무시한다.</li>
+</ul>
+</li>
+</ul>
+<p>이미 한 번 staged된 파일의 git index 공간에서 관리되기 때문에 .gitignore에 추가해 working directory에서 더 이상 올리지 않더라도, git index의 캐싱된 파일이 계속해서 추적되어 올라간다. 아래와 같은 명령어로 캐싱된 파일을 삭제해준다.</p>
+<pre><code class="language-bash">git rm --cached {파일명}
+</code></pre>
+<h2>2.4. .gitkeep</h2>
+<p>git은 기본적으로 폴더가 비었을 경우 해당 폴더를 관리하지 않는다. <strong>단, .gitkeep 파일을 가진 폴더는 비어있을지라도 git이 관리한다.</strong></p>
+<hr>
+<h1>3. Git Branch</h1>
+<p><strong>특정 Commit을 가리키는 포인터</strong></p>
+<span class="gatsby-resp-image-wrapper" style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 720px; ">
+      <a class="gatsby-resp-image-link" href="/TIL/static/c96e51a97073d85c78a74a995f367e58/37523/git-branch.png" style="display: block" target="_blank" rel="noopener">
+    <span class="gatsby-resp-image-background-image" style="padding-bottom: 81.5%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAIAAACZeshMAAAACXBIWXMAAAsTAAALEwEAmpwYAAABwUlEQVR42pVT23LaMBD1//9OHzpp04YyzUApl1AIJtiyjfDdMgFFtnV369rJJGmg7epltbtndc7Oyqj/2Uqqrqb++6/rq2kwdw5aa+NMtdYvnIqrySbvTdzhKrnzyV/AbxohRAjRtjNOkxQwLe4Pxwd8TPKHABX4eMQYg12eY9rQOQXmrJqbzsDcQz/K0mgBsu93KI6iMIyGZubGZavF0E/KmnvjU0pt2yakELJLSaWFVJ0vtXpEvH6ZMeY4TlVVp+RwxYTmQnMmqQEAiKKIEJIkCQBgNBohhMqiDJG/DG/ye0Rw4aa2lZmcccboIrj5PP/YX/bGcGDYtr3dbtM0hRBaltXv9yGEWZp5gbMIJkHkp3FmBaaVrsqiObfhj0/Ty8vxhwn89kJzXddCCNd1KaUnaUvKNRWaVbxowM+tlb3ZbAghXKo2IqRiQnbdpZaPg3w97a6a0/kKXN8iy/F2W2e2DoerxHNdz3Ovl7EbF3VdK/XWhrX4shIBKhnjSok9pvG+EkIopXYJPhB2bkmeKPwRbNaTc6F+Z40zv0LprktbWjI5s9BgAcfrxApws2H/8SWZ6s12774sL4ZgZue/wD8B9PGXYCXCkAoAAAAASUVORK5CYII='); background-size: cover; display: block;"></span>
+  <img class="gatsby-resp-image-image" alt="git-branch" title="" src="/TIL/static/c96e51a97073d85c78a74a995f367e58/37523/git-branch.png" srcset="/TIL/static/c96e51a97073d85c78a74a995f367e58/772e8/git-branch.png 200w,
+/TIL/static/c96e51a97073d85c78a74a995f367e58/e17e5/git-branch.png 400w,
+/TIL/static/c96e51a97073d85c78a74a995f367e58/37523/git-branch.png 720w" sizes="(max-width: 720px) 100vw, 720px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;" loading="lazy" decoding="async">
+  </a>
+    </span>
+<p><strong>하나의 commit이 여러 개의 자식(다음)commit을 가질 수 있다.</strong> 즉 git은 commit 내역을 트리구조처럼 쌓을 수 있다. 이는 여러 명의 개발자가 하나의 프로젝트에 대해 각기 다른 기능 개발을 가능하게 하며, 그 과정에서 메인코드를 안전하게 보호한다.</p>
+<p><strong>그리고 브랜치란 뻗어 나온 가지 자체가 아닌, <mark>특정 commit을 가리키는 포인터</mark>이다.</strong> 명령어로 포인터를 다른 commit으로 유동적으로 옮길 수 있기 때문에, 브랜치란 특정 가지에 한정되지 않는다.</p>
+<p><strong>HEAD는 현재 사용자가 위치한 커밋을 가리킨다.</strong> 보통 사용자는 브랜치를 기점으로 움직이기 때문에 HEAD는 항상 특정 브랜치에 붙어있는 것처럼 보인다. 하지만 사용자가 브랜치가 가리키지 않는 특정 커밋으로 이동하면 브랜치에서 떨어질 수도 있다.</p>
+<h2>3.1. Git Branch 명령어</h2>
+<h3>3.1.1. Branch 조회</h3>
+<table>
+<thead>
+<tr>
+<th>명령어</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git branch</td>
+<td>local repo의 브랜치 목록 확인</td>
+</tr>
+<tr>
+<td>git branch -r</td>
+<td>remote repo의 브랜치 목록 확인</td>
+</tr>
+</tbody>
+</table>
+<h3>3.1.2. Branch 생성</h3>
+<table>
+<thead>
+<tr>
+<th>명령어</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git branch &#x3C;branch_name></td>
+<td>새로운 이름의 브랜치 생성</td>
+</tr>
+<tr>
+<td>git branch &#x3C;branch_name> &#x3C;commit ID></td>
+<td>특정 커밋을 기준으로 새로운 브랜치 생성</td>
+</tr>
+<tr>
+<td>git push &#x3C;remote_repo_alias> --delete &#x3C;branch_name></td>
+<td>원격 저장소의 브랜치를 삭제</td>
+</tr>
+</tbody>
+</table>
+<h3>3.1.3. Branch 변경</h3>
+<p><strong>브랜치 변경이란, 해당 브랜치가 가리키는 커밋 상태로 working directory를 옮긴다는 의미이다.</strong><br>
+<mark> 브랜치를 변경하기 전에는, 현재 폴더의 변경 사항을 먼저 커밋해야한다.</mark> 만일 특정 파일이 git으로 관리되지 않은 상태에서 <code>git switch</code>하면 브랜치를 이동했음에도 해당 파일이 작업영역에 그대로 남아있게 된다.</p>
+<table>
+<thead>
+<tr>
+<th>명령어</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git switch &#x3C;branch_name></td>
+<td>해당 브랜치로 이동</td>
+</tr>
+<tr>
+<td>git switch -c &#x3C;branch_name></td>
+<td>브랜치를 새로 생성함과 동시에 해당 브랜치로 이동</td>
+</tr>
+<tr>
+<td>git switch -c &#x3C;branch_name> &#x3C;commit ID></td>
+<td>특정 커밋을 기준으로 새로운 브랜치를 새로 생성함과 동시에 해당 브랜치로 이동</td>
+</tr>
+</tbody>
+</table>
+<h3>3.1.4. Branch 삭제</h3>
+<p><strong>브랜치 삭제는 삭제하려는 브랜치가 아닌 다른 브랜치 상에서만 실행 가능하다.</strong></p>
+<table>
+<thead>
+<tr>
+<th>명령어</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git branch -d &#x3C;branch_name></td>
+<td>병합된 브랜치를 삭제</td>
+</tr>
+<tr>
+<td>git branch -D &#x3C;branch_name></td>
+<td>병합 여부와 관계없이 브랜치를 강제 삭제</td>
+</tr>
+</tbody>
+</table>
+<h3>3.1.5. Branch 병합</h3>
+<p>브랜치에서의 기능개발이 끝나면, 이를 메인코드를 가리키는 master 브랜치와 병합해서 개발한 기능을 실제 추가할 수 있다.</p>
+<table>
+<thead>
+<tr>
+<th>명령어</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git merge &#x3C;branch_name></td>
+<td>현재 위치한 브랜치 포인터를, 해당 브랜치 포인터와 병합</td>
+</tr>
+</tbody>
+</table>
+<p><strong>브랜치 병합은 충돌 유무에 따라 크게 2가지 방식으로 나뉜다.</strong> 충돌이란, 병합하려는 브랜치의 커밋 히스토리가 현재 위치한 브랜치의 커밋 히스토리를 포함하지 않을 경우 발생한다.</p>
+<ul>
+<li><strong>fast-forward (충돌 없음)</strong>
+현재 브랜치의 포인터를 병합하려는 브랜치 포인터 위치로 옮긴다.</li>
+<li><strong>3-way (충돌 있음)</strong>
+개발자가 직접 개입하여 두 브랜치의 코드를 조율한 뒤, 새로운 commit을 생성해야한다.
+<ol>
+<li><code>git merge &#x3C;branch_name></code>
+충돌이 발생한 파일에서 직접 코드를 조율하고 저장한다.</li>
+<li><code>git add</code> <code>git commit</code>
+조율한 코드로 새로운 커밋을 형성한다. 현재 브랜치의 포인터는 자동으로 새로운 커밋으로 이동한다.</li>
+<li><code>git swtich &#x3C;branch_name></code>
+병합하려던 브랜치의 포인터로 이동한다.</li>
+<li><code>git merge &#x3C;master></code>
+병합하려던 브랜치의 포인터 또한 새로 생성된(master브랜치가 가리키는) 커밋으로 이동시킨다.</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h1>4. Git Undoing</h1>
+<h2>4.1. Working Directory</h2>
+<p><strong>git restore를 통해 작업영역을 되돌리면, 해당 내역을 복원할 수 없으니 주의해야한다.</strong><br>
+git으로 버전관리가 되고 있는 파일만 되돌릴 수 있다.</p>
+<table>
+<thead>
+<tr>
+<th>명령어</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git restore &#x3C;file_name></td>
+<td>현재 위치한 commit의 상태로 파일 복원</td>
+</tr>
+<tr>
+<td>git checkout --&#x3C;file_name></td>
+<td>git 2.23.0 이전 version</td>
+</tr>
+</tbody>
+</table>
+<h2>4.2. Staging Area</h2>
+<table>
+<thead>
+<tr>
+<th>명령어</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git restore --staged &#x3C;file_name></td>
+<td>root-commit이 있는 경우</td>
+</tr>
+<tr>
+<td>git rm --cahced &#x3C;file_name></td>
+<td>root-commit이 없는 경우</td>
+</tr>
+<tr>
+<td>git reset HEAD &#x3C;file_name></td>
+<td>git 2.23.0 이전 version</td>
+</tr>
+</tbody>
+</table>
+<h3>4.3. Repository</h3>
+<p>팀 프로젝트 시, 깔끔하고 의미있는 내용만 commit으로 남기기 위해 commit 내역을 staging area로 되돌리는 경우가 종종 발생한다.</p>
+<table>
+<thead>
+<tr>
+<th>명령어</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git commit --amend</td>
+<td>최근 commit을 수정</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Staging area의 상태에 따라 위 명령어는 2가지로 동작한다</strong></p>
+<ul>
+<li>
+<p>Staging area에 새로 올라온 내용이 없으면, vi editor 창에서 직전 커밋의 메시지만 수정한다.</p>
+<ul>
+<li><a href="#222-commit-message-with-vi-editor">vi editor 사용 절차</a><br>
+<img alt="cli" src="./assets/vim_cli.PNG" width="600">
+<img alt="git_amend" src="./assets/git_amend.PNG" width="600"></li>
+</ul>
+</li>
+<li>
+<p>Staging area에 새로 올라온 내용이 있으면, 현재 staging area를 직전 커밋에 포함시킨다.</p>
+</li>
+</ul>
+<hr>
+<h1>5. Git Reset &#x26; Revert</h1>
+<h2>5.1. Git Reset</h2>
+<p><strong>과거의 특정 Commit 상태로 되돌아간다.</strong><br>
+해당 commit부터 현재까지의 commit 내역이 모두 사라진다. 참고로 Untracked 상태의 파일들에는 적용되지 않는다.</p>
+<table>
+<thead>
+<tr>
+<th>명령어</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git reset &#x3C;option> &#x3C;commit_id></td>
+<td>해당 커밋 상태로 되돌린다</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p><strong>Option</strong>
+취소되는 커밋 기록들을 어떻게 남길지 선택한다.</p>
+<ul>
+<li><strong>--soft</strong><br>
+파일들을 working directory와 staging area에 돌려 놓는다. (add)</li>
+</ul>
+<ul>
+<li>
+<p><strong>--mixed</strong><br>
+DEFAULT 옵션. 파일들을 working directory에 돌려 놓는다. (untracked / modified)</p>
+</li>
+<li>
+<p><strong>--hard</strong>
+<mark>파일들을 아예 삭제한다!</mark><br>
+<code>git reflog</code> 명령어를 이용하면 reset하기 전의 커밋 내역을 조회할 수 있지만, 애초에 그런 일이 발생하지 않도록 주의해야 한다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p><strong>Commit_ID</strong></p>
+<ul>
+<li>commit_id는 앞에 4개정도만 적어도 보통 식별이 가능하다.</li>
+</ul>
+</li>
+</ul>
+<h2>5.2. Git Revert</h2>
+<p><strong>과거의 특정 커밋을 취소하고, 해당 커밋을 취소한다는 내용의 새로운 커밋을 생성한다.</strong><br>
+단, 뒤에서부터 순차적으로 커밋을 취소하지 않는 이상, 충돌이 발생할 확률이 높기 때문에 개발자가 직접 코드를 수정해야한다.</p>
+<table>
+<thead>
+<tr>
+<th>명령어</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git revert &#x3C;commit_A_id></td>
+<td>commit A를 취소한다</td>
+</tr>
+<tr>
+<td>git revert &#x3C;commit_A_id>..&#x3C;commit_B_id></td>
+<td>commit A부터 commit B까지 취소한다</td>
+</tr>
+</tbody>
+</table>
+<p>새로운 커밋을 생성해야하기 때문에 vi 에디터 창이 뜬다. <a href="#222-commit-message-with-vi-editor">vi editor 사용 절차</a></p>
+<hr>
+<h1>6. Remote Repository (GitHub)</h1>
+<table>
+<thead>
+<tr>
+<th>명령어</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git remote add &#x3C;remote_repo_alias> &#x3C;remote_repo_url></td>
+<td>현재 로컬 repo에 연동되는 remote repo를 별칭으로 추가</td>
+</tr>
+<tr>
+<td>git push &#x3C;remote_repo_alias> &#x3C;branch_name></td>
+<td>remote repo에 branch를 생성 및 push</td>
+</tr>
+<tr>
+<td>git push --set-upstream &#x3C;remote_repo_alias> &#x3C;remote_branch_name></td>
+<td>remote repo에 branch를 생성하고 push, 그리고 해당 브랜치를 기본 remote repo branch로 설정</td>
+</tr>
+<tr>
+<td>git checkout -t &#x3C;remote_branch_name></td>
+<td>remote repo에서 해당 브랜치를 동일한 이름으로 가져온다</td>
+</tr>
+<tr>
+<td>git checkout -b &#x3C;local_branch_name> &#x3C;remote_branch_name></td>
+<td>remote repo에서 해당 브랜치를 수정한 이름으로 가져온다</td>
+</tr>
+</tbody>
+</table>
+<h2>6.1. Github merge</h2>
+<ol>
+<li>
+<p>merge pull requests > new pull reqeust</p>
+</li>
+<li>
+<p>base: master / compare: 병합하려는 브랜치</p>
+<ul>
+<li>Able to merge, fast forward</li>
+<li>Can't automatically merge, 3-way merge</li>
+</ul>
+</li>
+<li>
+<p>create pull reqeust 선택 후, merge에 대한 정보 입력</p>
+</li>
+<li>
+<p>Reviewers: 코드 리뷰어 / Assignee: 코드 작성자</p>
+<ul>
+<li>Settings에 들어가서 review이후에 merge되도록 설정 가능</li>
+</ul>
+</li>
+<li>
+<p>conversation에서 대화 형식 리뷰, files changed에서 코드에 직접 리뷰</p>
+</li>
+<li>
+<p>Merge pull request</p>
+</li>
+<li>
+<p>commit 내역에는 commit과 merge 두가지 내역이 동시 생성</p>
+</li>
+</ol>
+<h2>6.2. Open Source (Contribute)</h2>
+<p>위와 같은 pull request 과정을 통해, 타인의 open source 코드에 기여할 수 있다. 단 당연히, 해당 repository의 관리자들의 리뷰를 거친 후, merge 여부를 결정된다.</p>
+<p><strong>fork &#x26; pull model</strong></p>
+<ol>
+<li>상대 remote repo --fork--> 나의 remote repo</li>
+<li>나의 remote repo --clone--> 나의 local repo</li>
+<li>나의 local master --branch--> 나의 local branch</li>
+<li>나의 local branch --push--> 나의 remote branch</li>
+<li>나의 remote branch --merge--> 상대 remote master</li>
+</ol>
+<hr>
+<h1>7. Work Flow</h1>
+<p><strong>Git을 활용한 프로젝트 개발 과정에 대한 가이드라인</strong></p>
+<h2>7.1. Git Flow</h2>
+<p>git flow는 주로 기업의 대형 프로젝트에서 사용된다.</p>
+<span class="gatsby-resp-image-wrapper" style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 712px; ">
+      <a class="gatsby-resp-image-link" href="/TIL/static/8107591c8b56d61c03829bb7b06cde3b/2bc98/git_flow.jpg" style="display: block" target="_blank" rel="noopener">
+    <span class="gatsby-resp-image-background-image" style="padding-bottom: 132%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAaABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAECAwX/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIQAxAAAAHtvOxgEmiEUH//xAAbEAACAwADAAAAAAAAAAAAAAAAAREhMQISQf/aAAgBAQABBQLsTdj32BnGyWPHiz//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AR//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/AR//xAAZEAACAwEAAAAAAAAAAAAAAAAAEQEQMSD/2gAIAQEABj8CEbSRs1Mozj//xAAgEAABBAIBBQAAAAAAAAAAAAAAAREhMVFxQRBhgZHw/9oACAEBAAE/IWbWTiWNi9DNpIg8ukybPB3AinxUsLSvR//aAAwDAQACAAMAAAAQI8s8/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAwEBPxAf/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAgEBPxAf/8QAHRABAQACAgMBAAAAAAAAAAAAAREAITFBYXGRof/aAAgBAQABPxBAR0RZDIXDS0MI6h1hqdurjy4TTgtrhmGtPtgtShs7XbMfEDDZOsIy/jPzYQQIx49Zt6Wf/9k='); background-size: cover; display: block;"></span>
+  <img class="gatsby-resp-image-image" alt="git_flow" title="" src="/TIL/static/8107591c8b56d61c03829bb7b06cde3b/2bc98/git_flow.jpg" srcset="/TIL/static/8107591c8b56d61c03829bb7b06cde3b/e07e9/git_flow.jpg 200w,
+/TIL/static/8107591c8b56d61c03829bb7b06cde3b/066f9/git_flow.jpg 400w,
+/TIL/static/8107591c8b56d61c03829bb7b06cde3b/2bc98/git_flow.jpg 712w" sizes="(max-width: 712px) 100vw, 712px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;" loading="lazy" decoding="async">
+  </a>
+    </span>
+<ul>
+<li><strong>master</strong>
+<ul>
+<li>상용화된 코드가 있는 브랜치</li>
+</ul>
+</li>
+<li><strong>develop</strong>
+<ul>
+<li>개발 단계의 브랜치</li>
+</ul>
+</li>
+<li><strong>feature</strong>
+<ul>
+<li>develop에서 세부 기능 개발을 위한 파생된 브랜치</li>
+<li>기능 개발 후 develop으로 merge</li>
+</ul>
+</li>
+<li><strong>relaease</strong>
+<ul>
+<li>develop에서 테스트를 위해 파생된 브랜치</li>
+<li>테스트 통과 시 master 브랜치로 merge</li>
+<li>테스트 불통과 시 develop 브랜치로 다시 merge</li>
+</ul>
+</li>
+<li><strong>hotfix</strong>
+<ul>
+<li>master가 브랜치에서 오류가 발생한 경우, 빠른 대처를 위해 파생된 브랜치</li>
+<li>오류 수정이 오래 걸릴 경우, master는 롤백 시키고 해당 버그를 develop브랜치에서 수정</li>
+</ul>
+</li>
+</ul>
+<h2>7.2. Github Flow</h2>
+<p>github flow는 주로 소규모 프로젝트 개발해서 사용된다.</p>
+<span class="gatsby-resp-image-wrapper" style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 800px; ">
+      <a class="gatsby-resp-image-link" href="/TIL/static/06824158ffec107ea4ff7cd1afebd17f/67d3c/github_flow.jpg" style="display: block" target="_blank" rel="noopener">
+    <span class="gatsby-resp-image-background-image" style="padding-bottom: 58.00000000000001%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAMABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIBBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHtbSKFf//EABoQAAICAwAAAAAAAAAAAAAAAAABEBEiMUH/2gAIAQEAAQUCbsxh66f/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAWEQADAAAAAAAAAAAAAAAAAAABEBH/2gAIAQIBAT8BoX//xAAZEAABBQAAAAAAAAAAAAAAAAAxACAhobH/2gAIAQEABj8CySjbf//EAB0QAAICAQUAAAAAAAAAAAAAAAABETEhEEFhcdH/2gAIAQEAAT8hR5AkmdjgSIqYiuCF0vT/2gAMAwEAAgADAAAAEK/P/8QAFxEBAAMAAAAAAAAAAAAAAAAAARARIf/aAAgBAwEBPxCl2P/EABYRAQEBAAAAAAAAAAAAAAAAAAEQEf/aAAgBAgEBPxBByf/EABwQAQACAwADAAAAAAAAAAAAAAERIQAxUUFxkf/aAAgBAQABPxAKKRurp4jIg9he5033IdMFQIWA+MGghSkETO/eQcM//9k='); background-size: cover; display: block;"></span>
+  <img class="gatsby-resp-image-image" alt="github_flow" title="" src="/TIL/static/06824158ffec107ea4ff7cd1afebd17f/4b190/github_flow.jpg" srcset="/TIL/static/06824158ffec107ea4ff7cd1afebd17f/e07e9/github_flow.jpg 200w,
+/TIL/static/06824158ffec107ea4ff7cd1afebd17f/066f9/github_flow.jpg 400w,
+/TIL/static/06824158ffec107ea4ff7cd1afebd17f/4b190/github_flow.jpg 800w,
+/TIL/static/06824158ffec107ea4ff7cd1afebd17f/67d3c/github_flow.jpg 1131w" sizes="(max-width: 800px) 100vw, 800px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;" loading="lazy" decoding="async">
+  </a>
+    </span>
+<ul>
+<li><strong>master</strong>
+<ul>
+<li>메인 코드가 존재하는 브랜치</li>
+</ul>
+</li>
+<li><strong>feature</strong>
+<ul>
+<li>master에서 세부 기능 개발을 위한 파생된 브랜치</li>
+<li>기능 개발 후 master로 merge</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1>8. CRLF</h1>
+<p><a href="https://parkgaebung.tistory.com/70">OS별 crlf 설정에 관한 블로그 글</a><br>
+OS 별로 줄바꿈을 위한 이스케이프 명령어 수가 다르다.</p>
+<ul>
+<li><strong>Windows</strong>: '/r'(캐리지 리턴, CR) + '/n'(줄 바꿈, LF)</li>
+<li><strong>Linux, Mac</strong>: '/n'(줄바꿈, LF)</li>
+</ul>
+<p>운영체제를 달리하며 프로젝트를 개발할 경우, 개행문자를 처리하는 방법에 대한 설정이 필요하다. 그렇지 않으면 코드 변화가 없음에도 파일들이 commit될 수 있다.</p>
+<ul>
+<li>Windows<br>
+<code>git config -global core.autocrlf true</code><br>
+커밋 시 CRLF를 LF로 변환하고, 저장소에서 가져올 때는 LF를 CRLF로 변환한다.</li>
+<li>Linux, Mac<br>
+<code>git config -global core.autocrlf true</code><br>
+커밋 시 CRLF를 LF로 변환한다.</li>
+</ul></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/Tools/Git.md/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+          <script
+            id="gatsby-chunk-mapping"
+          >
+            window.___chunkMapping="{\"app\":[\"/app-3dc445281ef8e942be71.js\"],\"component---src-pages-404-tsx\":[\"/component---src-pages-404-tsx-0de118bf3de454f88100.js\"],\"component---src-pages-about-tsx\":[\"/component---src-pages-about-tsx-0832ff78e9380eba9c03.js\"],\"component---src-pages-index-tsx\":[\"/component---src-pages-index-tsx-22199b632640cd905fd5.js\"],\"component---src-pages-posts-tsx\":[\"/component---src-pages-posts-tsx-1f9057fb22f90aca4324.js\"],\"component---src-templates-post-group-tsx\":[\"/component---src-templates-post-group-tsx-196bfaeb3ac4946b15e3.js\"],\"component---src-templates-post-tsx\":[\"/component---src-templates-post-tsx-dc7f8495a57aced00653.js\"]}";
+          </script>
+        <script>window.___webpackCompilationHash="42aced002e2b2fdb8e70";</script><script src="/TIL/webpack-runtime-413cde4a896ca185d829.js" async></script><script src="/TIL/framework-e7a380555a9a54b312b6.js" async></script><script src="/TIL/app-3dc445281ef8e942be71.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
