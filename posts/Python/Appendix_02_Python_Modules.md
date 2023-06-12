@@ -1,6 +1,10 @@
-# Python Modules
-
-## Index
+---
+title: 'Appendix 02. Python Modules'
+updatedAt: '2022-12-23'
+createdAt: '2022-11-08'
+isCompleted: true
+reference:
+---
 
 - [1. Terms](#1-terms)
 - [2. How to Import Modules](#2-how-to-import-modules)
@@ -40,8 +44,6 @@ my_package/
         __init__.py
         tools.py
 ```
-
----
 
 # 2. How to Import Modules
 
@@ -87,8 +89,6 @@ my_package/
     print(pi)           # 3.141592653589793
     print(sqrt(3.0))    # 1.7320508075688772
     ```
-
----
 
 # 3. Modules
 

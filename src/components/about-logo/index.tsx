@@ -10,13 +10,9 @@ const AboutLogo: React.FC = () => {
         sequence={[
           // Same substring at the start will only be typed out once, initially
           "I'm a Frontend Developer, Byongho",
-          2000, // wait 1s before replacing "Mice" with "Hamsters"
-          "I'm working on making this blog",
-          2000,
-          'Sometimes developing makes me crazy',
-          2000,
-          "But overall, it's AWESOME :)",
-          2000,
+          4000,
+          "I'm working on this blog",
+          4000,
         ]}
         wrapper="h1"
         className={styles.aboutLogo}

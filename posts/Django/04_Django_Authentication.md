@@ -1,6 +1,10 @@
-# Django Authentication
-
-## Index
+---
+title: 'Django Internal Authentication'
+updatedAt: '2023-01-02'
+createdAt: '2022-12-24'
+isCompleted: true
+reference:
+---
 
 - [1. Overview](#1-overview)
   - [1.1. Authentication](#11-authentication)
@@ -42,8 +46,6 @@ Authorization is the process of verifying what specific applications, files, and
 ## 1.3. accounts App
 
 Django strongly recommends that apps that manage User Model be named accounts
-
----
 
 # 2. Custom User Model
 
@@ -118,8 +120,6 @@ Since the User model is registered in the template option, **the user variable c
   ```
   If the user is not authenticated, it shows 'AnonymousUser'
 
----
-
 # 3. Session Authentication with Cookie
 
 ## 3.1. Session Table
@@ -143,8 +143,6 @@ Cookie s a small piece of data that works on a web service. It's **issued by the
   <img alt="session_table" src= "./images/django_session_table.jpg">
 - Set session cookie {'sessionid':session_key}  
   <img alt="sessionid_cookie" src= "./images/sessionid_cookie.jpg">
-
----
 
 # 4 User CRUD
 
@@ -405,8 +403,6 @@ Cookie s a small piece of data that works on a web service. It's **issued by the
       auth_logout(request)
       return redirect('articles:index')
   ```
-
----
 
 # 6. Access Limitations
 

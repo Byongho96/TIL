@@ -1,6 +1,10 @@
-# Django Basics: MTV Design Pattern
-
-## Index
+---
+title: 'Django Basics & MTV Design Pattern'
+updatedAt: '2022-12-24'
+createdAt: '2022-12-24'
+isCompleted: true
+reference:
+---
 
 - [1. Django](#1-django)
   - [1.1. Framework](#11-framework)
@@ -17,7 +21,7 @@
   - [5.2. Migration](#52-migration)
   - [5.3. Modifying Model](#53-modifying-model)
 - [6. Template](#6-template)
-  - [6.1. Django Template Language(DTL)](#61-django-template-language-dtl-)
+  - [6.1. Django Template Language(DTL)](#61-django-template-languagedtl)
   - [6.2. Template Inheritacne](#62-template-inheritacne)
 - [7. View](#7-view)
   - [7.1 ORM](#71-orm)
@@ -55,8 +59,6 @@
 
 Dynamic means that data(ex.html) is processed according to the users' requests
 
----
-
 # 2. MTV Design Pattern
 
 ## 2.1. Design Pattern
@@ -80,8 +82,6 @@ Django follows the **Model-Template-View(MTV) design pattern** which is based on
   | Model      | Model    |
   | View       | Template |
   | Controller | View     |
-
----
 
 ## 3. Start Django
 
@@ -119,8 +119,6 @@ Django follows the **Model-Template-View(MTV) design pattern** which is based on
 4. **Run server**
    1. `python manage.py runserver`
 
----
-
 # 4. Django Folder Structure
 
 ## 4.1. Project Structure
@@ -156,8 +154,6 @@ Django follows the **Model-Template-View(MTV) design pattern** which is based on
   - Write code to test the project
 - **app/views.py**
   - Define views
-
----
 
 # 5. Models
 
@@ -207,8 +203,6 @@ class Article(models.Model):
      - Option 2. The developer directly enters the default value into the model.
 
 3. `python manage.py migrate`
-
----
 
 # 6. Template
 
@@ -263,8 +257,6 @@ def index(request):
     return render(request, 'articles/index.html', context)
 ```
 
----
-
 ## 7.1 ORM
 
 **Due to ORM, Django can handle DB in Python grammar.**
@@ -288,8 +280,6 @@ def index(request):
 
 - Queryset is accessible by index.
 - Query object is accessible by key.
-
----
 
 # 8. Request and Get
 
@@ -441,8 +431,6 @@ urlpatterns = [
   <h1>Hello {{name}}!</h1>
   ```
 
----
-
 # 9. Namespaces
 
 ## 9.1. URL Namespace
@@ -523,8 +511,6 @@ Therefore, to use the same name of templates in different apps, you need to appl
   # articles/views.py
   return render(request, 'articles/index.html')
   ```
-
----
 
 # 10. Admin Page
 

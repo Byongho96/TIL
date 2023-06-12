@@ -1,10 +1,14 @@
-# Django Many To Many Relationship
-
-## Index
+---
+title: 'Django N:M Realationship'
+updatedAt: '2022-12-27'
+createdAt: '2022-11-08'
+isCompleted: true
+reference:
+---
 
 - [1. Intro](#1-intro)
   - [1.1. Terms](#11-terms)
-  - [1.2. The limits of N:1 Relationship](#12-the-limits-of-n-1-relationship)
+  - [1.2. The limits of N:1 Relationship](#12-the-limits-of-n1-relationship)
   - [1.3. Intermediary Model](#13-intermediary-model)
   - [1.4. Many To Many Field](#14-many-to-many-field)
   - [1.5. Many To Many Table](#15-many-to-many-table)
@@ -149,8 +153,6 @@ class Reservation(models.Model):
     - `patient1.doctors.add(doctor1, through_defaults={'symptom': 'flu'})`
     - through_defaults can be defined as a function
 
----
-
 # 2. Like (Article-User)
 
 - **models.py**
@@ -219,8 +221,6 @@ class Reservation(models.Model):
   <hr />
   {% endfor %} {% endblock content %}
   ```
-
----
 
 # 3. Follow (User-User)
 

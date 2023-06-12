@@ -1,6 +1,10 @@
-# Django REST Authentication
-
-## Index
+---
+title: 'Django REST Authentication'
+updatedAt: '2023-01-12'
+createdAt: '2023-01-02'
+isCompleted: true
+reference:
+---
 
 - [1. CORS](#1-cors)
   - [1.1. Same Origin Policy](#11-same-origin-policy)
@@ -67,8 +71,6 @@ Cross-Origin Resource Sharing (CORS) is **an HTTP-header based mechanism that** 
      # CORS_ALLOW_ALL_ORIGINS = True
      ```
 
----
-
 # 2. Authentication
 
 [django REST framework Authentication](https://www.django-rest-framework.org/api-guide/authentication/)
@@ -116,8 +118,6 @@ def example_view(request, format=None):
     }
     return Response(content)
 ```
-
----
 
 # 3. dj-rest-auth
 

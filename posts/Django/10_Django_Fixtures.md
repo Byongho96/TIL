@@ -1,6 +1,10 @@
-# Django Fixtures
-
-## Index
+---
+title: 'Django Fixtures'
+updatedAt: '2022-12-27'
+createdAt: '2022-11-08'
+isCompleted: true
+reference:
+---
 
 - [1. Fixtures](#1-fixtures)
   - [1.1. The Definition of Fixtures](#11-the-definition-of-fixtures)

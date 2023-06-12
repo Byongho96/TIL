@@ -1,0 +1,25 @@
+@import '_colors.scss';
+@import '_fonts.scss';
+
+// sass variable을 css variable로 사용하기 위해서는 interpolation
+// 라이트 모드
+:root {
+  --main-color: #{$primary-color};
+  --bg-color: #{$bg-white};
+  --font-color: #{$font-black};
+}
+// 다트 모드
+:root.dark {
+  --main-color: #{$primary-color};
+  --bg-color: #{$bg-black};
+  --font-color: #{$font-white};
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--font-color);
+
+  font-family: 'SCDream', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+}

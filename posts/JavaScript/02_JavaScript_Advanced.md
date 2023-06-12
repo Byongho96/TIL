@@ -1,6 +1,10 @@
-# JavaScript Advanced
-
-## Index
+---
+title: '02. JavaScript DOM and this '
+updatedAt: '2023-01-02'
+createdAt: '2022-10-24'
+isCompleted: true
+reference:
+---
 
 - [1. DOM](#1-dom)
   - [1.1. Document Object Model](#11-document-object-model)
@@ -137,8 +141,6 @@ Structured and Represented HTML documents as **objects**. Develpoers can access 
   - **Toggle()**
     - Removes an existing token from the list and returns false. If the token doesn't exist it's added and the function returns true.
 
----
-
 # 2. Event
 
 Event Object contains information about events occurring in the system.
@@ -226,8 +228,6 @@ Prevent the default function of the HTML tag when the event occurs.
   </script>
 </body>
 ```
-
----
 
 # 3. this
 
@@ -325,8 +325,6 @@ In the case of `addEventListener`, `this` in the function with `function` keywor
   </script>
 </body>
 ```
-
----
 
 # 4. JS의 객체지향 역사
 

@@ -1,6 +1,10 @@
-# Python Built-in Functions
-
-## Index
+---
+title: 'Appendix 01. Python Built-in Functions'
+updatedAt: '2022-12-24'
+createdAt: '2022-11-08'
+isCompleted: true
+reference:
+---
 
 - [1. Built-in functions](#1-built-in-functions)
 - [2. Built-in functions2](#2-built-in-functions2)

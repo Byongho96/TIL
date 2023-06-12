@@ -1,6 +1,10 @@
-# Python OOP
-
-## Index
+---
+title: '04. Python OOP'
+updatedAt: '2022-12-24'
+createdAt: '2022-11-08'
+isCompleted: true
+reference:
+---
 
 - [1. Overview](#1-overview)
   - [1.1. Object Oriented Programming](#11-object-oriented-programming)
@@ -122,8 +126,6 @@ Python finds the names in the following order
 2. Child Class
 3. Parent Class
 
----
-
 # 2. Attributes
 
 ## 2.1. Class Attributes
@@ -163,8 +165,6 @@ print(dir(person1.__class__))
 # 인스턴스 변수 검색
 print(vars(person1))
 ```
-
----
 
 # 3. Methods
 
@@ -289,8 +289,6 @@ Magic methods are not meant to be invoked directly by you, but the invocation ha
 
   print(person1 + person2)    # Kim married Lee
   ```
-
----
 
 # 4. Inheritence
 
@@ -513,8 +511,6 @@ print(FirstChild.mro())
 #[<class '__main__.FirstChild'>, <class '__main__.Mom'>, <class '__main__.Dad'>, <class '__main__.Person'>, <class 'Object'>]
 ```
 
----
-
 # 5. Polymorphism
 
 The same name of method can work differently according to classes.
@@ -554,8 +550,6 @@ s1.talk()   # Hi, I'm Lee
 Overloading refers to the ability to use a single identifier to define multiple methods of a class that differ in their input and output parameters.
 
 Python does not support overloading officially because **Python can transfer multiple variables as one object(tuple)**
-
----
 
 # 6. Encapsulation
 

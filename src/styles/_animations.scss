@@ -1,4 +1,5 @@
 // 'slow' | 'normal' | 'fast'에 따라서 duration 값 반환
+// 일관된 애니메이션 지속시간이 필요할 때 사용
 @function func-animation-speed($speed) {
   @if $speed == 'slow' {
     @return 1s;

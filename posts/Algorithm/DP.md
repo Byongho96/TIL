@@ -1,4 +1,10 @@
-# Dynamic Programming
+---
+title: '동적 계획법(Dynamic Programming) 알고리즘'
+updatedAt: '2023-04-03'
+createdAt: '2023-03-27'
+isCompleted: true
+reference:
+---
 
 # 1. 개요
 

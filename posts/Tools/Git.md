@@ -1,9 +1,11 @@
-# Git
+---
+title: 'Git Basics'
+updatedAt: '2023-05-01'
+createdAt: '2023-03-13'
+isCompleted: true
+reference:
+---
 
-## 목차
-
-- [Git](#git)
-  - [목차](#목차)
 - [1. 용어 정리](#1-용어-정리)
   - [1.1. Git](#11-git)
   - [1.2. Git Web Service](#12-git-web-service)
@@ -76,8 +78,6 @@ local repository는 다음 3가지의 작업영역으로 동작한다.
 - **Repository**
   - **.git 폴더. 커밋(버전)들이 저장되는 곳**
   - `commit`명령어로 staging area에 있는 모든 변경사항을 하나의 커밋으로 repository에 남길 수 있다.
-
----
 
 # 2. Git 기초 사용법
 
@@ -168,8 +168,6 @@ git rm --cached {파일명}
 
 git은 기본적으로 폴더가 비었을 경우 해당 폴더를 관리하지 않는다. **단, .gitkeep 파일을 가진 폴더는 비어있을지라도 git이 관리한다.**
 
----
-
 # 3. Git Branch
 
 **특정 Commit을 가리키는 포인터**
@@ -242,8 +240,6 @@ git은 기본적으로 폴더가 비었을 경우 해당 폴더를 관리하지 
   4. `git merge <master>`
      병합하려던 브랜치의 포인터 또한 새로 생성된(master브랜치가 가리키는) 커밋으로 이동시킨다.
 
----
-
 # 4. Git Undoing
 
 ## 4.1. Working Directory
@@ -281,8 +277,6 @@ git으로 버전관리가 되고 있는 파일만 되돌릴 수 있다.
     <img alt="git_amend" src = "./assets/git_amend.PNG" width="600">
 
 - Staging area에 새로 올라온 내용이 있으면, 현재 staging area를 직전 커밋에 포함시킨다.
-
----
 
 # 5. Git Reset & Revert
 
@@ -324,8 +318,6 @@ git으로 버전관리가 되고 있는 파일만 되돌릴 수 있다.
 
 새로운 커밋을 생성해야하기 때문에 vi 에디터 창이 뜬다. [vi editor 사용 절차](#222-commit-message-with-vi-editor)
 
----
-
 # 6. Remote Repository (GitHub)
 
 | 명령어                                                             | 의미                                                                                      |
@@ -363,8 +355,6 @@ git으로 버전관리가 되고 있는 파일만 되돌릴 수 있다.
 4. 나의 local branch --push--> 나의 remote branch
 5. 나의 remote branch --merge--> 상대 remote master
 
----
-
 # 7. Work Flow
 
 **Git을 활용한 프로젝트 개발 과정에 대한 가이드라인**
@@ -401,8 +391,6 @@ github flow는 주로 소규모 프로젝트 개발해서 사용된다.
 - **feature**
   - master에서 세부 기능 개발을 위한 파생된 브랜치
   - 기능 개발 후 master로 merge
-
----
 
 # 8. CRLF
 

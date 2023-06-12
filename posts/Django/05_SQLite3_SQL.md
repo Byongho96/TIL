@@ -1,6 +1,10 @@
-# SQLite3 SQL
-
-## Index
+---
+title: 'SQL Basics'
+updatedAt: '2022-12-28'
+createdAt: '2022-12-28'
+isCompleted: true
+reference:
+---
 
 - [1. Database](#1-database)
   - [1.1. RDB](#11-rdb)
@@ -51,8 +55,6 @@
     - Prmiary Key
       - The unique field that can identify a record from the others
 
----
-
 # 2. SQL
 
 ## 2.1. SQL
@@ -87,8 +89,6 @@
 2. `sqlite3 mydb.sqlite3`
 3. `.mode csv`
 4. `.import file_name table_name`
-
----
 
 # 3. DDL
 
@@ -162,8 +162,6 @@ ALTER TABLE table_name DROP COLUMN column_name;
 ```sql
 DROP TABLE table_name
 ```
-
----
 
 # 4. DML
 

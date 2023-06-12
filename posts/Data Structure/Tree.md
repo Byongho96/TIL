@@ -1,4 +1,10 @@
-# Tree
+---
+title: '트리(Tree) 자료구조'
+updatedAt: 2023-04-05'
+createdAt: '2023-03-05'
+isCompleted: true
+reference:
+---
 
 # 1. 개요
 

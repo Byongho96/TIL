@@ -1,8 +1,12 @@
-# 리액트 초기 셋팅<!-- omit in toc -->
+---
+title: '00. React 초기 셋팅 정리'
+updatedAt: '2023-04-28'
+createdAt: '2023-04-23'
+isCompleted: true
+reference:
+---
 
-추후 참고하기 위해, 반복되는 리액트 초기 셋팅 작업을 공식문서를 기반하여 정리한 문서이다.
-
-## Index<!-- omit in toc -->
+> 추후 참고하기 위해, 반복되는 리액트 초기 셋팅 작업을 공식문서를 기반하여 정리한 문서입니다.
 
 - [1. Create React App](#1-create-react-app)
 - [2. eslint \& prettier](#2-eslint--prettier)
@@ -16,6 +20,8 @@
 - [6. CSS styling](#6-css-styling)
   - [6.1. Sass](#61-sass)
   - [6.2. Styled Component](#62-styled-component)
+
+---
 
 # 1. Create React App
 

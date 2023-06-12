@@ -1,3 +1,11 @@
+---
+title: 'How computer starts?'
+updatedAt: '2023-01-11'
+createdAt: '2023-01-11'
+isCompleted: false
+reference:
+---
+
 **How the computer starts, when I press the power button?**
 
 When you press the power button on a computer, it sends an electrical signal to the computer's motherboard, which in turn sends a signal to the computer's power supply unit (PSU) to turn on. The PSU then provides power to the various components of the computer, including the CPU, RAM, and other peripherals.

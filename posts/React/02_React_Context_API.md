@@ -1,4 +1,10 @@
-# React Context API <!-- omit in toc -->
+---
+title: '02. React Context API'
+updatedAt: '2023-05-08'
+createdAt: '2023-05-02'
+isCompleted: true
+reference:
+---
 
 - [1. Context](#1-context)
   - [1.1. Props와 비교](#11-props와-비교)
@@ -7,6 +13,8 @@
   - [1.1. 개념](#11-개념)
   - [1.2. 예시 (원시 타입)](#12-예시-원시-타입)
   - [1.3. 예시(참조타입)](#13-예시참조타입)
+
+---
 
 # 1. Context
 

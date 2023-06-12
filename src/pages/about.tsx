@@ -4,6 +4,7 @@ import type { HeadFC, PageProps } from 'gatsby'
 import Layout from '@layouts/navigation-layout'
 import AboutLogo from '@components/about-logo'
 import Taping from '@components/taping'
+import AboutMe from '@components/about-me'
 
 const AboutPage: React.FC<PageProps> = () => {
   return (
@@ -12,12 +13,7 @@ const AboutPage: React.FC<PageProps> = () => {
         <div className={styles.logo}>
           <AboutLogo />
         </div>
-        <div className={styles.tapeFirst}>
-          <Taping color="red" />
-        </div>
-        <div className={styles.tapeSecond}>
-          <Taping color="black" />
-        </div>
+        <AboutMe />
       </div>
     </Layout>
   )

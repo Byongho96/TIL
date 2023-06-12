@@ -1,9 +1,11 @@
-# ESLint와 Prettier
+---
+title: 'ESLint 개요'
+updatedAt: '2023-03-05'
+createdAt: '2023-01-12'
+isCompleted: true
+reference:
+---
 
-## Index
-
-- [ESLint와 Prettier](#eslint와-prettier)
-  - [Index](#index)
 - [1.기능](#1기능)
 - [2. 설치 및 설정](#2-설치-및-설정)
   - [2.1. ESLint](#21-eslint)
@@ -26,8 +28,6 @@
 - **Prettier**
   - **코드 포맷팅**  
     코드의 가독성을 높인다
-
----
 
 # 2. 설치 및 설정
 
@@ -95,8 +95,6 @@ ESLint에서 Prettier와 충돌하는 규칙을 비활성화함으로써 Prettie
    // eslint-disable-next-line no-unsued-vars
    ```
 
----
-
 # 3. Husky
 
 깃 명령어가 실행되기 전에, 사용자가 지정한 특정 명령어가 실행되도록 설정할 수 있는 라이브러리. 만일 사용자가 지정한 명령어가 실패할 경우 이후 명령어가 실행되지 않는다.
@@ -117,8 +115,6 @@ ESLint에서 Prettier와 충돌하는 규칙을 비활성화함으로써 Prettie
      '*.js': 'npm run lint'
    }
    ```
-
----
 
 # 4. 참고자료
 

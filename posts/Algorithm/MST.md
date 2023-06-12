@@ -1,4 +1,10 @@
-# Minimum Spanning Tree
+---
+title: '최소 신장 트리(Minimum Spaaning Tree) 알고리즘'
+updatedAt: '2023-04-17'
+createdAt: '2023-04-17'
+isCompleted: true
+reference:
+---
 
 # 1. 개요
 

@@ -1,8 +1,13 @@
-# Recoil
+---
+title: '04. Recoil'
+updatedAt: '2023-06-05'
+createdAt: '2023-05-02'
+isCompleted: true
+reference: 'Recoil 공식문서: https://recoiljs.org/ko/docs/basic-tutorial/atoms'
+---
 
-[Recoil 공식문서](https://recoiljs.org/ko/docs/basic-tutorial/atoms)의 내용을 정리했습니다.
+> [Recoil 공식문서](https://recoiljs.org/ko/docs/basic-tutorial/atoms)의 내용을 정리했습니다.
 
-- [Recoil](#recoil)
 - [1. Atoms](#1-atoms)
   - [1.1. Atoms 생성](#11-atoms-생성)
   - [1.2. Atoms 읽기](#12-atoms-읽기)
@@ -12,6 +17,8 @@
   - [2.1. Selectors 읽기](#21-selectors-읽기)
   - [2.2. Selectors 수정하기](#22-selectors-수정하기)
 - [3. Asynchronous](#3-asynchronous)
+
+---
 
 # 1. Atoms
 

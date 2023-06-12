@@ -1,6 +1,10 @@
-# HTML
-
-## Index
+---
+title: '01. HTML'
+updatedAt: '2022-12-28'
+createdAt: '2022-11-08'
+isCompleted: true
+reference:
+---
 
 - [1. Web](#1-web)
   - [1.1. Components of a Web Page](#11-components-of-a-web-page)
@@ -9,9 +13,9 @@
   - [2.1. Element](#21-element)
     - [2.1.1. Global Attributes](#211-global-attributes)
     - [2.1.2. Semantic Tags](#212-semantic-tags)
-    - [2.1.3. Inline & Block Tags](#213-inline-block-tags)
+    - [2.1.3. Inline \& Block Tags](#213-inline--block-tags)
     - [2.1.4. Similar Tags](#214-similar-tags)
-    - [2.1.5. \<form> and \<input>](#215-form-and-input)
+    - [2.1.5. \<form\> and \<input\>](#215-form-and-input)
 
 ---
 
@@ -31,8 +35,6 @@
 ## 1.2. Browser
 
 **Simply speaking, the software that drives the code on a webpage**
-
----
 
 # 2. HTML
 

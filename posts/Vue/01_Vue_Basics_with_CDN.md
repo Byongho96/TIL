@@ -1,6 +1,10 @@
-# Vue Basics with CDN
-
-## Index
+---
+title: '01. Vue Basics with CDN'
+updatedAt: '2023-01-02'
+createdAt: '2022-11-08'
+isCompleted: true
+reference:
+---
 
 - [1. Intro](#1-intro)
   - [1.1. What is Front-end Development?](#11-what-is-front-end-development)
@@ -21,13 +25,13 @@
     - [2.2.3. computed](#223-computed)
     - [2.2.4. methods](#224-methods)
     - [2.2.5. watch](#225-watch)
-    - [2.2.6. filters](#226---filters--)
+    - [2.2.6. filters](#226-filters)
   - [2.3. Template Syntax](#23-template-syntax)
     - [2.3.1. Declarative Rendering](#231-declarative-rendering)
     - [2.3.2. Raw HTML](#232-raw-html)
 - [3. Vue Directives](#3-vue-directives)
   - [3.1. v-text](#31-v-text)
-  - [3.2. v-show & v-if](#32-v-show--v-if)
+  - [3.2. v-show \& v-if](#32-v-show--v-if)
     - [3.2.1. v-show](#321-v-show)
     - [3.2.2. v-if](#322-v-if)
   - [3.3. v-for](#33-v-for)
@@ -107,8 +111,6 @@ It's recommended to use Vue2 so far, because the new version is not being used w
 * **`npm install`**
   - You can make a Vue project and write the code according to the format.
   - This method will be discussed in the next chapter.
-
----
 
 # 2. Vue Instance
 
@@ -346,8 +348,6 @@ If you want to a string as HTML syntax, 'v-html' directive can be one of solutio
   })
 </script>
 ```
-
----
 
 # 3. Vue Directives
 

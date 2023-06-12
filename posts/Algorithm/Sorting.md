@@ -1,6 +1,12 @@
-# Sorting Algorithm <!-- omit in toc -->
+---
+title: '정렬(Sorting) 알고리즘 정리'
+updatedAt: '2023-05-03'
+createdAt: '2023-05-02'
+isCompleted: true
+reference:
+---
 
-## Index <!-- omit in toc -->
+> 면접에서 탈탈 털린 후 작성한 정렬 관련 알고리즘을 총정리
 
 - [1. Bubble Sort (거품 정렬)](#1-bubble-sort-거품-정렬)
   - [1.1. 동작 과정](#11-동작-과정)

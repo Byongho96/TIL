@@ -1,6 +1,10 @@
-# Django QuerySet
-
-## Index
+---
+title: 'Django QuerySet'
+updatedAt: '2022-12-25'
+createdAt: '2022-12-24'
+isCompleted: true
+reference:
+---
 
 - [1. QuerySet](#1-queryset)
   - [1.1. Query](#11-query)
@@ -15,7 +19,7 @@
   - [2.2. Create](#22-create)
   - [2.3. Read](#23-read)
     - [2.3.1. values()](#231-values)
-    - [2.3.2. values_list()](#232-values-list)
+    - [2.3.2. values_list()](#232-values_list)
   - [2.4. Update](#24-update)
   - [2.5. Delete](#25-delete)
 - [2. Sort Data](#2-sort-data)
@@ -23,11 +27,11 @@
 - [4. Group Data](#4-group-data)
   - [4.1. Aggregation](#41-aggregation)
   - [4.2. Annotation](#42-annotation)
-  - [4.2.1. Annotation In N:1](#421-annotation-in-n-1)
+  - [4.2.1. Annotation In N:1](#421-annotation-in-n1)
 - [6. Query Optimization](#6-query-optimization)
   - [6.1. annotate](#61-annotate)
-  - [6.2. selected_related()](#62-selected-related)
-  - [6.3. prefetch_related()](#63-prefetch-related)
+  - [6.2. selected_related()](#62-selected_related)
+  - [6.3. prefetch_related()](#63-prefetch_related)
   - [6.4. Prefetch()](#64-prefetch)
 
 ---
@@ -136,8 +140,6 @@ Internally, a QuerySet can be constructed, filtered, sliced, and generally passe
     print("There is at least one Entry with the headline Test")
     ```
 
----
-
 # 2. Basic CRUD
 
 ## 2.1. Model
@@ -205,8 +207,6 @@ user = User.objects.get(pk-101)
 user.delete()
 ```
 
----
-
 # 2. Sort Data
 
 **order_by()**
@@ -225,8 +225,6 @@ user.delete()
   - `User.objects.order_by('?').values('first_name', 'age')`
 * **Read first_name in order of age. If the age is the same, sort in reverse ordef of account_balance**
   - `User.objects.order_by('age', '-balance').values('first_name')`
-
----
 
 # 3. Filter Data
 
@@ -279,8 +277,6 @@ user.delete()
     from django.db.models import Q`
     User.objects.filter(Q(age=30) | Q(last_name='Kim'))
     ```
-
----
 
 # 4. Group Data
 
@@ -379,8 +375,6 @@ user.delete()
       question.count_a # 왼쪽을 선택한 코멘트 갯수
       question.count_b # 오른을 선택한 코멘트 갯수
   ```
-
----
 
 # 6. Query Optimization
 

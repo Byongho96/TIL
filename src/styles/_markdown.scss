@@ -1,3 +1,6 @@
+// github-markdown-css version 4.0.0
+
+// dark
 @media (prefers-color-scheme: dark) {
   .markdown-body {
     color-scheme: dark;
@@ -46,6 +49,7 @@
   }
 }
 
+// light
 @media (prefers-color-scheme: light) {
   .markdown-body {
     color-scheme: light;
@@ -94,6 +98,7 @@
   }
 }
 
+// common
 .markdown-body {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;

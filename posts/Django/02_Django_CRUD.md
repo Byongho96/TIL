@@ -1,6 +1,10 @@
-# Django CRUD
-
-## Index
+---
+title: 'Django Basic CRUD'
+updatedAt: '2022-12-24'
+createdAt: '2022-11-08'
+isCompleted: true
+reference:
+---
 
 - [0. Cross Site Request Forgery(CSRF)](#0-cross-site-request-forgerycsrf)
   - [0.1. What is CSRF](#01-what-is-csrf)
@@ -42,8 +46,6 @@ It can be done by creating a fake template that matches the server request forma
 
 Server inserts a CSRF token into the template so that it can be automatically returned with the user's request. When a user request is received, the server checks the validity of the CSRF token. if the token is not valid, the server considers it as abnormal, and doesn't accept the data.
 
----
-
 # 1. Model
 
 ## 1.1. models.py
@@ -57,8 +59,6 @@ class Article(models.Model):
     title = models.CharField(max_length=10)
     content = models.TextField()
 ```
-
----
 
 # 2. Create
 
@@ -113,8 +113,6 @@ def create(request):
     <input type="submit">
 </form>
 ```
-
----
 
 # 3. Read
 
@@ -173,8 +171,6 @@ def detail(request, pk):
 <hr>
 ```
 
----
-
 # 4. Update
 
 ## 4.1. urls.py
@@ -220,8 +216,6 @@ def update(request, pk):
     <input type="submit">
 </form>
 ```
-
----
 
 # 5. Delete
 

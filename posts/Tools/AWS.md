@@ -1,8 +1,12 @@
-# AWS 기초<!-- omit in toc -->
+---
+title: 'AWS EC2 초보자를 위한 친절 가이드'
+updatedAt: '2023-04-25'
+createdAt: '2023-04-23'
+isCompleted: true
+reference:
+---
 
-AWS 계정을 만들고, EC2를 생성 및 설정하는 기초적인 방법을 정리한 문서이다.
-
-## Index<!-- omit in toc -->
+> AWS 계정을 만들고, EC2를 생성 및 설정하는 기초적인 방법을 정리한 문서이다.
 
 - [1. AWS](#1-aws)
   - [1.1. root 계정](#11-root-계정)
@@ -17,6 +21,8 @@ AWS 계정을 만들고, EC2를 생성 및 설정하는 기초적인 방법을 �
 - [4. https](#4-https)
   - [4.1. Nginx](#41-nginx)
   - [4.2. certbot](#42-certbot)
+
+---
 
 # 1. AWS
 

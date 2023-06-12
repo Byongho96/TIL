@@ -1,6 +1,10 @@
-# Python Function
-
-## Index
+---
+title: '03. Python Function'
+updatedAt: '2022-12-22'
+createdAt: '2022-11-08'
+isCompleted: true
+reference:
+---
 
 - [1. Function](#1-function)
   - [1.1. Type of Function](#11-type-of-function)
@@ -9,7 +13,7 @@
     - [1.2.2. Arbitrary Arguments, \*args](#122-arbitrary-arguments-args)
     - [1.2.3. Keyword Arguments](#123-keyword-arguments)
     - [1.2.4. Arbitrary Keyword Arguments, \*\*kwargs](#124-arbitrary-keyword-arguments-kwargs)
-    - [1.2.5. Mutable & Immutable Parameter](#125-mutable--immutable-parameter)
+    - [1.2.5. Mutable \& Immutable Parameter](#125-mutable--immutable-parameter)
 - [2. Scope](#2-scope)
   - [2.1. LEGB Resolution Rule](#21-legb-resolution-rule)
   - [2.2. global keyword](#22-global-keyword)
@@ -97,8 +101,6 @@ my_function(fname = "Tobias", lname = "Refsnes")
    **passed by reference parameter.**  
    The operations in the function <mark>affect the original data.</mark> To prevent this, the data should be deep copied
 
----
-
 # 2. Scope
 
 ## 2.1. LEGB Resolution Rule
@@ -145,8 +147,6 @@ def myfunc1():
 
 print(myfunc1())    # hello
 ```
-
----
 
 # 3. First-Class Function
 
@@ -195,5 +195,3 @@ print(myfunc1())    # hello
 
   print (add_15(10))  # 25
   ```
-
----

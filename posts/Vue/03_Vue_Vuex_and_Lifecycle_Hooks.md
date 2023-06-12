@@ -1,10 +1,14 @@
-# Vuex and Lifecycle Hooks
-
-## Index
+---
+title: '03. Vuex & Lifecycle Hooks'
+updatedAt: '2023-01-02'
+createdAt: '2022-11-10'
+isCompleted: true
+reference:
+---
 
 - [1. Vuex](#1-vuex)
   - [1.1. Stage Management](#11-stage-management)
-    - [1.1.1. Limitations of Pass Props & Emit Events](#111-limitations-of-pass-props--emit-events)
+    - [1.1.1. Limitations of Pass Props \& Emit Events](#111-limitations-of-pass-props--emit-events)
     - [1.1.2. Centralized Store](#112-centralized-store)
   - [1.2. Start Vuex](#12-start-vuex)
     - [1.2.1. CLI Procedures](#121-cli-procedures)
@@ -163,8 +167,6 @@ export default new Vuex.Store({
 </script>
 ```
 
----
-
 # 2. Lifecycle Hooks
 
 ## 2.1. Lifecycle Hooks
@@ -204,8 +206,6 @@ export default {
   },
 }
 ```
-
---
 
 # 3. Todo List CRUD Practice with Vuex
 

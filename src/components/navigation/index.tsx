@@ -6,7 +6,7 @@ import { useSiteMetadata } from '@hooks/use-site-metadata'
 const Navigation: React.FC = () => {
   const { owner } = useSiteMetadata()
   return (
-    <div className={styles.container}>
+    <div className={styles.navBar}>
       <Link to="/" className={styles.navLinkText}>
         {owner}
       </Link>

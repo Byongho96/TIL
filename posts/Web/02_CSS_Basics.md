@@ -1,6 +1,10 @@
-# CSS Basics
-
-## Index
+---
+title: '02. CSS Basics'
+updatedAt: '2022-12-28'
+createdAt: '2022-11-08'
+isCompleted: true
+reference:
+---
 
 - [1. CSS](#1-css)
   - [1.1. Cascading Style Sheet](#11-cascading-style-sheet)
@@ -119,8 +123,6 @@ The **inherit keyword** specifies that a property should inherit its value from 
   }
   ```
 
----
-
 # 2. Selector
 
 [Selector를 정리한 블로그 글](https://www.nextree.co.kr/p8468/)
@@ -197,8 +199,6 @@ The **inherit keyword** specifies that a property should inherit its value from 
 | General Sibling Combinator  | A~B     | the second element, that follows the first element as a sibling                   |
 | Adjacent Sibling Combinator | A+B     | the second element, that immediately follows the first element as a sibling       |
 
----
-
 # 3. Unit
 
 | Unit | Description                                           |
@@ -209,8 +209,6 @@ The **inherit keyword** specifies that a property should inherit its value from 
 | vh   | Percentage of viewport height                         |
 | em   | Ratio for its font size                               |
 | rem  | Ratio for the root element's font size (default 16px) |
-
----
 
 # 4. Box model
 
@@ -235,8 +233,6 @@ The **inherit keyword** specifies that a property should inherit its value from 
 
 Outline differs from borders! Unlike border, the outline is drawn outside the element's border, and may overlap other content. Also, the outline is NOT a part of the element's dimensions; the element's total width and height is not affected by the width of the outline.
 
----
-
 # 5. Display
 
 - **inline**
@@ -253,8 +249,6 @@ Outline differs from borders! Unlike border, the outline is drawn outside the el
   - **Able**: width, height, margin, padding
 - **none**
   - Browser does not rendering the element
-
----
 
 # 6. Position
 

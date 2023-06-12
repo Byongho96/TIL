@@ -1,6 +1,10 @@
-# Django REST API
-
-## Index
+---
+title: 'Django REST API'
+updatedAt: '2022-12-28'
+createdAt: '2022-11-08'
+isCompleted: true
+reference:
+---
 
 - [1. HTTP](#1-http)
   - [1.1. HTTP 정의](#11-http-정의)
@@ -16,7 +20,7 @@
 - [3. Response JSON](#3-response-json)
   - [3.1. HTML 응답](#31-html-응답)
   - [2.2. JsonResponse()를 사용한 JSON 응답](#22-jsonresponse를-사용한-json-응답)
-  - [2.3. Django Serializer를 사용한 JSON 응답](#23-django-serializer를-사용한-json-응담)
+  - [2.3. Django Serializer를 사용한 JSON 응답](#23-django-serializer를-사용한-json-응답)
   - [2.4. Django의 REST framework를 사용한 JSON 응답](#24-django의-rest-framework를-사용한-json-응답)
     - [2.4.1. Django REST framework](#241-django-rest-framework)
     - [2.4.2. ModelSerializer](#242-modelserializer)
@@ -106,8 +110,6 @@
   - 리소스 내부 일정의 북마크를 나타내며, 브라우저의 해당 북마크 지점에서 콘텐츠를 표시
   - '#'(부분 식별자)이후 부분은 서버에 전송되지 않고, 브라우저가 사용
 
----
-
 # 2. REST API
 
 ## 2.1. API
@@ -137,8 +139,6 @@
 ## 2.3. JSON
 
 **JavaScript의 표기법을 따른 단순 문자열**로, 파이썬의 Dictionary 자바스크립트의 object처럼 C계열의 언어가 갖고 있는 자료구조로 쉽게 변환할 수 있는 key-value 형태의 구조를 가지고 있다.
-
----
 
 # 3. Response JSON
 
@@ -356,8 +356,6 @@ result = response.json()
 pprint(result)
 ```
 
----
-
 # 3. Django REST Framework, Single Model
 
 - **urls.py**
@@ -453,8 +451,6 @@ pprint(result)
 - `Response(data, ..., status)`
   - 보낼 data를 데이터를 첫번재 인자로 받고, status는 http response method를 의미한다.
 
----
-
 # 4. Django REST Framework, N:1 Relationship
 
 - **urls.py**
@@ -532,8 +528,6 @@ pprint(result)
               serializer.save()
               return Response(serializer.data)
   ```
-
----
 
 # 5. Django REST Framework, N:1 Relation, Dereference
 

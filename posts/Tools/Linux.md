@@ -1,4 +1,10 @@
-# Linux <!-- omit from toc -->
+---
+title: 'Linux Commands & Shell Scripts'
+updatedAt: '2023-03-25'
+createdAt: '2023-03-14'
+isCompleted: true
+reference:
+---
 
 - [1. 기본](#1-기본)
   - [1.1. 명령어](#11-명령어)
@@ -58,6 +64,8 @@
 - [5. 링크](#5-링크)
   - [5.1. 용어](#51-용어)
   - [5.2. 명령어(ln)](#52-명령어ln)
+
+---
 
 # 1. 기본
 

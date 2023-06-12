@@ -1,9 +1,11 @@
-# CSS Advanced
+---
+title: '03. CSS Advanced (Flex & Grid)'
+updatedAt: '2023-05-01'
+createdAt: '2022-11-08'
+isCompleted: true
+reference:
+---
 
-## Index
-
-- [CSS Advanced](#css-advanced)
-  - [Index](#index)
 - [1. Float](#1-float)
 - [2. Flexbox](#2-flexbox)
   - [2.1. Declaration](#21-declaration)
@@ -49,8 +51,6 @@
 # 1. Float
 
 [CSS Float Mozilla](https://developer.mozilla.org/ko/docs/Web/CSS/float)
-
----
 
 # 2. Flexbox
 
@@ -239,8 +239,6 @@ flex-grow, flex-shrink, flex-basis를 한 번에 쓸 수 있는 축약형 속성
   /* flex-grow: 1; flex-shrink: 1; flex-basis: 500px; */
 }
 ```
-
----
 
 # 3. Grid
 

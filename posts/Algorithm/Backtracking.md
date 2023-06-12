@@ -1,4 +1,10 @@
-# Backtracking
+---
+title: '백트래킹(Backtracking) 알고리즘'
+updatedAt: '2023-04-17'
+createdAt: '2022-08-23'
+isCompleted: true
+reference:
+---
 
 # 1. 개요
 

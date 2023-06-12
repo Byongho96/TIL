@@ -1,4 +1,10 @@
-# Gunicorn
+---
+title: 'Gunicorn Basics'
+updatedAt: '2023-03-14'
+createdAt: '2023-03-13'
+isCompleted: true
+reference:
+---
 
 # 1. 개요
 

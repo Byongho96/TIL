@@ -1,6 +1,10 @@
-# Django CRUD with ModelForm
-
-## Index
+---
+title: 'Django CRUD with Model Form'
+updatedAt: '2022-12-24'
+createdAt: '2022-11-08'
+isCompleted: true
+reference:
+---
 
 - [1. Model Form](#1-model-form)
   - [1.1. Model Class](#11-model-class)
@@ -125,8 +129,6 @@ class ArticleForm(forms.ModelForm):
         # exclude = ('title', )
 ```
 
----
-
 # 2. Create
 
 ## 2.1. urls.py
@@ -178,8 +180,6 @@ def create(request):
     <input type="submit">
 </form>
 ```
-
----
 
 # 3. Read
 
@@ -238,8 +238,6 @@ def detail(request, pk):
 <hr>
 ```
 
----
-
 # 4. Update
 
 ## 4.1. urls.py
@@ -289,8 +287,6 @@ def update(request, pk):
 </form>
 ```
 
----
-
 # 5. Delete
 
 ## 5.1. urls.py
@@ -329,8 +325,6 @@ def delete(request, pk):
     <input type="submit" value="DELETE">
 </form>
 ```
-
----
 
 # 6. Handling HTTP Request Methods
 

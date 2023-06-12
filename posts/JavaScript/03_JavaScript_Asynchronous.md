@@ -1,6 +1,10 @@
-# JavaScript Asynchronous
-
-## Index
+---
+title: '03. JavaScript Async'
+updatedAt: '2023-01-02'
+createdAt: '2022-11-01'
+isCompleted: true
+reference:
+---
 
 - [1. Synchronous and Asynchronous](#1-synchronous-and-asynchronous)
   - [1.1. Asynchronous JavaScript](#11-asynchronous-javascript)
@@ -63,8 +67,6 @@ The environment that helps JavaScript being asynchronous
 2. If a long-lasting task enters the stack, it's sent to the **Web API** and processed separately.
 3. Tasks that have been processed in Web API are sequentially entered into the **Task Queue**.
 4. When the **Event Loop** detects that the stack is empty, it sends the oldest task in the queue to the stack.
-
----
 
 # 2. Axios
 
@@ -142,8 +144,6 @@ work1()
 ## 2.2. Promise and Await
 
 [Promise & Await를 활용한 4가지 비동기 함수 처리방법.md](Promise_Await.md)
-
----
 
 # 3. AJAX
 

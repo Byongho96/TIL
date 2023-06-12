@@ -1,4 +1,10 @@
-# Binary Search Tree
+---
+title: '이진탐색트리(Binary Search Tree) 자료구조'
+updatedAt: 2023-04-03'
+createdAt: '2023-04-03'
+isCompleted: false
+reference:
+---
 
 # 1. 개요
 

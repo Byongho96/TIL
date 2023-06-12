@@ -1,11 +1,15 @@
-# Python Error Handling
-
-## Index
+---
+title: '05. Python Error Handling'
+updatedAt: '2022-12-23'
+createdAt: '2022-11-08'
+isCompleted: true
+reference:
+---
 
 - [1. Terms](#1-terms)
 - [2. Types of error](#2-types-of-error)
   - [2.1. Syntax Error](#21-syntax-error)
-  - [2.2 Exception](#22---exception--)
+  - [2.2 Exception](#22-exception)
 - [3. Error Handing](#3-error-handing)
   - [3.1. Try Except](#31-try-except)
 
@@ -17,8 +21,6 @@
   - problems occurring in SW
 - **Debugging**
   - fixing bugs
-
----
 
 # 2. Types of error
 
@@ -53,8 +55,6 @@
   - Raised when an operation or function receives an argument that has the right type but an inappropriate value.
 - **ZeroDivisionError**
   - Raised when the second argument of a division or modulo operation is zero
-
----
 
 # 3. Error Handing
 

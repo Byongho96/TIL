@@ -19,40 +19,42 @@ const Category: React.FC = ({ selectedCategory = '' }) => {
     <ul className={`${styles.container} ${styles.categories}`}>
       {/* 루트 카테고리 */}
       {data.map((category) => (
-        <li key={category.name} className={styles.categories}>
+        <li key={category.name}>
           <CategoryName
             name={category.name}
             handleClickCategory={handleClickCategory}
           />
-          <ul>
+          <ul className={styles.categories}>
             {/* 서브 카테고리 1 */}
-            {category.subCategories.map((subCategory) => (
-              <li key={subCategory.name} className={styles.categories}>
-                <CategoryName
-                  name={subCategory.name}
-                  handleClickCategory={handleClickCategory}
-                />
-                <ul className={styles.categories}>
-                  {/* 서브 카테고리 2 */}
-                  {subCategory.subCategories.map((subCategory) => (
-                    <li key={subCategory.name} className={styles.categories}>
-                      <CategoryName
-                        name={subCategory.name}
-                        handleClickCategory={handleClickCategory}
-                      />
-                      {/* 서브 카테고리 2 포스트 */}
-                      {clickedCategory === subCategory.name && (
-                        <Posts posts={subCategory.posts} />
-                      )}
-                    </li>
-                  ))}
-                </ul>
-                {/* 서브 카테고리 1 포스트 */}
-                {clickedCategory === subCategory.name && (
-                  <Posts posts={subCategory.posts} />
-                )}
-              </li>
-            ))}
+            {category.subCategories.length > 1 &&
+              category.subCategories.map((subCategory) => (
+                <li key={subCategory.name}>
+                  <CategoryName
+                    name={subCategory.name}
+                    handleClickCategory={handleClickCategory}
+                  />
+                  <ul className={styles.categories}>
+                    {/* 서브 카테고리 2 */}
+                    {subCategory.subCategories.length > 1 &&
+                      subCategory.subCategories.map((subCategory) => (
+                        <li key={subCategory.name}>
+                          <CategoryName
+                            name={subCategory.name}
+                            handleClickCategory={handleClickCategory}
+                          />
+                          {/* 서브 카테고리 2 포스트 */}
+                          {clickedCategory === subCategory.name && (
+                            <Posts posts={subCategory.posts} />
+                          )}
+                        </li>
+                      ))}
+                  </ul>
+                  {/* 서브 카테고리 1 포스트 */}
+                  {clickedCategory === subCategory.name && (
+                    <Posts posts={subCategory.posts} />
+                  )}
+                </li>
+              ))}
           </ul>
           {/* 루트 카테고리 포스트 */}
           {clickedCategory === category.name && (

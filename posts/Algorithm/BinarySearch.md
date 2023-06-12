@@ -1,4 +1,10 @@
-# Binary Search
+---
+title: '이진탐색(Binary Search) 알고리즘'
+updatedAt: '2023-04-11'
+createdAt: '2023-04-11'
+isCompleted: true
+reference:
+---
 
 # 1. 개요
 

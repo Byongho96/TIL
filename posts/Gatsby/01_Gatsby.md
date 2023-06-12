@@ -1,3 +1,11 @@
+---
+title: '01. Gatsby 기초'
+updatedAt: '2023-01-11'
+createdAt: '2023-01-11'
+isCompleted: false
+reference: 'Gatsby Getting Started: https://www.gatsbyjs.com/docs/tutorial/getting-started/'
+---
+
 Gatsby automatically creates pages for React components that are the default export of files in the src/pages directory.
 
 Pages created in the src/pages directory use the name of the file as the route for the page.

@@ -1,6 +1,10 @@
-# Vue Router
-
-## Index
+---
+title: '04. Vue Router'
+updatedAt: '2023-01-02'
+createdAt: '2022-11-10'
+isCompleted: true
+reference:
+---
 
 - [1. Vue Router](#1-vue-router)
   - [1.1. Routing](#11-routing)
@@ -119,8 +123,6 @@ Where **Vue rotuer related information** is written. In particular, there is a `
 ### 1.3.3. src/views/
 
 This folder stores Vue components like 'src/components/'. But the only difference is that this folder stores only the components mapped to the `routes` array in index.js. It's just a semantic distinction. It's recommended to name the components in this folder **to end with 'View'**.
-
----
 
 # 2. URL Navigation
 
@@ -246,8 +248,6 @@ const routes = [
 
 - You can get variables by **accessing the Route object**.
 
----
-
 # 3. Navigation Guard
 
 Setting logic that occurs **when url changes**
@@ -345,8 +345,6 @@ Detects parameters change of url corresponding to component path
   - **next**
     - **If the beforeEnter function is declared, route conversion occurs only when the 'next()' is executed**
     - receives a route object as an argument
-
----
 
 # 4. 404 Not Found
 

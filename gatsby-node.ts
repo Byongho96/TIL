@@ -18,12 +18,11 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   })
 }
 
-// Implement the Gatsby API “createPages”. This is called once the
-// data layer is bootstrapped to let plugins create pages from data.
+// createPages API로 커스텀 페이지 생성
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
-  // Query for markdown nodes to use in creating pages.
+  // 카테고리 페이지 생성
   const postGroups = await graphql(
     `
       query {
@@ -31,14 +30,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           filter: {
             sourceInstanceName: { eq: "posts" }
             name: { nin: ["image", "images", "asset", "assets"] }
-            relativeDirectory: { nin: ["VanillaWeb"] }
             relativePath: { ne: "" }
           }
         ) {
           nodes {
             id
             name
-            relativeDirectory
             relativePath
           }
         }
@@ -53,9 +50,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   // Create pages for each markdown file.
-  const postGroupTemplate = path.resolve(`src/templates/post-group.tsx`)
+  const postGroupTemplate = path.resolve(`src/templates/post-group/index.tsx`)
   postGroups.data.allDirectory.nodes.forEach((node) => {
     const path = 'posts/' + node.name
+    // 상대 경로에 있는 md 파일들만 필터링(READEME.md 제외)
     const regex = new RegExp(
       `^(?!.*README).*${node.relativePath}.*$`
     ).toString()
@@ -72,7 +70,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     })
   })
 
-  // Query for markdown nodes to use in creating pages.
+  // 포스트 페이지 생성
   const posts = await graphql(
     `
       query {
@@ -101,7 +99,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   // Create pages for each markdown file.
-  const postTemplate = path.resolve(`src/templates/post.tsx`)
+  const postTemplate = path.resolve(`src/templates/post/index.tsx`)
   posts.data.allMarkdownRemark.nodes.forEach((node) => {
     const path = 'posts/' + node.parent.relativePath
     createPage({

@@ -1,6 +1,10 @@
-# Vue Prop and Emit
-
-## Index
+---
+title: '02. Vue CLI & Props and Emits'
+updatedAt: '2023-01-02'
+createdAt: '2022-11-09'
+isCompleted: true
+reference:
+---
 
 - [1. Vue CLI](#1-vue-cli)
   - [1.1. Node.js](#11-nodejs)
@@ -9,7 +13,7 @@
   - [1.2. Vue CLI](#12-vue-cli)
     - [1.2.1. Vue CLI Start](#121-vue-cli-start)
   - [1.3 Sturctue of the Vue Project](#13-sturctue-of-the-vue-project)
-    - [1.3.1. node_modules/](#131-node-modules)
+    - [1.3.1. node_modules/](#131-node_modules)
     - [1.3.2. public/](#132-public)
     - [1.3.3. src/](#133-src)
     - [1.3.4. babel.config.js](#134-babelconfigjs)
@@ -22,7 +26,7 @@
     - [2.3.1. Structure of Vue component](#231-structure-of-vue-component)
     - [2.3.2. Making a Vue Component](#232-making-a-vue-component)
     - [2.3.3. Importing a Vue Component](#233-importing-a-vue-component)
-- [3. Pass Props & Emit Events](#3-pass-props--emit-events)
+- [3. Pass Props \& Emit Events](#3-pass-props--emit-events)
   - [3.1. Pass Props](#31-pass-props)
     - [3.1.1. Procedures of Passing Props](#311-procedures-of-passing-props)
   - [3.2. Emit Events](#32-emit-events)
@@ -118,8 +122,6 @@ It is automatically generated for any operations where npm modifies either the n
 
 It has infromation about config settings such as a dependencies list.
 
----
-
 # 2. Single File Component
 
 ## 2.1. Component
@@ -212,8 +214,6 @@ One .vue file is one component, and one vue instance is in one component. Theref
   }
 </script>
 ```
-
----
 
 # 3. Pass Props & Emit Events
 

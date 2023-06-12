@@ -1,6 +1,10 @@
-# Nginx <!-- omit from toc -->
-
-## Index <!-- omit from toc -->
+---
+title: 'Nginx Basics'
+updatedAt: '2023-03-14'
+createdAt: '2023-03-13'
+isCompleted: true
+reference:
+---
 
 - [1. 개요](#1-개요)
   - [1.1. Event-driven](#11-event-driven)
@@ -19,6 +23,8 @@
   - [5.3. load balancing](#53-load-balancing)
   - [5.4. HTTP caching](#54-http-caching)
   - [6. certbot](#6-certbot)
+
+---
 
 # 1. 개요
 

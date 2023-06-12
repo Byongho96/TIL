@@ -1,6 +1,10 @@
-# Redis <!-- omit from toc -->
-
-## Index <!-- omit from toc -->
+---
+title: 'Redis Basics'
+updatedAt: '2023-05-01'
+createdAt: '2023-04-28'
+isCompleted: true
+reference:
+---
 
 - [1. 개요](#1-개요)
 - [2. 설치](#2-설치)
@@ -12,6 +16,8 @@
 - [4. Django](#4-django)
   - [4.1. Django 4.0 이상](#41-django-40-이상)
   - [4.2. Django 4.0 미만](#42-django-40-미만)
+
+---
 
 # 1. 개요
 

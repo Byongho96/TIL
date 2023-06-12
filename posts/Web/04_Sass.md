@@ -1,8 +1,12 @@
-# Sass <!-- omit in toc -->
+---
+title: '04. Sass'
+updatedAt: '2023-05-01'
+createdAt: '2023-05-01'
+isCompleted: true
+reference: 'Sass(SCCS) 완전 정복! - HEROPY Tech: https://heropy.blog/2018/01/31/sass/'
+---
 
-이 문서는 [Sass(SCCS) 완전 정복! - HEROPY Tech](https://heropy.blog/2018/01/31/sass/)을 참고해서 작성했습니다.
-
-## Index <!-- omit in toc -->
+> 이 문서는 [Sass(SCCS) 완전 정복! - HEROPY Tech](https://heropy.blog/2018/01/31/sass/)을 참고해서 작성했습니다.
 
 - [1. 개요](#1-개요)
 - [2. 문법](#2-문법)
@@ -36,6 +40,8 @@
     - [2.8.1. placeholder($)](#281-placeholder)
   - [2.9. 함수](#29-함수)
 - [3. Sass 설계 가이드](#3-sass-설계-가이드)
+
+---
 
 # 1. 개요
 

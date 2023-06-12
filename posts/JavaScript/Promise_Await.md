@@ -1,8 +1,14 @@
-# Index
+---
+title: 'Promise와 await를 활용하 JS 8가지 비동기 처리'
+updatedAt: '2023-01-02'
+createdAt: '2023-01-02'
+isCompleted: true
+reference:
+---
 
 - [1. Promise](#1-promise)
   - [1.1. Promise(executor)](#11-promiseexecutor)
-- [2. Aysnc & Await](#2-aysnc-await)
+- [2. Aysnc \& Await](#2-aysnc--await)
   - [2.1. async](#21-async)
   - [2.2. await](#22-await)
   - [2.3. try / catch](#23-try--catch)
@@ -39,8 +45,6 @@ const myFirstPromise = new Promise((resolve, reject) => {
 })
 ```
 
----
-
 # 2. Aysnc & Await
 
 ## 2.1. async
@@ -68,8 +72,6 @@ async 코드 내의 await함수가 선언된 경우, 해당 함수가 끝날 때
 ## 2.3. try / catch
 
 async와 await 키워드를 사용하는 경우, 보통의 코드처럼 try/catch 구문을 사용하여 예외처리할 수 있다.
-
----
 
 # 3. Example
 

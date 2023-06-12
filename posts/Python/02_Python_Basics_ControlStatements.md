@@ -1,6 +1,10 @@
-# Python Basics (Control Statements)
-
-## Index
+---
+title: '02. Python Control Statements'
+updatedAt: '2022-12-22'
+createdAt: '2022-11-08'
+isCompleted: true
+reference:
+---
 
 - [1. Conditional Statement](#1-conditional-statement)
   - [1.1. if... elif... else](#11-if-elif-else)
@@ -31,8 +35,6 @@ else:                           # else
 ```python
 true_value if condtional_statement else false_value
 ```
-
----
 
 # 2. Loop Statement
 
@@ -93,5 +95,3 @@ for temp_var in iterable_object:
   else:
     <code_block>
   ```
-
----

@@ -1,3 +1,11 @@
+---
+title: 'Tensorflow Basics'
+updatedAt: '2023-03-25'
+createdAt: '2023-03-25'
+isCompleted: false
+reference:
+---
+
 # Tensorflow <!-- omit from toc -->
 
 # 1. 설치

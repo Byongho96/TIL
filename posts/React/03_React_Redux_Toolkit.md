@@ -1,11 +1,18 @@
-# Redux Toolkit
+---
+title: '03. React & Redux Toolkit'
+updatedAt: '2023-05-08'
+createdAt: '2023-05-02'
+isCompleted: true
+reference:
+---
 
-- [Redux Toolkit](#redux-toolkit)
 - [1. Redux Toolkit 기본 사용](#1-redux-toolkit-기본-사용)
 - [2. Redux Toolkit 비동기](#2-redux-toolkit-비동기)
   - [2.1. 목표](#21-목표)
   - [2.2. createAsyncThunk](#22-createasyncthunk)
   - [실전 예제](#실전-예제)
+
+---
 
 # 1. Redux Toolkit 기본 사용
 

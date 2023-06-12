@@ -1,4 +1,10 @@
-# Depth First Search
+---
+title: '깊이 우선 탐색(Depth-First Search) 알고리즘'
+updatedAt: '2023-04-17'
+createdAt: '2023-03-14'
+isCompleted: true
+reference:
+---
 
 # 1. 개요
 

@@ -1,0 +1,28 @@
+@import '../../styles/typography.scss';
+
+.container {
+  position: relative;
+}
+
+.tape-first {
+  transform: rotate(10deg) translate3D(-10rem, -2rem, 0);
+}
+
+.tape-second {
+  transform: rotate(-15deg) translate3D(-10rem, 4rem, 0);
+}
+
+.tape-third {
+  transform: rotate(5deg) translate3D(-10rem, 4rem, 0);
+}
+
+.about {
+  @include typing;
+
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}

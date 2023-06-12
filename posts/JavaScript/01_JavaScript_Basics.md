@@ -1,9 +1,11 @@
-# JavaScript Basics
+---
+title: '01. JavaScript Basics'
+updatedAt: '2023-01-05'
+createdAt: '2022-10-23'
+isCompleted: true
+reference:
+---
 
-## Index
-
-- [JavaScript Basics](#javascript-basics)
-  - [Index](#index)
 - [1. Intro](#1-intro)
   - [1.1. What is JavaScript?](#11-what-is-javascript)
   - [1.2. The History of JavaScript](#12-the-history-of-javascript)
@@ -182,8 +184,6 @@ The load event of a window object is executed **when all resources such as style
 Load scripts asynchronously in the background. When the DOM is constructed, all the loaded scripts are executed in order.
 
 <img src="./images/async_defer.jpg" width=600>
-
----
 
 # 2. Data Type and Operators
 
@@ -438,8 +438,6 @@ for (const number of numbers) {
 }
 ```
 
----
-
 # 4. Function
 
 ## 4.1. First-class Fucntion
@@ -612,8 +610,6 @@ const greeting = function (name) {
 })(2) // 8
 ;((num) => num ** 3)(2) // 8
 ```
-
----
 
 # 5. Array
 
@@ -836,8 +832,6 @@ const result = arr.every((ele) => {
 | for      | approach by index<br>`break`,`continue` O          |
 | for...of | approach by element<br>`break`,`continue` O        |
 | forEach  | approach by element, index<br>`break`,`continue` X |
-
----
 
 # 6. Object
 

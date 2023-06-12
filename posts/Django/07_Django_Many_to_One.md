@@ -1,8 +1,12 @@
-# Django Many To One Relationship
+---
+title: 'Django N:1 Realationship'
+updatedAt: '2022-12-27'
+createdAt: '2022-11-08'
+isCompleted: true
+reference:
+---
 
-## Index
-
-- [1. Many-To-One Relationship](#1-many-to-one-relationship)
+- [1. Many to One Relationship](#1-many-to-one-relationship)
   - [1.1. Foreign Key](#11-foreign-key)
 - [2. Comment : Article (N:1)](#2-comment--article-n1)
   - [2.1. Create](#21-create)
@@ -27,8 +31,6 @@
 ## 1.1. Foreign Key
 
 A foreign key is a column or columns of data in one table that refers to the unique data values (often the primary key data) in another table
-
----
 
 # 2. Comment : Article (N:1)
 
@@ -170,8 +172,6 @@ A foreign key is a column or columns of data in one table that refers to the uni
   </ul>
   ```
 
----
-
 # 3. Article : User (N:1)
 
 - **models.py**
@@ -283,8 +283,6 @@ A foreign key is a column or columns of data in one table that refers to the uni
   </form>
   {% endif %}
   ```
-
----
 
 # 4. Comment : User (N:1)
 

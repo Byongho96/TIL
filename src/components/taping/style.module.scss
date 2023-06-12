@@ -1,14 +1,13 @@
 @import '../../styles/_animations.scss';
 
 .tape {
-  @include animation-left-flowing(10s, 0%, 50%);
-
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: nowrap;
   width: 200vw;
   padding: 0.9rem 0 1.2rem;
   font-size: 2.5rem;
   font-weight: 700;
+  white-space: nowrap;
 
   &.red {
     background-color: white;

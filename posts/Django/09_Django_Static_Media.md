@@ -1,12 +1,16 @@
-# Django Static Media
-
-## Index
+---
+title: 'Django Static Files'
+updatedAt: '2022-12-27'
+createdAt: '2022-11-08'
+isCompleted: true
+reference:
+---
 
 - [1. Static Files](#1-static-files)
   - [1.1. Static Files](#11-static-files)
   - [1.2. Static Files with Django](#12-static-files-with-django)
   - [1.3. Deploy Static Files](#13-deploy-static-files)
-    - [1.3.1. STATIC_ROOT](#131-static-root)
+    - [1.3.1. STATIC_ROOT](#131-static_root)
     - [1.3.2. Procedure](#132-procedure)
 - [2. Media Files](#2-media-files)
   - [2.1. ImageField()](#21-imagefield)
@@ -81,8 +85,6 @@ It's required because the server which actually runs the project doesn't know wh
 2. **Run the cmd**  
    `python manage.py collectstatic`
 
----
-
 # 2. Media Files
 
 **The static files which are uploaded by the user.**
@@ -131,8 +133,6 @@ It's required because the server which actually runs the project doesn't know wh
 4. **Install Pillow library**  
    The libarary which is necessary for processing image files in Python.  
    `pip install Pillow`
-
----
 
 # 3. Image File CRUD
 
@@ -213,8 +213,6 @@ The manage the previous file, you should use an addtional library like [django-c
           form = ArticleForm(request.POST, request.FILES, instance=article)
   ...
   ```
-
----
 
 # 4. Image Resizing
 

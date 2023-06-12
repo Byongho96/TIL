@@ -1,4 +1,10 @@
-# Breadth First Search
+---
+title: '너비 우선 탐색(Breadth-First Search) 알고리즘'
+updatedAt: '2023-04-17'
+createdAt: '2023-03-05'
+isCompleted: true
+reference:
+---
 
 # 1. 개요
 

@@ -1,4 +1,10 @@
-# Dijsktra
+---
+title: '다익스트라(Dijkstra) 알고리즘'
+updatedAt: '2023-04-17'
+createdAt: '2023-02-27'
+isCompleted: true
+reference:
+---
 
 # 1. 개요
 

@@ -1,6 +1,10 @@
-# Python Basics (Data Types & Operators)
-
-## Index
+---
+title: '01. Python Datatypes & Operators'
+updatedAt: '2022-12-22'
+createdAt: '2022-11-08'
+isCompleted: true
+reference:
+---
 
 - [1. Code Style](#1-code-style)
 - [2. Variables](#2-variables)
@@ -34,8 +38,6 @@
 
 **[PEP8](https://www.python.org/dev/peps/pep-0008/), The style guide provided by Python**
 
----
-
 # 2. Variables
 
 **The name of data**
@@ -52,8 +54,6 @@
 ## 2.2. Type Hint (after python 3.5)
 
 - Ex. `count_point: int = 10`
-
----
 
 # 3. Non-Container Data Types
 
@@ -185,8 +185,6 @@
 - **Basic**
   - Means that there is no value
   - use `is` instead of `==` when compared to other data
-
----
 
 # 4. Container Data Types
 
@@ -440,8 +438,6 @@ It's divided into three stages according to the degree of connection between the
    B = copy.deepcopy(A)
    ```
 
----
-
 # 5. Operators
 
 ## 5.1. Priority of operators
@@ -510,5 +506,3 @@ It's divided into three stages according to the degree of connection between the
 | ~            | bit not               |
 | <<           | move bit left == \*2  |
 | >>           | move bit right == //2 |
-
----

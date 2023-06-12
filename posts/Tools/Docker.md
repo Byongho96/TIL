@@ -1,6 +1,10 @@
-# Docker <!-- omit from toc -->
-
-## Index <!-- omit from toc -->
+---
+title: 'Docker Basics'
+updatedAt: '2023-03-27'
+createdAt: '2023-03-13'
+isCompleted: true
+reference:
+---
 
 - [0. Docker](#0-docker)
 - [1. Docker Image](#1-docker-image)
@@ -20,6 +24,8 @@
   - [5.1. 개요](#51-개요)
   - [5.2. YAML 파일](#52-yaml-파일)
   - [5.3. 명령어](#53-명령어)
+
+---
 
 # 0. Docker
 

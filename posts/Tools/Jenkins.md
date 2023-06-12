@@ -1,4 +1,10 @@
-# Jenkins
+---
+title: 'Jenkins Basics'
+updatedAt: '2023-03-27'
+createdAt: '2023-03-19'
+isCompleted: false
+reference:
+---
 
 # 1. 개요
 
