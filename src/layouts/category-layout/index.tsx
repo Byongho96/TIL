@@ -6,7 +6,7 @@ const CategoryLayout = ({ selectedCategory, children }) => {
   return (
     <div className={styles.container}>
       <Category selectedCategory={selectedCategory} />
-      <div>{children}</div>
+      {children}
     </div>
   )
 }

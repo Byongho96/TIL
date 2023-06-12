@@ -13,6 +13,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         '@queries': path.resolve(__dirname, 'src/queries'),
         '@styles': path.resolve(__dirname, 'src/styles'),
         '@templates': path.resolve(__dirname, 'src/templates'),
+        '@utils': path.resolve(__dirname, 'src/utils'),
       },
     },
   })
@@ -75,7 +76,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     `
       query {
         allMarkdownRemark(
-          filter: { fileAbsolutePath: { regex: "/^(?!.*README).*posts.*$/" } }
+          filter: {
+            frontmatter: { isCompleted: { eq: true } }
+            fileAbsolutePath: { regex: "/^(?!.*README).*posts.*$/" }
+          }
         ) {
           nodes {
             id

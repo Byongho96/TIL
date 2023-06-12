@@ -3,6 +3,15 @@
   align-items: flex-start;
 }
 
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.post-body {
+}
+
 .toc {
   position: sticky;
   top: 1rem;

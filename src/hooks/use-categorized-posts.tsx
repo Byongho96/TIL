@@ -1,4 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby'
+import { sortByName, sortByTitle } from '@utils/sortByTypes'
 
 // 'posts' 폴더의 하위 md파일이 곧 포스트임을 가정
 // 'posts' 폴더의 하위 디렉토리가 곧 카테고리임을 가정
@@ -11,7 +12,10 @@ export const useCategorizedPosts = () => {
   const data = useStaticQuery(graphql`
     query {
       allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "/^(?!.*README).*posts.*$/" } }
+        filter: {
+          frontmatter: { isCompleted: { eq: true } }
+          fileAbsolutePath: { regex: "/^(?!.*README).*posts.*$/" }
+        }
       ) {
         nodes {
           id
@@ -22,37 +26,36 @@ export const useCategorizedPosts = () => {
               relativePath
             }
           }
+          frontmatter {
+            title
+          }
         }
       }
     }
   `)
 
   // 마크다운 파일을 디렉토리 구조에 따라 카테고리 분류
-  /* Exmample
-  {
-    "rootCategory1" : {
-      num: 6,
-      posts: [{id: "id1", name: "name1"}]
-      subCategories: {
-        "subCategory1": {
-          num: 3,
-          posts: [{id: "id2", name: "name2"}, {id: "id3", name: "name3"}, {id: "id4", name: "name4"}],
-          subCategories: {},
-        },
-        "subCategory2": {
-          num: 2,
-          posts: [{id: "id5", name: "name5"}, {id: "id6", name: "name6"}],
-          subCategories: {},
-        },
-      }
-    },
-    ...
+  /*
+  type Post ={
+    id: string
+    title: string
+    relativePath: string
   }
+
+  type Folder = {
+    name: string
+    posts: Post[]
+    nums: number
+    folders: Folder[]
+  }
+
+  type Category = Folder[]
   */
   const categories = []
   data.allMarkdownRemark.nodes.forEach((node) => {
-    const { id, parent } = node
+    const { id, parent, frontmatter } = node
     const { name, relativePath } = parent
+    const { title } = frontmatter
     const pathArray = relativePath.split('/')
 
     // 최상단 카테고리 분류
@@ -61,6 +64,7 @@ export const useCategorizedPosts = () => {
       (category) => category.name === rootCategory
     )
     if (!foundCategory) {
+      // 최상단 카테고리가 없으면 새로 생성
       const newCategory = {
         name: rootCategory,
         num: 1,
@@ -70,16 +74,18 @@ export const useCategorizedPosts = () => {
       categories.push(newCategory)
       foundCategory = newCategory
     } else {
+      // 최상단 카테고리가 있으면 갯수만 추가
       foundCategory.num += 1
     }
 
     // 서브 카테고리 분류
-    let parentCategory = foundCategory
+    let parentCategory = foundCategory // 바로 위의 상대 부모 디렉토리를 기억해서 여러 depth를 처리
     pathArray.slice(1, -1).forEach((subCategory) => {
       let foundCategory = parentCategory.subCategories.find(
         (category) => category.name === subCategory
       )
       if (!foundCategory) {
+        // 서브 카테고리가 없으면 새로 생성
         const newCategory = {
           name: subCategory,
           num: 1,
@@ -87,44 +93,21 @@ export const useCategorizedPosts = () => {
           subCategories: [],
         }
         parentCategory.subCategories.push(newCategory)
+        parentCategory.subCategories.sort(sortByName) // 서브 카테고리 이름 순 정렬
         foundCategory = newCategory
       } else {
+        // 서브 카테고리가 있으면 갯수만 추가
         foundCategory.num += 1
       }
       parentCategory = foundCategory
     })
 
     // 포스트 분류
-    parentCategory.posts.push({ id, name, relativePath })
-    parentCategory.posts.sort((a, b) => {
-      const nameA = a.name.toUpperCase() // ignore upper and lowercase
-      const nameB = b.name.toUpperCase() // ignore upper and lowercase
-      if (nameA < nameB) {
-        return -1
-      }
-      if (nameA > nameB) {
-        return 1
-      }
-
-      // names must be equal
-      return 0
-    })
+    parentCategory.posts.push({ id, title, name, relativePath })
+    parentCategory.posts.sort(sortByTitle) // 포스트 이름 순 정렬
   })
 
-  // sort by name
-  categories.sort((a, b) => {
-    const nameA = a.name.toUpperCase() // ignore upper and lowercase
-    const nameB = b.name.toUpperCase() // ignore upper and lowercase
-    if (nameA < nameB) {
-      return -1
-    }
-    if (nameA > nameB) {
-      return 1
-    }
-
-    // names must be equal
-    return 0
-  })
+  categories.sort(sortByName) // 최상단 카테고리 이름 순 정렬
 
   return categories
 }

@@ -17,6 +17,14 @@ const config: GatsbyConfig = {
       },
     },
     'gatsby-plugin-image',
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /images/, // path matching
+        },
+      },
+    },
     'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-manifest',
@@ -63,7 +71,7 @@ const config: GatsbyConfig = {
           {
             resolve: `gatsby-remark-images`, // markdown 내부의 이미지를 캐싱하여 보여줌
             options: {
-              maxWidth: 800,
+              maxWidth: 600,
             },
           },
           {

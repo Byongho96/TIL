@@ -1,26 +1,37 @@
+@import '../../styles/_colors.scss';
+
 .container {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  height: 7rem;
-  padding: 1rem;
+  gap: 2rem;
+  padding: 2rem;
 
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
 
 .container:hover {
-  background-color: #fffddf8f;
   scale: 1.05;
 }
 
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
 .title {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.date {
+  font-size: 1.7rem;
   font-weight: 600;
-  color: black;
+  font-style: italic;
+  color: $font-gray;
 }
 
 .excerpt {
   font-size: 1rem;
-  color: black;
 }

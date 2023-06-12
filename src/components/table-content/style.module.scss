@@ -1,14 +1,12 @@
-.tape {
-  display: flex;
-  flex-wrap: nowrap;
-  width: 200vw;
-  padding: 0.5rem;
-  font-size: 2rem;
-  font-weight: 600;
-  white-space: nowrap;
+@import '../../styles/_colors.scss';
 
-  &.black {
-    color: red;
-    background-color: black;
+.toc a {
+  line-height: 120%;
+  text-decoration: none;
+  white-space: nowrap;
+  color: $font-gray;
+
+  &.active {
+    color: var(--main-color);
   }
 }

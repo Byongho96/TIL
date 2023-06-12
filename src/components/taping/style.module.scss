@@ -1,4 +1,5 @@
 @import '../../styles/_animations.scss';
+@import '../../styles/_colors.scss';
 
 .tape {
   display: flex;
@@ -9,14 +10,14 @@
   font-weight: 700;
   white-space: nowrap;
 
-  &.red {
-    background-color: white;
-    border: 3px solid red;
-    color: red;
+  &.white {
+    background-color: var(--bg-color);
+    border: 3px solid var(--main-color);
+    color: var(--main-color);
   }
 
   &.black {
-    background-color: black;
-    color: white;
+    background-color: #111111;
+    color: var(--main-color);
   }
 }

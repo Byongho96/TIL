@@ -50,7 +50,7 @@ $offset: 4rem; // offset from circle border
       transform: translate(-50%, -50%)
         rotate(#{$angle})
         translate(-$radius + $offset);
-      color: if($i % 5 == 0, red, black);
+      color: if($i % 5 == 0, var(--main-color), var(--font-color));
     }
   }
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import * as styles from './style.module.scss'
 
 type props = {
-  color: 'black' | 'red'
+  color: 'black' | 'white'
   phrase?: string
   direction?: 'right' | 'left'
 }

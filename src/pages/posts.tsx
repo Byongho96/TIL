@@ -5,14 +5,17 @@ import CategoryLayout from '@layouts/category-layout'
 import { allMarkdownsQuery } from '@queries/index'
 import { graphql } from 'gatsby'
 import PostItem from '@components/post-item'
+import * as styles from './posts.module.scss'
 
 const PostPage: React.FC<PageProps> = ({ data }) => {
   return (
     <NavigationLayout>
       <CategoryLayout>
-        {data.allMarkdownRemark.nodes.map((node) => (
-          <PostItem key={node.id} node={node} />
-        ))}
+        <div className={styles.postList}>
+          {data.allMarkdownRemark.nodes.map((node) => (
+            <PostItem key={node.id} node={node} />
+          ))}
+        </div>
       </CategoryLayout>
     </NavigationLayout>
   )
@@ -34,6 +37,8 @@ export const query = graphql`
         }
         frontmatter {
           title
+          createdAt
+          updatedAt
         }
         excerpt
       }

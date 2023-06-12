@@ -1,7 +1,7 @@
 ---
-title: '04. Webpack'
-updatedAt: '2023-01-05'
-createdAt: '2023-01-05'
+title: 'Webpack'
+updatedAt: '2023-06-05'
+createdAt: '2023-06-05'
 isCompleted: false
 reference:
 ---

@@ -5,6 +5,7 @@ import * as styles from './style.module.scss'
 const PostItem: React.FC = ({ node }) => {
   const { id, parent, frontmatter, excerpt } = node
   const { name, relativePath } = parent
+  const { title, createdAt } = frontmatter
 
   const handleClick = () => {
     navigate(`/posts/${relativePath}`)
@@ -12,7 +13,10 @@ const PostItem: React.FC = ({ node }) => {
 
   return (
     <div className={styles.container} onClick={handleClick}>
-      <h3 className={styles.title}>{frontmatter.title || name}</h3>
+      <div className={styles.flex}>
+        <h3 className={styles.title}>{title || name}</h3>
+        <p className={styles.date}>{createdAt}</p>
+      </div>
       <p className={styles.excerpt}>{excerpt}</p>
     </div>
   )
