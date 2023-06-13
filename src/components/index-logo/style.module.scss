@@ -1,18 +1,48 @@
+@import '../../styles/_colors.scss';
+
 .index-logo {
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
 
+  &.dark {
+    animation: animation-flicking 5s infinite alternate;
+  }
+}
+
+.index-logo > p {
+  z-index: 3;
+  display: inline;
+  align-self: flex-start;
   font-size: 9rem;
   font-weight: bold;
-  color: gray;
+  color: $font-gray;
+}
 
-  > p:nth-child(2) {
-    padding-left: 1.4rem;
+// 두번째 I 띄우기
+.index-logo > p:nth-child(2) {
+  padding-left: 1.4rem;
+}
+
+// 첫글자만 색상 변경
+.index-logo > p::first-letter {
+  color: var(--font-color);
+}
+
+@keyframes animation-flicking {
+  0%,
+  19%,
+  22%,
+  24%,
+  54%,
+  57%,
+  100% {
+    text-shadow: 0 0 0.7rem var(--main-color), 0 0 2rem var(--main-color);
   }
 
-  > p::first-letter {
-    font-weight: bold;
-    color: black;
+  21%,
+  23%,
+  55% {
+    text-shadow: none;
   }
 }

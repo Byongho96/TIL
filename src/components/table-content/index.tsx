@@ -5,24 +5,25 @@ const TableContent: React.FC = ({ toc }) => {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        const id = entry.target.getAttribute('id')
-        console.log(id)
-        const targetContent = document.querySelector(`.toc a[href="#${id}"]`)
-        console.log('target', targetContent)
+        const id = encodeURI(entry.target.getAttribute('id')) // 한글 url 인코딩
+        const targetContent = document.querySelector(`.toc a[href="#${id}"]`) // toc에서 해당 id를 가진 태그 선택
         if (targetContent) {
           if (entry.intersectionRatio > 0) {
-            targetContent.classList.add('active')
+            targetContent.classList.add(styles.active)
           } else {
-            targetContent.classList.remove('active')
+            targetContent.classList.remove(styles.active)
           }
         }
       })
     })
-
-    // Track all sections that have an `id` applied
-    document.querySelectorAll('h1, h2, h3, h4').forEach((section) => {
-      observer.observe(section)
-    })
+    // 트래킹하고 싶은 태그들 선택
+    document
+      .querySelectorAll(
+        '.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4'
+      )
+      .forEach((section) => {
+        observer.observe(section)
+      })
 
     return () => {
       observer.disconnect()

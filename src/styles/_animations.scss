@@ -292,7 +292,7 @@
 }
 
 // 회전하는 흐르는 애니메이션
-@mixin animation-rotate-clockwise($speed: 2s, $delay: 0s) {
+@mixin animation-rotate-clockwise($speed: 10s, $delay: 0s) {
   @include animation(
     $delay,
     $speed,

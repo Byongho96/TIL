@@ -7,16 +7,14 @@ import IndexWheel from '@components/index-wheel'
 
 const IndexPage: React.FC<PageProps> = () => {
   return (
-    <Layout>
-      <div className={styles.container}>
-        <div>
-          <IndexLogo />
-        </div>
-        <div className={styles.wheel}>
-          <IndexWheel />
-        </div>
+    <div className={styles.container}>
+      <div>
+        <IndexLogo />
       </div>
-    </Layout>
+      <div className={styles.wheel}>
+        <IndexWheel />
+      </div>
+    </div>
   )
 }
 

@@ -9,15 +9,13 @@ import * as styles from './posts.module.scss'
 
 const PostPage: React.FC<PageProps> = ({ data }) => {
   return (
-    <NavigationLayout>
-      <CategoryLayout>
-        <div className={styles.postList}>
-          {data.allMarkdownRemark.nodes.map((node) => (
-            <PostItem key={node.id} node={node} />
-          ))}
-        </div>
-      </CategoryLayout>
-    </NavigationLayout>
+    <CategoryLayout>
+      <div className={styles.postList}>
+        {data.allMarkdownRemark.nodes.map((node) => (
+          <PostItem key={node.id} node={node} />
+        ))}
+      </div>
+    </CategoryLayout>
   )
 }
 

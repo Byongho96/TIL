@@ -5,8 +5,9 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {
       alias: {
-        '@asset': path.resolve(__dirname, 'src/asset'),
+        '@assets': path.resolve(__dirname, 'src/assets'),
         '@components': path.resolve(__dirname, 'src/components'),
+        '@contexts': path.resolve(__dirname, 'src/contexts'),
         '@hooks': path.resolve(__dirname, 'src/hooks'),
         '@layouts': path.resolve(__dirname, 'src/layouts'),
         '@pages': path.resolve(__dirname, 'src/pages'),

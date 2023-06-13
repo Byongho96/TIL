@@ -1,4 +1,4 @@
-@import '../../styles/typography.scss';
+@import '../../styles/_typography.scss';
 
 .container {
   position: relative;
@@ -25,4 +25,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
   white-space: nowrap;
+
+  // 네온사인
+  &.dark {
+    color: #ffffff;
+    text-shadow: 0 0 0.5rem #ffffff, 0 0 0.7rem #ffffff,
+      0 0 1.2rem var(--main-color), 0 0 1.7rem var(--main-color),
+      0 0 2.2rem var(--main-color);
+  }
 }

@@ -10,22 +10,20 @@ import * as styles from './style.module.scss'
 
 const PostPage: React.FC<PageProps> = ({ pageContext, data }) => {
   return (
-    <NavigationLayout>
-      <CategoryLayout selectedCategory={pageContext.name}>
-        <div className={styles.container}>
-          <div className={styles.post}>
-            <PostHeader frontmatter={data.markdownRemark.frontmatter} />
-            <div
-              className={`markdown-body ${styles.postBody}`}
-              dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
-            />
-          </div>
-          <div className={styles.toc}>
-            <TableContent toc={data.markdownRemark.tableOfContents} />
-          </div>
+    <CategoryLayout selectedCategory={pageContext.name}>
+      <div className={styles.container}>
+        <div className={styles.post}>
+          <PostHeader frontmatter={data.markdownRemark.frontmatter} />
+          <div
+            className={`markdown-body ${styles.postBody}`}
+            dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
+          />
         </div>
-      </CategoryLayout>
-    </NavigationLayout>
+        <div className={styles.toc}>
+          <TableContent toc={data.markdownRemark.tableOfContents} />
+        </div>
+      </div>
+    </CategoryLayout>
   )
 }
 

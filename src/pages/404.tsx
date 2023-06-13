@@ -6,16 +6,14 @@ import Layout from '@layouts/navigation-layout'
 
 const NotFoundPage: React.FC<PageProps> = () => {
   return (
-    <Layout>
-      <TypeAnimation
-        sequence={["OOPs! there's nothing here", 2000]}
-        wrapper="h1"
-        className={styles.notice}
-        speed={20}
-        deletionSpeed={60}
-        repeat={Infinity}
-      />
-    </Layout>
+    <TypeAnimation
+      sequence={["OOPs! there's nothing here", 2000]}
+      wrapper="h1"
+      className={styles.notice}
+      speed={20}
+      deletionSpeed={60}
+      repeat={Infinity}
+    />
   )
 }
 

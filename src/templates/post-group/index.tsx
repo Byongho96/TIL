@@ -9,21 +9,22 @@ import * as styles from './style.module.scss'
 
 const PostGroupPage: React.FC<PageProps> = ({ pageContext, data }) => {
   return (
-    <NavigationLayout>
-      <CategoryLayout selectedCategory={pageContext.name}>
-        <div className={styles.postList}>
-          {data.allMarkdownRemark.nodes.map((node) => (
-            <PostItem key={node.id} node={node} />
-          ))}
-        </div>
-      </CategoryLayout>
-    </NavigationLayout>
+    <CategoryLayout selectedCategory={pageContext.name}>
+      <div className={styles.postList}>
+        {data.allMarkdownRemark.nodes.map((node) => (
+          <PostItem key={node.id} node={node} />
+        ))}
+      </div>
+    </CategoryLayout>
   )
 }
 
 export const query = graphql`
   query ($regex: String!) {
-    allMarkdownRemark(filter: { fileAbsolutePath: { regex: $regex } }) {
+    allMarkdownRemark(
+      filter: { fileAbsolutePath: { regex: $regex } }
+      sort: { frontmatter: { title: ASC } }
+    ) {
       nodes {
         id
         parent {

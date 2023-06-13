@@ -16,6 +16,7 @@ export const useCategorizedPosts = () => {
           frontmatter: { isCompleted: { eq: true } }
           fileAbsolutePath: { regex: "/^(?!.*README).*posts.*$/" }
         }
+        sort: { frontmatter: { title: ASC } }
       ) {
         nodes {
           id
@@ -104,7 +105,6 @@ export const useCategorizedPosts = () => {
 
     // 포스트 분류
     parentCategory.posts.push({ id, title, name, relativePath })
-    parentCategory.posts.sort(sortByTitle) // 포스트 이름 순 정렬
   })
 
   categories.sort(sortByName) // 최상단 카테고리 이름 순 정렬

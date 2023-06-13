@@ -14,7 +14,11 @@ const Category: React.FC = ({ selectedCategory = '' }) => {
     if (event.detail == 1) {
       event.preventDefault()
     }
-    setClickedCategory(name)
+    if (clickedCategory === name) {
+      setClickedCategory('')
+    } else {
+      setClickedCategory(name)
+    }
   }
 
   return (
@@ -43,23 +47,26 @@ const Category: React.FC = ({ selectedCategory = '' }) => {
                         handleClickCategory={handleClickCategory}
                       />
                       {/* 서브 카테고리 2 포스트 */}
-                      {clickedCategory === subCategory.name && (
-                        <Posts posts={subCategory.posts} />
-                      )}
+                      <Posts
+                        posts={subCategory.posts}
+                        isSelected={clickedCategory === subCategory.name}
+                      />
                     </li>
                   ))}
                 </ul>
                 {/* 서브 카테고리 1 포스트 */}
-                {clickedCategory === subCategory.name && (
-                  <Posts posts={subCategory.posts} />
-                )}
+                <Posts
+                  posts={subCategory.posts}
+                  isSelected={clickedCategory === subCategory.name}
+                />
               </li>
             ))}
           </ul>
           {/* 루트 카테고리 포스트 */}
-          {clickedCategory === category.name && (
-            <Posts posts={category.posts} />
-          )}
+          <Posts
+            posts={category.posts}
+            isSelected={clickedCategory === category.name}
+          />
         </li>
       ))}
     </ul>
@@ -79,11 +86,13 @@ const CategoryName: React.FC = ({ name, handleClickCategory }) => {
   )
 }
 
-const Posts: React.FC = ({ posts }) => {
+const Posts: React.FC = ({ posts, isSelected }) => {
+  const selectedClassName = isSelected ? styles.selected : ''
+
   return (
-    <ul>
+    <ul className={styles.posts}>
       {posts.map((post) => (
-        <li key={post.id} className={styles.post}>
+        <li key={post.id} className={`${styles.post} ${selectedClassName} `}>
           <Link to={`/posts/${post.relativePath}`} activeClassName="active">
             {cutLetters(post.title || post.name, 13)}
           </Link>

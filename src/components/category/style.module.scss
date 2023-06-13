@@ -26,8 +26,22 @@
   font-weight: 800;
 }
 
+.posts {
+}
+
 .post {
-  margin-top: 0.5rem;
+  margin-top: 0rem;
+  opacity: 0;
+  height: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
+
+  &.selected {
+    margin-top: 0.5rem;
+    opacity: 1;
+    height: 1.2rem;
+    pointer-events: auto;
+  }
 }
 
 .post a {

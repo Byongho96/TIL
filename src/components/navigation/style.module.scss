@@ -8,23 +8,49 @@
 
   // 데스크탑
   @include mobile {
-    background-color: rgb(255, 255, 239);
+    &::before {
+      content: '모바일';
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   }
 
   // 타블렛
   @include tablet {
-    background-color: rgb(255, 232, 188);
+    &::before {
+      content: '타블렛';
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   }
 
   // 랩탑
   @include laptop {
-    background-color: rgb(255, 230, 234);
+    &::before {
+      content: '랩탑';
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   }
 
   // 노트북
   @include desktop {
-    background-color: rgb(246, 255, 240);
+    &::before {
+      content: '데스크탑';
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   }
+}
+
+.color-change {
+  flex: 1;
+  display: flex;
+  padding: 0 2rem 0 1rem;
 }
 
 .nav-links {
@@ -37,5 +63,5 @@
   font-size: 2rem;
   font-weight: 900;
   font-style: italic;
-  color: black;
+  color: var(--font-color);
 }

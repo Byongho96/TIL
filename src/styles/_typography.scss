@@ -1,7 +1,9 @@
+@import '_colors.scss';
+
 @mixin typing {
   text-align: center;
   font-size: 8rem;
   font-weight: bold;
   line-height: 120%;
-  color: gray;
+  color: $font-gray;
 }

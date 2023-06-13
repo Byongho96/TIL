@@ -1,17 +1,20 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import * as styles from './style.module.scss'
 
 type props = {
   color: 'black' | 'white'
   phrase?: string
   direction?: 'right' | 'left'
+  defaultSpeed?: number
 }
 
 const Taping: React.FC = ({
   color,
   phrase = 'coming soon',
   direction = 'right',
+  defaultSpeed = 1,
 }: props) => {
+  const [speed, setSpeed] = useState(defaultSpeed)
   const tapeRef = useRef(null)
   const textRef = useRef(null)
 
@@ -40,29 +43,35 @@ const Taping: React.FC = ({
 
     // 애니메이션 실행 함수
     const animate = () => {
-      position++
+      position += speed
       moveText()
-      animationId = window.requestAnimationFrame(animate)
+      animationId = window.requestAnimationFrame(animate) // 희한하게 정의되기 전에 쓰네?
     }
 
-    // 스크롤 발생 시, speed 조절
-    const scrollHandler = () => {
-      position += 15
-    }
-
-    // 스크롤 이벤트, 애니메이션 실행
-    window.addEventListener('scroll', scrollHandler)
+    // 애니메이션 실행
     animate()
 
+    // 애니메이션 clear
     return () => {
-      // 스크롤 이벤트, 애니메이션 clear
-      window.removeEventListener('scroll', scrollHandler)
       window.cancelAnimationFrame(animationId)
     }
-  }, [])
+  }, [speed])
+
+  // 마우스 hover 시 속도 조절
+  const handleMouseEnter = () => {
+    setSpeed(defaultSpeed + 10)
+  }
+
+  const handleMouseLeave = () => {
+    setSpeed(defaultSpeed)
+  }
 
   return (
-    <div ref={tapeRef} className={`${styles.tape} ${styles[color]}`}>
+    <div
+      ref={tapeRef}
+      className={`${styles.tape} ${styles[color]}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}>
       <p ref={textRef} className={styles.text}>
         {(phrase + '\u00a0\u00a0\u00a0\u00a0').repeat(30)}
       </p>

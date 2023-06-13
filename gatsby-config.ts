@@ -29,7 +29,7 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        icon: 'src/asset/images/icon.png',
+        icon: 'src/assets/images/icon.png',
       },
     },
     {
@@ -44,7 +44,7 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
-        path: './src/asset/images/',
+        path: './src/assets/images/',
       },
       __key: 'images',
     },

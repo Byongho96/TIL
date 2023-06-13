@@ -8,14 +8,12 @@ import AboutMe from '@components/about-me'
 
 const AboutPage: React.FC<PageProps> = () => {
   return (
-    <Layout>
-      <div className={styles.container}>
-        <div className={styles.logo}>
-          <AboutLogo />
-        </div>
-        <AboutMe />
+    <div className={styles.container}>
+      <div className={styles.logo}>
+        <AboutLogo />
       </div>
-    </Layout>
+      <AboutMe />
+    </div>
   )
 }
 

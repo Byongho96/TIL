@@ -1,10 +1,12 @@
-import * as React from 'react'
+import React, { useContext } from 'react'
 import type { HeadFC, PageProps } from 'gatsby'
 import * as styles from './style.module.scss'
 import { TypeAnimation } from 'react-type-animation'
 import Taping from '@components/taping'
+import { ThemeContext } from '@contexts/theme-context'
 
 const AboutMe: React.FC = () => {
+  const { theme } = React.useContext(ThemeContext)
   return (
     <div className={styles.container}>
       <div className={styles.tapeFirst}>
@@ -16,7 +18,7 @@ const AboutMe: React.FC = () => {
       <div className={styles.tapeThird}>
         <Taping color="white" />
       </div>
-      <p className={styles.about}>About Me</p>
+      <p className={`${styles.about} ${styles[theme]}`}>About Me</p>
     </div>
   )
 }

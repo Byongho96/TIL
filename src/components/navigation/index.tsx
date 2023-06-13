@@ -11,7 +11,9 @@ const Navigation: React.FC = () => {
       <Link to="/" className={styles.navLinkText}>
         {author}
       </Link>
-      <ColorChange />
+      <div className={styles.colorChange}>
+        <ColorChange />
+      </div>
       <nav>
         <ul className={styles.navLinks}>
           <li>
