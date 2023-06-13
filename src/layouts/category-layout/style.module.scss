@@ -1,6 +1,25 @@
 .container {
   display: flex;
   align-self: flex-start;
-  width: 100%;
-  padding: 3rem 5rem 0rem;
+  padding: 2rem;
+
+  > div:first-child {
+    flex: 1;
+  }
+
+  > div:nth-child(2) {
+    flex: 4;
+  }
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 15rem;
+  margin-right: 2rem;
+}
+
+.profile-image {
+  padding: 1rem 2rem 1rem 1rem;
 }

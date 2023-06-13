@@ -1,7 +1,8 @@
 import '@styles/_reset.scss'
 import '@styles/_global.scss'
 import '@styles/_markdown.scss'
-import 'prismjs/themes/prism-solarizedlight.css' // markdown외부에서 prismjs 스타일링이 필요할 시 주석 해제
+import 'prismjs/themes/prism-tomorrow.min.css' // 원하는 스타일링 선택
+// coy, dark, funky, okaidia, solarizedlight, tomorrow, twilight
 
 import React from 'react'
 import ThemeProvider from '@contexts/theme-context'

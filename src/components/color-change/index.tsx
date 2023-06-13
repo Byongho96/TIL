@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import * as styles from './style.module.scss'
-import SunIcon from '@assets/images/sun-fill.svg'
-import MoonIcon from '@assets/images/moon-fill.svg'
+import SunIcon from '@assets/svgs/sun-fill.svg'
+import MoonIcon from '@assets/svgs/moon-fill.svg'
 import { ThemeContext } from '@contexts/theme-context'
 
 const ColorChange: React.FC = () => {

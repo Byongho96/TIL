@@ -1,15 +1,13 @@
 .container {
   display: flex;
   align-items: flex-start;
+  gap: 2rem;
 }
 
 .post {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-}
-
-.post-body {
 }
 
 .toc {

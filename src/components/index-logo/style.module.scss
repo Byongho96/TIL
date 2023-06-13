@@ -4,10 +4,6 @@
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
-
-  &.dark {
-    animation: animation-flicking 5s infinite alternate;
-  }
 }
 
 .index-logo > p {
@@ -17,6 +13,11 @@
   font-size: 9rem;
   font-weight: bold;
   color: $font-gray;
+}
+
+.index-logo.dark > p {
+  color: #ffffff;
+  animation: animation-flicking 5s infinite alternate;
 }
 
 // 두번째 I 띄우기
@@ -37,7 +38,8 @@
   54%,
   57%,
   100% {
-    text-shadow: 0 0 0.7rem var(--main-color), 0 0 2rem var(--main-color);
+    text-shadow: 0 0 0.5rem #ffffff, 0 0 1.2rem var(--main-color),
+      0 0 1.7rem var(--main-color), 0 0 2.2rem var(--main-color);
   }
 
   21%,

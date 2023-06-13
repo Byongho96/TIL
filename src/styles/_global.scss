@@ -2,17 +2,17 @@
 @import '_fonts.scss';
 
 // sass variable을 css variable로 사용하기 위해서는 interpolation
-// 라이트 모드
+// 다크 모드를 기본으로 두어, 렌더링 사이 시간을 다크모드로 처리
 :root {
-  --main-color: #{$primary-color};
-  --bg-color: #{$bg-white};
-  --font-color: #{$font-black};
-}
-// 다트 모드
-:root.dark {
   --main-color: #{$primary-color};
   --bg-color: #{$bg-black};
   --font-color: #{$font-white};
+}
+// 라이트 모드
+:root.light {
+  --main-color: #{$primary-color};
+  --bg-color: #{$bg-white};
+  --font-color: #{$font-black};
 }
 
 body {

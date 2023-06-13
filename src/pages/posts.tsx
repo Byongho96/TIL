@@ -6,6 +6,7 @@ import { allMarkdownsQuery } from '@queries/index'
 import { graphql } from 'gatsby'
 import PostItem from '@components/post-item'
 import * as styles from './posts.module.scss'
+import ToTheTop from '@components/to-the-top'
 
 const PostPage: React.FC<PageProps> = ({ data }) => {
   return (
@@ -15,6 +16,7 @@ const PostPage: React.FC<PageProps> = ({ data }) => {
           <PostItem key={node.id} node={node} />
         ))}
       </div>
+      <ToTheTop />
     </CategoryLayout>
   )
 }
@@ -22,7 +24,11 @@ const PostPage: React.FC<PageProps> = ({ data }) => {
 export const query = graphql`
   query {
     allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/^(?!.*README).*posts.*$/" } }
+      filter: {
+        frontmatter: { isCompleted: { eq: true } }
+        fileAbsolutePath: { regex: "/^(?!.*README).*posts.*$/" }
+      }
+      sort: { frontmatter: { title: ASC } }
     ) {
       nodes {
         id

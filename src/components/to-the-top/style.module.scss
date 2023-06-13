@@ -1,0 +1,27 @@
+@import '../../styles/_animations.scss';
+
+.icon {
+  @include animation-floating(2s, 5%);
+
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 3rem;
+  height: 3rem;
+  transition: scale 0.2s ease-in-out;
+
+  cursor: pointer;
+}
+
+.icon:hover {
+  scale: 1.1;
+}
+
+.icon path:nth-child(1) {
+  stroke: var(--main-color);
+  fill: var(--main-color);
+}
+
+// 화살표 부분 마스크
+// .icon path:nth-child(3) {
+// }

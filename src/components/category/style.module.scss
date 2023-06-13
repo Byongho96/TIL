@@ -4,7 +4,19 @@
 .container {
   display: flex;
   flex-direction: column;
-  width: 30rem;
+  border-right: 3px solid rgb(187, 187, 187);
+
+  ul {
+    margin-left: 1rem;
+  }
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  min-width: 15rem;
+  margin: 0 1rem auto 0;
+  border-right: 3px solid rgb(187, 187, 187);
 
   ul {
     margin-left: 1rem;
@@ -24,9 +36,6 @@
 
 .category a:hover {
   font-weight: 800;
-}
-
-.posts {
 }
 
 .post {

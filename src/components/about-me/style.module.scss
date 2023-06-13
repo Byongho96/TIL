@@ -29,8 +29,25 @@
   // 네온사인
   &.dark {
     color: #ffffff;
-    text-shadow: 0 0 0.5rem #ffffff, 0 0 0.7rem #ffffff,
-      0 0 1.2rem var(--main-color), 0 0 1.7rem var(--main-color),
-      0 0 2.2rem var(--main-color);
+    animation: animation-flicking 5s infinite alternate;
+  }
+}
+
+@keyframes animation-flicking {
+  0%,
+  19%,
+  22%,
+  24%,
+  54%,
+  57%,
+  100% {
+    text-shadow: 0 0 0.5rem #ffffff, 0 0 1.2rem var(--main-color),
+      0 0 1.7rem var(--main-color), 0 0 2.2rem var(--main-color);
+  }
+
+  21%,
+  23%,
+  55% {
+    text-shadow: none;
   }
 }
