@@ -21,8 +21,8 @@ type Props = {
 const NextPosts: React.FC<Props> = ({ nextPost, prevPost }) => {
   return (
     <div className={styles.posts}>
-      {prevPost && <Post post={prevPost} isNext={false} />}
-      {nextPost && <Post post={nextPost} isNext={true} />}
+      {prevPost ? <Post post={prevPost} isNext={false} /> : <div />}
+      {nextPost ? <Post post={nextPost} isNext={true} /> : <div />}
     </div>
   )
 }
@@ -43,7 +43,7 @@ const Post: React.FC = ({ post, isNext }) => {
         <div className={styles.title}>{post.title}</div>
         <div className={styles.icon}>{icon}</div>
       </div>
-      <div>{post.excerpt}</div>
+      <div className={styles.excerpt}>{post.excerpt}</div>
     </div>
   )
 }

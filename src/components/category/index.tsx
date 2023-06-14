@@ -11,6 +11,7 @@ const Category: React.FC = ({ selectedCategory = '' }) => {
   const [clickedCategory, setClickedCategory] = useState(selectedCategory)
 
   const handleClickCategory = (event, name) => {
+    event.stopPropagation()
     if (event.detail == 1) {
       event.preventDefault()
     }

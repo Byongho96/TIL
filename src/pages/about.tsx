@@ -12,7 +12,9 @@ const AboutPage: React.FC<PageProps> = () => {
       <div className={styles.logo}>
         <AboutLogo />
       </div>
-      <AboutMe />
+      <div className={styles.aboutMe}>
+        <AboutMe />
+      </div>
     </div>
   )
 }

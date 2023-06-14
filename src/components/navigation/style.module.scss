@@ -3,7 +3,7 @@
 .nav-bar {
   display: flex;
   justify-content: space-between;
-  padding: 1.5rem 4rem;
+  padding: 1.5rem 4rem 1.3rem 4rem;
   border-bottom: 5px solid var(--main-color);
 
   &::before {
@@ -48,12 +48,13 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex: 1;
 }
 
 .color-change {
   flex: 1;
   display: flex;
-  padding: 0 2rem 0 1rem;
+  padding: 0 2rem 0 0;
 }
 
 .nav-links {
@@ -63,7 +64,7 @@
 
 .nav-link-text {
   text-decoration: none;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 900;
   font-style: italic;
   color: var(--font-color);
@@ -72,12 +73,12 @@
 .nav-toggle {
   display: none;
   position: absolute;
-  top: 2rem;
+  top: 1.6rem;
   right: 1.5rem;
   cursor: pointer;
 
   svg {
-    width: 2rem;
+    width: 1.8rem;
     height: auto;
   }
 
@@ -90,14 +91,14 @@
 // 모바일
 @include mobile {
   .nav-bar {
-    padding: 1.5rem 4rem 1.5rem 2rem;
+    padding: 1.2rem 4rem 1rem 1rem;
     flex-direction: column;
   }
 
   .color-change {
     flex: 1;
     display: flex;
-    padding: 0 1rem 0 0.5rem;
+    padding: 0 1rem 0 0;
   }
 
   .nav-toggle {
@@ -114,5 +115,9 @@
     &.active {
       display: flex;
     }
+  }
+
+  .nav-link-text {
+    font-size: 1.7rem;
   }
 }

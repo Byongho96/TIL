@@ -5,35 +5,15 @@
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
-
-  // 모바일
-  @include mobile {
-    gap: 2rem;
-  }
+  font-size: 9rem;
 }
 
 .index-logo > p {
   z-index: 3;
   display: inline;
   align-self: flex-start;
-  font-size: 9rem;
   font-weight: bold;
   color: $font-gray;
-
-  // 랩탑
-  @include laptop {
-    font-size: 8rem;
-  }
-
-  // 타블렛
-  @include tablet {
-    font-size: 7rem;
-  }
-
-  // 모바일
-  @include mobile {
-    font-size: 4rem;
-  }
 }
 
 .index-logo.dark > p {
@@ -43,7 +23,7 @@
 
 // 두번째 I 띄우기
 .index-logo > p:nth-child(2) {
-  padding-left: 1.4rem;
+  padding-left: 0.15em;
 }
 
 // 첫글자만 색상 변경
@@ -67,5 +47,29 @@
   23%,
   55% {
     text-shadow: none;
+  }
+}
+
+// 랩탑
+@include laptop {
+  .index-logo {
+    gap: 1rem;
+    font-size: 8rem;
+  }
+}
+
+// 타블렛
+@include tablet {
+  .index-logo {
+    gap: 2rem;
+    font-size: 7rem;
+  }
+}
+
+// 모바일
+@include mobile {
+  .index-logo {
+    gap: 2rem;
+    font-size: 5rem;
   }
 }

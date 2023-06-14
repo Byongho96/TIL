@@ -1,12 +1,21 @@
+@import '../../styles/_responsive.scss';
+@import '../../styles/_animations.scss';
+
 .container {
   display: flex;
   align-self: flex-start;
-  padding: 2rem;
+  justify-content: center;
+  position: relative;
+  padding-top: 1rem;
+  margin: 0 auto;
+  width: 70%;
 
+  // 카테고리
   > div:first-child {
     flex: 1;
   }
 
+  // 포스트
   > div:nth-child(2) {
     flex: 4;
   }
@@ -22,4 +31,78 @@
 
 .profile-image {
   padding: 1rem 2rem 1rem 1rem;
+}
+
+@include laptop {
+  .container {
+    width: 80%;
+  }
+}
+
+@include tablet {
+  .container {
+    width: 95%;
+  }
+}
+
+// 모바일일때 카테고리 숨기기
+@include mobile {
+  .container {
+    width: 100%; // 왠지 모름
+  }
+
+  .profile-image {
+    display: none;
+  }
+
+  .category {
+    position: fixed;
+    top: 5rem;
+    left: 0;
+    z-index: 99; // 포스트 보다 위에 보이도록
+    width: 70%;
+    max-height: calc(100vh - 10rem);
+    padding: 0 0 0 1rem;
+    border-radius: 0 5px 5px 0;
+    background-color: var(--bg-color);
+    transform: translateX(-100%);
+    transition: transform 0.2s ease-in-out;
+
+    // 카테고리 토글버튼
+    &::after {
+      content: 'MENU';
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 0.5rem 0.5rem 1rem;
+      border-radius: 5px 5px 0 0;
+      background-color: #888888;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transform: translate(100%, 0%) rotate(90deg) translate(28%, 54%);
+      cursor: pointer;
+    }
+
+    &.active {
+      overflow-y: scroll;
+      transform: translate(0%, 0%);
+    }
+
+    // 스크롤 안보이게
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .modal {
+    &.active {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+    }
+  }
 }

@@ -1,5 +1,6 @@
 @import '../../styles/_animations.scss';
 @import '../../styles/_colors.scss';
+@import '../../styles/_responsive.scss';
 
 .tape {
   display: flex;
@@ -19,5 +20,19 @@
   &.black {
     background-color: #111111;
     color: var(--main-color);
+  }
+}
+
+@include tablet {
+  .tape {
+    padding: 0.8rem 0 1.1rem;
+    font-size: 2.3rem;
+  }
+}
+
+@include mobile {
+  .tape {
+    padding: 0.5rem 0 0.9rem;
+    font-size: 2rem;
   }
 }

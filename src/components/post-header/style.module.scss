@@ -1,4 +1,5 @@
 @import '../../styles/_colors.scss';
+@import '../../styles/_responsive.scss';
 
 .container {
   display: flex;
@@ -13,7 +14,7 @@
     display: block;
     position: absolute;
     bottom: -2px;
-    width: 60%;
+    width: 85%;
     height: 2px;
     background: linear-gradient(to right, var(--main-color), #ffffff00);
   }
@@ -23,7 +24,7 @@
     display: block;
     position: absolute;
     bottom: 2px;
-    width: 60%;
+    width: 85%;
     height: 2px;
     background: linear-gradient(to right, var(--main-color), #ffffff00);
     // border-bottom: 6px double rvar(--main-color);
@@ -59,5 +60,41 @@
   &::before {
     content: '🖋️';
     margin-right: 0.5rem;
+  }
+}
+
+@include tablet {
+  .container {
+    padding: 3rem 0 2rem;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .date {
+    font-size: 1.5rem;
+  }
+
+  .author {
+    font-size: 1.5rem;
+  }
+}
+
+@include mobile {
+  .container {
+    padding: 2rem 0 1.5rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .date {
+    font-size: 1rem;
+  }
+
+  .author {
+    font-size: 1rem;
   }
 }

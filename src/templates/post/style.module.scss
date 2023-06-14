@@ -1,3 +1,5 @@
+@import '../../styles/_responsive.scss';
+
 .container {
   display: flex;
   flex-direction: column;
@@ -10,7 +12,6 @@
   gap: 2rem;
 
   & > div:first-child {
-    max-width: 800px;
     flex: 3;
   }
   & > div:last-child {
@@ -22,6 +23,7 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  max-width: 800px;
 }
 
 .markdown {
@@ -54,4 +56,31 @@
 .toc {
   position: sticky;
   top: 2rem;
+}
+
+@include laptop {
+  .markdown-utter {
+    max-width: 600px;
+  }
+}
+
+@include tablet {
+  .markdown-utter {
+    max-width: 500px;
+  }
+
+  .toc {
+    display: none;
+  }
+}
+
+@include mobile {
+  .markdown-utter {
+    width: 100px;
+    margin: 0 auto;
+  }
+
+  .toc {
+    display: none;
+  }
 }

@@ -14,6 +14,11 @@ const Navigation: React.FC = () => {
     navBar.classList.toggle(styles.active)
   }
 
+  const handleLinkClick = () => {
+    const navBar = document.querySelector(`.${styles.navLinks}`)
+    navBar.classList.remove(styles.active)
+  }
+
   return (
     <div className={styles.navBar}>
       <div className={styles.navHeader}>
@@ -27,17 +32,26 @@ const Navigation: React.FC = () => {
       <nav>
         <ul className={styles.navLinks}>
           <li>
-            <Link to="/" className={styles.navLinkText}>
+            <Link
+              to="/"
+              className={styles.navLinkText}
+              onClick={handleLinkClick}>
               Home
             </Link>
           </li>
           <li>
-            <Link to="/about" className={styles.navLinkText}>
+            <Link
+              to="/about"
+              className={styles.navLinkText}
+              onClick={handleLinkClick}>
               About
             </Link>
           </li>
           <li>
-            <Link to="/posts" className={styles.navLinkText}>
+            <Link
+              to="/posts"
+              className={styles.navLinkText}
+              onClick={handleLinkClick}>
               Posts
             </Link>
           </li>

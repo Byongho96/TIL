@@ -1,4 +1,5 @@
-@import '../../styles/_typography.scss';
+@import '../../styles/_colors.scss';
+@import '../../styles/_responsive.scss';
 
 .container {
   position: relative;
@@ -17,13 +18,15 @@
 }
 
 .about {
-  @include typing;
-
   position: absolute;
   z-index: -1;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  color: $font-gray;
+  font-size: 7rem;
+  font-weight: 700;
+  line-height: 130%;
   white-space: nowrap;
 
   // 네온사인
@@ -49,5 +52,25 @@
   23%,
   55% {
     text-shadow: none;
+  }
+}
+
+@include tablet {
+  .container {
+    font-size: 5rem;
+  }
+
+  .about {
+    font-size: 5rem;
+  }
+}
+
+@include mobile {
+  .container {
+    font-size: 4rem;
+  }
+
+  .about {
+    font-size: 4rem;
   }
 }

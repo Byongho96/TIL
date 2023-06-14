@@ -29,7 +29,10 @@ const IndexWheel: React.FC = () => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}>
       {data.slice(0, 15).map((category) => (
-        <li key={category.id} onClick={() => handleClick(category.name)}>
+        <li
+          className={styles.category}
+          key={category.id}
+          onClick={() => handleClick(category.name)}>
           {category.name}
         </li>
       ))}

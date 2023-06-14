@@ -1,4 +1,5 @@
 @import '../styles/_colors.scss';
+@import '../styles/_responsive.scss';
 
 .container {
   display: flex;
@@ -8,11 +9,40 @@
 .post-group {
   padding: 3rem 0 2rem 1rem;
   color: $font-gray;
-  font-size: 7rem;
+  font-size: 6rem;
   font-weight: 600;
 }
 
 .post-list {
   display: flex;
   flex-direction: column;
+  padding: 0 1rem;
+}
+
+// 랩탑
+@include laptop {
+  .post-group {
+    font-size: 5rem;
+  }
+}
+
+// 타블렛
+@include tablet {
+  .post-group {
+    font-size: 4rem;
+  }
+  .post-list {
+    padding: 0 0;
+  }
+}
+
+// 모바일
+@include mobile {
+  .post-group {
+    padding: 1rem 1rem 1rem 1.5rem;
+    font-size: 2.7rem;
+  }
+  .post-list {
+    padding: 0 1rem;
+  }
 }

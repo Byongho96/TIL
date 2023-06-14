@@ -1,17 +1,19 @@
 @import '../../styles/_colors.scss';
+@import '../../styles/_responsive.scss';
 
 .container {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   padding: 2rem;
-
+  border-radius: 10px;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
 
 .container:hover {
   scale: 1.05;
+  box-shadow: 0 0 15px var(--main-color);
 }
 
 .flex {
@@ -34,4 +36,57 @@
 
 .excerpt {
   font-size: 1rem;
+}
+
+// 태블릿
+@include tablet {
+  .container {
+    gap: 1.5rem;
+  }
+
+  .flex {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .date {
+    font-size: 1.5rem;
+  }
+
+  .excerpt {
+    font-size: 0.9rem;
+  }
+}
+
+// 모바일
+@include mobile {
+  .container {
+    gap: 0.8rem;
+    padding: 1rem;
+  }
+
+  .flex {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .date {
+    font-size: 1rem;
+  }
+
+  .excerpt {
+    font-size: 0.7rem;
+  }
 }

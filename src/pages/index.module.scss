@@ -1,47 +1,49 @@
 @import '../styles/_responsive.scss';
 
 .container {
-  flex: 1;
   overflow: hidden;
   position: relative;
   padding: 5rem 7rem;
-
-  // 랩탑
-  @include laptop {
-    padding: 5rem 7rem;
-  }
-
-  // 타블렛
-  @include tablet {
-    padding: 5rem 3rem;
-  }
-
-  // 모바일
-  @include mobile {
-    padding: 2rem 2rem;
-  }
 }
 
 .wheel {
   position: absolute;
   right: -25rem;
   bottom: -40rem;
+}
 
-  // 랩탑
-  @include laptop {
-    right: -35rem;
-    bottom: -45rem;
+// 랩탑
+@include laptop {
+  .conatainer {
+    padding: 5rem 7rem;
   }
 
-  // 타블렛
-  @include tablet {
-    right: -40rem;
+  .wheel {
+    right: -30rem;
     bottom: -40rem;
   }
+}
 
-  // 모바일
-  @include mobile {
-    right: -40rem;
-    bottom: -45rem;
+// 타블렛
+@include tablet {
+  .conatainer {
+    padding: 5rem 3rem;
+  }
+
+  .wheel {
+    right: -25rem;
+    bottom: -30rem;
+  }
+}
+
+// 모바일
+@include mobile {
+  .conatainer {
+    padding: 2rem 2rem;
+  }
+
+  .wheel {
+    right: -35rem;
+    bottom: -20rem;
   }
 }
