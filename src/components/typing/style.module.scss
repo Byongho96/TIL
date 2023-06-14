@@ -1,13 +1,15 @@
 .typing {
-  display: inline-block;
-
   padding: 0 0.1em;
-  border-right: 0.1em solid var(--cursor-color);
-  animation: blink 1s steps(1, end) infinite;
+
+  &::after {
+    content: '|';
+    opacity: 1;
+    animation: blink 1s steps(1, end) infinite;
+  }
 }
 
 @keyframes blink {
   50% {
-    border-right-color: transparent;
+    opacity: 0;
   }
 }

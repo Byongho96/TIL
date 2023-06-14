@@ -1,11 +1,12 @@
-@import '../../styles/typography.scss';
+@import '../../styles/_colors.scss';
 
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.about-logo {
-  @include typing;
+  text-align: center;
+  color: $font-gray;
+  font-size: 7rem;
+  font-weight: 700;
+  line-height: 130%;
 }

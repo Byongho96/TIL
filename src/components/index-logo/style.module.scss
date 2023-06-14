@@ -1,9 +1,15 @@
 @import '../../styles/_colors.scss';
+@import '../../styles/_responsive.scss';
 
 .index-logo {
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
+
+  // 모바일
+  @include mobile {
+    gap: 2rem;
+  }
 }
 
 .index-logo > p {
@@ -13,6 +19,21 @@
   font-size: 9rem;
   font-weight: bold;
   color: $font-gray;
+
+  // 랩탑
+  @include laptop {
+    font-size: 8rem;
+  }
+
+  // 타블렛
+  @include tablet {
+    font-size: 7rem;
+  }
+
+  // 모바일
+  @include mobile {
+    font-size: 4rem;
+  }
 }
 
 .index-logo.dark > p {

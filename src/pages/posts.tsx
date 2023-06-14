@@ -14,7 +14,7 @@ const PostPage: React.FC<PageProps> = ({ data }) => {
     <CategoryLayout>
       <div className={styles.container}>
         <h1 className={styles.postGroup}>
-          <Typing phrase="All the Posts" speed="8" cursorColor="#888888" />
+          <Typing phrases={['All the Posts']} speed="8" />
         </h1>
         <div className={styles.postList}>
           {data.allMarkdownRemark.nodes.map((node) => (

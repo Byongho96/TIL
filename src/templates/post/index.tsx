@@ -10,9 +10,35 @@ import * as styles from './style.module.scss'
 import ToTheTop from '@components/to-the-top'
 import Utterances from '@components/utterances'
 import { ThemeContext } from '@contexts/theme-context'
+import NextPosts from '@components/next-posts'
 
 const PostPage: React.FC<PageProps> = ({ pageContext, data }) => {
   const { theme } = useContext(ThemeContext)
+
+  // make post array
+  const postArray = data.allMarkdownRemark.nodes.map((node) => {
+    return {
+      id: node.id,
+      title: node.frontmatter.title,
+      createdAt: node.frontmatter.createdAt,
+      updatedAt: node.frontmatter.updatedAt,
+      excerpt: node.excerpt,
+      relativePath: node.parent.relativePath,
+    }
+  })
+
+  console.log(pageContext)
+
+  // find index of id is the same to the data.id
+  const index = postArray.findIndex(
+    (post) => post.id === data.markdownRemark.id
+  )
+
+  // prevpost is the post before the current post
+  const prevPost = index === 0 ? null : postArray[index - 1]
+
+  // nextpost is the post after the current post
+  const nextPost = index === postArray.length - 1 ? null : postArray[index + 1]
 
   return (
     <CategoryLayout selectedCategory={pageContext.parent.relativeDirectory}>
@@ -24,6 +50,9 @@ const PostPage: React.FC<PageProps> = ({ pageContext, data }) => {
               className={`markdown-body ${theme} ${styles.markdown}`}
               dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
             />
+            <div>
+              <NextPosts prevPost={prevPost} nextPost={nextPost} />
+            </div>
             <Utterances
               theme={theme === 'dark' ? 'github-dark' : 'github-light'}
             />
@@ -39,7 +68,7 @@ const PostPage: React.FC<PageProps> = ({ pageContext, data }) => {
 }
 
 export const query = graphql`
-  query ($id: String!) {
+  query ($id: String!, $regex: String!) {
     markdownRemark(id: { eq: $id }) {
       id
       html
@@ -50,6 +79,30 @@ export const query = graphql`
         reference
         title
         updatedAt
+      }
+    }
+    allMarkdownRemark(
+      filter: {
+        frontmatter: { isCompleted: { eq: true } }
+        fileAbsolutePath: { regex: $regex }
+      }
+      sort: { frontmatter: { title: ASC } }
+    ) {
+      nodes {
+        id
+        parent {
+          ... on File {
+            id
+            name
+            relativePath
+          }
+        }
+        frontmatter {
+          title
+          createdAt
+          updatedAt
+        }
+        excerpt
       }
     }
   }

@@ -14,7 +14,11 @@ const PostGroupPage: React.FC<PageProps> = ({ pageContext, data }) => {
     <CategoryLayout selectedCategory={pageContext.name}>
       <div className={styles.container}>
         <h1 className={styles.postGroup}>
-          <Typing phrase={pageContext.name} speed="8" cursorColor="#888888" />
+          <Typing
+            phrases={[pageContext.name]}
+            speed="8"
+            cursorColor="#888888"
+          />
         </h1>
         <div className={styles.postList}>
           {data.allMarkdownRemark.nodes.map((node) => (
@@ -49,7 +53,6 @@ export const query = graphql`
           title
           createdAt
           updatedAt
-          title
         }
         excerpt
       }

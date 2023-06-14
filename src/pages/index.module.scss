@@ -5,26 +5,43 @@
   overflow: hidden;
   position: relative;
   padding: 5rem 7rem;
+
+  // 랩탑
+  @include laptop {
+    padding: 5rem 7rem;
+  }
+
+  // 타블렛
+  @include tablet {
+    padding: 5rem 3rem;
+  }
+
+  // 모바일
+  @include mobile {
+    padding: 2rem 2rem;
+  }
 }
 
 .wheel {
   position: absolute;
-
-  // 데스크탑
-  @include mobile {
-    right: -40rem;
-    bottom: -45rem;
-  }
+  right: -25rem;
+  bottom: -40rem;
 
   // 랩탑
   @include laptop {
-    right: -30rem;
+    right: -35rem;
+    bottom: -45rem;
+  }
+
+  // 타블렛
+  @include tablet {
+    right: -40rem;
     bottom: -40rem;
   }
 
-  // 노트북
-  @include desktop {
-    right: -25rem;
-    bottom: -35rem;
+  // 모바일
+  @include mobile {
+    right: -40rem;
+    bottom: -45rem;
   }
 }

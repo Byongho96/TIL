@@ -108,6 +108,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const postTemplate = path.resolve(`src/templates/post/index.tsx`)
   posts.data.allMarkdownRemark.nodes.forEach((node) => {
     const path = 'posts/' + node.parent.relativePath
+    // 상대 경로에 있는 md 파일들만 필터링(READEME.md 제외)
+    const relativeDirectory = node.parent.relativePath
+      .split('/')
+      .slice(0, -1)
+      .join('/')
+    const regex = new RegExp(
+      `^(?!.*README).*${relativeDirectory}.*$`
+    ).toString()
     createPage({
       path,
       component: postTemplate,
@@ -115,6 +123,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       // as a GraphQL variable to query for data from the markdown file.
       context: {
         pagePath: path,
+        regex: regex,
         ...node,
       },
     })

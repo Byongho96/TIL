@@ -9,11 +9,11 @@
   align-items: flex-start;
   gap: 2rem;
 
-  div:first-child {
+  & > div:first-child {
     max-width: 800px;
     flex: 3;
   }
-  div:last-child {
+  & > div:last-child {
     flex: 1;
   }
 }

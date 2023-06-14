@@ -1,0 +1,37 @@
+@import '../../styles/_colors.scss';
+
+.container {
+  padding: 1rem;
+  color: $font-gray;
+  font-size: 0.8rem;
+  text-align: center;
+
+  &.light {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  &.dark {
+    box-shadow: 0 10px 30px var(--main-color);
+  }
+}
+
+.link {
+  background-image: linear-gradient(
+    to right,
+    var(--main-color),
+    var(--main-color)
+  );
+  background-clip: text;
+  background-repeat: no-repeat;
+  background-position: 0% 0%;
+  background-size: 0% 100%;
+  text-decoration: none;
+  color: transparent;
+  cursor: pointer;
+
+  transition: background-size 0.2s ease-in-out;
+}
+
+.link:hover {
+  background-size: 100% 100%;
+}
