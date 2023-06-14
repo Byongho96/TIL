@@ -15,20 +15,22 @@ const PostPage: React.FC<PageProps> = ({ pageContext, data }) => {
   const { theme } = useContext(ThemeContext)
 
   return (
-    <CategoryLayout selectedCategory={pageContext.name}>
+    <CategoryLayout selectedCategory={pageContext.parent.relativeDirectory}>
       <div className={styles.container}>
+        <PostHeader frontmatter={data.markdownRemark.frontmatter} />
         <div className={styles.post}>
-          <PostHeader frontmatter={data.markdownRemark.frontmatter} />
-          <div
-            className={`markdown-body ${theme}`}
-            dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
-          />
-          <Utterances
-            theme={theme === 'dark' ? 'github-dark' : 'github-light'}
-          />
-        </div>
-        <div className={styles.toc}>
-          <TableContent toc={data.markdownRemark.tableOfContents} />
+          <div className={styles.markdownUtter}>
+            <div
+              className={`markdown-body ${theme} ${styles.markdown}`}
+              dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
+            />
+            <Utterances
+              theme={theme === 'dark' ? 'github-dark' : 'github-light'}
+            />
+          </div>
+          <div className={styles.toc}>
+            <TableContent toc={data.markdownRemark.tableOfContents} />
+          </div>
         </div>
       </div>
       <ToTheTop />

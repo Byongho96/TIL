@@ -88,6 +88,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               ... on File {
                 id
                 name
+                relativeDirectory
                 relativePath
               }
             }

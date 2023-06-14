@@ -1,3 +1,17 @@
+@import '../../styles/_colors.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-group {
+  padding: 3rem 0 2rem 1rem;
+  color: $font-gray;
+  font-size: 7rem;
+  font-weight: 600;
+}
+
 .post-list {
   display: flex;
   flex-direction: column;

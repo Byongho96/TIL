@@ -7,18 +7,27 @@ import { graphql } from 'gatsby'
 import PostItem from '@components/post-item'
 import * as styles from './posts.module.scss'
 import ToTheTop from '@components/to-the-top'
+import Typing from '@components/typing'
 
 const PostPage: React.FC<PageProps> = ({ data }) => {
   return (
     <CategoryLayout>
-      <div className={styles.postList}>
-        {data.allMarkdownRemark.nodes.map((node) => (
-          <PostItem key={node.id} node={node} />
-        ))}
+      <div className={styles.container}>
+        <h1 className={styles.postGroup}>
+          <Typing phrase="All the Posts" speed="8" cursorColor="#888888" />
+        </h1>
+        <div className={styles.postList}>
+          {data.allMarkdownRemark.nodes.map((node) => (
+            <PostItem key={node.id} node={node} />
+          ))}
+        </div>
       </div>
       <ToTheTop />
     </CategoryLayout>
   )
+}
+{
+  /* <h1 id='typing' className={styles.postGroup}>All the Posts</h1> */
 }
 
 export const query = graphql`

@@ -52,6 +52,7 @@ export const useCategorizedPosts = () => {
 
   type Category = Folder[]
   */
+  const totalPosts = data.allMarkdownRemark.nodes.length
   const categories = []
   data.allMarkdownRemark.nodes.forEach((node) => {
     const { id, parent, frontmatter } = node
@@ -109,5 +110,5 @@ export const useCategorizedPosts = () => {
 
   categories.sort(sortByName) // 최상단 카테고리 이름 순 정렬
 
-  return categories
+  return { totalPosts, categories }
 }

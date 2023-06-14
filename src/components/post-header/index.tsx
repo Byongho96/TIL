@@ -9,8 +9,8 @@ const PostHeader: React.FC = ({ frontmatter }) => {
     <div className={styles.container}>
       <h2 className={styles.title}>{frontmatter.title}</h2>
       <div className={styles.info}>
-        <p className={styles.author}>{author}</p>
         <p className={styles.date}>{frontmatter.createdAt}</p>
+        <p className={styles.author}>{author}</p>
       </div>
     </div>
   )

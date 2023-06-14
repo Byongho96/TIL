@@ -1,6 +1,7 @@
 @import '../styles/_responsive.scss';
 
 .container {
+  flex: 1;
   overflow: hidden;
   position: relative;
   padding: 5rem 7rem;

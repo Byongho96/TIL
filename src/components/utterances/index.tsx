@@ -1,4 +1,5 @@
 import React, { createRef, useEffect } from 'react'
+import './style.scss'
 
 const src = 'https://utteranc.es/client.js'
 

@@ -1,16 +1,57 @@
 .container {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
   gap: 2rem;
 }
 
 .post {
   display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+
+  div:first-child {
+    max-width: 800px;
+    flex: 3;
+  }
+  div:last-child {
+    flex: 1;
+  }
+}
+
+.markdown-utter {
+  display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
+.markdown {
+  // 2중 그라데이션 보더 생성
+  position: relative;
+  padding-bottom: 3rem;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, var(--main-color), #ffffff00);
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 2px;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, var(--main-color), #ffffff00);
+    // border-bottom: 6px double rvar(--main-color);
+  }
+}
+
 .toc {
   position: sticky;
-  top: 1rem;
+  top: 2rem;
 }

@@ -1,13 +1,14 @@
 @import '../../styles/_colors.scss';
 
 .toc a {
-  line-height: 120%;
+  line-height: 150%;
   text-decoration: none;
-  white-space: nowrap;
   color: $font-gray;
+  font-weight: 400;
+  white-space: nowrap;
 
   &.active {
-    font-weight: 700;
+    font-weight: 500;
     color: var(--main-color);
   }
 }

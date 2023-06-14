@@ -7,14 +7,20 @@ import { graphql } from 'gatsby'
 import PostItem from '@components/post-item'
 import * as styles from './style.module.scss'
 import ToTheTop from '@components/to-the-top'
+import Typing from '@components/typing'
 
 const PostGroupPage: React.FC<PageProps> = ({ pageContext, data }) => {
   return (
     <CategoryLayout selectedCategory={pageContext.name}>
-      <div className={styles.postList}>
-        {data.allMarkdownRemark.nodes.map((node) => (
-          <PostItem key={node.id} node={node} />
-        ))}
+      <div className={styles.container}>
+        <h1 className={styles.postGroup}>
+          <Typing phrase={pageContext.name} speed="8" cursorColor="#888888" />
+        </h1>
+        <div className={styles.postList}>
+          {data.allMarkdownRemark.nodes.map((node) => (
+            <PostItem key={node.id} node={node} />
+          ))}
+        </div>
       </div>
       <ToTheTop />
     </CategoryLayout>
