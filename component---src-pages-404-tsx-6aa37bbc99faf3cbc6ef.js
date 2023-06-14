@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkbyongho_s_til=self.webpackChunkbyongho_s_til||[]).push([[218],{598:function(e,t,n){n.r(t),n.d(t,{Head:function(){return o},default:function(){return l}});var u=n(7294);var l=()=>u.createElement("div",{className:"_404-module--notice--90d00"},"404");const o=()=>u.createElement("title",null,"Not found")}}]);
+//# sourceMappingURL=component---src-pages-404-tsx-6aa37bbc99faf3cbc6ef.js.map
