@@ -90,7 +90,7 @@ const RainingCanvas: React.FC<Props> = ({
     return () => {
       window.removeEventListener('resize', init)
     }
-  }, [])
+  }, [color, amount, speed, isThunder, thunderRate, containerRef])
 
   return <canvas ref={canvasRef} />
 }

@@ -1,10 +1,22 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import * as styles from './404.module.scss'
 import NotFoundIcon from '@assets/svgs/not-found.svg'
 import RainingCanvas from '@components/raining-canvas'
+import { ThemeContext } from '@contexts/theme-context'
 
 const NotFoundPage: React.FC<PageProps> = () => {
   const containerRef = useRef<HTMLDivElement>(null)
+
+  const { theme } = useContext(ThemeContext)
+
+  let color = '#ffffff'
+  let isThunder = true
+  if (theme === 'light') {
+    color = '#888888'
+    isThunder = false
+  }
+
+  console.log(color)
 
   useEffect(() => {
     const svgMain = document.querySelector(`.svg-main`)
@@ -23,7 +35,11 @@ const NotFoundPage: React.FC<PageProps> = () => {
         <NotFoundIcon />
       </div>
       <div className={styles.canvas}>
-        <RainingCanvas containerRef={containerRef} />
+        <RainingCanvas
+          containerRef={containerRef}
+          color={color}
+          isThunder={isThunder}
+        />
       </div>
     </div>
   )

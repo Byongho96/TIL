@@ -5,43 +5,6 @@
   justify-content: space-between;
   padding: 1.5rem 4rem 1.3rem 4rem;
   border-bottom: 5px solid var(--main-color);
-
-  &::before {
-    content: '데스크탑';
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-  // 랩탑
-  @include laptop {
-    &::before {
-      content: '랩탑';
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-  }
-
-  // 타블렛
-  @include tablet {
-    &::before {
-      content: '타블렛';
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-  }
-
-  // 모바일
-  @include mobile {
-    &::before {
-      content: '모바일';
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-  }
 }
 
 .nav-header {
