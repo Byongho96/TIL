@@ -1,6 +1,49 @@
-.notice {
-  text-align: center;
-  font-size: 8rem;
-  font-weight: bold;
-  color: gray;
+@import '../styles/_responsive.scss';
+@import '../styles/_colors.scss';
+
+@keyframes path {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon svg {
+  stroke-width: 2.4rem;
+  stroke-linecap: round;
+  width: 20rem;
+  height: auto;
+}
+
+.icon path {
+  stroke: $font-gray;
+  stroke-dasharray: var(--length);
+  stroke-dashoffset: var(--length);
+  animation: path var(--duration) ease-in forwards;
+  animation-delay: var(--delay);
+}
+
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+@include tablet {
+  .icon svg {
+    width: 15rem;
+  }
+}
+
+@include mobile {
+  .icon svg {
+    width: 10rem;
+  }
 }

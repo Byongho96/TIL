@@ -91,14 +91,14 @@
 // 모바일
 @include mobile {
   .nav-bar {
-    padding: 1.2rem 4rem 1rem 1rem;
+    padding: 1.2rem 1rem 1rem;
     flex-direction: column;
   }
 
   .color-change {
     flex: 1;
     display: flex;
-    padding: 0 1rem 0 0;
+    padding: 0 3rem 0 0;
   }
 
   .nav-toggle {
