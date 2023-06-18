@@ -1,10 +1,15 @@
 @import '../../styles/_colors.scss';
 
+.toc ul {
+  margin-left: 0.5rem;
+}
+
 .toc a {
   line-height: 150%;
   text-decoration: none;
   color: $font-gray;
-  font-weight: 400;
+  font-size: 0.9rem;
+  font-weight: 300;
   white-space: nowrap;
 
   &.active {

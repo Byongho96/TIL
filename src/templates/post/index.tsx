@@ -27,8 +27,6 @@ const PostPage: React.FC<PageProps> = ({ pageContext, data }) => {
     }
   })
 
-  console.log(pageContext)
-
   // find index of id is the same to the data.id
   const index = postArray.findIndex(
     (post) => post.id === data.markdownRemark.id

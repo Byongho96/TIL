@@ -26,12 +26,13 @@
   background-position: 0% 0%;
   background-size: 0% 100%;
   text-decoration: none;
-  color: transparent;
+  color: $font-gray;
   cursor: pointer;
 
   transition: background-size 0.2s ease-in-out;
 }
 
 .link:hover {
+  color: transparent;
   background-size: 100% 100%;
 }

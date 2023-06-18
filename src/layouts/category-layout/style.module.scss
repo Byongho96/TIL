@@ -6,9 +6,9 @@
   align-self: flex-start;
   justify-content: center;
   position: relative;
-  padding-top: 1rem;
+  padding-top: 3rem;
   margin: 0 auto;
-  width: 70%;
+  width: 100%;
 
   // 카테고리
   > div:first-child {
@@ -24,29 +24,30 @@
 .category {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
-  min-width: 15rem;
-  margin-right: 2rem;
+  min-width: 10rem;
+  padding: 0 0 0 1rem;
 }
 
 .profile-image {
-  padding: 1rem 2rem 1rem 1rem;
+  width: 75%;
 }
 
-@include laptop {
-  .container {
-    width: 80%;
-  }
-}
+// @include laptop {
+//   .container {
+//     width: 100%;
+//   }
+// }
 
-@include tablet {
-  .container {
-    width: 95%;
-  }
-}
+// @include tablet {
+//   .container {
+//     width: 95%;
+//   }
+// }
 
 // 모바일일때 카테고리 숨기기
-@include mobile {
+@include tablet {
   .container {
     width: 100%; // 왠지 모름
   }

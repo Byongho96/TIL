@@ -1,8 +1,10 @@
 ---
 title: '너비 우선 탐색(Breadth-First Search) 알고리즘'
+description: '너비 우선 탐색(Breadth-First Search, BFS)의 시간복잡도와 동작 과정을 알아본다'
 updatedAt: '2023-04-17'
 createdAt: '2023-03-05'
 isCompleted: true
+tag: ['BFS', '너비 우선 탐색', 'Bread-First Search']
 reference:
 ---
 

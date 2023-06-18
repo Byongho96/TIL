@@ -4,6 +4,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  padding: 0 5rem;
 }
 
 .post-group {
@@ -16,11 +17,14 @@
 .post-list {
   display: flex;
   flex-direction: column;
-  padding: 0 1rem;
 }
 
 // 랩탑
 @include laptop {
+  .container {
+    padding: 0 2rem;
+  }
+
   .post-group {
     font-size: 5rem;
   }
@@ -28,6 +32,10 @@
 
 // 타블렛
 @include tablet {
+  .container {
+    padding: 0 1rem;
+  }
+
   .post-group {
     font-size: 4rem;
   }

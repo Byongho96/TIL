@@ -7,13 +7,12 @@
   gap: 2rem;
   padding: 2rem;
   border-radius: 10px;
-  transition: all 0.2s ease-in-out;
+  transition: scale 0.2s ease-in-out;
   cursor: pointer;
 }
 
 .container:hover {
-  scale: 1.05;
-  box-shadow: 0 0 15px var(--main-color);
+  scale: 1.02;
 }
 
 .flex {

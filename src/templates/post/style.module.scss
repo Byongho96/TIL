@@ -3,27 +3,28 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 4rem;
+  padding: 0 0 0 4rem;
 }
 
 .post {
   display: flex;
   align-items: flex-start;
-  gap: 2rem;
 
   & > div:first-child {
-    flex: 3;
+    flex: 7;
   }
   & > div:last-child {
-    flex: 1;
+    flex: 2;
   }
 }
 
 .markdown-utter {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  max-width: 800px;
+  gap: 3rem;
+  padding: 0 4rem 0 0;
+  width: 100px;
 }
 
 .markdown {
@@ -59,28 +60,17 @@
 }
 
 @include laptop {
-  .markdown-utter {
-    max-width: 600px;
+  .container {
+    padding: 0 1rem 0 3rem;
+  }
+
+  .toc {
+    display: none;
   }
 }
 
 @include tablet {
-  .markdown-utter {
-    max-width: 500px;
-  }
-
-  .toc {
-    display: none;
-  }
-}
-
-@include mobile {
-  .markdown-utter {
-    width: 100px;
-    margin: 0 auto;
-  }
-
-  .toc {
-    display: none;
+  .container {
+    padding: 0 1rem 0 1rem;
   }
 }
