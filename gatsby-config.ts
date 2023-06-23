@@ -85,7 +85,7 @@ const config: GatsbyConfig = {
               maxWidth: 600,
             },
           },
-          `gatsby-reamrk-gifs`,
+          `gatsby-remark-gifs`,
           {
             resolve: `gatsby-remark-prismjs`, // 코드 태그에 대한 스타일링
             options: {
