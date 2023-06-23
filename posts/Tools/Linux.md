@@ -809,7 +809,7 @@ ps 명령어 입력 시 나오는 테이블의 항목에 대한 세부내용은 
 
 systemd는 Linux 운영체제의 시스템 서비스(데몬)를 동작 원리와 관계없이 일관된 인터페이스를 제공한다. 여러 개의 서비스를 병렬적으로 수행할 수 있기 때문에 확장성에 용이하고, 사용자에 따라 프로세스를 구분하여 관리할 수 있다. 또한 서비스 간 의존성 추적, 로그 기록 관리 등의 기능을 통해 트러블 슈팅을 쉽게 해결할 수 있다.
 
-<img alt="systemd components" src="./assets/systemd_components.JPG" width="600">
+<img alt="systemd components" src="./assets/systemd_components.jpg" width="600">
 
 <!-- ### 2.1.1. systemd components
 

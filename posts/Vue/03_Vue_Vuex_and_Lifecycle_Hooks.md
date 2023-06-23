@@ -42,12 +42,14 @@ Sharing the same data state between multiple independent components
 
 ### 1.1.1. Limitations of Pass Props & Emit Events
 
-![03_limitations_of_pass_props_emit_events.PNG](./images/03_limitations_of_pass_props_emit_events.PNG)  
+<img src="./images/03_limitations_of_pass_props_emit_events.png" alt="03_limitations_of_pass_props_emit_events.png" width="300"/>
+
 If the depth of the tree is deep, transferring data form to another which is not the parent or a child.
 
 ### 1.1.2. Centralized Store
 
-![03_centralized_store.PNG](./images/03_centralized_store.PNG)  
+<img src="./images/03_centralized_store.png" alt="03_centralized_store.png" width="300"/>
+
 The central storage can be accessed by a node regardless of its depth to obtain or change data. It's preferable for a big or complicated project.
 
 **Vuex**  
@@ -69,7 +71,7 @@ vue add vuex                // Apply Vuex to the Vue project
 
 If you follow the [commands above](#121-cli-procedures), `src/store/index.js` will be newly created. 'index.js' contains a Vuex instance which looks similar to Vue instance.
 
-![03_vuex_instance_vue_instance.PNG](./images/03_vuex_instance_vue_instance.PNG)
+<img src="./images/03_vuex_instance_vue_instance.png" alt="03_vuex_instance_vue_instance.png" width="500"/>
 
 - **state**
   - corresponds to the **data** in the Vue instance.
@@ -92,7 +94,7 @@ If you follow the [commands above](#121-cli-procedures), `src/store/index.js` wi
 
 ### 1.2.3. Data Flow through Vuex
 
-![03_vuex_data_flow.PNG](./images/03_vuex_data_flow.PNG)
+<img src="./images/03_vuex_data_flow.png" alt="03_vuex_data_flow.png" width="500"/>
 
 - **Manipulating the state**
 
@@ -173,7 +175,7 @@ export default new Vuex.Store({
 
 There are several points which can be specified in the lifecyle of a Vue instance. It's possible to automatically execute a preset logic at each point.
 
-![03_lifecycle_hooks.PNG](./images/03_lifecycle_hooks.PNG)
+<img src="./images/03_lifecycle_hooks.png" alt="03_lifecycle_hooks.png" width="500"/>
 
 - **create**  
   The point when the Vue instance is created
@@ -250,7 +252,7 @@ export default new Vuex.STore({
 
 ## 3.2. Code
 
-![03_todo_structure.PNG](./images/03_todo_structure.PNG)
+<img src="./images/03_todo_structure.png" alt="03_todo_structure.png" width="500"/>
 
 ### 3.2.1. index.js
 

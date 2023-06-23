@@ -73,9 +73,12 @@ vue add router              // Apply Vue router to the Vue project
 
 **Alert**
 
-- ![04_vue_router_cli_warning.PNG](./images/04_vue_router_cli_warning.PNG)  
+- <img src="./images/04_vue_router_cli_warning.png" alt="04_vue_router_cli_warning.png" width="700"/>
+
   Just recommend you to commit before processing
-- ![04_vue_router_cli_history_mode.PNG](./images/04_vue_router_cli_history_mode.PNG)  
+
+- <img src="./images/04_vue_router_cli_history_mode.png" alt="04_vue_router_cli_history_mode.png" width="700"/>
+
   Hash mode is the mode that shows url as we normally use. Also You can track url visit records.
 
 ## 1.3. Structure of Vue Router Related Files
@@ -104,7 +107,7 @@ vue add router              // Apply Vue router to the Vue project
 
 Where **Vue rotuer related information** is written. In particular, there is a `routes` array which elements are [**route object**](https://im-nc2u.tistory.com/entry/Vue-Router-Router-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%EC%99%80-Route-%EA%B0%9D%EC%B2%B4-%EB%B9%84%EA%B5%90). Route object has properties including a url and a component, which means a url and a component are matched. It's similar to Django's urls.py file.
 
-![04_vue_index_django_urls.PNG](./images/04_vue_index_django_urls.PNG)
+<img src="./images/04_vue_index_django_urls.png" alt="04_vue_index_django_urls.png" width="600"/>
 
 - **Route Object**
   - **path**

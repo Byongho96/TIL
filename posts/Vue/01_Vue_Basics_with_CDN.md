@@ -116,7 +116,7 @@ It's recommended to use Vue2 so far, because the new version is not being used w
 
 ## 2.1. MVVM Pattern
 
-![01_mvvm_pattern.PNG](./images/01_mvvm_pattern.PNG)
+<img src="./images/01_mvvm_pattern.png" alt="01_mvvm_pattern.png" width="600"/>
 
 ### 2.1.1. Model
 

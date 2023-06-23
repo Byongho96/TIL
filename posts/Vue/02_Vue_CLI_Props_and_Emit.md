@@ -78,7 +78,8 @@ Then how can we create the same environment when we pull the project from git? T
 
 - **Webpack**
 
-  ![02_webpack.PNG](./images/02_webpack.PNG)  
+  <img src="./images/02_webpack.png" alt="02_webpack.png" width="600"/>
+
   a static moudle bundler, which is for solving dependency issues with modules. It analyzes the modules and converts them into several static files.
 
 ### 1.3.2. public/
@@ -89,7 +90,7 @@ Then how can we create the same environment when we pull the project from git? T
 - **index.html**  
   The basic html file of the Vue project. It's connected to the App.vue
 
-  ![02_index_html.PNG](./images/02_index_html.PNG)
+  <img src="./images/02_index_html.png" alt="02_index_html.png" width="400"/>
 
 ### 1.3.3. src/
 
@@ -128,7 +129,7 @@ It has infromation about config settings such as a dependencies list.
 
 Divided pieces of UI which are independent and reusable. A web page is made with components nested in a tree structure.
 
-![02_components.PNG](./images/02_components.PNG)
+<img src="./images/02_components.png" alt="02_components.png" width="500"/>
 
 ## 2.2. SFC
 
@@ -138,7 +139,7 @@ One .vue file is one component, and one vue instance is in one component. Theref
 
 ### 2.3.1. Structure of Vue component
 
-![02_structure_vue_component.PNG](./images/02_structure_vue_component.PNG)
+<img src="./images/02_structure_vue_component.png" alt="02_structure_vue_component.png" width="500"/>
 
 - **html**
   - A body part of the html doc

@@ -131,7 +131,7 @@ local repository는 다음 3가지의 작업영역으로 동작한다.
 
 ### 2.2.2. Commit Message with VI Editor
 
-<img alt="vi" src = "./assets/vi.PNG" width="400">
+<img alt="vi" src = "./assets/vi.png" width="400">
 
 1. `git commit -m`
 2. vi editor가 command mode로 열리면, `i`키를 눌러서 edit mode로 진입한다.
@@ -273,8 +273,8 @@ git으로 버전관리가 되고 있는 파일만 되돌릴 수 있다.
 - Staging area에 새로 올라온 내용이 없으면, vi editor 창에서 직전 커밋의 메시지만 수정한다.
 
   - [vi editor 사용 절차](#222-commit-message-with-vi-editor)  
-    <img alt="cli" src = "./assets/vim_cli.PNG" width="600">
-    <img alt="git_amend" src = "./assets/git_amend.PNG" width="600">
+    <img alt="cli" src = "./assets/vim_cli.png" width="600">
+    <img alt="git_amend" src = "./assets/git_amend.png" width="600">
 
 - Staging area에 새로 올라온 내용이 있으면, 현재 staging area를 직전 커밋에 포함시킨다.
 

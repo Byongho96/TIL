@@ -88,7 +88,7 @@ Django follows the **Model-Template-View(MTV) design pattern** which is based on
 1. **Make Virtual Environment**  
     Usually, a project sets up the modules needed in its own virtual environment.
 
-     <img alt="venv_cmd" src = "./images/venv_cmd.PNG" width="600">
+     <img alt="venv_cmd" src = "./images/venv_cmd.png" width="600">
 
    1. `python -m venv venv` : Create venv folder
    2. `source ./venv/Scripts/activate` : Activate venv
@@ -114,7 +114,7 @@ Django follows the **Model-Template-View(MTV) design pattern** which is based on
       - `./articles/`
 
    2. Register the app to the project
-      <img alt="register_app_to_project.PNG" src = "./images/register_app_to_project.PNG" width="400">
+      <img alt="register_app_to_project.png" src = "./images/register_app_to_project.png" width="400">
 
 4. **Run server**
    1. `python manage.py runserver`
@@ -497,7 +497,7 @@ By dividing the app namespace, url with the same name can be used in other apps.
 
 ## 9.3. Template namespace
 
-<img src='./images/refering_templates.PNG' width="500">
+<img src='./images/refering_templates.png' width="500">
 
 According to `'APP_DIRS': True`, Django find the corresponding templates in the `app/templates/` in the order registered with the `INSTALLED_APPS`.
 
