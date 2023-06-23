@@ -82,7 +82,7 @@ const config: GatsbyConfig = {
           {
             resolve: `gatsby-remark-images`, // markdown 내부의 이미지를 캐싱하여 보여줌
             options: {
-              maxWidth: 600,
+              maxWidth: 700,
             },
           },
           `gatsby-remark-gifs`,

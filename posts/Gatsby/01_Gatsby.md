@@ -3,7 +3,7 @@ title: '01. Gatsby 렌더링 옵션과 프로젝트 구조'
 updatedAt: '2023-06-16'
 createdAt: '2023-06-16'
 description: '정적 사이트 생성기(SSG)의 개념과 Gatsby 프로젝트의 프로젝트 구조를 알아본다.'
-tags: ['gatsby', 'SSG', 'SSR', 'CSR', '구조', 'gatsb']
+tags: ['gatsby', 'SSG', 'SSR', 'CSR', '구조']
 isCompleted: true
 reference: 'Gatsby Project Structure: https://www.gatsbyjs.com/docs/reference/gatsby-project-structure/'
 ---

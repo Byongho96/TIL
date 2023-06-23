@@ -13,7 +13,8 @@ reference:
 ## 1.1. react-type-animation
 
 구글링하면 [react-type-animation](https://www.npmjs.com/package/react-type-animation)라는 리액트용 타이핑 애니메이션 라이브러리가 바로 나온다. **이 라이브러리와 유사하게 동작하는 리액트 컴포넌트**를 만드는 것이 오늘의 목표다.
-<img src ="./assets/react-type-animation.gif" width=700/>
+
+![react-type-animation.gif](./assets/react-type-animation.gif)
 
 ## 1.2. props 설정
 

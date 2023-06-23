@@ -49,7 +49,7 @@ Nginx가 Apache와의 차이점이자 강점은 event-driven 웹 서버라는 �
 
 반면 **Nginx는 하나의 프로세스가 여러개의 요청을 처리할 수 있다(1:N).** Nginx는 요청을 하나의 event로 간주하고 이를 event loop가 관리하도록 한다. 요청이 들어오는 대로 event loop는 요청을 queue에 추가하고 순서대로 처리한다. 만일 특정 요청을 수행하는데 오랜 시간이 걸릴 경우 이를 Thread pool에 넘김으로써 비동기적으로 진행시키고, 그 사이에 다른 요청들을 수행한다.
 
-![Nginx Event Loop](./assets/Nginx_event_loop.jpg)
+<img src="./assets/Nginx_event_loop.jpg" alt="Nginx_event_loop.jpg" width=500/>
 
 위의 내용은 **브라우저의 event loop와도 매우 유사하게 동작한다.**
 
