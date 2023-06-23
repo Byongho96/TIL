@@ -1,14 +1,14 @@
 ---
 title: '02. Github Pages 배포'
-updatedAt: '2023-01-11'
-createdAt: '2023-01-11'
+updatedAt: '2023-06-23'
+createdAt: '2023-06-23'
 description: 'gh-pages와 github actions를 이용해서 gatsby 프로젝트를 자동배포한다.'
-tags: ['gatsby', 'gh-pages', '배포', 'github', 'actions']
+tags: ['gatsby', 'gh-pages', '프론트엔드', '배포', 'github', 'actions']
 isCompleted: true
 reference:
 ---
 
-# 1. 프론트엔드 배포
+# 1. 프론트엔드 배포란?
 
 프론트엔드 배포를 한 마디로 정리하면, **특정 url을 통한 GET요청에 대해 index.html을 반환하도록 설정**하는 것을 말한다.
 
