@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Link, navigate } from 'gatsby'
 import * as styles from './style.module.scss'
+import { Link } from 'gatsby'
 import { useCategorizedPosts } from '@hooks/use-categorized-posts'
 import { cutLetters } from '@utils/cutLetters'
 
@@ -88,7 +88,8 @@ const CategoryName: React.FC = ({ name, num, handleClickCategory }) => {
       activeClassName="active"
       onClick={(event) => {
         handleClickCategory(event, name)
-      }}>
+      }}
+    >
       <span className={styles.name}>{name}</span>
       <span className={styles.num}>{'\u00a0\u00a0(' + num + ')'}</span>
     </Link>
