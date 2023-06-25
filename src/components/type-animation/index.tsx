@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import './style.scss'
 
 type Props = {
@@ -81,7 +81,8 @@ const TypeAnimation: React.FC<Props> = ({
     <span
       ref={textElementRef}
       className="type-animation-text"
-      style={style}></span>
+      style={style}
+    ></span>
   )
 }
 

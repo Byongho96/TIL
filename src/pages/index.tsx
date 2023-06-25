@@ -1,8 +1,7 @@
 import * as React from 'react'
-import type { HeadFC, PageProps } from 'gatsby'
 import * as styles from './index.module.scss'
+import type { HeadFC, PageProps } from 'gatsby'
 import IndexLogo from '@components/index-logo'
-import Layout from '@layouts/navigation-layout'
 import IndexWheel from '@components/index-wheel'
 
 const IndexPage: React.FC<PageProps> = () => {

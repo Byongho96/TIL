@@ -1,5 +1,5 @@
 ---
-title: '02. Github Pages 배포'
+title: '02. Gatsby 프로젝트 Github Pages 배포'
 updatedAt: '2023-06-23'
 createdAt: '2023-06-23'
 description: 'gh-pages와 github actions를 이용해서 gatsby 프로젝트를 자동배포한다.'

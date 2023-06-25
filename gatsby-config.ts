@@ -1,5 +1,4 @@
 import type { GatsbyConfig } from 'gatsby'
-
 const metaConfig = require('./gatsby-meta-config')
 
 const config: GatsbyConfig = {

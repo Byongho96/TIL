@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+
 import * as styles from './style.module.scss'
 
 const TableContent: React.FC = ({ toc }) => {
