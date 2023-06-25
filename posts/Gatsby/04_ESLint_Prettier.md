@@ -1,10 +1,10 @@
 ---
 title: '04. Gatsby 프로젝트 Prettier & ESLint & Husky 설정'
-updatedAt: '2023-06-24'
-createdAt: '2023-06-24'
+updatedAt: '2023-06-25'
+createdAt: '2023-06-25'
 description: 'TypeScript 기반 프론트엔드 프로젝트의 Prettier, ESLint, Husky 를 설정한다.'
 tags: ['gatsby', 'eslint', 'prettier', 'huksy', '설정']
-isCompleted: false
+isCompleted: true
 reference:
 ---
 
@@ -332,7 +332,11 @@ ESliint를 이용해서 모듈 import 순서를 관리할 수 있다. 아래 내
 
 # 4. Husky
 
-<mark style='background-color: #fff5b1'>lint-staged</mark>를 Husky와 함께 설치해서 사용할 것이다. lint-staged는 staged된 git 파일에 대해서 코드 검사를 도와주는 도구이며, 보통 husky와 함께 사용된다.
+<mark style='background-color: #fff5b1'>lint-staged</mark>를 Husky와 함께 설치해서 사용할 것이다. 왜냐하면 Husky를 이용해 commit 전에 코드 검사를 실행할텐데, 그냥 `npx eslint --fix` 구문을 사용하면, 작업영역(working directory)에서 린팅이 일어난다. commit 시에 검사를 하겠다는 말은 `git add` 명령어로 올라간 staging area의 파일들을 수정하겠다는 의미이다.
+
+**이렇게 staged된 파일에 대해서 코드 검사를 지원하는 라이브러리가 'lint-staged'이다.** 의미를 알고나니, 라이브러리의 이름이 참 직관적이다.
+
+아래 내용은 [Husky 공식문서](https://typicode.github.io/husky/getting-started.html#install)를 따라 작성했다.
 
 1. **husky와 lint-staged 설치**
 
@@ -361,24 +365,27 @@ ESliint를 이용해서 모듈 import 순서를 관리할 수 있다. 아래 내
    }
    ```
 
-4. **husky & lin-staged 코드 작성**
+4. **lint-staged 코드 작성**
 
-   [Git 공식문서](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)를 보면 어떤 git hook들이 있는지 확인할 수 있다. 아래 사용하는 'pre-commit'훅은 commit 이벤트를 감지하여, 커밋 전에 실행된다.
-
-   현재 코드를 보면 husky가 commit을 감지하여, 커밋 이전에 `lint-staged`를 실행한다. 그리고 lint-staged는 '_.ts, _.tsx'파일에 대해 prettier와 elsint를 적용시킨다.
+   [lint-staged의 README](https://www.npmjs.com/package/lint-staged)를 참고해서 package.json에 관련 코드를 작성한다. 나는 아래와 같이 작성했다.
 
    ```json
    // pacakge.json
    {
-     "husky": {
-       "hooks": {
-         "pre-commit": "lint-staged"
-       }
-     },
      "lint-staged": {
-       "*.{ts,tsx}": ["eslint --fix", "prettier --write"]
+       "*.{ts,tsx}": ["eslint --fix", "prettier --write"] // *.tx, *.tsx 파일에 대해 eslint와 prettier을 적용한다.
      }
    }
+   ```
+
+5. **husky pre-commit등록**
+
+   [Git 공식문서](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)를 보면 어떤 git hook들이 있는지 확인할 수 있다. 아래 사용하는 'pre-commit'훅은 commit 이벤트를 감지하여, 커밋 전에 실행된다.
+
+   husky의 훅들은 '.husky'디렉토리에서 git 훅과 동일한 이름의 파일에서 관리된다. 아래와 같은 명령어로 pre-commit 이벤트에 대해서 `` 명령어를 등록한다.
+
+   ```bash
+   npx husky add .husky/pre-commit "npx lint-staged"
    ```
 
 # 5. 참조
@@ -391,4 +398,5 @@ ESliint를 이용해서 모듈 import 순서를 관리할 수 있다. 아래 내
 - [eslint-plugin-unused-imports](https://www.npmjs.com/package/eslint-plugin-unused-imports)
 - [Husky Getting Started](https://typicode.github.io/husky/getting-started.html#install)
 - [npm scripts](https://docs.npmjs.com/cli/v7/using-npm/scripts)
+- [lint-staged](https://www.npmjs.com/package/lint-staged)
 - [Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
