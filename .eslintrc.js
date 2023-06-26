@@ -21,6 +21,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'import', 'unused-imports'],
   root: true,
+  ignorePatterns: ['personal/**', 'posts/**', 'public/**'],
   rules: {
     '@typescript-eslint/no-var-requires': 0, // require 사용 허용
     'import/no-unresolved': [2, { commonjs: true, amd: true }], //CommonJS, AMD 형식의 import 허용
@@ -38,6 +39,10 @@ module.exports = {
             pattern: '{./*scss, @styles/**}',
             group: 'builtin',
             position: 'before',
+          },
+          {
+            pattern: '@layouts/**',
+            group: 'internal',
           },
         ],
         pathGroupsExcludedImportTypes: [],

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react'
 import * as styles from './style.module.scss'
-import UpIcon from '@assets/svgs/up.svg'
 
 type Props = {
   phrases: string[]
@@ -23,7 +22,7 @@ const Typing: React.FC<Props> = ({
     const textElement = typingRef.current
 
     const typing = () => {
-      let phrase = phrases[phraseIdx]
+      const phrase = phrases[phraseIdx]
       // 1. 문자가 아직 끝나지 않은 경우
       if (stringIdx < phrase.length) {
         textElement.textContent += phrase[stringIdx++]

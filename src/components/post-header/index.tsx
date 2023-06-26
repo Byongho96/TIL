@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Link } from 'gatsby'
 import * as styles from './style.module.scss'
 import { useSiteMetadata } from '@hooks/use-site-metadata'
 

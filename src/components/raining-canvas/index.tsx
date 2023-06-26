@@ -31,7 +31,7 @@ const RainingCanvas: React.FC<Props> = ({
 
     console.log(containerRef.current)
 
-    let mouse = { x: 0, y: 0, isActive: false } // 마우스 정보
+    const mouse = { x: 0, y: 0, isActive: false } // 마우스 정보
 
     // canvas 초기화 함수
     const init = () => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import * as styles from './style.module.scss'
-import Navigation from '@components/navigation'
 import Footer from '@components/footer'
+import Navigation from '@components/navigation'
 
 const NavigationLayout = ({ children }) => {
   return (

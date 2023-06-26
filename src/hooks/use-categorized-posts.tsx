@@ -1,5 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby'
-import { sortByName, sortByTitle } from '@utils/sortByTypes'
+import { sortByName } from '@utils/sortByTypes'
 
 // 'posts' 폴더의 하위 md파일이 곧 포스트임을 가정
 // 'posts' 폴더의 하위 디렉토리가 곧 카테고리임을 가정

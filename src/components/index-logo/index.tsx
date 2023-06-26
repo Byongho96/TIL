@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import * as styles from './style.module.scss'
 import { ThemeContext } from '@contexts/theme-context'
 

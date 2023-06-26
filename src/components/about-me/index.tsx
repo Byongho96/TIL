@@ -1,7 +1,5 @@
-import React, { useContext } from 'react'
-import type { HeadFC, PageProps } from 'gatsby'
+import React from 'react'
 import * as styles from './style.module.scss'
-import { TypeAnimation } from 'react-type-animation'
 import Taping from '@components/taping'
 import { ThemeContext } from '@contexts/theme-context'
 

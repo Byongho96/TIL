@@ -36,7 +36,7 @@
       "@components/*": ["components/*"],
       "@contexts/*": ["contexts/*"],
       "@hooks/*": ["hooks/*"],
-      "@layouts": ["layouts/*"],
+      "@layouts/*": ["layouts/*"],
       "@pages/*": ["pages/*"],
       "@queries/*": ["queries/*"],
       "@styles/*": ["styles/*"],

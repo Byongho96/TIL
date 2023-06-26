@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { Link } from 'gatsby'
 import * as styles from './style.module.scss'
-import { useSiteMetadata } from '@hooks/use-site-metadata'
-import ColorChange from '@components/color-change'
+import { Link } from 'gatsby'
 import ToggleIcon from '@assets/svgs/toggle.svg'
+import ColorChange from '@components/color-change'
+import { useSiteMetadata } from '@hooks/use-site-metadata'
 
 const Navigation: React.FC = () => {
   const { author } = useSiteMetadata()
@@ -35,7 +35,8 @@ const Navigation: React.FC = () => {
             <Link
               to="/"
               className={styles.navLinkText}
-              onClick={handleLinkClick}>
+              onClick={handleLinkClick}
+            >
               Home
             </Link>
           </li>
@@ -43,7 +44,8 @@ const Navigation: React.FC = () => {
             <Link
               to="/about"
               className={styles.navLinkText}
-              onClick={handleLinkClick}>
+              onClick={handleLinkClick}
+            >
               About
             </Link>
           </li>
@@ -51,7 +53,8 @@ const Navigation: React.FC = () => {
             <Link
               to="/posts"
               className={styles.navLinkText}
-              onClick={handleLinkClick}>
+              onClick={handleLinkClick}
+            >
               Posts
             </Link>
           </li>

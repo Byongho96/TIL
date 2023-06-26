@@ -7,12 +7,13 @@ interface Props {
 // Context 생성
 export const ThemeContext = createContext({
   theme: 'light',
-  toggleTheme: () => {},
+  toggleTheme: null,
 })
 
 // Context API로 theme과 toggleTheme을 하위 컴포넌트에 내려줌
 export const ThemeProvider = ({ children }: Props) => {
   const [theme, setTheme] = useState('dark')
+
   const toggleTheme = () => {
     setTheme((theme) => {
       return theme === 'light' ? 'dark' : 'light'

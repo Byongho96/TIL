@@ -71,7 +71,8 @@ const Taping: React.FC = ({
       ref={tapeRef}
       className={`${styles.tape} ${styles[color]}`}
       onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}>
+      onMouseLeave={handleMouseLeave}
+    >
       <p ref={textRef} className={styles.text}>
         {(phrase + '\u00a0\u00a0\u00a0\u00a0').repeat(30)}
       </p>

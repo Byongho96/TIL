@@ -1,16 +1,14 @@
 import React, { useContext } from 'react'
-import type { HeadFC, PageProps } from 'gatsby'
-import NavigationLayout from '@layouts/navigation-layout'
-import CategoryLayout from '@layouts/category-layout'
-import { allMarkdownsQuery } from '@queries/index'
-import { graphql } from 'gatsby'
-import TableContent from '@components/table-content'
-import PostHeader from '@components/post-header'
 import * as styles from './style.module.scss'
+import type { PageProps } from 'gatsby'
+import { graphql } from 'gatsby'
+import NextPosts from '@components/next-posts'
+import PostHeader from '@components/post-header'
+import TableContent from '@components/table-content'
 import ToTheTop from '@components/to-the-top'
 import Utterances from '@components/utterances'
 import { ThemeContext } from '@contexts/theme-context'
-import NextPosts from '@components/next-posts'
+import CategoryLayout from '@layouts/category-layout'
 
 const PostPage: React.FC<PageProps> = ({ pageContext, data }) => {
   const { theme } = useContext(ThemeContext)

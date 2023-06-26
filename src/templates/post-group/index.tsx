@@ -1,13 +1,11 @@
 import * as React from 'react'
+import * as styles from './style.module.scss'
 import type { HeadFC, PageProps } from 'gatsby'
-import NavigationLayout from '@layouts/navigation-layout'
-import CategoryLayout from '@layouts/category-layout'
-import { allMarkdownsQuery } from '@queries/index'
 import { graphql } from 'gatsby'
 import PostItem from '@components/post-item'
-import * as styles from './style.module.scss'
 import ToTheTop from '@components/to-the-top'
 import Typing from '@components/typing'
+import CategoryLayout from '@layouts/category-layout'
 
 const PostGroupPage: React.FC<PageProps> = ({ pageContext, data }) => {
   return (

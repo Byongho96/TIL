@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Link, navigate } from 'gatsby'
 import * as styles from './style.module.scss'
+import { navigate } from 'gatsby'
 import LeftIcon from '@assets/svgs/left.svg'
 import RightIcon from '@assets/svgs/right.svg'
 

@@ -8,7 +8,8 @@ const SsrPage: React.FC = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-      }}>
+      }}
+    >
       <TypeAnimation
         phrases={['I love chicken', 'Do you like chicken?', 'Of course!!!']}
         speed={7}

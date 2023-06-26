@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { navigate } from 'gatsby'
+import React from 'react'
 import * as styles from './style.module.scss'
+import { navigate } from 'gatsby'
 import { useCategories } from '@hooks/use-categories'
 
 const IndexWheel: React.FC = () => {
@@ -27,12 +27,14 @@ const IndexWheel: React.FC = () => {
     <ul
       className={styles.categories}
       onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}>
+      onMouseLeave={handleMouseLeave}
+    >
       {data.slice(0, 15).map((category) => (
         <li
           className={styles.category}
           key={category.id}
-          onClick={() => handleClick(category.name)}>
+          onClick={() => handleClick(category.name)}
+        >
           {category.name}
         </li>
       ))}

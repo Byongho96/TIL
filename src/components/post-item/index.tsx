@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { navigate } from 'gatsby'
 import * as styles from './style.module.scss'
+import { navigate } from 'gatsby'
 
 const PostItem: React.FC = ({ node }) => {
   const { id, parent, frontmatter, excerpt } = node

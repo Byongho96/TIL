@@ -1,4 +1,4 @@
-import { useState, useEffect, RefObject } from 'react'
+import { useEffect, RefObject } from 'react'
 
 /*
 무한스크롤 커스텀 훅

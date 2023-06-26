@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import * as styles from './style.module.scss'
 import { StaticImage } from 'gatsby-plugin-image'
 
