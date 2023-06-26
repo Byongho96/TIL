@@ -6,29 +6,8 @@
   flex-direction: column;
   gap: 2.5rem;
   position: relative;
-  padding: 4rem 0 1.5rem;
-
-  // 2중 그라데이션 보더 생성
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: -2px;
-    width: 85%;
-    height: 2px;
-    background: linear-gradient(to right, var(--main-color), #ffffff00);
-  }
-
-  &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: 2px;
-    width: 85%;
-    height: 2px;
-    background: linear-gradient(to right, var(--main-color), #ffffff00);
-    // border-bottom: 6px double rvar(--main-color);
-  }
+  padding: 0 0 1.5rem;
+  border-bottom: 6px double var(--main-color);
 }
 
 .title {
@@ -65,7 +44,7 @@
 
 @include tablet {
   .container {
-    padding: 3rem 0 2rem;
+    padding: 0 0 2rem;
   }
 
   .title {
@@ -83,7 +62,7 @@
 
 @include mobile {
   .container {
-    padding: 2rem 0 1.5rem;
+    padding: 0 0 1.5rem;
   }
 
   .title {

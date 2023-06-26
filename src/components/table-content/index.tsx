@@ -22,7 +22,7 @@ const TableContent: React.FC = ({ toc }) => {
     // 트래킹하고 싶은 태그들 선택
     document
       .querySelectorAll(
-        '.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4'
+        '.markdown-body h1, .markdown-body h2, .markdown-body h3'
       )
       .forEach((section) => {
         observer.observe(section)

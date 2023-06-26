@@ -36,7 +36,7 @@ reference:
 
 [GitHub Pages](https://docs.github.com/ko/pages/getting-started-with-github-pages/creating-a-github-pages-site)는 GitHub에서 제공하는 정적 웹사이트 호스팅 서비스이다. GitHub 리포지토리에 저장된 정적 파일(HTML, CSS, JavaScript)을 url 요청이 들어오면 제공하는 것이다.
 
-어떠한 github 레포지토리든지 Settings > Pages 에 들어가면, 아래 사진에서 볼 수 있는 것처럼 특정 Branch를 바라보도록 설정할 수 있다. 그러면 GitHub Pages는 해당 브랜치의 최상단 디렉토리에서 <mark style='background-color: #fff5b1'>**index.html, index.md, README.md**</mark> 3가지 파일을 호스팅할 사이트의 **시작 파일**로 관찰하고 있다.
+어떠한 github 레포지토리든지 Settings > Pages 에 들어가면, 아래 사진에서 볼 수 있는 것처럼 특정 Branch를 바라보도록 설정할 수 있다. 그러면 GitHub Pages는 해당 브랜치의 최상단 디렉토리에서 <mark>**index.html, index.md, README.md**</mark> 3가지 파일을 호스팅할 사이트의 **시작 파일**로 관찰하고 있다.
 
 <img src="./images/github-pages.png" alt="github-pages" width="700"/>
 

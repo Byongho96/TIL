@@ -35,7 +35,7 @@ import * as styles from '@styles/global.scss'
 
 해당 파일들에서 import 경로를 설정하는 이유는 **코드 편집기에 알려주기 위해서다.**(tsconfig의 경우 TypeScript Compiler도 포함)
 
-이를 <mark style='background-color: #fff5b1'>**IntellSene**</mark>라고 하는데, 코드 편집기(IDE)가 코드의 컨텍스트를 분석하여 변수, 속성, 메서드 등을 자동 완성해주는 기능을 말한다. 당연히 우리가 모듈을 import할 때 경로를 자동 완성해주는 기능도 포함된다.
+이를 <mark>**IntellSene**</mark>라고 하는데, 코드 편집기(IDE)가 코드의 컨텍스트를 분석하여 변수, 속성, 메서드 등을 자동 완성해주는 기능을 말한다. 당연히 우리가 모듈을 import할 때 경로를 자동 완성해주는 기능도 포함된다.
 
 ```json
 {

@@ -1,89 +1,14 @@
+@import '_fonts.scss';
+
 // github-markdown-css version 4.0.0
-
-// dark
-
-.markdown-body.dark {
-  color-scheme: dark;
-  --color-prettylights-syntax-comment: #8b949e;
-  --color-prettylights-syntax-constant: #79c0ff;
-  --color-prettylights-syntax-entity: #d2a8ff;
-  --color-prettylights-syntax-storage-modifier-import: #c9d1d9;
-  --color-prettylights-syntax-entity-tag: #7ee787;
-  --color-prettylights-syntax-keyword: #ff7b72;
-  --color-prettylights-syntax-string: #a5d6ff;
-  --color-prettylights-syntax-variable: #ffa657;
-  --color-prettylights-syntax-brackethighlighter-unmatched: #f85149;
-  --color-prettylights-syntax-invalid-illegal-text: #f0f6fc;
-  --color-prettylights-syntax-invalid-illegal-bg: #8e1519;
-  --color-prettylights-syntax-carriage-return-text: #f0f6fc;
-  --color-prettylights-syntax-carriage-return-bg: #b62324;
-  --color-prettylights-syntax-string-regexp: #7ee787;
-  --color-prettylights-syntax-markup-list: #f2cc60;
-  --color-prettylights-syntax-markup-heading: #1f6feb;
-  --color-prettylights-syntax-markup-italic: #c9d1d9;
-  --color-prettylights-syntax-markup-bold: #c9d1d9;
-  --color-prettylights-syntax-markup-deleted-text: #ffdcd7;
-  --color-prettylights-syntax-markup-deleted-bg: #67060c;
-  --color-prettylights-syntax-markup-inserted-text: #aff5b4;
-  --color-prettylights-syntax-markup-inserted-bg: #033a16;
-  --color-prettylights-syntax-markup-changed-text: #ffdfb6;
-  --color-prettylights-syntax-markup-changed-bg: #5a1e02;
-  --color-prettylights-syntax-markup-ignored-text: #c9d1d9;
-  --color-prettylights-syntax-markup-ignored-bg: #1158c7;
-  --color-prettylights-syntax-meta-diff-range: #d2a8ff;
-  --color-prettylights-syntax-brackethighlighter-angle: #8b949e;
-  --color-prettylights-syntax-sublimelinter-gutter-mark: #484f58;
-  --color-prettylights-syntax-constant-other-reference-link: #a5d6ff;
-  --color-fg-default: #c9d1d9;
-  --color-fg-muted: #8b949e;
-  --color-fg-subtle: #6e7681;
-  --color-canvas-default: var(--bg-color);
-  --color-canvas-subtle: #161b22;
-  --color-border-default: #30363d;
-  --color-border-muted: #21262d;
-  --color-neutral-muted: rgba(110, 118, 129, 0.4);
-  --color-accent-fg: #58a6ff;
-  --color-accent-emphasis: #1f6feb;
-  --color-attention-subtle: rgba(187, 128, 9, 0.15);
-  --color-danger-fg: #f85149;
-}
 
 // light
 .markdown-body.light {
   color-scheme: light;
-  --color-prettylights-syntax-comment: #6e7781;
-  --color-prettylights-syntax-constant: #0550ae;
-  --color-prettylights-syntax-entity: #8250df;
-  --color-prettylights-syntax-storage-modifier-import: #24292f;
-  --color-prettylights-syntax-entity-tag: #116329;
-  --color-prettylights-syntax-keyword: #cf222e;
-  --color-prettylights-syntax-string: #0a3069;
-  --color-prettylights-syntax-variable: #953800;
-  --color-prettylights-syntax-brackethighlighter-unmatched: #82071e;
-  --color-prettylights-syntax-invalid-illegal-text: #f6f8fa;
-  --color-prettylights-syntax-invalid-illegal-bg: #82071e;
-  --color-prettylights-syntax-carriage-return-text: #f6f8fa;
-  --color-prettylights-syntax-carriage-return-bg: #cf222e;
-  --color-prettylights-syntax-string-regexp: #116329;
-  --color-prettylights-syntax-markup-list: #3b2300;
-  --color-prettylights-syntax-markup-heading: #0550ae;
-  --color-prettylights-syntax-markup-italic: #24292f;
-  --color-prettylights-syntax-markup-bold: #24292f;
-  --color-prettylights-syntax-markup-deleted-text: #82071e;
-  --color-prettylights-syntax-markup-deleted-bg: #ffebe9;
-  --color-prettylights-syntax-markup-inserted-text: #116329;
-  --color-prettylights-syntax-markup-inserted-bg: #dafbe1;
-  --color-prettylights-syntax-markup-changed-text: #953800;
-  --color-prettylights-syntax-markup-changed-bg: #ffd8b5;
-  --color-prettylights-syntax-markup-ignored-text: #eaeef2;
-  --color-prettylights-syntax-markup-ignored-bg: #0550ae;
-  --color-prettylights-syntax-meta-diff-range: #8250df;
-  --color-prettylights-syntax-brackethighlighter-angle: #57606a;
-  --color-prettylights-syntax-sublimelinter-gutter-mark: #8c959f;
-  --color-prettylights-syntax-constant-other-reference-link: #0a3069;
   --color-fg-default: #24292f;
   --color-fg-muted: #57606a;
   --color-fg-subtle: #6e7781;
+  --color-canvas-quote: #ececec;
   --color-canvas-default: #ffffff;
   --color-canvas-subtle: #f6f8fa;
   --color-border-default: #d0d7de;
@@ -91,21 +16,39 @@
   --color-neutral-muted: rgba(175, 184, 193, 0.2);
   --color-accent-fg: #0969da;
   --color-accent-emphasis: #0969da;
-  --color-attention-subtle: #fff8c5;
+  --color-attention-subtle: #fcf5c1;
   --color-danger-fg: #cf222e;
 }
 
-// common
+// dark
+.markdown-body.dark {
+  color-scheme: dark;
+  --color-fg-default: #c9d1d9;
+  --color-fg-muted: #8b949e;
+  --color-fg-subtle: #6e7681;
+  --color-canvas-quote: #1a1a1a;
+  --color-canvas-default: var(--bg-color);
+  --color-canvas-subtle: #161b22;
+  --color-border-default: #30363d;
+  --color-border-muted: #21262d;
+  --color-neutral-muted: rgba(110, 118, 129, 0.4);
+  --color-accent-fg: #58a6ff;
+  --color-accent-emphasis: #1f6feb;
+  --color-attention-subtle: rgba(191, 134, 20, 0.352);
+  --color-danger-fg: #f85149;
+}
+
 .markdown-body {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   margin: 0;
   color: var(--color-fg-default);
   background-color: var(--color-canvas-default);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans',
-    Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
-  font-size: 16px;
-  line-height: 1.5;
+  font-family: 'NanumSquareNeo', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji';
+  font-size: 1.1rem;
+  line-height: 1.7;
   word-wrap: break-word;
 }
 
@@ -115,29 +58,10 @@
   vertical-align: text-bottom;
 }
 
-.markdown-body h1:hover .anchor .octicon-link:before,
-.markdown-body h2:hover .anchor .octicon-link:before,
-.markdown-body h3:hover .anchor .octicon-link:before,
-.markdown-body h4:hover .anchor .octicon-link:before,
-.markdown-body h5:hover .anchor .octicon-link:before,
-.markdown-body h6:hover .anchor .octicon-link:before {
-  width: 16px;
-  height: 16px;
-  content: ' ';
-  display: inline-block;
-  background-color: currentColor;
-  -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
-  mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
-}
-
 .markdown-body details,
 .markdown-body figcaption,
 .markdown-body figure {
   display: block;
-}
-
-.markdown-body summary {
-  display: list-item;
 }
 
 .markdown-body [hidden] {
@@ -149,27 +73,18 @@
   color: var(--color-accent-fg);
   text-decoration: none;
 }
-
-.markdown-body abbr[title] {
-  border-bottom: none;
-  text-decoration: underline dotted;
+.markdown-body a:hover {
+  text-decoration: underline;
 }
 
 .markdown-body b,
 .markdown-body strong {
-  font-weight: var(--base-text-weight-semibold, 600);
+  font-weight: var(--base-text-weight-bold, 700);
 }
 
+// definition
 .markdown-body dfn {
   font-style: italic;
-}
-
-.markdown-body h1 {
-  margin: 0.67em 0;
-  font-weight: var(--base-text-weight-semibold, 600);
-  padding-bottom: 0.3em;
-  font-size: 2em;
-  border-bottom: 1px solid var(--color-border-muted);
 }
 
 .markdown-body mark {
@@ -181,6 +96,7 @@
   font-size: 90%;
 }
 
+// 아래첨자 윗첨자
 .markdown-body sub,
 .markdown-body sup {
   font-size: 75%;
@@ -188,11 +104,9 @@
   position: relative;
   vertical-align: baseline;
 }
-
 .markdown-body sub {
   bottom: -0.25em;
 }
-
 .markdown-body sup {
   top: -0.5em;
 }
@@ -212,10 +126,12 @@
   font-size: 1em;
 }
 
+//  elf-contained content, potentially with an optional caption which is specified using the <figcaption> element.
 .markdown-body figure {
   margin: 1em 40px;
 }
 
+// hr의 가상 선택자는 주변 요소를 제거하는 역할
 .markdown-body hr {
   box-sizing: content-box;
   overflow: hidden;
@@ -227,7 +143,17 @@
   background-color: var(--color-border-default);
   border: 0;
 }
+.markdown-body hr::before {
+  display: table;
+  content: '';
+}
+.markdown-body hr::after {
+  display: table;
+  clear: both;
+  content: '';
+}
 
+// input 관련 태그
 .markdown-body input {
   font: inherit;
   margin: 0;
@@ -236,81 +162,64 @@
   font-size: inherit;
   line-height: inherit;
 }
-
 .markdown-body [type='button'],
 .markdown-body [type='reset'],
 .markdown-body [type='submit'] {
   -webkit-appearance: button;
 }
-
 .markdown-body [type='checkbox'],
 .markdown-body [type='radio'] {
   box-sizing: border-box;
   padding: 0;
 }
-
 .markdown-body [type='number']::-webkit-inner-spin-button,
 .markdown-body [type='number']::-webkit-outer-spin-button {
   height: auto;
 }
-
 .markdown-body [type='search']::-webkit-search-cancel-button,
 .markdown-body [type='search']::-webkit-search-decoration {
   -webkit-appearance: none;
 }
-
 .markdown-body ::-webkit-input-placeholder {
   color: inherit;
   opacity: 0.54;
 }
-
 .markdown-body ::-webkit-file-upload-button {
   -webkit-appearance: button;
   font: inherit;
 }
-
-.markdown-body a:hover {
-  text-decoration: underline;
-}
-
 .markdown-body ::placeholder {
   color: var(--color-fg-subtle);
   opacity: 1;
 }
 
-.markdown-body hr::before {
-  display: table;
-  content: '';
-}
-
-.markdown-body hr::after {
-  display: table;
-  clear: both;
-  content: '';
-}
-
+// 테이블 관련 태그
 .markdown-body table {
   border-spacing: 0;
   border-collapse: collapse;
   display: block;
-  // width: max-content; // 수정 max-content
+  width: max-content;
   max-width: 100%;
   overflow: auto;
 }
-
 .markdown-body td,
 .markdown-body th {
   padding: 0;
 }
 
+// The <details> HTML element creates a disclosure widget in which information is visible only when the widget is toggled into an "open" state.
+// A summary or label must be provided using the <summary> element.
+.markdown-body summary {
+  display: list-item;
+}
 .markdown-body details summary {
   cursor: pointer;
 }
-
 .markdown-body details:not([open]) > *:not(summary) {
   display: none !important;
 }
 
+// foucs 동작 관련태그
 .markdown-body a:focus,
 .markdown-body [role='button']:focus,
 .markdown-body input[type='radio']:focus,
@@ -345,6 +254,7 @@
   outline-offset: 0;
 }
 
+// 키보드 효과
 .markdown-body kbd {
   display: inline-block;
   padding: 3px 5px;
@@ -368,48 +278,59 @@
 .markdown-body h6 {
   margin-top: 24px;
   margin-bottom: 16px;
-  font-weight: var(--base-text-weight-semibold, 600);
+  font-weight: var(--base-text-weight-extrabold, 800);
   line-height: 1.25;
 }
 
+.markdown-body h1 {
+  margin: 1em 0 0.5em;
+  font-weight: var(--base-text-weight-extrabold, 800);
+  padding-bottom: 0.3em;
+  font-size: 2em;
+}
+
 .markdown-body h2 {
-  font-weight: var(--base-text-weight-semibold, 600);
+  margin: 1em 0 0.3em;
+  font-weight: var(--base-text-weight-extrabold, 800);
   padding-bottom: 0.3em;
   font-size: 1.5em;
-  border-bottom: 1px solid var(--color-border-muted);
 }
 
 .markdown-body h3 {
-  font-weight: var(--base-text-weight-semibold, 600);
+  font-weight: var(--base-text-weight-extrabold, 800);
   font-size: 1.25em;
 }
 
 .markdown-body h4 {
-  font-weight: var(--base-text-weight-semibold, 600);
+  font-weight: var(--base-text-weight-extrabold, 800);
   font-size: 1em;
 }
 
 .markdown-body h5 {
-  font-weight: var(--base-text-weight-semibold, 600);
+  font-weight: var(--base-text-weight-extrabold, 800);
   font-size: 0.875em;
 }
 
 .markdown-body h6 {
-  font-weight: var(--base-text-weight-semibold, 600);
+  font-weight: var(--base-text-weight-extrabold, 800);
   font-size: 0.85em;
   color: var(--color-fg-muted);
 }
 
-.markdown-body p {
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
 .markdown-body blockquote {
   margin: 0;
-  padding: 0 1em;
+  padding: 0.5em 1em;
+  background-color: var(--color-canvas-quote);
   color: var(--color-fg-muted);
   border-left: 0.25em solid var(--color-border-default);
+}
+.markdown-body blockquote::before {
+  content: open-quote;
+  font-size: 2em;
+}
+.markdown-body blockquote::after {
+  content: close-quote;
+  font-size: 2em;
 }
 
 .markdown-body ul,
@@ -419,11 +340,29 @@
   padding-left: 2em;
 }
 
+// ul 리스트
+.markdown-body ul {
+  list-style-type: disc;
+}
+.markdown-body ol ul,
+.markdown-body ul ul {
+  list-style-type: circle;
+}
+.markdown-body ul ul ul,
+.markdown-body ul ol ul,
+.markdown-body ol ul ul,
+.markdown-body ol ol ul {
+  list-style-type: square;
+}
+
+// ol 리스트
+.markdown-body ol {
+  list-style-type: decimal;
+}
 .markdown-body ol ol,
 .markdown-body ul ol {
   list-style-type: lower-roman;
 }
-
 .markdown-body ul ul ol,
 .markdown-body ul ol ol,
 .markdown-body ol ul ol,
@@ -514,7 +453,7 @@
 .markdown-body pre,
 .markdown-body details {
   margin-top: 0;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .markdown-body blockquote > :first-child {
@@ -523,35 +462,6 @@
 
 .markdown-body blockquote > :last-child {
   margin-bottom: 0;
-}
-
-.markdown-body h1 .octicon-link,
-.markdown-body h2 .octicon-link,
-.markdown-body h3 .octicon-link,
-.markdown-body h4 .octicon-link,
-.markdown-body h5 .octicon-link,
-.markdown-body h6 .octicon-link {
-  color: var(--color-fg-default);
-  vertical-align: middle;
-  visibility: hidden;
-}
-
-.markdown-body h1:hover .anchor,
-.markdown-body h2:hover .anchor,
-.markdown-body h3:hover .anchor,
-.markdown-body h4:hover .anchor,
-.markdown-body h5:hover .anchor,
-.markdown-body h6:hover .anchor {
-  text-decoration: none;
-}
-
-.markdown-body h1:hover .anchor .octicon-link,
-.markdown-body h2:hover .anchor .octicon-link,
-.markdown-body h3:hover .anchor .octicon-link,
-.markdown-body h4:hover .anchor .octicon-link,
-.markdown-body h5:hover .anchor .octicon-link,
-.markdown-body h6:hover .anchor .octicon-link {
-  visibility: visible;
 }
 
 .markdown-body h1 tt,
@@ -577,15 +487,6 @@
 .markdown-body summary h5,
 .markdown-body summary h6 {
   display: inline-block;
-}
-
-.markdown-body summary h1 .anchor,
-.markdown-body summary h2 .anchor,
-.markdown-body summary h3 .anchor,
-.markdown-body summary h4 .anchor,
-.markdown-body summary h5 .anchor,
-.markdown-body summary h6 .anchor {
-  margin-left: -40px;
 }
 
 .markdown-body summary h1,
@@ -818,16 +719,6 @@
   border: 0;
 }
 
-.markdown-body .highlight {
-  margin-bottom: 16px;
-}
-
-.markdown-body .highlight pre {
-  margin-bottom: 0;
-  word-break: normal;
-}
-
-.markdown-body .highlight pre,
 .markdown-body pre {
   padding: 16px;
   overflow: auto;
@@ -923,126 +814,6 @@
 
 .markdown-body .footnotes .data-footnote-backref g-emoji {
   font-family: monospace;
-}
-
-.markdown-body .pl-c {
-  color: var(--color-prettylights-syntax-comment);
-}
-
-.markdown-body .pl-c1,
-.markdown-body .pl-s .pl-v {
-  color: var(--color-prettylights-syntax-constant);
-}
-
-.markdown-body .pl-e,
-.markdown-body .pl-en {
-  color: var(--color-prettylights-syntax-entity);
-}
-
-.markdown-body .pl-smi,
-.markdown-body .pl-s .pl-s1 {
-  color: var(--color-prettylights-syntax-storage-modifier-import);
-}
-
-.markdown-body .pl-ent {
-  color: var(--color-prettylights-syntax-entity-tag);
-}
-
-.markdown-body .pl-k {
-  color: var(--color-prettylights-syntax-keyword);
-}
-
-.markdown-body .pl-s,
-.markdown-body .pl-pds,
-.markdown-body .pl-s .pl-pse .pl-s1,
-.markdown-body .pl-sr,
-.markdown-body .pl-sr .pl-cce,
-.markdown-body .pl-sr .pl-sre,
-.markdown-body .pl-sr .pl-sra {
-  color: var(--color-prettylights-syntax-string);
-}
-
-.markdown-body .pl-v,
-.markdown-body .pl-smw {
-  color: var(--color-prettylights-syntax-variable);
-}
-
-.markdown-body .pl-bu {
-  color: var(--color-prettylights-syntax-brackethighlighter-unmatched);
-}
-
-.markdown-body .pl-ii {
-  color: var(--color-prettylights-syntax-invalid-illegal-text);
-  background-color: var(--color-prettylights-syntax-invalid-illegal-bg);
-}
-
-.markdown-body .pl-c2 {
-  color: var(--color-prettylights-syntax-carriage-return-text);
-  background-color: var(--color-prettylights-syntax-carriage-return-bg);
-}
-
-.markdown-body .pl-sr .pl-cce {
-  font-weight: bold;
-  color: var(--color-prettylights-syntax-string-regexp);
-}
-
-.markdown-body .pl-ml {
-  color: var(--color-prettylights-syntax-markup-list);
-}
-
-.markdown-body .pl-mh,
-.markdown-body .pl-mh .pl-en,
-.markdown-body .pl-ms {
-  font-weight: bold;
-  color: var(--color-prettylights-syntax-markup-heading);
-}
-
-.markdown-body .pl-mi {
-  font-style: italic;
-  color: var(--color-prettylights-syntax-markup-italic);
-}
-
-.markdown-body .pl-mb {
-  font-weight: bold;
-  color: var(--color-prettylights-syntax-markup-bold);
-}
-
-.markdown-body .pl-md {
-  color: var(--color-prettylights-syntax-markup-deleted-text);
-  background-color: var(--color-prettylights-syntax-markup-deleted-bg);
-}
-
-.markdown-body .pl-mi1 {
-  color: var(--color-prettylights-syntax-markup-inserted-text);
-  background-color: var(--color-prettylights-syntax-markup-inserted-bg);
-}
-
-.markdown-body .pl-mc {
-  color: var(--color-prettylights-syntax-markup-changed-text);
-  background-color: var(--color-prettylights-syntax-markup-changed-bg);
-}
-
-.markdown-body .pl-mi2 {
-  color: var(--color-prettylights-syntax-markup-ignored-text);
-  background-color: var(--color-prettylights-syntax-markup-ignored-bg);
-}
-
-.markdown-body .pl-mdr {
-  font-weight: bold;
-  color: var(--color-prettylights-syntax-meta-diff-range);
-}
-
-.markdown-body .pl-ba {
-  color: var(--color-prettylights-syntax-brackethighlighter-angle);
-}
-
-.markdown-body .pl-sg {
-  color: var(--color-prettylights-syntax-sublimelinter-gutter-mark);
-}
-
-.markdown-body .pl-corl {
-  text-decoration: underline;
-  color: var(--color-prettylights-syntax-constant-other-reference-link);
 }
 
 .markdown-body g-emoji {

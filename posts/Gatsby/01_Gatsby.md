@@ -23,7 +23,7 @@ Gatsby로 Markdown기반의 블로그를 만들려고 한다면, [Gatsby 공식�
 
 # 1. CSR vs SSG vs SSR
 
-**Gatsby는 <mark style='background-color: #fff5b1'>SSG, CSR, SSR</mark> 3가지 렌더링 옵션을 모두 지원한다.** 따라서 Gatsby를 이해하기 위해서는 이 3가지 렌더링의 차이점을 이해할 필요가 있다.
+**Gatsby는 <mark>SSG, CSR, SSR</mark> 3가지 렌더링 옵션을 모두 지원한다.** 따라서 Gatsby를 이해하기 위해서는 이 3가지 렌더링의 차이점을 이해할 필요가 있다.
 
 ## 1.1. CSR 이란?
 
@@ -53,7 +53,7 @@ CSR 프로젝트를 빌드하면 한 세트의 정적파일(html, js, css)이 �
 
 SSR(Server-side Rendering)은 CSR 방식의 SEO(검색 엔진 최적화)문제를 해결하기 위해 최근에 다시 주목 받고 있는 렌더링 방식이다. Next.js가 SSR방식으로 동작하는 대표적인 프레임워크다.
 
-**SSR에서는 클라이언트가 페이지를 요청하면, 서버는 먼저 필요한 데이터를 모으고, <mark style='background-color: #fff5b1'>모은 데이터와 함께 html파일을 렌더링 한 뒤,</mark> 클라이언트에게 전송한다.**
+**SSR에서는 클라이언트가 페이지를 요청하면, 서버는 먼저 필요한 데이터를 모으고, <mark>모은 데이터와 함께 html파일을 렌더링 한 뒤,</mark> 클라이언트에게 전송한다.**
 
 SSR은 CSR에 비해서 다음과 같은 장단점이 있다.
 
@@ -73,7 +73,7 @@ SSR은 CSR에 비해서 다음과 같은 장단점이 있다.
 
 SSG 빌드 시점에 모든 페이지에 대해 pre-rendered된 html파일을 생성한다.
 
-혼동하지 말아야할 점은 **SSG(Static Site Generator)가 <mark style='background-color: #fff5b1'>CSR, SSR 모두와 다른 별개의 렌더링 옵션</mark>이라는 것이다.**
+혼동하지 말아야할 점은 **SSG(Static Site Generator)가 <mark>CSR, SSR 모두와 다른 별개의 렌더링 옵션</mark>이라는 것이다.**
 
 SSG만의 차이점은 다음과 같다.
 
@@ -95,7 +95,7 @@ SSG만의 차이점은 다음과 같다.
 
 # 2. Gatsby 렌더링
 
-Gatsby는 SSG와 CSR을 기본적으로 지원하며, 5버전 이후로는 SSG도 공식적으로 지원한다. <mark style='background-color: #fff5b1'>**한 마디로 그냥 다 할 수 있다.**<mark>
+Gatsby는 SSG와 CSR을 기본적으로 지원하며, 5버전 이후로는 SSG도 공식적으로 지원한다. <mark>**한 마디로 그냥 다 할 수 있다.**<mark>
 
 > As already mentioned, Gatsby always supported SSG and client-side rendering. Now, two other rendering options are available: Deferred Static Generation (DSG) and Server-Side rendering (SSR).
 > [Gatsby: Rendering Options]
@@ -108,11 +108,11 @@ Gatsby는 기본적으로 정적 사이트 생성기이다.
 
 ## 2.2. Gatsby CSR
 
-만약 Gatsby가 단순히 SSG로써 정적인 html파일을 제공하는데 그친다면, 사용자와 상호작용하지 못하는 아주 재미없는 사이트가 될 것이다. **그래서 Gatsby는 <mark style='background-color: #fff5b1'>Hydration</mark>을 통해 CSR을 제공한다.**
+만약 Gatsby가 단순히 SSG로써 정적인 html파일을 제공하는데 그친다면, 사용자와 상호작용하지 못하는 아주 재미없는 사이트가 될 것이다. **그래서 Gatsby는 <mark>Hydration</mark>을 통해 CSR을 제공한다.**
 
-**Hydration이란 정적인 <mark style='background-color: #fff5b1'>HTML을 React Application으로</mark> 변환하는 과정이다.** 브라우저 측에서 전달받은 JavaScript를 로드하여 HTML파일이 사용자와 상호 작용 가능하도록 만든다.
+**Hydration이란 정적인 <mark>HTML을 React Application으로</mark> 변환하는 과정이다.** 브라우저 측에서 전달받은 JavaScript를 로드하여 HTML파일이 사용자와 상호 작용 가능하도록 만든다.
 
-이 Hydration을 통해 Gatsby는 <mark style='background-color: #fff5b1'>React의 기능을 완전히 포함</mark>할 수 있다. [Gatsby의 Client Only Routing 항목](https://www.gatsbyjs.com/docs/how-to/routing/client-only-routes-and-user-authentication/)을 보면 클라이언트 측에서만 존재하는 url를 만들 수 있다고 하는데, 이게 곧 기존의 CSR 방식을 말한다. 다음과 같이 `pages/app.js`에 React의 최상단 컴포넌트에 라우팅 기능을 추가함으로써, `/app/` 이후의 url 주소는 SPA(Single Page Application) 방식의 React와 동일하게 동작한다.
+이 Hydration을 통해 Gatsby는 <mark>React의 기능을 완전히 포함</mark>할 수 있다. [Gatsby의 Client Only Routing 항목](https://www.gatsbyjs.com/docs/how-to/routing/client-only-routes-and-user-authentication/)을 보면 클라이언트 측에서만 존재하는 url를 만들 수 있다고 하는데, 이게 곧 기존의 CSR 방식을 말한다. 다음과 같이 `pages/app.js`에 React의 최상단 컴포넌트에 라우팅 기능을 추가함으로써, `/app/` 이후의 url 주소는 SPA(Single Page Application) 방식의 React와 동일하게 동작한다.
 
 ```js
 // pages/app.js
@@ -198,7 +198,7 @@ Gatsby SSR 렌더링은 5버전 부터 공식적으로 제공된다.
 ## 3.2. Gatsby 파일
 
 - **gatsby-config.js**  
-  **<mark style='background-color: #fff5b1'>Gatsby 주요 설정 파일</mark>로 Webpack 설정을 포함한다.** 플러그인, 메타데이터, 데이터 소스, 웹팩 등 사이트의 전반적인 동작을 커스터마이징할 수 있다.
+  **<mark>Gatsby 주요 설정 파일</mark>로 Webpack 설정을 포함한다.** 플러그인, 메타데이터, 데이터 소스, 웹팩 등 사이트의 전반적인 동작을 커스터마이징할 수 있다.
 
 - **gatsby-node.js**  
   **Gatsby 노드 API에 대한 설정 파일이다.** Gatsby 노드 API는 빌드 단계에서 페이지 생성, 데이터 가져오기, 동적 라우팅 설정 등의 작업을 수행할 수 있다. 구체적인 노드 API는 [Gatsby 공식문서](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/)에서 확인할 수 있다.

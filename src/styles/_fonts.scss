@@ -1,3 +1,5 @@
+// SCDream
+
 @font-face {
   font-family: 'SCDream';
   font-style: thin;
@@ -7,7 +9,7 @@
 
 @font-face {
   font-family: 'SCDream';
-  font-style: extra-light;
+  font-style: 'extra-light';
   font-weight: 200;
   src: url('./../assets/fonts/SCDream2.otf');
 }
@@ -35,7 +37,7 @@
 
 @font-face {
   font-family: 'SCDream';
-  font-style: semi-bold;
+  font-style: 'semi-bold';
   font-weight: 600;
   src: url('./../assets/fonts/SCDream6.otf');
 }
@@ -49,7 +51,7 @@
 
 @font-face {
   font-family: 'SCDream';
-  font-style: extra-bold;
+  font-style: 'extra-bold';
   font-weight: 800;
   src: url('./../assets/fonts/SCDream8.otf');
 }
@@ -59,4 +61,41 @@
   font-style: heavy;
   font-weight: 900;
   src: url('./../assets/fonts/SCDream9.otf');
+}
+
+// NanumSquareNeo
+
+@font-face {
+  font-family: 'NanumSquareNeo';
+  font-style: light;
+  font-weight: 300;
+  src: url('./../assets/fonts/NanumSquareNeoOTF-Lt.otf');
+}
+
+@font-face {
+  font-family: 'NanumSquareNeo';
+  font-style: medium;
+  font-weight: 400;
+  src: url('./../assets/fonts/NanumSquareNeoOTF-Rg.otf');
+}
+
+@font-face {
+  font-family: 'NanumSquareNeo';
+  font-style: 'bold';
+  font-weight: 700;
+  src: url('./../assets/fonts/NanumSquareNeoOTF-Bd.otf');
+}
+
+@font-face {
+  font-family: 'NanumSquareNeo';
+  font-style: 'extra-bold';
+  font-weight: 800;
+  src: url('./../assets/fonts/NanumSquareNeoOTF-Eb.otf');
+}
+
+@font-face {
+  font-family: 'NanumSquareNeo';
+  font-style: 'heavy';
+  font-weight: 900;
+  src: url('./../assets/fonts/NanumSquareNeoOTF-Hv.otf');
 }

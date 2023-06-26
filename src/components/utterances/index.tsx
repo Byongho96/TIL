@@ -44,6 +44,7 @@ const Utterances: React.FC<IUtterancesProps> = React.memo(
       // theme이 변경되면 utterRㄷf의 child를 삭제하고 다시 생성
       return () => {
         utterElement.removeChild(utterElement.firstChild)
+        utterances.remove()
       }
     }, [theme])
 

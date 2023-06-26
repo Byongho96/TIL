@@ -45,12 +45,6 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: `gatsby-plugin-mdx`,
-      options: {
-        extensions: [`.mdx`, `.md`],
-      },
-    },
-    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
@@ -85,45 +79,6 @@ const config: GatsbyConfig = {
             },
           },
           `gatsby-remark-gifs`,
-          {
-            resolve: `gatsby-remark-prismjs`, // 코드 태그에 대한 스타일링
-            options: {
-              classPrefix: 'language-', // prsimjs css 파일을 적용시키기 위한 classPrefix
-              inlineCodeMarker: null, // 인라인 코드에 대한 언어 설정 가능 여부
-              aliases: {}, // 언어 별 커스텀 alias 설정 Ex. '{ pt: "python" }'
-              showLineNumbers: false,
-              noInlineHighlight: false, // 인라인 코드에 대한 하이라이팅 여부
-              // This adds a new language definition to Prism or extend an already
-              // existing language definition. More details on this option can be
-              // found under the header "Add new language definition or extend an
-              // existing language" below.
-              languageExtensions: [
-                {
-                  language: 'superscript',
-                  extend: 'javascript',
-                  definition: {
-                    superscript_types: /(SuperType)/,
-                  },
-                  insertBefore: {
-                    function: {
-                      superscript_keywords: /(superif|superelse)/,
-                    },
-                  },
-                },
-              ],
-              // Customize the prompt used in shell output
-              // Values below are default
-              prompt: {
-                user: 'root',
-                host: 'localhost',
-                global: false,
-              },
-              // By default the HTML entities <>&'" are escaped.
-              // Add additional HTML escapes by providing a mapping
-              // of HTML entities and their escape value IE: { '}': '&#123;' }
-              escapeEntities: {},
-            },
-          },
           {
             resolve: `gatsby-remark-autolink-headers`, // After Prisms!! 마크다운 header에 대한 anchor 태그를 자동으로 생성해줌
             options: {

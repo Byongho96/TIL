@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import * as styles from './style.module.scss'
 import type { PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
@@ -9,6 +9,8 @@ import ToTheTop from '@components/to-the-top'
 import Utterances from '@components/utterances'
 import { ThemeContext } from '@contexts/theme-context'
 import CategoryLayout from '@layouts/category-layout'
+import highlightCode from '@utils/highlightCode.ts'
+import '@styles/_markdown.scss'
 
 const PostPage: React.FC<PageProps> = ({ pageContext, data }) => {
   const { theme } = useContext(ThemeContext)
@@ -36,26 +38,28 @@ const PostPage: React.FC<PageProps> = ({ pageContext, data }) => {
   // nextpost is the post after the current post
   const nextPost = index === postArray.length - 1 ? null : postArray[index + 1]
 
+  useEffect(() => {
+    highlightCode()
+  })
+
   return (
     <CategoryLayout selectedCategory={pageContext.parent.relativeDirectory}>
       <div className={styles.container}>
-        <PostHeader frontmatter={data.markdownRemark.frontmatter} />
         <div className={styles.post}>
-          <div className={styles.markdownUtter}>
-            <div
-              className={`markdown-body ${theme} ${styles.markdown}`}
-              dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
-            />
-            <div>
-              <NextPosts prevPost={prevPost} nextPost={nextPost} />
-            </div>
-            <Utterances
-              theme={theme === 'dark' ? 'github-dark' : 'github-light'}
-            />
+          <PostHeader frontmatter={data.markdownRemark.frontmatter} />
+          <div
+            className={`markdown-body ${theme} ${styles.markdown}`}
+            dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
+          />
+          <div>
+            <NextPosts prevPost={prevPost} nextPost={nextPost} />
           </div>
-          <div className={styles.toc}>
-            <TableContent toc={data.markdownRemark.tableOfContents} />
-          </div>
+          <Utterances
+            theme={theme === 'dark' ? 'github-dark' : 'github-light'}
+          />
+        </div>
+        <div className={styles.toc}>
+          <TableContent toc={data.markdownRemark.tableOfContents} />
         </div>
       </div>
       <ToTheTop />
@@ -105,3 +109,7 @@ export const query = graphql`
 `
 
 export default PostPage
+
+export const Head = () => {
+  return <></>
+}

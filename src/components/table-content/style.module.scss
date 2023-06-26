@@ -1,15 +1,17 @@
 @import '../../styles/_colors.scss';
 
 .toc ul {
-  margin-left: 0.5rem;
+  padding: 0 1rem;
 }
 
 .toc a {
+  overflow: hidden;
   line-height: 150%;
   text-decoration: none;
   color: $font-gray;
   font-size: 0.9rem;
   font-weight: 300;
+  text-overflow: ellipsis;
   white-space: nowrap;
 
   &.active {

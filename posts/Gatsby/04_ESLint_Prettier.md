@@ -22,7 +22,7 @@ Prettier와 ESLint는 각각 코드 포맷팅(Code Formatting)과 린팅(Linting
 
 **Husky는 Git 훅 관리 도구이다.** Git 이벤트(commit, push, ...) 발생 시, 이벤트 전/후에 특정 스크립트를 실행시킬 수 있다.
 
-<mark style='background-color: #fff5b1'>생각해보면 앞서 설정한 Prettier와 ESLint는 모두 자동으로 실행되지 않는다. CLI 명령어를 돌리거나 vsCode와 같은 코드 편집기에 관련 설정을 해줘야 한다.</mark> 만약 팀의 누군가가 관련 설정을 하지 않고, git에 커밋하면 그냥 올라가는 것이다. 이를 방지하기 위해서, Husky와 같은 도구를 사용해 Prettier와 ESLint를 커밋 시마다 강제할 수 있다.
+<mark>생각해보면 앞서 설정한 Prettier와 ESLint는 모두 자동으로 실행되지 않는다. CLI 명령어를 돌리거나 vsCode와 같은 코드 편집기에 관련 설정을 해줘야 한다.</mark> 만약 팀의 누군가가 관련 설정을 하지 않고, git에 커밋하면 그냥 올라가는 것이다. 이를 방지하기 위해서, Husky와 같은 도구를 사용해 Prettier와 ESLint를 커밋 시마다 강제할 수 있다.
 
 # 2. Prettier
 
@@ -82,7 +82,7 @@ Prettier와 ESLint는 각각 코드 포맷팅(Code Formatting)과 린팅(Linting
 
 5. **prettier vsCode 연동**  
    헷갈리지 말아야할 것이 prettier은 설치만 한다고 해서, **파일 저장 시** prettier 코드 포맷팅이 적용되는 것이 아니다.
-   <mark style='background-color: #fff5b1'>**파일 저장 시 prettier 적용을 위해서는 코드 편집기의 도움이 필요하다.**</mark> vsCode의 경우 **Prettier - Code formatter** 플러그인을 설치하고 아래 설정을 체크해준다.
+   <mark>**파일 저장 시 prettier 적용을 위해서는 코드 편집기의 도움이 필요하다.**</mark> vsCode의 경우 **Prettier - Code formatter** 플러그인을 설치하고 아래 설정을 체크해준다.
 
    <img src="./images/prettier_vscode.png" alt="prettier_vscode.png" width=600/>
 
@@ -161,7 +161,7 @@ Prettier와 ESLint는 각각 코드 포맷팅(Code Formatting)과 린팅(Linting
    ```
 
 5. **ESLint vsCode 연동**  
-    역시나 헷갈리지 말아야할 것이 ESLint를 설치만 한다고 해서, **파일 저장 시** ESLint가 적용되지는 않는다. <mark style='background-color: #fff5b1'>**파일 저장 시 ESLint 적용을 위해서는 코드 편집기의 도움이 필요하다.**</mark>
+    역시나 헷갈리지 말아야할 것이 ESLint를 설치만 한다고 해서, **파일 저장 시** ESLint가 적용되지는 않는다. <mark>**파일 저장 시 ESLint 적용을 위해서는 코드 편집기의 도움이 필요하다.**</mark>
 
    vsCode의 경우 **ESLint** 플러그인을 설치하고 아래 설정을 체크해준다.
 
@@ -178,7 +178,7 @@ Prettier와 ESLint는 각각 코드 포맷팅(Code Formatting)과 린팅(Linting
 
 ## 3.1. ESLint & Prettier
 
-앞 서 설명한 것처럼 **린팅은 코드 포맷팅 기능을 포함한다.** 따라서 코드 포맷팅(스타일링)에서 ESLint와 prettier의 규칙이 충돌할 수 있기 때문에 이를 중재할 필요가 있다. <mark style='background-color: #fff5b1'>보통 충돌이 일어날 때, prettier의 규칙을 따르도록 설정한다.</mark>
+앞 서 설명한 것처럼 **린팅은 코드 포맷팅 기능을 포함한다.** 따라서 코드 포맷팅(스타일링)에서 ESLint와 prettier의 규칙이 충돌할 수 있기 때문에 이를 중재할 필요가 있다. <mark>보통 충돌이 일어날 때, prettier의 규칙을 따르도록 설정한다.</mark>
 
 1. **config 설치**
 
@@ -332,7 +332,7 @@ ESliint를 이용해서 모듈 import 순서를 관리할 수 있다. 아래 내
 
 # 4. Husky
 
-<mark style='background-color: #fff5b1'>lint-staged</mark>를 Husky와 함께 설치해서 사용할 것이다. 왜냐하면 Husky를 이용해 commit 전에 코드 검사를 실행할텐데, 그냥 `npx eslint --fix` 구문을 사용하면, 작업영역(working directory)에서 린팅이 일어난다. commit 시에 검사를 하겠다는 말은 `git add` 명령어로 올라간 staging area의 파일들을 수정하겠다는 의미이다.
+<mark>lint-staged</mark>를 Husky와 함께 설치해서 사용할 것이다. 왜냐하면 Husky를 이용해 commit 전에 코드 검사를 실행할텐데, 그냥 `npx eslint --fix` 구문을 사용하면, 작업영역(working directory)에서 린팅이 일어난다. commit 시에 검사를 하겠다는 말은 `git add` 명령어로 올라간 staging area의 파일들을 수정하겠다는 의미이다.
 
 **이렇게 staged된 파일에 대해서 코드 검사를 지원하는 라이브러리가 'lint-staged'이다.** 의미를 알고나니, 라이브러리의 이름이 참 직관적이다.
 
