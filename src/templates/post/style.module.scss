@@ -1,4 +1,5 @@
-@import '../../styles/_responsive.scss';
+@import '@styles/_responsive.scss';
+@import '@styles/_colors.scss';
 
 .container {
   display: flex;
@@ -23,7 +24,7 @@
 .markdown {
   position: relative;
   padding-bottom: 3rem;
-  border-bottom: 6px double var(--main-color);
+  border-bottom: 6px double $bg-gray;
 }
 
 .toc {

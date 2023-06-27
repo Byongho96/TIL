@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import * as styles from './style.module.scss'
 import { Link } from 'gatsby'
 import { useCategorizedPosts } from '@hooks/use-categorized-posts'
-import { cutLetters } from '@utils/cutLetters'
 
 // 최대 3단계 카테고리까지만(루트 카테고리 포함) 지원
 
@@ -104,7 +103,7 @@ const Posts: React.FC = ({ posts, isSelected }) => {
       {posts.map((post) => (
         <li key={post.id} className={`${styles.post} ${selected} `}>
           <Link to={`/posts/${post.relativePath}`} activeClassName="active">
-            {cutLetters(post.title || post.name, 13)}
+            {post.title || post.name}
           </Link>
         </li>
       ))}

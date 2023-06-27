@@ -6,7 +6,7 @@ const ProfileImage: React.FC = () => {
   return (
     <StaticImage
       className={styles.profileImage}
-      src="../../assets/images/celebrity.png"
+      src="../../assets/images/profile-image.png"
       alt="profile image"
     />
   )

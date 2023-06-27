@@ -1,63 +1,63 @@
-import React, { useState, useEffect, createContext } from 'react'
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+  createContext,
+} from 'react'
 
 interface Props {
   children: React.ReactNode
 }
 
+interface ThemeContext {
+  theme: string
+  toggleTheme: () => void
+}
+
 // Context 생성
-export const ThemeContext = createContext({
-  theme: 'light',
+export const ThemeContext = createContext<ThemeContext>({
+  theme: 'dark',
   toggleTheme: null,
 })
 
 // Context API로 theme과 toggleTheme을 하위 컴포넌트에 내려줌
-export const ThemeProvider = ({ children }: Props) => {
-  const [theme, setTheme] = useState('dark')
-
-  const toggleTheme = () => {
+export const ThemeProvider: React.FC<Props> = ({ children }) => {
+  const [theme, setTheme] = useState('dark') // theme 정의
+  const toggleTheme = useCallback(() => {
     setTheme((theme) => {
       return theme === 'light' ? 'dark' : 'light'
     })
-  }
-
-  // 1. 다크모드 ('light'에 보수적인 코드)
-  // 1.1. localStorage에 저장된 theme이 'dark'이면 theme 변경
-  // 1.2. localStorgae에 저장된 theme이 'light'이면 시스템의 컬러 모드(prefers-color-scheme)에 따라 theme 변경
-  // 1.3. 시스템의 컬러 모드(prefers-color-scheme) 가 변경될 때마다 theme 변경하는 이벤트 리스너 등록
-  useEffect(() => {
-    const localTheme = localStorage.getItem('theme')
-
-    if (localTheme === 'dark') {
-      setTheme(localTheme)
-    } else {
-      const systemTheme = window.matchMedia(
-        '(prefers-color-scheme: dark)'
-      ).matches
-      setTheme(systemTheme ? 'dark' : 'light')
-    }
-
-    const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)')
-    const toggleDark = (e) => {
-      setTheme(e.matches ? 'dark' : 'light')
-    }
-    mediaQueryList.addEventListener('change', toggleDark)
-    return () => {
-      mediaQueryList.removeEventListener('change', toggleDark)
-    }
   }, [])
 
-  // 1.3. theme이 변경되면 localStorage에 theme 저장
-  // 1.4. theme 값에 따라 :root element의 classList에 dark 추가/제거
+  // 페이지 첫 mount 시에는 제외하고, theme 변경 시마다 동작
+  const isSetted = useRef(false)
   useEffect(() => {
-    localStorage.setItem('theme', theme)
+    if (!isSetted.current) {
+      isSetted.current = true
+      return
+    }
 
-    const root = document.querySelector(':root')
+    sessionStorage.setItem('theme', theme) // theme 변경 시마다 세션스토리지에 저장
+    const root = document.querySelector(':root') // theme에 따라 :root의 클래스를 토글한다.
     if (theme === 'light') {
       root.classList.add('light')
     } else {
       root.classList.remove('light')
     }
   }, [theme])
+
+  // 페이지 첫 로딩시 테마 결정
+  useEffect(() => {
+    const sessionTheme = sessionStorage.getItem('theme')
+    if (sessionTheme) {
+      setTheme(sessionTheme)
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme('dark')
+    } else {
+      setTheme('light')
+    }
+  }, [])
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>

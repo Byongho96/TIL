@@ -1,13 +1,13 @@
 @import '../../styles/_animations.scss';
 
-.container {
+.color-change {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
 
-.color-picker {
+.color-change__picker {
   width: 2rem;
   height: 2rem;
   border: none;
@@ -17,30 +17,31 @@
   cursor: pointer;
 }
 
-.theme {
-  display: relative;
+.color-change__theme {
+  position: relative;
   cursor: pointer;
 
   &.light {
     @include animation-floating(3s, 8%); // 달이 둥둥 떠있는 애니메이션
   }
+
   &.dark {
     @include animation-rotate-clockwise(10s); // 해가 회전하는 애니메이션
   }
 }
 
-.theme svg {
+.color-change__theme svg {
   width: 2rem;
   height: 2rem;
 }
 
 // svg 보다 아래(path)를 탐색
-.theme path {
+.color-change__theme path {
   fill: var(--font-color);
   stroke: var(--font-color);
 }
 
-.sun {
+.color-change__theme--sun {
   top: 0;
   left: 0;
   transform: scale(0) rotate(0deg);
@@ -51,7 +52,7 @@
   }
 }
 
-.moon {
+.color-change__theme--moon {
   position: absolute;
   top: 0;
   left: 0;

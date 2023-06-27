@@ -1,69 +1,55 @@
-import * as React from 'react'
-import * as styles from './style.module.scss'
+import React, { useRef } from 'react'
+import './style.scss'
 import { Link } from 'gatsby'
 import ToggleIcon from '@assets/svgs/toggle.svg'
 import ColorChange from '@components/color-change'
 import { useSiteMetadata } from '@hooks/use-site-metadata'
 
 const Navigation: React.FC = () => {
+  const navbarMenu = useRef<HTMLUListElement>(null)
   const { author } = useSiteMetadata()
 
   // 토글 버튼 눌렀을때 작동
-  const handleClick = () => {
-    const navBar = document.querySelector(`.${styles.navLinks}`)
-    navBar.classList.toggle(styles.active)
+  const handleToggleClick = () => {
+    navbarMenu.current.classList.toggle('open')
   }
 
+  // 토글 버튼 눌렀을때 작동
   const handleLinkClick = () => {
-    const navBar = document.querySelector(`.${styles.navLinks}`)
-    navBar.classList.remove(styles.active)
+    navbarMenu.current.classList.remove('open')
   }
 
   return (
-    <div className={styles.navBar}>
-      <div className={styles.navHeader}>
-        <Link to="/" className={styles.navLinkText}>
-          {author}
-        </Link>
-        <div className={styles.colorChange}>
+    <nav className="navbar">
+      <div className="navbar__logoColor">
+        <div className="navbar__logo">
+          <Link to="/">{author}</Link>
+        </div>
+        <div className="navbar__color">
           <ColorChange />
         </div>
       </div>
-      <nav>
-        <ul className={styles.navLinks}>
-          <li>
-            <Link
-              to="/"
-              className={styles.navLinkText}
-              onClick={handleLinkClick}
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/about"
-              className={styles.navLinkText}
-              onClick={handleLinkClick}
-            >
-              About
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/posts"
-              className={styles.navLinkText}
-              onClick={handleLinkClick}
-            >
-              Posts
-            </Link>
-          </li>
-        </ul>
-      </nav>
-      <div className={styles.navToggle} onClick={handleClick}>
+      <ul className="navbar__menu" ref={navbarMenu}>
+        <li>
+          <Link to="/" onClick={handleLinkClick}>
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link to="/about" onClick={handleLinkClick}>
+            About
+          </Link>
+        </li>
+        <li>
+          <Link to="/posts" onClick={handleLinkClick}>
+            Posts
+          </Link>
+        </li>
+      </ul>
+      <div className="navbar__toggleBtn" onClick={handleToggleClick}>
         <ToggleIcon />
       </div>
-    </div>
+    </nav>
   )
 }
 

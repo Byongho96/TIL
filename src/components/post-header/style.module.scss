@@ -7,7 +7,7 @@
   gap: 2.5rem;
   position: relative;
   padding: 0 0 1.5rem;
-  border-bottom: 6px double var(--main-color);
+  border-bottom: 6px double $bg-gray;
 }
 
 .title {

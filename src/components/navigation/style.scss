@@ -1,0 +1,109 @@
+@import '../../styles/_responsive.scss';
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 4rem 1.3rem 4rem;
+  border-bottom: 5px solid var(--main-color);
+}
+
+.navbar--text {
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--font-color);
+}
+
+.navbar__logoColor {
+  flex: 1;
+  display: flex;
+}
+
+.navbar__logo a {
+  @extend .navbar--text;
+}
+
+.navbar__color {
+  flex: 1;
+  display: flex;
+  padding: 0 2rem 0 1rem;
+}
+
+.navbar__menu {
+  display: flex;
+  gap: 3rem;
+}
+
+.navbar__menu a {
+  @extend .navbar--text;
+}
+
+.navbar__toggleBtn {
+  display: none;
+  position: absolute;
+  top: 1.6rem;
+  right: 1.5rem;
+  cursor: pointer;
+
+  svg {
+    width: 1.8rem;
+    height: auto;
+  }
+
+  path {
+    stroke: var(--font-color);
+    fill: var(--font-color);
+  }
+}
+
+// 모바일
+@include tablet {
+  .navbar {
+    padding: 1.5rem 3rem 1.3rem 3rem;
+  }
+}
+
+// 모바일
+@include mobile {
+  .navbar {
+    padding: 1.2rem 1rem 1rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .navbar--text {
+    font-size: 1.7rem;
+  }
+
+  .navbar__color {
+    padding: 0 4rem 0 1rem;
+  }
+
+  .navbar__toggleBtn {
+    display: block;
+  }
+
+  .navbar__menu {
+    display: grid;
+    gap: 0;
+    grid-template-rows: repeat(3, 0fr);
+    overflow: hidden;
+    opacity: 0;
+    transition: grid-template-rows 0.2s ease-in-out, opacity 0.2s ease-in-out,
+      margin 0.2s ease-in-out;
+  }
+
+  .navbar__menu.open {
+    gap: 0.5rem;
+    opacity: 1;
+    margin: 0.5rem 0 0 0;
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .navbar__menu li {
+    min-height: 0;
+    text-align: center;
+  }
+}
