@@ -2,7 +2,7 @@
 title: '06. Gatsby 네비게이션 레이아웃 설정'
 updatedAt: '2023-06-27'
 createdAt: '2023-06-27'
-isCompleted: false
+isCompleted: true
 description: 'SSG 기반 Gatsby 프로젝트에서 unmount되지 않는 네비게이션 레이아웃을 만든다.'
 tags: ['gatsby', 'layout', '레이아웃', 'navigation', '네비게이션']
 reference:
@@ -16,7 +16,7 @@ React에서는 Nested Route로 손 쉽게 레이아웃을 구현할 수 있다. 
 
 > As mentioned earlier, Gatsby does not, by default, automatically wrap pages in a layout component. The “top level” component is the page itself. As a result, when the “top level” component changes between pages, React will re-render all children. This means that shared components like navigations will unmount and remount. 
 
-다행히 이어서 바로 해결방법도 제시한다. browser API & SSR API의 `wrapPageElement`를 사용하면 된다고 한다.
+다행히 이어서 바로 해결방법도 제시한다. Browser API & SSR API의 `wrapPageElement`를 사용하면 된다고 한다.
 
 > If you need to set a wrapper component around page components that won’t get unmounted on page changes, use the wrapPageElement browser API and the SSR equivalent.
 
@@ -53,7 +53,7 @@ export default NavigationLayout
 - `import React from 'react` 구문을 넣고
 - 파일 이름을 `gatsby-browser.ts`에서 `gatsby-browser.tsx`로 바꿔야 했다. 
 
-ssr APIs에도 동일한 `wrapPageElement`가 있기 때문에, 본인의 프로젝트가 SSR 렌더링을 사용한다면 gatsby-ssr에도 같은 코드를 입력하면 된다.
+SSR APIs에도 동일한 `wrapPageElement`가 있기 때문에, 본인의 프로젝트가 SSR 렌더링을 사용한다면 gatsby-ssr에도 같은 코드를 입력하면 된다.
 
 ```js
 import React from 'react'

@@ -2,7 +2,7 @@
 title: '05. Gatsby 다크모드 구현하기 (feat. Sass)'
 updatedAt: '2023-06-26'
 createdAt: '2023-06-26'
-isCompleted: false
+isCompleted: true
 description: 'Sass(Scss) 기반 Gatsby 프로젝트에서 ThemeProvider를 이용한 다크모드를 구현한다.'
 tags: ['gatsby', 'theme', '다크모드', 'Sass', 'Scss']
 reference: 'https://fe-developers.kakaoent.com/2021/211118-dark-mode/'
@@ -271,7 +271,7 @@ Gatsby는 SSG기반의 프레임워크이어서 모든 url에 대응되는 index
 
 앞에서 설명은 안했지만, Gatsby는 정적인 index.html을 받아 이를 hydration하고 안에 있는 리액트코드를 돌리기까지 시간이 걸린다. 그래서 내가 설정한 다크모드와 웹사이트의 기본 다크모드가 다를 경우, 화면이 반짝거리는 flicker 현상이 일어나는데, 이게 매 url 이동마다 일어난다고 생각하면 끔찍한다.
 
-따라서 Gatsby는 모든 페이지에서 대해, 어떤 요소를 전역적으로 유지하기 위해 [wrapPageElement](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/#wrapRootElement)라는 browser API를 제공한다. 공식문서에 따르면 `wrapRootElement`는 context API와 같은 것에 적합하고, 네비게이션바와 같이 UI 관련 요소의 경우 `wrapPageElement`를 사용하라고 한다.
+따라서 Gatsby는 모든 페이지에서 대해, 어떤 요소를 전역적으로 유지하기 위해 [wrapPageElement](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/#wrapRootElement)라는 Browser API를 제공한다. 공식문서에 따르면 `wrapRootElement`는 context API와 같은 것에 적합하고, 네비게이션바와 같이 UI 관련 요소의 경우 `wrapPageElement`를 사용하라고 한다.
 
 > This is useful to set up any context providers that will wrap your application. For setting persistent UI elements around pages use wrapPageElement. [Gatsby Doc]
 
