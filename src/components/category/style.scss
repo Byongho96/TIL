@@ -1,0 +1,75 @@
+@import '@styles/_animations.scss';
+@import '@styles/_colors.scss';
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  width: 100%;
+  padding: 1rem 0;
+  border-right: 3px solid rgba(187, 187, 187, 0.5);
+}
+
+.sidebar__total {
+  color: $font-gray;
+  font-weight: 500;
+}
+
+.sidebar__menu {
+  display: flex;
+  flex-direction: column;
+  list-style-type: square;
+}
+
+.sidebar__menu ul {
+  margin: 0 0 0 1em;
+  list-style-type: disc;
+}
+
+.sidebar__menu ul ul {
+  margin: 0 0 0 1em;
+  list-style-type: circle;
+}
+
+.sidebar__category {
+  display: inline-block;
+  margin-top: 0.8rem;
+  color: var(--font-color);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.sidebar__category:hover {
+  font-weight: 800;
+}
+
+.sidebar__posts {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar__posts li {
+  opacity: 0;
+  height: 0;
+  transition: height 0.2s ease-in-out, opacity 0.2s ease-in-out,
+    margin 0.2s ease-in-out;
+}
+
+.sidebar__posts.open li {
+  opacity: 1;
+  height: 1em;
+  margin: 0.5em 0 0 0;
+}
+
+.sidebar__posts a {
+  color: $font-gray;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.sidebar__posts a:hover {
+  color: var(--font-color);
+}

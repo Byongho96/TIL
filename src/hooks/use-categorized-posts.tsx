@@ -1,14 +1,31 @@
 import { graphql, useStaticQuery } from 'gatsby'
 import { sortByName } from '@utils/sortByTypes'
 
-// 'posts' 폴더의 하위 md파일이 곧 포스트임을 가정
-// 'posts' 폴더의 하위 디렉토리가 곧 카테고리임을 가정
-// 'posts' 폴더의 하위 md파일들을 디렉토리 구조(카테고리)에 따라 가공하여 반환하는 훅
+// 마크다운 파일 정보
+interface Post {
+  id: string
+  title: string
+  relativePath: string
+}
 
-// 'posts' 하위 md 파일 만을 탐색
-// 'README' md 파일 제거
+// 카테고리(디렉토리) 정보
+interface Category {
+  name: string
+  posts: Post[]
+  nums: number
+  folders: Category[]
+}
 
-export const useCategorizedPosts = () => {
+interface CategorizedPosts {
+  totalPosts: number // 전체 포스트 수
+  categories: Category[] // 카테고리(디렉토리) 정보 배열
+}
+
+export const useCategorizedPosts = (): CategorizedPosts => {
+  // 마크다운 파일 수집
+  // 조건 1. isCompleted: true
+  // 조건 2. README.md 제외
+  // 조건 3. posts 디렉토리 하위
   const data = useStaticQuery(graphql`
     query {
       allMarkdownRemark(
@@ -35,76 +52,64 @@ export const useCategorizedPosts = () => {
     }
   `)
 
-  // 마크다운 파일을 디렉토리 구조에 따라 카테고리 분류
-  /*
-  type Post ={
-    id: string
-    title: string
-    relativePath: string
-  }
+  const totalPosts = data.allMarkdownRemark.nodes.length // 전체 포스트 수
 
-  type Folder = {
-    name: string
-    posts: Post[]
-    nums: number
-    folders: Folder[]
-  }
-
-  type Category = Folder[]
-  */
-  const totalPosts = data.allMarkdownRemark.nodes.length
+  // 마크다운 파일 순회하며 카테고리 분류
   const categories = []
-  data.allMarkdownRemark.nodes.forEach((node) => {
-    const { id, parent, frontmatter } = node
+  data.allMarkdownRemark.nodes.forEach((post) => {
+    // 데이터 분해
+    const { id, parent, frontmatter } = post
     const { name, relativePath } = parent
     const { title } = frontmatter
+
+    // 카테고리 분류를 위해 상대 경로를 배열로 변환
     const pathArray = relativePath.split('/')
 
-    // 최상단 카테고리 분류
-    const rootCategory = pathArray[0]
-    let foundCategory = categories.find(
-      (category) => category.name === rootCategory
+    // 루트 카테고리 분류
+    const rootCategoryName = pathArray[0]
+    let rootCategory = categories.find(
+      (category) => category.name === rootCategoryName
     )
-    if (!foundCategory) {
-      // 최상단 카테고리가 없으면 새로 생성
+    if (!rootCategory) {
+      // 루트 카테고리가 없을 경우, 새로 생성
       const newCategory = {
-        name: rootCategory,
+        name: rootCategoryName,
         num: 1,
         posts: [],
         subCategories: [],
       }
       categories.push(newCategory)
-      foundCategory = newCategory
+      rootCategory = newCategory
     } else {
-      // 최상단 카테고리가 있으면 갯수만 추가
-      foundCategory.num += 1
+      // 루트 카테고리가 있을 경우, 갯수만 업데이트
+      rootCategory.num += 1
     }
 
     // 서브 카테고리 분류
-    let parentCategory = foundCategory // 바로 위의 상대 부모 디렉토리를 기억해서 여러 depth를 처리
-    pathArray.slice(1, -1).forEach((subCategory) => {
-      let foundCategory = parentCategory.subCategories.find(
-        (category) => category.name === subCategory
+    let parentCategory = rootCategory // 상대 경로 배열을 순회하며, 부모 디렉토리 재할당
+    pathArray.slice(1, -1).forEach((subCategoryName) => {
+      let subCategory = parentCategory.subCategories.find(
+        (category) => category.name === subCategoryName
       )
-      if (!foundCategory) {
-        // 서브 카테고리가 없으면 새로 생성
+      if (!subCategory) {
+        // 서브 카테고리가 없을 경우, 새로 생성
         const newCategory = {
-          name: subCategory,
+          name: subCategoryName,
           num: 1,
           posts: [],
           subCategories: [],
         }
         parentCategory.subCategories.push(newCategory)
         parentCategory.subCategories.sort(sortByName) // 서브 카테고리 이름 순 정렬
-        foundCategory = newCategory
+        subCategory = newCategory
       } else {
-        // 서브 카테고리가 있으면 갯수만 추가
-        foundCategory.num += 1
+        // 서브 카테고리가 있을 경우, 새로 생성
+        subCategory.num += 1
       }
-      parentCategory = foundCategory
+      parentCategory = subCategory
     })
 
-    // 포스트 분류
+    // 포스트 삽입
     parentCategory.posts.push({ id, title, name, relativePath })
   })
 

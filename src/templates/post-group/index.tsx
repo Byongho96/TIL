@@ -8,8 +8,9 @@ import Typing from '@components/typing'
 import CategoryLayout from '@layouts/category-layout'
 
 const PostGroupPage: React.FC<PageProps> = ({ pageContext, data }) => {
+  console.log(pageContext)
   return (
-    <CategoryLayout selectedCategory={pageContext.name}>
+    <CategoryLayout openedCategory={pageContext.name}>
       <div className={styles.container}>
         <h1 className={styles.postGroup}>
           <Typing
