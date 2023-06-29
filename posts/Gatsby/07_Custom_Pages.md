@@ -165,4 +165,4 @@ export default PostPage
 
 # 3. 참조
 
--[Gatsby Getting Started Part6](https://www.gatsbyjs.com/docs/tutorial/getting-started/part-6/) -[Gatsby Programatically Create Pages from Data](https://www.gatsbyjs.com/docs/programmatically-create-pages-from-data/)
+- [Gatsby Getting Started Part6](https://www.gatsbyjs.com/docs/tutorial/getting-started/part-6/) -[Gatsby Programatically Create Pages from Data](https://www.gatsbyjs.com/docs/programmatically-create-pages-from-data/)

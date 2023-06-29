@@ -1,0 +1,29 @@
+@import '../../styles/_colors.scss';
+
+.toc ul {
+  margin: 0 0 0 1em;
+}
+
+.toc li {
+  overflow: hidden;
+  margin: 0.4em 0 0 0;
+  text-overflow: ellipsis;
+}
+
+.toc a {
+  overflow: hidden;
+  text-decoration: none;
+  color: $font-gray;
+  font-size: 0.9rem;
+  font-weight: 300;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.toc a.active {
+  color: var(--font-color);
+  font-weight: 500;
+  font-size: 0.95rem;
+}

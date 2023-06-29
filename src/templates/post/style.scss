@@ -1,55 +1,57 @@
 @import '@styles/_responsive.scss';
 @import '@styles/_colors.scss';
 
-.container {
-  display: flex;
-  align-items: flex-start;
-  & > div:first-child {
-    flex: 7;
-  }
-  & > div:last-child {
-    flex: 2;
-  }
+.post {
+  display: grid;
+  grid-template-columns: 9fr minmax(270px, 2fr);
+  align-items: start;
+  position: relative;
+  margin: 3rem 0 0 0;
 }
 
-.post {
+.post--article {
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  padding: 0 4rem;
-  width: 100px;
+  padding: 0 3rem 0 4rem;
+
   display: flex;
 }
 
-.markdown {
+.post--article--content {
   position: relative;
   padding-bottom: 3rem;
   border-bottom: 6px double $bg-gray;
 }
 
-.toc {
+.post--toc {
   position: sticky;
   top: 2rem;
+  padding: 0 2rem 0 0;
 }
 
 @include laptop {
   .post {
+    grid-template-columns: 1fr 0;
+  }
+
+  .post--article {
     padding: 0 1rem 0 3rem;
   }
 
-  .toc {
+  .post--toc {
     display: none;
   }
 }
 
 @include tablet {
-  .post {
+  .post--article {
     padding: 0 2rem;
   }
 }
 
 @include mobile {
-  .post {
+  .post--article {
     padding: 0 1rem;
   }
 }

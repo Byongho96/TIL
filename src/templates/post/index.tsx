@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react'
-import * as styles from './style.module.scss'
+import './style.scss'
 import type { PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 import NextPosts from '@components/next-posts'
 import PostHeader from '@components/post-header'
-import TableContent from '@components/table-content'
+import TableOfContent from '@components/table-of-content'
 import ToTheTop from '@components/to-the-top'
 import Utterances from '@components/utterances'
 import { ThemeContext } from '@contexts/theme-context'
@@ -44,24 +44,22 @@ const PostPage: React.FC<PageProps> = ({ pageContext, data }) => {
 
   return (
     <CategoryLayout defaultCategory={pageContext.relativeDirectory}>
-      <div className={styles.container}>
-        <div className={styles.post}>
+      <main className="post">
+        <article className="post--article">
           <PostHeader frontmatter={data.markdownRemark.frontmatter} />
           <div
-            className={`markdown-body ${theme} ${styles.markdown}`}
+            className={`post--article--content markdown-body ${theme}`}
             dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
           />
-          <div>
-            <NextPosts prevPost={prevPost} nextPost={nextPost} />
-          </div>
+          <NextPosts prevPost={prevPost} nextPost={nextPost} />
           <Utterances
             theme={theme === 'dark' ? 'github-dark' : 'github-light'}
           />
-        </div>
-        <div className={styles.toc}>
-          <TableContent toc={data.markdownRemark.tableOfContents} />
-        </div>
-      </div>
+        </article>
+        <aside className="post--toc">
+          <TableOfContent toc={data.markdownRemark.tableOfContents} />
+        </aside>
+      </main>
       <ToTheTop />
     </CategoryLayout>
   )
@@ -74,11 +72,12 @@ export const query = graphql`
       html
       tableOfContents
       frontmatter {
-        createdAt
-        isCompleted
-        reference
         title
+        createdAt
         updatedAt
+        tags
+        description
+        reference
       }
     }
     allMarkdownRemark(

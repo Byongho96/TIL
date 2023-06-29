@@ -1,0 +1,66 @@
+@import '../../styles/_colors.scss';
+@import '../../styles/_responsive.scss';
+
+.post-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  padding: 0 0 1.5rem;
+  border-bottom: 6px double $bg-gray;
+}
+
+.post-header--title {
+  margin: 0 0 2rem 0;
+  font-size: 3.5rem;
+  font-weight: 700;
+}
+
+.post-header--date-author {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: $font-gray;
+}
+
+.post-header--tags {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.post-header--tags--tag {
+  padding: 0.4rem 0.5rem;
+  border-radius: 10px;
+  background-color: #e3e3e3;
+  color: var(--main-color);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+@include tablet {
+  .post-header {
+    padding: 0 0 2rem;
+  }
+
+  .post-header--title {
+    font-size: 3rem;
+  }
+
+  .post-header--date-author {
+    font-size: 1rem;
+  }
+}
+
+@include mobile {
+  .post-header {
+    padding: 0 0 1.5rem;
+  }
+
+  .post-header--title {
+    font-size: 2.5rem;
+  }
+
+  .post-header--date-author {
+    font-size: 1rem;
+  }
+}
