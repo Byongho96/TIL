@@ -3,7 +3,9 @@
 .container {
   overflow: hidden;
   position: relative;
-  padding: 5rem 7rem;
+  padding: 5rem 0 0 7rem;
+  box-sizing: border-box;
+  height: 100%;
 }
 
 .wheel {
@@ -15,7 +17,7 @@
 // 랩탑
 @include laptop {
   .container {
-    padding: 5rem 7rem;
+    padding: 5rem 0 0 7rem;
   }
 
   .wheel {
@@ -27,7 +29,7 @@
 // 타블렛
 @include tablet {
   .container {
-    padding: 5rem 3rem;
+    padding: 5rem 0 0 3rem;
   }
 
   .wheel {
@@ -39,7 +41,7 @@
 // 모바일
 @include mobile {
   .container {
-    padding: 2rem 1rem;
+    padding: 2rem 0 0 1rem;
   }
 
   .wheel {

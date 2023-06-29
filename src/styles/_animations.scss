@@ -280,6 +280,8 @@
     infinite
   );
 
+  @content;
+
   @keyframes animation-floating {
     0% {
       transform: translateY(-$distance);

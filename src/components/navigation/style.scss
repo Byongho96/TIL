@@ -87,9 +87,8 @@
 
   .navbar__menu {
     display: grid;
-    gap: 0;
     grid-template-rows: repeat(3, 0fr);
-    overflow: hidden;
+    gap: 0;
     opacity: 0;
     transition: grid-template-rows 0.2s ease-in-out, opacity 0.2s ease-in-out,
       margin 0.2s ease-in-out;
@@ -103,7 +102,7 @@
   }
 
   .navbar__menu li {
-    min-height: 0;
+    overflow: hidden;
     text-align: center;
   }
 }

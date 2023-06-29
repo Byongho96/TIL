@@ -6,8 +6,6 @@
   flex-direction: column;
   gap: 0.3rem;
   width: 100%;
-  padding: 1rem 0;
-  border-right: 3px solid rgba(187, 187, 187, 0.5);
 }
 
 .sidebar__total {
@@ -15,52 +13,65 @@
   font-weight: 500;
 }
 
-.sidebar__menu {
-  display: flex;
-  flex-direction: column;
-  list-style-type: square;
+// .sidebar ul.sidebar__category {
+//   list-style-type: square;
+//   list-style-position: inside;
+// }
+
+.sidebar ul ul {
+  margin: 0 0 0 1em;
 }
 
-.sidebar__menu ul {
-  margin: 0 0 0 1em;
+.sidebar ul ul.sidebar__category {
   list-style-type: disc;
+  list-style-position: inside;
 }
 
-.sidebar__menu ul ul {
+.sidebar ul ul ul {
   margin: 0 0 0 1em;
-  list-style-type: circle;
 }
 
-.sidebar__category {
+.sidebar ul ul ul.sidebar__category {
+  list-style-type: circle;
+  list-style-position: inside;
+}
+
+.sidebar__category li {
+  margin: 0.7rem 0 0 0;
+}
+
+.sidebar__category--text {
   display: inline-block;
-  margin-top: 0.8rem;
   color: var(--font-color);
   font-size: 1.1rem;
   font-weight: 600;
   text-decoration: none;
 }
 
-.sidebar__category:hover {
+.sidebar__category--text:hover {
   font-weight: 800;
 }
 
 .sidebar__posts {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  display: grid;
+  grid-template-rows: repeat(var(--posts-count), 0fr);
+  transition: grid-template-rows 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.sidebar__posts.open {
+  grid-template-rows: repeat(var(--posts-count), 1fr);
 }
 
 .sidebar__posts li {
-  opacity: 0;
-  height: 0;
-  transition: height 0.2s ease-in-out, opacity 0.2s ease-in-out,
-    margin 0.2s ease-in-out;
+  overflow: hidden;
+  margin: 0 0 0 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: margin 0.2s ease-in-out;
 }
 
 .sidebar__posts.open li {
-  opacity: 1;
-  height: 1em;
-  margin: 0.5em 0 0 0;
+  margin: 0.5rem 0 0 0;
 }
 
 .sidebar__posts a {
@@ -68,6 +79,10 @@
   font-size: 1rem;
   font-weight: 500;
   text-decoration: none;
+}
+
+.sidebar__posts a.active {
+  color: var(--font-color);
 }
 
 .sidebar__posts a:hover {

@@ -1,50 +1,67 @@
-import React, { useState } from 'react'
-import * as styles from './style.module.scss'
+import React, { useEffect, useRef } from 'react'
+import './style.scss'
 import Category from '@components/category'
 import ProfileImage from '@components/profile-image'
 
-const CategoryLayout = ({ selectedCategory, children }) => {
-  const [isCategoryActive, setIsCategoryActive] = useState(false)
+const CategoryLayout = ({ defaultCategory, children }) => {
+  const asideRef = useRef<HTMLElement>(null)
+  const asideButtonRef = useRef<HTMLButtonElement>(null)
+  const modalRef = useRef<HTMLDivElement>(null)
 
-  const toggleActive = () => {
-    const isActive = !isCategoryActive
-    setIsCategoryActive(isActive)
+  const handleClickToggle = () => {
+    asideRef.current.classList.toggle('active')
+    asideButtonRef.current.classList.toggle('active')
+    modalRef.current.classList.toggle('active')
+  }
 
-    const categoryElemnt = document.querySelector(`.${styles.category}`)
-    const modalElement = document.querySelector(`.${styles.modal}`)
+  useEffect(() => {
+    const navbar = document.querySelector('.navbar')
+    const asideEle = asideRef.current
 
-    if (isActive) {
-      categoryElemnt.classList.add(`${styles.active}`)
-      modalElement.classList.add(`${styles.active}`)
-    } else {
-      categoryElemnt.classList.remove(`${styles.active}`)
-      modalElement.classList.remove(`${styles.active}`)
+    function handleScroll() {
+      const navbarHeight = navbar.offsetTop + navbar.offsetHeight
+      if (window.scrollY > navbarHeight) {
+        asideEle.style.setProperty('--position-top', '0px')
+        return
+      }
+      asideEle.style.setProperty(
+        '--position-top',
+        navbarHeight.toString() + 'px'
+      )
     }
-  }
 
-  const handleCategoryClick = (event) => {
-    event.stopPropagation()
-    if (isCategoryActive) return
-    toggleActive()
-  }
-
-  const handleModalClick = (event) => {
-    event.stopPropagation()
-    if (!isCategoryActive) return
-    toggleActive()
-  }
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   return (
-    <div className={styles.container}>
-      <div className={styles.category} onClick={handleCategoryClick}>
-        <div className={styles.profileImage}>
-          <ProfileImage />
-        </div>
-        <Category selectedCategory={selectedCategory} />
+    <>
+      <div className="category-layout">
+        <aside ref={asideRef} className="category-layout__aside">
+          <figure className="category-layout__profile">
+            <ProfileImage />
+          </figure>
+          <div className="category-layout__category">
+            <Category defaultCategory={defaultCategory} />
+          </div>
+          <button
+            ref={asideButtonRef}
+            className="category-layout__button"
+            onClick={handleClickToggle}
+          >
+            POSTS
+          </button>
+        </aside>
+        {children}
+        <div
+          ref={modalRef}
+          className="category-layout__modal"
+          onClick={handleClickToggle}
+        />
       </div>
-      {children}
-      <div className={styles.modal} onClick={handleModalClick} />
-    </div>
+    </>
   )
 }
 

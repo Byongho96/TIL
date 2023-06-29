@@ -1,21 +1,21 @@
-@import '../../styles/_colors.scss';
+@import '@styles/_colors.scss';
 
-.container {
+.footer {
   padding: 1rem;
   color: $font-gray;
   font-size: 0.8rem;
   text-align: center;
-
-  &.light {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-
-  &.dark {
-    box-shadow: 0 10px 30px var(--main-color);
-  }
 }
 
-.link {
+.footer.light {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.footer.dark {
+  box-shadow: 0 10px 30px var(--main-color);
+}
+
+.footer--link {
   background-image: linear-gradient(
     to right,
     var(--main-color),
@@ -25,14 +25,14 @@
   background-repeat: no-repeat;
   background-position: 0% 0%;
   background-size: 0% 100%;
-  text-decoration: none;
   color: $font-gray;
+  text-decoration: none;
   cursor: pointer;
 
   transition: background-size 0.2s ease-in-out;
 }
 
-.link:hover {
+.footer--link:hover {
   color: transparent;
   background-size: 100% 100%;
 }

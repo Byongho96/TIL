@@ -1,7 +1,7 @@
 ---
 title: '08. 폴더 구조 기반 Gatsby 카테고리 바 생성'
-updatedAt: '2023-06-27'
-createdAt: '2023-06-27'
+updatedAt: '2023-06-28'
+createdAt: '2023-06-28'
 isCompleted: true
 description: 'Gatsby의 graphql을 이용해서 디렉토리 구조에 기반하여 카테고리 바를 생성해본다.'
 tags: ['gatsby', '카테고리', '디렉토리 기반', '폴더 기반']
@@ -172,25 +172,30 @@ export const useCategorizedPosts = (): Returns => {
 
 ## 2.3. 카테고리 컴포넌트
 
-카테고리 컴포넌트는, 위에서 만든 `useCategorizedPosts`훅에서 데이터를 받아 렌더링된다.
+카테고리 컴포넌트는, 위에서 만든 `useCategorizedPosts`훅에서 데이터를 받아 렌더링한다.
+
+재귀 형식으로 렌더링을 표현할 수 없어 렌더링 부분이 조금 지저분한다. 같은 이유로 카테고리의 depth를 무한정 늘리지는 못하고, 3depth 까지만 렌더링 할 수 있도록 제한했다.
+
+또한 선택된 카테고리 `selectedCategory`가 바뀔 때마다, 서브 컴포넌트 `CategoryName`와 `Posts`가 불필요하게 렌더링되지 않도로고 `React.memo()`를 사용했다.
 
 ```js
 import React, { useState, useRef, useEffect } from 'react'
 import './style.scss'
 import { Link } from 'gatsby'
-import { useCategorizedPosts } from '@hooks/use-categorized-posts'
+import { useCategorizedPosts } from '@hooks/use-categorized-posts' // 혹에서 데이터를 받아온다.
 
 interface Props {
-  openedCategory?: string; // 처음 렌더링 시 선택값
+  defaultCategory?: string; // 기본으로 선택된 카테고리
 }
 
 // 최대 3단계 카테고리까지만(루트 카테고리 포함) 지원
-const Category: React.FC<Props> = ({ openedCategory = '' }) => {
+const Category: React.FC<Props> = ({ defaultCategory = '' }) => {
   const { totalPosts, categories } = useCategorizedPosts()
-  const [selectedCategory, setSelectedCategory] = useState(openedCategory)
+  const [selectedCategory, setSelectedCategory] = useState(defaultCategory)
 
+  // 카테고리 클릭 이벤트 처리
   const handleClickCategory = (event, name) => {
-    if (event.detail > 1) return
+    if (event.detail > 1) return // 더블 클릭 이상이면 Link 동작
     event.preventDefault() // 한번 클릭이면 Link 이동 막고, selecedCategory 토글
     setSelectedCategory(selectedCategory === name ? '' : name)
   }
@@ -198,7 +203,7 @@ const Category: React.FC<Props> = ({ openedCategory = '' }) => {
   return (
     <nav className="sidebar">
       <div className="sidebar__total">{`전체 글 (${totalPosts})`}</div>
-      <ul className="sidebar__menu">
+      <ul className="sidebar__category">
         {/* 루트 카테고리 */}
         {categories.map((category) => (
           <li key={category.name}>
@@ -207,7 +212,7 @@ const Category: React.FC<Props> = ({ openedCategory = '' }) => {
               num={category.num}
               handleClickCategory={handleClickCategory}
             />
-            <ul>
+            <ul className="sidebar__category">
               {/* 서브 카테고리 1 */}
               {category.subCategories.map((subCategory) => (
                 <li key={subCategory.name}>
@@ -216,7 +221,7 @@ const Category: React.FC<Props> = ({ openedCategory = '' }) => {
                     num={subCategory.num}
                     handleClickCategory={handleClickCategory}
                   />
-                  <ul>
+                  <ul className="sidebar__category">
                     {/* 서브 카테고리 2 */}
                     {subCategory.subCategories.map((subCategory) => (
                       <li key={subCategory.name}>
@@ -253,12 +258,15 @@ const Category: React.FC<Props> = ({ openedCategory = '' }) => {
   )
 }
 
+export default Category
+
+// <카테고리 이름> 서브 컴포넌트
 const CategoryName: React.FC = React.memo(
   ({ name, num, handleClickCategory }) => {
     return (
       <Link
         to={`/posts/${name}`}
-        className="sidebar__category"
+        className="sidebar__category--text"
         onClick={(event) => {
           handleClickCategory(event, name)
         }}
@@ -269,6 +277,7 @@ const CategoryName: React.FC = React.memo(
   }
 )
 
+// <포스트 목록> 서브 컴포넌트
 const Posts: React.FC = React.memo(({ posts, isSelected }) => {
   const postsRef = useRef < HTMLUListElement > null
 
@@ -276,10 +285,11 @@ const Posts: React.FC = React.memo(({ posts, isSelected }) => {
   useEffect(() => {
     const postsEle = postsRef.current
     postsEle &&
-      postsEle.style.setProperty('--posts-length', posts.length.toString())
+      postsEle.style.setProperty('--posts-count', posts.length.toString())
   }, [])
 
-  const selected = isSelected ? 'open' : null // 선택 여부
+  // 디렉토리 선택 여부
+  const selected = isSelected ? 'open' : null
 
   return (
     <ul ref={postsRef} className={`sidebar__posts ${selected}`}>
@@ -293,7 +303,6 @@ const Posts: React.FC = React.memo(({ posts, isSelected }) => {
     </ul>
   )
 })
-export default Category
 ```
 
 # 참고

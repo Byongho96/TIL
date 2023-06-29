@@ -43,7 +43,7 @@ const PostPage: React.FC<PageProps> = ({ pageContext, data }) => {
   })
 
   return (
-    <CategoryLayout openedCategory={pageContext.parent.relativeDirectory}>
+    <CategoryLayout defaultCategory={pageContext.relativeDirectory}>
       <div className={styles.container}>
         <div className={styles.post}>
           <PostHeader frontmatter={data.markdownRemark.frontmatter} />

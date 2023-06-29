@@ -53,7 +53,10 @@ export const query = graphql`
         frontmatter: { isCompleted: { eq: true } }
         fileAbsolutePath: { regex: "/^(?!.*README).*posts.*$/" }
       }
-      sort: { frontmatter: { createdAt: DESC } }
+      sort: [
+        { frontmatter: { createdAt: DESC } }
+        { frontmatter: { title: DESC } }
+      ]
     ) {
       nodes {
         id

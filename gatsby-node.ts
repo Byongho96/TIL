@@ -88,7 +88,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               ... on File {
                 id
                 name
-                relativeDirectory
                 relativePath
               }
             }
@@ -109,12 +108,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   posts.data.allMarkdownRemark.nodes.forEach((node) => {
     const path = 'posts/' + node.parent.relativePath
     // 상대 경로에 있는 md 파일들만 필터링(READEME.md 제외)
-    const relativeDirectory = node.parent.relativePath
+    const relativeDirectory = node.parent.relativePath.split('/').at(-2)
+    const relativeDirectoryPath = node.parent.relativePath
       .split('/')
       .slice(0, -1)
       .join('/')
     const regex = new RegExp(
-      `^(?!.*README).*${relativeDirectory}.*$`
+      `^(?!.*README).*${relativeDirectoryPath}.*$`
     ).toString()
     createPage({
       path,
@@ -124,6 +124,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       context: {
         pagePath: path,
         regex: regex,
+        relativeDirectory: relativeDirectory,
         ...node,
       },
     })

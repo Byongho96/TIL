@@ -24,7 +24,6 @@ function useInfiniteScroll({
 
     const { scrollTop, scrollHeight, clientHeight } = element // 엘리먼트의 스크롤 정보
     if (scrollHeight - scrollTop - clientHeight > THRESHOLD) return
-    console.log(element, scrollTop, scrollHeight, clientHeight)
 
     loadMore()
   }

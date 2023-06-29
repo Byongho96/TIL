@@ -1,5 +1,5 @@
 import React from 'react'
-import * as styles from './style.module.scss'
+import './style.scss'
 import Footer from '@components/footer'
 import Navigation from '@components/navigation'
 
@@ -9,7 +9,7 @@ interface Props {
 
 const NavigationLayout: React.FC<Props> = ({ children }) => {
   return (
-    <div className={styles.container}>
+    <div className="nav-layout">
       <Navigation />
       {children}
       <Footer />

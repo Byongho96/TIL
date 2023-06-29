@@ -1,0 +1,12 @@
+.nav-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content 1fr min-content;
+  min-height: 100vh;
+}
+
+// grid의 min-width와 min-height는 auto로 컨텐츠에 종속적임
+// grid 시스템 자체가 골격을 잡기 위해서 min-width를 0으로 설정
+.nav-layout * {
+  min-width: 0;
+}
