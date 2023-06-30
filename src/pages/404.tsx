@@ -16,8 +16,6 @@ const NotFoundPage: React.FC<PageProps> = () => {
     isThunder = false
   }
 
-  console.log(color)
-
   useEffect(() => {
     const svgMain = document.querySelector(`.svg-main`)
     const svgPaths = svgMain?.querySelectorAll(`path`)

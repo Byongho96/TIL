@@ -6,7 +6,7 @@
   display: grid;
   grid-template-columns: minmax(290px, 2fr) 9fr;
   align-items: start;
-  padding: 2rem 0 0 0;
+  padding: 2rem 0 2rem 0;
   position: relative;
 }
 
@@ -51,7 +51,7 @@
     top: var(--position-top);
     left: 0;
     z-index: 99; // 포스트 보다 위에 보이도록
-    max-width: 80vw;
+    max-width: 70vw;
     height: calc(100vh - var(--position-top));
     background-color: var(--bg-color);
     transform: translateX(-100%); //  asdie의 마진을 고려
@@ -73,7 +73,7 @@
     top: 0;
     right: 0;
     margin: 0;
-    padding: 0.7em 0.5em;
+    padding: 0.5em 0.4em;
     border: none;
     border-radius: 0 5px 5px 0;
     background-color: var(--main-color);

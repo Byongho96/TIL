@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import './style.scss'
-import toAnimationFrame from '@utils/toAnimationFrame'
 
 const TableOfContent: React.FC = ({ toc }) => {
   useEffect(() => {
@@ -46,16 +45,10 @@ const TableOfContent: React.FC = ({ toc }) => {
     }
 
     const animationFrameTrigger = {}
-    window.addEventListener(
-      'scroll',
-      toAnimationFrame(handleScroll, animationFrameTrigger)
-    )
+    window.addEventListener('scroll', handleScroll)
 
     return () => {
-      window.removeEventListener(
-        'scroll',
-        toAnimationFrame(handleScroll, animationFrameTrigger)
-      )
+      window.removeEventListener('scroll', handleScroll)
     }
   }, [])
 

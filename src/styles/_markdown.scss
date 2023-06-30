@@ -1,4 +1,5 @@
-@import '_fonts.scss';
+@import '@styles/_fonts.scss';
+@import '@styles/_responsive.scss';
 
 // github-markdown-css version 4.0.0
 
@@ -436,11 +437,13 @@
   color: var(--color-danger-fg);
 }
 
+// 커스텀: margin-left
 .markdown-body .anchor {
   float: left;
   padding-right: 4px;
-  margin-left: -20px;
+  margin-left: -10px;
   line-height: 1;
+  fill: var(--main-color);
 }
 
 .markdown-body .anchor:focus {
@@ -893,4 +896,37 @@
 .markdown-body .flex {
   display: flex;
   gap: 1rem;
+}
+
+// 커스텀 모바일
+@include mobile {
+  // 커스텀: font-family, font-size, line-height
+  .markdown-body {
+    font-size: 0.9rem;
+    line-height: 180%;
+  }
+
+  .markdown-body h1 {
+    font-size: 1.6em;
+  }
+
+  .markdown-body h2 {
+    font-size: 1.4em;
+  }
+
+  .markdown-body h3 {
+    font-size: 1.25em;
+  }
+
+  .markdown-body h4 {
+    font-size: 1em;
+  }
+
+  .markdown-body h5 {
+    font-size: 0.875em;
+  }
+
+  .markdown-body h6 {
+    font-size: 0.85em;
+  }
 }

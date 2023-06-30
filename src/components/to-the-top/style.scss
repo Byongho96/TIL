@@ -39,7 +39,7 @@
 
 .to-the-top:hover span {
   animation: to-the-top-ripple 1.6s infinite;
-  animation-delay: calc(0.33s * var(--i));
+  animation-delay: calc(0.4s * var(--i));
 }
 
 @keyframes to-the-top-ripple {

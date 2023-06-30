@@ -1,0 +1,9 @@
+@import '../styles/_responsive.scss';
+
+.about-layout {
+  display: grid;
+  grid-template-rows: minmax(30rem, 1fr) minmax(15rem, 1fr);
+  gap: 5rem;
+  overflow: hidden;
+  padding: 2rem 0 4rem 0;
+}

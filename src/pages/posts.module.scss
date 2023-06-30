@@ -46,11 +46,15 @@
 
 // 모바일
 @include mobile {
+  .container {
+    padding: 0;
+  }
+
   .post-group {
     padding: 1rem 1rem 1rem 1.5rem;
     font-size: 2.7rem;
   }
   .post-list {
-    padding: 0 1rem;
+    padding: 0 0.5rem;
   }
 }

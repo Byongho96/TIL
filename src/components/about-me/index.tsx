@@ -1,22 +1,16 @@
 import React from 'react'
-import * as styles from './style.module.scss'
+import './style.scss'
 import Taping from '@components/taping'
 import { ThemeContext } from '@contexts/theme-context'
 
 const AboutMe: React.FC = () => {
   const { theme } = React.useContext(ThemeContext)
   return (
-    <div className={styles.container}>
-      <div className={styles.tapeFirst}>
-        <Taping color="white" />
-      </div>
-      <div className={styles.tapeSecond}>
-        <Taping color="black" direction="left" />
-      </div>
-      <div className={styles.tapeThird}>
-        <Taping color="white" />
-      </div>
-      <p className={`${styles.about} ${styles[theme]}`}>About Me</p>
+    <div className="about-me">
+      <p className={`about-me__text ${theme}`}>About Me</p>
+      <Taping color="white" />
+      <Taping color="black" direction="left" />
+      <Taping color="white" />
     </div>
   )
 }
