@@ -1,4 +1,4 @@
-.type-animation-text {
+.type-animation {
   // 가상 선택자로 커서 생성
   &::after {
     content: '|';

@@ -1,9 +1,40 @@
-@import '../styles/_responsive.scss';
+@import '@styles/_colors.scss';
+@import '@styles/_responsive.scss';
 
 .about-layout {
   display: grid;
-  grid-template-rows: minmax(30rem, 1fr) minmax(15rem, 1fr);
+  grid-template-rows: minmax(35rem, 1fr) min-content;
   gap: 5rem;
   overflow: hidden;
-  padding: 2rem 0 4rem 0;
+  padding: 0 0 8rem 0;
+}
+
+.about-layout--typing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5rem;
+  color: $font-gray;
+  font-size: 7rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 130%;
+}
+
+@include tablet {
+  .about-layout--typing {
+    padding: 0 3rem;
+    font-size: 5rem;
+  }
+}
+
+@include mobile {
+  .about-layout {
+    grid-template-rows: minmax(20rem, 1fr) min-content;
+  }
+
+  .about-layout--typing {
+    padding: 0 1rem;
+    font-size: 3rem;
+  }
 }

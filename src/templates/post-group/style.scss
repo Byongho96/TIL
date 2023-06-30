@@ -1,0 +1,61 @@
+@import '@styles/_colors.scss';
+@import '@styles/_responsive.scss';
+
+.post-group--layout {
+  display: flex;
+  flex-direction: column;
+  padding: 0 5rem;
+}
+
+.post-group__category {
+  padding: 3rem 0 2rem 1rem;
+  color: $font-gray;
+  font-size: 6rem;
+  font-weight: 600;
+}
+
+.post-group__post-list {
+  display: flex;
+  flex-direction: column;
+}
+
+// 랩탑
+@include laptop {
+  .post-group--layout {
+    padding: 0 2rem;
+  }
+
+  .post-group__category {
+    font-size: 5rem;
+  }
+}
+
+// 타블렛
+@include tablet {
+  .post-group--layout {
+    padding: 0 1rem;
+  }
+
+  .post-group__category {
+    font-size: 4rem;
+  }
+
+  .post-group__post-list {
+    padding: 0 0;
+  }
+}
+
+// 모바일
+@include mobile {
+  .post-group--layout {
+    padding: 0;
+  }
+
+  .post-group__category {
+    padding: 1rem 1rem 1rem 1rem;
+    font-size: 3rem;
+  }
+  .post-group__post-list {
+    padding: 0 0.5rem;
+  }
+}

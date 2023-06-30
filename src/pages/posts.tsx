@@ -1,10 +1,10 @@
 import React, { useState, useMemo, useRef } from 'react'
-import * as styles from './posts.module.scss'
+import './posts.scss'
 import type { HeadFC, PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 import PostItem from '@components/post-item'
 import ToTheTop from '@components/to-the-top'
-import Typing from '@components/typing'
+import TypeAnimation from '@components/type-animation'
 import useInfiniteScroll from '@hooks/use-infinite-scroll'
 import CategoryLayout from '@layouts/category-layout'
 
@@ -28,16 +28,16 @@ const PostPage: React.FC<PageProps> = ({ data }) => {
 
   return (
     <CategoryLayout>
-      <div className={styles.container}>
-        <h1 className={styles.postGroup}>
-          <Typing phrases={['All the Posts']} speed="8" />
-        </h1>
-        <div className={styles.postList}>
+      <main className="posts--layout">
+        <div className="posts__category">
+          <TypeAnimation phrases={['All the Posts']} />
+        </div>
+        <section className="posts__post-list">
           {shownData.map((node) => (
             <PostItem key={node.id} node={node} />
           ))}
-        </div>
-      </div>
+        </section>
+      </main>
       <ToTheTop />
     </CategoryLayout>
   )

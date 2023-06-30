@@ -1,29 +1,25 @@
 import * as React from 'react'
-import * as styles from './style.module.scss'
+import './style.scss'
 import type { HeadFC, PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 import PostItem from '@components/post-item'
 import ToTheTop from '@components/to-the-top'
-import Typing from '@components/typing'
+import TypeAnimation from '@components/type-animation'
 import CategoryLayout from '@layouts/category-layout'
 
 const PostGroupPage: React.FC<PageProps> = ({ pageContext, data }) => {
   return (
     <CategoryLayout defaultCategory={pageContext.name}>
-      <div className={styles.container}>
-        <h1 className={styles.postGroup}>
-          <Typing
-            phrases={[pageContext.name]}
-            speed="8"
-            cursorColor="#888888"
-          />
-        </h1>
-        <div className={styles.postList}>
+      <main className="post-group--layout">
+        <div className="post-group__category">
+          <TypeAnimation phrases={[pageContext.name]} />
+        </div>
+        <section className="post-group__post-list">
           {data.allMarkdownRemark.nodes.map((node) => (
             <PostItem key={node.id} node={node} />
           ))}
-        </div>
-      </div>
+        </section>
+      </main>
       <ToTheTop />
     </CategoryLayout>
   )

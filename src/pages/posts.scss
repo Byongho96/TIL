@@ -1,60 +1,56 @@
 @import '@styles/_colors.scss';
 @import '@styles/_responsive.scss';
 
-.container {
+.posts--layout {
   display: flex;
   flex-direction: column;
   padding: 0 5rem;
 }
 
-.post-group {
-  padding: 3rem 0 2rem 1rem;
+.posts__category {
+  margin: 3rem 0 2rem 0;
   color: $font-gray;
   font-size: 6rem;
   font-weight: 600;
 }
 
-.post-list {
+.posts__post-list {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
 // 랩탑
 @include laptop {
-  .container {
+  .posts--layout {
     padding: 0 2rem;
   }
 
-  .post-group {
+  .posts__category {
     font-size: 5rem;
   }
 }
 
 // 타블렛
 @include tablet {
-  .container {
+  .posts--layout {
     padding: 0 1rem;
   }
 
-  .post-group {
+  .posts__category {
+    margin: 3rem 0 2rem 0;
     font-size: 4rem;
-  }
-  .post-list {
-    padding: 0 0;
   }
 }
 
 // 모바일
 @include mobile {
-  .container {
-    padding: 0;
+  .posts--layout {
+    padding: 0 1rem;
   }
 
-  .post-group {
-    padding: 1rem 1rem 1rem 1.5rem;
-    font-size: 2.7rem;
-  }
-  .post-list {
-    padding: 0 0.5rem;
+  .posts__category {
+    margin: 2rem 0 1rem 0;
+    font-size: 3rem;
   }
 }

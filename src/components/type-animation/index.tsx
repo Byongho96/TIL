@@ -23,6 +23,8 @@ const TypeAnimation: React.FC<Props> = ({
 
     if (!textElement) return
 
+    textElement.textContent = ''
+
     let phraseIdx = 0 // 현재 타이핑하는 문구의 인덱스
     let charIdx = 0 // 현재 타이핑하는 글자 인덱스
     let interval = null // setInterval을 담을 변수
@@ -73,16 +75,13 @@ const TypeAnimation: React.FC<Props> = ({
 
     // clear 함수
     return () => {
+      console.log('interval', interval)
       interval && clearInterval(interval)
     }
   }, [phrases, speed, pause, isInfinite])
 
   return (
-    <span
-      ref={textElementRef}
-      className="type-animation-text"
-      style={style}
-    ></span>
+    <span ref={textElementRef} className="type-animation" style={style}></span>
   )
 }
 

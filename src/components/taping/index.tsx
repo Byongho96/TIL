@@ -3,46 +3,52 @@ import './style.scss'
 
 type props = {
   color: 'black' | 'white'
-  phrase?: string
+  phrase: string
   direction?: 'right' | 'left'
+  rotationDeg?: number
   speed?: number
 }
 
 const Taping: React.FC = ({
   color,
-  phrase = 'coming soon',
+  phrase,
   direction = 'right',
+  rotationDeg = 0,
   speed = 1,
 }: props) => {
   const tapeRef = useRef(null)
   const textRef = useRef(null)
+  const position = useRef(0)
 
   useEffect(() => {
     const tapeElement = tapeRef.current
     const textElement = textRef.current
+
+    // 텍스트가 흐르는 방향을 설정
     let textDirection = 1
     if (direction === 'right') {
-      textElement.style.justifyContent = 'flex-end'
-      textDirection = 1
+      tapeElement.style.justifyContent = 'flex-end'
     } else {
-      textElement.style.justifyContent = 'flex-start'
+      tapeElement.style.justifyContent = 'flex-start'
       textDirection = -1
     }
-    let animationId = null
-    let position = 0
+
+    // 테이프 각도 회전
+    tapeElement.style.setProperty('--rotate-deg', `${rotationDeg}deg`)
 
     // 텍스트를 이동 시키는 함수
     const moveText = () => {
-      position += speed
-      if (position > textElement.scrollWidth / 3) {
-        textElement.style.transform = `translate3d(0, 0, 0)`
-        position = 0
+      position.current += speed
+      if (position.current > textElement.scrollWidth / 2) {
+        textElement.style.transform = `translateX(0)`
+        position.current = 0
       }
-      textElement.style.transform = `translate3d(${
-        textDirection * position
-      }px, 0, 0)`
+      textElement.style.transform = `translateX(${
+        textDirection * position.current
+      }px)`
     }
 
+    let animationId = null
     // 애니메이션 실행 함수
     const animate = () => {
       moveText()
@@ -52,16 +58,16 @@ const Taping: React.FC = ({
     // 애니메이션 실행
     animate()
 
-    // 애니메이션 clear
     return () => {
+      // 애니메이션 clear
       window.cancelAnimationFrame(animationId)
     }
-  }, [speed])
+  }, [speed, direction, rotationDeg])
 
   return (
     <div ref={tapeRef} className={`tape ${color}`}>
       <p ref={textRef} className="tape__text">
-        {'start' + (phrase + '\u00a0\u00a0\u00a0\u00a0').repeat(30)}
+        {(phrase + '\u00a0\u00a0\u00a0\u00a0').repeat(20)}
       </p>
     </div>
   )

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as styles from './style.module.scss'
+import './style.scss'
 import { navigate } from 'gatsby'
 
 const PostItem: React.FC = ({ node }) => {
@@ -12,13 +12,13 @@ const PostItem: React.FC = ({ node }) => {
   }
 
   return (
-    <div className={styles.container} onClick={handleClick}>
-      <div className={styles.flex}>
-        <h3 className={styles.title}>{title || name}</h3>
-        <p className={styles.date}>{createdAt}</p>
+    <article className="post-item" onClick={handleClick}>
+      <div className="post-item--flex">
+        <h1 className="post-item__title">{title || name}</h1>
+        <span className="post-item__date">{createdAt}</span>
       </div>
-      <p className={styles.excerpt}>{excerpt}</p>
-    </div>
+      <p className="post-item__excerpt">{excerpt}</p>
+    </article>
   )
 }
 

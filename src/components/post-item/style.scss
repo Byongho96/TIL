@@ -1,91 +1,92 @@
-@import '../../styles/_colors.scss';
-@import '../../styles/_responsive.scss';
+@import '@styles/_colors.scss';
+@import '@styles/_responsive.scss';
 
-.container {
+.post-item {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 2rem;
-  border-radius: 10px;
-  transition: scale 0.2s ease-in-out;
+  padding: 2rem 0;
+  border-bottom: 1px solid #a8a8a8;
+  transition: scale 0.2s ease-in-out, border-bottom 0.2s ease-in-out;
   cursor: pointer;
 }
 
-.container:hover {
+.post-item:hover {
+  border-bottom: 1px solid var(--main-color);
   scale: 1.02;
 }
 
-.flex {
+.post-item--flex {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
 }
 
-.title {
+.post-item__title {
   font-size: 1.7rem;
   font-weight: 700;
 }
 
-.date {
+.post-item__date {
   font-size: 1.7rem;
   font-weight: 600;
   font-style: italic;
   color: $font-gray;
 }
 
-.excerpt {
+.post-item__excerpt {
   font-size: 1rem;
 }
 
 // 태블릿
 @include tablet {
-  .container {
+  .post-item {
     gap: 1.5rem;
   }
 
-  .flex {
+  .post-item--flex {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
   }
 
-  .title {
+  .post-item__title {
     font-size: 1.5rem;
   }
 
-  .date {
+  .post-item__date {
     font-size: 1.5rem;
   }
 
-  .excerpt {
+  .post-item__excerpt {
     font-size: 0.9rem;
   }
 }
 
 // 모바일
 @include mobile {
-  .container {
+  .post-item {
     gap: 0.8rem;
-    padding: 1rem;
+    padding: 1rem 0;
   }
 
-  .flex {
+  .post-item--flex {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
 
-  .title {
+  .post-item__title {
     font-size: 1.3rem;
   }
 
-  .date {
+  .post-item__date {
     font-size: 1rem;
   }
 
-  .excerpt {
+  .post-item__excerpt {
     font-size: 0.7rem;
   }
 }

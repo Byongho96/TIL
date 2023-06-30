@@ -2,17 +2,11 @@
 @import '../../styles/_responsive.scss';
 
 .about-me {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
   position: relative;
-}
-
-.about-me div:nth-child(1) {
-  transform: rotate(10deg) translate3D(-10rem, -2rem, 0);
-}
-.about-me div:nth-child(2) {
-  transform: rotate(-15deg) translate3D(-10rem, 4rem, 0);
-}
-.about-me div:nth-child(3) {
-  transform: rotate(5deg) translate3D(-10rem, 4rem, 0);
 }
 
 .about-me__text {
@@ -42,10 +36,9 @@
   54%,
   57%,
   100% {
-    text-shadow: 0 0 0.5rem #ffffff, 0 0 1.2rem var(--main-color),
-      0 0 1.7rem var(--main-color), 0 0 2.2rem var(--main-color);
+    text-shadow: 0 0 0.5rem #ffffff, 0 0 1rem var(--main-color),
+      0 0 1.5rem var(--main-color), 0 0 2rem var(--main-color);
   }
-
   21%,
   23%,
   55% {
@@ -54,40 +47,12 @@
 }
 
 @include tablet {
-  .about-me {
-    font-size: 5rem;
-  }
-
-  .about-me div:nth-child(1) {
-    transform: rotate(10deg) translate(-3rem, 0);
-  }
-  .about-me div:nth-child(2) {
-    transform: rotate(-15deg) translate(-5rem, 0);
-  }
-  .about-me div:nth-child(3) {
-    transform: rotate(5deg) translate(-10rem, 0);
-  }
-
   .about-me__text {
     font-size: 5rem;
   }
 }
 
 @include mobile {
-  .container {
-    font-size: 4rem;
-  }
-
-  .about-me div:nth-child(1) {
-    transform: translate(-10%, 4rem) rotate(10deg);
-  }
-  .about-me div:nth-child(2) {
-    transform: translate(-10%, 15rem) rotate(-15deg);
-  }
-  .about-me div:nth-child(3) {
-    transform: translate(-10%, 7rem) rotate(5deg);
-  }
-
   .about-me__text {
     font-size: 4rem;
   }

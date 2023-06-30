@@ -4,13 +4,14 @@
 
 .tape {
   display: flex;
-  width: 130%;
+  width: 120%;
   padding: 0.7rem 0 1rem;
+  transform: rotate(var(--rotate-deg)) translateX(-10%);
 }
 
 .tape.white {
-  background-color: var(--bg-color);
   border: 3px solid var(--main-color);
+  background-color: var(--bg-color);
   color: var(--main-color);
 }
 
@@ -20,10 +21,16 @@
 }
 
 .tape__text {
-  display: flex;
-  font-size: 2rem;
+  min-width: fit-content; // grid 설정 때문에 p의 너비가 제한되었음
+  font-size: 1.8rem;
   font-weight: 700;
   white-space: nowrap;
+}
+
+@include tablet {
+  .tape__text {
+    font-size: 1.5rem;
+  }
 }
 
 @include mobile {
@@ -32,6 +39,6 @@
   }
 
   .tape__text {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 }

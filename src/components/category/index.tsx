@@ -21,7 +21,10 @@ const Category: React.FC<Props> = ({ defaultCategory = '' }) => {
 
   return (
     <nav className="sidebar">
-      <div className="sidebar__total">{`전체 글 (${totalPosts})`}</div>
+      <Link
+        to={`/posts/`}
+        className="sidebar__total"
+      >{`전체 글 (${totalPosts})`}</Link>
       <ul className="sidebar__category">
         {/* 루트 카테고리 */}
         {categories.map((category) => (
