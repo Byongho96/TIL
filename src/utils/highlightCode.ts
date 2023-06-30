@@ -1,6 +1,5 @@
 import hljs from 'highlight.js'
-import './highlight.scss'
-// import 'highlight.js/styles/github.css'
+import '@styles/_highlight.scss'
 
 export default function highlightCode() {
   const codeBlocks = document.querySelectorAll('pre > code')

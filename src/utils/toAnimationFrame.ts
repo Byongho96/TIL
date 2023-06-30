@@ -9,8 +9,6 @@ export default function toAnimationFrame(
   let tick = false
 
   return function () {
-    console.log('scroll call')
-
     if (tick) {
       return
     }
@@ -23,7 +21,6 @@ export default function toAnimationFrame(
       }
 
       if (triggerCondition()) {
-        console.log('real call')
         tick = false
         return cb()
       }

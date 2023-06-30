@@ -1,0 +1,58 @@
+@import '@styles/_animations.scss';
+
+.to-the-top {
+  @include animation-floating(2s, 5%);
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 3rem;
+  height: 3rem;
+  transition: scale 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+// 화살표 부분 마스크
+// .icon path:nth-child(3) {
+// }
+
+.to-the-top path:nth-child(1) {
+  stroke: var(--main-color);
+  fill: var(--main-color);
+}
+
+.to-the-top span {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  outline-style: solid;
+  outline-width: 0;
+  outline-color: var(--main-color);
+  transform: translate(-50%, -50%);
+  // animation: to-the-top-ripple 2s infinite;
+  // animation-delay: calc(0.5s * var(--i));
+}
+
+.to-the-top:hover span {
+  animation: to-the-top-ripple 1.6s infinite;
+  animation-delay: calc(0.33s * var(--i));
+}
+
+@keyframes to-the-top-ripple {
+  0% {
+    outline-width: 0;
+    opacity: 0.5;
+  }
+  100% {
+    outline-width: 15px;
+    opacity: 0;
+  }
+}
+
+// .to-the-top:hover {
+//   scale: 1.1;
+// }

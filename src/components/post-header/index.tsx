@@ -3,7 +3,6 @@ import './style.scss'
 import { useSiteMetadata } from '@hooks/use-site-metadata'
 
 const PostHeader: React.FC = ({ frontmatter }) => {
-  console.log(frontmatter)
   const { author } = useSiteMetadata()
   return (
     <div className="post-header">
@@ -16,9 +15,12 @@ const PostHeader: React.FC = ({ frontmatter }) => {
           author}
       </div>
       <div className="post-header--tags">
-        {frontmatter.tags.map((tag) => (
-          <div className="post-header--tags--tag">{tag}</div>
-        ))}
+        {frontmatter.tags &&
+          frontmatter.tags.map((tag) => (
+            <div key={tag} className="post-header--tags--tag">
+              {tag}
+            </div>
+          ))}
       </div>
     </div>
   )

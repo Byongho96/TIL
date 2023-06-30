@@ -1,0 +1,123 @@
+@import '@styles/responsive.scss';
+
+.adjacent-posts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.adjacent-posts__post {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: rgba(#bbbbbb, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.adjacent-posts__post:hover {
+  transform: scale(1.02);
+}
+
+.adjacent-posts__post--flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.adjacent-posts__post--flex.prev {
+  flex-direction: row-reverse;
+}
+
+.adjacent-posts__post--flex.next {
+  flex-direction: row;
+}
+
+.adjacent-posts__post__title {
+  overflow: hidden;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.adjacent-posts__post__icon svg {
+  width: 2.6rem;
+  height: 1.3rem;
+  transition: transform 0.2 ease;
+}
+
+.adjacent-posts__post__icon path {
+  fill: var(--font-color);
+  stroke: var(--font-color);
+  transition: transform 0.2s ease-in, fill 0.2s ease-in, stroke 0.2s ease-in;
+}
+
+.adjacent-posts__post:hover .adjacent-posts__post__icon path {
+  fill: var(--main-color);
+  stroke: var(--main-color);
+}
+
+.adjacent-posts__post.prev:hover #path-1 {
+  transform: translateX(-30%);
+}
+
+.adjacent-posts__post.next:hover #path-1 {
+  transform: translateX(30%);
+}
+
+.adjacent-posts__post:hover #path-2 {
+  // transform: translateX(-20%);
+  opacity: 0.5;
+}
+
+.adjacent-posts__post.prev:hover #path-3 {
+  transform: translateX(30%);
+  opacity: 0.2;
+}
+
+.adjacent-posts__post.next:hover #path-3 {
+  transform: translateX(-30%);
+  opacity: 0.2;
+}
+
+.adjacent-posts__post__excerpt {
+  font-size: 1rem;
+}
+
+@include tablet {
+  .adjacent-posts__post__title {
+    font-size: 1.2rem;
+  }
+
+  .adjacent-posts__post__icon svg {
+    width: 2.4rem;
+    height: 1.2rem;
+    transition: transform 0.2 ease;
+  }
+
+  .adjacent-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@include mobile {
+  .adjacent-posts__post__title {
+    font-size: 1rem;
+  }
+
+  .adjacent-posts__post__icon svg {
+    width: 2.2rem;
+    height: 1.1rem;
+    transition: transform 0.2 ease;
+  }
+
+  .adjacent-posts__post__excerpt {
+    font-size: 0.9rem;
+  }
+}

@@ -83,7 +83,7 @@
     writing-mode: vertical-rl;
     cursor: pointer;
     transform: translate(100%, 0%);
-    animation: category-layout__button--floating 5s infinite ease-in-out;
+    // animation: category-layout__button--floating 5s infinite ease-in-out;
   }
 
   @keyframes category-layout__button--floating {

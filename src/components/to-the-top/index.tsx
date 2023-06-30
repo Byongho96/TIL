@@ -1,5 +1,5 @@
 import React from 'react'
-import * as styles from './style.module.scss'
+import './style.scss'
 import UpIcon from '@assets/svgs/up.svg'
 
 const ToTheTop: React.FC = () => {
@@ -12,8 +12,10 @@ const ToTheTop: React.FC = () => {
   }
 
   return (
-    <div className={styles.icon} onClick={handleClick}>
+    <div className="to-the-top" onClick={handleClick}>
       <UpIcon />
+      <span style={{ '--i': 0 }} />
+      <span style={{ '--i': 1 }} />
     </div>
   )
 }
