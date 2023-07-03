@@ -4,9 +4,9 @@
 
 .category-layout {
   display: grid;
-  grid-template-columns: minmax(290px, 2fr) 9fr;
+  grid-template-columns: minmax(310px, 2fr) 9fr;
   align-items: start;
-  padding: 2rem 0 2rem 0;
+  padding: 0 0 2rem 0;
   position: relative;
 }
 
@@ -15,8 +15,23 @@
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  padding: 0 0 0 2rem;
-  background-color: var(--bg-color);
+  position: relative;
+  padding: 2rem 0 3rem 0;
+}
+
+.category-layout__aside::before {
+  content: '';
+  background-color: #919191;
+  // background-image: url('@assets/images/celebrity.jpg');
+  background-size: cover;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0.1;
+  mask-image: linear-gradient(rgba(0, 0, 0, 1), 95%, rgba(0, 0, 0, 0));
 }
 
 .category-layout__aside::-webkit-scrollbar {
@@ -24,12 +39,12 @@
 }
 
 .category-layout__profile {
-  width: 80%;
+  width: 70%;
+  margin: 1rem 0 1rem 0;
 }
 
 .category-layout__category {
-  padding: 0.5rem 2rem 0.5rem 0;
-  border-right: 3px solid rgba(187, 187, 187, 0.5);
+  padding: 0 2rem 0 2rem;
 }
 
 .category-layout__button {

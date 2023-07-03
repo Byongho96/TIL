@@ -6,8 +6,8 @@ import TypeAnimation from '@components/type-animation'
 
 const AboutPage: React.FC<PageProps> = () => {
   return (
-    <div className="about-layout">
-      <div className="about-layout--typing">
+    <div className="about--layout">
+      <div className="about__typing">
         <TypeAnimation
           phrases={["Hi, I'm Front Dev. Byongho!", "I'm Working on this Blog."]}
           speed={7}

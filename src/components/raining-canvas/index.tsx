@@ -29,8 +29,6 @@ const RainingCanvas: React.FC<Props> = ({
       thunder = new Thunder()
     }
 
-    console.log(containerRef.current)
-
     const mouse = { x: 0, y: 0, isActive: false } // 마우스 정보
 
     // canvas 초기화 함수

@@ -1,0 +1,87 @@
+@import '@styles/_animations.scss';
+@import '@styles/_responsive.scss';
+
+$INDEX_WHEEL_NUMBER_OF_LISTS: 15; // 카테고리 갯수. tsx 파일에 설정된 수와 동일해야함
+
+// 이중 원 그리는 mixin
+@mixin draw-index-wheel($radius: 38rem) {
+  // 바깥 원 그리기
+  width: calc(2 * $radius);
+  height: calc(2 * $radius);
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+
+  // 안쪽 원 그리기
+  &::after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(2 * $radius / 3);
+    height: calc(2 * $radius / 3);
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+// 카테고리를 원형으로 배열하는 mixin
+@mixin layout-categories($radius: 38rem, $offset: 4rem) {
+  @for $i from 1 through $INDEX_WHEEL_NUMBER_OF_LISTS {
+    $angle: calc(360deg / $INDEX_WHEEL_NUMBER_OF_LISTS) * $i;
+
+    &:nth-child(#{$i}) {
+      transform: translate(-50%, -50%)
+        rotate(#{$angle})
+        translate(calc(-1 * $radius + $offset));
+      color: if($i % 5 == 0, var(--main-color), var(--font-color));
+    }
+  }
+}
+
+.index-wheel {
+  @include animation-rotate-counter-clockwise(30s); // 회전 애니메이션
+  @include draw-index-wheel(var(--wheel-radius));
+  --wheel-radius: 38rem;
+
+  position: relative;
+}
+
+.index-wheel.stop {
+  animation-play-state: paused;
+}
+
+.index-wheel__category {
+  @include layout-categories(var(--wheel-radius), var(--wheel-offset));
+  --wheel-offset: 4rem;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3rem;
+  font-size: 4rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@include tablet {
+  .index-wheel {
+    --wheel-radius: 32rem;
+  }
+
+  .index-wheel__category {
+    font-size: 3rem;
+  }
+}
+
+@include mobile {
+  .index-wheel {
+    --wheel-radius: 28rem;
+  }
+
+  .index-wheel__category {
+    --wheel-offset: 3rem;
+    font-size: 2.5rem;
+  }
+}

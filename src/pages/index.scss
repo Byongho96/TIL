@@ -1,14 +1,14 @@
-@import '../styles/_responsive.scss';
+@import '@styles/_responsive.scss';
 
-.container {
+.index--layout {
   overflow: hidden;
   position: relative;
-  padding: 5rem 0 0 7rem;
+  padding: 4rem 0 0 7rem;
   box-sizing: border-box;
   height: 100%;
 }
 
-.wheel {
+.index__wheel-category {
   position: absolute;
   right: -25rem;
   bottom: -40rem;
@@ -16,11 +16,11 @@
 
 // 랩탑
 @include laptop {
-  .container {
-    padding: 5rem 0 0 7rem;
+  .index--layout {
+    padding: 4rem 0 0 6rem;
   }
 
-  .wheel {
+  .index__wheel-category {
     right: -30rem;
     bottom: -40rem;
   }
@@ -28,11 +28,11 @@
 
 // 타블렛
 @include tablet {
-  .container {
-    padding: 5rem 0 0 3rem;
+  .index--layout {
+    padding: 4rem 0 0 5rem;
   }
 
-  .wheel {
+  .index__wheel-category {
     right: -25rem;
     bottom: -30rem;
   }
@@ -40,11 +40,11 @@
 
 // 모바일
 @include mobile {
-  .container {
+  .index--layout {
     padding: 2rem 0 0 1rem;
   }
 
-  .wheel {
+  .index__wheel-category {
     right: -35rem;
     bottom: -25rem;
   }

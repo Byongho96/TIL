@@ -11,10 +11,9 @@
 }
 
 .toc a {
-  overflow: hidden;
   text-decoration: none;
-  color: $font-gray;
-  font-size: 0.9rem;
+  color: $font-subtle;
+  font-size: 0.8rem;
   font-weight: 300;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -25,5 +24,5 @@
 .toc a.active {
   color: var(--font-color);
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
 }

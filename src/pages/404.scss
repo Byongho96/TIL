@@ -1,0 +1,41 @@
+@import '@styles/_responsive.scss';
+@import '@styles/_colors.scss';
+
+@keyframes path {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.not-found--layout {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.not-found__text {
+  color: $font-gray;
+  font-size: 7rem;
+  font-weight: 700;
+  letter-spacing: 1rem;
+}
+
+.not-found__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+@include tablet {
+  .not-found__text {
+    font-size: 6rem;
+  }
+}
+
+@include mobile {
+  .not-found__text {
+    font-size: 5rem;
+  }
+}

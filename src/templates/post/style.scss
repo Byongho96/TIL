@@ -3,19 +3,18 @@
 
 .post {
   display: grid;
-  grid-template-columns: 9fr minmax(270px, 2fr);
+  grid-template-columns: 9fr minmax(260px, 2fr);
   align-items: start;
   position: relative;
-  margin: 3rem 0 0 0;
+  margin: 5rem 0 0 0;
 }
 
 .post--article {
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  padding: 0 4rem 0 5rem;
-
-  display: flex;
+  max-width: 780px;
+  padding: 0 2rem 0 6rem;
 }
 
 .post--article--content {
@@ -25,13 +24,17 @@
 }
 
 .post--toc {
+  overflow-x: hidden;
+  overflow-y: auto;
   position: sticky;
   top: 2rem;
-  max-height: 90vh;
-  padding: 0 2rem 0 0;
+  max-height: 80vh;
+  margin: 0 1rem 0 0;
+  padding: 0 1rem 0 0;
+  border-left: 2px solid rgba(187, 187, 187, 0.2);
 }
 
-.post--toc ::-webkit-scrollbar {
+.post--toc::-webkit-scrollbar {
   display: none;
 }
 
@@ -42,6 +45,7 @@
 
   .post--article {
     padding: 0 1rem 0 3rem;
+    max-width: auto;
   }
 
   .post--toc {
@@ -50,13 +54,21 @@
 }
 
 @include tablet {
+  .post {
+    margin: 4rem 0 0 0;
+  }
+
   .post--article {
     padding: 0 2rem;
   }
 }
 
 @include mobile {
+  .post {
+    margin: 3rem 0 0 0;
+  }
+
   .post--article {
-    padding: 0 0.5rem;
+    padding: 0 1rem;
   }
 }

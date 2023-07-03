@@ -1,5 +1,8 @@
-@import '../../styles/_colors.scss';
-@import '../../styles/_responsive.scss';
+@import '@styles/_colors.scss';
+@import '@styles/_responsive.scss';
+
+// 두번째 I 글자 임의로 띄우기
+$INDEX_LOGO_I_MARGIN_LEFT: 0.15em;
 
 .index-logo {
   display: flex;
@@ -8,7 +11,7 @@
   font-size: 9rem;
 }
 
-.index-logo > p {
+.index-logo > div {
   z-index: 3;
   display: inline;
   align-self: flex-start;
@@ -16,19 +19,17 @@
   color: $font-gray;
 }
 
-.index-logo.dark > p {
+.index-logo > div::first-letter {
+  color: var(--font-color);
+}
+
+.index-logo > div:nth-child(2) {
+  margin-left: $INDEX_LOGO_I_MARGIN_LEFT;
+}
+
+.index-logo.dark > div {
   color: #ffffff;
   animation: animation-flicking 5s infinite alternate;
-}
-
-// 두번째 I 띄우기
-.index-logo > p:nth-child(2) {
-  padding-left: 0.15em;
-}
-
-// 첫글자만 색상 변경
-.index-logo > p::first-letter {
-  color: var(--font-color);
 }
 
 @keyframes animation-flicking {
@@ -69,7 +70,7 @@
 // 모바일
 @include mobile {
   .index-logo {
-    gap: 2rem;
-    font-size: 4rem;
+    gap: 1rem;
+    font-size: 4.5rem;
   }
 }

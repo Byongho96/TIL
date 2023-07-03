@@ -1,22 +1,26 @@
 import React from 'react'
-import * as styles from './style.module.scss'
+import './style.scss'
 import { navigate } from 'gatsby'
 import { useCategories } from '@hooks/use-categories'
 
+const NUMBER_OF_LISTS = 15 // 화면에 표시할 카테고리 갯수. CSS 파일의 숫자와 동일해야함
+
 const IndexWheel: React.FC = () => {
-  const data = useCategories()
-  data.sort(() => 0.5 - Math.random()) // 데이터 섞기
+  const categories = useCategories()
+
+  categories.sort(() => 0.5 - Math.random()) // 데이터 섞기
+  const selectedCategories = categories.slice(0, NUMBER_OF_LISTS)
 
   // 이벤트 발생 element에 styles.stop 클래스 추가
   const handleMouseEnter = (e: React.MouseEvent<HTMLUListElement>) => {
     const target = e.target as HTMLUListElement
-    target.classList.add(styles.stop)
+    target.classList.add('stop')
   }
 
   // 이벤트 발생 element에 styles.stop 클래스 추가
   const handleMouseLeave = (e: React.MouseEvent<HTMLUListElement>) => {
     const target = e.target as HTMLUListElement
-    target.classList.remove(styles.stop)
+    target.classList.remove('stop')
   }
 
   const handleClick = (name: string) => {
@@ -25,13 +29,13 @@ const IndexWheel: React.FC = () => {
 
   return (
     <ul
-      className={styles.categories}
+      className="index-wheel"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {data.slice(0, 15).map((category) => (
+      {selectedCategories.map((category) => (
         <li
-          className={styles.category}
+          className="index-wheel__category"
           key={category.id}
           onClick={() => handleClick(category.name)}
         >

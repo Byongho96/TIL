@@ -1,7 +1,7 @@
 @import '@styles/_colors.scss';
 @import '@styles/_responsive.scss';
 
-.about-layout {
+.about--layout {
   display: grid;
   grid-template-rows: minmax(35rem, 1fr) min-content;
   gap: 5rem;
@@ -9,7 +9,7 @@
   padding: 0 0 8rem 0;
 }
 
-.about-layout--typing {
+.about__typing {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,18 +22,18 @@
 }
 
 @include tablet {
-  .about-layout--typing {
+  .about__typing {
     padding: 0 3rem;
     font-size: 5rem;
   }
 }
 
 @include mobile {
-  .about-layout {
+  .about--layout {
     grid-template-rows: minmax(20rem, 1fr) min-content;
   }
 
-  .about-layout--typing {
+  .about__typing {
     padding: 0 1rem;
     font-size: 3rem;
   }
