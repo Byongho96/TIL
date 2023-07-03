@@ -57,7 +57,7 @@
 .sidebar__posts {
   display: grid;
   grid-template-rows: repeat(var(--posts-count), 0fr);
-  transition: grid-template-rows 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  transition: grid-template-rows 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 .sidebar__posts.open {

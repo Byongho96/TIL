@@ -27,7 +27,12 @@
 .post--toc {
   position: sticky;
   top: 2rem;
+  max-height: 90vh;
   padding: 0 2rem 0 0;
+}
+
+.post--toc ::-webkit-scrollbar {
+  display: none;
 }
 
 @include laptop {
