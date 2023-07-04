@@ -1,0 +1,1188 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.10.0"/><style data-href="/TIL/styles.a943d900c83df3f34d8b.css" data-identity="gatsby-global-css">a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{border:0;font-size:100%;font:inherit;margin:0;padding:0;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1.2}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:"";content:none}table{border-collapse:collapse;border-spacing:0}:root{--main-color:red;--bg-color:#292929;--font-color:#fff}:root.light{--main-color:red;--bg-color:#fff;--font-color:#000}body{background-color:var(--bg-color);color:var(--font-color);font-family:SCDream,NanumSquareNeo,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif}.nav-layout{display:grid;grid-template-columns:1fr;grid-template-rows:-webkit-min-content 1fr -webkit-min-content;grid-template-rows:min-content 1fr min-content;min-height:100vh}.nav-layout *{min-width:0}.footer{color:#898989;font-size:.8rem;padding:1rem;text-align:center}.footer.light{box-shadow:0 0 10px rgba(0,0,0,.2)}.footer.dark{box-shadow:0 10px 30px var(--main-color)}.footer--link{-webkit-background-clip:text;background-clip:text;background-image:linear-gradient(to right,var(--main-color),var(--main-color));background-position:0 0;background-repeat:no-repeat;background-size:0 100%;color:#898989;cursor:pointer;text-decoration:none;transition:background-size .2s ease-in-out}.footer--link:hover{background-size:100% 100%;color:transparent}.navbar{align-items:center;border-bottom:5px solid var(--main-color);display:flex;justify-content:space-between;padding:1.2rem 4rem 1rem}.navbar--text,.navbar__logo a,.navbar__menu a{color:var(--font-color);font-size:1.8rem;font-style:italic;font-weight:900;text-decoration:none}.navbar__color,.navbar__logoColor{display:flex;flex:1 1}.navbar__color{padding:0 2rem 0 1rem}.navbar__menu{display:flex;gap:3rem}.navbar__toggleBtn{cursor:pointer;display:none;position:absolute;right:1.3rem;top:1.3rem}.navbar__toggleBtn svg{height:auto;width:1.8rem}.navbar__toggleBtn path{stroke:var(--font-color);fill:var(--font-color)}@media(max-width:768px){.navbar{align-items:stretch;flex-direction:column;padding:1rem 1rem .8rem}.navbar--text,.navbar__logo a,.navbar__menu a{font-size:1.5rem}.navbar__color{padding:0 3.5rem 0 .8rem}.navbar__toggleBtn{display:block}.navbar__menu{display:grid;gap:0;grid-template-rows:repeat(3,0fr);transition:grid-template-rows .2s ease-in-out,opacity .2s ease-in-out,margin .2s ease-in-out}.navbar__menu.open{gap:.5rem;grid-template-rows:repeat(3,1fr);margin:.5rem 0 0}.navbar__menu li{overflow:hidden;text-align:center}}.color-change{align-items:center;display:flex;justify-content:space-between;width:100%}.color-change__picker{-webkit-appearance:none;appearance:none;background-color:transparent;border:none;cursor:pointer;height:2rem;outline:none;width:2rem}.color-change__theme{cursor:pointer;position:relative}.color-change__theme.light{animation-delay:0s;animation-direction:alternate;animation-duration:3s;animation-fill-mode:none;animation-iteration-count:infinite;animation-name:animation-floating;animation-timing-function:ease-in-out}.color-change__theme.dark{animation-delay:0s;animation-direction:normal;animation-duration:10s;animation-fill-mode:none;animation-iteration-count:infinite;animation-name:animation-left-flowing;animation-timing-function:linear}.color-change__theme svg{height:2rem;width:2rem}.color-change__theme path{fill:var(--font-color);stroke:var(--font-color)}.color-change__theme--sun{left:0;top:0;transform:scale(0) rotate(0deg);transition:transform .5s ease-in-out}.color-change__theme--sun.dark{transform:scale(1) rotate(-1turn)}.color-change__theme--moon{left:0;position:absolute;top:0;transform:scale(1) rotate(0deg);transition:transform .5s ease-in-out}.color-change__theme--moon.dark{transform:scale(0) rotate(-1turn)}@media(max-width:768px){.color-change__picker{height:1.9rem;width:1.9rem}.color-change__theme svg{height:1.7rem;width:1.7rem}}@keyframes path{to{stroke-dashoffset:0}}.not-found--layout{align-items:center;display:flex;justify-content:center;position:relative}.not-found__text{color:#898989;font-size:7rem;font-weight:700;letter-spacing:1rem}.not-found__background{height:100%;left:0;position:absolute;top:0}@media(max-width:1024px){.not-found__text{font-size:6rem}}@media(max-width:768px){.not-found__text{font-size:5rem}}.about--layout{display:grid;gap:5rem;grid-template-rows:minmax(35rem,1fr) -webkit-min-content;grid-template-rows:minmax(35rem,1fr) min-content;overflow:hidden;padding:0 0 8rem}.about__typing{align-items:center;color:#898989;display:flex;font-size:7rem;font-weight:700;justify-content:center;line-height:130%;padding:0 5rem;text-align:center}@media(max-width:1024px){.about__typing{font-size:5rem;padding:0 3rem}}@media(max-width:768px){.about--layout{grid-template-rows:minmax(20rem,1fr) -webkit-min-content;grid-template-rows:minmax(20rem,1fr) min-content}.about__typing{font-size:3rem;padding:0 1rem}}.about-me{display:flex;flex-direction:column;gap:2rem;justify-content:space-between;position:relative}.about-me__text{color:#898989;font-size:7rem;font-weight:700;left:50%;line-height:130%;position:absolute;top:50%;transform:translate(-50%,-50%);white-space:nowrap;z-index:-1}.about-me__text.dark{animation:animation-flicking 5s infinite alternate;color:#fff}@media(max-width:1024px){.about-me__text{font-size:5rem}}@media(max-width:768px){.about-me__text{font-size:4rem}}.tape{display:flex;padding:.7rem 0 1rem;transform:rotate(var(--rotate-deg)) translateX(-10%);width:120%}.tape.white{background-color:var(--bg-color);border:3px solid var(--main-color);color:var(--main-color)}.tape.black{background-color:#111;color:var(--main-color)}.tape__text{font-size:1.8rem;font-weight:700;min-width:-webkit-fit-content;min-width:-moz-fit-content;min-width:fit-content;white-space:nowrap}@media(max-width:1024px){.tape__text{font-size:1.5rem}}@media(max-width:768px){.tape{padding:.6rem 0 .9rem}.tape__text{font-size:1.3rem}}.index--layout{box-sizing:border-box;height:100%;overflow:hidden;padding:4rem 0 0 7rem;position:relative}.index__wheel-category{bottom:-40rem;position:absolute;right:-25rem}@media(max-width:1280px){.index--layout{padding:4rem 0 0 6rem}.index__wheel-category{bottom:-40rem;right:-30rem}}@media(max-width:1024px){.index--layout{padding:4rem 0 0 5rem}.index__wheel-category{bottom:-30rem;right:-25rem}}@media(max-width:768px){.index--layout{padding:2rem 0 0 1rem}.index__wheel-category{bottom:-25rem;right:-35rem}}.index-logo{display:flex;flex-direction:column;font-size:9rem;gap:.1rem}.index-logo>div{align-self:flex-start;color:#898989;display:inline;font-weight:700;z-index:3}.index-logo>div:first-letter{color:var(--font-color)}.index-logo>div:nth-child(2){margin-left:.15em}.index-logo.dark>div{animation:animation-flicking 5s infinite alternate;color:#fff}@keyframes animation-flicking{0%,19%,22%,24%,54%,57%,to{text-shadow:0 0 .5rem #fff,0 0 1.2rem var(--main-color),0 0 1.7rem var(--main-color),0 0 2.2rem var(--main-color)}21%,23%,55%{text-shadow:none}}@media(max-width:1280px){.index-logo{font-size:8rem;gap:1rem}}@media(max-width:1024px){.index-logo{font-size:7rem;gap:2rem}}@media(max-width:768px){.index-logo{font-size:4.5rem;gap:1rem}}.index-wheel{--wheel-radius:38rem;animation-delay:0s;animation-direction:normal;animation-duration:30s;animation-fill-mode:none;animation-iteration-count:infinite;animation-name:animation-left-flowing;animation-timing-function:linear;border-radius:50%;box-shadow:0 0 10px 10px rgba(0,0,0,.2);height:calc(var(--wheel-radius)*2);position:relative;width:calc(var(--wheel-radius)*2)}@keyframes animation-left-flowing{0%{transform:rotate(0)}to{transform:rotate(-1turn)}}.index-wheel:after{border-radius:50%;box-shadow:0 0 10px 10px rgba(0,0,0,.2);content:"";display:block;height:calc(var(--wheel-radius)*2/3);left:50%;position:absolute;top:50%;transform:translate(-50%,-50%);width:calc(var(--wheel-radius)*2/3)}.index-wheel.stop{animation-play-state:paused}.index-wheel__category{--wheel-offset:4rem;cursor:pointer;font-size:4rem;font-weight:600;left:50%;position:absolute;top:50%;width:3rem}.index-wheel__category:first-child{color:var(--font-color);transform:translate(-50%,-50%) rotate(24deg) translate(calc(var(--wheel-radius)*-1 + var(--wheel-offset)))}.index-wheel__category:nth-child(2){color:var(--font-color);transform:translate(-50%,-50%) rotate(48deg) translate(calc(var(--wheel-radius)*-1 + var(--wheel-offset)))}.index-wheel__category:nth-child(3){color:var(--font-color);transform:translate(-50%,-50%) rotate(72deg) translate(calc(var(--wheel-radius)*-1 + var(--wheel-offset)))}.index-wheel__category:nth-child(4){color:var(--font-color);transform:translate(-50%,-50%) rotate(96deg) translate(calc(var(--wheel-radius)*-1 + var(--wheel-offset)))}.index-wheel__category:nth-child(5){color:var(--main-color);transform:translate(-50%,-50%) rotate(120deg) translate(calc(var(--wheel-radius)*-1 + var(--wheel-offset)))}.index-wheel__category:nth-child(6){color:var(--font-color);transform:translate(-50%,-50%) rotate(144deg) translate(calc(var(--wheel-radius)*-1 + var(--wheel-offset)))}.index-wheel__category:nth-child(7){color:var(--font-color);transform:translate(-50%,-50%) rotate(168deg) translate(calc(var(--wheel-radius)*-1 + var(--wheel-offset)))}.index-wheel__category:nth-child(8){color:var(--font-color);transform:translate(-50%,-50%) rotate(192deg) translate(calc(var(--wheel-radius)*-1 + var(--wheel-offset)))}.index-wheel__category:nth-child(9){color:var(--font-color);transform:translate(-50%,-50%) rotate(216deg) translate(calc(var(--wheel-radius)*-1 + var(--wheel-offset)))}.index-wheel__category:nth-child(10){color:var(--main-color);transform:translate(-50%,-50%) rotate(240deg) translate(calc(var(--wheel-radius)*-1 + var(--wheel-offset)))}.index-wheel__category:nth-child(11){color:var(--font-color);transform:translate(-50%,-50%) rotate(264deg) translate(calc(var(--wheel-radius)*-1 + var(--wheel-offset)))}.index-wheel__category:nth-child(12){color:var(--font-color);transform:translate(-50%,-50%) rotate(288deg) translate(calc(var(--wheel-radius)*-1 + var(--wheel-offset)))}.index-wheel__category:nth-child(13){color:var(--font-color);transform:translate(-50%,-50%) rotate(312deg) translate(calc(var(--wheel-radius)*-1 + var(--wheel-offset)))}.index-wheel__category:nth-child(14){color:var(--font-color);transform:translate(-50%,-50%) rotate(336deg) translate(calc(var(--wheel-radius)*-1 + var(--wheel-offset)))}.index-wheel__category:nth-child(15){color:var(--main-color);transform:translate(-50%,-50%) rotate(1turn) translate(calc(var(--wheel-radius)*-1 + var(--wheel-offset)))}@media(max-width:1024px){.index-wheel{--wheel-radius:32rem}.index-wheel__category{font-size:3rem}}@media(max-width:768px){.index-wheel{--wheel-radius:28rem}.index-wheel__category{--wheel-offset:3rem;font-size:2.5rem}}.posts--layout{display:flex;flex-direction:column;padding:0 5rem}.posts__category{color:#898989;font-size:6rem;font-weight:600;margin:3rem 0 2rem}.posts__post-list{display:flex;flex-direction:column;gap:1rem}@media(max-width:1280px){.posts--layout{padding:0 2rem}.posts__category{font-size:5rem}}@media(max-width:1024px){.posts--layout{padding:0 1rem}.posts__category{font-size:4rem;margin:3rem 0 2rem}}@media(max-width:768px){.posts--layout{padding:0 1rem}.posts__category{font-size:3rem;margin:2rem 0 1rem}}.post-group--layout{display:flex;flex-direction:column;padding:0 5rem}.post-group__category{color:#898989;font-size:6rem;font-weight:600;padding:3rem 0 2rem 1rem}.post-group__post-list{display:flex;flex-direction:column}@media(max-width:1280px){.post-group--layout{padding:0 2rem}.post-group__category{font-size:5rem}}@media(max-width:1024px){.post-group--layout{padding:0 1rem}.post-group__category{font-size:4rem}.post-group__post-list{padding:0}}@media(max-width:768px){.post-group--layout{padding:0}.post-group__category{font-size:3rem;padding:1rem}.post-group__post-list{padding:0 .5rem}}.post-item{border-bottom:1px solid #a8a8a8;cursor:pointer;display:flex;flex-direction:column;gap:2rem;padding:2rem 0;transition:scale .2s ease-in-out,border-bottom .2s ease-in-out}.post-item:hover{border-bottom:1px solid var(--main-color);scale:1.02}.post-item--flex{align-items:flex-end;display:flex;justify-content:space-between}.post-item__title{font-size:1.7rem;font-weight:700}.post-item__date{color:#898989;font-size:1.7rem;font-style:italic;font-weight:600}.post-item__excerpt{font-size:1rem}@media(max-width:1024px){.post-item{gap:1.5rem}.post-item--flex{align-items:flex-start;display:flex;flex-direction:column;gap:1rem}.post-item__date,.post-item__title{font-size:1.5rem}.post-item__excerpt{font-size:.9rem}}@media(max-width:768px){.post-item{gap:.8rem;padding:1rem 0}.post-item--flex{align-items:flex-start;display:flex;flex-direction:column;gap:.5rem}.post-item__title{font-size:1.3rem}.post-item__date{font-size:1rem}.post-item__excerpt{font-size:.7rem}}.post{align-items:start;display:grid;grid-template-columns:9fr minmax(260px,2fr);margin:5rem 0 0;position:relative}.post--article{display:flex;flex-direction:column;gap:3rem;max-width:780px;padding:0 2rem 0 6rem}.post--article--content{border-bottom:6px double #c6c6c6;padding-bottom:3rem;position:relative}.post--toc{border-left:2px solid hsla(0,0%,73%,.2);margin:0 1rem 0 0;max-height:80vh;overflow-x:hidden;overflow-y:auto;padding:0 1rem 0 0;position:-webkit-sticky;position:sticky;top:2rem}.post--toc::-webkit-scrollbar{display:none}@media(max-width:1280px){.post{grid-template-columns:1fr 0}.post--article{max-width:auto;padding:0 1rem 0 3rem}.post--toc{display:none}}@media(max-width:1024px){.post{margin:4rem 0 0}.post--article{padding:0 2rem}}@media(max-width:768px){.post{margin:3rem 0 0}.post--article{padding:0 1rem}}.adjacent-posts{display:grid;gap:2rem;grid-template-columns:repeat(2,1fr)}.adjacent-posts__post{align-items:center;background-color:hsla(0,0%,78%,.2);border-radius:.5rem;cursor:pointer;display:flex;flex:1 1;gap:1rem;padding:1rem;transition:transform .2s ease-in-out}.adjacent-posts__post.next{flex-direction:row-reverse}.adjacent-posts__post:hover{transform:scale(1.02)}.adjacent-posts__post svg{height:1.3rem;transition:transform .2 ease;width:2.6rem}.adjacent-posts__post path{fill:var(--font-color);stroke:var(--font-color);transition:transform .2s ease-in,fill .2s ease-in,stroke .2s ease-in}.adjacent-posts__post:hover path{fill:var(--main-color);stroke:var(--main-color)}.adjacent-posts__post--flex{align-items:center;display:flex;flex-direction:column;gap:.5rem;justify-content:space-between}.adjacent-posts__post--flex.prev{align-items:flex-start}.adjacent-posts__post--flex.next{align-items:flex-end}.adjacent-posts__post__sign{color:#898989;font-size:1rem;font-weight:500}.adjacent-posts__post.prev:hover #path-1{transform:translateX(-30%)}.adjacent-posts__post.next:hover #path-1{transform:translateX(30%)}.adjacent-posts__post:hover #path-2{opacity:.5}.adjacent-posts__post.prev:hover #path-3{opacity:.2;transform:translateX(30%)}.adjacent-posts__post.next:hover #path-3{opacity:.2;transform:translateX(-30%)}.adjacent-posts__post__title{font-size:1.2rem;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:100%}@media(max-width:1024px){.adjacent-posts__post__icon svg{height:1.2rem;transition:transform .2 ease;width:2.4rem}.adjacent-posts{display:flex;flex-direction:column;gap:1rem}}@media(max-width:768px){.adjacent-posts__post__sign{font-size:.9rem}.adjacent-posts__post__title{font-size:1rem}.adjacent-posts__post__icon svg{height:1.1rem;transition:transform .2 ease;width:2.2rem}}.post-header{border-bottom:6px double #c6c6c6;display:flex;flex-direction:column;gap:1.5rem;padding:0 0 1.5rem;position:relative}.post-header--title{font-size:3rem;font-weight:700;margin:0 0 2rem}.post-header--date-author{color:#898989;font-size:1.2rem;font-weight:700}.post-header--tags{display:flex;flex-wrap:wrap;gap:1rem}.post-header--tags--tag{background-color:hsla(0,0%,72%,.305);border-radius:10px;color:var(--main-color);font-size:.9rem;font-weight:500;padding:.4rem .5rem}@media(max-width:1024px){.post-header{padding:0 0 2rem}.post-header--title{font-size:2.5rem}.post-header--date-author{font-size:1rem}}@media(max-width:768px){.post-header{padding:0 0 1.5rem}.post-header--title{font-size:2.2rem}.post-header--date-author{font-size:1rem}}.toc ul{margin:0 0 0 1em}.toc li{margin:.4em 0 0;overflow:hidden}.toc a,.toc li{text-overflow:ellipsis}.toc a{color:hsla(0,0%,54%,.667);font-size:.8rem;font-weight:300;text-decoration:none;transition:all .15s ease-in-out;white-space:nowrap}.toc a.active{color:var(--font-color);font-size:.85rem;font-weight:500}.to-the-top{animation-delay:0s;animation-direction:alternate;animation-duration:2s;animation-fill-mode:none;animation-iteration-count:infinite;animation-name:animation-floating;animation-timing-function:ease-in-out;bottom:20px;cursor:pointer;height:3rem;position:fixed;right:20px;transition:scale .2s ease-in-out;width:3rem}@keyframes animation-floating{0%{transform:translateY(-5%)}to{transform:translateY(5%)}}.to-the-top path:first-child{stroke:var(--main-color);fill:var(--main-color)}.to-the-top span{border-radius:50%;display:inline-block;height:90%;left:50%;outline-color:var(--main-color);outline-style:solid;outline-width:0;position:absolute;top:50%;transform:translate(-50%,-50%);width:90%;z-index:-1}.to-the-top:hover span{animation:to-the-top-ripple 1.6s infinite;animation-delay:calc(.4s*var(--i))}@keyframes to-the-top-ripple{0%{opacity:.5;outline-width:0}to{opacity:0;outline-width:15px}}.type-animation:after{animation:blink 1s step-end infinite;content:"|";opacity:1}@keyframes blink{50%{opacity:var(--cursor-opacity)}}.utterances{margin-left:0;width:100%}.utterances-frame{width:100%}.category-layout{align-items:start;display:grid;grid-template-columns:minmax(310px,2fr) 9fr;padding:0 0 2rem;position:relative}.category-layout__aside{align-items:center;display:flex;flex-direction:column;gap:2rem;padding:2rem 0 3rem;position:relative}.category-layout__aside:before{background-color:#919191;background-size:cover;bottom:0;content:"";left:0;-webkit-mask-image:linear-gradient(#000,95%,transparent);mask-image:linear-gradient(#000,95%,transparent);opacity:.1;position:absolute;right:0;top:0;z-index:-1}.category-layout__aside::-webkit-scrollbar{display:none}.category-layout__profile{margin:1rem 0;width:70%}.category-layout__category{padding:0 2rem}.category-layout__button,.category-layout__modal{display:none}@media(max-width:1024px){.category-layout{grid-template-columns:1fr}.category-layout__aside{background-color:var(--bg-color);height:calc(100vh - var(--position-top));left:0;max-width:70vw;position:fixed;top:var(--position-top);transform:translateX(-100%);transition:transform .2s ease-in-out;z-index:99}.category-layout__aside.active{overflow-y:scroll;transform:translate(0)}.category-layout__profile{display:none}.category-layout__button{background-color:var(--main-color);border:none;border-radius:0 5px 5px 0;color:#fff;cursor:pointer;display:block;font-size:.9rem;font-weight:600;margin:0;padding:.5em .4em;position:absolute;right:0;top:0;transform:translate(100%);writing-mode:vertical-rl}@keyframes category-layout__button--floating{50%{transform:translate(100%,10%)}}.category-layout__button.active{display:none}.category-layout__modal.active{background-color:rgba(0,0,0,.5);display:block;height:100%;left:0;position:absolute;top:0;width:100%}}.sidebar{display:flex;flex-direction:column;gap:.3rem;width:100%}.sidebar__total{color:#898989;font-weight:500;text-decoration:none}.sidebar ul ul{margin:0 0 0 1em}.sidebar ul ul.sidebar__category{list-style-position:inside;list-style-type:disc}.sidebar ul ul ul{margin:0 0 0 1em}.sidebar ul ul ul.sidebar__category{list-style-position:inside;list-style-type:circle}.sidebar__category li{margin:.6rem 0 0}.sidebar__category--text{color:var(--font-color);display:inline-block;font-size:1.05rem;font-weight:600;text-decoration:none;transition:font-weight .1s ease-in-out}.sidebar__category--text:hover{font-weight:800}.sidebar__posts{display:grid;grid-template-rows:repeat(var(--posts-count),0fr);transition:grid-template-rows .3s ease-in-out,opacity .3s ease-in-out}.sidebar__posts.open{grid-template-rows:repeat(var(--posts-count),1fr)}.sidebar__posts li{margin:0;overflow:hidden;text-overflow:ellipsis;transition:margin .2s ease-in-out;white-space:nowrap}.sidebar__posts.open li{margin:.5rem 0 0}.sidebar__posts a{color:#898989;font-size:.9rem;font-weight:500;text-decoration:none;transition:color .1s ease-in-out}.sidebar__posts a.active,.sidebar__posts a:hover{color:var(--font-color)}.profile-image{border:1px solid #ccc;border-radius:50%;box-shadow:0 0 5px 0 rgba(0,0,0,.2);height:auto;object-fit:cover;object-position:center;width:100%}pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.light .hljs{color:#24292e}.light .hljs-doctag,.light .hljs-keyword,.light .hljs-meta .hljs-keyword,.light .hljs-template-tag,.light .hljs-template-variable,.light .hljs-type,.light .hljs-variable.language_{color:#d73a49}.light .hljs-title,.light .hljs-title.class_,.light .hljs-title.class_.inherited__,.light .hljs-title.function_{color:#6f42c1}.light .hljs-attr,.light .hljs-attribute,.light .hljs-literal,.light .hljs-meta,.light .hljs-number,.light .hljs-operator,.light .hljs-selector-attr,.light .hljs-selector-class,.light .hljs-selector-id,.light .hljs-variable{color:#005cc5}.light .hljs-meta .hljs-string,.light .hljs-regexp,.light .hljs-string{color:#032f62}.light .hljs-built_in,.light .hljs-symbol{color:#e36209}.light .hljs-code,.light .hljs-comment,.light .hljs-formula{color:#6a737d}.light .hljs-name,.light .hljs-quote,.light .hljs-selector-pseudo,.light .hljs-selector-tag{color:#22863a}.light .hljs-subst{color:#24292e}.light .hljs-section{color:#005cc5;font-weight:700}.light .hljs-bullet{color:#735c0f}.light .hljs-emphasis{color:#24292e;font-style:italic}.light .hljs-strong{color:#24292e;font-weight:700}.light .hljs-addition{background-color:#f0fff4;color:#22863a}.light .hljs-deletion{background-color:#ffeef0;color:#b31d28}.dark{/*!
+  Theme: GitHub Dark
+  Description: Dark theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-dark
+  Current colors taken from GitHub's CSS
+*/}.dark .hljs{color:#c9d1d9}.dark .hljs-doctag,.dark .hljs-keyword,.dark .hljs-meta .hljs-keyword,.dark .hljs-template-tag,.dark .hljs-template-variable,.dark .hljs-type,.dark .hljs-variable.language_{color:#ff7b72}.dark .hljs-title,.dark .hljs-title.class_,.dark .hljs-title.class_.inherited__,.dark .hljs-title.function_{color:#d2a8ff}.dark .hljs-attr,.dark .hljs-attribute,.dark .hljs-literal,.dark .hljs-meta,.dark .hljs-number,.dark .hljs-operator,.dark .hljs-selector-attr,.dark .hljs-selector-class,.dark .hljs-selector-id,.dark .hljs-variable{color:#79c0ff}.dark .hljs-meta .hljs-string,.dark .hljs-regexp,.dark .hljs-string{color:#a5d6ff}.dark .hljs-built_in,.dark .hljs-symbol{color:#ffa657}.dark .hljs-code,.dark .hljs-comment,.dark .hljs-formula{color:#8b949e}.dark .hljs-name,.dark .hljs-quote,.dark .hljs-selector-pseudo,.dark .hljs-selector-tag{color:#7ee787}.dark .hljs-subst{color:#c9d1d9}.dark .hljs-section{color:#1f6feb;font-weight:700}.dark .hljs-bullet{color:#f2cc60}.dark .hljs-emphasis{color:#c9d1d9;font-style:italic}.dark .hljs-strong{color:#c9d1d9;font-weight:700}.dark .hljs-addition{background-color:#033a16;color:#aff5b4}.dark .hljs-deletion{background-color:#67060c;color:#ffdcd7}@font-face{font-family:SCDream;font-style:thin;font-weight:100;src:url(/TIL/static/SCDream1-3f28bc17ecb809862c6944ea93b47d16.otf)}@font-face{font-family:SCDream;font-style:"extra-light";font-weight:200;src:url(/TIL/static/SCDream2-f44c037d461a68f92e1ecc0d7c8cac8a.otf)}@font-face{font-family:SCDream;font-style:light;font-weight:300;src:url(/TIL/static/SCDream3-1e55b77199a0afd0ed9af7b1bf67ad0e.otf)}@font-face{font-family:SCDream;font-style:normal;font-weight:400;src:url(/TIL/static/SCDream4-64c9dc7c860af7a004ad72765160a8d7.otf)}@font-face{font-family:SCDream;font-style:medium;font-weight:500;src:url(/TIL/static/SCDream5-ae5ee4933db75a3ccb046417217af46a.otf)}@font-face{font-family:SCDream;font-style:"semi-bold";font-weight:600;src:url(/TIL/static/SCDream6-4df12ee03e70b6326c25077b93aeddc5.otf)}@font-face{font-family:SCDream;font-style:bold;font-weight:700;src:url(/TIL/static/SCDream7-a8d826f4cafb0e7280514cde3c578bc9.otf)}@font-face{font-family:SCDream;font-style:"extra-bold";font-weight:800;src:url(/TIL/static/SCDream8-64217e4da7638066e57a817b1b7b0969.otf)}@font-face{font-family:SCDream;font-style:heavy;font-weight:900;src:url(/TIL/static/SCDream9-c8e7afd869e076d5055d05123a8fa3ca.otf)}@font-face{font-family:NanumGothic;font-style:light;font-weight:300;src:url(/TIL/static/NanumGothicLight-1c46f7604d689f94de086fd430f96b4a.otf)}@font-face{font-family:NanumGothic;font-style:medium;font-weight:400;src:url(/TIL/static/NanumGothic-13ddaacbbbc836512c0be1ccb77bf2c0.otf)}@font-face{font-family:NanumGothic;font-style:"bold";font-weight:700;src:url(/TIL/static/NanumGothicBold-2bcc768d9a2b3a1f9b3a78e0ccd5eae8.otf)}@font-face{font-family:NanumGothic;font-style:"extra-bold";font-weight:800;src:url(/TIL/static/NanumGothicExtraBold-9d67f581296d8d41b532cafe7924f31d.otf)}@font-face{font-family:NanumSquareNeo;font-style:light;font-weight:300;src:url(/TIL/static/NanumSquareNeoOTF-Lt-7ffce9ca10070e7e82c71e54e7f11f3a.otf)}@font-face{font-family:NanumSquareNeo;font-style:medium;font-weight:400;src:url(/TIL/static/NanumSquareNeoOTF-Rg-c99b7df19f3740ec73f98b93f470d2f8.otf)}@font-face{font-family:NanumSquareNeo;font-style:"bold";font-weight:700;src:url(/TIL/static/NanumSquareNeoOTF-Bd-e660325c185937474b82de9595461343.otf)}@font-face{font-family:NanumSquareNeo;font-style:"extra-bold";font-weight:800;src:url(/TIL/static/NanumSquareNeoOTF-Eb-6f429991125aa7480b072d21af3f3e1c.otf)}@font-face{font-family:NanumSquareNeo;font-style:"heavy";font-weight:900;src:url(/TIL/static/NanumSquareNeoOTF-Hv-2b56a694b518a9d7c5139fe8e4b26c2d.otf)}.markdown-body.light{--color-fg-default:#24292f;--color-fg-muted:#57606a;--color-fg-subtle:#6e7781;--color-canvas-quote:#eef0f5;--color-canvas-default:#fff;--color-canvas-subtle:#f6f8fa;--color-border-default:#d0d7de;--color-border-muted:#d8dee4;--color-neutral-muted:rgba(175,184,193,.2);--color-accent-fg:#0969da;--color-accent-emphasis:#0969da;--color-attention-subtle:#fcf5c1;--color-danger-fg:#cf222e;color-scheme:light}.markdown-body.dark{--color-fg-default:#c9d1d9;--color-fg-muted:#8b949e;--color-fg-subtle:#6e7681;--color-canvas-quote:#1a1a1b;--color-canvas-default:var(--bg-color);--color-canvas-subtle:#161b22;--color-border-default:#30363d;--color-border-muted:#21262d;--color-neutral-muted:hsla(215,8%,47%,.4);--color-accent-fg:#58a6ff;--color-accent-emphasis:#1f6feb;--color-attention-subtle:rgba(191,134,20,.352);--color-danger-fg:#f85149;color-scheme:dark}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;word-wrap:break-word;background-color:var(--color-canvas-default);color:var(--color-fg-default);font-family:NanumSquareNeo,-apple-system,BlinkMacSystemFont,Segoe UI,Noto Sans,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:.98rem;line-height:190%;margin:0}.markdown-body details,.markdown-body figcaption,.markdown-body figure{display:block}.markdown-body [hidden]{display:none!important}.markdown-body a{background-color:transparent;color:var(--color-accent-fg);text-decoration:none}.markdown-body a:hover{text-decoration:underline}.markdown-body b,.markdown-body strong{font-weight:var(--base-text-weight-bold,700)}.markdown-body dfn{font-style:italic}.markdown-body mark{background-color:var(--color-attention-subtle);color:var(--color-fg-default)}.markdown-body small{font-size:90%}.markdown-body sub,.markdown-body sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}.markdown-body sub{bottom:-.25em}.markdown-body sup{top:-.5em}.markdown-body img{background-color:var(--color-canvas-default);border-style:none;box-sizing:content-box;max-width:100%}.markdown-body code,.markdown-body kbd,.markdown-body pre,.markdown-body samp{font-family:monospace;font-size:1em}.markdown-body figure{margin:1em 40px}.markdown-body hr{background:transparent;background-color:var(--color-border-default);border:0;box-sizing:content-box;height:.25em;margin:24px 0;overflow:hidden;padding:0}.markdown-body hr:after,.markdown-body hr:before{content:"";display:table}.markdown-body hr:after{clear:both}.markdown-body input{font:inherit;font-family:inherit;font-size:inherit;line-height:inherit;margin:0;overflow:visible}.markdown-body [type=button],.markdown-body [type=reset],.markdown-body [type=submit]{-webkit-appearance:button}.markdown-body [type=checkbox],.markdown-body [type=radio]{box-sizing:border-box;padding:0}.markdown-body [type=number]::-webkit-inner-spin-button,.markdown-body [type=number]::-webkit-outer-spin-button{height:auto}.markdown-body [type=search]::-webkit-search-cancel-button,.markdown-body [type=search]::-webkit-search-decoration{-webkit-appearance:none}.markdown-body ::-webkit-input-placeholder{color:inherit;opacity:.54}.markdown-body ::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}.markdown-body ::placeholder{color:var(--color-fg-subtle);opacity:1}.markdown-body table{border-collapse:collapse;border-spacing:0;display:block;max-width:100%;overflow:auto;width:100%}.markdown-body td,.markdown-body th{padding:0}.markdown-body summary{display:list-item}.markdown-body details summary{cursor:pointer}.markdown-body details:not([open])>:not(summary){display:none!important}.markdown-body [role=button]:focus,.markdown-body a:focus,.markdown-body input[type=checkbox]:focus,.markdown-body input[type=radio]:focus{box-shadow:none;outline:2px solid var(--color-accent-fg);outline-offset:-2px}.markdown-body [role=button]:focus:not(:focus-visible),.markdown-body a:focus:not(:focus-visible),.markdown-body input[type=checkbox]:focus:not(:focus-visible),.markdown-body input[type=radio]:focus:not(:focus-visible){outline:1px solid transparent}.markdown-body [role=button]:focus-visible,.markdown-body a:focus-visible,.markdown-body input[type=checkbox]:focus-visible,.markdown-body input[type=radio]:focus-visible{box-shadow:none;outline:2px solid var(--color-accent-fg);outline-offset:-2px}.markdown-body a:not([class]):focus,.markdown-body a:not([class]):focus-visible,.markdown-body input[type=checkbox]:focus,.markdown-body input[type=checkbox]:focus-visible,.markdown-body input[type=radio]:focus,.markdown-body input[type=radio]:focus-visible{outline-offset:0}.markdown-body kbd{background-color:var(--color-canvas-subtle);border-bottom-color:var(--color-neutral-muted);border:1px solid var(--color-neutral-muted);border-radius:6px;box-shadow:inset 0 -1px 0 var(--color-neutral-muted);color:var(--color-fg-default);display:inline-block;font:11px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;line-height:10px;padding:3px 5px;vertical-align:middle}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{font-weight:var(--base-text-weight-extrabold,800);line-height:1.25;margin-bottom:16px;margin-top:24px}.markdown-body h1:before,.markdown-body h2:before,.markdown-body h3:before,.markdown-body h4:before,.markdown-body h5:before,.markdown-body h6:before{border-left:.25em solid var(--main-color);content:"";margin-right:.3em;opacity:.2}.markdown-body h1{font-size:2em;margin:1.2em 0 .8em}.markdown-body h1,.markdown-body h2{font-weight:var(--base-text-weight-extrabold,800)}.markdown-body h2{font-size:1.5em;margin:1em 0 .6em}.markdown-body h3{font-size:1.25em}.markdown-body h3,.markdown-body h4{font-weight:var(--base-text-weight-extrabold,800)}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h5,.markdown-body h6{font-weight:var(--base-text-weight-extrabold,800)}.markdown-body h6{color:var(--color-fg-muted);font-size:.85em}.markdown-body blockquote{background-color:var(--color-canvas-quote);border-left:.25em solid var(--color-border-default);color:var(--color-fg-muted);font-style:italic;margin:0;padding:.5em 1em}.markdown-body blockquote:before{content:open-quote;font-size:2em}.markdown-body blockquote:after{content:close-quote;font-size:2em}.markdown-body ol,.markdown-body ul{margin-bottom:0;margin-top:0;padding-left:2em}.markdown-body ul{list-style-type:disc}.markdown-body ol ul,.markdown-body ul ul{list-style-type:circle}.markdown-body ol ol ul,.markdown-body ol ul ul,.markdown-body ul ol ul,.markdown-body ul ul ul{list-style-type:square}.markdown-body ol{list-style-type:decimal}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code,.markdown-body pre,.markdown-body samp,.markdown-body tt{font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;font-size:12px}.markdown-body pre{word-wrap:normal;margin-bottom:0;margin-top:0}.markdown-body .octicon{fill:currentColor;display:inline-block;overflow:visible!important;vertical-align:text-bottom}.markdown-body input::-webkit-inner-spin-button,.markdown-body input::-webkit-outer-spin-button{-webkit-appearance:none;appearance:none;margin:0}.markdown-body:after,.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:var(--color-danger-fg)}.markdown-body .anchor{fill:var(--main-color);float:left;line-height:1;margin-left:-10px;padding-right:4px}.markdown-body .anchor:focus{outline:none}.markdown-body blockquote,.markdown-body details,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-bottom:20px;margin-top:0}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown-body h3 tt,.markdown-body h4 code,.markdown-body h4 tt,.markdown-body h5 code,.markdown-body h5 tt,.markdown-body h6 code,.markdown-body h6 tt{font-size:inherit;padding:0 .2em}.markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body summary h5,.markdown-body summary h6{display:inline-block}.markdown-body summary h1,.markdown-body summary h2{border-bottom:0;padding-bottom:0}.markdown-body ol.no-list,.markdown-body ul.no-list{list-style-type:none;padding:0}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type=A]{list-style-type:upper-alpha}.markdown-body ol[type=i]{list-style-type:lower-roman}.markdown-body ol[type=I]{list-style-type:upper-roman}.markdown-body div>ol:not([type]),.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-bottom:0;margin-top:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{font-size:1em;font-style:italic;font-weight:var(--base-text-weight-semibold,600);margin-top:16px;padding:0}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table th{font-weight:var(--base-text-weight-semibold,600)}.markdown-body table td,.markdown-body table th{border:1px solid var(--color-border-default);padding:6px 13px;vertical-align:middle}.markdown-body table tr{background-color:var(--color-canvas-default);border-top:1px solid var(--color-border-muted)}.markdown-body table tr:nth-child(2n){background-color:var(--color-canvas-subtle)}.markdown-body table img{background-color:transparent}.markdown-body table span.gatsby-resp-image-wrapper{min-width:300px}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{background-color:transparent;max-width:none;vertical-align:text-top}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{border:1px solid var(--color-border-default);display:block;float:left;margin:13px 0 0;overflow:hidden;padding:7px;width:auto}.markdown-body span.frame span img{display:block;float:left}.markdown-body span.frame span span{clear:both;color:var(--color-fg-default);display:block;padding:5px 0 0}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}.markdown-body span.align-center span img{margin:0 auto;text-align:center}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}.markdown-body span.align-right span img{margin:0;text-align:right}.markdown-body span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}.markdown-body span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}.markdown-body code,.markdown-body tt{background-color:var(--color-neutral-muted);border-radius:6px;font-size:85%;margin:0;padding:.2em .4em;white-space:break-spaces}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{text-decoration:inherit}.markdown-body samp{font-size:85%}.markdown-body pre code{font-size:100%}.markdown-body pre>code{background:transparent;border:0;margin:0;padding:0;white-space:pre;word-break:normal}.markdown-body pre{background-color:var(--color-canvas-subtle);border-radius:6px;font-size:85%;line-height:1.45;overflow:auto;padding:16px}.markdown-body pre code,.markdown-body pre tt{word-wrap:normal;background-color:transparent;border:0;display:inline;line-height:inherit;margin:0;max-width:auto;overflow:visible;padding:0}.markdown-body .csv-data td,.markdown-body .csv-data th{font-size:12px;line-height:1;overflow:hidden;padding:5px;text-align:left;white-space:nowrap}.markdown-body .csv-data .blob-num{background:var(--color-canvas-default);border:0;padding:10px 8px 9px;text-align:right}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:var(--color-canvas-subtle);border-top:0;font-weight:var(--base-text-weight-semibold,600)}.markdown-body [data-footnote-ref]:before{content:"["}.markdown-body [data-footnote-ref]:after{content:"]"}.markdown-body .footnotes{border-top:1px solid var(--color-border-default);color:var(--color-fg-muted);font-size:12px}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes ol ul{display:inline-block;margin-top:16px;padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target:before{border:2px solid var(--color-accent-emphasis);border-radius:6px;bottom:-8px;content:"";left:-24px;pointer-events:none;position:absolute;right:-8px;top:-8px}.markdown-body .footnotes li:target{color:var(--color-fg-default)}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body g-emoji{display:inline-block;font-family:Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;font-size:1em;font-style:normal!important;font-weight:var(--base-text-weight-normal,400);line-height:1;min-width:1ch;vertical-align:-.075em}.markdown-body g-emoji img{height:1em;width:1em}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item label{font-weight:var(--base-text-weight-normal,400)}.markdown-body .task-list-item.enabled label{cursor:pointer}.markdown-body .task-list-item+.task-list-item{margin-top:4px}.markdown-body .task-list-item .handle{display:none}.markdown-body .task-list-item-checkbox{margin:0 .2em .25em -1.4em;vertical-align:middle}.markdown-body .contains-task-list:dir(rtl) .task-list-item-checkbox{margin:0 -1.6em .25em .2em}.markdown-body .contains-task-list{position:relative}.markdown-body .contains-task-list:focus-within .task-list-item-convert-container,.markdown-body .contains-task-list:hover .task-list-item-convert-container{clip:auto;display:block;height:24px;overflow:visible;width:auto}.markdown-body ::-webkit-calendar-picker-indicator{filter:invert(50%)}.markdown-body .flex{display:flex;gap:1rem}@media(max-width:768px){.markdown-body{font-size:.9rem;line-height:180%}.markdown-body h1{font-size:1.6em}.markdown-body h2{font-size:1.4em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em}}</style><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/TIL/sitemap-index.xml"/><link rel="icon" href="/TIL/favicon-32x32.png?v=c7414ed3a3091a7583bd92fb619dc1a5" type="image/png"/><link rel="manifest" href="/TIL/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/TIL/icons/icon-48x48.png?v=c7414ed3a3091a7583bd92fb619dc1a5"/><link rel="apple-touch-icon" sizes="72x72" href="/TIL/icons/icon-72x72.png?v=c7414ed3a3091a7583bd92fb619dc1a5"/><link rel="apple-touch-icon" sizes="96x96" href="/TIL/icons/icon-96x96.png?v=c7414ed3a3091a7583bd92fb619dc1a5"/><link rel="apple-touch-icon" sizes="144x144" href="/TIL/icons/icon-144x144.png?v=c7414ed3a3091a7583bd92fb619dc1a5"/><link rel="apple-touch-icon" sizes="192x192" href="/TIL/icons/icon-192x192.png?v=c7414ed3a3091a7583bd92fb619dc1a5"/><link rel="apple-touch-icon" sizes="256x256" href="/TIL/icons/icon-256x256.png?v=c7414ed3a3091a7583bd92fb619dc1a5"/><link rel="apple-touch-icon" sizes="384x384" href="/TIL/icons/icon-384x384.png?v=c7414ed3a3091a7583bd92fb619dc1a5"/><link rel="apple-touch-icon" sizes="512x512" href="/TIL/icons/icon-512x512.png?v=c7414ed3a3091a7583bd92fb619dc1a5"/><link rel="preconnect" href="https://www.googletagmanager.com"/><link rel="dns-prefetch" href="https://www.googletagmanager.com"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 200)
+          }), 0)
+        }
+      }
+    })
+  </script></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="nav-layout"><nav class="navbar"><div class="navbar__logoColor"><div class="navbar__logo"><a href="/TIL/">Byongho96</a></div><div class="navbar__color"><div class="color-change"><input class="color-change__picker" type="color"/><div class="color-change__theme dark"><div class="color-change__theme--sun dark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" fill="black"></path><path d="M12 21V22M21 12H22M12 3V2M3 12H2" stroke="black" stroke-width="2" stroke-linecap="round"></path><path d="M18.5 18.5L19 19M18.5 5.5L19 5M5.5 5.5L5 5M5.5 18.5L5 19" stroke="black" stroke-width="2" stroke-linecap="round"></path></svg></div><div class="color-change__theme--moon dark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M11.38 2.01898C10.6431 2.7056 10.0521 3.53361 9.64219 4.4536C9.23227 5.37359 9.01185 6.36673 8.99408 7.37376C8.97632 8.38078 9.16156 9.38108 9.53877 10.315C9.91598 11.2488 10.4774 12.0972 11.1896 12.8094C11.9018 13.5216 12.7501 14.083 13.684 14.4602C14.6179 14.8374 15.6182 15.0227 16.6252 15.0049C17.6323 14.9871 18.6254 14.7667 19.5454 14.3568C20.4654 13.9469 21.2934 13.3559 21.98 12.619C21.8234 15.1591 20.7039 17.5439 18.8496 19.2871C16.9953 21.0302 14.546 22.0005 12.001 22C6.477 22 2 17.523 2 12C2 6.68498 6.146 2.33898 11.38 2.01898Z" fill="black"></path></svg></div></div></div></div></div><ul class="navbar__menu"><li><a href="/TIL/">Home</a></li><li><a href="/TIL/about/">About</a></li><li><a href="/TIL/posts/">Posts</a></li></ul><div class="navbar__toggleBtn"><svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 10H18V12H0V10ZM0 5H18V7H0V5ZM0 0H18V2H0V0Z" fill="black"></path></svg></div></nav><div class="category-layout"><aside class="category-layout__aside"><figure class="category-layout__profile"><div data-gatsby-image-wrapper="" class="gatsby-image-wrapper gatsby-image-wrapper-constrained profile-image"><div style="max-width:822px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg%20height=&#x27;827&#x27;%20width=&#x27;822&#x27;%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><div aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear;background-color:#485878;position:absolute;top:0;left:0;bottom:0;right:0"></div><picture><source type="image/webp" data-srcset="/TIL/static/80814805075f553dcd2e61e962332ad2/1302d/profile-image.webp 206w,/TIL/static/80814805075f553dcd2e61e962332ad2/6c8b2/profile-image.webp 411w,/TIL/static/80814805075f553dcd2e61e962332ad2/bc5a4/profile-image.webp 822w" sizes="(min-width: 822px) 822px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 822px) 822px, 100vw" decoding="async" loading="lazy" data-src="/TIL/static/80814805075f553dcd2e61e962332ad2/0762e/profile-image.png" data-srcset="/TIL/static/80814805075f553dcd2e61e962332ad2/a4728/profile-image.png 206w,/TIL/static/80814805075f553dcd2e61e962332ad2/e05b9/profile-image.png 411w,/TIL/static/80814805075f553dcd2e61e962332ad2/0762e/profile-image.png 822w" alt="profile image"/></picture><noscript><picture><source type="image/webp" srcSet="/TIL/static/80814805075f553dcd2e61e962332ad2/1302d/profile-image.webp 206w,/TIL/static/80814805075f553dcd2e61e962332ad2/6c8b2/profile-image.webp 411w,/TIL/static/80814805075f553dcd2e61e962332ad2/bc5a4/profile-image.webp 822w" sizes="(min-width: 822px) 822px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 822px) 822px, 100vw" decoding="async" loading="lazy" src="/TIL/static/80814805075f553dcd2e61e962332ad2/0762e/profile-image.png" srcSet="/TIL/static/80814805075f553dcd2e61e962332ad2/a4728/profile-image.png 206w,/TIL/static/80814805075f553dcd2e61e962332ad2/e05b9/profile-image.png 411w,/TIL/static/80814805075f553dcd2e61e962332ad2/0762e/profile-image.png 822w" alt="profile image"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div></figure><div class="category-layout__category"><nav class="sidebar"><a class="sidebar__total" href="/TIL/posts/">전체 글 (86)</a><ul class="sidebar__category"><li><a class="sidebar__category--text" href="/TIL/posts/Animation/">Animation  (2)</a><ul class="sidebar__category"></ul><ul class="sidebar__posts null"><li><a href="/TIL/posts/Animation/Height_Animation.md/">CSS 높이(height) 0 to auto 애니메이션</a></li><li><a href="/TIL/posts/Animation/Typing_Animation.md/">타이핑 애니메이션 (React 컴포넌트)</a></li></ul></li><li><a class="sidebar__category--text" href="/TIL/posts/Backend/">Backend  (13)</a><ul class="sidebar__category"><li><a class="sidebar__category--text" href="/TIL/posts/Django/">Django  (12)</a><ul class="sidebar__category"></ul><ul class="sidebar__posts null"><li><a href="/TIL/posts/Backend/Django/02_Django_CRUD.md/">Django Basic CRUD</a></li><li><a href="/TIL/posts/Backend/Django/01_Django_Basics_MTV.md/">Django Basics &amp; MTV Design Pattern</a></li><li><a href="/TIL/posts/Backend/Django/03_Django_CRUD_ModelForm.md/">Django CRUD with Model Form</a></li><li><a href="/TIL/posts/Backend/Django/10_Django_Fixtures.md/">Django Fixtures</a></li><li><a href="/TIL/posts/Backend/Django/04_Django_Authentication.md/">Django Internal Authentication</a></li><li><a href="/TIL/posts/Backend/Django/07_Django_Many_to_One.md/">Django N:1 Realationship</a></li><li><a href="/TIL/posts/Backend/Django/08_Django_Many_to_Many.md/">Django N:M Realationship</a></li><li><a href="/TIL/posts/Backend/Django/06_Django_QuerySet.md/">Django QuerySet</a></li><li><a href="/TIL/posts/Backend/Django/11_Django_REST_API.md/">Django REST API</a></li><li><a href="/TIL/posts/Backend/Django/12_Django_REST_Authentication.md/">Django REST Authentication</a></li><li><a href="/TIL/posts/Backend/Django/09_Django_Static_Media.md/">Django Static Files</a></li><li><a href="/TIL/posts/Backend/Django/05_SQLite3_SQL.md/">SQL Basics</a></li></ul></li><li><a class="sidebar__category--text" href="/TIL/posts/Spring/">Spring  (1)</a><ul class="sidebar__category"></ul><ul class="sidebar__posts null"><li><a href="/TIL/posts/Backend/Spring/Introduction.md/">Spring 프로젝트 흐름 파악</a></li></ul></li></ul><ul class="sidebar__posts null"></ul></li><li><a class="sidebar__category--text" href="/TIL/posts/CS/">CS  (31)</a><ul class="sidebar__category"><li><a class="sidebar__category--text" href="/TIL/posts/Algorithm/">Algorithm  (8)</a><ul class="sidebar__category"></ul><ul class="sidebar__posts null"><li><a href="/TIL/posts/CS/Algorithm/DFS.md/">깊이 우선 탐색(Depth-First Search) 알고리즘</a></li><li><a href="/TIL/posts/CS/Algorithm/BFS.md/">너비 우선 탐색(Breadth-First Search) 알고리즘</a></li><li><a href="/TIL/posts/CS/Algorithm/Dijkstra.md/">다익스트라(Dijkstra) 알고리즘</a></li><li><a href="/TIL/posts/CS/Algorithm/DP.md/">동적 계획법(Dynamic Programming) 알고리즘</a></li><li><a href="/TIL/posts/CS/Algorithm/Backtracking.md/">백트래킹(Backtracking) 알고리즘</a></li><li><a href="/TIL/posts/CS/Algorithm/BinarySearch.md/">이진탐색(Binary Search) 알고리즘</a></li><li><a href="/TIL/posts/CS/Algorithm/Sorting.md/">정렬(Sorting) 알고리즘 정리</a></li><li><a href="/TIL/posts/CS/Algorithm/MST.md/">최소 신장 트리(Minimum Spaaning Tree) 알고리즘</a></li></ul></li><li><a class="sidebar__category--text" href="/TIL/posts/Data Structure/">Data Structure  (2)</a><ul class="sidebar__category"></ul><ul class="sidebar__posts null"><li><a href="/TIL/posts/CS/Data Structure/Tree.md/">트리(Tree) 자료구조</a></li><li><a href="/TIL/posts/CS/Data Structure/Heap.md/">힙(Heap) 자료구조</a></li></ul></li><li><a class="sidebar__category--text" href="/TIL/posts/DB/">DB  (13)</a><ul class="sidebar__category"></ul><ul class="sidebar__posts null"><li><a href="/TIL/posts/CS/DB/Ch01_데이터베이스_기본_개념.md/">01. 데이터베이스 기본 개념</a></li><li><a href="/TIL/posts/CS/DB/Ch02_데이터베이스_관리_시스템.md/">02. 데이터베이스 관리 시스템</a></li><li><a href="/TIL/posts/CS/DB/Ch03_데이터베이스_시스템.md/">03. 데이터베이스 시스템</a></li><li><a href="/TIL/posts/CS/DB/Ch04_데이터_모델링.md/">04. 데이터 모델링</a></li><li><a href="/TIL/posts/CS/DB/Ch05_관계_데이터_모델.md/">05. 관계 데이터 모델</a></li><li><a href="/TIL/posts/CS/DB/Ch06_관계_데이터_연산.md/">06. 관계 데이터 연산</a></li><li><a href="/TIL/posts/CS/DB/Ch07_데이터베이스_언어_SQL.md/">07. 데이터베이스 언어 SQL</a></li><li><a href="/TIL/posts/CS/DB/Ch08_데이터베이스_설계.md/">08. 데이터베이스 설계</a></li><li><a href="/TIL/posts/CS/DB/Ch09_정규화.md/">09. 정규화</a></li><li><a href="/TIL/posts/CS/DB/Ch10_회복과_병행_제어.md/">10. 회복과 병행 제어</a></li><li><a href="/TIL/posts/CS/DB/Ch11_보안과_권한_관리.md/">11. 보안과 권한 관리</a></li><li><a href="/TIL/posts/CS/DB/Ch12_데이터베이스_응용_기술.md/">12. 데이터베이스 응용 기술</a></li><li><a href="/TIL/posts/CS/DB/Ch13_데이터_과학과_빅데이터.md/">13. 데이터 과학과 빅데이터</a></li></ul></li><li><a class="sidebar__category--text" href="/TIL/posts/Interview/">Interview  (3)</a><ul class="sidebar__category"></ul><ul class="sidebar__posts null"><li><a href="/TIL/posts/CS/Interview/03_01_운영체제와_컴퓨터.md/">3-1. CS 인터뷰: 운영체제와 컴퓨터</a></li><li><a href="/TIL/posts/CS/Interview/03_02_메모리.md/">3-2. CS 인터뷰: 메모리</a></li><li><a href="/TIL/posts/CS/Interview/03_03_프로세스와_스레드.md/">3-3. CS 인터뷰: 프로세스와 스레드</a></li></ul></li><li><a class="sidebar__category--text" href="/TIL/posts/Network/">Network  (5)</a><ul class="sidebar__category"></ul><ul class="sidebar__posts null"><li><a href="/TIL/posts/CS/Network/Ch01_네트워크_첫걸음.md/">01. 네트워크 첫 걸음</a></li><li><a href="/TIL/posts/CS/Network/Ch02_네트워크의_기본_규칙.md/">02. 네트워크의 기본 규칙</a></li><li><a href="/TIL/posts/CS/Network/Ch03_물리_계층_데이터를_전기_신호로_변환하기.md/">03. 물리 계층: 데이터를 전기 신호로 변환하기</a></li><li><a href="/TIL/posts/CS/Network/Ch04_데이터_링크_계층_랜에서_데이터_전송하기.md/">04. 데이터 링크 계층: 랜에서 데이터 전송하기</a></li><li><a href="/TIL/posts/CS/Network/모두의_네트워크_1장_2장.md/">IP 주소 할당</a></li></ul></li></ul><ul class="sidebar__posts null"></ul></li><li><a class="sidebar__category--text" href="/TIL/posts/Frontend/">Frontend  (16)</a><ul class="sidebar__category"><li><a class="sidebar__category--text" href="/TIL/posts/Gatsby/">Gatsby  (8)</a><ul class="sidebar__category"></ul><ul class="sidebar__posts null"><li><a href="/TIL/posts/Frontend/Gatsby/01_Gatsby.md/">01. Gatsby 렌더링 옵션과 프로젝트 구조</a></li><li><a href="/TIL/posts/Frontend/Gatsby/02_Github_Pages.md/">02. Gatsby 프로젝트 Github Pages 배포</a></li><li><a href="/TIL/posts/Frontend/Gatsby/03_Import_Settings.md/">03. Gatsby 프로젝트(TypeScript) import 경로 설정</a></li><li><a href="/TIL/posts/Frontend/Gatsby/04_ESLint_Prettier.md/">04. Gatsby 프로젝트 Prettier &amp; ESLint &amp; Husky 설정</a></li><li><a href="/TIL/posts/Frontend/Gatsby/05_Dark_Mode.md/">05. Gatsby 다크모드 구현하기 (feat. Sass)</a></li><li><a href="/TIL/posts/Frontend/Gatsby/06_Navigation_Layout.md/">06. Gatsby 네비게이션 레이아웃 설정</a></li><li><a href="/TIL/posts/Frontend/Gatsby/07_Custom_Pages.md/">07. Gatsby 커스텀 페이지 생성</a></li><li><a href="/TIL/posts/Frontend/Gatsby/08_Diretory_Based_Category.md/">08. 폴더 구조 기반 Gatsby 카테고리 바 생성</a></li></ul></li><li><a class="sidebar__category--text" href="/TIL/posts/React/">React  (4)</a><ul class="sidebar__category"></ul><ul class="sidebar__posts null"><li><a href="/TIL/posts/Frontend/React/00_React_Initial_Setting.md/">00. React 초기 셋팅 정리</a></li><li><a href="/TIL/posts/Frontend/React/02_React_Context_API.md/">02. React Context API</a></li><li><a href="/TIL/posts/Frontend/React/03_React_Redux_Toolkit.md/">03. React &amp; Redux Toolkit</a></li><li><a href="/TIL/posts/Frontend/React/04_React_Recoil.md/">04. Recoil</a></li></ul></li><li><a class="sidebar__category--text" href="/TIL/posts/Vue/">Vue  (4)</a><ul class="sidebar__category"></ul><ul class="sidebar__posts null"><li><a href="/TIL/posts/Frontend/Vue/01_Vue_Basics_with_CDN.md/">01. Vue Basics with CDN</a></li><li><a href="/TIL/posts/Frontend/Vue/02_Vue_CLI_Props_and_Emit.md/">02. Vue CLI &amp; Props and Emits</a></li><li><a href="/TIL/posts/Frontend/Vue/03_Vue_Vuex_and_Lifecycle_Hooks.md/">03. Vuex &amp; Lifecycle Hooks</a></li><li><a href="/TIL/posts/Frontend/Vue/04_Vue_Vue_Router.md/">04. Vue Router</a></li></ul></li></ul><ul class="sidebar__posts null"></ul></li><li><a class="sidebar__category--text" href="/TIL/posts/Language/">Language  (17)</a><ul class="sidebar__category"><li><a class="sidebar__category--text" href="/TIL/posts/CSS/">CSS  (3)</a><ul class="sidebar__category"></ul><ul class="sidebar__posts null"><li><a href="/TIL/posts/Language/CSS/02_CSS_Basics.md/">02. CSS Basics</a></li><li><a href="/TIL/posts/Language/CSS/03_CSS_Advanced.md/">03. CSS Advanced (Flex &amp; Grid)</a></li><li><a href="/TIL/posts/Language/CSS/04_Sass.md/">04. Sass</a></li></ul></li><li><a class="sidebar__category--text" href="/TIL/posts/HTML/">HTML  (1)</a><ul class="sidebar__category"></ul><ul class="sidebar__posts null"><li><a href="/TIL/posts/Language/HTML/01_HTML.md/">01. HTML</a></li></ul></li><li><a class="sidebar__category--text" href="/TIL/posts/Java/">Java  (2)</a><ul class="sidebar__category"></ul><ul class="sidebar__posts null"><li><a href="/TIL/posts/Language/Java/01_Java_Basics.md/">01. Java Basics</a></li><li><a href="/TIL/posts/Language/Java/02_Java_OOP.md/">02. Java OOP</a></li></ul></li><li><a class="sidebar__category--text" href="/TIL/posts/JavaScript/">JavaScript  (4)</a><ul class="sidebar__category"></ul><ul class="sidebar__posts open"><li><a aria-current="page" class="active" href="/TIL/posts/Language/JavaScript/01_JavaScript_Basics.md/">01. JavaScript Basics</a></li><li><a href="/TIL/posts/Language/JavaScript/02_JavaScript_Advanced.md/">02. JavaScript DOM and this </a></li><li><a href="/TIL/posts/Language/JavaScript/03_JavaScript_Asynchronous.md/">03. JavaScript Async</a></li><li><a href="/TIL/posts/Language/JavaScript/Promise_Await.md/">Promise와 await를 활용하 JS 8가지 비동기 처리</a></li></ul></li><li><a class="sidebar__category--text" href="/TIL/posts/Python/">Python  (7)</a><ul class="sidebar__category"></ul><ul class="sidebar__posts null"><li><a href="/TIL/posts/Language/Python/01_Python_Basics_Datatypes_Operators.md/">01. Python Datatypes &amp; Operators</a></li><li><a href="/TIL/posts/Language/Python/02_Python_Basics_ControlStatements.md/">02. Python Control Statements</a></li><li><a href="/TIL/posts/Language/Python/03_Python_Function.md/">03. Python Function</a></li><li><a href="/TIL/posts/Language/Python/04_Python_OOP.md/">04. Python OOP</a></li><li><a href="/TIL/posts/Language/Python/05_Python_Error_Handling.md/">05. Python Error Handling</a></li><li><a href="/TIL/posts/Language/Python/Appendix_01_Python_Builtin_Functions.md/">Appendix 01. Python Built-in Functions</a></li><li><a href="/TIL/posts/Language/Python/Appendix_02_Python_Modules.md/">Appendix 02. Python Modules</a></li></ul></li></ul><ul class="sidebar__posts null"></ul></li><li><a class="sidebar__category--text" href="/TIL/posts/Tools/">Tools  (7)</a><ul class="sidebar__category"></ul><ul class="sidebar__posts null"><li><a href="/TIL/posts/Tools/AWS.md/">AWS EC2 초보자를 위한 친절 가이드</a></li><li><a href="/TIL/posts/Tools/Docker.md/">Docker Basics</a></li><li><a href="/TIL/posts/Tools/Git.md/">Git Basics</a></li><li><a href="/TIL/posts/Tools/Gunicorn.md/">Gunicorn Basics</a></li><li><a href="/TIL/posts/Tools/Linux.md/">Linux Commands &amp; Shell Scripts</a></li><li><a href="/TIL/posts/Tools/Nginx.md/">Nginx Basics</a></li><li><a href="/TIL/posts/Tools/Redis.md/">Redis Basics</a></li></ul></li></ul></nav></div><button class="category-layout__button">POSTS</button></aside><main class="post"><article class="post--article"><div class="post-header"><h1 class="post-header--title">01. JavaScript Basics</h1><div class="post-header--date-author">📅 2022-10-23 · 🖋️ Byongho96</div><div class="post-header--tags"></div></div><div class="post--article--content markdown-body dark"><ul>
+<li><a href="#1-intro">1. Intro</a>
+<ul>
+<li><a href="#11-what-is-javascript">1.1. What is JavaScript?</a></li>
+<li><a href="#12-the-history-of-javascript">1.2. The History of JavaScript</a></li>
+<li><a href="#13-write-to-html-script">1.3. Write to HTML Script</a></li>
+<li><a href="#14-when-to-run-js">1.4. When to Run JS</a>
+<ul>
+<li><a href="#141-synchronous-execution">1.4.1. Synchronous execution</a></li>
+<li><a href="#142-domcontentloaded">1.4.2. DOMContentLoaded</a></li>
+<li><a href="#143-load">1.4.3. load</a></li>
+<li><a href="#144-aysnc--defer">1.4.4. aysnc / defer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-data-type-and-operators">2. Data Type and Operators</a>
+<ul>
+<li><a href="#21-semicolon">2.1. Semicolon</a></li>
+<li><a href="#22-comment">2.2. Comment</a></li>
+<li><a href="#23-indentifier">2.3. Indentifier</a></li>
+<li><a href="#24-variable-declaration-keywords">2.4. Variable Declaration Keywords</a></li>
+<li><a href="#25-data-types">2.5. Data Types</a></li>
+<li><a href="#26-operators">2.6. Operators</a>
+<ul>
+<li><a href="#261-assignment-operators">2.6.1. Assignment Operators</a></li>
+<li><a href="#262-relational-operators">2.6.2. Relational Operators</a></li>
+<li><a href="#263-equality-operators">2.6.3. Equality Operators</a></li>
+<li><a href="#264-identity-operators">2.6.4. Identity Operators</a></li>
+<li><a href="#265-logical-operators">2.6.5. Logical Operators</a></li>
+<li><a href="#266-ternary-operators">2.6.6. Ternary Operators</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#3-control-statements">3. Control Statements</a>
+<ul>
+<li><a href="#31-conditional-statements">3.1. Conditional Statements</a>
+<ul>
+<li><a href="#311-if">3.1.1. if</a></li>
+<li><a href="#312-switch">3.1.2. switch</a></li>
+</ul>
+</li>
+<li><a href="#32-loop">3.2. Loop</a>
+<ul>
+<li><a href="#321-while">3.2.1. while</a></li>
+<li><a href="#322-for">3.2.2. for</a></li>
+<li><a href="#323-for--in">3.2.3. for ... in</a></li>
+<li><a href="#324-for--of">3.2.4. for ... of</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-function">4. Function</a>
+<ul>
+<li><a href="#41-first-class-fucntion">4.1. First-class Fucntion</a></li>
+<li><a href="#42-fucntion-declaration">4.2. Fucntion Declaration</a></li>
+<li><a href="#43-fucntion-expression">4.3. Fucntion expression</a></li>
+<li><a href="#44-arguments">4.4. Arguments</a>
+<ul>
+<li><a href="#441-the-number-of-arguments">4.4.1. The Number of Arguments</a></li>
+<li><a href="#442-default-arguments">4.4.2. Default Arguments</a></li>
+<li><a href="#443-rest-parameters">4.4.3. Rest Parameters</a></li>
+</ul>
+</li>
+<li><a href="#45-arrow-function">4.5. Arrow Function</a></li>
+<li><a href="#46-iife">4.6. IIFE</a></li>
+</ul>
+</li>
+<li><a href="#5-array">5. Array</a>
+<ul>
+<li><a href="#51-array">5.1. Array</a>
+<ul>
+<li><a href="#52-methods">5.2. Methods</a></li>
+</ul>
+</li>
+<li><a href="#53-array-helper-methods">5.3. Array Helper Methods</a></li>
+<li><a href="#54-array-loop">5.4. Array Loop</a></li>
+</ul>
+</li>
+<li><a href="#6-object">6. Object</a>
+<ul>
+<li><a href="#61-object">6.1. Object</a></li>
+<li><a href="#62-es6-grammer">6.2. ES6 Grammer</a>
+<ul>
+<li><a href="#621-property-initializer-shorthand">6.2.1. Property Initializer Shorthand</a></li>
+<li><a href="#622-concise-method">6.2.2 Concise Method</a></li>
+<li><a href="#623-computed-property-name">6.2.3. Computed Property Name</a></li>
+<li><a href="#624-destructing-assignment">6.2.4. Destructing Assignment</a></li>
+<li><a href="#625-unpacking-parameters">6.2.5. Unpacking Parameters</a></li>
+</ul>
+</li>
+<li><a href="#63-json">6.3. JSON</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="1-intro" style="position:relative;"><a href="#1-intro" aria-label="1 intro permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. Intro</h1>
+<p><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript">MDN JavaScript Docs</a></p>
+<h2 id="11-what-is-javascript" style="position:relative;"><a href="#11-what-is-javascript" aria-label="11 what is javascript permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.1. What is JavaScript?</h2>
+<p><strong>The base language for the front-end web programming</strong></p>
+<ul>
+<li>The language that makes HTML documents look more dynamic</li>
+<li>Also the language being used in various areas, thanks to node.js
+<ul>
+<li>sever programming, mobile service, block chain, etc...</li>
+</ul>
+</li>
+</ul>
+<h2 id="12-the-history-of-javascript" style="position:relative;"><a href="#12-the-history-of-javascript" aria-label="12 the history of javascript permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.2. The History of JavaScript</h2>
+<ul>
+<li>1993, Mosaic Web Browser
+<ul>
+<li>GUI web browser</li>
+</ul>
+</li>
+<li>1994, Netscape Navigator
+<ul>
+<li>accounts for 80% of the market</li>
+</ul>
+</li>
+<li>Netscape made a Script language for dynamic webpage
+<ul>
+<li>Mocha -> LiveScript -> JavaScript</li>
+</ul>
+</li>
+<li>1995, Inernet Explorer with JScript
+<ul>
+<li>JavaScript, JScript</li>
+</ul>
+</li>
+<li>1996-2000, ECMA proposed a standard of Script language
+<ul>
+<li>ECMAScript</li>
+<li>MS didn't follow the standard cause its market share was high</li>
+</ul>
+</li>
+<li>2001-2004, Firefox with ActionScript3 and etc...
+<ul>
+<li>jQuery library is for transcripting the code to fit each browser engine</li>
+</ul>
+</li>
+<li>2008, Chrome with V8
+<ul>
+<li>V8 translates JavaScript very fast</li>
+</ul>
+</li>
+<li>2015, ECMAScript6, the standard made with Chrome</li>
+</ul>
+<h2 id="13-write-to-html-script" style="position:relative;"><a href="#13-write-to-html-script" aria-label="13 write to html script permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.3. Write to HTML Script</h2>
+<p>The JS code can be written in &#x3C;script> tags.</p>
+<ul>
+<li><strong>Internal</strong>
+<pre><code class="language-html">&#x3C;body>
+  &#x3C;script>
+    console.log('hello, javascript')
+  &#x3C;/script>
+&#x3C;/body>
+</code></pre>
+</li>
+</ul>
+<ul>
+<li><strong>External</strong>
+<pre><code class="language-html">&#x3C;html>
+  &#x3C;body>
+    &#x3C;script src="hello.js">&#x3C;/script>
+  &#x3C;/body>
+&#x3C;/html>
+</code></pre>
+</li>
+</ul>
+<h2 id="14-when-to-run-js" style="position:relative;"><a href="#14-when-to-run-js" aria-label="14 when to run js permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.4. When to Run JS</h2>
+<p><a href="https://velog.io/@kim_unknown_/JavaScript-DOM-Defer-Async">참고한 블로그 글</a></p>
+<h3 id="141-synchronous-execution" style="position:relative;"><a href="#141-synchronous-execution" aria-label="141 synchronous execution permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.4.1. Synchronous execution</h3>
+<p>HTML documents are executed sequentially from the top. Therefore, if the script that takes a long time to load is at the top, the entire page loading time is increased.</p>
+<pre><code class="language-js">&#x3C;!DOCTYPE html>
+&#x3C;html lang="en">
+  &#x3C;head>
+    &#x3C;meta charset="UTF-8" />
+    &#x3C;script src="app.js">&#x3C;/script>
+  &#x3C;/head>
+  &#x3C;body>
+    &#x3C;div id="hello">hello&#x3C;/div>
+  &#x3C;/body>
+&#x3C;/html>
+</code></pre>
+<h3 id="142-domcontentloaded" style="position:relative;"><a href="#142-domcontentloaded" aria-label="142 domcontentloaded permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.4.2. DOMContentLoaded</h3>
+<p>It is an event that occurs in the <code>document</code> <strong>when the DOM is constructed</strong>. However the event doesn't wait for CSS, img source and Subframes loading.</p>
+<pre><code class="language-html">&#x3C;script>
+  function ready() {
+    alert('DOM이 준비되었습니다!')
+
+    // 이미지가 로드되기 전에 실행된다.
+    alert(`이미지 사이즈: ${img.offsetWidth}x${img.offsetHeight}`)
+  }
+
+  document.addEventListener('DOMContentLoaded', ready)
+&#x3C;/script>
+
+&#x3C;img id="img" src="img_src" />
+</code></pre>
+<h3 id="143-load" style="position:relative;"><a href="#143-load" aria-label="143 load permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.4.3. load</h3>
+<p>The load event of a window object is executed <strong>when all resources such as style and image are loaded.</strong> The load evnet can be modified by overriding <code>onload</code> property.</p>
+<pre><code class="language-html">&#x3C;script>
+  window.onload = function () {
+    alert('페이지 전체가 로드되었습니다.')
+
+    // 이미지까지 모두 로드된 후에 실행
+    alert(`이미지 사이즈: ${img.offsetWidth}x${img.offsetHeight}`)
+  }
+&#x3C;/script>
+
+&#x3C;img id="img" src="img_src" />
+</code></pre>
+<h3 id="144-aysnc--defer" style="position:relative;"><a href="#144-aysnc--defer" aria-label="144 aysnc  defer permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.4.4. aysnc / defer</h3>
+<ul>
+<li>
+<p><strong>async</strong>
+Load scripts asynchronously in the background. When the load is complete, the script is executed.</p>
+</li>
+<li>
+<p><strong>defer</strong></p>
+</li>
+</ul>
+<p>Load scripts asynchronously in the background. When the DOM is constructed, all the loaded scripts are executed in order.</p>
+<span class="gatsby-resp-image-wrapper" style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;">
+      <a class="gatsby-resp-image-link" href="/TIL/static/08432d070144ba6476a9f8a2b0cf33ba/0ea46/async_defer.jpg" style="display: block" target="_blank" rel="noopener">
+    <span class="gatsby-resp-image-background-image" style="padding-bottom: 51.42857142857144%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAEDAgX/xAAVAQEBAAAAAAAAAAAAAAAAAAABAP/aAAwDAQACEAMQAAAB7sNWhDB//8QAGBAAAgMAAAAAAAAAAAAAAAAAAAExQUL/2gAIAQEAAQUCZpFKD//EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAEDAQE/AUf/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAWEAADAAAAAAAAAAAAAAAAAAAAIDH/2gAIAQEABj8CKv8A/8QAHBAAAwABBQAAAAAAAAAAAAAAAAERMVFxoeHw/9oACAEBAAE/IW9RN4cip2VxuYCLRH//2gAMAwEAAgADAAAAEETv/8QAFxEAAwEAAAAAAAAAAAAAAAAAARARMf/aAAgBAwEBPxCHU//EABURAQEAAAAAAAAAAAAAAAAAABAR/9oACAECAQE/EIf/xAAeEAACAgICAwAAAAAAAAAAAAABEQAhMUFhgaHB8P/aAAgBAQABPxBgNjw9SkInYUodBjuATNv5qIUThvmCGKyMy8mw5qf/2Q=='); background-size: cover; display: block;"></span>
+  <img class="gatsby-resp-image-image" alt="async defer" title="" src="/TIL/static/08432d070144ba6476a9f8a2b0cf33ba/29d31/async_defer.jpg" srcset="/TIL/static/08432d070144ba6476a9f8a2b0cf33ba/e52aa/async_defer.jpg 175w,
+/TIL/static/08432d070144ba6476a9f8a2b0cf33ba/70ebb/async_defer.jpg 350w,
+/TIL/static/08432d070144ba6476a9f8a2b0cf33ba/29d31/async_defer.jpg 700w,
+/TIL/static/08432d070144ba6476a9f8a2b0cf33ba/0ea46/async_defer.jpg 825w" sizes="(max-width: 700px) 100vw, 700px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;" loading="lazy" decoding="async">
+  </a>
+    </span>
+<h1 id="2-data-type-and-operators" style="position:relative;"><a href="#2-data-type-and-operators" aria-label="2 data type and operators permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. Data Type and Operators</h1>
+<p><strong>Style Guide</strong>
+<a href="https://github.com/airbnb/javascript">Airbnb Style Javascript Guide</a></p>
+<h2 id="21-semicolon" style="position:relative;"><a href="#21-semicolon" aria-label="21 semicolon permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.1. Semicolon</h2>
+<p>Technically, semicolons should be inserted, but <strong>ASI(Automatic Semicolon Insertion)</strong> inserts semicolons automatically.</p>
+<h2 id="22-comment" style="position:relative;"><a href="#22-comment" aria-label="22 comment permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.2. Comment</h2>
+<ul>
+<li>
+<p><strong>One-line</strong></p>
+<ul>
+<li>//</li>
+</ul>
+</li>
+<li>
+<p><strong>multiple-lines</strong></p>
+<ul>
+<li>/* */</li>
+</ul>
+</li>
+</ul>
+<h2 id="23-indentifier" style="position:relative;"><a href="#23-indentifier" aria-label="23 indentifier permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.3. Indentifier</h2>
+<p><strong>The variable name to distinguish variables</strong></p>
+<ul>
+<li>
+<p><strong>Naming Rules</strong></p>
+<ul>
+<li>Starts with <code>characters, $, _</code></li>
+<li>Case-sensitive</li>
+<li><strong>Notation</strong>
+<ul>
+<li><strong>camelCase</strong>: variable, instance, function</li>
+<li><strong>PascalCase</strong>: class</li>
+<li><strong>SNAKE_CASE</strong>: constant</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="24-variable-declaration-keywords" style="position:relative;"><a href="#24-variable-declaration-keywords" aria-label="24 variable declaration keywords permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.4. Variable Declaration Keywords</h2>
+<ul>
+<li>
+<p><strong>var</strong></p>
+<ul>
+<li>The default keyword</li>
+<li>Re-declaration, Re-assignment</li>
+<li>Function scope</li>
+<li><mark>Hoisting, not recommended</mark></li>
+</ul>
+</li>
+<li>
+<p><strong>let</strong></p>
+<ul>
+<li>Re-assignment</li>
+<li>Block scope</li>
+</ul>
+</li>
+<li>
+<p><strong>const</strong></p>
+<ul>
+<li>Block scope</li>
+</ul>
+</li>
+</ul>
+<h2 id="25-data-types" style="position:relative;"><a href="#25-data-types" aria-label="25 data types permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.5. Data Types</h2>
+<span class="gatsby-resp-image-wrapper" style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;">
+      <a class="gatsby-resp-image-link" href="/TIL/static/a37008f8118a7db79359a03a7bdb2e76/72f09/datatypes.jpg" style="display: block" target="_blank" rel="noopener">
+    <span class="gatsby-resp-image-background-image" style="padding-bottom: 40%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAIABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAECBf/EABYBAQEBAAAAAAAAAAAAAAAAAAEAAv/aAAwDAQACEAMQAAAB3YMNg3//xAAXEAADAQAAAAAAAAAAAAAAAAAAEBEx/9oACAEBAAEFAqYv/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFhAAAwAAAAAAAAAAAAAAAAAAABAh/9oACAEBAAY/AiL/xAAaEAADAAMBAAAAAAAAAAAAAAAAARFBUXHh/9oACAEBAAE/IW18Jgj4J7P/2gAMAwEAAgADAAAAEHvv/8QAFREBAQAAAAAAAAAAAAAAAAAAABH/2gAIAQMBAT8QiP/EABYRAQEBAAAAAAAAAAAAAAAAAAARAf/aAAgBAgEBPxCrr//EABoQAQEBAAMBAAAAAAAAAAAAAAERACExQWH/2gAIAQEAAT8Q4ggPiq6abndWSQN+DN//2Q=='); background-size: cover; display: block;"></span>
+  <img class="gatsby-resp-image-image" alt="datatypes" title="" src="/TIL/static/a37008f8118a7db79359a03a7bdb2e76/29d31/datatypes.jpg" srcset="/TIL/static/a37008f8118a7db79359a03a7bdb2e76/e52aa/datatypes.jpg 175w,
+/TIL/static/a37008f8118a7db79359a03a7bdb2e76/70ebb/datatypes.jpg 350w,
+/TIL/static/a37008f8118a7db79359a03a7bdb2e76/29d31/datatypes.jpg 700w,
+/TIL/static/a37008f8118a7db79359a03a7bdb2e76/72f09/datatypes.jpg 886w" sizes="(max-width: 700px) 100vw, 700px" style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;" loading="lazy" decoding="async">
+  </a>
+    </span>
+<ul>
+<li><mark>All the non-primitive types are Objects</mark></li>
+</ul>
+<ul>
+<li>
+<p><strong>Number</strong></p>
+<ul>
+<li><code>Infinity</code>
+<ul>
+<li>a very large number</li>
+</ul>
+</li>
+<li><code>NaN</code> (Not a Number)
+<ul>
+<li>When the variable can't be read as a number
+<ul>
+<li><code>Number(undefined)</code></li>
+</ul>
+</li>
+<li>Imaginary number
+<ul>
+<li><code>Math.sqrt(-1)</code></li>
+</ul>
+</li>
+<li>When an operand is NaN
+<ul>
+<li><code>7 * NaN</code></li>
+</ul>
+</li>
+<li>The result can't be defined
+<ul>
+<li><code>0 * Infinity</code></li>
+</ul>
+</li>
+<li>Containing a string for the calculation which is not addition
+<ul>
+<li><code>'A' * 3</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>String</strong></p>
+<ul>
+<li>Both <code>'</code> and <code>"</code> can be used</li>
+<li>Strings can be combined with <code>+</code></li>
+<li>Template literals (<code>`</code>)
+<ul>
+<li>multi-line strings</li>
+<li>string interpolation
+<ul>
+<li><code>`My name is ${name}`</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Empty Value</strong></p>
+<ul>
+<li><strong>null</strong>
+<ul>
+<li>Specified by developer</li>
+</ul>
+<pre><code class="language-js">console.log(typeof null) // object, BUT IT'S PRIMITIVE DATA TYPE
+</code></pre>
+</li>
+<li><strong>undefined</strong>
+<ul>
+<li>Specified by engine</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Boolean</strong></p>
+<ul>
+<li><code>true</code></li>
+<li><code>false</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="26-operators" style="position:relative;"><a href="#26-operators" aria-label="26 operators permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.6. Operators</h2>
+<h3 id="261-assignment-operators" style="position:relative;"><a href="#261-assignment-operators" aria-label="261 assignment operators permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.6.1. Assignment Operators</h3>
+<pre><code class="language-javascript">let c = 0
+
+c += 10 // 10
+c -= 3 // 7
+c *= 10 // 70
+
+// not recommended
+c++ // 71
+c-- // 70
+</code></pre>
+<h3 id="262-relational-operators" style="position:relative;"><a href="#262-relational-operators" aria-label="262 relational operators permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.6.2. Relational Operators</h3>
+<pre><code class="language-javascript">3 > 2 // true
+3 &#x3C; 2 // false
+
+// UNICODE
+'A' &#x3C; 'B' // true
+'Z' &#x3C; 'a' // true
+</code></pre>
+<h3 id="263-equality-operators" style="position:relative;"><a href="#263-equality-operators" aria-label="263 equality operators permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.6.3. Equality Operators</h3>
+<p>Automatic type casting occurs, so should not be used frequently</p>
+<pre><code class="language-javascript">const a = 1
+const b = '1'
+
+console.log(a == b) // true
+console.log(a == true) // true
+</code></pre>
+<h3 id="264-identity-operators" style="position:relative;"><a href="#264-identity-operators" aria-label="264 identity operators permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.6.4. Identity Operators</h3>
+<pre><code class="language-javascript">const a = 1
+const b = '1'
+
+console.log(a === b) // false
+console.log(a === Number(b)) // true
+</code></pre>
+<h3 id="265-logical-operators" style="position:relative;"><a href="#265-logical-operators" aria-label="265 logical operators permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.6.5. Logical Operators</h3>
+<pre><code class="language-javascript">true &#x26;&#x26; false // false
+true &#x26;&#x26; true // true
+
+false || true // true
+false || false // false
+
+!true // false
+</code></pre>
+<h3 id="266-ternary-operators" style="position:relative;"><a href="#266-ternary-operators" aria-label="266 ternary operators permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.6.6. Ternary Operators</h3>
+<pre><code class="language-javascript">true ? 1 : 2 // 1
+false ? 1 : 2 // 2
+
+result = Math.PI > 4 ? 'Yes' : 'No' // No
+</code></pre>
+<h1 id="3-control-statements" style="position:relative;"><a href="#3-control-statements" aria-label="3 control statements permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3. Control Statements</h1>
+<h2 id="31-conditional-statements" style="position:relative;"><a href="#31-conditional-statements" aria-label="31 conditional statements permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3.1. Conditional Statements</h2>
+<h3 id="311-if" style="position:relative;"><a href="#311-if" aria-label="311 if permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3.1.1. if</h3>
+<pre><code class="language-javascript">const name = 'Park'
+
+if (name == 'Kim') {
+  console.log('Welcome Kim')
+} else if (name == 'Lee') {
+  console.log('Welcome Lee')
+} else {
+  console.log(`Welcome ${name}`)
+}
+</code></pre>
+<h3 id="312-switch" style="position:relative;"><a href="#312-switch" aria-label="312 switch permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3.1.2. switch</h3>
+<pre><code class="language-javascript">const name = 'Park'
+
+switch (name) {
+  case 'Kim': {
+    console.log('Welcome Kim')
+    // break
+  }
+  case 'Park': {
+    console.log('Welcome Park')
+    // break
+  }
+  default: {
+    console.log(`Welcome ${name}`)
+  }
+}
+// Welcome Park
+// Welcome Park
+// the 'break' should be used appropriately
+</code></pre>
+<h2 id="32-loop" style="position:relative;"><a href="#32-loop" aria-label="32 loop permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3.2. Loop</h2>
+<h3 id="321-while" style="position:relative;"><a href="#321-while" aria-label="321 while permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3.2.1. while</h3>
+<pre><code class="language-javascript">let i = 0
+
+while (i &#x3C; 6) {
+  console.log(i)
+  i += 1
+}
+</code></pre>
+<h3 id="322-for" style="position:relative;"><a href="#322-for" aria-label="322 for permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3.2.2. for</h3>
+<pre><code class="language-javascript">// i is re-assgined, so it should be declared with 'let'
+for (let i = 0; i &#x3C; 6; i++) {
+  console.log(i)
+}
+</code></pre>
+<h3 id="323-for--in" style="position:relative;"><a href="#323-for--in" aria-label="323 for  in permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3.2.3. for ... in</h3>
+<p><strong>The loop for Object</strong></p>
+<pre><code class="language-javascript">const fruits = { a: 'appple', b: 'banana' }
+
+for (const key in fruits) {
+  console.log(key) // a, b
+  console.log(fruits[key]) // apple, banana
+}
+</code></pre>
+<h3 id="324-for--of" style="position:relative;"><a href="#324-for--of" aria-label="324 for  of permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3.2.4. for ... of</h3>
+<p><strong>The loop for Array, Set, String</strong></p>
+<pre><code class="language-javascript">const numbers = [5, 1, 4, 7]
+
+for (const number of numbers) {
+  console.log(number) // 5, 1, 4, 7
+}
+</code></pre>
+<h1 id="4-function" style="position:relative;"><a href="#4-function" aria-label="4 function permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4. Function</h1>
+<h2 id="41-first-class-fucntion" style="position:relative;"><a href="#41-first-class-fucntion" aria-label="41 first class fucntion permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.1. First-class Fucntion</h2>
+<p><strong>Assigning a function to a variable</strong></p>
+<pre><code class="language-js">const foo = () => {
+  console.log('foobar')
+}
+foo() // Invoke it using the variable
+// foobar
+</code></pre>
+<p><strong>Passing a function as an argument</strong></p>
+<pre><code class="language-js">function sayHello() {
+  return 'Hello, '
+}
+function greeting(helloMessage, name) {
+  console.log(helloMessage() + name)
+}
+// Pass `sayHello` as an argument to `greeting` function
+greeting(sayHello, 'JavaScript!')
+// Hello, JavaScript!
+</code></pre>
+<p><strong>Returning a function</strong></p>
+<pre><code class="language-js">function sayHello() {
+  return () => {
+    console.log('Hello!')
+  }
+}
+</code></pre>
+<h2 id="42-fucntion-declaration" style="position:relative;"><a href="#42-fucntion-declaration" aria-label="42 fucntion declaration permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.2. Fucntion Declaration</h2>
+<p><mark>Not recommended</mark>, becuase of the hoisting</p>
+<pre><code class="language-javascript">function add(num1, num2) {
+  return num1 + num2
+}
+
+add(2, 7)
+</code></pre>
+<h2 id="43-fucntion-expression" style="position:relative;"><a href="#43-fucntion-expression" aria-label="43 fucntion expression permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.3. Fucntion expression</h2>
+<p><strong>Recommended</strong></p>
+<pre><code class="language-javascript">const add = function (num1, num2) {
+  return num1 + num2
+}
+
+add(2, 7)
+</code></pre>
+<pre><code class="language-javascript">//Just for debugging purposes
+const add = function numAdd(num1, num2) {
+  return num1 + num2
+}
+
+add(2, 7)
+numAdd(2, 7) // ReferenceError
+</code></pre>
+<h2 id="44-arguments" style="position:relative;"><a href="#44-arguments" aria-label="44 arguments permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.4. Arguments</h2>
+<h3 id="441-the-number-of-arguments" style="position:relative;"><a href="#441-the-number-of-arguments" aria-label="441 the number of arguments permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.4.1. The Number of Arguments</h3>
+<pre><code class="language-javascript">const noArgs = function () {
+    return 0
+}
+
+noArgs(1, 2, 3)     // 0
+
+const twoArgs = fucntion (arg1, arg2) {
+    return [arg1, arg2]
+}
+
+twoArgs(1, 2, 4)    // [1, 2]
+
+const threeArgs = fucntion (arg1, arg2, arg3) {
+    return [arg1, arg2, arg3]
+}
+
+twoArgs(1)          // [1, undefined, undefined]
+</code></pre>
+<h3 id="442-default-arguments" style="position:relative;"><a href="#442-default-arguments" aria-label="442 default arguments permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.4.2. Default Arguments</h3>
+<pre><code class="language-javascript">const greeting = function (name = 'Anonymous') {
+  return `Hi, ${name}`
+}
+
+greeting() // Hi, Anonymous
+</code></pre>
+<h3 id="443-rest-parameters" style="position:relative;"><a href="#443-rest-parameters" aria-label="443 rest parameters permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.4.3. Rest Parameters</h3>
+<p>Get the undefined number of arguments as an <strong>Array</strong></p>
+<pre><code class="language-javascript">const restOpr = function (arg1, arg2, ...restArgs) {
+  return [arg1, arg2, restArgs]
+}
+
+restArgs(1, 2, 3, 4, 5) // [1, 2, [3, 4, 5]]
+restArgs(1, 2) // [1, 2, []]
+</code></pre>
+<h2 id="45-arrow-function" style="position:relative;"><a href="#45-arrow-function" aria-label="45 arrow function permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.5. Arrow Function</h2>
+<pre><code class="language-javascript">const greeting = function (name) {
+  return `Hi ${name}`
+}
+</code></pre>
+<ul>
+<li>
+<p><strong>Procedure</strong></p>
+<ol>
+<li>
+<p><code>function</code> keyword can be omitted</p>
+<pre><code class="language-js">// Step 1.
+const greeting = (name) => {
+  return `Hi ${name}`
+}
+</code></pre>
+</li>
+<li>
+<p><mark>Not Recommended</mark>. If there's only one parameter, <code>()</code> can be omitted.</p>
+<pre><code class="language-js">// Step 2.
+const greeting = (name) => {
+  return `Hi ${name}`
+}
+</code></pre>
+</li>
+<li>
+<p>If the content of the function is one-line, <code>return</code> and <code>{}</code> can be omitted</p>
+<pre><code class="language-js">// Step 3.
+const greeting = (name) => `Hi ${name}`
+</code></pre>
+<p>However if the return value is <strong>Object</strong>, <code>return</code> and <code>{}</code> can't be omitted or <code>()</code> should be added</p>
+<pre><code class="language-javascript">let returnObject = () => {
+  return { key: 'vluae' }
+}
+
+returnObject = () => ({ key: 'value' })
+</code></pre>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="46-iife" style="position:relative;"><a href="#46-iife" aria-label="46 iife permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.6. IIFE</h2>
+<p><strong>Immediately Invoked Function Expression</strong> is excuted at the same moment when it's declared. It can't be called again</p>
+<pre><code class="language-javascript">;(function (num) {
+  return num ** 3
+})(2) // 8
+;((num) => num ** 3)(2) // 8
+</code></pre>
+<h1 id="5-array" style="position:relative;"><a href="#5-array" aria-label="5 array permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5. Array</h1>
+<h2 id="51-array" style="position:relative;"><a href="#51-array" aria-label="51 array permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5.1. Array</h2>
+<p>Array contains various data types in order.<br>
+Each data can be reached with the index, but there isn't negative index.</p>
+<pre><code class="language-js">const numbers = [1, 2, 3, 4, 5]
+
+console.log(numbers[0]) // 1
+console.log(numbers[-1]) // undefined
+console.log(numbers.length) // 5
+console.log(nunbers[numbers.length - 1]) // 5
+</code></pre>
+<h3 id="52-methods" style="position:relative;"><a href="#52-methods" aria-label="52 methods permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5.2. Methods</h3>
+<p><strong>reverse</strong></p>
+<pre><code class="language-js">const numbers = [1, 2, 3, 4, 5]
+
+numbers.reverse() // [5, 4, 3, 2, 1]
+</code></pre>
+<p><strong>push, pop</strong></p>
+<pre><code class="language-js">const numbers = [1, 2, 3, 4, 5]
+
+numbers.push(100) // [1, 2, 3, 4, 5, 100]
+numbers.pop() // [1, 2, 3, 4, 5]
+</code></pre>
+<p><strong>includes</strong></p>
+<pre><code class="language-js">const numbers = [1, 2, 3, 4, 5]
+
+result = numbers.includes(1) //  true
+result = numbers.includes(100) //  false
+</code></pre>
+<p><strong>indexOf</strong></p>
+<pre><code class="language-js">const numbers = [1, 2, 3, 4, 5]
+
+result = numbers.indexOf(3) // 2
+result = numbers.indexOf(100) // -1
+</code></pre>
+<p><strong>join</strong></p>
+<pre><code class="language-js">const numbers = [1, 2, 3, 4, 5]
+
+number.join() // 1,2,3,4,5
+numbers.join('') // 12345
+numbers.jojin(' ') // 1 2 3 4 5
+</code></pre>
+<h2 id="53-array-helper-methods" style="position:relative;"><a href="#53-array-helper-methods" aria-label="53 array helper methods permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5.3. Array Helper Methods</h2>
+<p>Methods below travel elements of an Array, and get a function as the first parameter.</p>
+<ul>
+<li><code>callback(currentValue[, index[, array]])</code>
+<ul>
+<li>element: element</li>
+<li>index: index</li>
+<li>array: the array (it doesn't change during the loop)</li>
+</ul>
+</li>
+</ul>
+<p><strong>forEach</strong><br>
+The forEach() method executes a provided function once for each array element.</p>
+<pre><code class="language-js">const colors = ['R', 'G', 'B']
+
+// 1.
+printFunc = function (color) {
+  console.log(color)
+}
+colors.forEach(printFunc)
+
+// 2.
+colors.forEach(function (color) {
+  console.log(color)
+})
+
+// 3.
+colors.forEach((color) => {
+  return console.log(color)
+})
+</code></pre>
+<p><strong>map</strong><br>
+The map() method creates <strong>a new array</strong> populated with the results of calling a provided function on every element in the calling array.</p>
+<pre><code class="language-js">const colors = [1, 2, 3]
+
+// 1.
+const doubleFunc = function (color) {
+  return number * 2
+}
+
+const doubleNumbers = numbers.map(doubleFunc)
+console.log(doubleNumbers) // [2, 4, 6]
+
+// 2.
+const doubleNumbers = numbers.map(function (number) {
+  return number * 2
+})
+console.log(doubleNumbers) // [2, 4, 6]
+
+// 3.
+const doubleNumbers = numbers.map((number) => {
+  return number * 2
+})
+console.log(doubleNumbers) // [2, 4, 6]
+</code></pre>
+<p><strong>filter</strong><br>
+The filter() method creates <strong>a shallow copy</strong> of a portion of a given array, filtered down to just the elements from the given array that pass the test implemented by the provided function.</p>
+<pre><code class="language-js">const colors = [
+  { name: 'cucumber', type: 'vegetable' },
+  { name: 'banana', type: 'fruit' },
+  { name: 'carrot', type: 'vegetable' },
+  { name: 'apple', type: 'fruit' },
+]
+
+// 1.
+const fruitFilter = function (product) {
+  return product.type === 'fruit'
+}
+
+const fruits = products.fitler(fruitFilter)
+console.log(fruits) // [{ name: 'banana', type: 'fruit'}, { name: 'apple', type: 'fruit'}]
+
+// 2.
+const fruits = products.filter(function (product) {
+  return product.type === 'fruit'
+})
+
+// 3.
+const fruits = products.filter((product) => {
+  return product.type === 'fruit'
+})
+</code></pre>
+<p><strong>reduce</strong><br>
+The reduce() method executes a user-supplied "reducer" callback function on each element of the array, in order, passing in the return value from the calculation on the preceding element.</p>
+<p><code>reduce(callback()[, initialValue])</code></p>
+<pre><code class="language-js">const tests = [90, 90, 80, 77]
+
+// 1.
+const sum = tests.reduce(function (total, x) {
+  return total + x
+}, 0) // 337
+
+// 2.
+const sum = tests.reduce((total, x) => total + x, 0)
+</code></pre>
+<p><strong>find</strong><br>
+The find() method returns <strong>the first element</strong> in the provided array that satisfies the provided testing function. If no values satisfy the testing function, <code>undefined</code> is returned.</p>
+<pre><code class="language-js">const people = [
+  { name: 'Tony', age: 45 },
+  { name: 'Steve', age: 32 },
+  { name: 'Tony', age: 40 },
+]
+
+// 1.
+const people = people.find(function (person) {
+  return person.name === 'Tony'
+}) // { name: 'Tony', age: 45 }
+
+// 2.
+const people = people.find((person) => {
+  return person.name === 'Tony'
+})
+</code></pre>
+<p><strong>some</strong><br>
+The some() method tests whether <strong>at least one element</strong> in the array passes the test implemented by the provided function.</p>
+<pre><code class="language-js">const arr = [1, 2, 3, 4, 5]
+
+// 1.
+const result = arr.some((ele) => {
+  return ele % 2 === 0
+}) // true
+</code></pre>
+<p><strong>every</strong>
+The every() method tests whether <strong>all elements</strong> in the array pass the test implemented by the provided function.</p>
+<pre><code class="language-js">const arr = [1, 2, 3, 4, 5]
+
+// 1.
+const result = arr.every((ele) => {
+  return ele % 2 === 0
+}) // false
+</code></pre>
+<h2 id="54-array-loop" style="position:relative;"><a href="#54-array-loop" aria-label="54 array loop permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5.4. Array Loop</h2>
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>characteristics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for</td>
+<td>approach by index<br><code>break</code>,<code>continue</code> O</td>
+</tr>
+<tr>
+<td>for...of</td>
+<td>approach by element<br><code>break</code>,<code>continue</code> O</td>
+</tr>
+<tr>
+<td>forEach</td>
+<td>approach by element, index<br><code>break</code>,<code>continue</code> X</td>
+</tr>
+</tbody>
+</table>
+<h1 id="6-object" style="position:relative;"><a href="#6-object" aria-label="6 object permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6. Object</h1>
+<h2 id="61-object" style="position:relative;"><a href="#61-object" aria-label="61 object permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6.1. Object</h2>
+<p>Object is a collection of data expressed with pairs of key and value. The value can be approacehd with the key.</p>
+<ul>
+<li><strong>key</strong>
+<ul>
+<li><mark>String<mark></li>
+<li><code>'</code> or <code>"</code> can be omitted, if there's no space in the name</li>
+</ul>
+</li>
+<li><strong>value</strong>
+<ul>
+<li>Any Data type</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-js">const me = {
+    name: 'jack',
+    phone: '01012345678',
+    'samsung products': {
+        buds: 'buds pro',
+        galaxy: 's22',
+    },
+}
+
+console.log(me.name)                        // jack
+console.log(me['name'])                     // jack
+console.log(me.['samsung products'])        // {buds: 'buds pro', galaxy: 's22',}
+console.log(me.samsung products)            // Error
+console.log(me.['samsung products'].buds)   // buds pro
+</code></pre>
+<h2 id="62-es6-grammer" style="position:relative;"><a href="#62-es6-grammer" aria-label="62 es6 grammer permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6.2. ES6 Grammer</h2>
+<h3 id="621-property-initializer-shorthand" style="position:relative;"><a href="#621-property-initializer-shorthand" aria-label="621 property initializer shorthand permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6.2.1. Property Initializer Shorthand</h3>
+<p>If the name of the value varibale is the same to the name of key, it can be shortened</p>
+<pre><code class="language-javascript">const books = ['book1', 'book2']
+const magazines = ['magazine1', 'magazine2']
+
+const bookShop = {
+  books,
+  magazines,
+}
+
+console.log(bookShop)
+// {
+//     books: ['book1', 'book2']
+//     magazines: ['magazine1', 'magazine2']
+// }
+</code></pre>
+<h3 id="622-concise-method" style="position:relative;"><a href="#622-concise-method" aria-label="622 concise method permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6.2.2 Concise Method</h3>
+<p>The <code>function</code> keyword can be omitted, when the function is assgined with the same name of its key.</p>
+<pre><code class="language-javascript">const obj = {
+  greeting() {
+    console.log('Hi!')
+  },
+}
+
+obj.greeting() // Hi!
+</code></pre>
+<h3 id="623-computed-property-name" style="position:relative;"><a href="#623-computed-property-name" aria-label="623 computed property name permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6.2.3. Computed Property Name</h3>
+<p>The name of the key can be assigned dynamically</p>
+<pre><code class="language-javascript">const key = 'country'
+const value = ['Korea', 'America']
+
+const myObj = {
+  [key]: value,
+}
+
+console.log(myObj) // { country: ['Korea', 'America'] }
+console.log(myObj.country) //  ['Korea', 'America']
+</code></pre>
+<h3 id="624-destructing-assignment" style="position:relative;"><a href="#624-destructing-assignment" aria-label="624 destructing assignment permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6.2.4. Destructing Assignment</h3>
+<p>The value of an object can be assigned to the variables which has the same name to the key</p>
+<pre><code class="language-javascript">const person = {
+  name: 'Kim',
+  id: 'asdf1234',
+  phone: '01012345678',
+}
+
+const { name } = person
+const { id } = person
+const { phone } = person
+
+const { name, id, phone } = person
+</code></pre>
+<h3 id="625-unpacking-parameters" style="position:relative;"><a href="#625-unpacking-parameters" aria-label="625 unpacking parameters permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6.2.5. Unpacking Parameters</h3>
+<p>Objects passed into function parameters can also be unpacked into variables, which may then be accessed within the function body. As for object assignment, the destructuring syntax allows for the new variable to have the same name</p>
+<pre><code class="language-javascript">const user = {
+  id: 42,
+  displayName: 'jdoe',
+  fullName: {
+    firstName: 'Jane',
+    lastName: 'Doe',
+  },
+}
+
+function userId({ id }) {
+  return id
+}
+
+console.log(userId(user)) // 42
+</code></pre>
+<p>You can also define the name of the unpacked variable. Here we unpack the property named displayName, and rename it to dname for use within the function body.</p>
+<pre><code class="language-javascript">function userDisplayName({ displayName: dname }) {
+  return dname
+}
+
+console.log(userDisplayName(user)) // `jdoe`
+</code></pre>
+<p>Nested objects can also be unpacked. The example below shows the property fullname.firstName being unpacked into a variable called name.</p>
+<pre><code class="language-javascript">function whois({ displayName, fullName: { firstName: name } }) {
+  return `${displayName} is ${name}`
+}
+
+console.log(whois(user)) // "jdoe is Jane"
+</code></pre>
+<h2 id="63-json" style="position:relative;"><a href="#63-json" aria-label="63 json permalink" class="anchor before"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6.3. JSON</h2>
+<pre><code class="language-js">const jsObject = {
+  coffee: 'Americano',
+  iceCream: 'Choco',
+}
+
+// Object -> JSON
+const objToJson = JSON.stringify(jsObject)
+
+console.log(objToJson) // { coffee: 'Americano', iceCream: 'Choco', }
+console.log(typeof objToJson) // string
+
+// JSON -> Object
+const jsonToObj = JSON.parse(objToJson)
+
+console.log(jsonToObj) // { coffee: 'Americano', iceCream: 'Choco', }
+console.log(typeof jsonToObj) // object
+</code></pre></div><div class="adjacent-posts"><div></div><article class="adjacent-posts__post next"><svg width="32" height="16" viewBox="0 0 32 16" fill="none"><path id="path-1" fill-rule="evenodd" clip-rule="evenodd" d="M20.06 6.93997C20.3409 7.22122 20.4987 7.60247 20.4987 7.99997C20.4987 8.39747 20.3409 8.77872 20.06 9.05997L14.404 14.718C14.1226 14.9992 13.741 15.1572 13.3432 15.1571C12.9453 15.157 12.5638 14.9989 12.2825 14.7175C12.0012 14.4361 11.8433 14.0545 11.8434 13.6566C11.8435 13.2588 12.0016 12.8772 12.283 12.596L16.879 7.99997L12.283 3.40397C12.0096 3.1212 11.8583 2.74237 11.8615 2.34907C11.8647 1.95577 12.0223 1.57947 12.3003 1.30123C12.5783 1.02298 12.9544 0.865054 13.3477 0.861452C13.741 0.85785 14.12 1.00887 14.403 1.28197L20.061 6.93897L20.06 6.93997Z" fill="black"></path><path id="path-2" fill-rule="evenodd" clip-rule="evenodd" d="M20.06 6.93997C20.3409 7.22122 20.4987 7.60247 20.4987 7.99997C20.4987 8.39747 20.3409 8.77872 20.06 9.05997L14.404 14.718C14.1226 14.9992 13.741 15.1572 13.3432 15.1571C12.9453 15.157 12.5638 14.9989 12.2825 14.7175C12.0012 14.4361 11.8433 14.0545 11.8434 13.6566C11.8435 13.2588 12.0016 12.8772 12.283 12.596L16.879 7.99997L12.283 3.40397C12.0096 3.1212 11.8583 2.74237 11.8615 2.34907C11.8647 1.95577 12.0223 1.57947 12.3003 1.30123C12.5783 1.02298 12.9544 0.865054 13.3477 0.861452C13.741 0.85785 14.12 1.00887 14.403 1.28197L20.061 6.93897L20.06 6.93997Z" fill="black"></path><path id="path-3" fill-rule="evenodd" clip-rule="evenodd" d="M20.06 6.93997C20.3409 7.22122 20.4987 7.60247 20.4987 7.99997C20.4987 8.39747 20.3409 8.77872 20.06 9.05997L14.404 14.718C14.1226 14.9992 13.741 15.1572 13.3432 15.1571C12.9453 15.157 12.5638 14.9989 12.2825 14.7175C12.0012 14.4361 11.8433 14.0545 11.8434 13.6566C11.8435 13.2588 12.0016 12.8772 12.283 12.596L16.879 7.99997L12.283 3.40397C12.0096 3.1212 11.8583 2.74237 11.8615 2.34907C11.8647 1.95577 12.0223 1.57947 12.3003 1.30123C12.5783 1.02298 12.9544 0.865054 13.3477 0.861452C13.741 0.85785 14.12 1.00887 14.403 1.28197L20.061 6.93897L20.06 6.93997Z" fill="black"></path></svg><div class="adjacent-posts__post--flex next"><div class="adjacent-posts__post__sign">다음 포스트</div><h1 class="adjacent-posts__post__title">02. JavaScript DOM and this </h1></div></article></div><div></div></article><aside class="post--toc"><div class="toc"><ul>
+<li>
+<p><a href="#1-intro">1. Intro</a></p>
+<ul>
+<li>
+<p><a href="#11-what-is-javascript">1.1. What is JavaScript?</a></p>
+</li>
+<li>
+<p><a href="#12-the-history-of-javascript">1.2. The History of JavaScript</a></p>
+</li>
+<li>
+<p><a href="#13-write-to-html-script">1.3. Write to HTML Script</a></p>
+</li>
+<li>
+<p><a href="#14-when-to-run-js">1.4. When to Run JS</a></p>
+<ul>
+<li><a href="#141-synchronous-execution">1.4.1. Synchronous execution</a></li>
+<li><a href="#142-domcontentloaded">1.4.2. DOMContentLoaded</a></li>
+<li><a href="#143-load">1.4.3. load</a></li>
+<li><a href="#144-aysnc--defer">1.4.4. aysnc / defer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="#2-data-type-and-operators">2. Data Type and Operators</a></p>
+<ul>
+<li>
+<p><a href="#21-semicolon">2.1. Semicolon</a></p>
+</li>
+<li>
+<p><a href="#22-comment">2.2. Comment</a></p>
+</li>
+<li>
+<p><a href="#23-indentifier">2.3. Indentifier</a></p>
+</li>
+<li>
+<p><a href="#24-variable-declaration-keywords">2.4. Variable Declaration Keywords</a></p>
+</li>
+<li>
+<p><a href="#25-data-types">2.5. Data Types</a></p>
+</li>
+<li>
+<p><a href="#26-operators">2.6. Operators</a></p>
+<ul>
+<li><a href="#261-assignment-operators">2.6.1. Assignment Operators</a></li>
+<li><a href="#262-relational-operators">2.6.2. Relational Operators</a></li>
+<li><a href="#263-equality-operators">2.6.3. Equality Operators</a></li>
+<li><a href="#264-identity-operators">2.6.4. Identity Operators</a></li>
+<li><a href="#265-logical-operators">2.6.5. Logical Operators</a></li>
+<li><a href="#266-ternary-operators">2.6.6. Ternary Operators</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="#3-control-statements">3. Control Statements</a></p>
+<ul>
+<li>
+<p><a href="#31-conditional-statements">3.1. Conditional Statements</a></p>
+<ul>
+<li><a href="#311-if">3.1.1. if</a></li>
+<li><a href="#312-switch">3.1.2. switch</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#32-loop">3.2. Loop</a></p>
+<ul>
+<li><a href="#321-while">3.2.1. while</a></li>
+<li><a href="#322-for">3.2.2. for</a></li>
+<li><a href="#323-for--in">3.2.3. for ... in</a></li>
+<li><a href="#324-for--of">3.2.4. for ... of</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="#4-function">4. Function</a></p>
+<ul>
+<li>
+<p><a href="#41-first-class-fucntion">4.1. First-class Fucntion</a></p>
+</li>
+<li>
+<p><a href="#42-fucntion-declaration">4.2. Fucntion Declaration</a></p>
+</li>
+<li>
+<p><a href="#43-fucntion-expression">4.3. Fucntion expression</a></p>
+</li>
+<li>
+<p><a href="#44-arguments">4.4. Arguments</a></p>
+<ul>
+<li><a href="#441-the-number-of-arguments">4.4.1. The Number of Arguments</a></li>
+<li><a href="#442-default-arguments">4.4.2. Default Arguments</a></li>
+<li><a href="#443-rest-parameters">4.4.3. Rest Parameters</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#45-arrow-function">4.5. Arrow Function</a></p>
+</li>
+<li>
+<p><a href="#46-iife">4.6. IIFE</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="#5-array">5. Array</a></p>
+<ul>
+<li>
+<p><a href="#51-array">5.1. Array</a></p>
+<ul>
+<li><a href="#52-methods">5.2. Methods</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#53-array-helper-methods">5.3. Array Helper Methods</a></p>
+</li>
+<li>
+<p><a href="#54-array-loop">5.4. Array Loop</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="#6-object">6. Object</a></p>
+<ul>
+<li>
+<p><a href="#61-object">6.1. Object</a></p>
+</li>
+<li>
+<p><a href="#62-es6-grammer">6.2. ES6 Grammer</a></p>
+<ul>
+<li><a href="#621-property-initializer-shorthand">6.2.1. Property Initializer Shorthand</a></li>
+<li><a href="#622-concise-method">6.2.2 Concise Method</a></li>
+<li><a href="#623-computed-property-name">6.2.3. Computed Property Name</a></li>
+<li><a href="#624-destructing-assignment">6.2.4. Destructing Assignment</a></li>
+<li><a href="#625-unpacking-parameters">6.2.5. Unpacking Parameters</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#63-json">6.3. JSON</a></p>
+</li>
+</ul>
+</li>
+</ul></div></aside></main><div class="to-the-top"><svg width="48" height="48" viewBox="0 0 48 48" fill="none"><mask id="mask0_12_75" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="2" y="2" width="44" height="44"><path d="M24 44C35.046 44 44 35.046 44 24C44 12.954 35.046 4 24 4C12.954 4 4 12.954 4 24C4 35.046 12.954 44 24 44Z" stroke="white" stroke-width="4"></path><path d="M24 44C35.046 44 44 35.046 44 24C44 12.954 35.046 4 24 4C12.954 4 4 12.954 4 24C4 35.046 12.954 44 24 44Z" fill="white" stroke="white" stroke-width="4" stroke-linejoin="round"></path><path d="M33 27L24 18L15 27" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></mask><g mask="url(#mask0_12_75)"><path d="M0 0H48V48H0V0Z" fill="black"></path></g></svg><span style="--i:0"></span><span style="--i:1"></span></div><div class="category-layout__modal"></div></div><footer class="footer dark">Copyright © 2023 <a class="footer--link" href="https://github.com/Byongho96">Byongho96</a>  &amp; Powered by <a class="footer--link" href="https://www.gatsbyjs.com/">Gatsby</a></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-N3DKK06MWC"></script><script>
+      
+      
+      if(true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-N3DKK06MWC', {"send_page_view":false});
+      }
+      </script><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/Language/JavaScript/01_JavaScript_Basics.md/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+          <script
+            id="gatsby-chunk-mapping"
+          >
+            window.___chunkMapping="{\"app\":[\"/app-0f797485eb022958243b.js\"],\"component---src-pages-404-tsx\":[\"/component---src-pages-404-tsx-067d1fa245dc4f5118da.js\"],\"component---src-pages-about-tsx\":[\"/component---src-pages-about-tsx-b2ced2fad85baf652bb1.js\"],\"component---src-pages-index-tsx\":[\"/component---src-pages-index-tsx-67641fcb29005786642a.js\"],\"component---src-pages-posts-tsx\":[\"/component---src-pages-posts-tsx-db9dd1fe9f455afb32b9.js\"],\"component---src-pages-ssr-tsx\":[\"/component---src-pages-ssr-tsx-8df2101f6e392106ff94.js\"],\"component---src-templates-post-group-index-tsx\":[\"/component---src-templates-post-group-index-tsx-d469ad4cce8df83652b5.js\"],\"component---src-templates-post-index-tsx\":[\"/component---src-templates-post-index-tsx-1377f9e15b0c77c4f263.js\"]}";
+          </script>
+        <script>window.___webpackCompilationHash="ef40b4478fcaed1d21c9";</script><script src="/TIL/webpack-runtime-e9097b3608126396be62.js" async></script><script src="/TIL/framework-e7a380555a9a54b312b6.js" async></script><script src="/TIL/app-0f797485eb022958243b.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
