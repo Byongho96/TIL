@@ -10,7 +10,7 @@ import useInfiniteScroll from '@hooks/use-infinite-scroll'
 import CategoryLayout from '@layouts/category-layout'
 
 const PostsPage: React.FC<PageProps> = ({ data }) => {
-  const [lastIdx, setLastIdx] = useState(5)
+  const [lastIdx, setLastIdx] = useState(20)
   const infiniteRef = useRef<HTMLElement>(null)
 
   const shownData = useMemo(() => {
@@ -22,7 +22,7 @@ const PostsPage: React.FC<PageProps> = ({ data }) => {
   }, [lastIdx])
 
   const loadMore = () => {
-    setLastIdx((prev) => prev + 5)
+    setLastIdx((prev) => prev + 20)
   }
 
   useInfiniteScroll({ ref: infiniteRef, isEnd, loadMore })

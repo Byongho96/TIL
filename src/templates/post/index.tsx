@@ -41,7 +41,7 @@ const PostPage: React.FC<PageProps> = ({ pageContext, data }) => {
 
   useEffect(() => {
     highlightCode()
-  })
+  }, [])
 
   return (
     <CategoryLayout defaultCategory={pageContext.relativeDirectory}>
