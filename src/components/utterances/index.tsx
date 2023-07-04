@@ -16,7 +16,7 @@ export interface UtterancesProps {
 
 const Utterances: React.FC<UtterancesProps> = React.memo(
   ({ theme = 'github-light' }) => {
-    const utterRef = createRef<HTMLScriptElement>(null)
+    const utterRef = createRef<HTMLElement>(null)
 
     // utternace를 적용하기 위한 script를 html에 성생
     useEffect(() => {
@@ -47,7 +47,7 @@ const Utterances: React.FC<UtterancesProps> = React.memo(
       }
     }, [theme])
 
-    return <div ref={utterRef} />
+    return <section ref={utterRef} />
   }
 )
 

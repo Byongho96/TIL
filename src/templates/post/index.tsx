@@ -3,10 +3,10 @@ import './style.scss'
 import type { PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 import AdjacentPosts from '@components/adjacent-posts'
+import Giscus from '@components/giscus'
 import PostHeader from '@components/post-header'
 import TableOfContent from '@components/table-of-content'
 import ToTheTop from '@components/to-the-top'
-import Utterances from '@components/utterances'
 import { ThemeContext } from '@contexts/theme-context'
 import CategoryLayout from '@layouts/category-layout'
 import highlightCode from '@utils/highlightCode.ts'
@@ -52,9 +52,7 @@ const PostPage: React.FC<PageProps> = ({ pageContext, data }) => {
             dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
           />
           <AdjacentPosts prevPost={prevPost} nextPost={nextPost} />
-          <Utterances
-            theme={theme === 'dark' ? 'github-dark' : 'github-light'}
-          />
+          <Giscus theme={theme === 'dark' ? 'dark' : 'light'} />
         </article>
         <aside className="post--toc">
           <TableOfContent toc={data.markdownRemark.tableOfContents} />

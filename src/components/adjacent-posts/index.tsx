@@ -20,10 +20,10 @@ type Props = {
 
 const NextPosts: React.FC<Props> = ({ nextPost, prevPost }) => {
   return (
-    <div className="adjacent-posts">
+    <section className="adjacent-posts">
       {prevPost ? <Post post={prevPost} isNext={false} /> : <div />}
       {nextPost ? <Post post={nextPost} isNext={true} /> : <div />}
-    </div>
+    </section>
   )
 }
 
