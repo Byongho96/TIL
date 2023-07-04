@@ -75,7 +75,6 @@ const TypeAnimation: React.FC<Props> = ({
 
     // clear 함수
     return () => {
-      console.log('interval', interval)
       interval && clearInterval(interval)
     }
   }, [phrases, speed, pause, isInfinite])
