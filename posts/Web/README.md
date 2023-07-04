@@ -1,4 +1,0 @@
-- :bookmark: HTML / CSS
-  - [HTML](./Web/01_HTML.md)
-  - [CSS Basics](./Web/02_CSS_Basics.md)
-  - [CSS Advanced](./Web/03_CSS_Advanced.md)
