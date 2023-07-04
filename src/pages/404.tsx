@@ -1,6 +1,7 @@
 import React, { useContext, useRef } from 'react'
 import './404.scss'
 import RainingCanvas from '@components/raining-canvas'
+import SEO from '@components/seo'
 import { ThemeContext } from '@contexts/theme-context'
 
 const NotFoundPage: React.FC<PageProps> = () => {
@@ -30,4 +31,6 @@ const NotFoundPage: React.FC<PageProps> = () => {
 
 export default NotFoundPage
 
-export const Head: HeadFC = () => <title>Not found</title>
+export const Head = () => (
+  <SEO title="Not found" decription="Not found" pathname="/404" />
+)

@@ -1,7 +1,8 @@
 import * as React from 'react'
 import './about.scss'
-import type { HeadFC, PageProps } from 'gatsby'
+import type { PageProps } from 'gatsby'
 import AboutMe from '@components/about-me'
+import SEO from '@components/seo'
 import TypeAnimation from '@components/type-animation'
 
 const AboutPage: React.FC<PageProps> = () => {
@@ -22,4 +23,4 @@ const AboutPage: React.FC<PageProps> = () => {
 
 export default AboutPage
 
-export const Head: HeadFC = () => <title>About Page</title>
+export const Head = () => <SEO title="About Page" pathname="/about" />

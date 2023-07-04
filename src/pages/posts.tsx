@@ -1,14 +1,15 @@
 import React, { useState, useMemo, useRef } from 'react'
 import './posts.scss'
-import type { HeadFC, PageProps } from 'gatsby'
+import type { PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 import PostItem from '@components/post-item'
+import SEO from '@components/seo'
 import ToTheTop from '@components/to-the-top'
 import TypeAnimation from '@components/type-animation'
 import useInfiniteScroll from '@hooks/use-infinite-scroll'
 import CategoryLayout from '@layouts/category-layout'
 
-const PostPage: React.FC<PageProps> = ({ data }) => {
+const PostsPage: React.FC<PageProps> = ({ data }) => {
   const [lastIdx, setLastIdx] = useState(5)
   const infiniteRef = useRef<HTMLElement>(null)
 
@@ -78,6 +79,8 @@ export const query = graphql`
   }
 `
 
-export default PostPage
+export default PostsPage
 
-export const Head: HeadFC = () => <title>Post Page</title>
+export const Head = () => (
+  <SEO title="Posts Page" decription="All the TIL posts" pathname="/posts" />
+)

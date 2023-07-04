@@ -14,11 +14,6 @@
   text-decoration: none;
 }
 
-// .sidebar ul.sidebar__category {
-//   list-style-type: square;
-//   list-style-position: inside;
-// }
-
 .sidebar ul ul {
   margin: 0 0 0 1em;
 }
@@ -38,7 +33,10 @@
 }
 
 .sidebar__category li {
+  overflow: hidden;
   margin: 0.6rem 0 0 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .sidebar__category--text {
@@ -52,6 +50,10 @@
 
 .sidebar__category--text:hover {
   font-weight: 800;
+}
+
+.sidebar__category__num {
+  font-size: 0.8rem;
 }
 
 .sidebar__posts {
@@ -79,7 +81,7 @@
 .sidebar__posts a {
   color: $font-gray;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 400;
   text-decoration: none;
   transition: color 0.1s ease-in-out;
 }

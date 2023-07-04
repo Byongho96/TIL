@@ -93,7 +93,8 @@ const CategoryName: React.FC = React.memo(
           handleClickCategory(event, name)
         }}
       >
-        {`${name}\u00a0\u00a0(${num})`}
+        {name}
+        <span className="sidebar__category__num">{`\u00a0\u00a0(${num})`}</span>
       </Link>
     )
   }

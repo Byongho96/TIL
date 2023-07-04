@@ -4,11 +4,11 @@
 .post-group--layout {
   display: flex;
   flex-direction: column;
-  padding: 0 5rem;
+  padding: 0 5rem 0 5rem;
 }
 
 .post-group__category {
-  padding: 3rem 0 2rem 1rem;
+  margin: 6rem 0 3rem 0;
   color: $font-gray;
   font-size: 6rem;
   font-weight: 600;
@@ -33,29 +33,23 @@
 // 타블렛
 @include tablet {
   .post-group--layout {
-    padding: 0 1rem;
+    padding: 0 2rem;
   }
 
   .post-group__category {
+    fmargin: 4rem 0 2rem 0;
     font-size: 4rem;
-  }
-
-  .post-group__post-list {
-    padding: 0 0;
   }
 }
 
 // 모바일
 @include mobile {
   .post-group--layout {
-    padding: 0;
+    padding: 0 1rem;
   }
 
   .post-group__category {
-    padding: 1rem 1rem 1rem 1rem;
+    margin: 3rem 0 1rem 0;
     font-size: 3rem;
-  }
-  .post-group__post-list {
-    padding: 0 0.5rem;
   }
 }

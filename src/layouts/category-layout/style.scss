@@ -68,14 +68,24 @@
     z-index: 99; // 포스트 보다 위에 보이도록
     max-width: 70vw;
     height: calc(100vh - var(--position-top));
+    padding: 0 0 0 0;
     background-color: var(--bg-color);
     transform: translateX(-100%); //  asdie의 마진을 고려
     transition: transform 0.2s ease-in-out;
+    font-family: 'NanumSquareNeo';
+  }
+
+  .category-layout__aside::before {
+    display: none;
   }
 
   .category-layout__aside.active {
     overflow-y: scroll;
     transform: translate(0%, 0%);
+  }
+
+  .category-layout__category {
+    padding: 2rem 2rem 2rem 1rem;
   }
 
   .category-layout__profile {

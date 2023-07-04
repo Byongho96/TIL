@@ -4,11 +4,11 @@
 .posts--layout {
   display: flex;
   flex-direction: column;
-  padding: 0 5rem;
+  padding: 0 5rem 0 5rem;
 }
 
 .posts__category {
-  margin: 3rem 0 2rem 0;
+  margin: 6rem 0 3rem 0;
   color: $font-gray;
   font-size: 6rem;
   font-weight: 600;
@@ -34,11 +34,11 @@
 // 타블렛
 @include tablet {
   .posts--layout {
-    padding: 0 1rem;
+    padding: 0 2rem;
   }
 
   .posts__category {
-    margin: 3rem 0 2rem 0;
+    margin: 4rem 0 2rem 0;
     font-size: 4rem;
   }
 }
@@ -50,7 +50,7 @@
   }
 
   .posts__category {
-    margin: 2rem 0 1rem 0;
+    margin: 3rem 0 1rem 0;
     font-size: 3rem;
   }
 }

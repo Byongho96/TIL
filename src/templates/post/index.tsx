@@ -5,6 +5,7 @@ import { graphql } from 'gatsby'
 import AdjacentPosts from '@components/adjacent-posts'
 import Giscus from '@components/giscus'
 import PostHeader from '@components/post-header'
+import SEO from '@components/seo'
 import TableOfContent from '@components/table-of-content'
 import ToTheTop from '@components/to-the-top'
 import { ThemeContext } from '@contexts/theme-context'
@@ -107,6 +108,10 @@ export const query = graphql`
 
 export default PostPage
 
-export const Head = () => {
-  return <></>
-}
+export const Head = ({ data, location }) => (
+  <SEO
+    title={data.markdownRemark.frontmatter.title}
+    description={data.markdownRemark.frontmatter.description}
+    pathname={location.pathname}
+  />
+)

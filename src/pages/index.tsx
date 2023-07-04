@@ -1,8 +1,9 @@
 import * as React from 'react'
 import './index.scss'
-import type { HeadFC, PageProps } from 'gatsby'
+import type { PageProps } from 'gatsby'
 import IndexLogo from '@components/index-logo'
 import IndexWheel from '@components/index-wheel'
+import SEO from '@components/seo'
 
 const IndexPage: React.FC<PageProps> = () => {
   return (
@@ -17,4 +18,4 @@ const IndexPage: React.FC<PageProps> = () => {
 
 export default IndexPage
 
-export const Head: HeadFC = () => <title>Home Page</title>
+export const Head = () => <SEO title="Home Page" />

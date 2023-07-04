@@ -1,8 +1,9 @@
 import * as React from 'react'
 import './style.scss'
-import type { HeadFC, PageProps } from 'gatsby'
+import type { PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 import PostItem from '@components/post-item'
+import SEO from '@components/seo'
 import ToTheTop from '@components/to-the-top'
 import TypeAnimation from '@components/type-animation'
 import CategoryLayout from '@layouts/category-layout'
@@ -56,4 +57,10 @@ export const query = graphql`
 
 export default PostGroupPage
 
-export const Head: HeadFC = () => <title>Post Group Page</title>
+export const Head = ({ pageContext, data, location }) => (
+  <SEO
+    title={pageContext.name}
+    description={`Posts about ${pageContext.name}`}
+    pathname={location.pathname}
+  />
+)
