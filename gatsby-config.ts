@@ -28,7 +28,7 @@ const config: GatsbyConfig = {
     },
     'gatsby-plugin-sitemap',
     {
-      resolve: 'gatsby-plugin-manifest',
+      resolve: 'gatsby-plugin-manifest', // 웹 앱
       options: {
         icon: 'src/assets/images/icon.png',
       },
