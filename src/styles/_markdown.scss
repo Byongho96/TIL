@@ -39,7 +39,7 @@
   --color-danger-fg: #f85149;
 }
 
-// 커스텀: font-family, font-size, line-height
+// 커스텀: font-family, font-size, line-height,
 .markdown-body {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -52,6 +52,11 @@
   font-size: 0.98rem;
   line-height: 190%;
   word-wrap: break-word;
+}
+
+.markdown-body p,
+.markdown-body li {
+  word-spacing: 0.09em;
 }
 
 .markdown-body .octicon {
@@ -939,5 +944,10 @@
 
   .markdown-body h6 {
     font-size: 0.85em;
+  }
+
+  .markdown-body p,
+  .markdown-body li {
+    word-spacing: normal;
   }
 }

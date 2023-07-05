@@ -8,7 +8,8 @@ const CategoryLayout = ({ defaultCategory, children }) => {
   const asideButtonRef = useRef<HTMLButtonElement>(null)
   const modalRef = useRef<HTMLDivElement>(null)
 
-  const handleClickToggle = () => {
+  const handleClickToggle = (event) => {
+    event.stopPropagation()
     asideRef.current.classList.toggle('active')
     asideButtonRef.current.classList.toggle('active')
     modalRef.current.classList.toggle('active')
