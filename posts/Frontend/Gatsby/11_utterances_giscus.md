@@ -286,7 +286,7 @@ Utterances를 사용할 때는 한 번도 생각해보지 않았는데, 곰곰�
 ```json
 // giscus.json
 {
-  "origins": ["https://byongho96.github.io/TIL"]
+  "origins": ["https://byongho96.github.io"] // '/TIL'까지 붙이고 싶지만, 도메인이 아니라서 에러난다.
 }
 ```
 
