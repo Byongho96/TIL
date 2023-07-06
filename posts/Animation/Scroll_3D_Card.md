@@ -2,7 +2,7 @@
 title: '스크롤 3D 카드 애니메이션 (React 컴포넌트)'
 updatedAt: '2023-07-05'
 createdAt: '2023-07-05'
-description: '스크롤 3D 카드 애니메이션 리액트 컴포넌트를 만들어본다.'
+description: '스크롤 3D 카드 애니메이션을 리액트 컴포넌트로 만들어본다.'
 tags: ['CSS', 'JavaScript', '애니메이션', '스크롤', '3D 카드']
 isCompleted: true
 reference: 'https://www.youtube.com/watch?v=337HnOk13zc&t=618s'

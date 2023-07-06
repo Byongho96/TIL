@@ -19,7 +19,7 @@ const TypeAnimationPage: React.FC = () => {
   )
 }
 
-export default TypeAnimation
+export default TypeAnimationPage
 
 type Props = {
   phrases: string[] // 순서대로 타이핑 할 문구 리스트
