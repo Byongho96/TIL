@@ -2,7 +2,7 @@
 title: '타이핑 애니메이션 (React 컴포넌트)'
 updatedAt: '2023-06-22'
 createdAt: '2023-06-22'
-description: '타이핑 애니메이션(Typing Animation) 리액트 컴포넌트'
+description: '타이핑 애니메이션(Typing Animation) 리액트 컴포넌트를 만들어본다.'
 tags: ['CSS', 'Animation', 'JavaScript', '타이핑']
 isCompleted: true
 reference:
@@ -157,6 +157,8 @@ export default TypeAnimation
 
 # 3. 사용 예시
 
+[Click for the Live Demo Page!](https://byongho96.github.io/TIL/demo/type-animation/)
+
 ![my-type-animation.gif](./assets/my-type-animation.gif)
 
 ```js
@@ -165,12 +167,7 @@ import TypeAnimation from './TypeAnimation.tsx'
 
 const App: React.FC = () => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
+    <div>
       <TypeAnimation
         phrases={['I love chicken', 'Do you like chicken?', 'Of course!!!']}
         speed={7}

@@ -19,8 +19,7 @@ const ColorChange: React.FC = () => {
       colorPicker.current.value = mainColor
     } else {
       // localSotrage 값이 없을 경우, color picker 색상을 :root의 --main-color 값으로 초기화
-      colorPicker.current.value =
-        getComputedStyle(root).getPropertyValue('--main-color')
+      colorPicker.current.value = '#ff0000' // @styles/_colors.scss 의  $primary-color
     }
   }, [])
 

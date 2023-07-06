@@ -1,0 +1,22 @@
+.type-animation--layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.type-animation {
+  // 가상 선택자로 커서 생성
+  &::after {
+    content: '|';
+    opacity: 1;
+    animation: blink 1s steps(1, end) infinite;
+  }
+}
+
+// 커서가 깜빡이는 애니메이션
+// js에서 전달받은 값에 따라 깝빡임 여부 결정
+@keyframes blink {
+  50% {
+    opacity: var(--cursor-opacity);
+  }
+}
