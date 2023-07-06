@@ -18,14 +18,24 @@
   color: $font-gray;
   font-size: 7rem;
   font-weight: 700;
+  text-align: center;
   letter-spacing: 1rem;
 }
 
-.not-found__background {
+.not-found__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.not-found__input {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  color: $font-gray;
 }
 
 @include tablet {
