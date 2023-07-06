@@ -173,8 +173,9 @@ const App: React.FC = () => {
         speed={7}
         style={{
           color: 'gray',
-          fontSize: '4rem',
+          fontSize: '8vw',
           fontWeight: 'bold',
+          textAlign: 'center',
         }}
         pause={2000}
         isInfinite={true}

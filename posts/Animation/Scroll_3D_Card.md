@@ -1,8 +1,8 @@
 ---
-title: '스크롤 3D 카드 애니메이션 (React 컴포넌트)'
+title: '3D 카드 스크롤 애니메이션 (React 컴포넌트)'
 updatedAt: '2023-07-05'
 createdAt: '2023-07-05'
-description: '스크롤 3D 카드 애니메이션을 리액트 컴포넌트로 만들어본다.'
+description: '3D 카드 스크롤 애니메이션을 리액트 컴포넌트로 만들어본다.'
 tags: ['CSS', 'JavaScript', '애니메이션', '스크롤', '3D 카드']
 isCompleted: true
 reference: 'https://www.youtube.com/watch?v=337HnOk13zc&t=618s'
@@ -240,8 +240,9 @@ const Scroll3DCard: React.FC<Props> = ({
   height: calc(100vh - var(--navbar-height));
   background-color: var(--secondary-color);
   color: var(--primary-color);
-  font-size: 5rem;
+  font-size: 10vw;
   font-weight: 800;
+  text-align: center;
 }
 
 .scroll-3d-card__start {
@@ -257,8 +258,9 @@ const Scroll3DCard: React.FC<Props> = ({
   height: 500vh;
   background-color: var(--primary-color);
   color: var(--secondary-color);
-  font-size: 5rem;
+  font-size: 10vw;
   font-weight: 800;
+  text-align: center;
 }
 
 .scroll-3d-card--sticky {
@@ -328,6 +330,7 @@ const Scroll3DCard: React.FC<Props> = ({
   position: absolute;
   width: 100%;
   height: 100%;
+  border-radius: 1vw;
   background-color: #00000020;
 }
 ```

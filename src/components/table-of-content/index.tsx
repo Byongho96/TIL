@@ -4,7 +4,7 @@ import './style.scss'
 const TableOfContent: React.FC = ({ toc }) => {
   useEffect(() => {
     function handleScroll() {
-      const TOP_THRESHOLD = 100
+      const TOP_THRESHOLD = 50
       const headerElements = document.querySelectorAll(
         '.markdown-body h1, .markdown-body h2, .markdown-body h3'
       ) // toc 스크롤 기능을 적용하고자하는 헤더를 선택한다.

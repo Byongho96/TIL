@@ -30,11 +30,13 @@
     "gatsby-remark-emoji": "^0.0.3",
     "gatsby-remark-gifs": "^1.2.0",
     "gatsby-remark-images": "^7.10.0",
+    "gatsby-remark-katex": "^7.11.0",
     "gatsby-remark-prismjs": "^7.10.0",
     "gatsby-source-filesystem": "^5.10.0",
     "gatsby-transformer-remark": "^6.10.0",
     "gatsby-transformer-sharp": "^5.10.0",
     "highlight.js": "^11.8.0",
+    "katex": "^0.13.24",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.63.3"

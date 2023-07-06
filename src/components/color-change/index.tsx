@@ -7,19 +7,41 @@ import { ThemeContext } from '@contexts/theme-context'
 const ColorChange: React.FC = () => {
   const { theme, toggleTheme } = useContext(ThemeContext)
 
-  const colorPicker = useRef<HTMLInputElement>(null)
+  const parentRef = useRef<HTMLDivElement>(null)
 
-  // 첫 마운트 시, 메인 컬러 초기화
+  // 첫 마운트 시, <type input="color"/> 추가.  이유: 아직 메인컬러가 안정해졋을 때는 아예 UI에 안보이게 하기 위해
   useEffect(() => {
+    // input 요소 생성
+    const inputEle = document.createElement('input')
+    const attributes = {
+      label: 'main-color-picker',
+      class: 'color-change__picker',
+      type: 'color',
+    }
+
+    // localstorage 값에 따라 컬러 속성 추가
     const root = document.querySelector(':root')
     const mainColor = localStorage.getItem('main-color')
     if (mainColor) {
       // localStorage 값이 있을 경우, color picker 색상과 :root의 --main-color 동기화
       root.style.setProperty('--main-color', mainColor)
-      colorPicker.current.value = mainColor
+      attributes.value = mainColor
     } else {
       // localSotrage 값이 없을 경우, color picker 색상을 :root의 --main-color 값으로 초기화
-      colorPicker.current.value = '#ff0000' // @styles/_colors.scss 의  $primary-color
+      attributes.value = '#ff0000'
+    }
+
+    // 속성 적용
+    Object.entries(attributes).forEach(([key, value]) => {
+      inputEle.setAttribute(key, value)
+    })
+
+    // DOM에 inputEle 추가
+    const parentEle = parentRef.current
+    parentEle?.insertBefore(inputEle, parentEle.firstChild)
+
+    return () => {
+      parentEle?.removeChild(inputEle)
     }
   }, [])
 
@@ -38,13 +60,14 @@ const ColorChange: React.FC = () => {
   }
 
   return (
-    <div className="color-change">
-      <input
+    <div className="color-change" ref={parentRef}>
+      {/* <input
+        label="main-color-picker"
         ref={colorPicker}
         className="color-change__picker"
         type="color"
         onChange={handleColorChange}
-      />
+      /> */}
       <div
         className={`color-change__theme ${theme}`}
         onClick={handleThemeClick}

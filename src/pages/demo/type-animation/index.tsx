@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import './style.scss'
+import SEO from '@components/seo'
 
 const TypeAnimationPage: React.FC = () => {
   return (
@@ -9,8 +10,9 @@ const TypeAnimationPage: React.FC = () => {
         speed={7}
         style={{
           color: 'gray',
-          fontSize: '4rem',
+          fontSize: '8vw',
           fontWeight: 'bold',
+          textAlign: 'center',
         }}
         pause={2000}
         isInfinite={true}
@@ -20,6 +22,14 @@ const TypeAnimationPage: React.FC = () => {
 }
 
 export default TypeAnimationPage
+
+export const Head = ({ location }) => (
+  <SEO
+    title="타이핑 애니메이션 라이브 데모"
+    decription="타이핑 애니메이션 예시 화면을 확인해볼 수 있습니다."
+    pathname={location.pathname}
+  />
+)
 
 type Props = {
   phrases: string[] // 순서대로 타이핑 할 문구 리스트

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import './style.scss'
+import SEO from '@components/seo'
 
 // https://velog.io/@moonelysian/scroll-client-offset-%ED%99%9C%EC%9A%A9%ED%95%98%EA%B8%B0\
 // https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
@@ -21,6 +22,14 @@ const Scroll3DCardPage: React.FC = () => {
 }
 
 export default Scroll3DCardPage
+
+export const Head = ({ location }) => (
+  <SEO
+    title="3D 카드 스크롤 애니메이션 라이브 데모"
+    decription="3D 카드 스크롤 애니메이션 예시 화면을 확인해볼 수 있습니다."
+    pathname={location.pathname}
+  />
+)
 
 type Props = {
   backgroundText?: string

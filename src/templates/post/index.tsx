@@ -12,6 +12,7 @@ import { ThemeContext } from '@contexts/theme-context'
 import CategoryLayout from '@layouts/category-layout'
 import highlightCode from '@utils/highlightCode.ts'
 import '@styles/_markdown.scss'
+import 'katex/dist/katex.min.css'
 
 const PostPage: React.FC<PageProps> = ({ pageContext, data }) => {
   const { theme } = useContext(ThemeContext)
