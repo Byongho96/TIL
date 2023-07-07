@@ -157,7 +157,7 @@ export default TypeAnimation
 
 # 3. 사용 예시
 
-[Click for the Live Demo Page!](https://byongho96.github.io/TIL/demo/type-animation/)
+[애니매이션 라이브 페이지로 이동!](https://byongho96.github.io/TIL/demo/type-animation/)
 
 ![my-type-animation.gif](./assets/my-type-animation.gif)
 

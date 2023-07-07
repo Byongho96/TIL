@@ -6,7 +6,6 @@ type Props = {
   color?: string
   isThunder?: boolean
   thunderRate?: number
-  containerRef?: React.RefObject<HTMLDivElement>
 }
 
 const RainingCanvas: React.FC<Props> = ({
@@ -57,12 +56,9 @@ const RainingCanvas: React.FC<Props> = ({
       rainSplashArray = []
 
       // containerRef에 따라 캔버스 크기 조절
-      const innerWidth = containerRef
-        ? containerRef.current.offsetWidth
-        : window.innerWidth
-      const innerHeight = containerRef
-        ? containerRef.current.offsetHeight
-        : window.innerHeight
+      console.log(canvas?.parentElement)
+      const innerWidth = canvas?.parentElement?.clientWidth
+      const innerHeight = canvas?.parentElement?.clientHeight
       canvas.width = innerWidth
       canvas.height = innerHeight
 
@@ -74,11 +70,8 @@ const RainingCanvas: React.FC<Props> = ({
         const y = Math.random() * innerHeight
         const dx = Math.random() * 0.1 - 0.05
         const dy = Math.random() * 5 + parseInt(speed) // 왜인지 오류가 남
-        console.log(speed, dy, innerHeight, y)
         rainDropArray.push(new RainDrop(x, y, dx, dy, color, rainSplashArray))
       }
-
-      console.log(rainDropArray)
     }
 
     // cavnas 렌더링(애니메이션) 함수
@@ -160,7 +153,7 @@ class RainDrop {
     const { x, y, dx, dy, wind, color } = this
     ctx.beginPath()
     ctx.moveTo(x, y)
-    ctx.lineTo(x + dx + wind, y + 1.5 * dy)
+    ctx.lineTo(x + dx + wind, y + 7 * dy) // MAGIC_NUMBER: 적절히 빗줄기를 길게 그려줌
     ctx.strokeStyle = color
     ctx.lineWidth = 1
     ctx.stroke()
@@ -170,8 +163,8 @@ class RainDrop {
   splash() {
     const { x, y, dx, dy, color, splashArray } = this
     for (let i = 0; i < 3; i++) {
-      const splash_dx = Math.random() * 6 + dx - 1 // 물방울의 x축 속도
-      const splash_dy = Math.random() * 0.7 - dy * 0.24 // 물방울의 y축 속도
+      const splash_dx = Math.random() * 6 + dx - 1 // 물방울의 x축 속도 (적절히 커스텀)
+      const splash_dy = Math.random() * 0.7 - dy * 0.24 // 물방울의 y축 속도 (적절히 커스텀)
       splashArray.push(new RainSplash(x, y, splash_dx, splash_dy, color))
     }
   }

@@ -25,7 +25,7 @@ export default TypeAnimationPage
 
 export const Head = ({ location }) => (
   <SEO
-    title="타이핑 애니메이션 라이브 데모"
+    title="타이핑 애니메이션"
     decription="타이핑 애니메이션 예시 화면을 확인해볼 수 있습니다."
     pathname={location.pathname}
   />

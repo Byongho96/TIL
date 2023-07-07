@@ -1,0 +1,21 @@
+.scroll-infinite-tape-page {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10vh;
+  height: 200vh;
+}
+
+.scroll-infinite-tape__tape {
+  display: flex;
+  width: 120%; // 회전했을 때, 약간의 여백 방지
+  padding: 1vw 0 1.3vw;
+}
+
+.scroll-infinite-tape__text {
+  min-width: fit-content; // grid 설정 때문에 p의 너비가 제한되었음
+  font-size: 3vw;
+  font-weight: 700;
+  white-space: nowrap;
+}

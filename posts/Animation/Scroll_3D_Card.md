@@ -337,7 +337,7 @@ const Scroll3DCard: React.FC<Props> = ({
 
 # 4. 사용 예시
 
-[Click for the Live Demo Page!](https://byongho96.github.io/TIL/demo/scroll-3d-card/)
+[애니메이션 라이브 페이지로!](https://byongho96.github.io/TIL/demo/scroll-3d-card/)
 
 ```js
 import * as React from 'react'

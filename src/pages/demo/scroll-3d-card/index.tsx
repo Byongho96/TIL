@@ -25,8 +25,8 @@ export default Scroll3DCardPage
 
 export const Head = ({ location }) => (
   <SEO
-    title="3D 카드 스크롤 애니메이션 라이브 데모"
-    decription="3D 카드 스크롤 애니메이션 예시 화면을 확인해볼 수 있습니다."
+    title="스크롤 3D 카드 플립 애니메이션"
+    decription="스크롤 3D 카드 플립 애니메이션을 확인해볼 수 있습니다."
     pathname={location.pathname}
   />
 )

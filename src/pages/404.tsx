@@ -1,34 +1,30 @@
-import React, { useContext, useRef, useState, useMemo } from 'react'
+import React, { useContext, useState, useMemo } from 'react'
 import './404.scss'
-import rainAudio from '@assets/audio/rain-audio.wav'
 import RainingCanvas from '@components/raining-canvas'
 import SEO from '@components/seo'
 import { ThemeContext } from '@contexts/theme-context'
 
 const NotFoundPage: React.FC<PageProps> = () => {
   const { theme } = useContext(ThemeContext)
-  const containerRef = useRef<HTMLDivElement>(null)
 
-  const [amount, setAmount] = useState(30)
-  const [speed, setSpeed] = useState(15)
-  const [thunderRate, setThunderRate] = useState(0.1)
+  const [amount, setAmount] = useState(30) // 비의 양
+  const [speed, setSpeed] = useState(15) // 비의 속도
+  const [thunderRate, setThunderRate] = useState(0.1) // 천둥 빈도
 
-  console.log(speed)
-
+  // theme에 따라 비의 색깔과 천둥 여부 결정
   const { color, isThunder } = useMemo(() => {
-    let color = '#eeeeee'
+    let color = '#eeeeeeaa'
     let isThunder = true
     if (theme === 'light') {
-      color = '#888888'
+      color = '#888888aa'
       isThunder = false
     }
     return { color, isThunder }
   }, [theme])
 
   return (
-    <div className="not-found--layout" ref={containerRef}>
+    <div className="not-found--layout">
       <RainingCanvas
-        containerRef={containerRef}
         color={color}
         isThunder={isThunder}
         amount={amount}
@@ -36,7 +32,6 @@ const NotFoundPage: React.FC<PageProps> = () => {
         thunderRate={thunderRate}
       />
       <div className="not-found__content">
-        <audio src={rainAudio} autoplay loop />
         <div className="not-found__text">404</div>
         <div className="not-found__input">
           <label htmlFor="rain-amount-input">Rain Amount</label>

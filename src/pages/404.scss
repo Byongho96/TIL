@@ -42,10 +42,18 @@
   .not-found__text {
     font-size: 6rem;
   }
+
+  .not-found__content {
+    gap: 1rem;
+  }
 }
 
 @include mobile {
   .not-found__text {
     font-size: 5rem;
+  }
+
+  .not-found__content {
+    gap: 1.5rem;
   }
 }
