@@ -21,7 +21,7 @@
 
 .category-layout__aside::before {
   content: '';
-  background-color: #919191;
+  background-color: var(--bg-gray-color);
   // background-image: url('@assets/images/celebrity.jpg');
   background-size: cover;
   position: absolute;
@@ -30,7 +30,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  opacity: 0.1;
+  opacity: 0.37;
   mask-image: linear-gradient(rgba(0, 0, 0, 1), 95%, rgba(0, 0, 0, 0));
 }
 

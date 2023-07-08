@@ -212,10 +212,21 @@ Prettier와 ESLint는 각각 코드 포맷팅(Code Formatting)과 린팅(Linting
 
 2.  **.eslintrc.js 수정**
 
+    [Typescirpt-Eslint 공식문서](https://typescript-eslint.io/linting/configs/#recommended-requiring-type-checking)를 보면, `"plugin:@typescript-eslint/recommended-requiring-type-checking"`설정까지 확장할 것을 권고하고 있다. 그래야지 진짜 강제성 있는 Typescript 프로젝트가 되는 것이다. 관련된 더 자세하 내용은 [여기](https://typescript-eslint.io/linting/typed-linting)에서 확인할 수 있다.
+
+    > We recommend all TypeScript projects extend from plugin:@typescript-eslint/recommended-requiring-type-checking, with the caveat that rules using type information take longer to run. See Linting with Type Information for more details.
+
     ```js
     module.exports = {
-      extends: ['plugin:@typescript-eslint/recommended'], // 규칙 확장
+      extends: [
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+      ], // 규칙 확장
       parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: true,
+        tsconfigRootDir: __dirname, // tsconfig.json의 경로르 넣어준다.
+      },
       plugins: ['@typescript-eslint'], // 플러그인 적용
       root: true, // 현재 디렉토리가 루트 디렉토리임을 표시
     }
