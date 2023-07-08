@@ -7,18 +7,22 @@
   --main-color: #ffffff00;
   --bg-color: #ffffff00;
   --font-color: #ffffff00;
+  --font-gray-color: #ffffff00;
+  --bg-gray-color: #ffffff00;
 }
 // 라이트 모드
 :root.light {
-  --main-color: #{$primary-color};
   --bg-color: #{$bg-white};
   --font-color: #{$font-black};
+  --font-gray-color: #{$font-gray};
+  --bg-gray-color: #{$bg-gray};
 }
 // 다크 모드
 :root.dark {
-  --main-color: #{$primary-color};
   --bg-color: #{$bg-black};
   --font-color: #{$font-white};
+  --font-gray-color: #{$font-dark-gray};
+  --bg-gray-color: #{$bg-dark-gray};
 }
 
 body {

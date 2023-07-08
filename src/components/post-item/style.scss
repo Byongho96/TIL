@@ -32,7 +32,7 @@
 }
 
 .post-item__date {
-  color: $font-gray;
+  color: var(--font-gray-color);
   font-size: 1.7rem;
   font-weight: 600;
   font-style: italic;

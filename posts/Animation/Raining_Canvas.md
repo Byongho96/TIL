@@ -296,6 +296,8 @@ class Thunder {
 
 [애니메이션 라이브 페이지로!](https://byongho96.github.io/TIL/404/)
 
+![raining-canvas.gif)](./assets/raining-canvas.gif)
+
 Context API를 이용해 `theme`을 관리하는 상황에서, 아래와 같이 `theme`에 따라 동적으로 prop을 내려줄 수도 있다.
 
 ```js

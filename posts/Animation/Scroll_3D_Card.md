@@ -339,6 +339,8 @@ const Scroll3DCard: React.FC<Props> = ({
 
 [애니메이션 라이브 페이지로!](https://byongho96.github.io/TIL/demo/scroll-3d-card/)
 
+![scroll-3d-card.gif)](./assets/scroll-3d-card.gif)
+
 ```js
 import * as React from 'react'
 import Scroll3DCard from './Scroll3DCard.tsx'

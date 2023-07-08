@@ -15,7 +15,7 @@
 }
 
 .not-found__text {
-  color: $font-gray;
+  color: var(--font-gray-color);
   font-size: 7rem;
   font-weight: 700;
   text-align: center;
@@ -35,7 +35,7 @@
 .not-found__input {
   display: grid;
   grid-template-columns: 120px 1fr;
-  color: $font-gray;
+  color: var(--font-gray-color);
 }
 
 @include tablet {

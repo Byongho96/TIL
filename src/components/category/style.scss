@@ -9,7 +9,7 @@
 }
 
 .sidebar__total {
-  color: $font-gray;
+  color: var(--font-gray-color);
   font-weight: 500;
   text-decoration: none;
 }
@@ -79,7 +79,7 @@
 }
 
 .sidebar__posts a {
-  color: $font-gray;
+  color: var(--font-gray-color);
   font-size: 0.9rem;
   font-weight: 400;
   text-decoration: none;

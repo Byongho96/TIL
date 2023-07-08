@@ -16,7 +16,7 @@ $INDEX_LOGO_I_MARGIN_LEFT: 0.15em;
   display: inline;
   align-self: flex-start;
   font-weight: bold;
-  color: $font-gray;
+  color: var(--font-gray-color);
 }
 
 .index-logo > div::first-letter {

@@ -155,6 +155,8 @@ const ScrollInfiniteTape: React.FC = ({
 
 [애니매이션 라이브 페이지로 이동!](https://byongho96.github.io/TIL/demo/scroll-infinite-tape/)
 
+![infinite-text-tape.gif)](./assets/infinite-text-tape.gif)
+
 ```js
 import * as React from 'react'
 import './style.css'

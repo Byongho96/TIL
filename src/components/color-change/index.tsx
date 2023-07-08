@@ -21,20 +21,20 @@ const ColorChange: React.FC = () => {
 
     // localstorage 값에 따라 컬러 속성 추가
     const root = document.querySelector(':root')
-    const mainColor = localStorage.getItem('main-color')
-    if (mainColor) {
-      // localStorage 값이 있을 경우, color picker 색상과 :root의 --main-color 동기화
-      root.style.setProperty('--main-color', mainColor)
-      attributes.value = mainColor
-    } else {
-      // localSotrage 값이 없을 경우, color picker 색상을 :root의 --main-color 값으로 초기화
-      attributes.value = '#ff0000'
+    let mainColor = localStorage.getItem('main-color')
+    if (!mainColor) {
+      mainColor = '#ff0000'
     }
+    root.style.setProperty('--main-color', mainColor)
+    attributes.value = mainColor
 
     // 속성 적용
     Object.entries(attributes).forEach(([key, value]) => {
       inputEle.setAttribute(key, value)
     })
+
+    // onChange 이벤트 핸들러 추가
+    inputEle.addEventListener('change', handleColorChange)
 
     // DOM에 inputEle 추가
     const parentEle = parentRef.current

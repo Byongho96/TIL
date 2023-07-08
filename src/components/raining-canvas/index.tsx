@@ -153,7 +153,7 @@ class RainDrop {
     const { x, y, dx, dy, wind, color } = this
     ctx.beginPath()
     ctx.moveTo(x, y)
-    ctx.lineTo(x + dx + wind, y + 7 * dy) // MAGIC_NUMBER: 적절히 빗줄기를 길게 그려줌
+    ctx.lineTo(x + dx + wind, y + 1.5 * dy) // MAGIC_NUMBER: 적절히 빗줄기를 길게 그려줌
     ctx.strokeStyle = color
     ctx.lineWidth = 1
     ctx.stroke()
