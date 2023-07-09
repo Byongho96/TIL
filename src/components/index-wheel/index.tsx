@@ -1,5 +1,6 @@
 import React from 'react'
 import './style.scss'
+import { Link } from 'gatsby'
 import useCategories from '@hooks/use-categories'
 
 const NUMBER_OF_LISTS = 15 // 화면에 표시할 카테고리 갯수. CSS 파일의 숫자와 동일해야함
@@ -30,7 +31,7 @@ const IndexWheel: React.FC = () => {
     >
       {selectedCategories.map((category) => (
         <li className="index-wheel__category" key={category.id}>
-          <a href={`/posts/${category.name}`}>{category.name}</a>
+          <Link href={`/posts/${category.name}`}>{category.name}</Link>
         </li>
       ))}
     </ul>

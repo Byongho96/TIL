@@ -114,8 +114,11 @@
   },
   "include": [
     "./src/**/*",
-    "./gatsby-node.ts",
+    "./gatsby-browser.tsx",
     "./gatsby-config.ts",
+    "./gatsby-cmeta-config.ts",
+    "./gatsby-node.ts",
+    "./gatsby-ssr.ts",
     "./plugins/**/*"
   ]
 }

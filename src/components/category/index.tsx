@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, memo } from 'react'
 import './style.scss'
+import { Link } from 'gatsby'
 import { useCategorizedPosts } from '@hooks/use-categorized-posts'
 import type { PostType } from '@hooks/use-categorized-posts'
 
@@ -24,10 +25,10 @@ const Category: React.FC<Props> = ({ defaultCategory = '' }) => {
 
   return (
     <nav className="sidebar">
-      <a
+      <Link
         href={`/posts/`}
         className="sidebar__total"
-      >{`전체 글 (${totalPosts})`}</a>
+      >{`전체 글 (${totalPosts})`}</Link>
       <ul className="sidebar__category">
         {/* 루트 카테고리 */}
         {categories.map((category) => (
@@ -96,7 +97,7 @@ interface CategoryNameProps {
 const CategoryName: React.FC<CategoryNameProps> = memo(
   ({ name, num, handleClick }) => {
     return (
-      <a
+      <Link
         href={`/posts/${name}`}
         className="sidebar__category--text"
         onClick={(event) => {
@@ -105,7 +106,7 @@ const CategoryName: React.FC<CategoryNameProps> = memo(
       >
         {name}
         <span className="sidebar__category__num">{`\u00a0\u00a0(${num})`}</span>
-      </a>
+      </Link>
     )
   }
 )
@@ -134,9 +135,9 @@ const Posts: React.FC<PostsProps> = memo(({ posts, isSelected }) => {
     <ul ref={postsRef} className={`sidebar__posts ${selected}`}>
       {posts.map((post) => (
         <li key={post.id}>
-          <a href={`/posts/${post.relativePath}`} activeClassName="active">
+          <Link href={`/posts/${post.relativePath}`} activeClassName="active">
             {post.title || post.name}
-          </a>
+          </Link>
         </li>
       ))}
     </ul>

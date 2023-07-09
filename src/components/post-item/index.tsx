@@ -1,5 +1,6 @@
 import * as React from 'react'
 import './style.scss'
+import { Link } from 'gatsby'
 
 interface Props {
   node: {
@@ -23,13 +24,13 @@ const PostItem: React.FC<Props> = ({ node }) => {
 
   return (
     <article className="post-item">
-      <a href={`/posts/${relativePath}`}>
+      <Link href={`/posts/${relativePath}`}>
         <div className="post-item--flex">
           <h1 className="post-item__title">{title || name}</h1>
           <span className="post-item__date">{createdAt}</span>
         </div>
         <p className="post-item__excerpt">{excerpt}</p>
-      </a>
+      </Link>
     </article>
   )
 }
