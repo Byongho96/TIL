@@ -12,14 +12,16 @@ const PostGroupPage: React.FC<PageProps> = ({ pageContext, data }) => {
   return (
     <CategoryLayout defaultCategory={pageContext.name}>
       <main className="post-group--layout">
-        <div className="post-group__category">
+        <div className="post-group__category-title">
           <TypeAnimation phrases={[pageContext.name]} />
         </div>
-        <section className="post-group__post-list">
+        <ul className="post-group__post-list">
           {data.allMarkdownRemark.nodes.map((node) => (
-            <PostItem key={node.id} node={node} />
+            <li>
+              <PostItem key={node.id} node={node} />
+            </li>
           ))}
-        </section>
+        </ul>
       </main>
       <ToTheTop />
     </CategoryLayout>

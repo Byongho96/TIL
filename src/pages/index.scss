@@ -1,4 +1,5 @@
 @import '@styles/_responsive.scss';
+@import '@styles/_animations.scss';
 
 .index--layout {
   overflow: hidden;
@@ -9,6 +10,7 @@
 }
 
 .index__wheel-category {
+  @include animation-clear('slow');
   position: absolute;
   right: -25rem;
   bottom: -40rem;

@@ -1,5 +1,5 @@
 @import '@styles/_responsive.scss';
-@import '@styles/_colors.scss';
+@import '@styles/_animations.scss';
 
 .post {
   display: grid;
@@ -10,6 +10,7 @@
 }
 
 .post--article {
+  @include animation-slide-in-up('normal', 40px);
   display: flex;
   flex-direction: column;
   gap: 3rem;
@@ -20,10 +21,11 @@
 .post--article--content {
   position: relative;
   padding-bottom: 3rem;
-  border-bottom: 6px double $bg-gray;
+  border-bottom: 6px double var(--bg-gray-color);
 }
 
 .post--toc {
+  @include animation-slide-in-left('normal', 10px);
   overflow-x: hidden;
   overflow-y: auto;
   position: sticky;

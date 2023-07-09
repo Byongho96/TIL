@@ -30,14 +30,16 @@ const PostsPage: React.FC<PageProps> = ({ data }) => {
   return (
     <CategoryLayout>
       <main className="posts--layout">
-        <div className="posts__category">
+        <div className="posts__category-name">
           <TypeAnimation phrases={['All the Posts']} />
         </div>
-        <section className="posts__post-list">
+        <ul className="posts__post-list">
           {shownData.map((node) => (
-            <PostItem key={node.id} node={node} />
+            <li>
+              <PostItem key={node.id} node={node} />
+            </li>
           ))}
-        </section>
+        </ul>
       </main>
       <ToTheTop />
     </CategoryLayout>

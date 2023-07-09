@@ -38,31 +38,29 @@ const CategoryLayout = ({ defaultCategory, children }) => {
   }, [])
 
   return (
-    <>
-      <div className="category-layout">
-        <aside ref={asideRef} className="category-layout__aside">
-          <figure className="category-layout__profile">
-            <ProfileImage />
-          </figure>
-          <div className="category-layout__category">
-            <Category defaultCategory={defaultCategory} />
-          </div>
-          <button
-            ref={asideButtonRef}
-            className="category-layout__button"
-            onClick={handleClickToggle}
-          >
-            POSTS
-          </button>
-        </aside>
-        {children}
-        <div
-          ref={modalRef}
-          className="category-layout__modal"
+    <div className="category-layout">
+      <aside ref={asideRef} className="category-layout__aside">
+        <figure className="category-layout__profile">
+          <ProfileImage />
+        </figure>
+        <div className="category-layout__category">
+          <Category defaultCategory={defaultCategory} />
+        </div>
+        <button
+          ref={asideButtonRef}
+          className="category-layout__button"
           onClick={handleClickToggle}
-        />
-      </div>
-    </>
+        >
+          POSTS
+        </button>
+      </aside>
+      {children}
+      <div
+        ref={modalRef}
+        className="category-layout__modal"
+        onClick={handleClickToggle}
+      />
+    </div>
   )
 }
 

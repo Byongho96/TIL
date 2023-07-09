@@ -1,5 +1,6 @@
 @import '@styles/_colors.scss';
 @import '@styles/_responsive.scss';
+@import '@styles/_animations.scss';
 
 .post-group--layout {
   display: flex;
@@ -7,7 +8,7 @@
   padding: 0 5rem 0 5rem;
 }
 
-.post-group__category {
+.post-group__category-title {
   margin: 6rem 0 3rem 0;
   color: var(--font-gray-color);
   font-size: 6rem;
@@ -17,6 +18,13 @@
 .post-group__post-list {
   display: flex;
   flex-direction: column;
+}
+
+@for $i from 1 through 10 {
+  .post-group__post-list li:nth-child(#{$i}) {
+    opacity: 0;
+    @include animation-slide-in-up(normal, 40%, #{($i - 1) * 0.1}s);
+  }
 }
 
 // 랩탑

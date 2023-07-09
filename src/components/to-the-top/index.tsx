@@ -12,11 +12,11 @@ const ToTheTop: React.FC = () => {
   }
 
   return (
-    <div className="to-the-top" onClick={handleClick}>
+    <button className="to-the-top" onClick={handleClick}>
       <UpIcon />
       <span style={{ '--i': 0 }} />
       <span style={{ '--i': 1 }} />
-    </div>
+    </button>
   )
 }
 

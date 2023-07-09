@@ -293,19 +293,19 @@
   }
 }
 
-// 회전하는 흐르는 애니메이션
+// 시계 방향으로 회전하는 애니메이션
 @mixin animation-rotate-clockwise($speed: 10s, $delay: 0s) {
   @include animation(
     $delay,
     $speed,
-    animation-left-flowing,
+    animation-rotate-clockwise,
     linear,
     normal,
     none,
     infinite
   );
 
-  @keyframes animation-left-flowing {
+  @keyframes animation-rotate-clockwise {
     0% {
       transform: rotate(0);
     }
@@ -316,18 +316,19 @@
   }
 }
 
+// 반시계 방향으로 회전하는 애니메이션
 @mixin animation-rotate-counter-clockwise($speed: 2s, $delay: 0s) {
   @include animation(
     $delay,
     $speed,
-    animation-left-flowing,
+    animation-rotate-counter-clockwise,
     linear,
     normal,
     none,
     infinite
   );
 
-  @keyframes animation-left-flowing {
+  @keyframes animation-rotate-counter-clockwise {
     0% {
       transform: rotate(0);
     }
