@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './style.scss'
 import { ThemeContext } from '@contexts/theme-context'
 
 const IndexLogo: React.FC = () => {
-  const { theme } = React.useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext)
   return (
     <div className={`index-logo ${theme}`}>
       <div>TODAY</div>

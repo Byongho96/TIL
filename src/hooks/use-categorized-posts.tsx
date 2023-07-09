@@ -1,24 +1,42 @@
 import { graphql, useStaticQuery } from 'gatsby'
 import { sortByName } from '@utils/sortByTypes'
 
+type MarkdownRemarkNode = {
+  id: string
+  parent: {
+    id: string
+    name: string
+    relativePath: string
+  }
+  frontmatter: {
+    title: string
+  }
+}
+
+type DataProps = {
+  allMarkdownRemark: {
+    nodes: MarkdownRemarkNode[]
+  }
+}
+
 // 마크다운 파일 정보
-interface Post {
+export type PostType = {
   id: string
   title: string
   relativePath: string
 }
 
 // 카테고리(디렉토리) 정보
-interface Category {
+export type CategoryType = {
   name: string
-  posts: Post[]
-  nums: number
-  folders: Category[]
+  posts: PostType[]
+  num: number
+  subCategories: CategoryType[]
 }
 
-interface CategorizedPosts {
+export interface CategorizedPosts {
   totalPosts: number // 전체 포스트 수
-  categories: Category[] // 카테고리(디렉토리) 정보 배열
+  categories: CategoryType[] // 카테고리(디렉토리) 정보 배열
 }
 
 export const useCategorizedPosts = (): CategorizedPosts => {
@@ -26,8 +44,8 @@ export const useCategorizedPosts = (): CategorizedPosts => {
   // 조건 1. isCompleted: true
   // 조건 2. README.md 제외
   // 조건 3. posts 디렉토리 하위
-  const data = useStaticQuery(graphql`
-    query {
+  const data = useStaticQuery<DataProps>(graphql`
+    query CategorizedPostsQuery {
       allMarkdownRemark(
         filter: {
           frontmatter: { isCompleted: { eq: true } }
@@ -55,7 +73,7 @@ export const useCategorizedPosts = (): CategorizedPosts => {
   const totalPosts = data.allMarkdownRemark.nodes.length // 전체 포스트 수
 
   // 마크다운 파일 순회하며 카테고리 분류
-  const categories = []
+  const categories: CategoryType[] = []
   data.allMarkdownRemark.nodes.forEach((post) => {
     // 데이터 분해
     const { id, parent, frontmatter } = post

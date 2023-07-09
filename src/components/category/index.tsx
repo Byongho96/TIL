@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, memo } from 'react'
 import './style.scss'
-import { Link } from 'gatsby'
 import { useCategorizedPosts } from '@hooks/use-categorized-posts'
+import type { PostType } from '@hooks/use-categorized-posts'
 
 interface Props {
   defaultCategory?: string // 기본으로 선택된 카테고리
@@ -13,7 +13,10 @@ const Category: React.FC<Props> = ({ defaultCategory = '' }) => {
   const [selectedCategory, setSelectedCategory] = useState(defaultCategory)
 
   // 카테고리 클릭 이벤트 처리
-  const handleClickCategory = (event, name) => {
+  const handleClickCategory = (
+    event: ClickEvent<HTMLAnchorElement>,
+    name: string
+  ) => {
     if (event.detail > 1) return // 더블 클릭 이상이면 Link 동작
     event.preventDefault() // 한번 클릭이면 Link 이동 막고, selecedCategory 토글
     setSelectedCategory(selectedCategory === name ? '' : name)
@@ -21,10 +24,10 @@ const Category: React.FC<Props> = ({ defaultCategory = '' }) => {
 
   return (
     <nav className="sidebar">
-      <Link
-        to={`/posts/`}
+      <a
+        href={`/posts/`}
         className="sidebar__total"
-      >{`전체 글 (${totalPosts})`}</Link>
+      >{`전체 글 (${totalPosts})`}</a>
       <ul className="sidebar__category">
         {/* 루트 카테고리 */}
         {categories.map((category) => (
@@ -83,44 +86,57 @@ const Category: React.FC<Props> = ({ defaultCategory = '' }) => {
 export default Category
 
 // <카테고리 이름> 서브 컴포넌트
-const CategoryName: React.FC = React.memo(
-  ({ name, num, handleClickCategory }) => {
+
+interface CategoryNameProps {
+  name: string
+  num: number
+  handleClick: (e: ClickEvent<HTMLAnchorElement>, name: string) => void
+}
+
+const CategoryName: React.FC<CategoryNameProps> = memo(
+  ({ name, num, handleClick }) => {
     return (
-      <Link
-        to={`/posts/${name}`}
+      <a
+        href={`/posts/${name}`}
         className="sidebar__category--text"
         onClick={(event) => {
-          handleClickCategory(event, name)
+          handleClick(event, name)
         }}
       >
         {name}
         <span className="sidebar__category__num">{`\u00a0\u00a0(${num})`}</span>
-      </Link>
+      </a>
     )
   }
 )
 
 // <포스트 목록> 서브 컴포넌트
-const Posts: React.FC = React.memo(({ posts, isSelected }) => {
+
+interface PostsProps {
+  posts: PostType[]
+  isSelected: boolean
+}
+
+const Posts: React.FC<PostsProps> = memo(({ posts, isSelected }) => {
   const postsRef = useRef<HTMLUListElement>(null)
 
   // css를 위한 변수 전달
   useEffect(() => {
     const postsEle = postsRef.current
-    postsEle &&
-      postsEle.style.setProperty('--posts-count', posts.length.toString())
-  }, [])
+    if (!(postsEle instanceof HTMLUListElement)) return
+    postsEle.style.setProperty('--posts-count', posts.length.toString())
+  }, [posts.length])
 
   // 디렉토리 선택 여부
-  const selected = isSelected ? 'open' : null
+  const selected = isSelected ? 'open' : ''
 
   return (
     <ul ref={postsRef} className={`sidebar__posts ${selected}`}>
       {posts.map((post) => (
         <li key={post.id}>
-          <Link to={`/posts/${post.relativePath}`} activeClassName="active">
+          <a href={`/posts/${post.relativePath}`} activeClassName="active">
             {post.title || post.name}
-          </Link>
+          </a>
         </li>
       ))}
     </ul>

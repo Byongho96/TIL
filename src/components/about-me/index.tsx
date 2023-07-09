@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './style.scss'
 import Taping from '@components/taping'
 import { ThemeContext } from '@contexts/theme-context'
 
 const AboutMe: React.FC = () => {
-  const { theme } = React.useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext)
+
   return (
     <div className="about-me">
       <Taping color="white" phrase="coming soon" rotationDeg={10} />

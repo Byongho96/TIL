@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import './style.scss'
+import type { HeadProps } from 'gatsby'
 import SEO from '@components/seo'
 
 const ScrollInfiniteTapePage: React.FC = () => {
@@ -44,7 +45,7 @@ const ScrollInfiniteTapePage: React.FC = () => {
 
 export default ScrollInfiniteTapePage
 
-export const Head = ({ location }) => (
+export const Head = ({ location }: HeadProps) => (
   <SEO
     title="무한 텍스트 스크롤 애니메이션"
     decription="무한 텍스트 스크롤 예시 화면을 확인해볼 수 있습니다."
@@ -67,13 +68,19 @@ const ScrollInfiniteTape: React.FC = ({
   isRight = true,
   rotationDeg = 0,
 }: Props) => {
-  const tapeRef = useRef(null)
-  const textRef = useRef(null)
+  const tapeRef = useRef<HTMLDivElement>(null)
+  const textRef = useRef<HTMLParagraphElement>(null)
   const position = useRef(0) // 중간에 Prop이 바뀌더라도, position 유지하기 위해 밖에 선언
 
   useEffect(() => {
     const tapeElement = tapeRef.current
     const textElement = textRef.current
+
+    if (
+      !(tapeElement instanceof HTMLDivElement) ||
+      !(textElement instanceof HTMLParagraphElement)
+    )
+      return
 
     // 텍스트가 흐르는 방향을 설정
     let textDirection = 1
@@ -98,7 +105,7 @@ const ScrollInfiniteTape: React.FC = ({
     }
 
     // 애니메이션 실행 함수
-    let animationId = null
+    let animationId: number = null
     function animate() {
       moveText()
       animationId = window.requestAnimationFrame(animate) // 희한하게 정의되기 전에 쓰네?

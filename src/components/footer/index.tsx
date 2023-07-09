@@ -3,7 +3,7 @@ import './style.scss'
 import { ThemeContext } from '@contexts/theme-context'
 
 const Footer: React.FC = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext)
 
   return (
     <footer className={`footer ${theme}`}>

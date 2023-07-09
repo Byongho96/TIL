@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import './style.scss'
+import type { HeadProps } from 'gatsby'
 import SEO from '@components/seo'
 
 const TypeAnimationPage: React.FC = () => {
@@ -23,7 +24,7 @@ const TypeAnimationPage: React.FC = () => {
 
 export default TypeAnimationPage
 
-export const Head = ({ location }) => (
+export const Head = ({ location }: HeadProps) => (
   <SEO
     title="타이핑 애니메이션"
     decription="타이핑 애니메이션 예시 화면을 확인해볼 수 있습니다."
@@ -46,18 +47,18 @@ const TypeAnimation: React.FC<Props> = ({
   pause = 2000, // 기본 대기 시간 2초
   isInfinite = false,
 }) => {
-  const textElementRef = useRef<HTMLSpanElement>(null)
+  const textElementRef = useRef<HTMLParagraphElement>(null)
 
   useEffect(() => {
     const textElement = textElementRef.current // 타이핑을 입력한 타겟 Element
 
-    if (!textElement) return
+    if (!(textElement instanceof HTMLParagraphElement)) return
 
     textElement.textContent = ''
 
     let phraseIdx = 0 // 현재 타이핑하는 문구의 인덱스
     let charIdx = 0 // 현재 타이핑하는 글자 인덱스
-    let interval = null // setInterval을 담을 변수
+    let interval: number = null // setInterval을 담을 변수
 
     // 2. 타이핑 메인 함수
     function typeText() {
@@ -85,13 +86,13 @@ const TypeAnimation: React.FC<Props> = ({
       }
       // 타이핑 종료
       textElement.style.setProperty('--cursor-opacity', 0) // 타이핑 종료 후 커서 깜빡이도록
-      interval && clearInterval(interval)
+      clearInterval(interval)
     }
 
     // 3. 일시 정지 후, 문구 초기화한 뒤 타이핑 재시작하는 함수
     function retypeAfterPause() {
       textElement.style.setProperty('--cursor-opacity', 0) // 이리 정지하는 동안 커서 깜빡이도록
-      interval && clearInterval(interval) // 기존 setInterval 제거
+      clearInterval(interval) // 기존 setInterval 제거
 
       // pause 이 후, setInterval 재시작
       setTimeout(() => {
@@ -105,11 +106,9 @@ const TypeAnimation: React.FC<Props> = ({
 
     // clear 함수
     return () => {
-      interval && clearInterval(interval)
+      clearInterval(interval)
     }
   }, [phrases, speed, pause, isInfinite])
 
-  return (
-    <span ref={textElementRef} className="type-animation" style={style}></span>
-  )
+  return <p ref={textElementRef} className="type-animation" style={style}></p>
 }

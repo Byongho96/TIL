@@ -1,4 +1,4 @@
-import React, { createRef, useEffect } from 'react'
+import React, { memo, createRef, useEffect } from 'react'
 import './style.scss'
 
 export interface GiscusProps {
@@ -20,7 +20,7 @@ export interface GiscusProps {
   lang?: 'en' | 'ko'
 }
 
-const Giscus: React.FC<GiscusProps> = React.memo(
+const Giscus: React.FC<GiscusProps> = memo(
   ({ theme = 'light', lang = 'ko' }) => {
     const giscusRef = createRef<HTMLElement>(null)
 

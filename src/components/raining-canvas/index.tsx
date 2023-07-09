@@ -41,11 +41,18 @@ const RainingCanvas: React.FC<Props> = ({
 
   useEffect(() => {
     const canvas = canvasRef.current
+
+    if (
+      !(canvas instanceof HTMLCanvasElement) ||
+      !(canvas.parentElement instanceof HTMLElement)
+    )
+      return
+
     const ctx = canvas.getContext('2d')
     const mouse = { x: 0, y: 0, isActive: false } // 마우스 정보
-    let rainDropArray = [] // 빗줄기 인스턴스를 담는 배열
-    let rainSplashArray = [] // 튀기는 빗방울 인스턴스름 담는 배열
-    let thunder = null
+    let rainDropArray: RainDrop[] = [] // 빗줄기 인스턴스를 담는 배열
+    let rainSplashArray: RainSplash[] = [] // 튀기는 빗방울 인스턴스름 담는 배열
+    let thunder: Thunder = null
     if (isThunder) {
       thunder = new Thunder()
     }
@@ -56,9 +63,8 @@ const RainingCanvas: React.FC<Props> = ({
       rainSplashArray = []
 
       // containerRef에 따라 캔버스 크기 조절
-      console.log(canvas?.parentElement)
-      const innerWidth = canvas?.parentElement?.clientWidth
-      const innerHeight = canvas?.parentElement?.clientHeight
+      const innerWidth = canvas.parentElement.clientWidth
+      const innerHeight = canvas.parentElement.clientHeight
       canvas.width = innerWidth
       canvas.height = innerHeight
 
@@ -75,7 +81,7 @@ const RainingCanvas: React.FC<Props> = ({
     }
 
     // cavnas 렌더링(애니메이션) 함수
-    let requestAnimationId = null
+    let requestAnimationId: number = null
     function render() {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       // 빗줄기 애니메이션
@@ -113,7 +119,7 @@ const RainingCanvas: React.FC<Props> = ({
     function setMouseInactive() {
       mouse.isActive = false
     }
-    function setMousePosition(e) {
+    function setMousePosition(e: React.MouseEvent) {
       mouse.x = e.clientX
       mouse.y = e.clientY
     }
@@ -137,8 +143,22 @@ export default RainingCanvas
 
 // 떨어지는 빗방울
 class RainDrop {
+  x: number
+  y: number
+  dx: number
+  dy: number
+  wind: number
+  color: string
+  splashArray: RainSplash[]
   // 생성자 (위치 좌표, 이동 속도)
-  constructor(x, y, dx, dy, color, splashArray) {
+  constructor(
+    x: number,
+    y: number,
+    dx: number,
+    dy: number,
+    color: string,
+    splashArray: RainSplash[]
+  ) {
     this.x = x
     this.y = y
     this.dx = dx
@@ -149,7 +169,7 @@ class RainDrop {
   }
 
   // 빗줄기 그리기
-  draw(ctx) {
+  draw(ctx: CanvasRenderingContext2D) {
     const { x, y, dx, dy, wind, color } = this
     ctx.beginPath()
     ctx.moveTo(x, y)
@@ -170,7 +190,7 @@ class RainDrop {
   }
 
   // 빗줄기 이동
-  animate(ctx, wind = 0) {
+  animate(ctx: CanvasRenderingContext2D, wind = 0) {
     // 빗줄기가 캔버스 아래로 내려가면, 다시 위로 이동
     if (this.y > ctx.canvas.height) {
       this.splash()
@@ -186,8 +206,13 @@ class RainDrop {
 
 // 빗방울 떨어졌을 때 튀기는 물방울
 class RainSplash {
+  x: number
+  y: number
+  dx: number
+  dy: number
+  color: string
   // 생성자 (위치 좌표, 이동 속도)
-  constructor(x, y, dx, dy, color) {
+  constructor(x: number, y: number, dx: number, dy: number, color: string) {
     this.x = x
     this.y = y
     this.dx = dx
@@ -197,7 +222,7 @@ class RainSplash {
   }
 
   // 물방울(동그라미) 그리기
-  draw(ctx) {
+  draw(ctx: CanvasRenderingContext2D) {
     const { x, y, color } = this
     const radius = Math.random() * 0.5 + 0.85
     ctx.beginPath()
@@ -207,7 +232,7 @@ class RainSplash {
   }
 
   // 물방울 애니메이션 (포물선 형태로 올라갔다가 떨어짐)
-  animate(ctx) {
+  animate(ctx: CanvasRenderingContext2D) {
     this.x += this.dx
     this.y += this.dy
     this.dy += this.GRAVITY // 중력 가속도
@@ -216,13 +241,14 @@ class RainSplash {
 }
 
 class Thunder {
+  opacity: number
   // 생성자
   constructor() {
     this.opacity = 0
   }
 
   // 천둥 그리기
-  draw(ctx) {
+  draw(ctx: CanvasRenderingContext2D) {
     const gradient = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height) // gradient 좌표정보 (시작 x, 시작 y, 끝 x, 끝 y)
     gradient.addColorStop(0, `rgba(180, 190, 255, ${this.opacity})`) // 시작 색상 (offset, color)
     gradient.addColorStop(1, `rgba(0, 0, 0, 0)`) // 끝 색상(offset, color)
@@ -231,7 +257,7 @@ class Thunder {
   }
 
   // 천둥 애니메이션
-  animate(ctx) {
+  animate(ctx: CanvasRenderingContext2D) {
     if (this.opacity < 0) return
     this.opacity -= 0.003
     this.draw(ctx)

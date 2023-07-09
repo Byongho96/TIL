@@ -2,7 +2,18 @@ import * as React from 'react'
 import './style.scss'
 import { useSiteMetadata } from '@hooks/use-site-metadata'
 
-const PostHeader: React.FC = ({ frontmatter }) => {
+interface Props {
+  frontmatter: {
+    title: string
+    createdAt: string
+    updatedAt: string
+    tags?: string[]
+    description: string
+    reference?: string
+  }
+}
+
+const PostHeader: React.FC<Props> = ({ frontmatter }) => {
   const { author } = useSiteMetadata()
   return (
     <div className="post-header">

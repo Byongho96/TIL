@@ -24,7 +24,7 @@
 @for $i from 1 through 10 {
   .posts__post-list li:nth-child(#{$i}) {
     opacity: 0;
-    @include animation-slide-in-up(normal, 40%, #{($i - 1) * 0.1}s);
+    @include animation-slide-in-up(normal, 40%, #{($i - 1) * 0.2}s);
   }
 }
 
@@ -34,7 +34,7 @@
     padding: 0 2rem;
   }
 
-  .posts__category {
+  .posts__category-name {
     font-size: 5rem;
   }
 }
@@ -45,7 +45,7 @@
     padding: 0 2rem;
   }
 
-  .posts__category {
+  .posts__category-name {
     margin: 4rem 0 1rem 0;
     font-size: 4rem;
   }
@@ -57,7 +57,7 @@
     padding: 0 1rem;
   }
 
-  .posts__category {
+  .posts__category-name {
     margin: 4rem 0 0.5rem 0;
     font-size: 3rem;
   }

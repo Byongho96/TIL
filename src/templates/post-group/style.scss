@@ -8,7 +8,7 @@
   padding: 0 5rem 0 5rem;
 }
 
-.post-group__category-title {
+.post-group__category-name {
   margin: 6rem 0 3rem 0;
   color: var(--font-gray-color);
   font-size: 6rem;
@@ -23,7 +23,7 @@
 @for $i from 1 through 10 {
   .post-group__post-list li:nth-child(#{$i}) {
     opacity: 0;
-    @include animation-slide-in-up(normal, 40%, #{($i - 1) * 0.1}s);
+    @include animation-slide-in-up(normal, 40%, #{($i - 1) * 0.2}s);
   }
 }
 
@@ -33,7 +33,7 @@
     padding: 0 2rem;
   }
 
-  .post-group__category {
+  .post-group__category-name {
     font-size: 5rem;
   }
 }
@@ -44,7 +44,7 @@
     padding: 0 2rem;
   }
 
-  .post-group__category {
+  .post-group__category-name {
     fmargin: 4rem 0 1rem 0;
     font-size: 4rem;
   }
@@ -56,7 +56,7 @@
     padding: 0 1rem;
   }
 
-  .post-group__category {
+  .post-group__category-name {
     margin: 4rem 0 0.5rem 0;
     font-size: 3rem;
   }

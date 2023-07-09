@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react'
 import './style.scss'
 
-const TableOfContent: React.FC = ({ toc }) => {
+interface Props {
+  toc: string
+}
+
+const TableOfContent: React.FC<Props> = ({ toc }) => {
   useEffect(() => {
     function handleScroll() {
       const TOP_THRESHOLD = 50

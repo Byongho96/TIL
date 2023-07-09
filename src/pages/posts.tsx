@@ -9,7 +9,28 @@ import TypeAnimation from '@components/type-animation'
 import useInfiniteScroll from '@hooks/use-infinite-scroll'
 import CategoryLayout from '@layouts/category-layout'
 
-const PostsPage: React.FC<PageProps> = ({ data }) => {
+type MarkdownRemarkNode = {
+  id: string
+  excerpt: string
+  parent: {
+    id: string
+    name: string
+    relativePath: string
+  }
+  frontmatter: {
+    title: string
+    createdAt: string
+    updatedAt: string
+  }
+}
+
+type DataProps = {
+  allMarkdownRemark: {
+    nodes: MarkdownRemarkNode[]
+  }
+}
+
+const PostsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
   const [lastIdx, setLastIdx] = useState(20)
   const infiniteRef = useRef<HTMLElement>(null)
 
@@ -45,12 +66,9 @@ const PostsPage: React.FC<PageProps> = ({ data }) => {
     </CategoryLayout>
   )
 }
-{
-  /* <h1 id='typing' className={styles.postGroup}>All the Posts</h1> */
-}
 
 export const query = graphql`
-  query {
+  query PostsPageQuery {
     allMarkdownRemark(
       filter: {
         frontmatter: { isCompleted: { eq: true } }

@@ -16,18 +16,18 @@ const TypeAnimation: React.FC<Props> = ({
   pause = 2000, // 기본 대기 시간 2초
   isInfinite = false,
 }) => {
-  const textElementRef = useRef<HTMLSpanElement>(null)
+  const textElementRef = useRef<HTMLParagraphElement>(null)
 
   useEffect(() => {
     const textElement = textElementRef.current // 타이핑을 입력한 타겟 Element
 
-    if (!textElement) return
+    if (!(textElement instanceof HTMLParagraphElement)) return
 
     textElement.textContent = ''
 
     let phraseIdx = 0 // 현재 타이핑하는 문구의 인덱스
     let charIdx = 0 // 현재 타이핑하는 글자 인덱스
-    let interval = null // setInterval을 담을 변수
+    let interval: number = null // setInterval을 담을 변수
 
     // 2. 타이핑 메인 함수
     function typeText() {
@@ -79,9 +79,7 @@ const TypeAnimation: React.FC<Props> = ({
     }
   }, [phrases, speed, pause, isInfinite])
 
-  return (
-    <span ref={textElementRef} className="type-animation" style={style}></span>
-  )
+  return <p ref={textElementRef} className="type-animation" style={style}></p>
 }
 
 export default TypeAnimation

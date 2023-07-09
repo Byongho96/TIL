@@ -3,12 +3,17 @@ import './style.scss'
 import Category from '@components/category'
 import ProfileImage from '@components/profile-image'
 
-const CategoryLayout = ({ defaultCategory, children }) => {
+interface Props {
+  defaultCategory: string
+  childern: React.ReactNode
+}
+
+const CategoryLayout: React.FC<Props> = ({ defaultCategory, children }) => {
   const asideRef = useRef<HTMLElement>(null)
   const asideButtonRef = useRef<HTMLButtonElement>(null)
   const modalRef = useRef<HTMLDivElement>(null)
 
-  const handleClickToggle = (event) => {
+  const handleClickToggle = (event: ClickEvent<HTMLElement>) => {
     event.stopPropagation()
     asideRef.current.classList.toggle('active')
     asideButtonRef.current.classList.toggle('active')
@@ -19,8 +24,14 @@ const CategoryLayout = ({ defaultCategory, children }) => {
     const navbar = document.querySelector('.navbar')
     const asideEle = asideRef.current
 
+    if (!(asideEle instanceof HTMLElement)) return
+
     function handleScroll() {
-      const navbarHeight = navbar.offsetTop + navbar.offsetHeight
+      const navbarHeight: number =
+        navbar instanceof HTMLElement
+          ? navbar.offsetTop + navbar.offsetHeight
+          : 0
+
       if (window.scrollY > navbarHeight) {
         asideEle.style.setProperty('--position-top', '0px')
         return
@@ -32,6 +43,7 @@ const CategoryLayout = ({ defaultCategory, children }) => {
     }
 
     window.addEventListener('scroll', handleScroll)
+
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }

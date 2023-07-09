@@ -6,9 +6,22 @@ import { graphql, useStaticQuery } from 'gatsby'
 // 이미지 관련 폴더 제거 : name: { nin: ["image", "images", "asset", "assets"] }
 // 최상단 posts 폴더 제거 : relativePath: { ne: "" }
 
-export const useCategories = () => {
-  const data = useStaticQuery(graphql`
-    query {
+type DirectoryNode = {
+  id: string
+  name: string
+  relativeDirectory: string
+  relativePath: string
+}
+
+type DataProps = {
+  allDirectory: {
+    nodes: DirectoryNode[]
+  }
+}
+
+const useCategories = (): DirectoryNode[] => {
+  const data = useStaticQuery<DataProps>(graphql`
+    query CategoriesQuery {
       allDirectory(
         filter: {
           sourceInstanceName: { eq: "posts" }
@@ -29,3 +42,5 @@ export const useCategories = () => {
 
   return data.allDirectory.nodes
 }
+
+export default useCategories

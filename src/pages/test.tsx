@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react'
-import './style.scss'
 import type { PageProps, HeadProps } from 'gatsby'
 import { graphql } from 'gatsby'
 import AdjacentPosts from '@components/adjacent-posts'

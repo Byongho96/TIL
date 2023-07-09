@@ -10,13 +10,13 @@ interface Props {
   children: React.ReactNode
 }
 
-interface ThemeContext {
+type ThemeContextType = {
   theme: string
   toggleTheme: () => void
 }
 
 // Context 생성
-export const ThemeContext = createContext<ThemeContext>({
+export const ThemeContext = createContext<ThemeContextType>({
   theme: 'dark',
   toggleTheme: null,
 })

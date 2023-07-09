@@ -18,27 +18,28 @@ function useInfiniteScroll({
   loadMore,
 }: InfiniteScrollProps): InfiniteScrollReturns {
   // 스크롤 이벤트 감지 함수
-  const handleScroll = () => {
-    const element = ref.current ? ref.current : document.documentElement
-    const THRESHOLD = 5
-
-    const { scrollTop, scrollHeight, clientHeight } = element // 엘리먼트의 스크롤 정보
-    if (scrollHeight - scrollTop - clientHeight > THRESHOLD) return
-
-    loadMore()
-  }
 
   useEffect(() => {
     const element = ref.current // 무한스크롤이 동작할 DOM 엘리먼트
 
-    if (isEnd) return //element가 null일 경우, 함수 종료
+    if (!(element instanceof HTMLElement) || !isEnd) return //element가 null일 경우, 함수 종료
+
+    const handleScroll = () => {
+      const element = ref.current ? ref.current : document.documentElement
+      const THRESHOLD = 5
+
+      const { scrollTop, scrollHeight, clientHeight } = element // 엘리먼트의 스크롤 정보
+      if (scrollHeight - scrollTop - clientHeight > THRESHOLD) return
+
+      loadMore()
+    }
 
     window.addEventListener('scroll', handleScroll) // element에 스크롤 이베트 감지함수 부착
     // cleanup 함수
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [ref, isEnd, handleScroll])
+  }, [ref, isEnd, loadMore])
 }
 
 export default useInfiniteScroll

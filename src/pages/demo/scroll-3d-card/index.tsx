@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import './style.scss'
+import type { HeadProps } from 'gatsby'
 import SEO from '@components/seo'
 
 // https://velog.io/@moonelysian/scroll-client-offset-%ED%99%9C%EC%9A%A9%ED%95%98%EA%B8%B0\
@@ -23,7 +24,7 @@ const Scroll3DCardPage: React.FC = () => {
 
 export default Scroll3DCardPage
 
-export const Head = ({ location }) => (
+export const Head = ({ location }: HeadProps) => (
   <SEO
     title="스크롤 3D 카드 플립 애니메이션"
     decription="스크롤 3D 카드 플립 애니메이션을 확인해볼 수 있습니다."
@@ -35,7 +36,7 @@ type Props = {
   backgroundText?: string
   cardTexts?: string[]
   primaryColor?: string
-  secondaryColor?: sgring
+  secondaryColor?: string
 }
 
 const Scroll3DCard: React.FC<Props> = ({
@@ -80,6 +81,9 @@ const Scroll3DCard: React.FC<Props> = ({
   // 메인컬러, 서브컬러 할당
   useEffect(() => {
     const container = containerRef.current
+
+    if (!(container instanceof HTMLDivElement)) return
+
     container.style.setProperty('--primary-color', primaryColor)
     container.style.setProperty('--secondary-color', secondaryColor)
   }, [primaryColor, secondaryColor])
@@ -90,6 +94,14 @@ const Scroll3DCard: React.FC<Props> = ({
     const background = mainContentRef.current
     const sticky = stickyRef.current
     const cards = sticky.querySelectorAll('.scroll-3d-card__card')
+
+    if (
+      !(container instanceof HTMLDivElement) ||
+      !(background instanceof HTMLDivElement) ||
+      !(sticky instanceof HTMLDivElement)
+    )
+      return
+
     const length = cards.length
 
     let start = 0 // 애니메이션 시작 시, 스크롤 위치
@@ -104,7 +116,8 @@ const Scroll3DCard: React.FC<Props> = ({
 
       // 추가한 커스텀 로직: 네비게이션 바의 크기를 CSS에 전달 -> start화면 높이 조정
       const navbar = document.querySelector('.navbar')
-      const navbarHeight = navbar.offsetHeight
+      const navbarHeight: number =
+        navbar instanceof HTMLElement ? navbar.offsetHeight : 0
       container.style.setProperty(
         '--navbar-height',
         navbarHeight.toString() + 'px'
@@ -112,7 +125,8 @@ const Scroll3DCard: React.FC<Props> = ({
 
       // 추가한 커스텀 로직: 푸터 바의 크기를 CSS에 전달 -> end화면 높이 조정
       const footer = document.querySelector('.footer')
-      const footerHeight = footer.offsetHeight
+      const footerHeight: number =
+        footer instanceof HTMLElement ? footer.offsetHeight : 0
       container.style.setProperty(
         '--footer-height',
         footerHeight.toString() + 'px'
@@ -122,7 +136,7 @@ const Scroll3DCard: React.FC<Props> = ({
     // 애니메이션 함수
     function animate() {
       const scrollTop = window.scrollY
-      cards.forEach((card, i) => {
+      cards.forEach((card: HTMLElement, i) => {
         const movePoint = start + step * i // 카드 이동 시작 시점, 스크롤 위치
         const flipPoint = movePoint + step * length // 카드 플립 시작 시점, 스크롤 위치
         const endPoint = flipPoint + step // 카드 애니메이션 종료 시점, 스크롤 위치
@@ -190,62 +204,62 @@ const Scroll3DCard: React.FC<Props> = ({
   )
 }
 
-class CardFlipOnScroll {
-  constructor(background, sticky) {
-    this.backgorund = background
-    this.sticky = sticky
-    this.cards = sticky.querySelectorAll('.scroll-3d-card__card')
-    this.length = this.cards.length
+// class CardFlipOnScroll {
+//   constructor(background, sticky) {
+//     this.backgorund = background
+//     this.sticky = sticky
+//     this.cards = sticky.querySelectorAll('.scroll-3d-card__card')
+//     this.length = this.cards.length
 
-    this.start = 0 // 애니메이션 시작 시, 스크롤 위치
-    this.end = 0 // 애니메이션 끝날 시, 스크롤  위치
-    this.step = 0 // 애니메이션 구분 최소 단위
-  }
+//     this.start = 0 // 애니메이션 시작 시, 스크롤 위치
+//     this.end = 0 // 애니메이션 끝날 시, 스크롤  위치
+//     this.step = 0 // 애니메이션 구분 최소 단위
+//   }
 
-  // 초기화 함수
-  init() {
-    this.start = this.background.offsetTop
-    this.end =
-      this.background.offsetTop +
-      this.background.offsetHeight -
-      this.sticky.offsetHeight * 1.2
-    this.step = (this.end - this.start) / (this.length * 2)
-  }
+//   // 초기화 함수
+//   init() {
+//     this.start = this.background.offsetTop
+//     this.end =
+//       this.background.offsetTop +
+//       this.background.offsetHeight -
+//       this.sticky.offsetHeight * 1.2
+//     this.step = (this.end - this.start) / (this.length * 2)
+//   }
 
-  // 애니메이션 함수
-  animate() {
-    this.cards.forEach((card, i) => {
-      const movePoint = this.start + this.step * i
-      const flipPoint = movePoint + this.step * this.length
-      const endPoint = flipPoint + this.step
+//   // 애니메이션 함수
+//   animate() {
+//     this.cards.forEach((card, i) => {
+//       const movePoint = this.start + this.step * i
+//       const flipPoint = movePoint + this.step * this.length
+//       const endPoint = flipPoint + this.step
 
-      if (scrollTop < movePoint) {
-        card.style.transform = `
-            translateX(100vw) 
-            rotateY(180deg)
-          `
-      } else if (scrollTop < flipPoint) {
-        card.style.transform = `
-            translateX(${
-              100 + ((scrollTop - movePoint) / (endPoint - movePoint)) * -100
-            }vw)
-            rotateY(180deg)
-          `
-      } else if (scrollTop < endPoint) {
-        card.style.transform = `
-            translateX(${
-              100 + ((scrollTop - movePoint) / (endPoint - movePoint)) * -100
-            }vw)
-            rotateY(${
-              180 + (-(scrollTop - flipPoint) / (endPoint - flipPoint)) * 180
-            }deg)
-          `
-      } else {
-        card.style.transform = `
-            translateX(0vw) 
-            rotateY(0deg)
-          `
-      }
-    })
-  }
-}
+//       if (scrollTop < movePoint) {
+//         card.style.transform = `
+//             translateX(100vw)
+//             rotateY(180deg)
+//           `
+//       } else if (scrollTop < flipPoint) {
+//         card.style.transform = `
+//             translateX(${
+//               100 + ((scrollTop - movePoint) / (endPoint - movePoint)) * -100
+//             }vw)
+//             rotateY(180deg)
+//           `
+//       } else if (scrollTop < endPoint) {
+//         card.style.transform = `
+//             translateX(${
+//               100 + ((scrollTop - movePoint) / (endPoint - movePoint)) * -100
+//             }vw)
+//             rotateY(${
+//               180 + (-(scrollTop - flipPoint) / (endPoint - flipPoint)) * 180
+//             }deg)
+//           `
+//       } else {
+//         card.style.transform = `
+//             translateX(0vw)
+//             rotateY(0deg)
+//           `
+//       }
+//     })
+//   }
+// }

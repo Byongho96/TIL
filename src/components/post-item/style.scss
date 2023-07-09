@@ -11,6 +11,11 @@
   cursor: pointer;
 }
 
+.post-item a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .post-item:hover {
   border-bottom: 1px solid var(--main-color);
   scale: 1.02;
@@ -24,7 +29,7 @@
 
 .post-item__title {
   overflow: hidden;
-  width: 100%;
+  flex: 1;
   font-size: 1.7rem;
   font-weight: 700;
   text-overflow: ellipsis;

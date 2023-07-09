@@ -1,7 +1,6 @@
 import React from 'react'
 import './style.scss'
-import { navigate } from 'gatsby'
-import { useCategories } from '@hooks/use-categories'
+import useCategories from '@hooks/use-categories'
 
 const NUMBER_OF_LISTS = 15 // 화면에 표시할 카테고리 갯수. CSS 파일의 숫자와 동일해야함
 
@@ -23,10 +22,6 @@ const IndexWheel: React.FC = () => {
     target.classList.remove('stop')
   }
 
-  const handleClick = (name: string) => {
-    navigate(`/posts/${name}`)
-  }
-
   return (
     <ul
       className="index-wheel"
@@ -34,12 +29,8 @@ const IndexWheel: React.FC = () => {
       onMouseLeave={handleMouseLeave}
     >
       {selectedCategories.map((category) => (
-        <li
-          className="index-wheel__category"
-          key={category.id}
-          onClick={() => handleClick(category.name)}
-        >
-          {category.name}
+        <li className="index-wheel__category" key={category.id}>
+          <a href={`/posts/${category.name}`}>{category.name}</a>
         </li>
       ))}
     </ul>

@@ -16,13 +16,19 @@ const Taping: React.FC = ({
   rotationDeg = 0,
   speed = 1,
 }: props) => {
-  const tapeRef = useRef(null)
-  const textRef = useRef(null)
+  const tapeRef = useRef<HTMLDivElement>(null)
+  const textRef = useRef<HTMLParagraphElement>(null)
   const position = useRef(0)
 
   useEffect(() => {
     const tapeElement = tapeRef.current
     const textElement = textRef.current
+
+    if (
+      !(tapeElement instanceof HTMLDivElement) ||
+      !(textElement instanceof HTMLParagraphElement)
+    )
+      return
 
     // 텍스트가 흐르는 방향을 설정
     let textDirection = 1
@@ -48,7 +54,7 @@ const Taping: React.FC = ({
       }px)`
     }
 
-    let animationId = null
+    let animationId: number = null
     // 애니메이션 실행 함수
     const animate = () => {
       moveText()

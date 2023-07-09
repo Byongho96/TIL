@@ -1,4 +1,4 @@
-import React, { createRef, useEffect } from 'react'
+import React, { createRef, useEffect, memo } from 'react'
 import './style.scss'
 
 export interface UtterancesProps {
@@ -14,7 +14,7 @@ export interface UtterancesProps {
     | 'gruvbox-dark'
 }
 
-const Utterances: React.FC<UtterancesProps> = React.memo(
+const Utterances: React.FC<UtterancesProps> = memo(
   ({ theme = 'github-light' }) => {
     const utterRef = createRef<HTMLElement>(null)
 

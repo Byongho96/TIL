@@ -1,5 +1,5 @@
 export default function toAnimationFrame(
-  cb,
+  cb: () => void,
   { dismissCondition = () => false, triggerCondition = () => true }
 ) {
   if (!cb) {
