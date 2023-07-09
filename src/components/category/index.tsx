@@ -26,7 +26,7 @@ const Category: React.FC<Props> = ({ defaultCategory = '' }) => {
   return (
     <nav className="sidebar">
       <Link
-        href={`/posts/`}
+        to={`/posts/`}
         className="sidebar__total"
       >{`전체 글 (${totalPosts})`}</Link>
       <ul className="sidebar__category">
@@ -98,7 +98,7 @@ const CategoryName: React.FC<CategoryNameProps> = memo(
   ({ name, num, handleClick }) => {
     return (
       <Link
-        href={`/posts/${name}`}
+        to={`/posts/${name}`}
         className="sidebar__category--text"
         onClick={(event) => {
           handleClick(event, name)
@@ -135,7 +135,7 @@ const Posts: React.FC<PostsProps> = memo(({ posts, isSelected }) => {
     <ul ref={postsRef} className={`sidebar__posts ${selected}`}>
       {posts.map((post) => (
         <li key={post.id}>
-          <Link href={`/posts/${post.relativePath}`} activeClassName="active">
+          <Link to={`/posts/${post.relativePath}`} activeClassName="active">
             {post.title || post.name}
           </Link>
         </li>
