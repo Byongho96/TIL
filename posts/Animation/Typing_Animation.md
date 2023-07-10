@@ -14,7 +14,7 @@ reference:
 
 구글링하면 [react-type-animation](https://www.npmjs.com/package/react-type-animation)라는 리액트용 타이핑 애니메이션 라이브러리가 바로 나온다. **이 라이브러리와 유사하게 동작하는 리액트 컴포넌트**를 만드는 것이 오늘의 목표다.
 
-![react-type-animation.gif](./assets/react-type-animation.gif)
+![my-type-animation.gif](./assets/my-type-animation.gif)
 
 ## 1.2. props 설정
 
@@ -33,7 +33,9 @@ type Props = {
 
 # 2. 전체 코드
 
-타이핑 애니메이션을 구현하기 위해서 JS와 CSS를 모두 사용했다. 특별하게 설명하고 싶은 부분이 2개 있다.
+[Github 소스 코드](https://github.com/Byongho96/TIL/tree/master/src/pages/demo/type-animation)
+
+타이핑 애니메이션을 구현하기 위해서 JS와 CSS를 모두 사용했다. 특별하게 짚고 싶은 부분이 2개 있다.
 
 - **`element.textContext`**
 
@@ -45,7 +47,7 @@ type Props = {
   - 가상선택자로 `'|'`라는 문자를 표시하면 위의 문제를 모두 해결할 수 있다.
 
 ```js
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import './style.scss'
 
 type Props = {
@@ -63,50 +65,51 @@ const TypeAnimation: React.FC<Props> = ({
   pause = 2000, // 기본 대기 시간 2초
   isInfinite = false,
 }) => {
-  const textElementRef = useRef<HTMLSpanElement>(null)
+  const textElementRef = useRef<HTMLParagraphElement>(null)
 
   useEffect(() => {
-    const textElement = textElementRef.current // 타이핑을 입력한 타겟 Element
+    const textElement = textElementRef.current
+    if (!(textElement instanceof HTMLParagraphElement)) return
 
-    if (!textElement) return
+    textElement.textContent = ''
 
     let phraseIdx = 0 // 현재 타이핑하는 문구의 인덱스
     let charIdx = 0 // 현재 타이핑하는 글자 인덱스
-    let interval = null // setInterval을 담을 변수
+    let interval: number = null // setInterval을 담을 변수
 
-    // 2. 타이핑 메인 함수
-    function typeText() {
+    // 타이핑 메인 함수
+    const typeText = function () {
       textElement.style.setProperty('--cursor-opacity', 1) // 타이핑 하는 동안은 커서 깜빡이지 않도록
       const currentPhrase = phrases[phraseIdx] // 현재 타이핑하는 문구
 
-      // 현재 문구 타이핑이 안 끝났을 경우
+      // Case1: 현재 문구 타이핑이 안 끝났을 경우
       if (charIdx < currentPhrase.length) {
         textElement.textContent += currentPhrase[charIdx++] // innerText 대신 textContent 사용해야 공백을 담을 수 있음
         return
       }
-      // 현재 문구가 마지막 문구가 아닐 경우
+      // Case2: 현재 문구가 마지막 문구가 아닐 경우
       if (phraseIdx < phrases.length - 1) {
         phraseIdx++ // 다음 문구로 이동
         charIdx = 0 // 첫 번째 글자로 이동
         retypeAfterPause()
         return
       }
-      // 무한 반복이 설정되어 있을 경우
+      // Case3: 무한 반복이 설정되어 있을 경우
       if (isInfinite) {
         phraseIdx = 0 // 처음 문구로 이동
         charIdx = 0 // 첫 번재 글자로 이동
         retypeAfterPause()
         return
       }
-      // 타이핑 종료
+      // Case4: 타이핑 종료
       textElement.style.setProperty('--cursor-opacity', 0) // 타이핑 종료 후 커서 깜빡이도록
-      interval && clearInterval(interval)
+      clearInterval(interval)
     }
 
-    // 3. 일시 정지 후, 문구 초기화한 뒤 타이핑 재시작하는 함수
-    function retypeAfterPause() {
+    // 일시 정지 후, 문구 초기화한 뒤 타이핑 재시작하는 함수
+    const retypeAfterPause = function () {
       textElement.style.setProperty('--cursor-opacity', 0) // 이리 정지하는 동안 커서 깜빡이도록
-      interval && clearInterval(interval) // 기존 setInterval 제거
+      clearInterval(interval) // 기존 setInterval 제거
 
       // pause 이 후, setInterval 재시작
       setTimeout(() => {
@@ -115,21 +118,15 @@ const TypeAnimation: React.FC<Props> = ({
       }, pause)
     }
 
-    // 1. setInterval로 타이핑 시작
     interval = setInterval(typeText, 1000 / speed)
 
-    // clear 함수
     return () => {
-      interval && clearInterval(interval)
+      // clean-up 함수
+      clearInterval(interval)
     }
   }, [phrases, speed, pause, isInfinite])
 
-  return (
-    <span
-      ref={textElementRef}
-      className="type-animation-text"
-      style={style}></span>
-  )
+  return <p ref={textElementRef} className="type-animation" style={style}></p>
 }
 
 export default TypeAnimation

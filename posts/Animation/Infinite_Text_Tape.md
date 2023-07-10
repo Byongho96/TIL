@@ -12,6 +12,8 @@ reference: 'https://www.youtube.com/watch?v=z9hN9PXhe-A'
 
 ["YouTube: 자바스크립트로 5분만에 텍스트 스크롤 애니메이션 효과(text marquee effect) 마스터하기, 맛있는 코딩"](https://www.youtube.com/watch?v=z9hN9PXhe-A) 를 따라잡고, 이를 커스텀할 수 있는 리액트 컴포넌트로 만드는게 목표다.
 
+![infinite-text-tape.gif)](./assets/infinite-text-tape.gif)
+
 다음과 같은 Prop을 받아 리액트 컴포넌트를 커스텀할 수 있도록 할 것이다.
 
 ```js
@@ -28,9 +30,11 @@ type Props = {
 
 ## 2.1. 리액트 코드
 
+[Github 소스코드](https://github.com/Byongho96/TIL/tree/master/src/pages/demo/scroll-infinite-tape)
+
 강의의 자바스크립트 코드를 리액트 컴포넌트를 만들었다.
 
-Prop의 변화에 따라 속성을 변하게 하기 위해, `useEffect`문에 실행코드를 넣고 적절히 클린업함수를 작성했다.
+Prop의 변화에 따라 속성을 변하게 하기 위해, `useEffect`문에 실행코드를 넣고 적절하게 클린업함수를 작성했다.
 
 ```js
 import React, { useEffect, useRef } from 'react'
@@ -51,13 +55,19 @@ const ScrollInfiniteTape: React.FC = ({
   isRight = true,
   rotationDeg = 0,
 }: Props) => {
-  const tapeRef = useRef(null)
-  const textRef = useRef(null)
-  const position = useRef(0) // 중간에 Prop이 바뀌더라도, position 유지하기 위해 useEffect 밖에 선언
+  const tapeRef = useRef<HTMLDivElement>(null)
+  const textRef = useRef<HTMLParagraphElement>(null)
+  const position = useRef(0) // 중간에 Prop이 바뀌더라도, position 유지하기 위해 밖에 선언
 
   useEffect(() => {
     const tapeElement = tapeRef.current
     const textElement = textRef.current
+
+    if (
+      !(tapeElement instanceof HTMLDivElement) ||
+      !(textElement instanceof HTMLParagraphElement)
+    )
+      return
 
     // 텍스트가 흐르는 방향을 설정
     let textDirection = 1
@@ -69,7 +79,7 @@ const ScrollInfiniteTape: React.FC = ({
     }
 
     // 텍스트를 이동 시키는 함수
-    function moveText() {
+    const moveText = function () {
       position.current += 1
       // 반만큼 이동 했을 때, 다시 원위치로 복귀하여 무한스크롤
       if (position.current > textElement.scrollWidth / 2) {
@@ -82,8 +92,8 @@ const ScrollInfiniteTape: React.FC = ({
     }
 
     // 애니메이션 실행 함수
-    let animationId = null
-    function animate() {
+    let animationId: number = null
+    const animate = function () {
       moveText()
       animationId = window.requestAnimationFrame(animate) // 희한하게 정의되기 전에 쓰네?
     }
@@ -92,12 +102,12 @@ const ScrollInfiniteTape: React.FC = ({
     animate()
 
     // 스크롤 함수
-    function speedUp() {
+    const speedUp = function () {
       position.current += 10
     }
     window.addEventListener('scroll', speedUp)
 
-    // 크린업
+    // 클린업
     return () => {
       window.cancelAnimationFrame(animationId)
       window.removeEventListener('scroll', speedUp)
@@ -123,6 +133,7 @@ const ScrollInfiniteTape: React.FC = ({
     </div>
   )
 }
+
 ```
 
 ## 2.2. CSS 코드

@@ -1,7 +1,13 @@
-const path = require('path')
+import * as path from 'path' // require일 경우, typescript 처리방법 알아보기
+import type { GatsbyNode } from 'gatsby'
+
 //  webpack 모듈 import 경로 alias 설정
-exports.onCreateWebpackConfig = ({ actions }) => {
-  actions.setWebpackConfig({
+export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({
+  actions,
+}) => {
+  const { setWebpackConfig } = actions
+
+  setWebpackConfig({
     resolve: {
       alias: {
         '@assets': path.resolve(__dirname, 'src/assets'),
@@ -19,14 +25,45 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   })
 }
 
+type DirectoryNode = {
+  id: string
+  name: string
+  relativePath: string
+}
+
+type PostGroupData = {
+  allDirectory: {
+    nodes: DirectoryNode[]
+  }
+}
+
+type MarkdownRemarkNode = {
+  id: string
+  parent: {
+    id: string
+    name: string
+    relativePath: string
+  }
+}
+
+type PostData = {
+  allMarkdownRemark: {
+    nodes: MarkdownRemarkNode[]
+  }
+}
+
 // createPages API로 커스텀 페이지 생성
-exports.createPages = async ({ graphql, actions, reporter }) => {
+export const createPages: GatsbyNode['createPages'] = async ({
+  graphql,
+  actions,
+  reporter,
+}) => {
   const { createPage } = actions
 
   // 카테고리 페이지 생성
-  const postGroups = await graphql(
+  const postGroups = await graphql<PostGroupData>(
     `
-      query {
+      query PostGroupsQuery {
         allDirectory(
           filter: {
             sourceInstanceName: { eq: "posts" }
@@ -72,9 +109,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   })
 
   // 포스트 페이지 생성
-  const posts = await graphql(
+  const posts = await graphql<PostData>(
     `
-      query {
+      query PostsQuery {
         allMarkdownRemark(
           filter: {
             frontmatter: { isCompleted: { eq: true } }

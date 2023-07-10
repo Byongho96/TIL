@@ -12,7 +12,9 @@ reference: 'https://www.youtube.com/watch?v=337HnOk13zc&t=618s'
 
 ["YouTube: 자바스크립트로 11분만에 카드 스크롤 애니메이션 마스터하기, 맛있는 코딩"](https://www.youtube.com/watch?v=337HnOk13zc&t=619s) 를 따라잡고, 이를 커스텀할 수 있는 리액트 컴포넌트로 만드는게 목표다.
 
-참고로 절대 11분 만에 따라잡지 못했다.  
+![scroll-3d-card.gif)](./assets/scroll-3d-card.gif)
+
+안타깝지만 나는 저 강의를 11분 만에 따라잡지 못했다.  
 영상을 보면 `transform-style: preserve-3d`나 `backface-visibility: hidden;`와 같은 해괴망측한 CSS 속성이 나오는데, 그건 [이 영상](https://www.youtube.com/watch?v=FeJEEE3zc4U)에 잘 정리되어 있다.
 
 # 2. CSS 속성
@@ -49,9 +51,11 @@ reference: 'https://www.youtube.com/watch?v=337HnOk13zc&t=618s'
 
 ## 3.1. 리액트 컴포넌트
 
+[Github 소스코드](https://github.com/Byongho96/TIL/tree/master/src/pages/demo/scroll-3d-card)
+
 YouTube 영상을 그대로 리액트 컴포넌트로 바꾸었다.
 
-그 과정에서 추가된 기능은 두가지이다.
+그 과정에서 추가된 기능이 2개가 있다.
 
 - **동적인 카드 갯수**  
   `cardTexts`의 길이에 따라 결정되는, 카드 갯수를 1~4개까지 동적으로 생성할 수 있게했다.
@@ -117,6 +121,9 @@ const Scroll3DCard: React.FC<Props> = ({
   // 메인컬러, 서브컬러 할당
   useEffect(() => {
     const container = containerRef.current
+
+    if (!(container instanceof HTMLDivElement)) return
+
     container.style.setProperty('--primary-color', primaryColor)
     container.style.setProperty('--secondary-color', secondaryColor)
   }, [primaryColor, secondaryColor])
@@ -127,6 +134,14 @@ const Scroll3DCard: React.FC<Props> = ({
     const background = mainContentRef.current
     const sticky = stickyRef.current
     const cards = sticky.querySelectorAll('.scroll-3d-card__card')
+
+    if (
+      !(container instanceof HTMLDivElement) ||
+      !(background instanceof HTMLDivElement) ||
+      !(sticky instanceof HTMLDivElement)
+    )
+      return
+
     const length = cards.length
 
     let start = 0 // 애니메이션 시작 시, 스크롤 위치
@@ -134,14 +149,15 @@ const Scroll3DCard: React.FC<Props> = ({
     let step = 0 // 애니메이션 구분 최소 단위
 
     // 초기화 함수, 화면 리사이즈마다 동작
-    function init() {
+    const init = function () {
       start = background.offsetTop
       end = background.offsetTop + background.offsetHeight - sticky.offsetHeight
       step = (end - start) / (length * 2)
 
       // 추가한 커스텀 로직: 네비게이션 바의 크기를 CSS에 전달 -> start화면 높이 조정
       const navbar = document.querySelector('.navbar')
-      const navbarHeight = navbar.offsetHeight
+      const navbarHeight: number =
+        navbar instanceof HTMLElement ? navbar.offsetHeight : 0
       container.style.setProperty(
         '--navbar-height',
         navbarHeight.toString() + 'px'
@@ -149,7 +165,8 @@ const Scroll3DCard: React.FC<Props> = ({
 
       // 추가한 커스텀 로직: 푸터 바의 크기를 CSS에 전달 -> end화면 높이 조정
       const footer = document.querySelector('.footer')
-      const footerHeight = footer.offsetHeight
+      const footerHeight: number =
+        footer instanceof HTMLElement ? footer.offsetHeight : 0
       container.style.setProperty(
         '--footer-height',
         footerHeight.toString() + 'px'
@@ -157,9 +174,9 @@ const Scroll3DCard: React.FC<Props> = ({
     }
 
     // 애니메이션 함수
-    function animate() {
+    const animate = function () {
       const scrollTop = window.scrollY
-      cards.forEach((card, i) => {
+      cards.forEach((card: HTMLElement, i) => {
         const movePoint = start + step * i // 카드 이동 시작 시점, 스크롤 위치
         const flipPoint = movePoint + step * length // 카드 플립 시작 시점, 스크롤 위치
         const endPoint = flipPoint + step // 카드 애니메이션 종료 시점, 스크롤 위치
@@ -212,7 +229,7 @@ const Scroll3DCard: React.FC<Props> = ({
       <div className="scroll-3d-card__main-content" ref={mainContentRef}>
         <div className="scroll-3d-card--sticky" ref={stickyRef}>
           {backgroundText}
-          <div className="scroll-3d-card__card-frame">
+          <div className="scroll-3d-card__card-frame ">
             {cardTexts.map((text) => (
               <div className="scroll-3d-card__card">
                 <div className="scroll-3d-card__card--front">{text}</div>
@@ -226,6 +243,8 @@ const Scroll3DCard: React.FC<Props> = ({
     </div>
   )
 }
+
+export default Scroll3DCard
 ```
 
 ## 3.2. CSS 코드

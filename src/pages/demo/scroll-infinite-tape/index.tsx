@@ -120,7 +120,7 @@ const ScrollInfiniteTape: React.FC = ({
     }
     window.addEventListener('scroll', speedUp)
 
-    // 크린업
+    // 클린업
     return () => {
       window.cancelAnimationFrame(animationId)
       window.removeEventListener('scroll', speedUp)

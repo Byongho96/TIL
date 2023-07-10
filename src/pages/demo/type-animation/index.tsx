@@ -50,8 +50,7 @@ const TypeAnimation: React.FC<Props> = ({
   const textElementRef = useRef<HTMLParagraphElement>(null)
 
   useEffect(() => {
-    const textElement = textElementRef.current // 타이핑을 입력한 타겟 Element
-
+    const textElement = textElementRef.current
     if (!(textElement instanceof HTMLParagraphElement)) return
 
     textElement.textContent = ''
@@ -60,36 +59,36 @@ const TypeAnimation: React.FC<Props> = ({
     let charIdx = 0 // 현재 타이핑하는 글자 인덱스
     let interval: number = null // setInterval을 담을 변수
 
-    // 2. 타이핑 메인 함수
+    // 타이핑 메인 함수
     const typeText = function () {
       textElement.style.setProperty('--cursor-opacity', 1) // 타이핑 하는 동안은 커서 깜빡이지 않도록
       const currentPhrase = phrases[phraseIdx] // 현재 타이핑하는 문구
 
-      // 현재 문구 타이핑이 안 끝났을 경우
+      // Case1: 현재 문구 타이핑이 안 끝났을 경우
       if (charIdx < currentPhrase.length) {
         textElement.textContent += currentPhrase[charIdx++] // innerText 대신 textContent 사용해야 공백을 담을 수 있음
         return
       }
-      // 현재 문구가 마지막 문구가 아닐 경우
+      // Case2: 현재 문구가 마지막 문구가 아닐 경우
       if (phraseIdx < phrases.length - 1) {
         phraseIdx++ // 다음 문구로 이동
         charIdx = 0 // 첫 번째 글자로 이동
         retypeAfterPause()
         return
       }
-      // 무한 반복이 설정되어 있을 경우
+      // Case3: 무한 반복이 설정되어 있을 경우
       if (isInfinite) {
         phraseIdx = 0 // 처음 문구로 이동
         charIdx = 0 // 첫 번재 글자로 이동
         retypeAfterPause()
         return
       }
-      // 타이핑 종료
+      // Case4: 타이핑 종료
       textElement.style.setProperty('--cursor-opacity', 0) // 타이핑 종료 후 커서 깜빡이도록
       clearInterval(interval)
     }
 
-    // 3. 일시 정지 후, 문구 초기화한 뒤 타이핑 재시작하는 함수
+    // 일시 정지 후, 문구 초기화한 뒤 타이핑 재시작하는 함수
     const retypeAfterPause = function () {
       textElement.style.setProperty('--cursor-opacity', 0) // 이리 정지하는 동안 커서 깜빡이도록
       clearInterval(interval) // 기존 setInterval 제거
@@ -101,11 +100,10 @@ const TypeAnimation: React.FC<Props> = ({
       }, pause)
     }
 
-    // 1. setInterval로 타이핑 시작
     interval = setInterval(typeText, 1000 / speed)
 
-    // clear 함수
     return () => {
+      // clean-up 함수
       clearInterval(interval)
     }
   }, [phrases, speed, pause, isInfinite])

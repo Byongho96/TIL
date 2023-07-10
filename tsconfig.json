@@ -114,6 +114,7 @@
   },
   "include": [
     "./src/**/*",
+    "./.eslintrc.js", // 왜 이런게 오류가 나는거지?
     "./gatsby-browser.tsx",
     "./gatsby-config.ts",
     "./gatsby-meta-config.ts",
