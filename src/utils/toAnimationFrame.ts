@@ -1,4 +1,4 @@
-export default function toAnimationFrame(
+const toAnimationFrame = function (
   cb: () => void,
   { dismissCondition = () => false, triggerCondition = () => true }
 ) {
@@ -27,3 +27,5 @@ export default function toAnimationFrame(
     })
   }
 }
+
+export default toAnimationFrame

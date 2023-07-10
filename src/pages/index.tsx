@@ -1,9 +1,9 @@
 import * as React from 'react'
 import './index.scss'
-import type { PageProps } from 'gatsby'
 import IndexLogo from '@components/index-logo'
 import IndexWheel from '@components/index-wheel'
 import SEO from '@components/seo'
+import type { PageProps } from 'gatsby'
 
 const IndexPage: React.FC<PageProps> = () => {
   return (

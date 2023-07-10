@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react'
 import './style.scss'
-import type { PageProps, HeadProps } from 'gatsby'
 import { graphql } from 'gatsby'
 import AdjacentPosts from '@components/adjacent-posts'
 import Giscus from '@components/giscus'
@@ -13,6 +12,7 @@ import CategoryLayout from '@layouts/category-layout'
 import highlightCode from '@utils/highlightCode.ts'
 import '@styles/_markdown.scss'
 import 'katex/dist/katex.min.css'
+import type { PageProps, HeadProps } from 'gatsby'
 
 type MarkdownRemarkNode = {
   id: string
@@ -38,9 +38,9 @@ type DataProps = {
       title: string
       createdAt: string
       updatedAt: string
-      tags: string[]
-      description: string
-      reference: string
+      tags: string[] | null
+      description: string | null
+      reference: string | null
     }
   }
   allMarkdownRemark: {
@@ -129,14 +129,7 @@ export const query = graphql`
       id
       html
       tableOfContents
-      frontmatter {
-        title
-        createdAt
-        updatedAt
-        tags
-        description
-        reference
-      }
+      ...PostFrontmatter
     }
     allMarkdownRemark(
       filter: {

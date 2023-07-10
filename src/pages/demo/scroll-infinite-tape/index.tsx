@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import './style.scss'
-import type { HeadProps } from 'gatsby'
 import SEO from '@components/seo'
+import type { HeadProps } from 'gatsby'
 
 const ScrollInfiniteTapePage: React.FC = () => {
   return (
@@ -92,7 +92,7 @@ const ScrollInfiniteTape: React.FC = ({
     }
 
     // 텍스트를 이동 시키는 함수
-    function moveText() {
+    const moveText = function () {
       position.current += 1
       // 반만큼 이동 했을 때, 다시 원위치로 복귀하여 무한스크롤
       if (position.current > textElement.scrollWidth / 2) {
@@ -106,7 +106,7 @@ const ScrollInfiniteTape: React.FC = ({
 
     // 애니메이션 실행 함수
     let animationId: number = null
-    function animate() {
+    const animate = function () {
       moveText()
       animationId = window.requestAnimationFrame(animate) // 희한하게 정의되기 전에 쓰네?
     }
@@ -115,7 +115,7 @@ const ScrollInfiniteTape: React.FC = ({
     animate()
 
     // 스크롤 함수
-    function speedUp() {
+    const speedUp = function () {
       position.current += 10
     }
     window.addEventListener('scroll', speedUp)

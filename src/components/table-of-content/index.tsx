@@ -7,7 +7,7 @@ interface Props {
 
 const TableOfContent: React.FC<Props> = ({ toc }) => {
   useEffect(() => {
-    function handleScroll() {
+    const handleScroll = function () {
       const TOP_THRESHOLD = 50
       const headerElements = document.querySelectorAll(
         '.markdown-body h1, .markdown-body h2, .markdown-body h3'

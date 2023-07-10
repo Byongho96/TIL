@@ -1,9 +1,9 @@
 import '@styles/_reset.scss'
 import '@styles/_global.scss'
 import React from 'react'
-import type { GatsbyBrowser } from 'gatsby'
 import ThemeProvider from '@contexts/theme-context'
 import NavigationLayout from '@layouts/navigation-layout'
+import type { GatsbyBrowser } from 'gatsby'
 
 export const wrapRootElement: GatsbyBrowser = ({ element }) => {
   return <ThemeProvider>{element}</ThemeProvider>

@@ -1,9 +1,9 @@
 import * as React from 'react'
 import './about.scss'
-import type { PageProps } from 'gatsby'
 import AboutMe from '@components/about-me'
 import SEO from '@components/seo'
 import TypeAnimation from '@components/type-animation'
+import type { PageProps } from 'gatsby'
 
 const AboutPage: React.FC<PageProps> = () => {
   return (

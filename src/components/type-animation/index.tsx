@@ -30,7 +30,7 @@ const TypeAnimation: React.FC<Props> = ({
     let interval: number = null // setInterval을 담을 변수
 
     // 2. 타이핑 메인 함수
-    function typeText() {
+    const typeText = function () {
       textElement.style.setProperty('--cursor-opacity', 1) // 타이핑 하는 동안은 커서 깜빡이지 않도록
       const currentPhrase = phrases[phraseIdx] // 현재 타이핑하는 문구
 
@@ -59,7 +59,7 @@ const TypeAnimation: React.FC<Props> = ({
     }
 
     // 3. 일시 정지 후, 문구 초기화한 뒤 타이핑 재시작하는 함수
-    function retypeAfterPause() {
+    const retypeAfterPause = function () {
       textElement.style.setProperty('--cursor-opacity', 0) // 이리 정지하는 동안 커서 깜빡이도록
       interval && clearInterval(interval) // 기존 setInterval 제거
 

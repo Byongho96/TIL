@@ -24,7 +24,7 @@ const PostItem: React.FC<Props> = ({ node }) => {
 
   return (
     <article className="post-item">
-      <Link to={`/posts/${relativePath}`}>
+      <Link className="post-item--link" to={`/posts/${relativePath}`}>
         <div className="post-item--flex">
           <h1 className="post-item__title">{title || name}</h1>
           <span className="post-item__date">{createdAt}</span>

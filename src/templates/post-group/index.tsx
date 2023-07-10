@@ -1,12 +1,12 @@
 import * as React from 'react'
 import './style.scss'
-import type { PageProps, HeadProps } from 'gatsby'
 import { graphql } from 'gatsby'
 import PostItem from '@components/post-item'
 import SEO from '@components/seo'
 import ToTheTop from '@components/to-the-top'
 import TypeAnimation from '@components/type-animation'
 import CategoryLayout from '@layouts/category-layout'
+import type { PageProps, HeadProps } from 'gatsby'
 
 type MarkdownRemarkNode = {
   id: string
@@ -49,7 +49,7 @@ const PostGroupPage: React.FC<PageProps<DataProps, PageContextType>> = ({
         </div>
         <ul className="post-group__post-list">
           {data.allMarkdownRemark.nodes.map((node) => (
-            <li>
+            <li key={node.id}>
               <PostItem key={node.id} node={node} />
             </li>
           ))}
@@ -93,7 +93,6 @@ export default PostGroupPage
 
 export const Head = ({
   pageContext,
-  data,
   location,
 }: HeadProps<undefined, PageContextType>) => (
   <SEO

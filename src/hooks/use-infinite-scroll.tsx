@@ -12,7 +12,7 @@ type InfiniteScrollProps = {
   loadMore: () => void // 컨텐츠를 로드할 함수
 }
 
-function useInfiniteScroll({
+const useInfiniteScroll = function ({
   ref,
   isEnd,
   loadMore,

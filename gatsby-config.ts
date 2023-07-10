@@ -1,5 +1,5 @@
 import type { GatsbyConfig } from 'gatsby'
-const metaConfig = require('./gatsby-meta-config')
+import metaConfig from './gatsby-meta-config'
 
 const config: GatsbyConfig = {
   siteMetadata: metaConfig,

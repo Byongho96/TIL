@@ -1,0 +1,103 @@
+.carousel-2d-page {
+  display: flex;
+  align-items: center;
+}
+
+.carousel-2d-page__item {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  overflow: hidden;
+  position: relative;
+  height: 25vw;
+}
+
+.carousel-2d-page__item img {
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.carousel-2d {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-2d__frame {
+  display: flex;
+  align-items: center;
+  flex: nowrap;
+}
+
+.carousel-2d__frame > * {
+  min-width: 100%;
+}
+
+.carousel-2d__left {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0.2vw;
+  background-color: rgba(250, 235, 215, 0);
+}
+
+.carousel-2d__right {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding: 0.2vw;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.carousel-2d__left path,
+.carousel-2d__right path {
+  stroke: white;
+  fill: white;
+}
+
+.carousel-2d__left:hover,
+.carousel-2d__right:hover {
+  background-color: rgba(0, 0, 0, 0.236);
+  cursor: pointer;
+}
+
+.carousel-2d__status {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+}
+
+.carousel-2d__indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+}
+
+.carousel-2d__indicator__circle svg {
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+}
+
+.carousel-2d__indicator__circle path {
+  fill: rgba(255, 255, 255, 0.342);
+  stroke: rgba(255, 255, 255, 0.342);
+}
+
+.carousel-2d__indicator__circle.active path {
+  fill: rgb(255, 255, 255);
+  stroke: rgb(255, 255, 255);
+}

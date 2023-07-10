@@ -9,7 +9,7 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    // 'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:import/recommended',
     'plugin:import/typescript',
     'react-app',
@@ -30,7 +30,7 @@ module.exports = {
     'import/order': [
       2,
       {
-        groups: ['builtin', 'external', 'internal'],
+        groups: ['builtin', 'external', 'internal', 'type'],
         pathGroups: [
           {
             pattern: 'react*',

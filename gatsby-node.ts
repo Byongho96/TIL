@@ -1,5 +1,4 @@
 const path = require('path')
-
 //  webpack 모듈 import 경로 alias 설정
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({

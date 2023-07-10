@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import './style.scss'
-import type { HeadProps } from 'gatsby'
 import SEO from '@components/seo'
+import type { HeadProps } from 'gatsby'
 
 // https://velog.io/@moonelysian/scroll-client-offset-%ED%99%9C%EC%9A%A9%ED%95%98%EA%B8%B0\
 // https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
@@ -109,7 +109,7 @@ const Scroll3DCard: React.FC<Props> = ({
     let step = 0 // 애니메이션 구분 최소 단위
 
     // 초기화 함수, 화면 리사이즈마다 동작
-    function init() {
+    const init = function () {
       start = background.offsetTop
       end = background.offsetTop + background.offsetHeight - sticky.offsetHeight
       step = (end - start) / (length * 2)
@@ -134,7 +134,7 @@ const Scroll3DCard: React.FC<Props> = ({
     }
 
     // 애니메이션 함수
-    function animate() {
+    const animate = function () {
       const scrollTop = window.scrollY
       cards.forEach((card: HTMLElement, i) => {
         const movePoint = start + step * i // 카드 이동 시작 시점, 스크롤 위치

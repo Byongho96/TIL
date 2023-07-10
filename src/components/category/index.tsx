@@ -36,7 +36,7 @@ const Category: React.FC<Props> = ({ defaultCategory = '' }) => {
             <CategoryName
               name={category.name}
               num={category.num}
-              handleClickCategory={handleClickCategory}
+              onClick={handleClickCategory}
             />
             <ul className="sidebar__category">
               {/* 서브 카테고리 1 */}
@@ -45,7 +45,7 @@ const Category: React.FC<Props> = ({ defaultCategory = '' }) => {
                   <CategoryName
                     name={subCategory.name}
                     num={subCategory.num}
-                    handleClickCategory={handleClickCategory}
+                    onClick={handleClickCategory}
                   />
                   <ul className="sidebar__category">
                     {/* 서브 카테고리 2 */}
@@ -54,7 +54,7 @@ const Category: React.FC<Props> = ({ defaultCategory = '' }) => {
                         <CategoryName
                           name={subCategory.name}
                           num={subCategory.num}
-                          handleClickCategory={handleClickCategory}
+                          onClick={handleClickCategory}
                         />
                         {/* 서브 카테고리 2 포스트 */}
                         <Posts
@@ -91,17 +91,17 @@ export default Category
 interface CategoryNameProps {
   name: string
   num: number
-  handleClick: (e: ClickEvent<HTMLAnchorElement>, name: string) => void
+  onClick: (e: ClickEvent<HTMLAnchorElement>, name: string) => void
 }
 
 const CategoryName: React.FC<CategoryNameProps> = memo(
-  ({ name, num, handleClick }) => {
+  ({ name, num, onClick }) => {
     return (
       <Link
         to={`/posts/${name}`}
         className="sidebar__category--text"
         onClick={(event) => {
-          handleClick(event, name)
+          onClick(event, name)
         }}
       >
         {name}

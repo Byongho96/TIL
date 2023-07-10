@@ -2,7 +2,7 @@ interface NameObject {
   name: string
 }
 
-export function sortByName(a: NameObject, b: NameObject) {
+export const sortByName = function (a: NameObject, b: NameObject) {
   const nameA = a.name.toUpperCase() // ignore upper and lowercase
   const nameB = b.name.toUpperCase() // ignore upper and lowercase
   if (nameA < nameB) {
@@ -20,7 +20,7 @@ interface TitleObject {
   title: string
 }
 
-export function sortByTitle(a: TitleObject, b: TitleObject) {
+export const sortByTitle = function (a: TitleObject, b: TitleObject) {
   const titleA = a.title.toUpperCase() // ignore upper and lowercase
   const titleB = b.title.toUpperCase() // ignore upper and lowercase
   if (titleA < titleB) {

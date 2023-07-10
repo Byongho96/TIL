@@ -1,6 +1,5 @@
 import React, { useState, useMemo, useRef } from 'react'
 import './posts.scss'
-import type { PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 import PostItem from '@components/post-item'
 import SEO from '@components/seo'
@@ -8,6 +7,7 @@ import ToTheTop from '@components/to-the-top'
 import TypeAnimation from '@components/type-animation'
 import useInfiniteScroll from '@hooks/use-infinite-scroll'
 import CategoryLayout from '@layouts/category-layout'
+import type { PageProps } from 'gatsby'
 
 type MarkdownRemarkNode = {
   id: string

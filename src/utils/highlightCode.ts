@@ -5,7 +5,7 @@ hljs.configure({
   ignoreUnescapedHTML: true,
 })
 
-export default function highlightCode() {
+export default highlightCode = function () {
   // hljs.highlightAll()
   const codeBlocks = document.querySelectorAll('pre > code')
   codeBlocks.forEach((codeBlock) => {

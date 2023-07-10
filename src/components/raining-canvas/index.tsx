@@ -58,7 +58,7 @@ const RainingCanvas: React.FC<Props> = ({
     }
 
     // canvas 초기화 함수
-    function init() {
+    const init = function () {
       rainDropArray = []
       rainSplashArray = []
 
@@ -82,7 +82,7 @@ const RainingCanvas: React.FC<Props> = ({
 
     // cavnas 렌더링(애니메이션) 함수
     let requestAnimationId: number = null
-    function render() {
+    const render = function () {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       // 빗줄기 애니메이션
       const wind = mouse.isActive ? (mouse.x - ctx.canvas.width / 2) / 80 : 0 // 마우스 위치에 따른 바람
@@ -113,13 +113,13 @@ const RainingCanvas: React.FC<Props> = ({
     window.addEventListener('resize', init)
 
     // 캔버스에 마우스 관련 이벤트리스너 등록 => mouse 객체 업데이트
-    function setMouseActive() {
+    const setMouseActive = function () {
       mouse.isActive = true
     }
-    function setMouseInactive() {
+    const setMouseInactive = function () {
       mouse.isActive = false
     }
-    function setMousePosition(e: React.MouseEvent) {
+    const setMousePosition = function (e: React.MouseEvent) {
       mouse.x = e.clientX
       mouse.y = e.clientY
     }
