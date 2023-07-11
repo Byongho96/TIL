@@ -21,6 +21,9 @@ type MarkdownRemarkNode = {
     createdAt: string
     updatedAt: string
   }
+  fields: {
+    slug: string
+  }
 }
 
 type DataProps = {
@@ -31,7 +34,7 @@ type DataProps = {
 
 type PageContextType = {
   pagePath: string
-  regex: string
+  postPathRegex: string
   id: string
   name: string
   relativePath: string
@@ -61,16 +64,20 @@ const PostGroupPage: React.FC<PageProps<DataProps, PageContextType>> = ({
 }
 
 export const query = graphql`
-  query ($regex: String!) {
+  query ($postPathRegex: String!) {
     allMarkdownRemark(
       filter: {
         frontmatter: { isCompleted: { eq: true } }
-        fileAbsolutePath: { regex: $regex }
+        fileAbsolutePath: { regex: $postPathRegex }
       }
-      sort: { frontmatter: { title: ASC } }
+      sort: [
+        { frontmatter: { createdAt: DESC } }
+        { frontmatter: { title: DESC } }
+      ]
     ) {
       nodes {
         id
+        excerpt
         parent {
           ... on File {
             id
@@ -83,7 +90,9 @@ export const query = graphql`
           createdAt
           updatedAt
         }
-        excerpt
+        fields {
+          slug
+        }
       }
     }
   }

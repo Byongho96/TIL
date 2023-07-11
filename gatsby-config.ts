@@ -1,6 +1,37 @@
 import type { GatsbyConfig } from 'gatsby'
 import metaConfig from './gatsby-meta-config'
 
+type SiteData = {
+  siteMetadata: {
+    description: string
+    title: string
+    siteUrl: string
+  }
+}
+
+type MarkdownRemarkRSSNode = {
+  node: {
+    excerpt: string
+    html: string
+    fields: { slug: string }
+    frontmatter: {
+      title: string
+      createdAt: string
+    }
+  }
+}
+
+type AllMarkdownRemarkRSSData = {
+  edges: MarkdownRemarkRSSNode[]
+}
+
+type RSSQuery = {
+  query: {
+    site: SiteData
+    allMarkdownRemark: AllMarkdownRemarkRSSData
+  }
+}
+
 const config: GatsbyConfig = {
   siteMetadata: metaConfig,
   pathPrefix: '/TIL', // gh-pages 배포시 필요
@@ -28,8 +59,75 @@ const config: GatsbyConfig = {
     },
     'gatsby-plugin-sitemap',
     {
-      resolve: 'gatsby-plugin-manifest', // 웹 앱
+      resolve: `gatsby-plugin-feed`,
       options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+      description
+      title
+      siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }: RSSQuery) => {
+              return allMarkdownRemark.edges.map((edge) => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.excerpt,
+                  date: edge.node.frontmatter.createdAt,
+                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  custom_elements: [{ 'content:encoded': edge.node.html }],
+                })
+              })
+            },
+            query: `
+              {
+                allMarkdownRemark(
+                  sort: [
+                    { frontmatter: { createdAt: DESC } }
+                    { frontmatter: { title: DESC } }
+                  ]
+                  filter: {
+                    frontmatter: { isCompleted: { eq: true } }
+                    fileAbsolutePath: { regex: "/^(?!.*README).*posts.*$/" }
+                  }
+                  limit: 100
+                ) {
+                  edges {
+                    node {
+                      excerpt
+                      html
+                      fields { slug }
+                      frontmatter {
+                        title
+                        createdAt
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: '/rss.xml',
+            title: "Byongho96's TIL RSS Feed",
+          },
+        ],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-manifest', // PWA를 위한 mainfest 파일 설정
+      options: {
+        name: `Byongho96 TIL`, //
+        short_name: `Byongho96 TIL`,
+        start_url: `/TIL`, //실행시에 시작되는 URL 주소
+        background_color: `#fffefd`,
+        theme_color: `#000000`,
+        display: `standalone`, // 앱 표시 모드
+        theme_color_in_head: false, // This will avoid adding theme-color meta tag.
         icon: 'src/assets/images/icon.png',
       },
     },

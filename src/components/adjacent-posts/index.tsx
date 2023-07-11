@@ -6,7 +6,9 @@ import RightIcon from '@assets/svgs/triple-right.svg'
 
 type PostType = {
   id: string
+  name: string
   title: string
+  slug: string
   createdAt: string
   updatedAt: string
   excerpt: string
@@ -43,7 +45,7 @@ const Post: React.FC<PostProps> = ({ post, isNext }) => {
     <article className="adjacent-posts__post">
       <Link
         className={`adjacent-posts__post--link ${direction}`}
-        to={`/posts/${post.relativePath}`}
+        to={post.slug}
       >
         {icon}
         <div className={`adjacent-posts__post--flex ${direction}`}>

@@ -1,4 +1,5 @@
 import * as path from 'path' // require일 경우, typescript 처리방법 알아보기
+import { createFilePath } from 'gatsby-source-filesystem'
 import type { GatsbyNode } from 'gatsby'
 
 //  webpack 모듈 import 경로 alias 설정
@@ -25,6 +26,23 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({
   })
 }
 
+// 마크다운 파일에 대해서 slug 경로 생성
+export const onCreateNode: GatsbyNode['onCreateNode'] = ({
+  node,
+  actions,
+  getNode,
+}) => {
+  const { createNodeField } = actions
+  if (node.internal.type === `MarkdownRemark`) {
+    const value = '/posts' + createFilePath({ node, getNode })
+    createNodeField({
+      name: `slug`,
+      node,
+      value,
+    })
+  }
+}
+
 type DirectoryNode = {
   id: string
   name: string
@@ -43,6 +61,9 @@ type MarkdownRemarkNode = {
     id: string
     name: string
     relativePath: string
+  }
+  fields: {
+    slug: string
   }
 }
 
@@ -90,9 +111,9 @@ export const createPages: GatsbyNode['createPages'] = async ({
   // Create pages for each markdown file.
   const postGroupTemplate = path.resolve(`src/templates/post-group/index.tsx`)
   postGroups.data.allDirectory.nodes.forEach((node) => {
-    const path = 'posts/' + node.name
+    const path = '/posts/' + node.name
     // 상대 경로에 있는 md 파일들만 필터링(READEME.md 제외)
-    const regex = new RegExp(
+    const postPathRegex = new RegExp(
       `^(?!.*README).*${node.relativePath}.*$`
     ).toString()
     createPage({
@@ -102,7 +123,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
       // as a GraphQL variable to query for data from the markdown file.
       context: {
         pagePath: path,
-        regex: regex,
+        postPathRegex: postPathRegex,
         ...node,
       },
     })
@@ -127,6 +148,9 @@ export const createPages: GatsbyNode['createPages'] = async ({
                 relativePath
               }
             }
+            fields {
+              slug
+            }
           }
         }
       }
@@ -142,14 +166,15 @@ export const createPages: GatsbyNode['createPages'] = async ({
   // Create pages for each markdown file.
   const postTemplate = path.resolve(`src/templates/post/index.tsx`)
   posts.data.allMarkdownRemark.nodes.forEach((node) => {
-    const path = 'posts/' + node.parent.relativePath
-    // 상대 경로에 있는 md 파일들만 필터링(READEME.md 제외)
     const relativeDirectory = node.parent.relativePath.split('/').at(-2)
     const relativeDirectoryPath = node.parent.relativePath
       .split('/')
       .slice(0, -1)
       .join('/')
-    const regex = new RegExp(
+    // 페이지 경로 생성.
+    const path = node.fields.slug
+    // 같은 디렉토리에 있는 형제 md 파일들을 필터링(READEME.md 제외)하는 regex
+    const siblingPostsPathRegex = new RegExp(
       `^(?!.*README).*${relativeDirectoryPath}.*$`
     ).toString()
     createPage({
@@ -159,7 +184,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
       // as a GraphQL variable to query for data from the markdown file.
       context: {
         pagePath: path,
-        regex: regex,
+        siblingPostsPathRegex: siblingPostsPathRegex,
         relativeDirectory: relativeDirectory,
         ...node,
       },

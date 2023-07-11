@@ -22,6 +22,9 @@ type MarkdownRemarkNode = {
     createdAt: string
     updatedAt: string
   }
+  fields: {
+    slug: string
+  }
 }
 
 type DataProps = {
@@ -81,6 +84,7 @@ export const query = graphql`
     ) {
       nodes {
         id
+        excerpt
         parent {
           ... on File {
             id
@@ -93,7 +97,9 @@ export const query = graphql`
           createdAt
           updatedAt
         }
-        excerpt
+        fields {
+          slug
+        }
       }
     }
   }

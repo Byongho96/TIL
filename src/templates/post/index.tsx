@@ -27,6 +27,9 @@ type MarkdownRemarkNode = {
     createdAt: string
     updatedAt: string
   }
+  fields: {
+    slug: string
+  }
 }
 
 type DataProps = {
@@ -50,7 +53,7 @@ type DataProps = {
 
 type PageContextType = {
   pagePath: string
-  regex: string
+  siblingPostsPathRegex: string
   relativeDirectory: string
   id: string
   parent: {
@@ -62,7 +65,9 @@ type PageContextType = {
 
 type PostType = {
   id: string
+  name: string
   title: string
+  slug: string
   createdAt: string
   updatedAt: string
   excerpt: string
@@ -79,7 +84,9 @@ const PostPage: React.FC<PageProps<DataProps, PageContextType>> = ({
   const postArray: PostType[] = data.allMarkdownRemark.nodes.map((node) => {
     return {
       id: node.id,
+      name: node.parent.name,
       title: node.frontmatter.title,
+      slug: node.fields.slug,
       createdAt: node.frontmatter.createdAt,
       updatedAt: node.frontmatter.updatedAt,
       excerpt: node.excerpt,
@@ -124,7 +131,7 @@ const PostPage: React.FC<PageProps<DataProps, PageContextType>> = ({
 }
 
 export const query = graphql`
-  query PostPageQuery($id: String!, $regex: String!) {
+  query PostPageQuery($id: String!, $siblingPostsPathRegex: String!) {
     markdownRemark(id: { eq: $id }) {
       id
       html
@@ -134,12 +141,13 @@ export const query = graphql`
     allMarkdownRemark(
       filter: {
         frontmatter: { isCompleted: { eq: true } }
-        fileAbsolutePath: { regex: $regex }
+        fileAbsolutePath: { regex: $siblingPostsPathRegex }
       }
       sort: { frontmatter: { title: ASC } }
     ) {
       nodes {
         id
+        excerpt
         parent {
           ... on File {
             id
@@ -152,7 +160,9 @@ export const query = graphql`
           createdAt
           updatedAt
         }
-        excerpt
+        fields {
+          slug
+        }
       }
     }
   }

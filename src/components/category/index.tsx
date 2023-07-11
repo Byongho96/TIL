@@ -135,7 +135,7 @@ const Posts: React.FC<PostsProps> = memo(({ posts, isSelected }) => {
     <ul ref={postsRef} className={`sidebar__posts ${selected}`}>
       {posts.map((post) => (
         <li key={post.id}>
-          <Link to={`/posts/${post.relativePath}`} activeClassName="active">
+          <Link to={post.slug} activeClassName="active">
             {post.title || post.name}
           </Link>
         </li>

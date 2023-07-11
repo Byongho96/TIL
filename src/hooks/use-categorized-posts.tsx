@@ -11,6 +11,9 @@ type MarkdownRemarkNode = {
   frontmatter: {
     title: string
   }
+  fields: {
+    slug: string
+  }
 }
 
 type DataProps = {
@@ -23,6 +26,8 @@ type DataProps = {
 export type PostType = {
   id: string
   title: string
+  name: string
+  slug: string
   relativePath: string
 }
 
@@ -65,6 +70,9 @@ export const useCategorizedPosts = (): CategorizedPosts => {
           frontmatter {
             title
           }
+          fields {
+            slug
+          }
         }
       }
     }
@@ -76,9 +84,10 @@ export const useCategorizedPosts = (): CategorizedPosts => {
   const categories: CategoryType[] = []
   data.allMarkdownRemark.nodes.forEach((post) => {
     // 데이터 분해
-    const { id, parent, frontmatter } = post
+    const { id, parent, frontmatter, fields } = post
     const { name, relativePath } = parent
     const { title } = frontmatter
+    const { slug } = fields
 
     // 카테고리 분류를 위해 상대 경로를 배열로 변환
     const pathArray = relativePath.split('/')
@@ -128,7 +137,7 @@ export const useCategorizedPosts = (): CategorizedPosts => {
     })
 
     // 포스트 삽입
-    parentCategory.posts.push({ id, title, name, relativePath })
+    parentCategory.posts.push({ id, title, name, slug, relativePath })
   })
 
   categories.sort(sortByName) // 최상단 카테고리 이름 순 정렬
