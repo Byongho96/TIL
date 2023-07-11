@@ -65,7 +65,9 @@ const ColorChange: React.FC = () => {
       <button
         className={`color-change__theme ${theme}`}
         onClick={handleThemeClick}
-        name={theme === 'dark' ? '라이트 모드로 전환' : '다크 모드로 전환'}
+        aria-label={
+          theme === 'dark' ? '라이트 모드로 전환' : '다크 모드로 전환'
+        }
       >
         <div className={`color-change__theme--sun ${theme}`}>
           <SunIcon />

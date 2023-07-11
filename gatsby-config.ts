@@ -181,6 +181,8 @@ const config: GatsbyConfig = {
             options: {
               maxWidth: 700,
               wrapperStyle: 'margin-bottom: 20px;',
+              quality: 50, // 압축 퀄리티
+              withWebp: { quality: 50 }, // webP를 지원하는 브라우저에 해당 파일
             },
           },
           `gatsby-remark-gifs`,
