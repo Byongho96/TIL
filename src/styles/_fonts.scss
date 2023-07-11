@@ -1,131 +1,17 @@
-// SCDream
+// SCDream. 웹폰트 없음
 
-@font-face {
-  font-family: 'SCDream';
-  font-style: thin;
-  font-weight: 100;
-  src: url('./../assets/fonts/SCDream1.otf');
-}
+// Noto Sans KR.웹폰트
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 
+// NanumSquareNeo. 웹폰트 대체
 @font-face {
-  font-family: 'SCDream';
-  font-style: 'extra-light';
-  font-weight: 200;
-  src: url('./../assets/fonts/SCDream2.otf');
-}
-
-@font-face {
-  font-family: 'SCDream';
-  font-style: light;
-  font-weight: 300;
-  src: url('./../assets/fonts/SCDream3.otf');
-}
-
-@font-face {
-  font-family: 'SCDream';
+  font-family: 'NanumSquareNeo';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2')
+    format('woff2');
+  font-weight: normal;
   font-style: normal;
-  font-weight: 400;
-  src: url('./../assets/fonts/SCDream4.otf');
+  font-display: swap; // block
 }
 
-@font-face {
-  font-family: 'SCDream';
-  font-style: medium;
-  font-weight: 500;
-  src: url('./../assets/fonts/SCDream5.otf');
-}
-
-@font-face {
-  font-family: 'SCDream';
-  font-style: 'semi-bold';
-  font-weight: 600;
-  src: url('./../assets/fonts/SCDream6.otf');
-}
-
-@font-face {
-  font-family: 'SCDream';
-  font-style: bold;
-  font-weight: 700;
-  src: url('./../assets/fonts/SCDream7.otf');
-}
-
-@font-face {
-  font-family: 'SCDream';
-  font-style: 'extra-bold';
-  font-weight: 800;
-  src: url('./../assets/fonts/SCDream8.otf');
-}
-
-@font-face {
-  font-family: 'SCDream';
-  font-style: heavy;
-  font-weight: 900;
-  src: url('./../assets/fonts/SCDream9.otf');
-}
-
-// NanumGothic
-
-@font-face {
-  font-family: 'NanumGothic';
-  font-style: light;
-  font-weight: 300;
-  src: url('./../assets/fonts/NanumGothicLight.otf');
-}
-
-@font-face {
-  font-family: 'NanumGothic';
-  font-style: medium;
-  font-weight: 400;
-  src: url('./../assets/fonts/NanumGothic.otf');
-}
-
-@font-face {
-  font-family: 'NanumGothic';
-  font-style: 'bold';
-  font-weight: 700;
-  src: url('./../assets/fonts/NanumGothicBold.otf');
-}
-
-@font-face {
-  font-family: 'NanumGothic';
-  font-style: 'extra-bold';
-  font-weight: 800;
-  src: url('./../assets/fonts/NanumGothicExtraBold.otf');
-}
-
-// NanumSquareNeo
-
-@font-face {
-  font-family: 'NanumSquareNeo';
-  font-style: light;
-  font-weight: 300;
-  src: url('./../assets/fonts/NanumSquareNeoOTF-Lt.otf');
-}
-
-@font-face {
-  font-family: 'NanumSquareNeo';
-  font-style: medium;
-  font-weight: 400;
-  src: url('./../assets/fonts/NanumSquareNeoOTF-Rg.otf');
-}
-
-@font-face {
-  font-family: 'NanumSquareNeo';
-  font-style: 'bold';
-  font-weight: 700;
-  src: url('./../assets/fonts/NanumSquareNeoOTF-Bd.otf');
-}
-
-@font-face {
-  font-family: 'NanumSquareNeo';
-  font-style: 'extra-bold';
-  font-weight: 800;
-  src: url('./../assets/fonts/NanumSquareNeoOTF-Eb.otf');
-}
-
-@font-face {
-  font-family: 'NanumSquareNeo';
-  font-style: 'heavy';
-  font-weight: 900;
-  src: url('./../assets/fonts/NanumSquareNeoOTF-Hv.otf');
-}
+// Nanum Gothic. 웹폰트 대체
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Roboto:wght@100&display=swap');

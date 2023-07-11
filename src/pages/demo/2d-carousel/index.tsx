@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react'
 import './style.scss'
 import CircleIcon from '@assets/svgs/circle.svg'
 import LeftIcon from '@assets/svgs/left.svg'
@@ -159,15 +159,15 @@ const Carousel: React.FC<Props> = ({
     return (children as React.ReactNode[]).length
   }, [children])
 
-  // 다음 슬라이드로 이동하는 함수
-  const slideNext = function () {
+  // 다음 슬라이드로 이동하는 함수. index 변경시마다 재선언 되지 않도록 useCallback
+  const slideNext = useCallback(function () {
     setIndex((index) => (index + 1 > length - 1 ? 0 : index + 1))
-  }
+  }, [])
 
-  // 이전 슬라이드로 이동하는 함수
-  const slidePrev = function () {
+  // 이전 슬라이드로 이동하는 함수. index 변경시마다 재선언 되지 않도록 useCallback
+  const slidePrev = useCallback(function () {
     setIndex((index) => (index - 1 < 0 ? length - 1 : index - 1))
-  }
+  }, [])
 
   // 자동 플레이를 위한 인터벌 함수
   useEffect(() => {
@@ -248,14 +248,7 @@ const Carousel: React.FC<Props> = ({
 
       if (isHorizontalSwipe) {
         const isSwipeLeft = touchoffsetX < 0
-        const nextIndex = isSwipeLeft
-          ? index + 1 > length - 1
-            ? 0
-            : index + 1
-          : index - 1 < 0
-          ? length - 1
-          : index - 1
-        setIndex(nextIndex)
+        isSwipeLeft ? slideNext() : slidePrev()
       }
     }
 
