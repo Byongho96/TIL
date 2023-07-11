@@ -1,3 +1,6 @@
+# Sonarqube
+.scannerwork
+
 # Gatsby
 node_modules/
 .cache/

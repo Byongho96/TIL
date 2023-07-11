@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from 'react'
+import React, { useState, useMemo } from 'react'
 import './posts.scss'
 import { graphql } from 'gatsby'
 import PostItem from '@components/post-item'
@@ -35,21 +35,20 @@ type DataProps = {
 
 const PostsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
   const [lastIdx, setLastIdx] = useState(20)
-  const infiniteRef = useRef<HTMLElement>(null)
 
   const shownData = useMemo(() => {
-    return data.allMarkdownRemark.nodes.slice(0, lastIdx + 1)
+    return data.allMarkdownRemark.nodes.slice(0, lastIdx)
   }, [lastIdx])
 
   const isEnd = useMemo(() => {
-    return lastIdx >= data.allMarkdownRemark.nodes.length - 1
+    return lastIdx > data.allMarkdownRemark.nodes.length
   }, [lastIdx])
 
   const loadMore = () => {
     setLastIdx((prev) => prev + 20)
   }
 
-  useInfiniteScroll({ ref: infiniteRef, isEnd, loadMore })
+  useInfiniteScroll({ isEnd, loadMore })
 
   return (
     <CategoryLayout>
@@ -59,8 +58,8 @@ const PostsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
         </div>
         <ul className="posts__post-list">
           {shownData.map((node) => (
-            <li>
-              <PostItem key={node.id} node={node} />
+            <li key={node.id}>
+              <PostItem node={node} />
             </li>
           ))}
         </ul>

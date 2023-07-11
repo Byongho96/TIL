@@ -35,13 +35,6 @@ const PostHeader: React.FC<Props> = ({ frontmatter }) => {
           ))}
         </div>
       )}
-      {/* {frontmatter.reference && (
-        <div className="post-header__reference">
-          <a href={frontmatter.reference}>
-            메인 레퍼런스: {frontmatter.reference}
-          </a>
-        </div>
-      )} */}
     </div>
   )
 }

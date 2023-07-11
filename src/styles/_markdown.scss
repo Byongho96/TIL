@@ -61,6 +61,7 @@
 
 .markdown-body .octicon {
   display: inline-block;
+  overflow: visible !important;
   fill: currentColor;
   vertical-align: text-bottom;
 }
@@ -402,22 +403,6 @@
   font-size: 12px;
 }
 
-.markdown-body pre {
-  margin-top: 0;
-  margin-bottom: 0;
-  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
-    Liberation Mono, monospace;
-  font-size: 12px;
-  word-wrap: normal;
-}
-
-.markdown-body .octicon {
-  display: inline-block;
-  overflow: visible !important;
-  vertical-align: text-bottom;
-  fill: currentColor;
-}
-
 .markdown-body input::-webkit-outer-spin-button,
 .markdown-body input::-webkit-inner-spin-button {
   margin: 0;
@@ -749,10 +734,15 @@
 }
 
 .markdown-body pre {
-  padding: 16px;
   overflow: auto;
+  padding: 16px;
+  margin-top: 0;
+  margin-bottom: 0;
   font-size: 85%;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
+    Liberation Mono, monospace;
   line-height: 1.45;
+  word-wrap: normal;
   background-color: var(--color-canvas-subtle);
   border-radius: 6px;
 }
@@ -845,10 +835,12 @@
   font-family: monospace;
 }
 
+// 커스텀: add generic font family
 .markdown-body g-emoji {
   display: inline-block;
   min-width: 1ch;
-  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Sans', Helvetica, Arial, sans-serif;
   font-size: 1em;
   font-style: normal !important;
   font-weight: var(--base-text-weight-normal, 400);

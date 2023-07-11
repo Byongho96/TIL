@@ -7,7 +7,7 @@ import { useEffect, RefObject } from 'react'
 */
 
 type InfiniteScrollProps = {
-  ref: RefObject<HTMLElement> // 무한스크롤이 동작할 DOM 엘리먼트를 ref로 받음
+  ref?: RefObject<HTMLElement> // 무한스크롤이 동작할 DOM 엘리먼트를 ref로 받음
   isEnd: boolean // 더이상 로드할 데이터가 없을 때, true로 설정
   loadMore: () => void // 컨텐츠를 로드할 함수
 }
@@ -20,13 +20,11 @@ const useInfiniteScroll = function ({
   // 스크롤 이벤트 감지 함수
 
   useEffect(() => {
-    const element = ref.current // 무한스크롤이 동작할 DOM 엘리먼트
-
-    if (!(element instanceof HTMLElement) || !isEnd) return //element가 null일 경우, 함수 종료
+    if (isEnd) return
 
     const handleScroll = () => {
-      const element = ref.current ? ref.current : document.documentElement
-      const THRESHOLD = 5
+      const element = ref?.current ? ref.current : document.documentElement
+      const THRESHOLD = 20
 
       const { scrollTop, scrollHeight, clientHeight } = element // 엘리먼트의 스크롤 정보
       if (scrollHeight - scrollTop - clientHeight > THRESHOLD) return

@@ -2,16 +2,9 @@
 @import '_fonts.scss';
 
 // sass variable을 css variable로 사용하기 위해서는 interpolation
-// 기본 모드. flickering 방지
+// 라이트 모드
 :root {
   --main-color: #ffffff00;
-  --bg-color: #ffffff00;
-  --font-color: #ffffff00;
-  --font-gray-color: #ffffff00;
-  --bg-gray-color: #ffffff00;
-}
-// 라이트 모드
-:root.light {
   --bg-color: #{$bg-white};
   --font-color: #{$font-black};
   --font-gray-color: #{$font-gray};
@@ -28,6 +21,7 @@
 body {
   background-color: var(--bg-color);
   color: var(--font-color);
+  font-display: SWAP; // block
 
   font-family: 'SCDream', 'NanumSquareNeo', -apple-system, BlinkMacSystemFont,
     'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',

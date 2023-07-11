@@ -1,5 +1,4 @@
 import React, { memo, createRef, useEffect } from 'react'
-import './style.scss'
 
 export interface GiscusProps {
   theme?:

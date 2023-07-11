@@ -23,7 +23,7 @@ export const ThemeContext = createContext<ThemeContextType>({
 
 // Context API로 theme과 toggleTheme을 하위 컴포넌트에 내려줌
 export const ThemeProvider: React.FC<Props> = ({ children }) => {
-  const [theme, setTheme] = useState('') // theme 정의
+  const [theme, setTheme] = useState('light') // theme 정의
   const toggleTheme = useCallback(() => {
     setTheme((theme) => {
       return theme === 'light' ? 'dark' : 'light'

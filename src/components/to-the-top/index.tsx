@@ -12,7 +12,11 @@ const ToTheTop: React.FC = () => {
   }
 
   return (
-    <button className="to-the-top" onClick={handleClick}>
+    <button
+      className="to-the-top"
+      onClick={handleClick}
+      name="페이지 최상단으로 이동"
+    >
       <UpIcon />
       <span style={{ '--i': 0 }} />
       <span style={{ '--i': 1 }} />

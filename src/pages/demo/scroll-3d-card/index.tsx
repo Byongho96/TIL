@@ -191,7 +191,7 @@ const Scroll3DCard: React.FC<Props> = ({
           {backgroundText}
           <div className="scroll-3d-card__card-frame ">
             {cardTexts.map((text) => (
-              <div className="scroll-3d-card__card">
+              <div key={text} className="scroll-3d-card__card">
                 <div className="scroll-3d-card__card--front">{text}</div>
                 <div className="scroll-3d-card__card--back"></div>
               </div>
@@ -204,62 +204,64 @@ const Scroll3DCard: React.FC<Props> = ({
   )
 }
 
-// class CardFlipOnScroll {
-//   constructor(background, sticky) {
-//     this.backgorund = background
-//     this.sticky = sticky
-//     this.cards = sticky.querySelectorAll('.scroll-3d-card__card')
-//     this.length = this.cards.length
+/*
+class CardFlipOnScroll {
+  constructor(background, sticky) {
+    this.backgorund = background
+    this.sticky = sticky
+    this.cards = sticky.querySelectorAll('.scroll-3d-card__card')
+    this.length = this.cards.length
 
-//     this.start = 0 // 애니메이션 시작 시, 스크롤 위치
-//     this.end = 0 // 애니메이션 끝날 시, 스크롤  위치
-//     this.step = 0 // 애니메이션 구분 최소 단위
-//   }
+    this.start = 0 // 애니메이션 시작 시, 스크롤 위치
+    this.end = 0 // 애니메이션 끝날 시, 스크롤  위치
+    this.step = 0 // 애니메이션 구분 최소 단위
+  }
 
-//   // 초기화 함수
-//   init() {
-//     this.start = this.background.offsetTop
-//     this.end =
-//       this.background.offsetTop +
-//       this.background.offsetHeight -
-//       this.sticky.offsetHeight * 1.2
-//     this.step = (this.end - this.start) / (this.length * 2)
-//   }
+  // 초기화 함수
+  init() {
+    this.start = this.background.offsetTop
+    this.end =
+      this.background.offsetTop +
+      this.background.offsetHeight -
+      this.sticky.offsetHeight * 1.2
+    this.step = (this.end - this.start) / (this.length * 2)
+  }
 
-//   // 애니메이션 함수
-//   animate() {
-//     this.cards.forEach((card, i) => {
-//       const movePoint = this.start + this.step * i
-//       const flipPoint = movePoint + this.step * this.length
-//       const endPoint = flipPoint + this.step
+  // 애니메이션 함수
+  animate() {
+    this.cards.forEach((card, i) => {
+      const movePoint = this.start + this.step * i
+      const flipPoint = movePoint + this.step * this.length
+      const endPoint = flipPoint + this.step
 
-//       if (scrollTop < movePoint) {
-//         card.style.transform = `
-//             translateX(100vw)
-//             rotateY(180deg)
-//           `
-//       } else if (scrollTop < flipPoint) {
-//         card.style.transform = `
-//             translateX(${
-//               100 + ((scrollTop - movePoint) / (endPoint - movePoint)) * -100
-//             }vw)
-//             rotateY(180deg)
-//           `
-//       } else if (scrollTop < endPoint) {
-//         card.style.transform = `
-//             translateX(${
-//               100 + ((scrollTop - movePoint) / (endPoint - movePoint)) * -100
-//             }vw)
-//             rotateY(${
-//               180 + (-(scrollTop - flipPoint) / (endPoint - flipPoint)) * 180
-//             }deg)
-//           `
-//       } else {
-//         card.style.transform = `
-//             translateX(0vw)
-//             rotateY(0deg)
-//           `
-//       }
-//     })
-//   }
-// }
+      if (scrollTop < movePoint) {
+        card.style.transform = `
+            translateX(100vw)
+            rotateY(180deg)
+          `
+      } else if (scrollTop < flipPoint) {
+        card.style.transform = `
+            translateX(${
+              100 + ((scrollTop - movePoint) / (endPoint - movePoint)) * -100
+            }vw)
+            rotateY(180deg)
+          `
+      } else if (scrollTop < endPoint) {
+        card.style.transform = `
+            translateX(${
+              100 + ((scrollTop - movePoint) / (endPoint - movePoint)) * -100
+            }vw)
+            rotateY(${
+              180 + (-(scrollTop - flipPoint) / (endPoint - flipPoint)) * 180
+            }deg)
+          `
+      } else {
+        card.style.transform = `
+            translateX(0vw)
+            rotateY(0deg)
+          `
+      }
+    })
+  }
+}
+*/

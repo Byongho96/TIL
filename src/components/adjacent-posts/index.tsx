@@ -42,17 +42,14 @@ const Post: React.FC<PostProps> = ({ post, isNext }) => {
   const sign = isNext ? '다음 포스트' : '이전 포스트'
 
   return (
-    <article className="adjacent-posts__post">
-      <Link
-        className={`adjacent-posts__post--link ${direction}`}
-        to={post.slug}
-      >
+    <Link className="adjacent-posts__post--link" to={post.slug}>
+      <article className={`adjacent-posts__post ${direction}`}>
         {icon}
         <div className={`adjacent-posts__post--flex ${direction}`}>
           <div className="adjacent-posts__post__sign">{sign}</div>
           <h1 className="adjacent-posts__post__title">{post.title}</h1>
         </div>
-      </Link>
-    </article>
+      </article>
+    </Link>
   )
 }

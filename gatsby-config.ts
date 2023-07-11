@@ -57,6 +57,12 @@ const config: GatsbyConfig = {
         },
       },
     },
+    {
+      resolve: 'gatsby-plugin-html-attributes',
+      options: {
+        lang: 'ko',
+      },
+    },
     'gatsby-plugin-sitemap',
     {
       resolve: `gatsby-plugin-feed`,

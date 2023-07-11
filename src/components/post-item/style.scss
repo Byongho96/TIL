@@ -2,16 +2,15 @@
 @import '@styles/_responsive.scss';
 
 .post-item {
-  padding: 2rem 0;
-  border-bottom: 1px solid #a8a8a8;
-  transition: scale 0.2s ease-in-out, border-bottom 0.2s ease-in-out;
-  cursor: pointer;
-}
-
-.post-item--link {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid #a8a8a8;
+  transition: scale 0.2s ease-in-out, border-bottom 0.2s ease-in-out;
+}
+
+.post-item--link {
   text-decoration: none;
   color: inherit;
 }
@@ -50,7 +49,7 @@
 
 // 태블릿
 @include tablet {
-  .post-item--link {
+  .post-item {
     gap: 1.5rem;
   }
 
@@ -74,11 +73,8 @@
 // 모바일
 @include mobile {
   .post-item {
-    padding: 1rem 0;
-  }
-
-  .post-item--link {
     gap: 0.8rem;
+    padding: 1rem 0;
   }
 
   .post-item--flex {
