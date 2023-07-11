@@ -129,9 +129,9 @@ const config: GatsbyConfig = {
       options: {
         name: `Byongho96 TIL`, //
         short_name: `Byongho96 TIL`,
-        start_url: `/TIL`, //실행시에 시작되는 URL 주소
+        start_url: `/`, //실행시에 시작되는 URL 주소
         background_color: `#fffefd`,
-        theme_color: `#000000`,
+        theme_color: `#292929`,
         display: `standalone`, // 앱 표시 모드
         theme_color_in_head: false, // This will avoid adding theme-color meta tag.
         icon: 'src/assets/images/icon.png',
