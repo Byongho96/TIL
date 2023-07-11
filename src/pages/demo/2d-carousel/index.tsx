@@ -237,18 +237,25 @@ const Carousel: React.FC<Props> = ({
 
     // 터치 종료 시, 터지 종료에 따라 동작
     const touchEnd = function (event: TouchEvent) {
-      if (event.touches.length === 0) {
-        const touch = event.changedTouches[event.changedTouches.length - 1] // 마지막 터치 위치
-        const touchoffsetX = touch.clientX - touchStartInfo.x
-        const touchoffsetY = touch.clientY - touchStartInfo.y
+      if (event.touches.length !== 0) return
+      const touch = event.changedTouches[event.changedTouches.length - 1] // 마지막 터치 위치
+      const touchoffsetX = touch.clientX - touchStartInfo.x
+      const touchoffsetY = touch.clientY - touchStartInfo.y
 
-        // 가로로 80px이상 && 세로로 20px 이하 이동 시, 터치로 인식
-        if (Math.abs(touchoffsetX) >= 80 && Math.abs(touchoffsetY) <= 20) {
-          if (touchoffsetX < 0)
-            setIndex((index) => (index + 1 > length - 1 ? 0 : index + 1))
-          // 왼쪽으로 슬라이드
-          else setIndex((index) => (index - 1 < 0 ? length - 1 : index - 1)) // 오른쪽으로 슬라이드
-        }
+      // 가로로 70px이상 && 세로로 60px 이하 이동 시, 터치로 인식
+      const isHorizontalSwipe =
+        Math.abs(touchoffsetX) >= 70 && Math.abs(touchoffsetY) <= 30
+
+      if (isHorizontalSwipe) {
+        const isSwipeLeft = touchoffsetX < 0
+        const nextIndex = isSwipeLeft
+          ? index + 1 > length - 1
+            ? 0
+            : index + 1
+          : index - 1 < 0
+          ? length - 1
+          : index - 1
+        setIndex(nextIndex)
       }
     }
 
