@@ -4,14 +4,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2rem;
+  gap: 4rem;
 }
 
 .about-blog__typing {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--font-color);
+  color: var(--font-gray-color);
   font-size: 7rem;
   font-weight: 700;
   text-align: center;
@@ -29,7 +29,7 @@
   height: 2rem;
 }
 .about-blog__navbar__item path {
-  fill: var(--font-color);
+  fill: var(--font-gray-color);
 }
 
 @include laptop {
@@ -46,6 +46,6 @@
 
 @include mobile {
   .about-blog__typing {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 }
