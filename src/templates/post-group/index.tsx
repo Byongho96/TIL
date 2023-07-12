@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import './style.scss'
 import { graphql } from 'gatsby'
 import PostItem from '@components/post-item'
@@ -45,20 +45,18 @@ const PostGroupPage: React.FC<PageProps<DataProps, PageContextType>> = ({
   pageContext,
   data,
 }) => {
-  const posts = useMemo(() => {
-    return data.allMarkdownRemark.nodes.map((node) => ({
-      item: {
-        id: node.id,
-        excerpt: node.excerpt,
-        name: node.parent.name,
-        relativePath: node.parent.relativePath,
-        title: node.frontmatter.title,
-        createdAt: node.frontmatter.createdAt,
-        tags: node.frontmatter.tags, // 수정: 'tiags'가 아닌 'tags'로 수정
-        slug: node.fields.slug,
-      },
-    }))
-  }, [data])
+  const posts = data.allMarkdownRemark.nodes.map((node) => ({
+    item: {
+      id: node.id,
+      excerpt: node.excerpt,
+      name: node.parent.name,
+      relativePath: node.parent.relativePath,
+      title: node.frontmatter.title,
+      createdAt: node.frontmatter.createdAt,
+      tags: node.frontmatter.tags, // 수정: 'tiags'가 아닌 'tags'로 수정
+      slug: node.fields.slug,
+    },
+  }))
 
   return (
     <CategoryLayout defaultCategory={pageContext.name}>

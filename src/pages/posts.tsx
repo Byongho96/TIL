@@ -40,20 +40,18 @@ const PostsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
   const [lastIdx, setLastIdx] = useState(20)
 
   // data 가공
-  const posts = useMemo(() => {
-    return data.allMarkdownRemark.nodes.map((node) => ({
-      item: {
-        id: node.id,
-        excerpt: node.excerpt,
-        name: node.parent.name,
-        relativePath: node.parent.relativePath,
-        title: node.frontmatter.title,
-        createdAt: node.frontmatter.createdAt,
-        tags: node.frontmatter.tags, // 수정: 'tiags'가 아닌 'tags'로 수정
-        slug: node.fields.slug,
-      },
-    }))
-  }, [data])
+  const posts = data.allMarkdownRemark.nodes.map((node) => ({
+    item: {
+      id: node.id,
+      excerpt: node.excerpt,
+      name: node.parent.name,
+      relativePath: node.parent.relativePath,
+      title: node.frontmatter.title,
+      createdAt: node.frontmatter.createdAt,
+      tags: node.frontmatter.tags, // 수정: 'tiags'가 아닌 'tags'로 수정
+      slug: node.fields.slug,
+    },
+  }))
 
   // 인덱스에 다라 보여지는 데이터
   const scrolledPosts = useMemo(() => {
