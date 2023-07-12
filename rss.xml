@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 11 Jul 2023 13:35:02 GMT</lastBuildDate><item><title><![CDATA[반응형 2D 캐러셀 (React 컴포넌트)]]></title><description><![CDATA[1. 목표 1.1. react-responsive-carousel 오늘은 'npm react carousel'을 구글링하면 제일 상단에 나오는 react-responsive-carousel과 유사하게 동작하는 리액트 컴포넌트를 만들어 볼 것이다. 2d…]]></description><link>https://byongho96.github.io/TIL/posts/Animation/2D_Carousel/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Animation/2D_Carousel/</guid><pubDate>Mon, 10 Jul 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-목표&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EB%AA%A9%ED%91%9C&quot; aria-label=&quot;1 목표 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 목표&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 12 Jul 2023 00:46:58 GMT</lastBuildDate><item><title><![CDATA[반응형 2D 캐러셀 (React 컴포넌트)]]></title><description><![CDATA[1. 목표 1.1. react-responsive-carousel 오늘은 'npm react carousel'을 구글링하면 제일 상단에 나오는 react-responsive-carousel과 유사하게 동작하는 리액트 컴포넌트를 만들어 볼 것이다. 2d…]]></description><link>https://byongho96.github.io/TIL/posts/Animation/2D_Carousel/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Animation/2D_Carousel/</guid><pubDate>Mon, 10 Jul 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-목표&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EB%AA%A9%ED%91%9C&quot; aria-label=&quot;1 목표 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 목표&lt;/h1&gt;
 &lt;h2 id=&quot;11-react-responsive-carousel&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-react-responsive-carousel&quot; aria-label=&quot;11 react responsive carousel permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1. react-responsive-carousel&lt;/h2&gt;
 &lt;p&gt;오늘은 &apos;npm react carousel&apos;을 구글링하면 제일 상단에 나오는 &lt;a href=&quot;https://www.npmjs.com/package/react-responsive-carousel&quot;&gt;react-responsive-carousel&lt;/a&gt;과 유사하게 동작하는 리액트 컴포넌트를 만들어 볼 것이다.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/TIL/32099a46698bf502be574bc9dd0ad738/2d-carousel.gif&quot; alt=&quot;2d-carousel.gif&quot;&gt;&lt;/p&gt;
@@ -57,7 +57,7 @@ assertion을 사용하는게 꺼림직하긴 하지만, 캐러셀 특징 상 chi
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import React, { useEffect, useMemo, useRef, useState, Children } from &apos;react&apos;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import React, { useEffect, useMemo, useRef, useState, useCallback } from &apos;react&apos;
 import &apos;./style.scss&apos;
 import CircleIcon from &apos;@assets/svgs/circle.svg&apos; // 따로 svg 파일 준비
 import LeftIcon from &apos;@assets/svgs/left.svg&apos;
@@ -97,15 +97,21 @@ const Carousel: React.FC&amp;#x3C;Props&gt; = ({
     return (children as React.ReactNode[]).length
   }, [children])
 
-  // 다음 슬라이드로 이동하는 함수
-  const slideNext = function () {
-    setIndex((index) =&gt; (index + 1 &gt; length - 1 ? 0 : index + 1))
-  }
+  // 다음 슬라이드로 이동하는 함수. index 변경시마다 재선언 되지 않도록 useCallback
+  const slideNext = useCallback(
+    function () {
+      setIndex((index) =&gt; (index + 1 &gt; length - 1 ? 0 : index + 1))
+    },
+    [length]
+  )
 
-  // 이전 슬라이드로 이동하는 함수
-  const slidePrev = function () {
-    setIndex((index) =&gt; (index - 1 &amp;#x3C; 0 ? length - 1 : index - 1))
-  }
+  // 이전 슬라이드로 이동하는 함수. index 변경시마다 재선언 되지 않도록 useCallback
+  const slidePrev = useCallback(
+    function () {
+      setIndex((index) =&gt; (index - 1 &amp;#x3C; 0 ? length - 1 : index - 1))
+    },
+    [length]
+  )
 
   // 자동 플레이를 위한 인터벌 함수
   useEffect(() =&gt; {
@@ -171,18 +177,18 @@ const Carousel: React.FC&amp;#x3C;Props&gt; = ({
 
     // 터치 종료 시, 터지 종료에 따라 동작
     const touchEnd = function (event: TouchEvent) {
-      if (event.touches.length === 0) {
-        const touch = event.changedTouches[event.changedTouches.length - 1] // 마지막 터치 위치
-        const touchoffsetX = touch.clientX - touchStartInfo.x
-        const touchoffsetY = touch.clientY - touchStartInfo.y
+      if (event.touches.length !== 0) return
+      const touch = event.changedTouches[event.changedTouches.length - 1] // 마지막 터치 위치
+      const touchoffsetX = touch.clientX - touchStartInfo.x
+      const touchoffsetY = touch.clientY - touchStartInfo.y
 
-        // 가로로 80px이상 &amp;#x26;&amp;#x26; 세로로 20px 이하 이동 시, 터치로 인식
-        if (Math.abs(touchoffsetX) &gt;= 80 &amp;#x26;&amp;#x26; Math.abs(touchoffsetY) &amp;#x3C;= 20) {
-          if (touchoffsetX &amp;#x3C; 0)
-            setIndex((index) =&gt; (index + 1 &gt; length - 1 ? 0 : index + 1))
-          // 왼쪽으로 슬라이드
-          else setIndex((index) =&gt; (index - 1 &amp;#x3C; 0 ? length - 1 : index - 1)) // 오른쪽으로 슬라이드
-        }
+      // 가로로 70px이상 &amp;#x26;&amp;#x26; 세로로 60px 이하 이동 시, 터치로 인식
+      const isHorizontalSwipe =
+        Math.abs(touchoffsetX) &gt;= 70 &amp;#x26;&amp;#x26; Math.abs(touchoffsetY) &amp;#x3C;= 30
+
+      if (isHorizontalSwipe) {
+        const isSwipeLeft = touchoffsetX &amp;#x3C; 0
+        isSwipeLeft ? slideNext() : slidePrev()
       }
     }
 
@@ -195,7 +201,7 @@ const Carousel: React.FC&amp;#x3C;Props&gt; = ({
       container.removeEventListener(&apos;touchstart&apos;, touchStart)
       container.removeEventListener(&apos;touchend&apos;, touchEnd)
     }
-  }, [length])
+  }, [length, slideNext, slidePrev])
 
   return (
     &amp;#x3C;div className=&quot;carousel-2d&quot; ref={containerRef} style={{ width: width }}&gt;
@@ -980,7 +986,6 @@ export default App
     &lt;/span&gt;
 &lt;p&gt;하나의 트랜잭션마다 하나의 DB 커넥션 객체를 사용합니다. 그런데 DB 커넥션을 생성하는 과정은 비용이 많이 드는 작업이기 때문에, 매 트랜잭션마다 DB 커넥션을 생성하면 오버헤드가 발생하기 쉽습니다.&lt;/p&gt;
 &lt;p&gt;따라서 DB 커넥션 풀(DBCP)라는 개념을 사용합니다. DB 커넥션 풀은 &lt;mark&gt;일정량의 DB 커넥션 객체를 미리 만들어 풀에 저장했다가, 실행되는 트랜잭션마다 커넥션 객체를 할당하고, 트랜잭션이 종료되면 다시 커넥션 객체를 풀에 반납&lt;/mark&gt;하는 프로그래밍 기법입니다. 이미 모두 커넥션 객체가 사용 중일 경우, 트랜잭션은 큐에 대기합니다.&lt;/p&gt;
-&lt;p&gt;설정되면 애플리케이션은 데이터베이스와의 통신을 위해 해당 커넥션을 사용합니다. 애플리케이션은 DB 커넥션을 통해 SQL 쿼리를 실행하고, 데이터를 가져오거나 업데이트할 수 있습니다. 커넥션은 일반적으로 트랜잭션 범위 내에서 사용되며, 트랜잭션의 시작과 종료에 따라 커넥션을 얻고 반환하는 작업이 수행됩니다.&lt;/p&gt;
 &lt;p&gt;SpringBoot에서는 2.0 이전까지는 Tomcat JDBC를 사용하다, 현재 2.0 이후 부터는 &lt;a href=&quot;https://velog.io/@miot2j/Spring-DB%EC%BB%A4%EB%84%A5%EC%85%98%ED%92%80%EA%B3%BC-Hikari-CP-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0&quot;&gt;성능 상으로 더 뛰어난 HikariCP&lt;/a&gt;를 기본옵션으로 사용하고 있습니다. 관련된 설정은 applcation.yml에서 설정할 수 있습니다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-yml&quot;&gt;spring:
   datasource:
