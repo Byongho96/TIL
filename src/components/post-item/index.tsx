@@ -3,28 +3,20 @@ import './style.scss'
 import { Link } from 'gatsby'
 
 interface Props {
-  node: {
+  post: {
     id: string
     excerpt: string
-    parent: {
-      name: string
-      relativePath: string
-    }
-    frontmatter: {
-      title: string
-      createdAt: string
-    }
-    fields: {
-      slug: string
-    }
+    name: string
+    relativePath: string
+    title: string
+    createtAt: string
+    tags: string[]
+    slug: string
   }
 }
 
-const PostItem: React.FC<Props> = ({ node }) => {
-  const { parent, frontmatter, excerpt, fields } = node
-  const { name } = parent
-  const { title, createdAt } = frontmatter
-  const { slug } = fields
+const PostItem: React.FC<Props> = ({ post }) => {
+  const { id, excerpt, name, relativePath, title, createdAt, tags, slug } = post
 
   return (
     <Link className="post-item--link" to={slug}>
@@ -33,7 +25,17 @@ const PostItem: React.FC<Props> = ({ node }) => {
           <h1 className="post-item__title">{title || name}</h1>
           <span className="post-item__date">{createdAt}</span>
         </div>
-        <p className="post-item__excerpt">{excerpt}</p>
+        {tags ? (
+          <ul className="post-item__tag-list">
+            {tags.map((tag) => (
+              <li key={tag}>
+                <div className="post-item__tag">{tag}</div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="post-item__excerpt">{excerpt}</p>
+        )}
       </article>
     </Link>
   )

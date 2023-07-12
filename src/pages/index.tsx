@@ -18,4 +18,4 @@ const IndexPage: React.FC<PageProps> = () => {
 
 export default IndexPage
 
-export const Head = () => <SEO title="Home Page" />
+export const Head = () => <SEO title="TIL Home Page" />

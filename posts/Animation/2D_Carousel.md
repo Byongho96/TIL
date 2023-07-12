@@ -70,7 +70,7 @@ type Props = {
     [이 블로그](https://chicpro.dev/javascript%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-%EC%A2%8C%EC%9A%B0-swipe-%EB%B0%A9%ED%96%A5-%EC%95%8C%EC%95%84%EB%82%B4%EA%B8%B0/)의 글을 참조했다.
 
 ```js
-import React, { useEffect, useMemo, useRef, useState, Children } from 'react'
+import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react'
 import './style.scss'
 import CircleIcon from '@assets/svgs/circle.svg' // 따로 svg 파일 준비
 import LeftIcon from '@assets/svgs/left.svg'
@@ -110,15 +110,21 @@ const Carousel: React.FC<Props> = ({
     return (children as React.ReactNode[]).length
   }, [children])
 
-  // 다음 슬라이드로 이동하는 함수
-  const slideNext = function () {
-    setIndex((index) => (index + 1 > length - 1 ? 0 : index + 1))
-  }
+  // 다음 슬라이드로 이동하는 함수. index 변경시마다 재선언 되지 않도록 useCallback
+  const slideNext = useCallback(
+    function () {
+      setIndex((index) => (index + 1 > length - 1 ? 0 : index + 1))
+    },
+    [length]
+  )
 
-  // 이전 슬라이드로 이동하는 함수
-  const slidePrev = function () {
-    setIndex((index) => (index - 1 < 0 ? length - 1 : index - 1))
-  }
+  // 이전 슬라이드로 이동하는 함수. index 변경시마다 재선언 되지 않도록 useCallback
+  const slidePrev = useCallback(
+    function () {
+      setIndex((index) => (index - 1 < 0 ? length - 1 : index - 1))
+    },
+    [length]
+  )
 
   // 자동 플레이를 위한 인터벌 함수
   useEffect(() => {
@@ -184,18 +190,18 @@ const Carousel: React.FC<Props> = ({
 
     // 터치 종료 시, 터지 종료에 따라 동작
     const touchEnd = function (event: TouchEvent) {
-      if (event.touches.length === 0) {
-        const touch = event.changedTouches[event.changedTouches.length - 1] // 마지막 터치 위치
-        const touchoffsetX = touch.clientX - touchStartInfo.x
-        const touchoffsetY = touch.clientY - touchStartInfo.y
+      if (event.touches.length !== 0) return
+      const touch = event.changedTouches[event.changedTouches.length - 1] // 마지막 터치 위치
+      const touchoffsetX = touch.clientX - touchStartInfo.x
+      const touchoffsetY = touch.clientY - touchStartInfo.y
 
-        // 가로로 80px이상 && 세로로 20px 이하 이동 시, 터치로 인식
-        if (Math.abs(touchoffsetX) >= 80 && Math.abs(touchoffsetY) <= 20) {
-          if (touchoffsetX < 0)
-            setIndex((index) => (index + 1 > length - 1 ? 0 : index + 1))
-          // 왼쪽으로 슬라이드
-          else setIndex((index) => (index - 1 < 0 ? length - 1 : index - 1)) // 오른쪽으로 슬라이드
-        }
+      // 가로로 70px이상 && 세로로 60px 이하 이동 시, 터치로 인식
+      const isHorizontalSwipe =
+        Math.abs(touchoffsetX) >= 70 && Math.abs(touchoffsetY) <= 30
+
+      if (isHorizontalSwipe) {
+        const isSwipeLeft = touchoffsetX < 0
+        isSwipeLeft ? slideNext() : slidePrev()
       }
     }
 
@@ -208,7 +214,7 @@ const Carousel: React.FC<Props> = ({
       container.removeEventListener('touchstart', touchStart)
       container.removeEventListener('touchend', touchEnd)
     }
-  }, [length])
+  }, [length, slideNext, slidePrev])
 
   return (
     <div className="carousel-2d" ref={containerRef} style={{ width: width }}>

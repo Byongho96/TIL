@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useMemo } from 'react'
 import './style.scss'
 import { graphql } from 'gatsby'
 import PostItem from '@components/post-item'
@@ -20,6 +20,7 @@ type MarkdownRemarkNode = {
     title: string
     createdAt: string
     updatedAt: string
+    tags: string[]
   }
   fields: {
     slug: string
@@ -44,6 +45,21 @@ const PostGroupPage: React.FC<PageProps<DataProps, PageContextType>> = ({
   pageContext,
   data,
 }) => {
+  const posts = useMemo(() => {
+    return data.allMarkdownRemark.nodes.map((node) => ({
+      item: {
+        id: node.id,
+        excerpt: node.excerpt,
+        name: node.parent.name,
+        relativePath: node.parent.relativePath,
+        title: node.frontmatter.title,
+        createdAt: node.frontmatter.createdAt,
+        tags: node.frontmatter.tags, // 수정: 'tiags'가 아닌 'tags'로 수정
+        slug: node.fields.slug,
+      },
+    }))
+  }, [data])
+
   return (
     <CategoryLayout defaultCategory={pageContext.name}>
       <main className="post-group--layout">
@@ -51,9 +67,9 @@ const PostGroupPage: React.FC<PageProps<DataProps, PageContextType>> = ({
           <TypeAnimation phrases={[pageContext.name]} />
         </div>
         <ul className="post-group__post-list">
-          {data.allMarkdownRemark.nodes.map((node) => (
-            <li key={node.id}>
-              <PostItem key={node.id} node={node} />
+          {posts.map((post) => (
+            <li key={post.item.id}>
+              <PostItem post={post.item} />
             </li>
           ))}
         </ul>
@@ -89,6 +105,7 @@ export const query = graphql`
           title
           createdAt
           updatedAt
+          tags
         }
         fields {
           slug

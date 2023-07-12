@@ -4,7 +4,7 @@
 .post-item {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5em;
   padding: 2rem 0;
   border-bottom: 1px solid #a8a8a8;
   transition: scale 0.2s ease-in-out, border-bottom 0.2s ease-in-out;
@@ -29,6 +29,7 @@
 .post-item__title {
   overflow: hidden;
   flex: 1;
+  padding-bottom: 0.3em;
   font-size: 1.7rem;
   font-weight: 700;
   text-overflow: ellipsis;
@@ -36,11 +37,31 @@
 }
 
 .post-item__date {
+  padding-bottom: 0.3em;
   color: var(--font-gray-color);
   font-size: 1.8rem;
   font-weight: 600;
   font-style: italic;
   white-space: nowrap;
+}
+
+.post-item__tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+.post-item__tag {
+  padding: 0.3em 0.4em 0.3em 0.4em;
+  border-radius: 10px;
+  background-color: var(--bg-gray-color);
+  color: var(--font-color);
+  white-space: nowrap;
+  transition: color 0.2s ease-in-out;
+}
+
+.post-item:hover .post-item__tag {
+  color: var(--main-color);
 }
 
 .post-item__excerpt {
@@ -50,7 +71,8 @@
 // 태블릿
 @include tablet {
   .post-item {
-    gap: 1.5rem;
+    gap: 1.3rem;
+    padding: 1.5em 0;
   }
 
   .post-item--flex {
@@ -63,6 +85,10 @@
 
   .post-item__date {
     font-size: 1.5rem;
+  }
+
+  .post-item__tag {
+    font-size: 1rem;
   }
 
   .post-item__excerpt {
@@ -93,7 +119,11 @@
     font-size: 1.2rem;
   }
 
+  .post-item__tag {
+    font-size: 0.9rem;
+  }
+
   .post-item__excerpt {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 }

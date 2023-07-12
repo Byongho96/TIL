@@ -1,10 +1,11 @@
-import React, { useState, useMemo } from 'react'
+import React, { useCallback, useState, useMemo } from 'react'
 import './posts.scss'
 import { graphql } from 'gatsby'
+// import PostItem from '@components/post-item'
 import PostItem from '@components/post-item'
 import SEO from '@components/seo'
 import ToTheTop from '@components/to-the-top'
-import TypeAnimation from '@components/type-animation'
+import { useFuseJs } from '@hooks/use-fujse-js'
 import useInfiniteScroll from '@hooks/use-infinite-scroll'
 import CategoryLayout from '@layouts/category-layout'
 import type { PageProps } from 'gatsby'
@@ -21,6 +22,7 @@ type MarkdownRemarkNode = {
     title: string
     createdAt: string
     updatedAt: string
+    tags: string[]
   }
   fields: {
     slug: string
@@ -34,32 +36,60 @@ type DataProps = {
 }
 
 const PostsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
+  const [query, setQuery] = useState('')
   const [lastIdx, setLastIdx] = useState(20)
 
-  const shownData = useMemo(() => {
-    return data.allMarkdownRemark.nodes.slice(0, lastIdx)
+  // data 가공
+  const posts = useMemo(() => {
+    return data.allMarkdownRemark.nodes.map((node) => ({
+      item: {
+        id: node.id,
+        excerpt: node.excerpt,
+        name: node.parent.name,
+        relativePath: node.parent.relativePath,
+        title: node.frontmatter.title,
+        createdAt: node.frontmatter.createdAt,
+        tags: node.frontmatter.tags, // 수정: 'tiags'가 아닌 'tags'로 수정
+        slug: node.fields.slug,
+      },
+    }))
+  }, [data])
+
+  // 인덱스에 다라 보여지는 데이터
+  const scrolledPosts = useMemo(() => {
+    return posts.slice(0, lastIdx)
   }, [lastIdx])
 
+  // 스크롤 완료 여부
   const isEnd = useMemo(() => {
-    return lastIdx > data.allMarkdownRemark.nodes.length
+    return lastIdx > posts.length
   }, [lastIdx])
 
-  const loadMore = () => {
+  // 인덱스 업데이트
+  const loadMore = useCallback(() => {
     setLastIdx((prev) => prev + 20)
-  }
+  }, [])
 
-  useInfiniteScroll({ isEnd, loadMore })
+  useInfiniteScroll({ isEnd, loadMore }) // 무한 스크롤
+
+  const searchResult = useFuseJs(query)
+
+  const showingData = searchResult.length > 0 ? searchResult : scrolledPosts
 
   return (
     <CategoryLayout>
       <main className="posts--layout">
-        <div className="posts__category-name">
-          <TypeAnimation phrases={['All the Posts']} />
-        </div>
+        <input
+          className="posts__search"
+          type="text"
+          placeholder="Type To Search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
         <ul className="posts__post-list">
-          {shownData.map((node) => (
-            <li key={node.id}>
-              <PostItem node={node} />
+          {showingData.map((post) => (
+            <li key={post.item.id}>
+              <PostItem post={post.item} />
             </li>
           ))}
         </ul>
@@ -68,6 +98,10 @@ const PostsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
     </CategoryLayout>
   )
 }
+
+/* <div className="posts__category-name">
+<TypeAnimation phrases={['All the Posts']} />
+</div> */
 
 export const query = graphql`
   query PostsPageQuery {
@@ -95,6 +129,7 @@ export const query = graphql`
           title
           createdAt
           updatedAt
+          tags
         }
         fields {
           slug
@@ -107,5 +142,9 @@ export const query = graphql`
 export default PostsPage
 
 export const Head = () => (
-  <SEO title="Posts Page" decription="All the TIL posts" pathname="/posts" />
+  <SEO
+    title="TIL Posts Page"
+    decription="All the TIL posts"
+    pathname="/posts"
+  />
 )

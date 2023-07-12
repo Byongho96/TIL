@@ -23,4 +23,4 @@ const AboutPage: React.FC<PageProps> = () => {
 
 export default AboutPage
 
-export const Head = () => <SEO title="About Page" pathname="/about" />
+export const Head = () => <SEO title="TIL About Page" pathname="/about" />

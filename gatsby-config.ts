@@ -32,6 +32,33 @@ type RSSQuery = {
   }
 }
 
+type MarkdownRemarkFuseNode = {
+  id: string
+  excerpt: string
+  parent: {
+    id: string
+    name: string
+    relativePath: string
+  }
+  frontmatter: {
+    title: string
+    createdAt: string
+    updatedAt: string
+    tags: string[]
+  }
+  fields: {
+    slug: string
+  }
+}
+
+type FuseQuery = {
+  data: {
+    allMarkdownRemark: {
+      nodes: MarkdownRemarkFuseNode[]
+    }
+  }
+}
+
 const config: GatsbyConfig = {
   siteMetadata: metaConfig,
   pathPrefix: '/TIL', // gh-pages 배포시 필요
@@ -202,6 +229,61 @@ const config: GatsbyConfig = {
           //   },
           // },
         ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-fusejs`,
+      options: {
+        // 인덱스를 만들고자 하는 데이터의 쿼리
+        query: `
+            {
+              allMarkdownRemark(
+                filter: {
+                  frontmatter: { isCompleted: { eq: true } }
+                  fileAbsolutePath: { regex: "/^(?!.*README).*posts.*$/" }
+                }
+                sort: [
+                  { frontmatter: { createdAt: DESC } }
+                  { frontmatter: { title: DESC } }
+                ]
+              ) {
+                nodes {
+                  id
+                  excerpt
+                  parent {
+                    ... on File {
+                      id
+                      name
+                      relativePath
+                    }
+                  }
+                  frontmatter {
+                    title
+                    createdAt
+                    updatedAt
+                    tags
+                  }
+                  fields {
+                    slug
+                  }
+                }
+              }
+            }
+          `,
+        // 인덱스를 만들고자 하는 데이터의 프로퍼티
+        keys: ['name', 'title', 'tags', 'excerpt'],
+        // graphql의 결과물을 단순 객체 배열로 변환하는 함수. 위의 인덱스를 키로 가져야 함
+        normalizer: ({ data }: FuseQuery) =>
+          data.allMarkdownRemark.nodes.map((node) => ({
+            id: node.id,
+            excerpt: node.excerpt,
+            name: node.parent.name,
+            relativePath: node.parent.relativePath,
+            title: node.frontmatter.title,
+            createdAt: node.frontmatter.createdAt,
+            tags: node.frontmatter.tags,
+            slug: node.fields.slug,
+          })),
       },
     },
   ],
