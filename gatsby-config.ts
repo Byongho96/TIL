@@ -164,6 +164,7 @@ const config: GatsbyConfig = {
         icon: 'src/assets/images/icon.png',
       },
     },
+    `gatsby-plugin-offline`, // manifest 보다 뒤에 와야 함!
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {

@@ -12,3 +12,15 @@ export const wrapRootElement: GatsbyBrowser = ({ element }) => {
 export const wrapPageElement: GatsbyBrowser = ({ element, props }) => {
   return <NavigationLayout {...props}>{element}</NavigationLayout>
 }
+
+// 서비스 워커 업데이트
+export const onServiceWorkerUpdateReady: GatsbyBrowser = () => {
+  const answer = window.confirm(
+    `This application has been updated. ` +
+      `Reload to display the latest version?`
+  )
+
+  if (answer === true) {
+    window.location.reload()
+  }
+}

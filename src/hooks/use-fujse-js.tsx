@@ -32,7 +32,7 @@ export const useFuseJs = (query: string): FusejsData[] => {
     }
   `)
 
-  const deBouncedQuery = useDebounce(query, 100) // debounce 쿼리
+  const deBouncedQuery = useDebounce(query, 200) // debounce 쿼리
 
   /* eslint-disable @typescript-eslint/no-unsafe-call */
   const result: FusejsData[] = useGatsbyPluginFusejs(

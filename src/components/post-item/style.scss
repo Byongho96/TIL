@@ -49,6 +49,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
+  row-gap: 0.5em;
 }
 
 .post-item__tag {
@@ -121,6 +122,10 @@
 
   .post-item__tag {
     font-size: 0.9rem;
+  }
+
+  .post-item__tag-list {
+    gap: 0.5em;
   }
 
   .post-item__excerpt {

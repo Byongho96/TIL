@@ -2,6 +2,7 @@ import React, { useCallback, useState, useMemo } from 'react'
 import './posts.scss'
 import { graphql } from 'gatsby'
 // import PostItem from '@components/post-item'
+import SearchIcon from '@assets/svgs/search.svg'
 import PostItem from '@components/post-item'
 import SEO from '@components/seo'
 import ToTheTop from '@components/to-the-top'
@@ -77,13 +78,22 @@ const PostsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
   return (
     <CategoryLayout>
       <main className="posts--layout">
-        <input
-          className="posts__search"
-          type="text"
-          placeholder="Type To Search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
+        <div className="posts__search">
+          <div className="posts__search__icon">
+            <SearchIcon />
+          </div>
+          <label className="posts__search__label" htmlFor="posts-search-input">
+            글 검색하기
+          </label>
+          <input
+            id="posts-search-input"
+            className="posts__search__input"
+            type="text"
+            placeholder="Search Here!"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </div>
         <ul className="posts__post-list">
           {showingData.map((post) => (
             <li key={post.item.id}>
