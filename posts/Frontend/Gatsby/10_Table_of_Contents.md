@@ -75,15 +75,14 @@ export default TableOfContent
 
 ```js
 useEffect(() => {
-  function handleScroll() {
+  const handleScroll = function () {
     const TOP_THRESHOLD = 50
     const headerElements = document.querySelectorAll(
       '.markdown-body h1, .markdown-body h2, .markdown-body h3'
     ) // toc 스크롤 기능을 적용하고자하는 헤더를 선택한다.
 
     let isSet = false
-    // 첫번째 헤더 제외하고 탐색
-    for (let idx = 1; idx < headerElements.length; idx++) {
+    for (let idx = 0; idx < headerElements.length; idx++) {
       const headerElement = headerElements[idx]
       const { top } = headerElement.getBoundingClientRect() // 현재 뷰포인트 기준, 요소의 상단 상대적 위치
 
@@ -98,6 +97,7 @@ useEffect(() => {
         isSet = true
         tocElement.classList.remove('active') // 현제 헤더는 active 클래스 제거
         // 이전 헤더를 찾아 active 클래스 추가
+        if (idx < 1) continue
         const previousHeaderElement = headerElements[idx - 1]
         const previousId = encodeURI(previousHeaderElement.id)
         const previousTocElement = document.querySelector(
@@ -106,6 +106,7 @@ useEffect(() => {
         previousTocElement.classList.add('active')
         continue
       }
+
       // 그 외의 헤더들은 모두 active 클래스 제거
       tocElement.classList.remove('active')
     }
@@ -119,11 +120,13 @@ useEffect(() => {
     }
   }
 
-  window.addEventListener('scroll', handleScroll)
+  const throttledHandleScroll = throttle(handleScroll, 100) // 연속해서 이벤트 발생 시, 최소 0.1초 간격으로 실행. lodash.throttle
+
+  window.addEventListener('scroll', throttledHandleScroll)
 
   return () => {
     // clean-up
-    window.removeEventListener('scroll', handleScroll)
+    window.removeEventListener('scroll', throttledHandleScroll)
   }
 }, [])
 ```

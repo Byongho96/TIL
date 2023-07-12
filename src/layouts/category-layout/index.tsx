@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import './style.scss'
+import { throttle } from 'lodash'
 import Category from '@components/category'
 import ProfileImage from '@components/profile-image'
 
@@ -42,10 +43,12 @@ const CategoryLayout: React.FC<Props> = ({ defaultCategory, children }) => {
       )
     }
 
-    window.addEventListener('scroll', handleScroll)
+    const throttledHandleScroll = throttle(handleScroll, 100) // 연속해서 이벤트 발생 시, 최소 0.1초 간격으로 실행
+
+    window.addEventListener('scroll', throttledHandleScroll)
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('scroll', throttledHandleScroll)
     }
   }, [])
 

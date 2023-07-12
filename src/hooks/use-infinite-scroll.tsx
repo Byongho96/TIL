@@ -1,4 +1,5 @@
 import { useEffect, RefObject } from 'react'
+import { throttle } from 'lodash'
 
 /*
 무한스크롤 커스텀 훅
@@ -32,10 +33,12 @@ const useInfiniteScroll = function ({
       loadMore()
     }
 
-    window.addEventListener('scroll', handleScroll) // element에 스크롤 이베트 감지함수 부착
+    const throttledHandleScroll = throttle(handleScroll, 100)
+
+    window.addEventListener('scroll', throttledHandleScroll) // element에 스크롤 이베트 감지함수 부착
     // cleanup 함수
     return () => {
-      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('scroll', throttledHandleScroll)
     }
   }, [ref, isEnd, loadMore])
 }
