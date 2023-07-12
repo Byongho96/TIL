@@ -27,9 +27,9 @@ const PostHeader: React.FC<Props> = ({ frontmatter }) => {
           author}
       </div>
       {frontmatter.tags && (
-        <div className="post-header__tags">
+        <div className="post-header__tag-list">
           {frontmatter.tags.map((tag) => (
-            <div key={tag} className="post-header__tags__tag">
+            <div key={tag} className="post-header__tag">
               {tag}
             </div>
           ))}

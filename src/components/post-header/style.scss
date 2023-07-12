@@ -10,7 +10,7 @@
 }
 
 .post-header__title {
-  margin: 0 0 2rem 0;
+  margin: 0 0 1rem 0;
   font-size: 3rem;
   font-weight: 800;
   line-height: 140%;
@@ -22,18 +22,19 @@
   color: var(--font-gray-color);
 }
 
-.post-header__tags {
+.post-header__tag-list {
   display: flex;
   gap: 1rem;
+  row-gap: 0.5rem;
   flex-wrap: wrap;
 }
 
-.post-header__tags__tag {
-  padding: 0.4rem 0.5rem;
+.post-header__tag {
+  padding: 0.3rem 0.4rem 0.3rem 0.4rem;
   border-radius: 10px;
   background-color: var(--bg-gray-color);
   color: var(--main-color);
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 500;
 }
 
@@ -50,6 +51,12 @@
   white-space: nowrap;
 }
 
+@include laptop {
+  .post-header__title {
+    font-size: 2.7rem;
+  }
+}
+
 @include tablet {
   .post-header {
     padding: 0 0 2rem;
@@ -60,20 +67,31 @@
   }
 
   .post-header__date-author {
-    font-size: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .post-header__tag {
+    font-size: 0.9rem;
   }
 }
 
 @include mobile {
   .post-header {
-    padding: 0 0 1.5rem;
+    gap: 1.2rem;
+    padding: 0 0 1.5rem 0;
   }
 
   .post-header__title {
-    font-size: 2.2rem;
+    margin: 1rem 0 0.5rem 0;
+    font-size: 2rem;
   }
 
   .post-header__date-author {
     font-size: 1rem;
+  }
+
+  .post-header__tag-list {
+    gap: 0.5rem;
+    row-gap: 0.3rem;
   }
 }

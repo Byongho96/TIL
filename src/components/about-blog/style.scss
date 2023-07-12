@@ -1,0 +1,51 @@
+@import '@styles/_responsive.scss';
+
+.about-blog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.about-blog__typing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--font-color);
+  font-size: 7rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 130%;
+}
+
+.about-blog__navbar__menu {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.about-blog__navbar__item svg {
+  width: 2rem;
+  height: 2rem;
+}
+.about-blog__navbar__item path {
+  fill: var(--font-color);
+}
+
+@include laptop {
+  .about-blog__typing {
+    font-size: 6rem;
+  }
+}
+
+@include tablet {
+  .about-blog__typing {
+    font-size: 5rem;
+  }
+}
+
+@include mobile {
+  .about-blog__typing {
+    font-size: 3rem;
+  }
+}

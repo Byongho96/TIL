@@ -5,7 +5,7 @@
 .posts--layout {
   display: flex;
   flex-direction: column;
-  padding: 0 5rem 0 5rem;
+  padding: 0 7rem 0 5rem;
 }
 
 .posts__search {
@@ -64,7 +64,7 @@
 // 랩탑
 @include laptop {
   .posts--layout {
-    padding: 0 2rem;
+    padding: 0 3rem 0 3rem;
   }
 
   .posts__search__icon svg {
@@ -105,7 +105,7 @@
   }
 
   .posts__search {
-    margin: 4rem 0 0.5rem 0;
+    margin: 3.8rem 0 0.7rem 0;
   }
 
   .posts__search__icon svg {

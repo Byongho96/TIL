@@ -12,7 +12,7 @@
 
 .toc a {
   text-decoration: none;
-  color: $font-subtle;
+  color: var(--font-gray-color);
   font-size: 0.8rem;
   font-weight: 300;
   text-overflow: ellipsis;
