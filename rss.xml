@@ -1,717 +1,521 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 12 Jul 2023 13:21:36 GMT</lastBuildDate><item><title><![CDATA[Django와 Vue 프로젝트 Github SSH Actions로 자동 배포하기]]></title><description><![CDATA[시작하기 전에... Django와 Vue를 이용해서 만든 Boogie 프로젝트의 기초적인 배포 과정을 정리한 문서입니다. Boogie 웹사이트 링크 .pem 키를 이용해 원격 EC2에 SSH(Secure Shell…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/django_and_vue_with_ssh_actions/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/django_and_vue_with_ssh_actions/</guid><pubDate>Fri, 21 Jul 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;시작하기-전에---omit-in-toc---&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-%EC%A0%84%EC%97%90---omit-in-toc---&quot; aria-label=&quot;시작하기 전에   omit in toc    permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;시작하기 전에...&lt;!-- omit in toc --&gt;&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Django와 Vue를 이용해서 만든 &lt;a href=&quot;https://github.com/Byongho96/boogie-project&quot;&gt;Boogie 프로젝트&lt;/a&gt;의 &lt;strong&gt;기초적인&lt;/strong&gt; 배포 과정을 정리한 문서입니다.&lt;br&gt;
-&lt;a href=&quot;https://boogie-movie.site/&quot;&gt;Boogie 웹사이트 링크&lt;/a&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 16 Jul 2023 04:14:35 GMT</lastBuildDate><item><title><![CDATA[SpringBoot 프로젝트 구조 총 정리]]></title><description><![CDATA[프론트엔드 개발자로써 SpringBoot가 어떻게 돌아가는지 알고 싶어서, SpringBoot 프로젝트 구조를 정리한 문서이다.
+참여했던 지난 프로젝트들을 참고했고, Java 친구 개발자의 도움을 받았다.
+Thanks to. 췐쓰희 1. 개요 Java…]]></description><link>https://byongho96.github.io/TIL/posts/Backend/Spring/Project_Structure/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Backend/Spring/Project_Structure/</guid><pubDate>Wed, 12 Jul 2023 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;프론트엔드 개발자로써 SpringBoot가 &lt;strong&gt;어떻게 돌아가는지&lt;/strong&gt; 알고 싶어서, SpringBoot 프로젝트 구조를 정리한 문서이다.
+참여했던 지난 프로젝트들을 참고했고, Java 친구 개발자의 도움을 받았다.
+Thanks to. &lt;a href=&quot;https://velog.io/@chancehee&quot;&gt;췐쓰희&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;.pem 키를 이용해 원격 EC2에 SSH(Secure Shell)로 접속해 쉘커맨드를 실행시키는 방식으로 배포를 진행했다.&lt;/li&gt;
-&lt;li&gt;이 방식은 간단하지만, 어떤 보안 상의 이슈가 있을지 확신할 수 없다. Github Action을 활용한 보다 정형화 된 배포 방법으로는 &lt;strong&gt;AWS의 CodeDeploy&lt;/strong&gt;를 알아보는 걸 추천한다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;index---omit-in-toc---&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#index---omit-in-toc---&quot; aria-label=&quot;index   omit in toc    permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Index&lt;!-- omit in toc --&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#1-django-%EB%B0%B0%ED%8F%AC-%EC%A4%80%EB%B9%84&quot;&gt;1. Django 배포 준비&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#11-django-env-%ED%8C%8C%EC%9D%BC-%EC%83%9D%EC%84%B1&quot;&gt;1.1. Django .env 파일 생성&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#111-env-%ED%8C%8C%EC%9D%BC-%EC%9E%91%EC%84%B1&quot;&gt;1.1.1. .env 파일 작성&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#112-django-environ&quot;&gt;1.1.2. django-environ&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#113-gitignore-%EC%88%98%EC%A0%95&quot;&gt;1.1.3. .gitignore 수정&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#2-debug-%EB%AA%A8%EB%93%9C-%EB%B3%80%ED%99%98&quot;&gt;2. DEBUG 모드 변환&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#21-allowed_hosts-%EC%A0%9C%ED%95%9C&quot;&gt;2.1. ALLOWED_HOSTS 제한&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#22-%EC%A0%95%EC%A0%81%ED%8C%8C%EC%9D%BC-%EC%A0%9C%EA%B3%B5-%EB%AA%BB%ED%95%A8&quot;&gt;2.2. 정적파일 제공 못함&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#2-vue-%EB%B0%B0%ED%8F%AC-%EC%A4%80%EB%B9%84&quot;&gt;2. Vue 배포 준비&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#21-env-%ED%8C%8C%EC%9D%BC-%EC%9E%91%EC%84%B1&quot;&gt;2.1. .env 파일 작성&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#3-ec2-%EC%84%A4%EC%A0%95&quot;&gt;3. EC2 설정&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#31-python-%EC%84%A4%EC%B9%98&quot;&gt;3.1. python 설치&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#32-nodejs-%EC%84%A4%EC%B9%98&quot;&gt;3.2. node.js 설치&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#33-django-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8B%A4%ED%96%89&quot;&gt;3.3. Django 프로젝트 실행&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#34-gunicorn-%EC%8B%A4%ED%96%89&quot;&gt;3.4. gunicorn 실행&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#35-vue-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%B9%8C%EB%93%9C&quot;&gt;3.5. Vue 프로젝트 빌드&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#36-nginx&quot;&gt;3.6. nginx&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#4-github-actions&quot;&gt;4. Github Actions&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;1-django-배포-준비&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-django-%EB%B0%B0%ED%8F%AC-%EC%A4%80%EB%B9%84&quot; aria-label=&quot;1 django 배포 준비 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Django 배포 준비&lt;/h1&gt;
-&lt;p&gt;Django 코드를 짜는 것과, Django를 배포하는 것의 전혀 다른 부분이다.&lt;/p&gt;
-&lt;p&gt;개발한 Django 프로젝트를 실제 배포하기 전에, &lt;strong&gt;보안을 위해 &lt;mark&gt;최소한 다음의 절차&lt;/mark&gt;는 밟아야 한다.&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;11-django-env-파일-생성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-django-env-%ED%8C%8C%EC%9D%BC-%EC%83%9D%EC%84%B1&quot; aria-label=&quot;11 django env 파일 생성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1. Django .env 파일 생성&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;.env 파일은 프로젝트의 환경변수를 저장하기 위한 단순 문자열 파일이다.&lt;/strong&gt;
-보통 &lt;mark&gt;API_KEY와 같이 외부에 공개되면 안되는 값&lt;/mark&gt;을, 프로젝트에 하드코딩하지 않고 따로 .env 파일에서 관리한다.&lt;/p&gt;
-&lt;p&gt;그렇게 작성한 .env 파일은 .gitignore에 추가해서 github과 같이 온라인의 공개된 장소에 공유되지 않게 하고,&lt;br&gt;
-이후에 서버에 직접 추가하는 등의 추가 작업이 필요하다.&lt;/p&gt;
-&lt;h3 id=&quot;111-env-파일-작성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#111-env-%ED%8C%8C%EC%9D%BC-%EC%9E%91%EC%84%B1&quot; aria-label=&quot;111 env 파일 작성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1.1. .env 파일 작성&lt;/h3&gt;
-&lt;p&gt;API_KEY처럼 외부에 공개되지 않아야 할 파일을 모아 .env 파일을 작성한다.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;특히 SECRET_KEY는 Django 프로젝트 생성 시, 자동 생성되는 중요한 KEY값이므로 반드시 .env에 추가해야한다.&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;SECRET_KEY=your-django-secret-key
-API_KEY=your-api-key
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;변수 이름&lt;/strong&gt;과 &lt;strong&gt;값&lt;/strong&gt;은 &apos;=&apos;로 연결되며, 사이에 공백은 들어가지 않는다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;변수 이름&lt;/strong&gt;은 영어 대문자와 &apos;_&apos;의 조합으로 이뤄져야 한다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;112-django-environ&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#112-django-environ&quot; aria-label=&quot;112 django environ permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1.2. django-environ&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&quot;https://django-environ.readthedocs.io/en/latest/&quot;&gt;django-environ&lt;/a&gt;은 Django 프로젝트에서 작성한 .env을 읽어오기 위한 Python 라이브러리이다.&lt;/p&gt;
-&lt;p&gt;아래 절차는 공식문서의 내용을 따라 작성했다.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;django-environ 설치&lt;/strong&gt;&lt;br&gt;
-django-envrion은 가상환경 내에 설치하는 것을 권장한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;python -m pip install django-environ
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;.env 파일 위치 확인&lt;/strong&gt;&lt;br&gt;
-작성한 .env 파일을 &lt;strong&gt;프로젝트의 루트 경로&lt;/strong&gt;(manage.py가 위치한 곳)에 위치시킨다.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;settings.py 수정&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import environ
-import os
-
-# env 기본 설정
-env = environ.Env(
-    # env파일에 있는 DEBUG 환경변수를 Boolean으로 타입변환한다.
-    # 만일 DEBUG 환경변수가 없을 경우, default값은 False이다.
-    # 배포환경에서는 반드시 False여야 한다.
-    DEBUG=(bool, False)
-)
-
-# 공식문서에서는 아래와 같이 BASE_DIR을 지정하지만, 그럴 경우 settings.py파일 내에서 BASE_DIR / &apos;subdir&apos; 형식으로 파일경로를 지정할 수 없다.
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-# BASE_DIR 위치를 기준으로 .env 파일을 읽어온다.
-environ.Env.read_env(os.path.join(BASE_DIR, &apos;.env&apos;))
-
-# .env 파일로부터 값 참조
-DEBUG = env(&apos;DEBUG&apos;)
-SECRET_KEY = env(&apos;SECRET_KEY&apos;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;113-gitignore-수정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#113-gitignore-%EC%88%98%EC%A0%95&quot; aria-label=&quot;113 gitignore 수정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1.3. .gitignore 수정&lt;/h3&gt;
-&lt;p&gt;.gitignore파일에 .env를 추가해서 커밋되지 않도록 한다.&lt;br&gt;
-이후 따로 서버에서 .env 파일을 직접 생성해준다. 이따 해당 내용도 다룬다.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;2-debug-모드-변환&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-debug-%EB%AA%A8%EB%93%9C-%EB%B3%80%ED%99%98&quot; aria-label=&quot;2 debug 모드 변환 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. DEBUG 모드 변환&lt;/h2&gt;
-&lt;p&gt;배포 환경에서 &lt;code&gt;DEBUG&lt;/code&gt;값은 반드시 False여야 한다.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://docs.djangoproject.com/en/4.2/ref/settings/#debug&quot;&gt;Django 공식문서&lt;/a&gt;를 보면, DEBUG가 True일 경우 다음과 같은 문제가 있다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;에러에 대한 구체적인 이유를 표시한다.(보안 이슈)&lt;/li&gt;
-&lt;li&gt;손쉬운 디버깅을 위해 실행된 SQL를 모두 기억한다.(메모리 자원 낭비)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;따라서 배포 환경에서는 반드시 &lt;code&gt;DEBUG&lt;/code&gt;를 &lt;code&gt;False&lt;/code&gt;로 설정해야 한다. 이는 .env 파일에서 &lt;code&gt;DEBUG=False&lt;/code&gt;로 하던가, 아니면 아예 값을 집어 넣지 않으면 된다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# SECURITY WARNING: don&apos;t run with debug turned on in production!
-DEBUG = env(&apos;DEBUG&apos;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;21-allowed_hosts-제한&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-allowed_hosts-%EC%A0%9C%ED%95%9C&quot; aria-label=&quot;21 allowed_hosts 제한 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. ALLOWED_HOSTS 제한&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;DEBUG&lt;/code&gt;가 &lt;code&gt;False&lt;/code&gt;일 때는, 프로젝트를 호스팅 할 IP 주소를 &lt;code&gt;settings.py&lt;/code&gt;에 다음과 명시해줘야 한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# settings.py
-
-ALLOWED_HOSTS = [
-    &apos;127.0.0.1&apos;,  # 로컬 IP 주소
-    {EC2 IP 주소}, # EC2 IP 주소
-]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;22-정적파일-제공-못함&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-%EC%A0%95%EC%A0%81%ED%8C%8C%EC%9D%BC-%EC%A0%9C%EA%B3%B5-%EB%AA%BB%ED%95%A8&quot; aria-label=&quot;22 정적파일 제공 못함 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. 정적파일 제공 못함&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;DEBUG&lt;/code&gt;가 &lt;code&gt;False&lt;/code&gt;일 때는, Django는 정적 파일을 제공하지 못한다.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;이 문제 때문에 한동안 골머리를 앓았다...
-배포하니까 갑자기 api로 사용자 프로필을 받아오지 못하는 것이다!!&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://forum.djangoproject.com/t/django-static-files-in-deployment-debug-false/16675/2&quot;&gt;구글링 해보니&lt;/a&gt; Django는 DEBUG=False일 때 정적파일을 제공하지 못한다고 한다. &lt;del&gt;그럼 애초에 그런 기능을 넣지 말던가...&lt;/del&gt;&lt;/p&gt;
-&lt;p&gt;따라서 Nginx와 같은 웹서버를 이요해서 정적파일을 제공해야 한다.&lt;br&gt;
-이에 대해서는 아래 &lt;a href=&quot;#36-nginx&quot;&gt;nginx항목&lt;/a&gt;에서 확인할 수 있다.
-즉, 다음과 같은 미디어 파일 설정들이 배포 환경에서는 딱히 무용해지는 것이다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;from django.conf import settings
-from django.conf.urls.static import static
-
-urlpatterns = [
-    ...
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&quot;2-vue-배포-준비&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-vue-%EB%B0%B0%ED%8F%AC-%EC%A4%80%EB%B9%84&quot; aria-label=&quot;2 vue 배포 준비 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Vue 배포 준비&lt;/h1&gt;
-&lt;h2 id=&quot;21-env-파일-작성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-env-%ED%8C%8C%EC%9D%BC-%EC%9E%91%EC%84%B1&quot; aria-label=&quot;21 env 파일 작성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. .env 파일 작성&lt;/h2&gt;
-&lt;p&gt;Vue도 Django와 마찬가지로 .env 파일을 통해 프로젝트의 환경변수를 설정할 수 있다.&lt;br&gt;
-그런데 몇가지 다른 점이 있다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;보안 취약&lt;/strong&gt;&lt;br&gt;
-아무리 .env파일을 만들다고 한 들, &lt;strong&gt;프론트엔드 프로젝트가 빌드될 때 .env 파일도 함께 빌드된다.&lt;/strong&gt;&lt;br&gt;
-따라서 최종적으로 &lt;strong&gt;클라이언트 측에 환경 변수 값이 그대로 전달되어, 크롬 개발자 도구 등으로 확인&lt;/strong&gt;할 수 있다.&lt;br&gt;
-&lt;mark&gt;정말 중요한 데이터라면, 아예 해당 값을 백서버에 두어 API등으로 전달받아야 한다.&lt;/mark&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;.env 파일 우선순위&lt;/strong&gt;&lt;br&gt;
-프론트엔드는 여러 종류의 .env파일이 있고, 이들 간의 우선순위가 있다.&lt;br&gt;
-Vue 프로젝트가 &lt;code&gt;npm run serve&lt;/code&gt; 명령어로 실행되면 개발 모드(Development)의 환경변수 파일들이 참조되고, &lt;code&gt;npm run build&lt;/code&gt;명령어로 실행되면 배포 모드(production)의 환경변수 파일들이 참조된다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Development&lt;/strong&gt;: .env.development.local &gt; .env.local &gt; .env.development &gt; .env&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Production&lt;/strong&gt;: .env.production.local &gt; .env.local &gt; .env.production &gt; .env&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;나는 앞서 말한 프론트엔드 프로젝트 환경변수 파일의 &lt;strong&gt;보안 취약점&lt;/strong&gt;때문에 API_KEY처럼 보안상으로 문제되는 환경변수는 Django가 관리하도록 했다.&lt;/p&gt;
-&lt;p&gt;그리고 .env 파일 종류를 활용해서, 다음과 같이 로컬환경과 배포환경에서의 API 서버 URL을 나눴다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-env&quot;&gt;# .env
-VUE_APP_SERVER_URL=http://127.0.0.1:8000
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&quot;language-env&quot;&gt;# .env.production
-VUE_APP_SERVER_URL=http://boogie-movie.site
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&quot;3-ec2-설정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-ec2-%EC%84%A4%EC%A0%95&quot; aria-label=&quot;3 ec2 설정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. EC2 설정&lt;/h1&gt;
-&lt;p&gt;아래 내용은 AWS EC2가 있음을 가정한다.&lt;/p&gt;
-&lt;p&gt;AWS EC2가 없거나, .pem키가 무엇이니 모르면 &lt;a href=&quot;https://byongho96.github.io/TIL/posts/Tools/AWS/&quot;&gt;AWS EC2 기초 가이드&lt;/a&gt;를 참고하길 바란다. 시간을 갈아 넣어 친절하게 작성한 문서이다.&lt;/p&gt;
-&lt;h2 id=&quot;31-python-설치&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#31-python-%EC%84%A4%EC%B9%98&quot; aria-label=&quot;31 python 설치 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1. python 설치&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Django를 실행하기 위해서 당연히 python을 설치해야한다.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;그 중 &lt;a href=&quot;https://github.com/pyenv/pyenv&quot;&gt;pyenv&lt;/a&gt;는 여러 개의 Python버전을 쉽게 관리할 수 있도록 한다. (Node.js로 치면 nvm같은 존재)&lt;/p&gt;
-&lt;p&gt;아래 내용은 &lt;a href=&quot;https://github.com/pyenv/pyenv&quot;&gt;pyenv 공식 문서&lt;/a&gt;를 따라 정리했다.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;pyenv github repo 클론&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;환경변수와 PATH 등록&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# 현재 사용자(.bashrc)에 대해 PYENV_ROOT 환경변수를 지정한다.
-echo &apos;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&apos; &gt;&gt; ~/.bashrc
-
-# pyenv가 설치되어 있는지 확인하고, 설치되어있지 않으면 PATH 환경 변수에 pyenv 경로(~/.pyenv/bin)을 추가한다.
-# PATH는 : 를 기준으로 참조하는 디렉토리를 구분해서 저장한다.
-# bin폴더에 실행 가능한 파일지 저장된다.
-echo &apos;command -v pyenv &gt;/dev/null || export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&apos; &gt;&gt; ~/.bashrc
-
-# (pyenv init -)는 pyenv 초기화 쉘코드를 출력하고, 이를 .bashrc에 추가해서 로그인시마다 pyenv를 초기화시킨다.
-echo &apos;eval &quot;$(pyenv init -)&quot;&apos; &gt;&gt; ~/.bashrc
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# 로그인 환경변수(.profile)에도 적용한다.
-echo &apos;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&apos; &gt;&gt; ~/.profile
-echo &apos;command -v pyenv &gt;/dev/null || export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&apos; &gt;&gt; ~/.profile
-echo &apos;eval &quot;$(pyenv init -)&quot;&apos; &gt;&gt; ~/.profile
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;shell 재시작&lt;/strong&gt;&lt;br&gt;
-PATH 변경사항을 반영하기 위해 shell을 재시작한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt; exec &quot;$SHELL&quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Python build dependcies 설치&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo apt update; sudo apt install build-essential libssl-dev zlib1g-dev \
-libbz2-dev libreadline-dev libsqlite3-dev curl \
-libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;pyenv 설치 확인&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;pyenv -v
-
-# 출력 확인 =&gt; pyenv VERSION_INFO
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;python 설치&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;자신의 프로젝트에 맞는 python 버전을 설치한다&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;pyenv install 3.9.X
-pyenv global 3.9.X
-python -V
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;32-nodejs-설치&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#32-nodejs-%EC%84%A4%EC%B9%98&quot; aria-label=&quot;32 nodejs 설치 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2. node.js 설치&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;역시 Vue를 빌드하기 위해서는 당연히 node.js를 설치해야한다.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://linuxize.com/post/how-to-install-node-js-on-ubuntu-20-04/&quot;&gt;Ubuntu 20.04 Node.js 설치 문서&lt;/a&gt;를 따라 아래 내용을 작성했다.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;node.js 설치&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;node.js 설치 및 버전 확인&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo apt update
-sudo apt install nodejs npm
-nodejs --version
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Vue 2.0 프로젝트를 빌드하기 위해서는 nodejs의 버전이 v12.x 이상이어야 한다.&lt;br&gt;
-위 명령어에서 확인한 버전이 12.x 미만일 경우, 아래 명령어를 따라한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# node 설치관련 스크립트를 다운받고, bash 쉘을 root권한으로 재시작한다.
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-sudo apt install nodejs
-node --version
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;build-essential 설치&lt;/strong&gt;&lt;br&gt;
-노드 패키지(모듈)에서 C/C++로 작성된 부분을 natvie addons라고 말하고, 이러한 패키지를 설치하기 위해서는 해당 운영 체제에서 빌드(컴파일) 도구를 설치해야 한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo apt install build-essential
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;33-django-프로젝트-실행&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#33-django-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8B%A4%ED%96%89&quot; aria-label=&quot;33 django 프로젝트 실행 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.3. Django 프로젝트 실행&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;프로젝트 클론&lt;/strong&gt;&lt;br&gt;
-먼저 자신의 Django git 프로젝트를 클론한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd ~
-git clone {project_remote_url}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Django .env 생성&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;vi 등의 문서 편집기로 .env파일을 작성한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd {장고_프로젝트_폴더}
-sudo vi .env
-# vi 에디터 사용법을 모를 경우, 구글링해보자
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;vi가 없을 시에는, 아래 명령어로 설치로 설치할 수 있다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo apt-get update
-sudo apt-get install vim
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Python 가상환경 실행&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Python 가상환경을 실행한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Django DB 생성&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Django 데이터베이스 생성&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;python manage.py migrate
-
-# fixture가 있는 경우
-python manage.py loaddata {fixture 파일}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Django static파일 수집&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;제공할 static파일이 있을 경우, 아래 명령어로 static파일을 모은다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;python manage.py collectstatic
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;수집되는 위치는 settings.py 설정을 따른다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# settings.py
-
-# 수집할 위치 확인
-STATIC_ROOT = BASE_DIR / &apos;staticfiles&apos;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;34-gunicorn-실행&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#34-gunicorn-%EC%8B%A4%ED%96%89&quot; aria-label=&quot;34 gunicorn 실행 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.4. gunicorn 실행&lt;/h2&gt;
-&lt;p&gt;개발할 때 사용하던, &lt;code&gt;runserver&lt;/code&gt;명령어를 배포환경에서 사용하면 안된다.&lt;br&gt;
-&lt;a href=&quot;https://docs.djangoproject.com/en/4.2/ref/django-admin/#runserver&quot;&gt;Django 공식문서&lt;/a&gt;에 따르면, 이는 개발 서버로써 보안과 성능이 떨어지기 때문이다.&lt;/p&gt;
-&lt;p&gt;따라서 다른 미들웨어를 사용해야 하는데,
-Python프레임워크의 대표적인 WSGI(Web Server Gateway Interface)인 &lt;a href=&quot;https://docs.gunicorn.org/en/stable/install.html&quot;&gt;gunicorn&lt;/a&gt;을 사용할 것이다.(2023년 상반기 기준)&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;gunicorn 설치&lt;/strong&gt;&lt;br&gt;
-django 프로젝트 가상환경 내에서 설치한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;pip install gunicorn
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;ALLOWED_HOSTS 확인&lt;/strong&gt;&lt;br&gt;
-Django를 gunicorn으로 서비스하기 위해서는 ALLOWED_HOSTS를 지정해줘야 한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# settings.py
-
-ALLOWED_HOSTS = [
-    &apos;127.0.0.1&apos;,  # 로컬 IP 주소
-    {EC2 IP 주소}, # EC2 IP 주소
-]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;gunicorn 시스템 서비스 등록&lt;/strong&gt;&lt;br&gt;
-gunicorn을 시스템 서비스에 등록하면, 운영체제의 백그라운드에서 돌아간다.&lt;br&gt;
-좀더 직관적으로 표현하자면, 서버 컴퓨터가 켜져있는 한 계속 실행되고 있도록 등록하는 것이다.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;어떤 프로그램을 시스템 서비스에 등록하기 위해서는 &lt;code&gt;/etc/systemd/system/&lt;/code&gt;경로에 .service파일을 작성&lt;/strong&gt;해야한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo vi /etc/systemd/system/gunicorn.service
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;unit 설정 파일 작성법은 &lt;a href=&quot;https://byongho96.github.io/TIL/posts/Tools/Linux/#32-service&quot;&gt;Linux.md&lt;/a&gt;에 정리해두었다. &lt;del&gt;근데 나도 잘 모름&lt;/del&gt;
-아래 예시 파일을 그대로 가져다가 써도 된다.&lt;br&gt;
-workers란 gunicorn의 프로세스 갯수를 의미하며, 직관저거으로 workers를 높게 설정할수록 많은 요청을 처리할 수 있지만, 메모리 점유율과 성능을 고려하여 CPU 코어 수와 동일하게 설정하는 것이 가장 무난하다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-c&quot;&gt;[Unit]
-Description=gunicorn daemon
-After=network.target
-
-[Service]
-User=ubuntu
-Group=www-data
-WorkingDirectory=/home/ubuntu/{장고 프로젝트 폴더}
-ExecStart=/home/ubuntu/{장고 프로젝트 폴더}/venv/bin/gunicorn \
-        --workers 3 \
-        --bind 127.0.0.1:8000 \
-        {장고 마스터 앱}.wsgi:application
-
-[Install]
-WantedBy=multi-user.target
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;시스템 데몬을 재시작&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;unit파일을 작성했으면, 시스템 데몬을 재시작 하여 gunicorn 서비스를 실행시킨다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo systemctl daemon-reload
-
-sudo systemctl start gunicorn
-sudo systemctl enable gunicorn
-sudo systemctl status gunicorn.service
-
-# 중지
-# sudo systemctl stop gunicorn
-
-# 재시작
-# sudo systemctl restart gunicorn
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;35-vue-프로젝트-빌드&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#35-vue-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%B9%8C%EB%93%9C&quot; aria-label=&quot;35 vue 프로젝트 빌드 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.5. Vue 프로젝트 빌드&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;프로젝트 클론&lt;/strong&gt;&lt;br&gt;
-자신의 Vue git 프로젝트를 클론한다.&lt;br&gt;
-Django랑 동일한 레포에 있다면, 굳이 또 해줄 필요 없다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd ~
-git clone {project_remote_url}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Vue .env 생성&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;vi 등의 문서 편집기로 .env파일을 작성한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd {Vue_프로젝트_폴더}
-sudo vi .env
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;npm module 설치&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd {Vue_프로젝트_폴더}
-npm install
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Vue 프로젝트 빌드&lt;/strong&gt;&lt;br&gt;
-Vue 프로젝트를 빌드할 경우, 프로젝트 루트경로 dist폴더 내에 index.html파일이 생성된다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm run buld
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;36-nginx&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#36-nginx&quot; aria-label=&quot;36 nginx permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.6. nginx&lt;/h2&gt;
-&lt;p&gt;Nginx를 웹서버로 사용해서 정적 파일을 제공하고 api요청을 reverse proxy할 수 있다.&lt;/p&gt;
-&lt;p&gt;Nginx에 대한 더 자세한 설명은 &lt;a href=&quot;https://byongho96.github.io/TIL/posts/Tools/Nginx/&quot;&gt;Nginx.md&lt;/a&gt;에 정리되어 있다.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;nginx 설치&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sudo apt-get update
-sudo apt-get install -y nginx
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;nginx 설정파일 작성&lt;/strong&gt;&lt;br&gt;
-&lt;code&gt;/etc/nginx/sites-available&lt;/code&gt; 경로에 nginx 설정파일을 원하는 이름으로 작성한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sudo vi /etc/nginx/sites-available/{프로젝트 이름}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;nginx 설정파일의 구체적인 내용은 프로젝트에 따라서 달라진다.&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Django로 가는 API 요청의 url엔드포인트가 모두 &lt;code&gt;/api&lt;/code&gt;임을 가정하고, 아래 설정파일을 작성했다.&lt;/li&gt;
-&lt;li&gt;Django가 자체적으로 정적파일을 제공하고 있다면, STATIC_ROOT와 MEDIA_ROOT를 settings.py에서 확인해야 한다. 보통 STATIC_ROOT는 &apos;staticfiles&apos;로 설정하고, MEDIA_ROOT는 &apos;media&apos;로 설정된다.&lt;/li&gt;
-&lt;li&gt;Vue 프로젝트의 빌드된 index.html이 &lt;code&gt;dist/&lt;/code&gt;에 있음을 가정하고, 아래 설정파일을 작성했다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-nginx&quot;&gt;server {
-     listen 80;
-     server_name {서버IP주소};
-
-     # Django static 파일 제공
-     location /static/ {
-             alias {장고 프로젝트 루트 경로}/{STATIC_ROOT}/;
-     }
-
-     # Django media 파일 제공
-     location /media/ {
-             alias {장고 프로젝트 루트 경로}/{MEDIA_ROOT}/;
-     }
-
-     # Django API proxy
-     location /api {
-             include proxy_params;
-             proxy_pass http://127.0.0.1:8000;
-     }
-
-     # Vue 빌드 파일 제공
-     location / {
-             root {Vue 프로젝트 루트 경로}/dist/;
-             index index.html;
-             try_files $uri $uri/ /index.html;
-     }
- }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;nginx 설정파일 활성화&lt;/strong&gt;&lt;br&gt;
-&lt;code&gt;sites-availables/&lt;/code&gt;에 작성한 설정파일을 실제로 활성화 하기 위해서는 &lt;code&gt;sites-enabled/&lt;/code&gt;폴더에 등록해야 한다.&lt;br&gt;
-소프트 링크를 통해 이를 구현할 수 있는데, 간단히 말해 포인터를 만든다고 생각하면 된다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo ln -s /etc/nginx/sites-available/{설정파일 이름} /etc/nginx/sites-enabled
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;nginx 재시작&lt;/strong&gt;&lt;br&gt;
-작성한 설정파일을 활성화 하기 위해 nginx를 재시작한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# 80번 포트의 프로세서 종료
-sudo lsof -t -i tcp:80 -s tcp:listen | sudo xargs kill
-
-# nginx 재시작
-sudo systemctl restart nginx
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;4-github-actions&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-github-actions&quot; aria-label=&quot;4 github actions permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. Github Actions&lt;/h1&gt;
-&lt;p&gt;지금까지 위의 모든 절차를 따라했다면 배포가 완료되었다. EC2 IP주소로 접속하면 확인해볼 수 있을 것이다.&lt;/p&gt;
-&lt;p&gt;이제는 github actions를 이용해서 github 레포지토리에 수정한 코드를 push하였을 경우, &lt;mark&gt;자동 빌드/배포가 되는 환경을 구축&lt;/mark&gt;해볼 것이다.&lt;/p&gt;
-&lt;p&gt;SSH를 통해 원격의 EC2에서 직접 쉘명령어를 실행시키는 간단한 방법을 사용할 것이다.
-참고로 핵심이 되는 action은 &lt;a href=&quot;https://github.com/appleboy/ssh-action&quot;&gt;appleboy/ssh-action&lt;/a&gt;이다.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Github 레포지토리 접속&lt;/strong&gt;&lt;/p&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/a58376a68251c52935edd64e86faf8cc/ec7ce/github_repository.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 36.57142857142857%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAHABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAECBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHckKBP/8QAFxAAAwEAAAAAAAAAAAAAAAAAAAIQEf/aAAgBAQABBQKYx//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABYQAAMAAAAAAAAAAAAAAAAAAAAQQf/aAAgBAQAGPwJQ/8QAGRAAAgMBAAAAAAAAAAAAAAAAAAERIVFh/9oACAEBAAE/IawgbHTj1H//2gAMAwEAAgADAAAAEPPf/8QAFREBAQAAAAAAAAAAAAAAAAAAABH/2gAIAQMBAT8QR//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABoQAAIDAQEAAAAAAAAAAAAAAAERACGBUbH/2gAIAQEAAT8QA6PIgFE7CA3FMfs//9k=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+&lt;h1 id=&quot;1-개요&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EA%B0%9C%EC%9A%94&quot; aria-label=&quot;1 개요 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 개요&lt;/h1&gt;
+&lt;p&gt;Java기반의 프레임워크인 SpringBoot는 좋게 말하면 체계적이고, 나쁘게 말하면 복잡하다.&lt;br&gt;
+따라서 먼저 대략적인 개요를 파악하는 것이, 세세한 부분을 이해하는데도 큰 도움이 될 것이다.&lt;/p&gt;
+&lt;h2 id=&quot;11-springboot-기본-구조&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-springboot-%EA%B8%B0%EB%B3%B8-%EA%B5%AC%EC%A1%B0&quot; aria-label=&quot;11 springboot 기본 구조 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1. SpringBoot 기본 구조&lt;/h2&gt;
+&lt;p&gt;개인적으로 Java 프로젝트를 열면, 아래 그림처럼 깊은 디렉토리 Depth에 지레 겁을 먹었다.&lt;/p&gt;
+&lt;p&gt;근데 저 깊은 Depth는 그저 내 자바 소스코드를 다른 자바 패키지와 구별하기 위함이다.
+그래서 아래 그림에서 &lt;code&gt;java / net / guides / springboo2&lt;/code&gt;의 폴더들을 그냥 장황한 이름을 가진 하나의 &lt;code&gt;java_net_guides_springboo2&lt;/code&gt;폴더라고 생각하면, 심리적 부담감이 덜해진다.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 433px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/ff383e322692163357e7cdbd76fea8f6/55fc0/springboot-project-structure.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 128.57142857142856%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAaCAIAAAA44esqAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB9klEQVR42pWUWY6jMBBAc//TtTTdIWbxvkDABGwIq80okNFInb1+LGE/vaqyqZ3MSgAYjqM4hkV+pJRyJiSXgjLGWFmelmXx3i834ZzbuWWxWagVIoQP/fDo6H14nn2tAp1RKbPG2uXtWM3ON3Wu+b7Mi3PXfwZfFr8YzRT8EkLOzn0AXyr0fnZLneMj+dG6nOb5nbKv5jVWPoszEsQRtMYOQz9N01vwpuqHoUrDlAAQgCA4nLtu3boPe+93vz4NfVcdoZQcJShVaZEX4zi+BW9+Y0rGMEwgTCA4AEoII0yX5UvzBbamFIIywhilEYgwRAgiqdLXaXvvbHVkjEoulFSMUikkY/y2/7/gy/a5NVUaYoSLXFtr53l+1O37aRtTEoJAAEIAGBVZmtXGPIcvT2XLzdoT5xRDjBHGEKIECilfmv1mruuCEByFURRGMIGYkLu39R928zT17TBOTdOqlFNCKaGccSnVo3e2wdc+2SwUFEZh0g/jstXgn/3b/8zridGogvzBmGutnzT5Nu0V7nIlv8A+OgRBqtIszVKlXl+Vm6cmT6Sg575tm7Y7d03TGGOssc49TdsvS6OxQEEQgO6TSXI1n6pKShmCEEH8RPUArg1nLI7iUp8+N9eGc7H//kEQNW372QAsdEEIxRBRyvp1dL8J/wXEOedAAz7cfgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
   &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/a58376a68251c52935edd64e86faf8cc/c54d4/github_repository.webp 175w,
-/TIL/static/a58376a68251c52935edd64e86faf8cc/a3432/github_repository.webp 350w,
-/TIL/static/a58376a68251c52935edd64e86faf8cc/426ac/github_repository.webp 700w,
-/TIL/static/a58376a68251c52935edd64e86faf8cc/dbca2/github_repository.webp 970w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/a58376a68251c52935edd64e86faf8cc/e52aa/github_repository.jpg 175w,
-/TIL/static/a58376a68251c52935edd64e86faf8cc/70ebb/github_repository.jpg 350w,
-/TIL/static/a58376a68251c52935edd64e86faf8cc/29d31/github_repository.jpg 700w,
-/TIL/static/a58376a68251c52935edd64e86faf8cc/ec7ce/github_repository.jpg 970w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/a58376a68251c52935edd64e86faf8cc/29d31/github_repository.jpg&quot; alt=&quot;github_repository.jpg&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/ff383e322692163357e7cdbd76fea8f6/c54d4/springboot-project-structure.webp 175w,
+/TIL/static/ff383e322692163357e7cdbd76fea8f6/a3432/springboot-project-structure.webp 350w,
+/TIL/static/ff383e322692163357e7cdbd76fea8f6/aff3a/springboot-project-structure.webp 433w&quot; sizes=&quot;(max-width: 433px) 100vw, 433px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/ff383e322692163357e7cdbd76fea8f6/4edbd/springboot-project-structure.png 175w,
+/TIL/static/ff383e322692163357e7cdbd76fea8f6/13ae7/springboot-project-structure.png 350w,
+/TIL/static/ff383e322692163357e7cdbd76fea8f6/55fc0/springboot-project-structure.png 433w&quot; sizes=&quot;(max-width: 433px) 100vw, 433px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/ff383e322692163357e7cdbd76fea8f6/55fc0/springboot-project-structure.png&quot; alt=&quot;springboot-project-structure.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
         &lt;/picture&gt;
   &lt;/a&gt;
     &lt;/span&gt;
-&lt;p&gt;Github 레포지토리에 접속해 Actions 항목을 클릭한다.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;workflow 작성&lt;/strong&gt;&lt;/p&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/d655e8c68e0568123d09989a8a60cbee/5c42d/github_actions.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 53.714285714285715%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAdywSD//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAEFAl//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAZEAACAwEAAAAAAAAAAAAAAAAAEQEQQWH/2gAIAQEAAT8hh8EIwyv/2gAMAwEAAgADAAAAEPAP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAHBAAAwABBQAAAAAAAAAAAAAAAAERITFBUYHR/9oACAEBAAE/EEZ4hdkbwjg9DSg0P//Z&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/d655e8c68e0568123d09989a8a60cbee/c54d4/github_actions.webp 175w,
-/TIL/static/d655e8c68e0568123d09989a8a60cbee/a3432/github_actions.webp 350w,
-/TIL/static/d655e8c68e0568123d09989a8a60cbee/426ac/github_actions.webp 700w,
-/TIL/static/d655e8c68e0568123d09989a8a60cbee/c139f/github_actions.webp 1050w,
-/TIL/static/d655e8c68e0568123d09989a8a60cbee/c4443/github_actions.webp 1347w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/d655e8c68e0568123d09989a8a60cbee/e52aa/github_actions.jpg 175w,
-/TIL/static/d655e8c68e0568123d09989a8a60cbee/70ebb/github_actions.jpg 350w,
-/TIL/static/d655e8c68e0568123d09989a8a60cbee/29d31/github_actions.jpg 700w,
-/TIL/static/d655e8c68e0568123d09989a8a60cbee/9ecec/github_actions.jpg 1050w,
-/TIL/static/d655e8c68e0568123d09989a8a60cbee/5c42d/github_actions.jpg 1347w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/d655e8c68e0568123d09989a8a60cbee/29d31/github_actions.jpg&quot; alt=&quot;github_actions.jpg&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-&lt;p&gt;실행시킬 workflow를 &lt;strong&gt;yml파일&lt;/strong&gt; 양식으로 작성해야 한다.&lt;/p&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/301d8/github_yml.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 55.99999999999999%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAECBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHdaCSyP//EABYQAQEBAAAAAAAAAAAAAAAAABABEf/aAAgBAQABBQIwp//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAECAQE/AUf/xAAXEAADAQAAAAAAAAAAAAAAAAABECAx/9oACAEBAAY/Alpj/8QAGRABAAIDAAAAAAAAAAAAAAAAAAExESFB/9oACAEBAAE/IcJ0kOqIp//aAAwDAQACAAMAAAAQsw//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAWEQEBAQAAAAAAAAAAAAAAAAAAARH/2gAIAQIBAT8QjD//xAAaEAADAQEBAQAAAAAAAAAAAAAAAREhMUGh/9oACAEBAAE/EEl7pKr2uDE702VZ8ExocD//2Q==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/c54d4/github_yml.webp 175w,
-/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/a3432/github_yml.webp 350w,
-/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/426ac/github_yml.webp 700w,
-/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/c139f/github_yml.webp 1050w,
-/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/7f403/github_yml.webp 1400w,
-/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/fe3fb/github_yml.webp 1485w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/e52aa/github_yml.jpg 175w,
-/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/70ebb/github_yml.jpg 350w,
-/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/29d31/github_yml.jpg 700w,
-/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/9ecec/github_yml.jpg 1050w,
-/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/d165a/github_yml.jpg 1400w,
-/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/301d8/github_yml.jpg 1485w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/29d31/github_yml.jpg&quot; alt=&quot;github_yml.jpg&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-&lt;pre&gt;&lt;code class=&quot;language-yml&quot;&gt;# workflow의 이름
-name: AWS Deploy
-
-# main 브랜치에 push가 일어났을 때, 현재 workflow를 발동시킨다.
-on:
-   push:
-      branches:
-         - main
-
-# workflow는 하나 이상의 job으로 구성되고, 각 job을 서로 다른 실행환경에서 진행시킬 수 있다.
-jobs:
-   Deploy:  # job_id라고 하며 job의 id로 작용한다. 문자열을 이용해서 unique하게 작명하면 된다.
-      name: Deploy to EC2  # name은 github UI상에 표시되는 job 이름이다.
-      runs-on: ubuntu-latest  # job의 실행환경을 정의하며, 공식문서를 참고해서 정해진 label을 사용해야 한다.
-
-      # 하단의 uses는 작업단계를 자동화하기 위해 사용되는 패키지 혹은 코드를 말하며 이는 특정 github 레포지토리일수도, 도커 이미지일수도 있다.
-      steps:
-         - uses: actions/checkout@v3
-         - name: SSH
-         uses: appleboy/ssh-action@v0.1.10
-         # with는 key-value형식으로 정의되는 환경변수이다. 하단의 양식은 appleboy/ssh-action에서 정의된 것이다.
-         with:
-            # github secrets에 저장해둔 값을 가져와 사용한다.
-            key: ${{ secrets.SSH_KEY }}
-            host: ${{ secrets.HOST }}
-            username: ${{ secrets.USER }}
-            # 실제로 실행시키고 싶은 쉘명령어를 작성한다.
-            script: |
-               cd ~/boogie-project
-               git pull
-               git switch main
-               cd frontend
-               npm install
-               npm run build
-               cd ../backend
-               source venv/bin/activate
-               pip install -r requirements.txt
-               sudo systemctl restart gunicorn
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;각 명령어에 대한 더 자세한 내용을 알고 싶으면, &lt;a href=&quot;https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions&quot;&gt;Github 공식문서&lt;/a&gt;를 참고하길 바란다.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;secrets 등록&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;앞 서 &lt;code&gt;key: ${{ secrets.SSH_KEY }}&lt;/code&gt;처럼 작성한 행들은, 마치 환경변수처럼 레포지토리에 설정된 값을 불러오겠다는 의미이다.&lt;/p&gt;
-&lt;p&gt;이 또한 중요한 값들을 하드코딩하지 않음으로써, 보안을 유지하기 위함이다. 아래 내용은 레포지토리에 secrets를 등록하는 방법이다.&lt;/p&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/7243f7bf011c36823bf821ecdca6a26f/e60b6/github_settings.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 32%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAGABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAduggJ//xAAWEAEBAQAAAAAAAAAAAAAAAAAAESH/2gAIAQEAAQUCxEf/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAXEAADAQAAAAAAAAAAAAAAAAAAEEGR/9oACAEBAAY/AlMP/8QAGBAAAgMAAAAAAAAAAAAAAAAAAAERUXH/2gAIAQEAAT8hwQoTh//aAAwDAQACAAMAAAAQg9//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAVEQEBAAAAAAAAAAAAAAAAAAAAMf/aAAgBAgEBPxBH/8QAGxABAAICAwAAAAAAAAAAAAAAAQARIZExQbH/2gAIAQEAAT8QDlXRHpGiJtGq4uz7P//Z&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/7243f7bf011c36823bf821ecdca6a26f/c54d4/github_settings.webp 175w,
-/TIL/static/7243f7bf011c36823bf821ecdca6a26f/a3432/github_settings.webp 350w,
-/TIL/static/7243f7bf011c36823bf821ecdca6a26f/426ac/github_settings.webp 700w,
-/TIL/static/7243f7bf011c36823bf821ecdca6a26f/c139f/github_settings.webp 1050w,
-/TIL/static/7243f7bf011c36823bf821ecdca6a26f/4690a/github_settings.webp 1075w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/7243f7bf011c36823bf821ecdca6a26f/e52aa/github_settings.jpg 175w,
-/TIL/static/7243f7bf011c36823bf821ecdca6a26f/70ebb/github_settings.jpg 350w,
-/TIL/static/7243f7bf011c36823bf821ecdca6a26f/29d31/github_settings.jpg 700w,
-/TIL/static/7243f7bf011c36823bf821ecdca6a26f/9ecec/github_settings.jpg 1050w,
-/TIL/static/7243f7bf011c36823bf821ecdca6a26f/e60b6/github_settings.jpg 1075w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/7243f7bf011c36823bf821ecdca6a26f/29d31/github_settings.jpg&quot; alt=&quot;github settings&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-&lt;p&gt;레포지토리의 settings를 클릭한다.&lt;/p&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/51ceb63ae8fb7c1151da84682de4738c/2a79a/github_secrets_actions.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 63.42857142857142%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAe7UNA//xAAVEAEBAAAAAAAAAAAAAAAAAAAQQf/aAAgBAQABBQJh/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQAGPwJf/8QAGRAAAgMBAAAAAAAAAAAAAAAAARAAQWGB/9oACAEBAAE/IanGBxf/2gAMAwEAAgADAAAAENPP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGBABAAMBAAAAAAAAAAAAAAAAAQARIVH/2gAIAQEAAT8QaqhsOpmcjhXYC4C5Ryf/2Q==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/51ceb63ae8fb7c1151da84682de4738c/c54d4/github_secrets_actions.webp 175w,
-/TIL/static/51ceb63ae8fb7c1151da84682de4738c/a3432/github_secrets_actions.webp 350w,
-/TIL/static/51ceb63ae8fb7c1151da84682de4738c/426ac/github_secrets_actions.webp 700w,
-/TIL/static/51ceb63ae8fb7c1151da84682de4738c/c139f/github_secrets_actions.webp 1050w,
-/TIL/static/51ceb63ae8fb7c1151da84682de4738c/2482d/github_secrets_actions.webp 1382w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/51ceb63ae8fb7c1151da84682de4738c/e52aa/github_secrets_actions.jpg 175w,
-/TIL/static/51ceb63ae8fb7c1151da84682de4738c/70ebb/github_secrets_actions.jpg 350w,
-/TIL/static/51ceb63ae8fb7c1151da84682de4738c/29d31/github_secrets_actions.jpg 700w,
-/TIL/static/51ceb63ae8fb7c1151da84682de4738c/9ecec/github_secrets_actions.jpg 1050w,
-/TIL/static/51ceb63ae8fb7c1151da84682de4738c/2a79a/github_secrets_actions.jpg 1382w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/51ceb63ae8fb7c1151da84682de4738c/29d31/github_secrets_actions.jpg&quot; alt=&quot;github secrets actions&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-&lt;p&gt;왼쪽 사이드바에서 Secrets and variables &gt; Actions 로 들어간다.&lt;/p&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/c1f40fe5addf4a3cc4368f486615b417/bb3bf/github_secrets.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 62.857142857142854%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAECBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAC/9oADAMBAAIQAxAAAAHeJKiH/8QAFxAAAwEAAAAAAAAAAAAAAAAAARARIP/aAAgBAQABBQJC4//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAECAQE/AVf/xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAZEAACAwEAAAAAAAAAAAAAAAAAEQEQQVH/2gAIAQEAAT8hwR1RkX//2gAMAwEAAgADAAAAECD/AP/EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAEDAQE/EEf/xAAWEQADAAAAAAAAAAAAAAAAAAAAARH/2gAIAQIBAT8QHDh//8QAGRAAAwEBAQAAAAAAAAAAAAAAAAERITFB/9oACAEBAAE/EGqvRR6zB97kpOjo5BvT/9k=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/c1f40fe5addf4a3cc4368f486615b417/c54d4/github_secrets.webp 175w,
-/TIL/static/c1f40fe5addf4a3cc4368f486615b417/a3432/github_secrets.webp 350w,
-/TIL/static/c1f40fe5addf4a3cc4368f486615b417/426ac/github_secrets.webp 700w,
-/TIL/static/c1f40fe5addf4a3cc4368f486615b417/c139f/github_secrets.webp 1050w,
-/TIL/static/c1f40fe5addf4a3cc4368f486615b417/cc785/github_secrets.webp 1132w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/c1f40fe5addf4a3cc4368f486615b417/e52aa/github_secrets.jpg 175w,
-/TIL/static/c1f40fe5addf4a3cc4368f486615b417/70ebb/github_secrets.jpg 350w,
-/TIL/static/c1f40fe5addf4a3cc4368f486615b417/29d31/github_secrets.jpg 700w,
-/TIL/static/c1f40fe5addf4a3cc4368f486615b417/9ecec/github_secrets.jpg 1050w,
-/TIL/static/c1f40fe5addf4a3cc4368f486615b417/bb3bf/github_secrets.jpg 1132w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/c1f40fe5addf4a3cc4368f486615b417/29d31/github_secrets.jpg&quot; alt=&quot;github secrets&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-&lt;p&gt;New repository secret을 눌러서 이전에 yml파일에서 작성했던 secrets값들을 등록한다.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;SSH_KEY&lt;/strong&gt;&lt;br&gt;
-EC2에 등록된 .pem key
-&lt;pre&gt;&lt;code&gt; -----BEGIN RSA PRIVATE KEY-----
- 위 아래 저 문구들도 같이 복사해줘야 한다!
- -----END RSA PRIVATE KEY-----
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;src/&lt;/strong&gt;&lt;br&gt;
+빌드 설정 등을 제외하고는, 거의 대부분의 개발이 &lt;code&gt;src&lt;/code&gt;폴더 내에서 이뤄진다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;src/main/&lt;/strong&gt;&lt;br&gt;
+프로젝트를 빌드 했을 때, &lt;code&gt;.jar&lt;/code&gt; 파일에 포함되는 코드이다. (JAR파일은 그냥 빌드 결과물이다.)
+쉽게 말해 어플리케이션을 서버로 실행했을 때, 실제로 사용되는 소스코드와 리소스가 있는 곳이다.
+대응되는 디렉토리로 &lt;code&gt;src/test/&lt;/code&gt;가 있다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;src/main/java/&lt;/strong&gt;&lt;br&gt;
+자바 소스코드가 저장되는 곳이다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Application.java 파일&lt;/strong&gt;&lt;br&gt;
+정확히 말하면 &lt;code&gt;{프로젝트명}Application.java&lt;/code&gt; 로 자동 생성된다.&lt;br&gt;
+&lt;mark&gt;프로젝트의 엔트리 포인트(시작점)을 담당한다.&lt;/mark&gt;
+대충 아래처럼 생겼는데, 저 &lt;code&gt;@SpringBootApplication&lt;/code&gt; 어노테이션이 SpringBoot 어플리케이션의 기본 설정을 자동 제공한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;HOST&lt;/strong&gt;&lt;br&gt;
-EC2 IP주소&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;USER&lt;/strong&gt;&lt;br&gt;
-EC2 사용자 이름으로 AWS 페이지에서 확인할 수 있다.
-ubuntu 서버이고, 따로 사용자를 생성해주지 않았다면 십중팔구 &lt;code&gt;ubuntu&lt;/code&gt;이다.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;로그 확인&lt;/strong&gt;&lt;/p&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/6030297cc3a838c7b26e30ffd28ba602/2a118/github_workflows.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 37.14285714285714%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAHABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAd4RRX//xAAUEAEAAAAAAAAAAAAAAAAAAAAQ/9oACAEBAAEFAn//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAQ/9oACAEBAAY/An//xAAWEAEBAQAAAAAAAAAAAAAAAAABEBH/2gAIAQEAAT8hTC//2gAMAwEAAgADAAAAEAAP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFhEBAQEAAAAAAAAAAAAAAAAAARAR/9oACAECAQE/EFdn/8QAGBABAAMBAAAAAAAAAAAAAAAAAQARIXH/2gAIAQEAAT8QC12oNhkOT//Z&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/6030297cc3a838c7b26e30ffd28ba602/c54d4/github_workflows.webp 175w,
-/TIL/static/6030297cc3a838c7b26e30ffd28ba602/a3432/github_workflows.webp 350w,
-/TIL/static/6030297cc3a838c7b26e30ffd28ba602/426ac/github_workflows.webp 700w,
-/TIL/static/6030297cc3a838c7b26e30ffd28ba602/c139f/github_workflows.webp 1050w,
-/TIL/static/6030297cc3a838c7b26e30ffd28ba602/7f403/github_workflows.webp 1400w,
-/TIL/static/6030297cc3a838c7b26e30ffd28ba602/3216d/github_workflows.webp 1465w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/6030297cc3a838c7b26e30ffd28ba602/e52aa/github_workflows.jpg 175w,
-/TIL/static/6030297cc3a838c7b26e30ffd28ba602/70ebb/github_workflows.jpg 350w,
-/TIL/static/6030297cc3a838c7b26e30ffd28ba602/29d31/github_workflows.jpg 700w,
-/TIL/static/6030297cc3a838c7b26e30ffd28ba602/9ecec/github_workflows.jpg 1050w,
-/TIL/static/6030297cc3a838c7b26e30ffd28ba602/d165a/github_workflows.jpg 1400w,
-/TIL/static/6030297cc3a838c7b26e30ffd28ba602/2a118/github_workflows.jpg 1465w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/6030297cc3a838c7b26e30ffd28ba602/29d31/github_workflows.jpg&quot; alt=&quot;github workflows&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-&lt;p&gt;이 후 지정한 브랜치에서 push 이벤트가 발생하면, 자동으로 workflow가 실행된다.&lt;/p&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/f0392dd67d320192a256afb27d073cfa/efabe/github_logs.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 40%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAIABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAEFBv/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAG0y4kCv//EABYQAAMAAAAAAAAAAAAAAAAAAAQQNP/aAAgBAQABBQIqZf/EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABUQAQEAAAAAAAAAAAAAAAAAAAIQ/9oACAEBAAY/Anf/xAAZEAACAwEAAAAAAAAAAAAAAAAAEQEhccH/2gAIAQEAAT8hph0lsZ//2gAMAwEAAgADAAAAEAwf/8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQMBAT8QZ//EABURAQEAAAAAAAAAAAAAAAAAAAEQ/9oACAECAQE/ECf/xAAZEAADAQEBAAAAAAAAAAAAAAAAAREhMbH/2gAIAQEAAT8QvXs+CTNcLP/Z&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/f0392dd67d320192a256afb27d073cfa/c54d4/github_logs.webp 175w,
-/TIL/static/f0392dd67d320192a256afb27d073cfa/a3432/github_logs.webp 350w,
-/TIL/static/f0392dd67d320192a256afb27d073cfa/426ac/github_logs.webp 700w,
-/TIL/static/f0392dd67d320192a256afb27d073cfa/c139f/github_logs.webp 1050w,
-/TIL/static/f0392dd67d320192a256afb27d073cfa/7f403/github_logs.webp 1400w,
-/TIL/static/f0392dd67d320192a256afb27d073cfa/098de/github_logs.webp 1472w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/f0392dd67d320192a256afb27d073cfa/e52aa/github_logs.jpg 175w,
-/TIL/static/f0392dd67d320192a256afb27d073cfa/70ebb/github_logs.jpg 350w,
-/TIL/static/f0392dd67d320192a256afb27d073cfa/29d31/github_logs.jpg 700w,
-/TIL/static/f0392dd67d320192a256afb27d073cfa/9ecec/github_logs.jpg 1050w,
-/TIL/static/f0392dd67d320192a256afb27d073cfa/d165a/github_logs.jpg 1400w,
-/TIL/static/f0392dd67d320192a256afb27d073cfa/efabe/github_logs.jpg 1472w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/f0392dd67d320192a256afb27d073cfa/29d31/github_logs.jpg&quot; alt=&quot;github logs&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-&lt;p&gt;클릭하면 자세한 로그 기록도 확인할 수 있으니, 혹시라도 에러가 발생하면 참고하자&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;src/main/resources/&lt;/strong&gt;&lt;br&gt;
+자바 소스코드가 아닌 파일들이 저장되는 곳이다.&lt;br&gt;
+설정파일(&lt;code&gt;.xml&lt;/code&gt;, &lt;code&gt;.properties&lt;/code&gt;)이나 정적파일( &lt;code&gt;.html&lt;/code&gt; ,&lt;code&gt;.css&lt;/code&gt;, &lt;code&gt;.js&lt;/code&gt;)이 그 예이다.&lt;br&gt;
+(원래 SpringBoot는 풀스택을 지원하는 프레임워크이다.)&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[반응형 2D 캐러셀 (React 컴포넌트)]]></title><description><![CDATA[1. 목표 1.1. react-responsive-carousel 오늘은 'npm react carousel'을 구글링하면 제일 상단에 나오는 react-responsive-carousel과 유사하게 동작하는 리액트 컴포넌트를 만들어 볼 것이다. 2d…]]></description><link>https://byongho96.github.io/TIL/posts/Animation/2D_Carousel/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Animation/2D_Carousel/</guid><pubDate>Mon, 10 Jul 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-목표&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EB%AA%A9%ED%91%9C&quot; aria-label=&quot;1 목표 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 목표&lt;/h1&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;src/test&lt;/strong&gt;&lt;br&gt;
+테스트 코드 및 테스트를 위한 추가 리소스가 저장되는 곳이다.&lt;br&gt;
+따라서 빌드 시에, 최종적으로 JAR 파일에 포함되지 않는다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;12-springboot-요청-처리-과정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-springboot-%EC%9A%94%EC%B2%AD-%EC%B2%98%EB%A6%AC-%EA%B3%BC%EC%A0%95&quot; aria-label=&quot;12 springboot 요청 처리 과정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2. SpringBoot 요청 처리 과정&lt;/h2&gt;
+&lt;p&gt;SpringBoot가 백엔드 프레임워크로써 동작한다고 할 때, 클라이언트 요청을 다음과 같은 과정으로 처리한다.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/577fb6a2513ec44acc4ab6701a1691bf/2e237/springboot-request-flow.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 24.571428571428573%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsTAAALEwEAmpwYAAABYUlEQVR42jWPzSsEcRjH5z9wV5yUo4tSLk57cnOiHJQoHGSvbg5KWwpR8lIOXlLKy0FCXvKyiLU77Oy2uzNrGS+7s+M3OztKy3y0g6e+9Xy+3/r2PJKRueDTkdFWZrmsqkbs71GeL2Fx3+RD8/s9zm9sEKmtxQkGPd6cGKK3oZLhdh+2MD2vVCohPSi7pONbnC6McdLazdFoC1drjRxO1bFYX0FwwI9IJ4hOTzJVU0N/RyeDo+O0NPsI9LUx4u8iFLpBURQ0VUVKRLaJXy9zJx8TUQ64Ow0Q3ekidtCDGp1DvL4h4vcUH9NchMMEZuYZn5lndmmVUDhCRn/m8emJZDKJYRhIhh7Gzt6ixS9JhNZ50TMY7x/eC67r/qq8//G/j+tyfnaGLMuoqkqxWPQy6fvbRQiLt2yObO4du2AhhEk+n6NQsLAsC9u2EUJgmqan8iWpVApN04jFYui6juM4XuEPFANRhideXOwAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/577fb6a2513ec44acc4ab6701a1691bf/c54d4/springboot-request-flow.webp 175w,
+/TIL/static/577fb6a2513ec44acc4ab6701a1691bf/a3432/springboot-request-flow.webp 350w,
+/TIL/static/577fb6a2513ec44acc4ab6701a1691bf/426ac/springboot-request-flow.webp 700w,
+/TIL/static/577fb6a2513ec44acc4ab6701a1691bf/02aff/springboot-request-flow.webp 790w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/577fb6a2513ec44acc4ab6701a1691bf/4edbd/springboot-request-flow.png 175w,
+/TIL/static/577fb6a2513ec44acc4ab6701a1691bf/13ae7/springboot-request-flow.png 350w,
+/TIL/static/577fb6a2513ec44acc4ab6701a1691bf/8c557/springboot-request-flow.png 700w,
+/TIL/static/577fb6a2513ec44acc4ab6701a1691bf/2e237/springboot-request-flow.png 790w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/577fb6a2513ec44acc4ab6701a1691bf/8c557/springboot-request-flow.png&quot; alt=&quot;springboot-request-flow.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Controller&lt;/strong&gt;&lt;br&gt;
+클라이언트의 요청 유효성을 검증한 뒤, 적절한 Service를 호출한다. 그리고 그 결과를 다시 응답 형태로 가공하여 클라이언트에 반환한다.&lt;br&gt;
+웹 애플리케이션의 엔드포인트로써 사용자 인터페이스와 상호작용한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Service&lt;/strong&gt;&lt;br&gt;
+핵심 로직이 구현되는 부분이다.
+Controller로부터 받은 데이터를 검증한 뒤, 여러 개의 Repository를 조합하여 복잡한 데이터 조작을 수행한다.
+그 외에도 트랜잭션을 관리하거나 데이터를 캐싱하는 등 여러 핵심 기능이 있다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Repository&lt;/strong&gt;&lt;br&gt;
+데이터에 접근하고 조작하는 역할을 담당한다.&lt;br&gt;
+한 마디로 데이터베이스와 상호작하며 데이터를 CRUD하는 기능이 구현된다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Spring은 사용자 요청을 처리하는 데 있어, 여러 개의 레이어를 두고 역할을 분리했다. 이를 통해 코드의 유지보수성을 높일 수 있다.
+Controller, Service, Repository가 Spring의 3 개 레이어를 대표하는 파일이다.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 587px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/405a0e7c4f1511193af9cc6d0f56db69/d72eb/spring-web-layer.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 61.71428571428571%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAADMklEQVR42kWNa0ybZRiGv5i4aGI8JLrRzW3icM5liVPBwXSkWGClpgW20cokSxhqQGVbFo26GP84s5gxBpscBsnaArIYF2AcenAujMMYUJwW2rUd0ONH6YR2oY3RHyaX6VejP6489/PeV55XcIUuMGwvZszxLqNz5RI37e8wcKsMq03L9RktliktN+7oGHOk+lFHOSNzOibuVuG//wMjs1qG7QeY9X2NMO05xtXxDfRPvkjf7Qz6pzL4cfR5zhpltPRspunqs5zr2kiH9TkGpjIkJ0nvRDqD06/iDNTRe3srPRMy6SNh2lOD3vwYetMmOiwy9ENpGC1pfH9dRodVhtEio/OnVNYPbcBgSpM8g3k9vbd24BEbMJi209q7hXFnJcJy1Mxd/1ncwQu4A424JBpwSzTiCjbgDjb+3yVzMJnr8S5fxhfp4sqNbXRa0xl3VCIY7ySovhbjpPkBx4diHDfFOGGKUTv4L0MxPh6M8dFAVOqSzglprvKp9W+mvdfon1xPz8QmxpzlCJ9ZQrxQbyezyUFWs1PiE1OA2gG/RHWfj5o+H6csQZQGD681OSV398VZMpsXGfHcZHKukuFfq/htoR7hpFlkc52DXd+5KNDPU2RcQNW5QEm3F3XnIuquRUq7vRzq9lJomEdpXCCrxc328w52tnuxW20kPvyC+zWneHDuEsLPC2tcnPydtpkV2iVWaZ2J/kdLctpSb5d+idJmW6XNtkLrZIR2z18Er/QTyVMjqnREjlQj/Hn6W+I5ChKFxSQKNCTkKuJ78ljb8xbxvflSF89VpvZsBQmFhkS+hnieij8OVbB25jwhuYaw5jDhkgqEcPn7uIRHuffIRtzCk/izlYhlRwkV6QiVHCEg1+DPVBDSVBDIK8bzsAzPQ8/gEZ5m/qltRE/XISrLEAsPsHz4A4SI7j3uCetYXCfDv+Vlgq8XIBYcZGl/GaF9byMqSghmKVgq0iHmlxLYmcPi41uZF57Amzz45Tf40l/B/1I24SItQvSrMwR3yxFz1SwpShHlasQcJeIbRYj7VIT2KhGTh5P7m6qUk6smlL2fsFLLWvNllrVHiVQdY6X2c/4BlGKSsOl/PycAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/405a0e7c4f1511193af9cc6d0f56db69/c54d4/spring-web-layer.webp 175w,
+/TIL/static/405a0e7c4f1511193af9cc6d0f56db69/a3432/spring-web-layer.webp 350w,
+/TIL/static/405a0e7c4f1511193af9cc6d0f56db69/cf155/spring-web-layer.webp 587w&quot; sizes=&quot;(max-width: 587px) 100vw, 587px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/405a0e7c4f1511193af9cc6d0f56db69/4edbd/spring-web-layer.png 175w,
+/TIL/static/405a0e7c4f1511193af9cc6d0f56db69/13ae7/spring-web-layer.png 350w,
+/TIL/static/405a0e7c4f1511193af9cc6d0f56db69/d72eb/spring-web-layer.png 587w&quot; sizes=&quot;(max-width: 587px) 100vw, 587px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/405a0e7c4f1511193af9cc6d0f56db69/d72eb/spring-web-layer.png&quot; alt=&quot;spring-web-layer.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;h2 id=&quot;13-계층형-구조--도메인형-구조&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#13-%EA%B3%84%EC%B8%B5%ED%98%95-%EA%B5%AC%EC%A1%B0--%EB%8F%84%EB%A9%94%EC%9D%B8%ED%98%95-%EA%B5%AC%EC%A1%B0&quot; aria-label=&quot;13 계층형 구조  도메인형 구조 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.3. 계층형 구조 &amp;#x26; 도메인형 구조&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;src/main/java/&lt;/code&gt; 내부를 어떻게 구성하는지&lt;/strong&gt;에 따라 &lt;strong&gt;계층형&lt;/strong&gt;과 &lt;strong&gt;도메인형&lt;/strong&gt;으로 나눌 수 있다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;계층형 구조&lt;/strong&gt;
+&lt;strong&gt;Spring 레이어의 관점에서 디렉토리를 구분하는 것이 계층형 구조이다.&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  controller
+    ⎿ ProductController
+    ⎿ MemberController
+    ⎿ CartController
+
+  service
+    ⎿ ProductService
+    ⎿ MemberService
+    ⎿ CartService
+
+  repository
+    ⎿ ProductRespository
+    ⎿ MemberRespository
+    ⎿ CartRespository
+
+  dao
+    ⎿ Product
+    ⎿ Member
+    ⎿ Cart
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;도메인형 구조&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;엔터티(Entity)를 기준으로 디렉토리를 구분하는 것이 도멩ㄴ형 구조이다.&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;product
+  ⎿ controller
+  ⎿ service
+  ⎿ dao
+  ⎿ dto
+
+member
+  ⎿ controller
+  ⎿ service
+  ⎿ dao
+  ⎿ dto
+
+cart
+  ⎿ controller
+  ⎿ service
+  ⎿ dao
+  ⎿ dto
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;2-dto&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-dto&quot; aria-label=&quot;2 dto permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. DTO&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Controller에서 클랑이언트의 요청을 Java 객체 형태로 받기 위해서 DTO를 사용한다.&lt;/strong&gt;
+DTO가 없다해서 Controller가 사용자 요청을 못받는 것은 아니다. 하지만 서버 단에서 미리 필요한 필드값을 지정할 수 있고, 손쉽게 Java 객체로 변환할 수 있는 등의 장점이 많기 때문에 보통 DTO를 사용한다.&lt;/p&gt;
+&lt;p&gt;DTO로 지정한 필드 외의 추가 필드가 있을 경우, 해당 필드는 무시되고&lt;br&gt;
+반대로 지정한 필드의 값이 들어오지 않는 경우, 해당 필드는 초깃값 혹은 null로 들어온다.&lt;br&gt;
+필요에 따라서 데이터 형식이 맞지 않을 시, 예외를 발생시킬 수도 있다.&lt;/p&gt;
+&lt;p&gt;아래는 간단하게 정말 간단하게 &lt;code&gt;username&lt;/code&gt;과 &lt;code&gt;password&lt;/code&gt;만을 가진 MemberDTO에 대한 예시이다. 각 어노테이션에 대한 설명은 하단 어노테이션 항목에 정리했다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+public class MemberDto {
+  String username;
+  String password;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;3-controller&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-controller&quot; aria-label=&quot;3 controller permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. Controller&lt;/h1&gt;
+&lt;p&gt;아래는 회원가입에 대한 Controller 예시 로직이다.&lt;br&gt;
+구체적인 로직은 프로젝트마다 다를 수 있다. 예를 들어 예외처리도 아래와 같이 Controller마다 명시하지 않고, &lt;code&gt;@RestControllerAdvice&lt;/code&gt; 클래스와 &lt;code&gt;@ExceptionHandler&lt;/code&gt;메소드를 가진 전역적인 예외처리 클래스를 만들고, Service 단에서 처리할 수도 있다.&lt;/p&gt;
+&lt;p&gt;눈여겨봐야할 점은 다음과 같다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;@RestController&lt;/strong&gt;&lt;br&gt;
+@RestController는 @Controller와 @ResponseBody 어노테이션을 결합한 것이다.&lt;br&gt;
+이 어노테이션을 적용하면, Spring이 해당 클래스를 컨트롤러로 인식하여 HTTP 요청에 대한 처리를 수행하고, HTTP 응답을 자동으로 JSON 식으로 변환하여 반환한다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;@RequestMapping&lt;/strong&gt;&lt;br&gt;
+@RequestMapping 어노테이션은 요청 URL 경로와 컨트롤러의 메서드를 매핑하는 역할을 한다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;@PostMapping&lt;/strong&gt;&lt;br&gt;
+이름에서 짐작할 수 있는 것처럼, URL 경로와 HTTP메소드를 결합하여 메서드를 매핑하는 역할을 한다.
+이 외에도 @GetMapping, @PutMapping, @DeleteMapping 이 있다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MemberDto&lt;/strong&gt;&lt;br&gt;
+앞서 만든 Dto를 이용해서 클라이언트의 요청을 Java 객체 형태로 받아 처리한다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MemberService&lt;/strong&gt;&lt;br&gt;
+컨트롤러는 사용자 요청을 받은 뒤, 실제 비즈니스 로직을 처리하기 위해 Service를 호출한다. 그리고 그 결과에 따라 응답을 생성하여 반환한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@RestController
+@RequestMapping(&quot;/users&quot;)
+@RequiredArgsConstructor
+public class MemberController {
+
+  private final MemberService memberService;
+
+  @PostMapping(&quot;/signup&quot;)
+  public ResponseEntity&amp;#x3C;String&gt; signUp(@RequestBody MemberDto memberDto) {
+    try {
+      memberService.signUp(memberDto);
+      return ResponseEntity.ok(&quot;회원가입이 완료되었습니다.&quot;);
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(&quot;회원가입에 실패했습니다.&quot;);
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;4-service&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-service&quot; aria-label=&quot;4 service permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. Service&lt;/h1&gt;
+&lt;h2 id=&quot;41-service&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#41-service&quot; aria-label=&quot;41 service permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.1. Service&lt;/h2&gt;
+&lt;p&gt;보통 프로젝트를 보면 &lt;code&gt;Service.java&lt;/code&gt;와 &lt;code&gt;ServiceImpl.java&lt;/code&gt;이 한 쌍으로 존재한다.
+&lt;strong&gt;&lt;code&gt;Service.java&lt;/code&gt;은 서비스 인터페이스로써, 서비스 클래스의 추상화된 메소드를 선언하는 역할이고,&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;실제 비즈니스 로직(메소드)은 &lt;code&gt;ServiceImpl.java&lt;/code&gt;에서 구현된다.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;이와 같이 파일을 분리하는 이유는 인터페이스를 바탕으로 여러 개의 구현체를 자유롭게 확장할 수 있고.&lt;br&gt;
+더 나아가, 인터페이스와 구현 클래스를 사용하여 의존성 주입(Dependency Injection)을 적용할 수 있어 코드의 확장성과 유연성을 높일 수 있기 때문이다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public interface MemberService {
+
+  public String signUp(MemberDto memberDto);
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;42-serviceimpl&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#42-serviceimpl&quot; aria-label=&quot;42 serviceimpl permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.2. ServiceImpl&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;ServiceImpl&lt;/code&gt;은 &lt;code&gt;Service&lt;/code&gt;에 대한 실제 비즈니스 로직을 구현한다.&lt;/p&gt;
+&lt;p&gt;아래 코드를 보면, MyBatis를 이용하는 경우와 JPA를 이용하는 경우를 나눠서 코드를 작성했다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;MyBatis&lt;/strong&gt;를 이용하는 경우 DTO를 그대로 전달할 수 있고, 최종적으로 &lt;code&gt;Mapper.xml&lt;/code&gt;
+파일이 DTO를 해석할 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;JPA&lt;/strong&gt;를 이용하는 경우 DTO를 테이블과 1:1 관계로 설계된 Entity 객체 형태로 형변화 해줘야 한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Service
+@RequiredArgsConstructor
+public class MemberServiceImpl implements MemberService {
+
+  private final MemberRepository memberRepository;
+
+  // MyBatis
+  @Transactional
+  public void signUp(MemberDto memberDto) {
+    memberRepository.insertMember(memberDto);
+  }
+
+  // JPA
+  @Transactional
+  public void signUp(MemberDto memberDto) {
+    // MemberDto -&gt; MemberEntity 변환
+    MemberEntity member = new MemberEntity();
+    member.setUsername(memberDto.getUsername());
+    member.setPassword(memberDto.getPassword())
+
+    // JPA 내장 메소드를 통한 레코드 저장
+    memberRepository.save(member);
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;5-repository&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-repository&quot; aria-label=&quot;5 repository permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5. Repository&lt;/h1&gt;
+&lt;p&gt;Repository는 Spring이 어떤 프레임워크로 DB와 상호작용하느냐에 따라 다르게 설계될 수 있다.&lt;/p&gt;
+&lt;p&gt;대표적으로 MyBatis와 JPA 프레임워크가 있고, 간단한게 비교분석하면 다음과 같다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;MyBatis&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;개발자가 직접 SQL 쿼리를 작성하고 이를 메소드와 매핑한다.&lt;/li&gt;
+&lt;li&gt;직접 SQL을 작성하므로 세밀한 제어가 가능하며, 복잡한 쿼리와 성능 최적화에 유리하다.&lt;/li&gt;
+&lt;li&gt;하지만 같은 이유로 보다 많은 개발 작업과 유지보수 비용이 필요하다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;JPA (Java Persistence API)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;정해진 작명법에 맞춰 메소드를 작성하면, JPA가 SQL을 대신 생성한다.&lt;/li&gt;
+&lt;li&gt;객체 지향적인 개발에 용이하며, 생산성을 향상시킬 수 있다.&lt;/li&gt;
+&lt;li&gt;하지만 SQL의 세부적인 제어가 어렵다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;51-mybatis&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#51-mybatis&quot; aria-label=&quot;51 mybatis permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.1. MyBatis&lt;/h2&gt;
+&lt;p&gt;MyBatis는 직접 SQL 쿼리문을 작성할 &lt;strong&gt;&lt;code&gt;Mapper.xml&lt;/code&gt;파일&lt;/strong&gt;, &lt;code&gt;Mapper.xml&lt;/code&gt;의 쿼리를 Java 메소드로 매핑시켜 구현할 &lt;code&gt;Mapper.java&lt;/code&gt;인터페이스 파일이 필요하다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Repository.java&lt;/code&gt;는 계층의 통일성을 위해 생성해줄 수도 있고, 아니면 &lt;code&gt;Mapper.java&lt;/code&gt;를 &lt;code&gt;ServiceImpl&lt;/code&gt;에서 바로 주입해 사용할 수도 있다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Mapper.xml&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;#x3C;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&amp;#x3C;!DOCTYPE mapper PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;
+      &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+&amp;#x3C;mapper namespace=&quot;{패키지 명}.MemberMapper&quot;&gt;
+
+  &amp;#x3C;insert id=&quot;insertUser&quot; parameterType=&quot;{패키지 명}.MemberDto&quot;&gt;
+      INSERT INTO users (username, password)
+      VALUES (#{username}, #{password})
+  &amp;#x3C;/insert&gt;
+
+&amp;#x3C;/mapper&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;namespace&lt;/code&gt;에는, 해당 xml파일을 Java메소드로 매핑시킬 인터페이스를 입력해준다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;parameterType&lt;/code&gt;에는, 해당 xml 파일이 전달받는 인자의 타입을 입력해준다. 위에까지의 예시에 따르면 DTO클래스이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Mapper.java&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;메소드의 이름은 xml파일의 &lt;code&gt;id&lt;/code&gt;와 동일해야 한다.&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Mapper
+public interface MemberMapper {
+
+  public void insertUser(MemberDto memberDto);
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Repository.java&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Repository
+@RequiredArgsConstructor
+public class MemberRepository {
+
+    private final MemberMapper memberMapper;
+
+    public void insertUser(MemberDto memberDto) {
+        MemberMapper.insertUser(memberDto);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;52-jpa&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#52-jpa&quot; aria-label=&quot;52 jpa permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.2. JPA&lt;/h2&gt;
+&lt;p&gt;JPA는 데이터베이스 테이블과 1:1 매핑된 Entity 객체를 바탕으로 동작한다.&lt;/p&gt;
+&lt;p&gt;따라서 &lt;code&gt;Entity.java&lt;/code&gt;파일과, JPA의 메소드를 구현할 &lt;code&gt;Repository.java&lt;/code&gt;파일이 필요하다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Entity.java&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Entity
+@Table(name = &quot;members&quot;)  // 테이블 이름을 명시적으로 지정. 없을 경우 클래스 이름을 따름
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class MemberEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false)
+    private String username;
+    @Column(nullable = false)
+    private String password;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Repository.java&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;JPA는 편리한 기능을 위해 내재된 기능이 많다. 따라서 JPA를 제대로 활용하기 위해서는 별도의 학습이 필요하다.&lt;/p&gt;
+&lt;p&gt;다음은 username을 기반으로 레코드를 조회하는 메소드 선언의 예시이다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;import org.springframework.data.jpa.repository.JpaRepository;
+
+@Repository
+public interface UserRepository extends JpaRepository&amp;#x3C;User, Long&gt; {
+    Optional&amp;#x3C;User&gt; findByUsername(String username);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;6-주요-어노테이션&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#6-%EC%A3%BC%EC%9A%94-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98&quot; aria-label=&quot;6 주요 어노테이션 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6. 주요 어노테이션&lt;/h1&gt;
+&lt;h2 id=&quot;61-getter--setter&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#61-getter--setter&quot; aria-label=&quot;61 getter  setter permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.1. @Getter / @Setter&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;@Getter&lt;/code&gt;와 &lt;code&gt;@Setter&lt;/code&gt;는 Lombok 어노테이션으로, 자동으로 필드에 대한 Getter와 Setter 메소드를 생성해준다&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class Person {
+    private String name;
+    private int age;
+    private String address;
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person person = new Person();
+
+        person.setName(&quot;John Doe&quot;);
+        person.setAge(25);
+        person.setAddress(&quot;123 Main St&quot;);
+
+        System.out.println(&quot;Name: &quot; + person.getName());  // Name: John Doe
+        System.out.println(&quot;Age: &quot; + person.getAge());  // Age: 25
+        System.out.println(&quot;Address: &quot; + person.getAddress()); // Address: 123 Main St
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;62-builder&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#62-builder&quot; aria-label=&quot;62 builder permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.2. @Builder&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;@Builder&lt;/code&gt;는 Lombok 어노테이션으로, 빌더 패턴으로 객체를 생성할 수 있게한다.&lt;br&gt;
+빌더 패턴은 가독성 높은 방식으로 객체를 생성하는 방식이다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Builder
+public class Person {
+    private String name;
+    private int age;
+    private String address;
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // 빌더 패턴
+        Person person = Person.builder()
+                .name(&quot;John Doe&quot;)
+                .age(25)
+                .address(&quot;123 Main St&quot;)
+                .build();
+
+        System.out.println(person.toString()); // Person(name=John Doe, age=25, address=123 Main St)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;63-noargsconstructor--allargsconstructor&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#63-noargsconstructor--allargsconstructor&quot; aria-label=&quot;63 noargsconstructor  allargsconstructor permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.3. @NoArgsConstructor / @AllArgsConstructor&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;@NoArgsConstructor&lt;/code&gt;는 매개변수가 없는 기본 생성자를 자동 생성한다.
+&lt;code&gt;@AllArgsConstructor&lt;/code&gt;는 모든 필드를 인자로 받는 생성자를 자동 생성한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+public class Person {
+    private String name;
+    private int age;
+    private String address;
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // 기본 생성자로 객체 생성
+        Person person1 = new Person();
+
+        // 모든 필드를 인자로 받는 생성자로 객체 생성
+        Person person2 = new Person(&quot;John Doe&quot;, 25, &quot;123 Main St&quot;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;64-requiredargsconstructor&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#64-requiredargsconstructor&quot; aria-label=&quot;64 requiredargsconstructor permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.4. @RequiredArgsConstructor&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;@RequiredArgsConstructor&lt;/code&gt;는 final로 선언된 필드에 대한 생성자를 자동으로 생성한다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;SpringBoot는 생성자 인자와 해당 타입의 빈(Bean)을 자동으로 연결해주는 기능을 제공&lt;/strong&gt;하기 때문에,
+&lt;mark&gt;SpringBoot의 관점에서 &lt;code&gt;@RequiredArgsConstructor&lt;/code&gt;를 통한 생성자 주입은 곧 의존성 주입&lt;/mark&gt;s으로 이어진다.&lt;/p&gt;
+&lt;p&gt;앞 서 Controller, Service, Repository 클래스에 모두 &lt;code&gt;@RequiredArgsConstructor&lt;/code&gt;어노테이션을 사용한 이유가 바로 이것이다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@RestController
+@RequestMapping(&quot;/users&quot;)
+@RequiredArgsConstructor
+public class MemberController {
+
+  private final MemberService memberService;
+
+  ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;65-data&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#65-data&quot; aria-label=&quot;65 data permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.5. @Data&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;@Data&lt;/code&gt;는 Lombok 어노테이션으로, &lt;code&gt;@Getter&lt;/code&gt;, &lt;code&gt;@Setter&lt;/code&gt;, &lt;code&gt;@ToString&lt;/code&gt;, &lt;code&gt;@EqualsAndHashCode&lt;/code&gt;, &lt;code&gt;@NoArgsConstructor&lt;/code&gt;, &lt;code&gt;@AllArgsConstructor&lt;/code&gt;, &lt;code&gt;@RequiredArgsConstructor&lt;/code&gt; 등을 한 번에 포함한다.&lt;/p&gt;
+&lt;p&gt;@Data를 사용하면 클래스에 필드에 대한 Getter, Setter, toString(), equals(), hashCode() 등의 메소드가 자동 생성된다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;import lombok.Data;
+
+@Data
+public class Person {
+    private String name;
+    private int age;
+    private String address;
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person person1 = new Person();
+        person1.setName(&quot;John Doe&quot;);
+        person1.setAge(25);
+        person1.setAddress(&quot;123 Main St&quot;);
+
+        Person person2 = new Person();
+        person2.setName(&quot;John Doe&quot;);
+        person2.setAge(25);
+        person2.setAddress(&quot;123 Main St&quot;);
+
+        // toString() 메소드 호출
+        System.out.println(person1.toString()); // 출력: Person(name=John Doe, age=25, address=123 Main St)
+
+        // equals() 메소드 호출. 객체의 필드값 비교
+        System.out.println(person1.equals(person2)); // 출력: true
+
+        // hashCode() 메소드 호출
+        System.out.println(person1.hashCode()); // 출력: 객체의 해시 코드(식별자) 값
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;7-참조&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#7-%EC%B0%B8%EC%A1%B0&quot; aria-label=&quot;7 참조 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;7. 참조&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.javaguides.net/2019/01/standard-project-structure-for-spring-boot-projects.html&quot;&gt;Standard Project Structure for Spring Boot Projects&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://hpark3.tistory.com/28&quot;&gt;[Spring] 스프링 MVC 프로젝트 기본구조와 동작 순서&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://cheese10yun.github.io/spring-guide-directory/&quot;&gt;Spring Guide - Directory 패키지 구조 가이드&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://velog.io/@sunil1369/Spring-boot-%ED%8C%A8%ED%82%A4%EC%A7%80-%EA%B5%AC%EC%A1%B0&quot;&gt;Spring boot 패키지 구조&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[반응형 2D 캐러셀 (React 컴포넌트)]]></title><description><![CDATA[1. 목표 1.1. react-responsive-carousel 오늘은 'npm react carousel'을 구글링하면 제일 상단에 나오는 react-responsive-carousel과 유사하게 동작하는 리액트 컴포넌트를 만들어 볼 것이다. 2d…]]></description><link>https://byongho96.github.io/TIL/posts/Animation/2D_Carousel/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Animation/2D_Carousel/</guid><pubDate>Mon, 10 Jul 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-목표&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EB%AA%A9%ED%91%9C&quot; aria-label=&quot;1 목표 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 목표&lt;/h1&gt;
 &lt;h2 id=&quot;11-react-responsive-carousel&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-react-responsive-carousel&quot; aria-label=&quot;11 react responsive carousel permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1. react-responsive-carousel&lt;/h2&gt;
 &lt;p&gt;오늘은 &apos;npm react carousel&apos;을 구글링하면 제일 상단에 나오는 &lt;a href=&quot;https://www.npmjs.com/package/react-responsive-carousel&quot;&gt;react-responsive-carousel&lt;/a&gt;과 유사하게 동작하는 리액트 컴포넌트를 만들어 볼 것이다.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/TIL/32099a46698bf502be574bc9dd0ad738/2d-carousel.gif&quot; alt=&quot;2d-carousel.gif&quot;&gt;&lt;/p&gt;
@@ -7082,85 +6886,738 @@ static 폴더 안에 든 파일은 webpack에 의해 처리되지 않고, 그대
 &lt;li&gt;&lt;a href=&quot;https://www.gatsbyjs.com/docs/how-to/routing/client-only-routes-and-user-authentication/&quot;&gt;Gatsby Client Only Routing&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.gatsbyjs.com/docs/how-to/rendering-options/using-server-side-rendering/&quot;&gt;Gatsby using SSR&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.gatsbyjs.com/docs/reference/gatsby-project-structure/&quot;&gt;Gatsby Project Structure&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Spring 프로젝트 흐름 파악]]></title><description><![CDATA[Spring 프로젝트의 구조를 이해하기 위해 작성한 내가 보는 문서 1. 구조 1.1. Cotroller 클라이언트를 요청을 받고 처리한 뒤, 응답을 반환한다. 사용자의 HTTP요청을 받아 Service로 전달하고, Service…]]></description><link>https://byongho96.github.io/TIL/posts/Backend/Spring/Introduction/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Backend/Spring/Introduction/</guid><pubDate>Tue, 30 May 2023 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
-&lt;p&gt;Spring 프로젝트의 구조를 이해하기 위해 작성한 내가 보는 문서&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;1-구조&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EA%B5%AC%EC%A1%B0&quot; aria-label=&quot;1 구조 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 구조&lt;/h1&gt;
-&lt;h1 id=&quot;11-cotroller&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-cotroller&quot; aria-label=&quot;11 cotroller permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1. Cotroller&lt;/h1&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Django와 Vue 프로젝트 Github SSH Action으로 자동 배포하기]]></title><description><![CDATA[시작하기 전에... Django와 Vue를 이용해서 만든 Boogie 프로젝트의 기초적인 배포 과정을 정리한 문서이다. Boogie 웹사이트 링크 .pem 키를 이용해 원격 EC2에 SSH(Secure Shell…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/django_and_vue_with_ssh_actions/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/django_and_vue_with_ssh_actions/</guid><pubDate>Sat, 20 May 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;시작하기-전에---omit-in-toc---&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-%EC%A0%84%EC%97%90---omit-in-toc---&quot; aria-label=&quot;시작하기 전에   omit in toc    permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;시작하기 전에...&lt;!-- omit in toc --&gt;&lt;/h1&gt;
 &lt;blockquote&gt;
-&lt;p&gt;클라이언트를 요청을 받고 처리한 뒤, 응답을 반환한다.&lt;/p&gt;
+&lt;p&gt;Django와 Vue를 이용해서 만든 &lt;a href=&quot;https://github.com/Byongho96/boogie-project&quot;&gt;Boogie 프로젝트&lt;/a&gt;의 &lt;strong&gt;기초적인&lt;/strong&gt; 배포 과정을 정리한 문서이다.&lt;br&gt;
+&lt;a href=&quot;https://boogie-movie.site/&quot;&gt;Boogie 웹사이트 링크&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;사용자의 HTTP요청을 받아 Service로 전달하고, Service에서 반환된 결과를 사용자에게 반환한다. 요청의 유효성 검사, 데이터 변환 등의 역할을 수행하기도 한다.&lt;/p&gt;
-&lt;h1 id=&quot;12-service&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-service&quot; aria-label=&quot;12 service permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2. Service&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Controller로 부터 전달받은 요청을 처리하는, 데이터의 가공, 검증, 상태 변경 등의 비즈니스 규칙을 담는다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;13-data&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#13-data&quot; aria-label=&quot;13 data permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.3. Data&lt;/h1&gt;
-&lt;h2 id=&quot;131-dto&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#131-dto&quot; aria-label=&quot;131 dto permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.3.1. DTO&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;사용자 요청과 Controller 사이에서 Data를 매핑하는 객체이다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;133-jpa&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#133-jpa&quot; aria-label=&quot;133 jpa permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.3.3. JPA&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Repository&lt;/strong&gt;&lt;br&gt;
-DB의 데이터와 Java의 객체를 매핑해주는 함수를 가진다.&lt;br&gt;
-JPA로 구현되어 있으며, 실제 SQL 쿼리문으로 함수를 만들 수 있다.&lt;/p&gt;
+&lt;li&gt;.pem 키를 이용해 원격 EC2에 SSH(Secure Shell)로 접속하여, 쉘커맨드를 실행시키는 방식으로 배포한다.&lt;/li&gt;
+&lt;li&gt;이 방식은 간단하지만, 어떤 보안 상의 이슈가 있을지 확신할 수 없다. Github Action을 활용한 보다 정형화 된 배포 방법으로는 &lt;strong&gt;AWS의 CodeDeploy&lt;/strong&gt;를 알아보는 걸 추천한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;index---omit-in-toc---&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#index---omit-in-toc---&quot; aria-label=&quot;index   omit in toc    permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Index&lt;!-- omit in toc --&gt;&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#1-django-%EB%B0%B0%ED%8F%AC-%EC%A4%80%EB%B9%84&quot;&gt;1. Django 배포 준비&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#11-django-env-%ED%8C%8C%EC%9D%BC-%EC%83%9D%EC%84%B1&quot;&gt;1.1. Django .env 파일 생성&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#111-env-%ED%8C%8C%EC%9D%BC-%EC%9E%91%EC%84%B1&quot;&gt;1.1.1. .env 파일 작성&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#112-django-environ&quot;&gt;1.1.2. django-environ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#113-gitignore-%EC%88%98%EC%A0%95&quot;&gt;1.1.3. .gitignore 수정&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Entity&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;DB 테이블과 1:1로 대응되는 객체이다. Service 로직과 DB사이에서 Data를 매핑하는 객체이다.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;li&gt;&lt;a href=&quot;#12-debug-%EB%AA%A8%EB%93%9C-%EB%B3%80%ED%99%98&quot;&gt;1.2. DEBUG 모드 변환&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#121-allowed_hosts-%EC%A0%9C%ED%95%9C&quot;&gt;1.2.1. ALLOWED_HOSTS 제한&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#122-%EC%A0%95%EC%A0%81%ED%8C%8C%EC%9D%BC-%EC%A0%9C%EA%B3%B5-%EB%AA%BB%ED%95%A8&quot;&gt;1.2.2. 정적파일 제공 못함&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;134-mybatis&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#134-mybatis&quot; aria-label=&quot;134 mybatis permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.3.4. MyBatis&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;DAO(Mapper)&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;xml 파일로 정의된 SQL 쿼리문과 1:1 매핑되어있는 함수를 통해, DB 테이블을 자바 객체로 변환한다.&lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;2-annotation&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-annotation&quot; aria-label=&quot;2 annotation permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Annotation&lt;/h1&gt;
-&lt;h2 id=&quot;21-getter&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-getter&quot; aria-label=&quot;21 getter permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. Getter&lt;/h2&gt;
-&lt;p&gt;클래스 내부의 변수들에 대해서 getter함수를 자동적으로 생성해준다.
-get+변수이름&lt;/p&gt;
-&lt;h2 id=&quot;22-setter&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-setter&quot; aria-label=&quot;22 setter permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. Setter&lt;/h2&gt;
-&lt;p&gt;클래스 내부의 변수들에 대해서 setter함수를 자동적으로 생성해준다.
-set+변수이름&lt;/p&gt;
-&lt;h2 id=&quot;23-bean--component&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#23-bean--component&quot; aria-label=&quot;23 bean  component permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.3. Bean &amp;#x26; Component&lt;/h2&gt;
+&lt;li&gt;&lt;a href=&quot;#2-vue-%EB%B0%B0%ED%8F%AC-%EC%A4%80%EB%B9%84&quot;&gt;2. Vue 배포 준비&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;DI &amp;#x26; IoC&lt;/strong&gt;&lt;br&gt;
-결국 자원을 효율적으로 이용하기 위한 기능들&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#21-env-%ED%8C%8C%EC%9D%BC-%EC%9E%91%EC%84%B1&quot;&gt;2.1. .env 파일 작성&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Bean과 Component는 각각 메소드와 클래스를 Spring의 Bean(IoC 컨테이너)에 등록한다.&lt;/p&gt;
-&lt;h2 id=&quot;231-component&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#231-component&quot; aria-label=&quot;231 component permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.3.1 Component&lt;/h2&gt;
-&lt;p&gt;@Component는 클래스 단위로 사용되며, 개발자가 직접 컨트롤이 가능한 내부 클래스에 사용한다.&lt;/p&gt;
-&lt;p&gt;@Service, @Repository, @Controller는 모두 @Component를 상속받는다.&lt;/p&gt;
-&lt;h2 id=&quot;232-bean&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#232-bean&quot; aria-label=&quot;232 bean permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.3.2. Bean&lt;/h2&gt;
-&lt;p&gt;@Bean은 메소드 단위로 사용되며, 외부 라이브러리 사용 시 사용한다.&lt;/p&gt;
-&lt;h2 id=&quot;233-requiredargsconstructor&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#233-requiredargsconstructor&quot; aria-label=&quot;233 requiredargsconstructor permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.3.3. RequiredArgsConstructor&lt;/h2&gt;
-&lt;p&gt;스프링 IoC 컨테이너에서 필요한 인자를 가져와, 클래스 생성 시 필요한 인자를 자동으로 set해준다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@RequiredArgsConstructor
-public class MemberController {
-
-  private final MemberService memberService;
-  private final JWTService jwtService;
-  private final EncryptService encryptService;
-  private final EmailService emailService;
-  private final RedisService redisService;
-  private final CookieService cookieService;
-  private final AwsS3Service awsS3Service;
-  ...
-}
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#3-ec2-%EC%9E%91%EC%97%85&quot;&gt;3. EC2 작업&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#31-django-%EB%B0%B0%ED%8F%AC&quot;&gt;3.1. Django 배포&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#311-python-%EC%84%A4%EC%B9%98&quot;&gt;3.1.1. python 설치&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#312-django-%EC%96%B4%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EC%8B%A4%ED%96%89&quot;&gt;3.1.2. Django 어플리케이션 실행&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#313-gunicorn-%EC%8B%A4%ED%96%89&quot;&gt;3.1.3. gunicorn 실행&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#32-vue-%EB%B0%B0%ED%8F%AC&quot;&gt;3.2. Vue 배포&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#321-nodejs-%EC%84%A4%EC%B9%98&quot;&gt;3.2.1. node.js 설치&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#322-vue-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%B9%8C%EB%93%9C&quot;&gt;3.2.2. Vue 프로젝트 빌드&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#33-nginx&quot;&gt;3.3. nginx&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#4-github-actions&quot;&gt;4. Github Actions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;1-django-배포-준비&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-django-%EB%B0%B0%ED%8F%AC-%EC%A4%80%EB%B9%84&quot; aria-label=&quot;1 django 배포 준비 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Django 배포 준비&lt;/h1&gt;
+&lt;p&gt;Django 코드를 짜는 것과, Django를 배포하는 것의 전혀 다른 부분이다.&lt;/p&gt;
+&lt;p&gt;개발한 Django 프로젝트를 실제 배포하기 전에, &lt;strong&gt;보안을 위해 &lt;mark&gt;최소한 다음의 절차&lt;/mark&gt;는 밟아야 한다.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;11-django-env-파일-생성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-django-env-%ED%8C%8C%EC%9D%BC-%EC%83%9D%EC%84%B1&quot; aria-label=&quot;11 django env 파일 생성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1. Django .env 파일 생성&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;.env 파일은 프로젝트의 환경변수를 저장하기 위한 단순 문자열 파일이다.&lt;/strong&gt;
+보통 &lt;mark&gt;API_KEY와 같이 외부에 공개되면 안되는 값&lt;/mark&gt;을, 프로젝트에 하드코딩하지 않고 따로 .env 파일에서 관리한다.&lt;/p&gt;
+&lt;p&gt;그렇게 작성한 .env 파일은 .gitignore에 추가해서 github과 같이 온라인의 공개된 장소에 공유되지 않게 하고,&lt;br&gt;
+이후에 서버에 직접 추가하는 등의 추가 작업이 필요하다.&lt;/p&gt;
+&lt;h3 id=&quot;111-env-파일-작성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#111-env-%ED%8C%8C%EC%9D%BC-%EC%9E%91%EC%84%B1&quot; aria-label=&quot;111 env 파일 작성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1.1. .env 파일 작성&lt;/h3&gt;
+&lt;p&gt;API_KEY처럼 외부에 공개되지 않아야 할 파일을 모아 .env 파일을 작성한다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;특히 SECRET_KEY는 Django 프로젝트 생성 시, 자동 생성되는 중요한 KEY값이므로 반드시 .env에 추가해야한다.&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;SECRET_KEY=your-django-secret-key
+API_KEY=your-api-key
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;만일 @RequiredArgsConstructor 어노테이션이 없었다면, 위 객체들을 직접 생성해주거나 set하는 함수를 입력해야한다.&lt;/p&gt;
-&lt;h2 id=&quot;24-builder&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#24-builder&quot; aria-label=&quot;24 builder permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.4. Builder&lt;/h2&gt;
-&lt;p&gt;Builder Pattern을 통해 가독성 좋게 클래스에 대한 객체를 생성할 수 있다.&lt;/p&gt;
-&lt;h2 id=&quot;25-generic&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#25-generic&quot; aria-label=&quot;25 generic permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.5. Generic&lt;/h2&gt;
-&lt;p&gt;유연한 설계를 위해 타입을 인자로 전달해주는 용도&lt;/p&gt;</content:encoded></item><item><title><![CDATA[정렬(Sorting) 알고리즘 정리]]></title><description><![CDATA[면접에서 탈탈 털린 후 작성한 정렬 관련 알고리즘을 총정리 1. Bubble Sort (거품 정렬) 1.1. 동작 과정 1.2. 복잡도 1.3. Python 구현 2. Selection Sort (선택 정렬) 2.1. 동작 과정 2.2. 복잡도 2.…]]></description><link>https://byongho96.github.io/TIL/posts/CS/Algorithm/Sorting/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/CS/Algorithm/Sorting/</guid><pubDate>Tue, 02 May 2023 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;변수 이름&lt;/strong&gt;과 &lt;strong&gt;값&lt;/strong&gt;은 &apos;=&apos;로 연결되며, 사이에 공백은 들어가지 않는다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;변수 이름&lt;/strong&gt;은 영어 대문자와 &apos;_&apos;의 조합으로 이뤄져야 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;112-django-environ&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#112-django-environ&quot; aria-label=&quot;112 django environ permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1.2. django-environ&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://django-environ.readthedocs.io/en/latest/&quot;&gt;django-environ&lt;/a&gt;은 Django 프로젝트에서 작성한 .env을 읽어오기 위한 Python 라이브러리이다.&lt;/p&gt;
+&lt;p&gt;아래 절차는 공식문서의 내용을 따라 작성했다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;django-environ 설치&lt;/strong&gt;&lt;br&gt;
+django-envrion은 가상환경 내에 설치하는 것을 권장한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;python -m pip install django-environ
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;.env 파일 위치 확인&lt;/strong&gt;&lt;br&gt;
+작성한 .env 파일을 &lt;strong&gt;프로젝트의 루트 경로&lt;/strong&gt;(manage.py가 위치한 곳)에 위치시킨다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;settings.py 수정&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import environ
+import os
+
+# env 기본 설정
+env = environ.Env(
+    # env파일에 있는 DEBUG 환경변수를 Boolean으로 타입변환한다.
+    # 만일 DEBUG 환경변수가 없을 경우, default값은 False이다.
+    # 배포환경에서는 반드시 False여야 한다.
+    DEBUG=(bool, False)
+)
+
+# 공식문서에서는 아래와 같이 BASE_DIR을 지정하지만, 그럴 경우 settings.py파일 내에서 BASE_DIR / &apos;subdir&apos; 형식으로 파일경로를 지정할 수 없다.
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# BASE_DIR 위치를 기준으로 .env 파일을 읽어온다.
+environ.Env.read_env(os.path.join(BASE_DIR, &apos;.env&apos;))
+
+# .env 파일로부터 값 참조
+DEBUG = env(&apos;DEBUG&apos;)
+SECRET_KEY = env(&apos;SECRET_KEY&apos;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;113-gitignore-수정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#113-gitignore-%EC%88%98%EC%A0%95&quot; aria-label=&quot;113 gitignore 수정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1.3. .gitignore 수정&lt;/h3&gt;
+&lt;p&gt;.gitignore파일에 .env를 추가해서 커밋되지 않도록 한다.&lt;br&gt;
+이후 따로 서버에서 .env 파일을 직접 생성해준다. 이따 해당 내용도 다룬다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;12-debug-모드-변환&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-debug-%EB%AA%A8%EB%93%9C-%EB%B3%80%ED%99%98&quot; aria-label=&quot;12 debug 모드 변환 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2. DEBUG 모드 변환&lt;/h2&gt;
+&lt;p&gt;배포 환경에서 &lt;code&gt;DEBUG&lt;/code&gt;값은 반드시 False여야 한다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.djangoproject.com/en/4.2/ref/settings/#debug&quot;&gt;Django 공식문서&lt;/a&gt;를 보면, DEBUG가 True일 경우 다음과 같은 문제가 있다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;에러에 대한 구체적인 이유를 표시한다.(보안 이슈)&lt;/li&gt;
+&lt;li&gt;손쉬운 디버깅을 위해 실행된 SQL를 모두 기억한다.(메모리 자원 낭비)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;따라서 배포 환경에서는 반드시 &lt;code&gt;DEBUG&lt;/code&gt;를 &lt;code&gt;False&lt;/code&gt;로 설정해야 한다. 이는 나중에 서버에서 작성할 .env 파일에서 &lt;code&gt;DEBUG=False&lt;/code&gt;로 하던가, 아니면 아예 &lt;code&gt;DEBUG&lt;/code&gt; 값을 집어 넣지 않으면 된다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;...
+DEBUG=False
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;그런데 &lt;code&gt;DEBUG=False&lt;/code&gt;로 바꾸는 순간, 아래와 같은 몇 가지 제약사항이 추가된다.&lt;/p&gt;
+&lt;h3 id=&quot;121-allowed_hosts-제한&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#121-allowed_hosts-%EC%A0%9C%ED%95%9C&quot; aria-label=&quot;121 allowed_hosts 제한 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2.1. ALLOWED_HOSTS 제한&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;DEBUG&lt;/code&gt;가 &lt;code&gt;False&lt;/code&gt;일 때는, 프로젝트를 호스팅 할 IP 주소를 &lt;code&gt;settings.py&lt;/code&gt;에 명시해줘야 한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# settings.py
+
+ALLOWED_HOSTS = [
+    &apos;127.0.0.1&apos;,  # 로컬 IP 주소
+    {EC2 IP 주소}, # EC2 IP 주소
+]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;122-정적파일-제공-못함&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#122-%EC%A0%95%EC%A0%81%ED%8C%8C%EC%9D%BC-%EC%A0%9C%EA%B3%B5-%EB%AA%BB%ED%95%A8&quot; aria-label=&quot;122 정적파일 제공 못함 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2.2. 정적파일 제공 못함&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;DEBUG&lt;/code&gt;가 &lt;code&gt;False&lt;/code&gt;일 때는, Django는 정적 파일을 제공하지 못한다.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;이 문제 때문에 한동안 골머리를 앓았다...
+배포하니까 갑자기 사용자 프로필을 api로 받아오지 못하는 것이다!!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://forum.djangoproject.com/t/django-static-files-in-deployment-debug-false/16675/2&quot;&gt;구글링 해보니&lt;/a&gt; Django는 &lt;code&gt;DEBUG=False&lt;/code&gt;일 때 정적파일을 제공하지 못한다고 한다. &lt;del&gt;그럼 애초에 그런 기능을 넣지 말던가...&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;따라서 Nginx와 같은 웹서버를 이용해서 정적파일을 제공해야 한다.&lt;br&gt;
+이에 대해서는 아래 &lt;a href=&quot;#33-nginx&quot;&gt;nginx항목&lt;/a&gt;에서 다룰 것이다.
+즉, 다음과 같은 미디어 파일 설정들이 배포 환경에서는 딱히 무용해지는 것이다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    ...
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;2-vue-배포-준비&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-vue-%EB%B0%B0%ED%8F%AC-%EC%A4%80%EB%B9%84&quot; aria-label=&quot;2 vue 배포 준비 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Vue 배포 준비&lt;/h1&gt;
+&lt;h2 id=&quot;21-env-파일-작성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-env-%ED%8C%8C%EC%9D%BC-%EC%9E%91%EC%84%B1&quot; aria-label=&quot;21 env 파일 작성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. .env 파일 작성&lt;/h2&gt;
+&lt;p&gt;Vue도 Django와 마찬가지로 .env 파일을 통해 프로젝트의 환경변수를 설정할 수 있다.&lt;br&gt;
+그런데 몇가지 다른 점이 있다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;보안 취약&lt;/strong&gt;&lt;br&gt;
+아무리 .env파일을 만들다고 한 들, &lt;strong&gt;프론트엔드 프로젝트가 빌드될 때 .env 파일도 함께 빌드된다.&lt;/strong&gt;&lt;br&gt;
+따라서 최종적으로 &lt;strong&gt;클라이언트 측에 환경 변수 값이 그대로 전달되어, 크롬 개발자 도구 등으로 확인&lt;/strong&gt;할 수 있다.&lt;br&gt;
+&lt;mark&gt;정말 중요한 데이터라면, 아예 해당 값을 백서버에 두어 API등으로 전달받아야 한다.&lt;/mark&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;.env 파일 우선순위&lt;/strong&gt;&lt;br&gt;
+프론트엔드는 여러 종류의 .env파일이 있고, 이들 간의 우선순위가 있다.&lt;br&gt;
+Vue 프로젝트가 &lt;code&gt;npm run serve&lt;/code&gt; 명령어로 실행되면 개발 모드(Development)의 환경변수 파일들이 참조되고, &lt;code&gt;npm run build&lt;/code&gt;명령어로 실행되면 배포 모드(production)의 환경변수 파일들이 참조된다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Development&lt;/strong&gt;: .env.development.local &gt; .env.local &gt; .env.development &gt; .env&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Production&lt;/strong&gt;: .env.production.local &gt; .env.local &gt; .env.production &gt; .env&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;나는 앞서 말한 프론트엔드 프로젝트 환경변수 파일의 &lt;strong&gt;보안 취약점&lt;/strong&gt;때문에 API_KEY처럼 보안상으로 문제되는 환경변수는 Django가 관리하도록 했다.&lt;/p&gt;
+&lt;p&gt;그리고 .env 파일 종류를 활용해서, 다음과 같이 로컬환경과 배포환경에서의 API 서버 URL을 나눴다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# .env
+VUE_APP_SERVER_URL=http://127.0.0.1:8000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# .env.production
+VUE_APP_SERVER_URL=http://boogie-movie.site
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;3-ec2-작업&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-ec2-%EC%9E%91%EC%97%85&quot; aria-label=&quot;3 ec2 작업 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. EC2 작업&lt;/h1&gt;
+&lt;p&gt;아래부터의 내용은 AWS EC2 내부에서 진행된다.&lt;/p&gt;
+&lt;p&gt;AWS EC2가 없거나, .pem키가 무엇이니 모르면 &lt;a href=&quot;https://byongho96.github.io/TIL/posts/Tools/AWS/&quot;&gt;AWS EC2 기초 가이드&lt;/a&gt;를 참고하길 바란다.&lt;/p&gt;
+&lt;h2 id=&quot;31-django-배포&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#31-django-%EB%B0%B0%ED%8F%AC&quot; aria-label=&quot;31 django 배포 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1. Django 배포&lt;/h2&gt;
+&lt;h3 id=&quot;311-python-설치&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#311-python-%EC%84%A4%EC%B9%98&quot; aria-label=&quot;311 python 설치 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1.1. python 설치&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Django를 실행하기 위해서 당연히 python을 설치해야한다.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;그 중 &lt;a href=&quot;https://github.com/pyenv/pyenv&quot;&gt;pyenv&lt;/a&gt;는 여러 개의 Python버전을 쉽게 관리할 수 있도록 한다. (Node.js로 치면 nvm같은 존재)&lt;/p&gt;
+&lt;p&gt;아래 내용은 &lt;a href=&quot;https://github.com/pyenv/pyenv&quot;&gt;pyenv 공식 문서&lt;/a&gt;를 따라 정리했다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;pyenv github repo 클론&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;환경변수와 PATH 등록&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# 현재 사용자(.bashrc)에 대해 PYENV_ROOT 환경변수를 지정한다.
+echo &apos;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&apos; &gt;&gt; ~/.bashrc
+
+# pyenv가 설치되어 있는지 확인하고, 설치되어있지 않으면 PATH 환경 변수에 pyenv 경로(~/.pyenv/bin)을 추가한다.
+# PATH는 : 를 기준으로 참조하는 디렉토리를 구분해서 저장한다.
+# bin폴더에 실행 가능한 파일지 저장된다.
+echo &apos;command -v pyenv &gt;/dev/null || export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&apos; &gt;&gt; ~/.bashrc
+
+# (pyenv init -)는 pyenv 초기화 쉘코드를 출력하고, 이를 .bashrc에 추가해서 로그인시마다 pyenv를 초기화시킨다.
+echo &apos;eval &quot;$(pyenv init -)&quot;&apos; &gt;&gt; ~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# 로그인 환경변수(.profile)에도 적용한다.
+echo &apos;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&apos; &gt;&gt; ~/.profile
+echo &apos;command -v pyenv &gt;/dev/null || export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&apos; &gt;&gt; ~/.profile
+echo &apos;eval &quot;$(pyenv init -)&quot;&apos; &gt;&gt; ~/.profile
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;shell 재시작&lt;/strong&gt;&lt;br&gt;
+PATH 변경사항을 반영하기 위해 shell을 재시작한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt; exec &quot;$SHELL&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Python build dependcies 설치&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo apt update; sudo apt install build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev curl \
+libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;pyenv 설치 확인&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;pyenv -v
+
+# 출력 확인 =&gt; pyenv VERSION_INFO
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;python 설치&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;자신의 프로젝트에 맞는 python 버전을 설치한다&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;pyenv install 3.9.X
+pyenv global 3.9.X
+python -V
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;312-django-어플리케이션-실행&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#312-django-%EC%96%B4%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EC%8B%A4%ED%96%89&quot; aria-label=&quot;312 django 어플리케이션 실행 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1.2. Django 어플리케이션 실행&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;프로젝트 클론&lt;/strong&gt;&lt;br&gt;
+먼저 자신의 Django git 프로젝트를 클론한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd ~
+git clone {project_remote_url}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Django .env 생성&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;vi 등의 문서 편집기로 .env파일을 작성한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd {장고_프로젝트_폴더}
+sudo vi .env
+# vi 에디터 사용법을 모를 경우, 구글링해보자
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;vi가 없을 시에는, 아래 명령어로 설치로 설치할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo apt-get update
+sudo apt-get install vim
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Python 가상환경 실행&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Python 가상환경을 실행한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Django DB 생성&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Django 데이터베이스 생성&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;python manage.py migrate
+
+# fixture가 있는 경우
+python manage.py loaddata {fixture 파일}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Django static파일 수집&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;제공할 static파일이 있을 경우, 아래 명령어로 static파일을 모은다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;python manage.py collectstatic
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;수집되는 위치는 settings.py 설정을 따른다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# settings.py
+
+# 수집할 위치 확인
+STATIC_ROOT = BASE_DIR / &apos;staticfiles&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;313-gunicorn-실행&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#313-gunicorn-%EC%8B%A4%ED%96%89&quot; aria-label=&quot;313 gunicorn 실행 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1.3. gunicorn 실행&lt;/h3&gt;
+&lt;p&gt;개발할 때 사용하던, &lt;code&gt;runserver&lt;/code&gt;명령어를 배포환경에서 사용하면 안된다.&lt;br&gt;
+&lt;a href=&quot;https://docs.djangoproject.com/en/4.2/ref/django-admin/#runserver&quot;&gt;Django 공식문서&lt;/a&gt;에 따르면, 이는 개발 서버로써 보안과 성능이 떨어지기 때문이다.&lt;/p&gt;
+&lt;p&gt;따라서 다른 미들웨어를 사용해야 하는데,
+Python프레임워크의 대표적인 WSGI(Web Server Gateway Interface)인 &lt;a href=&quot;https://docs.gunicorn.org/en/stable/install.html&quot;&gt;gunicorn&lt;/a&gt;을 사용할 것이다.(2023년 상반기 기준)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;gunicorn 설치&lt;/strong&gt;&lt;br&gt;
+django 프로젝트 가상환경 내에서 설치한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;pip install gunicorn
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;ALLOWED_HOSTS 확인&lt;/strong&gt;&lt;br&gt;
+Django를 gunicorn으로 서비스하기 위해서는 ALLOWED_HOSTS를 지정해줘야 한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# settings.py
+
+ALLOWED_HOSTS = [
+    &apos;127.0.0.1&apos;,  # 로컬 IP 주소
+    {EC2 IP 주소}, # EC2 IP 주소
+]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;gunicorn 시스템 서비스 등록&lt;/strong&gt;&lt;br&gt;
+gunicorn을 시스템 서비스에 등록하면, 운영체제의 백그라운드에서 돌아간다.&lt;br&gt;
+좀더 직관적으로 표현하자면, 서버 컴퓨터가 켜져있는 한 계속 실행되고 있도록 등록하는 것이다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;어떤 프로그램을 시스템 서비스에 등록하기 위해서는 &lt;code&gt;/etc/systemd/system/&lt;/code&gt;경로에 .service파일을 작성&lt;/strong&gt;해야한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo vi /etc/systemd/system/gunicorn.service
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;unit 설정 파일 작성법은 &lt;a href=&quot;https://byongho96.github.io/TIL/posts/Tools/Linux/#32-service&quot;&gt;Linux.md&lt;/a&gt;에 정리해두었다. &lt;del&gt;근데 나도 잘 모름&lt;/del&gt;
+아래 예시 파일을 그대로 가져다가 써도 된다.&lt;br&gt;
+workers란 gunicorn의 프로세스 갯수를 의미하며, 직관적으로 workers를 크게 설정할수록 동시에 많은 요청을 처리할 수 있지만, 메모리 점유율과 성능을 고려하여 &lt;code&gt;2 * {CPU 코어 수} + 1&lt;/code&gt;을 기본값으로 슨다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-c&quot;&gt;[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/{장고 프로젝트 폴더}
+ExecStart=/home/ubuntu/{장고 프로젝트 폴더}/venv/bin/gunicorn \
+        --workers 3 \
+        --bind 127.0.0.1:8000 \
+        {장고 마스터 앱}.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;시스템 데몬을 재시작&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;unit파일을 작성했으면, 시스템 데몬을 재시작 하여 gunicorn 서비스를 실행시킨다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo systemctl daemon-reload
+
+sudo systemctl start gunicorn
+sudo systemctl enable gunicorn
+sudo systemctl status gunicorn.service
+
+# 중지
+# sudo systemctl stop gunicorn
+
+# 재시작
+# sudo systemctl restart gunicorn
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;32-vue-배포&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#32-vue-%EB%B0%B0%ED%8F%AC&quot; aria-label=&quot;32 vue 배포 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2. Vue 배포&lt;/h2&gt;
+&lt;h3 id=&quot;321-nodejs-설치&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#321-nodejs-%EC%84%A4%EC%B9%98&quot; aria-label=&quot;321 nodejs 설치 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2.1. node.js 설치&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;역시 Vue를 빌드하기 위해서는 당연히 node.js를 설치해야한다.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://linuxize.com/post/how-to-install-node-js-on-ubuntu-20-04/&quot;&gt;Ubuntu 20.04 Node.js 설치 문서&lt;/a&gt;를 따라 아래 내용을 작성했다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;node.js 설치&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;node.js 설치 및 버전 확인&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo apt update
+sudo apt install nodejs npm
+nodejs --version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Vue 2.0 프로젝트를 빌드하기 위해서는 nodejs의 버전이 v12.x 이상이어야 한다.&lt;br&gt;
+위 명령어에서 확인한 버전이 12.x 미만일 경우, 아래 명령어를 따라한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# node 설치관련 스크립트를 다운받고, bash 쉘을 root권한으로 재시작한다.
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt install nodejs
+node --version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;build-essential 설치&lt;/strong&gt;&lt;br&gt;
+노드 패키지(모듈)에서 C/C++로 작성된 부분을 natvie addons라고 말하고, 이러한 패키지를 설치하기 위해서는 해당 운영 체제에서 빌드(컴파일) 도구를 설치해야 한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo apt install build-essential
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;322-vue-프로젝트-빌드&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#322-vue-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%B9%8C%EB%93%9C&quot; aria-label=&quot;322 vue 프로젝트 빌드 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2.2. Vue 프로젝트 빌드&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;프로젝트 클론&lt;/strong&gt;&lt;br&gt;
+자신의 Vue git 프로젝트를 클론한다.&lt;br&gt;
+Django랑 동일한 레포에 있다면, 굳이 또 해줄 필요 없다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd ~
+git clone {project_remote_url}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Vue .env 생성&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;vi 등의 문서 편집기로 .env파일을 작성한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd {Vue_프로젝트_폴더}
+sudo vi .env
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;npm module 설치&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd {Vue_프로젝트_폴더}
+npm install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Vue 프로젝트 빌드&lt;/strong&gt;&lt;br&gt;
+Vue 프로젝트를 빌드할 경우, 프로젝트 루트경로 dist폴더 내에 index.html파일이 생성된다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm run buld
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;33-nginx&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#33-nginx&quot; aria-label=&quot;33 nginx permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.3. nginx&lt;/h2&gt;
+&lt;p&gt;Nginx를 웹서버로 사용해서 정적 파일을 제공하고 api요청을 reverse proxy할 수 있다.&lt;br&gt;
+따라서 Nginx로 다음 기능들을 구현할 것이다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTP api 요청 Django 어플리케이션으로 프록시&lt;/li&gt;
+&lt;li&gt;Django 정적파일 제공&lt;/li&gt;
+&lt;li&gt;Vue 빌드파일 제공&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Nginx에 대한 더 자세한 설명은 &lt;a href=&quot;https://byongho96.github.io/TIL/posts/Tools/Nginx/&quot;&gt;Nginx.md&lt;/a&gt;에 정리되어 있다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;nginx 설치&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get update
+sudo apt-get install -y nginx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;nginx 설정파일 작성&lt;/strong&gt;&lt;br&gt;
+&lt;code&gt;/etc/nginx/sites-available&lt;/code&gt; 경로에 nginx 설정파일을 원하는 이름으로 작성한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo vi /etc/nginx/sites-available/{프로젝트 이름}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;nginx 설정파일의 구체적인 내용은 프로젝트에 따라서 달라진다.&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Django로 가는 API 요청의 url엔드포인트가 모두 &lt;code&gt;/api&lt;/code&gt;임을 가정하고, 아래 설정파일을 작성했다.&lt;/li&gt;
+&lt;li&gt;Django가 자체적으로 정적파일을 제공하고 있다면, STATIC_ROOT와 MEDIA_ROOT를 settings.py에서 확인해야 한다. 보통 STATIC_ROOT는 &apos;staticfiles&apos;로 설정하고, MEDIA_ROOT는 &apos;media&apos;로 설정된다.&lt;/li&gt;
+&lt;li&gt;Vue 프로젝트의 빌드된 index.html이 &lt;code&gt;dist/&lt;/code&gt;에 있음을 가정하고, 아래 설정파일을 작성했다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&quot;language-nginx&quot;&gt;server {
+     listen 80;
+     server_name {서버IP주소};
+
+     # Django static 파일 제공
+     location /static/ {
+             alias {장고 프로젝트 루트 경로}/{STATIC_ROOT}/;
+     }
+
+     # Django media 파일 제공
+     location /media/ {
+             alias {장고 프로젝트 루트 경로}/{MEDIA_ROOT}/;
+     }
+
+     # Django API proxy
+     location /api {
+             include proxy_params;
+             proxy_pass http://127.0.0.1:8000;
+     }
+
+     # Vue 빌드 파일 제공
+     location / {
+             root {Vue 프로젝트 루트 경로}/dist/;
+             index index.html;
+             try_files $uri $uri/ /index.html;
+     }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;nginx 설정파일 활성화&lt;/strong&gt;&lt;br&gt;
+&lt;code&gt;sites-availables/&lt;/code&gt;에 작성한 설정파일을 실제로 활성화 하기 위해서는 &lt;code&gt;sites-enabled/&lt;/code&gt;폴더에 등록해야 한다.&lt;br&gt;
+소프트 링크를 통해 이를 구현할 수 있는데, 간단히 말해 포인터를 만든다고 생각하면 된다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo ln -s /etc/nginx/sites-available/{설정파일 이름} /etc/nginx/sites-enabled
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;nginx 재시작&lt;/strong&gt;&lt;br&gt;
+작성한 설정파일을 활성화 하기 위해 nginx를 재시작한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# 80번 포트의 프로세서 종료
+sudo lsof -t -i tcp:80 -s tcp:listen | sudo xargs kill
+
+# nginx 재시작
+sudo systemctl restart nginx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;4-github-actions&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-github-actions&quot; aria-label=&quot;4 github actions permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. Github Actions&lt;/h1&gt;
+&lt;p&gt;지금까지 위의 모든 절차를 따라했다면 배포가 완료되었다. EC2 IP주소로 접속하면 확인해볼 수 있을 것이다.&lt;/p&gt;
+&lt;p&gt;이제는 github actions를 이용해서 github 레포지토리에 push이벤트가 발생할 경우, &lt;mark&gt;자동 빌드/배포가 되는 환경을 구축&lt;/mark&gt;해볼 것이다.&lt;/p&gt;
+&lt;p&gt;SSH를 통해 원격의 EC2에서 직접 쉘명령어를 실행시키는 간단한 방법을 사용할 것이다.
+참고로 핵심이 되는 action은 &lt;a href=&quot;https://github.com/appleboy/ssh-action&quot;&gt;appleboy/ssh-action&lt;/a&gt;이다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Github 레포지토리 접속&lt;/strong&gt;&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/a58376a68251c52935edd64e86faf8cc/ec7ce/github_repository.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 36.57142857142857%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAHABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAECBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHckKBP/8QAFxAAAwEAAAAAAAAAAAAAAAAAAAIQEf/aAAgBAQABBQKYx//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABYQAAMAAAAAAAAAAAAAAAAAAAAQQf/aAAgBAQAGPwJQ/8QAGRAAAgMBAAAAAAAAAAAAAAAAAAERIVFh/9oACAEBAAE/IawgbHTj1H//2gAMAwEAAgADAAAAEPPf/8QAFREBAQAAAAAAAAAAAAAAAAAAABH/2gAIAQMBAT8QR//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABoQAAIDAQEAAAAAAAAAAAAAAAERACGBUbH/2gAIAQEAAT8QA6PIgFE7CA3FMfs//9k=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/a58376a68251c52935edd64e86faf8cc/c54d4/github_repository.webp 175w,
+/TIL/static/a58376a68251c52935edd64e86faf8cc/a3432/github_repository.webp 350w,
+/TIL/static/a58376a68251c52935edd64e86faf8cc/426ac/github_repository.webp 700w,
+/TIL/static/a58376a68251c52935edd64e86faf8cc/dbca2/github_repository.webp 970w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/a58376a68251c52935edd64e86faf8cc/e52aa/github_repository.jpg 175w,
+/TIL/static/a58376a68251c52935edd64e86faf8cc/70ebb/github_repository.jpg 350w,
+/TIL/static/a58376a68251c52935edd64e86faf8cc/29d31/github_repository.jpg 700w,
+/TIL/static/a58376a68251c52935edd64e86faf8cc/ec7ce/github_repository.jpg 970w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/a58376a68251c52935edd64e86faf8cc/29d31/github_repository.jpg&quot; alt=&quot;github_repository.jpg&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;p&gt;Github 레포지토리에 접속해 Actions 항목을 클릭한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;workflow 작성&lt;/strong&gt;&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/d655e8c68e0568123d09989a8a60cbee/5c42d/github_actions.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 53.714285714285715%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAdywSD//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAEFAl//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAZEAACAwEAAAAAAAAAAAAAAAAAEQEQQWH/2gAIAQEAAT8hh8EIwyv/2gAMAwEAAgADAAAAEPAP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAHBAAAwABBQAAAAAAAAAAAAAAAAERITFBUYHR/9oACAEBAAE/EEZ4hdkbwjg9DSg0P//Z&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/d655e8c68e0568123d09989a8a60cbee/c54d4/github_actions.webp 175w,
+/TIL/static/d655e8c68e0568123d09989a8a60cbee/a3432/github_actions.webp 350w,
+/TIL/static/d655e8c68e0568123d09989a8a60cbee/426ac/github_actions.webp 700w,
+/TIL/static/d655e8c68e0568123d09989a8a60cbee/c139f/github_actions.webp 1050w,
+/TIL/static/d655e8c68e0568123d09989a8a60cbee/c4443/github_actions.webp 1347w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/d655e8c68e0568123d09989a8a60cbee/e52aa/github_actions.jpg 175w,
+/TIL/static/d655e8c68e0568123d09989a8a60cbee/70ebb/github_actions.jpg 350w,
+/TIL/static/d655e8c68e0568123d09989a8a60cbee/29d31/github_actions.jpg 700w,
+/TIL/static/d655e8c68e0568123d09989a8a60cbee/9ecec/github_actions.jpg 1050w,
+/TIL/static/d655e8c68e0568123d09989a8a60cbee/5c42d/github_actions.jpg 1347w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/d655e8c68e0568123d09989a8a60cbee/29d31/github_actions.jpg&quot; alt=&quot;github_actions.jpg&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;p&gt;실행시킬 workflow를 &lt;strong&gt;yml파일&lt;/strong&gt; 양식으로 작성해야 한다.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/301d8/github_yml.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 55.99999999999999%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAECBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHdaCSyP//EABYQAQEBAAAAAAAAAAAAAAAAABABEf/aAAgBAQABBQIwp//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAECAQE/AUf/xAAXEAADAQAAAAAAAAAAAAAAAAABECAx/9oACAEBAAY/Alpj/8QAGRABAAIDAAAAAAAAAAAAAAAAAAExESFB/9oACAEBAAE/IcJ0kOqIp//aAAwDAQACAAMAAAAQsw//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAWEQEBAQAAAAAAAAAAAAAAAAAAARH/2gAIAQIBAT8QjD//xAAaEAADAQEBAQAAAAAAAAAAAAAAAREhMUGh/9oACAEBAAE/EEl7pKr2uDE702VZ8ExocD//2Q==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/c54d4/github_yml.webp 175w,
+/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/a3432/github_yml.webp 350w,
+/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/426ac/github_yml.webp 700w,
+/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/c139f/github_yml.webp 1050w,
+/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/7f403/github_yml.webp 1400w,
+/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/fe3fb/github_yml.webp 1485w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/e52aa/github_yml.jpg 175w,
+/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/70ebb/github_yml.jpg 350w,
+/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/29d31/github_yml.jpg 700w,
+/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/9ecec/github_yml.jpg 1050w,
+/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/d165a/github_yml.jpg 1400w,
+/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/301d8/github_yml.jpg 1485w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/1e5f854b18f576e7fc527ead33d48a4a/29d31/github_yml.jpg&quot; alt=&quot;github_yml.jpg&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-yml&quot;&gt;# workflow의 이름
+name: AWS Deploy
+
+# main 브랜치에 push가 일어났을 때, 현재 workflow를 발동시킨다.
+on:
+   push:
+      branches:
+         - main
+
+# workflow는 하나 이상의 job으로 구성되고, 각 job을 서로 다른 실행환경에서 진행시킬 수 있다.
+jobs:
+   Deploy:  # job_id라고 하며 job의 id로 작용한다. 문자열을 이용해서 unique하게 작명하면 된다.
+      name: Deploy to EC2  # name은 github UI상에 표시되는 job 이름이다.
+      runs-on: ubuntu-latest  # job의 실행환경을 정의하며, 공식문서를 참고해서 정해진 label을 사용해야 한다.
+
+      # 하단의 uses는 작업단계를 자동화하기 위해 사용되는 패키지 혹은 코드를 말하며 이는 특정 github 레포지토리일수도, 도커 이미지일수도 있다.
+      steps:
+         - uses: actions/checkout@v3
+         - name: SSH
+         uses: appleboy/ssh-action@v0.1.10
+         # with는 key-value형식으로 정의되는 환경변수이다. 하단의 양식은 appleboy/ssh-action에서 정의된 것이다.
+         with:
+            # github secrets에 저장해둔 값을 가져와 사용한다.
+            key: ${{ secrets.SSH_KEY }}
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USER }}
+            # 실제로 실행시키고 싶은 쉘명령어를 작성한다.
+            script: |
+               cd {EC2 상 백엔드 레포 루트 경로}
+               git switch {타겟 브랜치}
+               git pull
+               source venv/bin/activate
+               pip install -r requirements.txt
+               sudo systemctl restart gunicorn
+               cd {EC2 상 프론트 레포 루트 경로}
+               git switch {타겟 브랜치}
+               git pull
+               npm install
+               npm run build
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;각 명령어에 대한 더 자세한 내용을 알고 싶으면, &lt;a href=&quot;https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions&quot;&gt;Github 공식문서&lt;/a&gt;를 참고하길 바란다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;secrets 등록&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;앞 서 &lt;code&gt;key: ${{ secrets.SSH_KEY }}&lt;/code&gt;처럼 작성한 행들은, 마치 환경변수처럼 레포지토리에 설정된 값을 불러오겠다는 의미이다.&lt;/p&gt;
+&lt;p&gt;이 또한 중요한 값들을 하드코딩하지 않음으로써, 보안을 유지하기 위함이다. 아래 내용은 레포지토리에 secrets를 등록하는 방법이다.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/7243f7bf011c36823bf821ecdca6a26f/e60b6/github_settings.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 32%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAGABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAduggJ//xAAWEAEBAQAAAAAAAAAAAAAAAAAAESH/2gAIAQEAAQUCxEf/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAXEAADAQAAAAAAAAAAAAAAAAAAEEGR/9oACAEBAAY/AlMP/8QAGBAAAgMAAAAAAAAAAAAAAAAAAAERUXH/2gAIAQEAAT8hwQoTh//aAAwDAQACAAMAAAAQg9//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAVEQEBAAAAAAAAAAAAAAAAAAAAMf/aAAgBAgEBPxBH/8QAGxABAAICAwAAAAAAAAAAAAAAAQARIZExQbH/2gAIAQEAAT8QDlXRHpGiJtGq4uz7P//Z&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/7243f7bf011c36823bf821ecdca6a26f/c54d4/github_settings.webp 175w,
+/TIL/static/7243f7bf011c36823bf821ecdca6a26f/a3432/github_settings.webp 350w,
+/TIL/static/7243f7bf011c36823bf821ecdca6a26f/426ac/github_settings.webp 700w,
+/TIL/static/7243f7bf011c36823bf821ecdca6a26f/c139f/github_settings.webp 1050w,
+/TIL/static/7243f7bf011c36823bf821ecdca6a26f/4690a/github_settings.webp 1075w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/7243f7bf011c36823bf821ecdca6a26f/e52aa/github_settings.jpg 175w,
+/TIL/static/7243f7bf011c36823bf821ecdca6a26f/70ebb/github_settings.jpg 350w,
+/TIL/static/7243f7bf011c36823bf821ecdca6a26f/29d31/github_settings.jpg 700w,
+/TIL/static/7243f7bf011c36823bf821ecdca6a26f/9ecec/github_settings.jpg 1050w,
+/TIL/static/7243f7bf011c36823bf821ecdca6a26f/e60b6/github_settings.jpg 1075w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/7243f7bf011c36823bf821ecdca6a26f/29d31/github_settings.jpg&quot; alt=&quot;github settings&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;p&gt;레포지토리의 settings를 클릭한다.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/51ceb63ae8fb7c1151da84682de4738c/2a79a/github_secrets_actions.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 63.42857142857142%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAe7UNA//xAAVEAEBAAAAAAAAAAAAAAAAAAAQQf/aAAgBAQABBQJh/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQAGPwJf/8QAGRAAAgMBAAAAAAAAAAAAAAAAARAAQWGB/9oACAEBAAE/IanGBxf/2gAMAwEAAgADAAAAENPP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGBABAAMBAAAAAAAAAAAAAAAAAQARIVH/2gAIAQEAAT8QaqhsOpmcjhXYC4C5Ryf/2Q==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/51ceb63ae8fb7c1151da84682de4738c/c54d4/github_secrets_actions.webp 175w,
+/TIL/static/51ceb63ae8fb7c1151da84682de4738c/a3432/github_secrets_actions.webp 350w,
+/TIL/static/51ceb63ae8fb7c1151da84682de4738c/426ac/github_secrets_actions.webp 700w,
+/TIL/static/51ceb63ae8fb7c1151da84682de4738c/c139f/github_secrets_actions.webp 1050w,
+/TIL/static/51ceb63ae8fb7c1151da84682de4738c/2482d/github_secrets_actions.webp 1382w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/51ceb63ae8fb7c1151da84682de4738c/e52aa/github_secrets_actions.jpg 175w,
+/TIL/static/51ceb63ae8fb7c1151da84682de4738c/70ebb/github_secrets_actions.jpg 350w,
+/TIL/static/51ceb63ae8fb7c1151da84682de4738c/29d31/github_secrets_actions.jpg 700w,
+/TIL/static/51ceb63ae8fb7c1151da84682de4738c/9ecec/github_secrets_actions.jpg 1050w,
+/TIL/static/51ceb63ae8fb7c1151da84682de4738c/2a79a/github_secrets_actions.jpg 1382w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/51ceb63ae8fb7c1151da84682de4738c/29d31/github_secrets_actions.jpg&quot; alt=&quot;github secrets actions&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;p&gt;왼쪽 사이드바에서 Secrets and variables &gt; Actions 로 들어간다.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/c1f40fe5addf4a3cc4368f486615b417/bb3bf/github_secrets.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 62.857142857142854%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAECBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAC/9oADAMBAAIQAxAAAAHeJKiH/8QAFxAAAwEAAAAAAAAAAAAAAAAAARARIP/aAAgBAQABBQJC4//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAECAQE/AVf/xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAZEAACAwEAAAAAAAAAAAAAAAAAEQEQQVH/2gAIAQEAAT8hwR1RkX//2gAMAwEAAgADAAAAECD/AP/EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAEDAQE/EEf/xAAWEQADAAAAAAAAAAAAAAAAAAAAARH/2gAIAQIBAT8QHDh//8QAGRAAAwEBAQAAAAAAAAAAAAAAAAERITFB/9oACAEBAAE/EGqvRR6zB97kpOjo5BvT/9k=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/c1f40fe5addf4a3cc4368f486615b417/c54d4/github_secrets.webp 175w,
+/TIL/static/c1f40fe5addf4a3cc4368f486615b417/a3432/github_secrets.webp 350w,
+/TIL/static/c1f40fe5addf4a3cc4368f486615b417/426ac/github_secrets.webp 700w,
+/TIL/static/c1f40fe5addf4a3cc4368f486615b417/c139f/github_secrets.webp 1050w,
+/TIL/static/c1f40fe5addf4a3cc4368f486615b417/cc785/github_secrets.webp 1132w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/c1f40fe5addf4a3cc4368f486615b417/e52aa/github_secrets.jpg 175w,
+/TIL/static/c1f40fe5addf4a3cc4368f486615b417/70ebb/github_secrets.jpg 350w,
+/TIL/static/c1f40fe5addf4a3cc4368f486615b417/29d31/github_secrets.jpg 700w,
+/TIL/static/c1f40fe5addf4a3cc4368f486615b417/9ecec/github_secrets.jpg 1050w,
+/TIL/static/c1f40fe5addf4a3cc4368f486615b417/bb3bf/github_secrets.jpg 1132w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/c1f40fe5addf4a3cc4368f486615b417/29d31/github_secrets.jpg&quot; alt=&quot;github secrets&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;p&gt;New repository secret을 눌러서 이전에 yml파일에서 작성했던 secrets값들을 등록한다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;SSH_KEY&lt;/strong&gt;&lt;br&gt;
+EC2에 등록된 .pem key
+&lt;pre&gt;&lt;code&gt; -----BEGIN RSA PRIVATE KEY-----
+ 위 아래 저 문구들도 같이 복사해줘야 한다!
+ -----END RSA PRIVATE KEY-----
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HOST&lt;/strong&gt;&lt;br&gt;
+EC2 IP주소&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;USER&lt;/strong&gt;&lt;br&gt;
+EC2 사용자 이름으로 AWS 페이지에서 확인할 수 있다.
+ubuntu 서버이고, 따로 사용자를 생성해주지 않았다면 십중팔구 &lt;code&gt;ubuntu&lt;/code&gt;이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;로그 확인&lt;/strong&gt;&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/6030297cc3a838c7b26e30ffd28ba602/2a118/github_workflows.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 37.14285714285714%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAHABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAd4RRX//xAAUEAEAAAAAAAAAAAAAAAAAAAAQ/9oACAEBAAEFAn//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAQ/9oACAEBAAY/An//xAAWEAEBAQAAAAAAAAAAAAAAAAABEBH/2gAIAQEAAT8hTC//2gAMAwEAAgADAAAAEAAP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFhEBAQEAAAAAAAAAAAAAAAAAARAR/9oACAECAQE/EFdn/8QAGBABAAMBAAAAAAAAAAAAAAAAAQARIXH/2gAIAQEAAT8QC12oNhkOT//Z&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/6030297cc3a838c7b26e30ffd28ba602/c54d4/github_workflows.webp 175w,
+/TIL/static/6030297cc3a838c7b26e30ffd28ba602/a3432/github_workflows.webp 350w,
+/TIL/static/6030297cc3a838c7b26e30ffd28ba602/426ac/github_workflows.webp 700w,
+/TIL/static/6030297cc3a838c7b26e30ffd28ba602/c139f/github_workflows.webp 1050w,
+/TIL/static/6030297cc3a838c7b26e30ffd28ba602/7f403/github_workflows.webp 1400w,
+/TIL/static/6030297cc3a838c7b26e30ffd28ba602/3216d/github_workflows.webp 1465w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/6030297cc3a838c7b26e30ffd28ba602/e52aa/github_workflows.jpg 175w,
+/TIL/static/6030297cc3a838c7b26e30ffd28ba602/70ebb/github_workflows.jpg 350w,
+/TIL/static/6030297cc3a838c7b26e30ffd28ba602/29d31/github_workflows.jpg 700w,
+/TIL/static/6030297cc3a838c7b26e30ffd28ba602/9ecec/github_workflows.jpg 1050w,
+/TIL/static/6030297cc3a838c7b26e30ffd28ba602/d165a/github_workflows.jpg 1400w,
+/TIL/static/6030297cc3a838c7b26e30ffd28ba602/2a118/github_workflows.jpg 1465w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/6030297cc3a838c7b26e30ffd28ba602/29d31/github_workflows.jpg&quot; alt=&quot;github workflows&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;p&gt;이 후 지정한 브랜치에서 push 이벤트가 발생하면, 자동으로 workflow가 실행된다.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/f0392dd67d320192a256afb27d073cfa/efabe/github_logs.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 40%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAIABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAEFBv/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAG0y4kCv//EABYQAAMAAAAAAAAAAAAAAAAAAAQQNP/aAAgBAQABBQIqZf/EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABUQAQEAAAAAAAAAAAAAAAAAAAIQ/9oACAEBAAY/Anf/xAAZEAACAwEAAAAAAAAAAAAAAAAAEQEhccH/2gAIAQEAAT8hph0lsZ//2gAMAwEAAgADAAAAEAwf/8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQMBAT8QZ//EABURAQEAAAAAAAAAAAAAAAAAAAEQ/9oACAECAQE/ECf/xAAZEAADAQEBAAAAAAAAAAAAAAAAAREhMbH/2gAIAQEAAT8QvXs+CTNcLP/Z&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/f0392dd67d320192a256afb27d073cfa/c54d4/github_logs.webp 175w,
+/TIL/static/f0392dd67d320192a256afb27d073cfa/a3432/github_logs.webp 350w,
+/TIL/static/f0392dd67d320192a256afb27d073cfa/426ac/github_logs.webp 700w,
+/TIL/static/f0392dd67d320192a256afb27d073cfa/c139f/github_logs.webp 1050w,
+/TIL/static/f0392dd67d320192a256afb27d073cfa/7f403/github_logs.webp 1400w,
+/TIL/static/f0392dd67d320192a256afb27d073cfa/098de/github_logs.webp 1472w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/f0392dd67d320192a256afb27d073cfa/e52aa/github_logs.jpg 175w,
+/TIL/static/f0392dd67d320192a256afb27d073cfa/70ebb/github_logs.jpg 350w,
+/TIL/static/f0392dd67d320192a256afb27d073cfa/29d31/github_logs.jpg 700w,
+/TIL/static/f0392dd67d320192a256afb27d073cfa/9ecec/github_logs.jpg 1050w,
+/TIL/static/f0392dd67d320192a256afb27d073cfa/d165a/github_logs.jpg 1400w,
+/TIL/static/f0392dd67d320192a256afb27d073cfa/efabe/github_logs.jpg 1472w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/f0392dd67d320192a256afb27d073cfa/29d31/github_logs.jpg&quot; alt=&quot;github logs&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;p&gt;클릭하면 자세한 로그 기록도 확인할 수 있으니, 혹시라도 에러가 발생하면 참고하자&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[정렬(Sorting) 알고리즘 정리]]></title><description><![CDATA[면접에서 탈탈 털린 후 작성한 정렬 관련 알고리즘을 총정리 1. Bubble Sort (거품 정렬) 1.1. 동작 과정 1.2. 복잡도 1.3. Python 구현 2. Selection Sort (선택 정렬) 2.1. 동작 과정 2.2. 복잡도 2.…]]></description><link>https://byongho96.github.io/TIL/posts/CS/Algorithm/Sorting/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/CS/Algorithm/Sorting/</guid><pubDate>Tue, 02 May 2023 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
 &lt;p&gt;면접에서 탈탈 털린 후 작성한 정렬 관련 알고리즘을 총정리&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
