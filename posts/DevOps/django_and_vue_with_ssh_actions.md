@@ -1,7 +1,7 @@
 ---
-title: 'Django와 Vue 프로젝트 Github SSH Actions로 자동 배포하기'
-updatedAt: '2023-05-20'
-createdAt: '2023-07-21'
+title: 'Django와 Vue 프로젝트 Github SSH Action으로 자동 배포하기'
+updatedAt: '2023-07-21'
+createdAt: '2023-05-20'
 description: 'Django와 Vue 프로젝트를 AWS EC2상에 배포하고, Github SSH Actions를 이용하여 자동 빌드 및 배포 환경을 구축한다'
 tags: ['DevOps', 'Django', 'Vue', '배포', 'AWS', 'EC2', 'Github Actions']
 isCompleted: true
@@ -10,31 +10,33 @@ reference:
 
 # 시작하기 전에...<!-- omit in toc -->
 
-> Django와 Vue를 이용해서 만든 [Boogie 프로젝트](https://github.com/Byongho96/boogie-project)의 **기초적인** 배포 과정을 정리한 문서입니다.  
+> Django와 Vue를 이용해서 만든 [Boogie 프로젝트](https://github.com/Byongho96/boogie-project)의 **기초적인** 배포 과정을 정리한 문서이다.  
 > [Boogie 웹사이트 링크](https://boogie-movie.site/)
 
-- .pem 키를 이용해 원격 EC2에 SSH(Secure Shell)로 접속해 쉘커맨드를 실행시키는 방식으로 배포를 진행했다.
+- .pem 키를 이용해 원격 EC2에 SSH(Secure Shell)로 접속하여, 쉘커맨드를 실행시키는 방식으로 배포한다.
 - 이 방식은 간단하지만, 어떤 보안 상의 이슈가 있을지 확신할 수 없다. Github Action을 활용한 보다 정형화 된 배포 방법으로는 **AWS의 CodeDeploy**를 알아보는 걸 추천한다.
 
-## Index<!-- omit in toc -->
+# Index<!-- omit in toc -->
 
 - [1. Django 배포 준비](#1-django-배포-준비)
   - [1.1. Django .env 파일 생성](#11-django-env-파일-생성)
     - [1.1.1. .env 파일 작성](#111-env-파일-작성)
     - [1.1.2. django-environ](#112-django-environ)
     - [1.1.3. .gitignore 수정](#113-gitignore-수정)
-  - [2. DEBUG 모드 변환](#2-debug-모드-변환)
-    - [2.1. ALLOWED_HOSTS 제한](#21-allowed_hosts-제한)
-    - [2.2. 정적파일 제공 못함](#22-정적파일-제공-못함)
+  - [1.2. DEBUG 모드 변환](#12-debug-모드-변환)
+    - [1.2.1. ALLOWED\_HOSTS 제한](#121-allowed_hosts-제한)
+    - [1.2.2. 정적파일 제공 못함](#122-정적파일-제공-못함)
 - [2. Vue 배포 준비](#2-vue-배포-준비)
   - [2.1. .env 파일 작성](#21-env-파일-작성)
-- [3. EC2 설정](#3-ec2-설정)
-  - [3.1. python 설치](#31-python-설치)
-  - [3.2. node.js 설치](#32-nodejs-설치)
-  - [3.3. Django 프로젝트 실행](#33-django-프로젝트-실행)
-  - [3.4. gunicorn 실행](#34-gunicorn-실행)
-  - [3.5. Vue 프로젝트 빌드](#35-vue-프로젝트-빌드)
-  - [3.6. nginx](#36-nginx)
+- [3. EC2 작업](#3-ec2-작업)
+  - [3.1. Django 배포](#31-django-배포)
+    - [3.1.1. python 설치](#311-python-설치)
+    - [3.1.2. Django 어플리케이션 실행](#312-django-어플리케이션-실행)
+    - [3.1.3. gunicorn 실행](#313-gunicorn-실행)
+  - [3.2. Vue 배포](#32-vue-배포)
+    - [3.2.1. node.js 설치](#321-nodejs-설치)
+    - [3.2.2. Vue 프로젝트 빌드](#322-vue-프로젝트-빌드)
+  - [3.3. nginx](#33-nginx)
 - [4. Github Actions](#4-github-actions)
 
 ---
@@ -125,7 +127,7 @@ env.bak/
 venv.bak/
 ```
 
-## 2. DEBUG 모드 변환
+## 1.2. DEBUG 모드 변환
 
 배포 환경에서 `DEBUG`값은 반드시 False여야 한다.
 
@@ -134,16 +136,18 @@ venv.bak/
 - 에러에 대한 구체적인 이유를 표시한다.(보안 이슈)
 - 손쉬운 디버깅을 위해 실행된 SQL를 모두 기억한다.(메모리 자원 낭비)
 
-따라서 배포 환경에서는 반드시 `DEBUG`를 `False`로 설정해야 한다. 이는 .env 파일에서 `DEBUG=False`로 하던가, 아니면 아예 값을 집어 넣지 않으면 된다.
+따라서 배포 환경에서는 반드시 `DEBUG`를 `False`로 설정해야 한다. 이는 나중에 서버에서 작성할 .env 파일에서 `DEBUG=False`로 하던가, 아니면 아예 `DEBUG` 값을 집어 넣지 않으면 된다.
 
-```python
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+```
+...
+DEBUG=False
 ```
 
-### 2.1. ALLOWED_HOSTS 제한
+그런데 `DEBUG=False`로 바꾸는 순간, 아래와 같은 몇 가지 제약사항이 추가된다.
 
-`DEBUG`가 `False`일 때는, 프로젝트를 호스팅 할 IP 주소를 `settings.py`에 다음과 명시해줘야 한다.
+### 1.2.1. ALLOWED_HOSTS 제한
+
+`DEBUG`가 `False`일 때는, 프로젝트를 호스팅 할 IP 주소를 `settings.py`에 명시해줘야 한다.
 
 ```python
 # settings.py
@@ -154,17 +158,17 @@ ALLOWED_HOSTS = [
 ]
 ```
 
-### 2.2. 정적파일 제공 못함
+### 1.2.2. 정적파일 제공 못함
 
 **`DEBUG`가 `False`일 때는, Django는 정적 파일을 제공하지 못한다.**
 
 이 문제 때문에 한동안 골머리를 앓았다...
-배포하니까 갑자기 api로 사용자 프로필을 받아오지 못하는 것이다!!
+배포하니까 갑자기 사용자 프로필을 api로 받아오지 못하는 것이다!!
 
-[구글링 해보니](https://forum.djangoproject.com/t/django-static-files-in-deployment-debug-false/16675/2) Django는 DEBUG=False일 때 정적파일을 제공하지 못한다고 한다. ~~그럼 애초에 그런 기능을 넣지 말던가...~~
+[구글링 해보니](https://forum.djangoproject.com/t/django-static-files-in-deployment-debug-false/16675/2) Django는 `DEBUG=False`일 때 정적파일을 제공하지 못한다고 한다. ~~그럼 애초에 그런 기능을 넣지 말던가...~~
 
-따라서 Nginx와 같은 웹서버를 이요해서 정적파일을 제공해야 한다.  
-이에 대해서는 아래 [nginx항목](#36-nginx)에서 확인할 수 있다.
+따라서 Nginx와 같은 웹서버를 이용해서 정적파일을 제공해야 한다.  
+이에 대해서는 아래 [nginx항목](#33-nginx)에서 다룰 것이다.
 즉, 다음과 같은 미디어 파일 설정들이 배포 환경에서는 딱히 무용해지는 것이다.
 
 ```python
@@ -199,23 +203,25 @@ Vue도 Django와 마찬가지로 .env 파일을 통해 프로젝트의 환경변
 
 그리고 .env 파일 종류를 활용해서, 다음과 같이 로컬환경과 배포환경에서의 API 서버 URL을 나눴다.
 
-```env
+```
 # .env
 VUE_APP_SERVER_URL=http://127.0.0.1:8000
 ```
 
-```env
+```
 # .env.production
 VUE_APP_SERVER_URL=http://boogie-movie.site
 ```
 
-# 3. EC2 설정
+# 3. EC2 작업
 
-아래 내용은 AWS EC2가 있음을 가정한다.
+아래부터의 내용은 AWS EC2 내부에서 진행된다.
 
-AWS EC2가 없거나, .pem키가 무엇이니 모르면 [AWS EC2 기초 가이드](https://byongho96.github.io/TIL/posts/Tools/AWS/)를 참고하길 바란다. 시간을 갈아 넣어 친절하게 작성한 문서이다.
+AWS EC2가 없거나, .pem키가 무엇이니 모르면 [AWS EC2 기초 가이드](https://byongho96.github.io/TIL/posts/Tools/AWS/)를 참고하길 바란다.
 
-## 3.1. python 설치
+## 3.1. Django 배포
+
+### 3.1.1. python 설치
 
 **Django를 실행하기 위해서 당연히 python을 설치해야한다.**
 
@@ -282,39 +288,7 @@ AWS EC2가 없거나, .pem키가 무엇이니 모르면 [AWS EC2 기초 가이�
    python -V
    ```
 
-## 3.2. node.js 설치
-
-**역시 Vue를 빌드하기 위해서는 당연히 node.js를 설치해야한다.**
-
-[Ubuntu 20.04 Node.js 설치 문서](https://linuxize.com/post/how-to-install-node-js-on-ubuntu-20-04/)를 따라 아래 내용을 작성했다.
-
-1. **node.js 설치**
-
-   node.js 설치 및 버전 확인
-
-   ```bash
-   sudo apt update
-   sudo apt install nodejs npm
-   nodejs --version
-   ```
-
-   Vue 2.0 프로젝트를 빌드하기 위해서는 nodejs의 버전이 v12.x 이상이어야 한다.  
-   위 명령어에서 확인한 버전이 12.x 미만일 경우, 아래 명령어를 따라한다.
-
-   ```bash
-   # node 설치관련 스크립트를 다운받고, bash 쉘을 root권한으로 재시작한다.
-   curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-   sudo apt install nodejs
-   node --version
-   ```
-
-2. **build-essential 설치**  
-   노드 패키지(모듈)에서 C/C++로 작성된 부분을 natvie addons라고 말하고, 이러한 패키지를 설치하기 위해서는 해당 운영 체제에서 빌드(컴파일) 도구를 설치해야 한다.
-   ```bash
-   sudo apt install build-essential
-   ```
-
-## 3.3. Django 프로젝트 실행
+### 3.1.2. Django 어플리케이션 실행
 
 1. **프로젝트 클론**  
    먼저 자신의 Django git 프로젝트를 클론한다.
@@ -379,7 +353,7 @@ AWS EC2가 없거나, .pem키가 무엇이니 모르면 [AWS EC2 기초 가이�
    STATIC_ROOT = BASE_DIR / 'staticfiles'
    ```
 
-## 3.4. gunicorn 실행
+### 3.1.3. gunicorn 실행
 
 개발할 때 사용하던, `runserver`명령어를 배포환경에서 사용하면 안된다.  
 [Django 공식문서](https://docs.djangoproject.com/en/4.2/ref/django-admin/#runserver)에 따르면, 이는 개발 서버로써 보안과 성능이 떨어지기 때문이다.
@@ -416,7 +390,7 @@ Python프레임워크의 대표적인 WSGI(Web Server Gateway Interface)인 [gun
 
    unit 설정 파일 작성법은 [Linux.md](https://byongho96.github.io/TIL/posts/Tools/Linux/#32-service)에 정리해두었다. ~~근데 나도 잘 모름~~
    아래 예시 파일을 그대로 가져다가 써도 된다.  
-   workers란 gunicorn의 프로세스 갯수를 의미하며, 직관저거으로 workers를 높게 설정할수록 많은 요청을 처리할 수 있지만, 메모리 점유율과 성능을 고려하여 CPU 코어 수와 동일하게 설정하는 것이 가장 무난하다.
+   workers란 gunicorn의 프로세스 갯수를 의미하며, 직관적으로 workers를 크게 설정할수록 동시에 많은 요청을 처리할 수 있지만, 메모리 점유율과 성능을 고려하여 `2 * {CPU 코어 수} + 1`을 기본값으로 슨다.
 
    ```c
    [Unit]
@@ -454,7 +428,41 @@ Python프레임워크의 대표적인 WSGI(Web Server Gateway Interface)인 [gun
    # sudo systemctl restart gunicorn
    ```
 
-## 3.5. Vue 프로젝트 빌드
+## 3.2. Vue 배포
+
+### 3.2.1. node.js 설치
+
+**역시 Vue를 빌드하기 위해서는 당연히 node.js를 설치해야한다.**
+
+[Ubuntu 20.04 Node.js 설치 문서](https://linuxize.com/post/how-to-install-node-js-on-ubuntu-20-04/)를 따라 아래 내용을 작성했다.
+
+1. **node.js 설치**
+
+   node.js 설치 및 버전 확인
+
+   ```bash
+   sudo apt update
+   sudo apt install nodejs npm
+   nodejs --version
+   ```
+
+   Vue 2.0 프로젝트를 빌드하기 위해서는 nodejs의 버전이 v12.x 이상이어야 한다.  
+   위 명령어에서 확인한 버전이 12.x 미만일 경우, 아래 명령어를 따라한다.
+
+   ```bash
+   # node 설치관련 스크립트를 다운받고, bash 쉘을 root권한으로 재시작한다.
+   curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+   sudo apt install nodejs
+   node --version
+   ```
+
+2. **build-essential 설치**  
+   노드 패키지(모듈)에서 C/C++로 작성된 부분을 natvie addons라고 말하고, 이러한 패키지를 설치하기 위해서는 해당 운영 체제에서 빌드(컴파일) 도구를 설치해야 한다.
+   ```bash
+   sudo apt install build-essential
+   ```
+
+### 3.2.2. Vue 프로젝트 빌드
 
 1. **프로젝트 클론**  
    자신의 Vue git 프로젝트를 클론한다.  
@@ -487,9 +495,14 @@ Python프레임워크의 대표적인 WSGI(Web Server Gateway Interface)인 [gun
    npm run buld
    ```
 
-## 3.6. nginx
+## 3.3. nginx
 
-Nginx를 웹서버로 사용해서 정적 파일을 제공하고 api요청을 reverse proxy할 수 있다.
+Nginx를 웹서버로 사용해서 정적 파일을 제공하고 api요청을 reverse proxy할 수 있다.  
+따라서 Nginx로 다음 기능들을 구현할 것이다.
+
+- HTTP api 요청 Django 어플리케이션으로 프록시
+- Django 정적파일 제공
+- Vue 빌드파일 제공
 
 Nginx에 대한 더 자세한 설명은 [Nginx.md](https://byongho96.github.io/TIL/posts/Tools/Nginx/)에 정리되어 있다.
 
@@ -566,7 +579,7 @@ Nginx에 대한 더 자세한 설명은 [Nginx.md](https://byongho96.github.io/T
 
 지금까지 위의 모든 절차를 따라했다면 배포가 완료되었다. EC2 IP주소로 접속하면 확인해볼 수 있을 것이다.
 
-이제는 github actions를 이용해서 github 레포지토리에 수정한 코드를 push하였을 경우, <mark>자동 빌드/배포가 되는 환경을 구축</mark>해볼 것이다.
+이제는 github actions를 이용해서 github 레포지토리에 push이벤트가 발생할 경우, <mark>자동 빌드/배포가 되는 환경을 구축</mark>해볼 것이다.
 
 SSH를 통해 원격의 EC2에서 직접 쉘명령어를 실행시키는 간단한 방법을 사용할 것이다.
 참고로 핵심이 되는 action은 [appleboy/ssh-action](https://github.com/appleboy/ssh-action)이다.
@@ -614,16 +627,17 @@ SSH를 통해 원격의 EC2에서 직접 쉘명령어를 실행시키는 간단�
                username: ${{ secrets.USER }}
                # 실제로 실행시키고 싶은 쉘명령어를 작성한다.
                script: |
-                  cd ~/boogie-project
+                  cd {EC2 상 백엔드 레포 루트 경로}
+                  git switch {타겟 브랜치}
                   git pull
-                  git switch main
-                  cd frontend
-                  npm install
-                  npm run build
-                  cd ../backend
                   source venv/bin/activate
                   pip install -r requirements.txt
                   sudo systemctl restart gunicorn
+                  cd {EC2 상 프론트 레포 루트 경로}
+                  git switch {타겟 브랜치}
+                  git pull
+                  npm install
+                  npm run build
    ```
 
    각 명령어에 대한 더 자세한 내용을 알고 싶으면, [Github 공식문서](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)를 참고하길 바란다.
