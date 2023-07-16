@@ -98,9 +98,10 @@ const config: GatsbyConfig = {
           {
             site {
               siteMetadata {
-      description
-      title
-      siteUrl
+                description
+                title
+                siteUrl
+                site_url: siteUrl
               }
             }
           }

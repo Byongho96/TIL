@@ -1,5 +1,5 @@
 ---
-title: 'SpringBoot 프로젝트 구조 총 정리'
+title: 'SpringBoot 프로젝트 구조 정리'
 updatedAt: '2023-07-12'
 createdAt: '2023-07-12'
 description: 'SpringBoot가 어떻게 동작하는지 이해하기 위해, 프로젝트 구조 및 각 파일의 역할을 알아본다.'
@@ -8,7 +8,7 @@ isCompleted: true
 reference:
 ---
 
-> 프론트엔드 개발자로써 SpringBoot가 **어떻게 돌아가는지** 알고 싶어서, SpringBoot 프로젝트 구조를 정리한 문서이다.
+> 프론트엔드 개발자로써 SpringBoot가 어떻게 돌아가는지 알고 싶어서, SpringBoot 프로젝트 구조를 정리한 문서이다.
 > 참여했던 지난 프로젝트들을 참고했고, Java 친구 개발자의 도움을 받았다.
 > Thanks to. [췐쓰희](https://velog.io/@chancehee)
 
