@@ -32,8 +32,9 @@ Based on my experience, the `BASE_DIR` is also one of the default paths.
 ## 1.3. Create Fixtures
 
 - **dumpdata**
-  - `python manage.py dumpdata --indent 4 AppName.ModelName > FileName.json`
-    - Ex. `python manage.py dumpdata --indent 4 articles.article > articles.json`
+  - `python -Xutf8 manage.py dumpdata --indent 4 AppName.ModelName > FileName.json`
+    - Ex. `python -Xutf8 manage.py dumpdata --indent 4 articles.article > articles.json`
+    - `-Xutf8` is for UTF8 format. It should be included if your data has korean letters.
     - `--indent 4` is optional, just for making the file look good.
 - **Move the fixtures into `app_name/fixtures/`**
   - <mark>If the file name is duplicated,</mark> you should divide the name space of fixtrues

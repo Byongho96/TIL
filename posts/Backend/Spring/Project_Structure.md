@@ -8,21 +8,26 @@ isCompleted: true
 reference:
 ---
 
-> 프론트엔드 개발자로써 SpringBoot가 어떻게 돌아가는지 알고 싶어서, SpringBoot 프로젝트 구조를 정리한 문서이다.
-> 참여했던 지난 프로젝트들을 참고했고, Java 친구 개발자의 도움을 받았다.
+> 프론트엔드 개발자로써 SpringBoot가 어떻게 돌아가는지 알고 싶어서 정리해보았다.  
+> 지난 프로젝트를 참고하고, 친구 Java 개발자의 도움을 받았다.  
 > Thanks to. [췐쓰희](https://velog.io/@chancehee)
 
 # 1. 개요
 
-Java기반의 프레임워크인 SpringBoot는 좋게 말하면 체계적이고, 나쁘게 말하면 복잡하다.  
-따라서 먼저 대략적인 개요를 파악하는 것이, 세세한 부분을 이해하는데도 큰 도움이 될 것이다.
+SpringBoot는 객체지향적인 Java를 기반으로 한 프레임워크이다.  
+"객체지향"을 한 마디로 정의하기는 어렵겠지만, 나는 **클래스를 바탕으로 한 설계**라고 생각하는 것도 직관적인 이해에 도움이 될 것 같다.  
+SpringBoot의 각 요소(Controller, Service, Repository)는 Class로 설계되며, 싱글톤 패턴에 따라 각각의 클래스는 하나의 인스턴스를 만들어 재사용된다.
+
+이러한 내부적인 동작은 SpringBoot가 담당하기 때문에, 모른다고해서 코드를 못짜는 것은 아니다.  
+오늘은 그보다 <mark> Controller, Service, Repository 각 파일의 실질적인 역할에 대해서 알아볼 것이다.</mark>
 
 ## 1.1. SpringBoot 기본 구조
 
-개인적으로 Java 프로젝트를 열면, 아래 그림처럼 깊은 디렉토리 Depth에 지레 겁을 먹었다.
+SpringBoot의 기본 구조는 아래와 같다.
 
-근데 저 깊은 Depth는 그저 내 자바 소스코드를 다른 자바 패키지와 구별하기 위함이다.
-그래서 아래 그림에서 `java / net / guides / springboo2`의 폴더들을 그냥 장황한 이름을 가진 하나의 `java_net_guides_springboo2`폴더라고 생각하면, 심리적 부담감이 덜해진다.
+깊은 디렉토리 중첩에 지레 겁 먹을 필요는 없다(~~내가 그랬다~~).  
+내 자바코드 경로에 유일성을 부여해서, 다른 자바 패키지와 구분하기 위한 용도일 뿐이다.  
+한마디로 `java/net/guides/springboot2/`를 그냥 `java_net_uides_springboot2/`라는 하나의 폴더라고 생각해도 무방하다.
 
 <img src="./assets/springboot-project-structure.png" alt="springboot-project-structure.png" width="400" >
 
@@ -30,7 +35,7 @@ Java기반의 프레임워크인 SpringBoot는 좋게 말하면 체계적이고,
   빌드 설정 등을 제외하고는, 거의 대부분의 개발이 `src`폴더 내에서 이뤄진다.
 
 - **src/main/**  
-  프로젝트를 빌드 했을 때, `.jar` 파일에 포함되는 코드이다. (JAR파일은 그냥 빌드 결과물이다.)
+  프로젝트를 빌드 했을 때, `.jar` 파일에 포함되는 코드이다. (`.jar`파일은 그냥 빌드 결과물이다.)
   쉽게 말해 어플리케이션을 서버로 실행했을 때, 실제로 사용되는 소스코드와 리소스가 있는 곳이다.
   대응되는 디렉토리로 `src/test/`가 있다.
 
@@ -62,38 +67,35 @@ Java기반의 프레임워크인 SpringBoot는 좋게 말하면 체계적이고,
 
 - **src/test**  
   테스트 코드 및 테스트를 위한 추가 리소스가 저장되는 곳이다.  
-  따라서 빌드 시에, 최종적으로 JAR 파일에 포함되지 않는다.
+  따라서 빌드 시에, 최종적으로 `.jar` 파일에 포함되지 않는다.
 
 ## 1.2. SpringBoot 요청 처리 과정
 
-SpringBoot가 백엔드 프레임워크로써 동작한다고 할 때, 클라이언트 요청을 다음과 같은 과정으로 처리한다.
-
 <img src="./assets/springboot-request-flow.png" alt="springboot-request-flow.png" width=600 />
 
+SpringBoot가 클라이언트 요청을 받으면, 위와 같은 순서로 파일을 거쳐 처리한다.
+
 - **Controller**  
-  클라이언트의 요청 유효성을 검증한 뒤, 적절한 Service를 호출한다. 그리고 그 결과를 다시 응답 형태로 가공하여 클라이언트에 반환한다.  
-  웹 애플리케이션의 엔드포인트로써 사용자 인터페이스와 상호작용한다.
+  요청의 유효성을 검증하고 적절한 Service를 호출한다. 그리고 결과를 다시 응답 형태로 클라이언트에게 반환한다.
 
 - **Service**  
-  핵심 로직이 구현되는 부분이다.
-  Controller로부터 받은 데이터를 검증한 뒤, 여러 개의 Repository를 조합하여 복잡한 데이터 조작을 수행한다.
-  그 외에도 트랜잭션을 관리하거나 데이터를 캐싱하는 등 여러 핵심 기능이 있다.
+  **핵심 로직이 구현되는 부분이다.**  
+  Controller로부터 받은 데이터를 적절하게 가공한 뒤, Repository를 호출하여 데이터베이스를 조작한다.
 
 - **Repository**  
-  데이터에 접근하고 조작하는 역할을 담당한다.  
-  한 마디로 데이터베이스와 상호작하며 데이터를 CRUD하는 기능이 구현된다.
-
-Spring은 사용자 요청을 처리하는 데 있어, 여러 개의 레이어를 두고 역할을 분리했다. 이를 통해 코드의 유지보수성을 높일 수 있다.
-Controller, Service, Repository가 Spring의 3 개 레이어를 대표하는 파일이다.
+  데이터베이스에 접근하여 데이터를 조작한다.
 
 <img src="./assets/spring-web-layer.png" alt="spring-web-layer.png" width=600 />
 
+Spring은 사용자 요청을 처리하는 데 있어, 3 개의 레이어를 두고 각가의 역할을 분리함으로써 유지보수성을 높였다.
+`Controller`, `Service`, `Repository`가 각각의 레이어를 대표하는 파일이다.
+
 ## 1.3. 계층형 구조 & 도메인형 구조
 
-**`src/main/java/` 내부를 어떻게 구성하는지**에 따라 **계층형**과 **도메인형**으로 나눌 수 있다.
+`src/main/java/` 내부 폴더구조를 구성하는 방법은 크게 2가지가 있다. 바로 계층형 구조와 도메인형 구조이다.
 
 - **계층형 구조**
-  **Spring 레이어의 관점에서 디렉토리를 구분하는 것이 계층형 구조이다.**
+  Spring의 <mark>레이어 관점</mark>에서 디렉토리를 구분한다.
 
   ```
     controller
@@ -119,7 +121,7 @@ Controller, Service, Repository가 Spring의 3 개 레이어를 대표하는 파
 
 - **도메인형 구조**
 
-  **엔터티(Entity)를 기준으로 디렉토리를 구분하는 것이 도멩ㄴ형 구조이다.**
+  <mark>엔터티(Entity) 관점</mark>에서 디렉토리를 구분한다.
 
   ```
   product
@@ -144,13 +146,13 @@ Controller, Service, Repository가 Spring의 3 개 레이어를 대표하는 파
 # 2. DTO
 
 **Controller에서 클랑이언트의 요청을 Java 객체 형태로 받기 위해서 DTO를 사용한다.**
-DTO가 없다해서 Controller가 사용자 요청을 못받는 것은 아니다. 하지만 서버 단에서 미리 필요한 필드값을 지정할 수 있고, 손쉽게 Java 객체로 변환할 수 있는 등의 장점이 많기 때문에 보통 DTO를 사용한다.
+DTO가 없다고 해서 Controller가 사용자 요청을 못받는 것은 아니다. 하지만 서버 단에서 미리 필요한 필드값을 지정할 수 있고, 손쉽게 Java 객체로 변환할 수 있는 등의 장점이 많이 있기 때문에 보통 DTO를 사용한다.
 
-DTO로 지정한 필드 외의 추가 필드가 있을 경우, 해당 필드는 무시되고  
-반대로 지정한 필드의 값이 들어오지 않는 경우, 해당 필드는 초깃값 혹은 null로 들어온다.  
-필요에 따라서 데이터 형식이 맞지 않을 시, 예외를 발생시킬 수도 있다.
+- DTO로 지정한 필드 외의 추가 필드가 있을 경우, 해당 필드는 무시되고
+- 반대로 지정한 필드의 값이 들어오지 않는 경우, 해당 필드는 초깃값 혹은 null로 들어온다.
+- 필요에 따라서 데이터 형식이 맞지 않을 시, 예외를 발생시킬 수도 있다.
 
-아래는 간단하게 정말 간단하게 `username`과 `password`만을 가진 MemberDTO에 대한 예시이다. 각 어노테이션에 대한 설명은 하단 어노테이션 항목에 정리했다.
+아래는 `username`과 `password`필드를 가진 간단한 `MemberDTO` 예시이다.
 
 ```java
 import lombok.NoArgsConstructor;
@@ -168,23 +170,8 @@ public class MemberDto {
 
 # 3. Controller
 
-아래는 회원가입에 대한 Controller 예시 로직이다.  
-구체적인 로직은 프로젝트마다 다를 수 있다. 예를 들어 예외처리도 아래와 같이 Controller마다 명시하지 않고, `@RestControllerAdvice` 클래스와 `@ExceptionHandler`메소드를 가진 전역적인 예외처리 클래스를 만들고, Service 단에서 처리할 수도 있다.
-
-눈여겨봐야할 점은 다음과 같다.
-
-- **@RestController**  
-  @RestController는 @Controller와 @ResponseBody 어노테이션을 결합한 것이다.  
-  이 어노테이션을 적용하면, Spring이 해당 클래스를 컨트롤러로 인식하여 HTTP 요청에 대한 처리를 수행하고, HTTP 응답을 자동으로 JSON 식으로 변환하여 반환한다.
-- **@RequestMapping**  
-  @RequestMapping 어노테이션은 요청 URL 경로와 컨트롤러의 메서드를 매핑하는 역할을 한다.
-- **@PostMapping**  
-  이름에서 짐작할 수 있는 것처럼, URL 경로와 HTTP메소드를 결합하여 메서드를 매핑하는 역할을 한다.
-  이 외에도 @GetMapping, @PutMapping, @DeleteMapping 이 있다.
-- **MemberDto**  
-  앞서 만든 Dto를 이용해서 클라이언트의 요청을 Java 객체 형태로 받아 처리한다.
-- **MemberService**  
-  컨트롤러는 사용자 요청을 받은 뒤, 실제 비즈니스 로직을 처리하기 위해 Service를 호출한다. 그리고 그 결과에 따라 응답을 생성하여 반환한다.
+아래는 회원가입 Controller 예시이다.  
+당연히 구체적인 로직은 프로젝트마다 다르다. 예를 들어, 아래와 같이 예외처리도 직접 명시하지 않고, `@RestControllerAdvice`와 `@ExceptionHandler`를 활용해서 전역적인 예외처리 클래스를 만들 수도 있다.
 
 ```java
 @RestController
@@ -206,16 +193,31 @@ public class MemberController {
 }
 ```
 
+- **@RestController**  
+  @RestController는 @Controller와 @ResponseBody 어노테이션을 결합한 것이다.  
+  이 어노테이션을 적용하면, Spring이 해당 클래스를 컨트롤러로 인식하여 HTTP 요청에 대한 처리를 수행하고, HTTP 응답을 자동으로 JSON 식으로 변환하여 반환한다.
+- **@RequestMapping**  
+  @RequestMapping 어노테이션은 요청 URL 경로와 컨트롤러의 메서드를 매핑하는 역할을 한다.
+- **@PostMapping**  
+  이름에서 짐작할 수 있는 것처럼, URL 경로와 HTTP메소드를 결합하여 메서드를 매핑하는 역할을 한다.
+  이 외에도 @GetMapping, @PutMapping, @DeleteMapping 이 있다.
+- **MemberDto**  
+  앞서 만든 Dto를 이용해서 클라이언트의 요청을 Java 객체 형태로 받아 처리한다.
+- **MemberService**  
+  컨트롤러는 사용자 요청을 받은 뒤, 실제 비즈니스 로직을 처리하기 위해 Service를 호출한다. 그리고 그 결과에 따라 응답을 생성하여 반환한다.
+
 # 4. Service
+
+Service의 경우 보통 `Service.java`와 `ServiceImpl.java`이 한 쌍으로 존재한다.
+
+- `Service.java`은 **인터페이스**로써, Service 클래스의 추상화된 메소드를 선언하고
+- `ServiceImpl.java`는 `Service.java`를 실제 구현한 **클래스**이다.
+
+이렇게 역할을 분리함으로써, 하나의 인터페이스를 바탕으로 여러 개의 구현체를 확장할 수 있다.
 
 ## 4.1. Service
 
-보통 프로젝트를 보면 `Service.java`와 `ServiceImpl.java`이 한 쌍으로 존재한다.
-**`Service.java`은 서비스 인터페이스로써, 서비스 클래스의 추상화된 메소드를 선언하는 역할이고,**  
-**실제 비즈니스 로직(메소드)은 `ServiceImpl.java`에서 구현된다.**
-
-이와 같이 파일을 분리하는 이유는 인터페이스를 바탕으로 여러 개의 구현체를 자유롭게 확장할 수 있고.  
-더 나아가, 인터페이스와 구현 클래스를 사용하여 의존성 주입(Dependency Injection)을 적용할 수 있어 코드의 확장성과 유연성을 높일 수 있기 때문이다.
+다음은 회원가입 기능을 가진 `MemberService`에 대한 인터페이스이다.
 
 ```java
 public interface MemberService {
@@ -227,14 +229,7 @@ public interface MemberService {
 
 ## 4.2. ServiceImpl
 
-`ServiceImpl`은 `Service`에 대한 실제 비즈니스 로직을 구현한다.
-
-아래 코드를 보면, MyBatis를 이용하는 경우와 JPA를 이용하는 경우를 나눠서 코드를 작성했다.
-
-**MyBatis**를 이용하는 경우 DTO를 그대로 전달할 수 있고, 최종적으로 `Mapper.xml`
-파일이 DTO를 해석할 수 있다.
-
-**JPA**를 이용하는 경우 DTO를 테이블과 1:1 관계로 설계된 Entity 객체 형태로 형변화 해줘야 한다.
+다음은 앞 서 선언한 `MemberService`를 구현한 클래스이다.
 
 ```java
 @Service
@@ -263,11 +258,15 @@ public class MemberServiceImpl implements MemberService {
 }
 ```
 
+위의 코드를 **MyBatis**와 **JPA**를 사용하는 경우를 구분해서 코드를 작성했다. 왜냐하면 어떤 데이터베이스 접근 프레임워크를 사용하느냐에 따라 `Repository`가 다르게 구현되기 때문이다.
+
+- **MyBatis**는 `Repository`에 `DTO`를 그대로 전달할 수 있다. 최종적으로 데이터를 받는 `Mapper.xml`이 `DTO`를 해석할 수 있기 때문이다.
+
+- **JPA**는 DB의 테이블과 1:1 관계로 설계된 `Entity` 형태로 바꿔줘야 한다. JPA가 `Entity`를 기반으로 동작하기 때문이다.
+
 # 5. Repository
 
-Repository는 Spring이 어떤 프레임워크로 DB와 상호작용하느냐에 따라 다르게 설계될 수 있다.
-
-대표적으로 MyBatis와 JPA 프레임워크가 있고, 간단한게 비교분석하면 다음과 같다.
+Repository는 어떤 데이터베이스 프레임워크를 사용하느냐에 따라 다르게 설계된다. 대표적으로 MyBatis와 JPA 프레임워크가 있다.
 
 - **MyBatis**
 
@@ -282,11 +281,9 @@ Repository는 Spring이 어떤 프레임워크로 DB와 상호작용하느냐에
 
 ## 5.1. MyBatis
 
-MyBatis는 직접 SQL 쿼리문을 작성할 **`Mapper.xml`파일**, `Mapper.xml`의 쿼리를 Java 메소드로 매핑시켜 구현할 `Mapper.java`인터페이스 파일이 필요하다.
-
-`Repository.java`는 계층의 통일성을 위해 생성해줄 수도 있고, 아니면 `Mapper.java`를 `ServiceImpl`에서 바로 주입해 사용할 수도 있다.
-
 - **Mapper.xml**
+
+  실제 SQL 쿼리문이 xml 형식으로 작성된다.
 
   ```xml
   <?xml version="1.0" encoding="UTF-8" ?>
@@ -307,7 +304,7 @@ MyBatis는 직접 SQL 쿼리문을 작성할 **`Mapper.xml`파일**, `Mapper.xml
 
 - **Mapper.java**
 
-  **메소드의 이름은 xml파일의 `id`와 동일해야 한다.**
+  앞 서 작성한 sql 쿼리문을 Java 메소드와 매핑해준다. <mark>메소드의 이름은 xml파일의 `id`와 동일해야 한다.</mark>
 
   ```java
   @Mapper
@@ -319,6 +316,8 @@ MyBatis는 직접 SQL 쿼리문을 작성할 **`Mapper.xml`파일**, `Mapper.xml
   ```
 
 - **Repository.java**
+
+  MyBatis에서 Repository는 `Mapper.java`가 대체할 수 있지만, 전체적인 레이어 통일성을 위해 추가해봤다.
 
   ```java
   @Repository
@@ -335,11 +334,10 @@ MyBatis는 직접 SQL 쿼리문을 작성할 **`Mapper.xml`파일**, `Mapper.xml
 
 ## 5.2. JPA
 
-JPA는 데이터베이스 테이블과 1:1 매핑된 Entity 객체를 바탕으로 동작한다.
+JPA는 데이터베이스 테이블과 1:1로 대응되는 `Entity` 객체를 바탕으로 동작한다.
 
-따라서 `Entity.java`파일과, JPA의 메소드를 구현할 `Repository.java`파일이 필요하다.
-
-- **Entity.java**
+- **Entity.java**  
+  <mark>데이터베이스의 테이블과 1:1로 대응된다.</mark> JPA는 Entity를 바탕으로 DB에 테이블을 자동생성하는 기능 또한 제공한다.
 
   ```java
   @Entity
@@ -358,11 +356,9 @@ JPA는 데이터베이스 테이블과 1:1 매핑된 Entity 객체를 바탕으�
   }
   ```
 
-- **Repository.java**
-
-  JPA는 편리한 기능을 위해 내재된 기능이 많다. 따라서 JPA를 제대로 활용하기 위해서는 별도의 학습이 필요하다.
-
-  다음은 username을 기반으로 레코드를 조회하는 메소드 선언의 예시이다.
+- **Repository.java**  
+  JPA는 내재된 기능이 많기 때문에, 별도의 학습 후 <mark>정해진 규칙에 따라 메소드를 선언</mark>해야 한다.  
+  다음은 username을 기반으로 레코드를 조회하는 메소드의 예시이다.
 
   ```java
   import org.springframework.data.jpa.repository.JpaRepository;
@@ -377,7 +373,7 @@ JPA는 데이터베이스 테이블과 1:1 매핑된 Entity 객체를 바탕으�
 
 ## 6.1. @Getter / @Setter
 
-`@Getter`와 `@Setter`는 Lombok 어노테이션으로, 자동으로 필드에 대한 Getter와 Setter 메소드를 생성해준다
+`@Getter`와 `@Setter`는 Lombok 어노테이션으로, 필드에 대한 Getter와 Setter 메소드를 자동 생성해준다
 
 ```java
 import lombok.Getter;
@@ -408,8 +404,8 @@ public class Main {
 
 ## 6.2. @Builder
 
-`@Builder`는 Lombok 어노테이션으로, 빌더 패턴으로 객체를 생성할 수 있게한다.  
-빌더 패턴은 가독성 높은 방식으로 객체를 생성하는 방식이다.
+`@Builder`는 Lombok 어노테이션으로, 빌더 패턴으로 객체를 생성할 수 있도록 한다.  
+빌더 패턴이란, 가독성 높은 방식으로 객체를 생성하는 방식이다.(아래 예시코드 참고)
 
 ```java
 import lombok.Builder;
@@ -441,7 +437,7 @@ public class Main {
 
 ## 6.3. @NoArgsConstructor / @AllArgsConstructor
 
-`@NoArgsConstructor`는 매개변수가 없는 기본 생성자를 자동 생성한다.
+`@NoArgsConstructor`는 매개변수가 없는 기본 생성자를 자동 생성한다.  
 `@AllArgsConstructor`는 모든 필드를 인자로 받는 생성자를 자동 생성한다.
 
 ```java
@@ -469,12 +465,11 @@ public class Main {
 
 ## 6.4. @RequiredArgsConstructor
 
-`@RequiredArgsConstructor`는 final로 선언된 필드에 대한 생성자를 자동으로 생성한다.
+`@RequiredArgsConstructor`는 `final`로 선언된 필드에 대한 생성자를 자동 선언한다.
 
-**SpringBoot는 생성자 인자와 해당 타입의 빈(Bean)을 자동으로 연결해주는 기능을 제공**하기 때문에,
-<mark>SpringBoot의 관점에서 `@RequiredArgsConstructor`를 통한 생성자 주입은 곧 의존성 주입</mark>s으로 이어진다.
+SpringBoot의 관점에서 `@RequiredArgsConstructor`를 통한 생성자 주입은 곧 <mark>의존성 주입</mark>으로 이어진다. SpringBoot는 생성자에 대응하는 빈(객체)을 자동으로 주입하기 때문이다.
 
-앞 서 Controller, Service, Repository 클래스에 모두 `@RequiredArgsConstructor`어노테이션을 사용한 이유가 바로 이것이다.
+위의 Controller, Service, Repository 에서 모두 `@RequiredArgsConstructor`어노테이션을 사용한 이유가 바로 이 때문이다.
 
 ```java
 @RestController
@@ -492,7 +487,7 @@ public class MemberController {
 
 `@Data`는 Lombok 어노테이션으로, `@Getter`, `@Setter`, `@ToString`, `@EqualsAndHashCode`, `@NoArgsConstructor`, `@AllArgsConstructor`, `@RequiredArgsConstructor` 등을 한 번에 포함한다.
 
-@Data를 사용하면 클래스에 필드에 대한 Getter, Setter, toString(), equals(), hashCode() 등의 메소드가 자동 생성된다.
+@Data를 사용하면 `get()`, `set()`, `toString()`, `equals()`, `hashCode()` 등의 메소드를 사용할 수 있다.
 
 ```java
 import lombok.Data;
