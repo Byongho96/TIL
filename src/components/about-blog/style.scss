@@ -1,51 +1,88 @@
+@import '@styles/_fonts.scss';
 @import '@styles/_responsive.scss';
 
 .about-blog {
+  font-family: 'NanumSquareNeo', 'Nanum Gothic', -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji';
+}
+
+.about-blog__header {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 4rem;
+  gap: 1rem;
 }
 
-.about-blog__typing {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--font-gray-color);
-  font-size: 7rem;
+.about-blog__header__title {
+  font-size: 5rem;
   font-weight: 700;
-  text-align: center;
-  line-height: 130%;
+  margin: 2rem 0 1rem 0;
 }
 
-.about-blog__navbar__menu {
+.about-blog__header__typing {
   display: flex;
-  gap: 2rem;
-  justify-content: center;
+  color: var(--font-gray-color);
+  font-size: 2.3rem;
+  font-weight: 700;
+  text-decoration: none;
 }
 
-.about-blog__navbar__item svg {
-  width: 2rem;
-  height: 2rem;
-}
-.about-blog__navbar__item path {
-  fill: var(--font-gray-color);
+.about-blog__content h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-top: 1.5em;
+  margin-bottom: 1em;
 }
 
-@include laptop {
-  .about-blog__typing {
-    font-size: 6rem;
-  }
+.about-blog__content h2::before {
+  content: '';
+  border-left: 0.25em solid var(--main-color);
+  margin-right: 0.3em;
+  opacity: 0.4;
+}
+
+.about-blog__content h3 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  margin-left: 1rem;
+  // text-align: center;
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+.about-blog__content div {
+  margin-left: 1rem;
+  // text-align: center;
+}
+
+.about-blog__content p {
+  margin-bottom: 20px;
+  font-size: 1.07rem;
+  line-height: 150%;
+}
+
+.about-blog__content ol {
+  list-style-type: decimal;
+  list-style-position: inside;
 }
 
 @include tablet {
-  .about-blog__typing {
-    font-size: 5rem;
+  .about-blog__header__title {
+    font-size: 4rem;
+    margin: 2rem 0 1rem 0;
+  }
+
+  .about-blog__header__typing {
+    font-size: 2.5rem;
   }
 }
 
 @include mobile {
-  .about-blog__typing {
-    font-size: 2.5rem;
+  .about-blog__header__title {
+    font-size: 3.5rem;
+  }
+
+  .about-blog__header__typing {
+    font-size: 2rem;
   }
 }

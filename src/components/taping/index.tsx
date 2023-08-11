@@ -17,7 +17,7 @@ const Taping: React.FC = ({
   speed = 1,
 }: props) => {
   const tapeRef = useRef<HTMLDivElement>(null)
-  const textRef = useRef<HTMLParagraphElement>(null)
+  const textRef = useRef<HTMLSpanElement>(null)
   const position = useRef(0)
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const Taping: React.FC = ({
 
     if (
       !(tapeElement instanceof HTMLDivElement) ||
-      !(textElement instanceof HTMLParagraphElement)
+      !(textElement instanceof HTMLSpanElement)
     )
       return
 
@@ -72,9 +72,9 @@ const Taping: React.FC = ({
 
   return (
     <div ref={tapeRef} className={`tape ${color}`}>
-      <p ref={textRef} className="tape__text">
+      <span ref={textRef} className="tape__text">
         {(phrase + '\u00a0\u00a0\u00a0\u00a0').repeat(20)}
-      </p>
+      </span>
     </div>
   )
 }

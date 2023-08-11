@@ -16,7 +16,7 @@ interface Props {
 }
 
 const PostItem: React.FC<Props> = ({ post }) => {
-  const { id, excerpt, name, relativePath, title, createdAt, tags, slug } = post
+  const { excerpt, name, relativePath, title, createdAt, tags, slug } = post
 
   return (
     <Link className="post-item--link" to={slug}>

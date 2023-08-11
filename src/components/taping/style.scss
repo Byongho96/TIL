@@ -27,7 +27,21 @@
   white-space: nowrap;
 }
 
+@include laptop {
+  .tape {
+    padding: 0.6rem 0 0.9rem;
+  }
+
+  .tape__text {
+    font-size: 1.6rem;
+  }
+}
+
 @include tablet {
+  .tape {
+    padding: 0.6rem 0 0.8rem;
+  }
+
   .tape__text {
     font-size: 1.5rem;
   }
@@ -35,10 +49,10 @@
 
 @include mobile {
   .tape {
-    padding: 0.6rem 0 0.8rem;
+    padding: 0.5rem 0 0.7rem;
   }
 
   .tape__text {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 }

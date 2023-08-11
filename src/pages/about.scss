@@ -2,15 +2,17 @@
 @import '@styles/_responsive.scss';
 
 .about--layout {
-  display: grid;
-  grid-template-rows: minmax(30rem, 1fr) min-content;
-  gap: 5rem;
   overflow: hidden;
-  padding: 0 0 8rem 0;
+}
+
+.about__article {
+  max-width: 780px;
+  margin: 3rem auto;
 }
 
 @include mobile {
-  .about--layout {
-    grid-template-rows: minmax(20rem, 1fr) min-content;
+  .about__article {
+    max-width: auto;
+    margin: 1rem 1rem;
   }
 }

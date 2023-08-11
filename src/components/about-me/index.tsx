@@ -1,23 +1,52 @@
 import React, { useContext } from 'react'
 import './style.scss'
-import Taping from '@components/taping'
+import GithubIcon from '@assets/svgs/github.svg'
+import GmailIcon from '@assets/svgs/gmail.svg'
+import LinkedinIcon from '@assets/svgs/linkedin.svg'
+import ProfileImage from '@components/profile-image'
+import TypeAnimation from '@components/type-animation'
 import { ThemeContext } from '@contexts/theme-context'
 
 const AboutMe: React.FC = () => {
   const { theme } = useContext(ThemeContext)
 
   return (
-    <div className="about-me">
-      <Taping color="white" phrase="coming soon" rotationDeg={10} />
-      <Taping
-        color="black"
-        phrase="Lorem ipsum"
-        rotationDeg={-15}
-        direction="left"
-      />
-      <Taping color="white" phrase="coming soon" rotationDeg={5} />
-      <p className={`about-me__text ${theme}`}>About Me</p>
-    </div>
+    <article className="about-me">
+      <h1 className="about-me__title">About Me</h1>
+      <div className="about-me__content">
+        <div className="about-me__content__image">
+          <ProfileImage />
+          <nav className="about-me__content__image__links">
+            <a href="https://github.com/Byongho96/">
+              <GithubIcon />
+            </a>
+            <a href="https://www.linkedin.com/in/byongho-lee-b445ba22a">
+              <LinkedinIcon />
+            </a>
+            <a href="mailto:unlike96@gmail.com">
+              <GmailIcon />
+            </a>
+          </nav>
+        </div>
+        <div className="about-me__content__typing">
+          <TypeAnimation phrases={['공부하는 개발자 이병호입니다']} />
+        </div>
+        <div className="about-me__content__writing">
+          <p>
+            건축공학과 전기전자공학을 이중전공한 뒤, 지금은 개발자로서의
+            커리어를 준비하고 있습니다.
+          </p>
+          <p>
+            컴퓨터와 인터넷만 있으면, 내 생각을 가시화해서 모든 사람들에게
+            보여줄 수 있다는 점에서 개발은 매력적입니다.
+          </p>
+          <p>
+            생각한 것을 온전하게 구현하기 위해서 공부하고 생각합니다. 그리고 그
+            내용을 정리하고자 TIL 블로그를 만들었습니다.
+          </p>
+        </div>
+      </div>
+    </article>
   )
 }
 
