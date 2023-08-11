@@ -1,5 +1,6 @@
 import React from 'react'
 import './style.scss'
+import { StaticImage } from 'gatsby-plugin-image'
 import TypeAnimation from '@components/type-animation'
 
 const AboutBlog: React.FC = () => {
@@ -8,8 +9,7 @@ const AboutBlog: React.FC = () => {
       <section className="about-blog__header">
         <h1 className="about-blog__header__title">About Blog</h1>
         <a href="/TIL/posts/Gatsby/" className="about-blog__header__typing">
-          <p>블로그 제작 시리즈&nbsp;</p>
-          <TypeAnimation phrases={['Click Here!']} />
+          <TypeAnimation phrases={['블로그 제작 시리즈 Click Here!']} />
         </a>
       </section>
       <section className="about-blog__content">
@@ -83,6 +83,7 @@ const AboutBlog: React.FC = () => {
       <section className="about-blog__content">
         <h2>블로그 특징</h2>
         <h3>전형적인 UI</h3>
+        <StaticImage src="../../assets/images/mockup.png" alt="profile image" />
         <div>
           <p>
             "전형적이다"라는 것은 "익숙하다"라는 의미이기도 합니다.

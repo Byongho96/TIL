@@ -40,8 +40,8 @@
 }
 
 .about-me__content__writing p {
-  font-size: 1.07rem;
   margin-bottom: 20px;
+  font-size: 1.07rem;
   line-height: 150%;
 }
 
@@ -73,29 +73,24 @@
 
 @include tablet {
   .about-me__title {
-    font-size: 4rem;
+    font-size: 3.5rem;
     margin: 1rem 0 1rem 0;
   }
 
-  .about-me__content {
-  }
-
   .about-me__content__typing {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     padding: 0 0 0 2rem;
   }
 
   .about-me__content__writing {
+    font-size: 1.05rem;
     padding: 0 0 0 2rem;
-  }
-
-  .about-me__content__image {
   }
 }
 
 @include mobile {
   .about-me__title {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
   }
 
   .about-me__content {
@@ -108,13 +103,17 @@
     grid-column: 1/2;
     grid-row: 1/2;
     padding: 0 0 0 0;
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .about-me__content__writing {
     grid-column: 1/2;
     grid-row: 2/3;
     padding: 0 0 0 0;
+  }
+
+  .about-me__content__writing p {
+    font-size: 0.9rem;
   }
 
   .about-me__content__image {

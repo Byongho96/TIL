@@ -66,23 +66,55 @@
   list-style-position: inside;
 }
 
-@include tablet {
-  .about-blog__header__title {
-    font-size: 4rem;
-    margin: 2rem 0 1rem 0;
-  }
-
-  .about-blog__header__typing {
-    font-size: 2.5rem;
-  }
+.about-blog__content .gatsby-image-wrapper {
+  margin-bottom: 15px;
 }
 
-@include mobile {
+@include tablet {
   .about-blog__header__title {
     font-size: 3.5rem;
   }
 
   .about-blog__header__typing {
+    font-size: 2.3rem;
+  }
+
+  .about-blog__content h2 {
     font-size: 2rem;
+  }
+
+  .about-blog__content h3 {
+    font-size: 1.7rem;
+  }
+
+  .about-blog__content p {
+    font-size: 1.05rem;
+  }
+}
+
+@include mobile {
+  .about-blog__header__title {
+    font-size: 2.5rem;
+  }
+
+  .about-blog__header__typing {
+    font-size: 1.5rem;
+  }
+
+  .about-blog__content h2 {
+    font-size: 1.4rem;
+  }
+
+  .about-blog__content h3 {
+    font-size: 1.25rem;
+    margin-left: 0;
+  }
+
+  .about-blog__content div {
+    margin-left: 0;
+  }
+
+  .about-blog__content p {
+    font-size: 0.9rem;
   }
 }
