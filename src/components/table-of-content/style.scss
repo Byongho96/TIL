@@ -13,16 +13,16 @@
 .toc a {
   text-decoration: none;
   color: var(--font-gray-color);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 300;
   text-overflow: ellipsis;
   white-space: nowrap;
 
-  transition: all 0.15s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 
 .toc a.active {
   color: var(--font-color);
   font-weight: 500;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
 }

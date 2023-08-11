@@ -42,8 +42,8 @@
 .sidebar__category--text {
   display: inline-block;
   color: var(--font-color);
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 600;
   text-decoration: none;
 }
 
@@ -75,8 +75,8 @@
 
 .sidebar__posts a {
   color: var(--font-gray-color);
-  font-size: 0.95rem;
-  font-weight: 500;
+  font-size: 0.9rem;
+  font-weight: 400;
   text-decoration: none;
   transition: color 0.1s ease-in-out;
 }

@@ -4,22 +4,22 @@
 .index--layout {
   overflow: hidden;
   position: relative;
-  padding: 4rem 0 0 7rem;
+  padding: 3rem 0 0 7rem;
   box-sizing: border-box;
   height: 100%;
 }
 
 .index__wheel-category {
-  @include animation-clear('slow');
+  @include animation-clear('normal');
   position: absolute;
-  right: -25rem;
+  right: -30rem;
   bottom: -40rem;
 }
 
 // 랩탑
 @include laptop {
   .index--layout {
-    padding: 4rem 0 0 6rem;
+    padding: 3rem 0 0 6rem;
   }
 
   .index__wheel-category {
@@ -31,23 +31,23 @@
 // 타블렛
 @include tablet {
   .index--layout {
-    padding: 4rem 0 0 5rem;
+    padding: 3rem 0 0 4rem;
   }
 
   .index__wheel-category {
-    right: -25rem;
-    bottom: -30rem;
+    top: 30vh;
+    left: 15rem;
   }
 }
 
 // 모바일
 @include mobile {
   .index--layout {
-    padding: 2rem 0 0 1rem;
+    padding: 1rem 0 0 1rem;
   }
 
   .index__wheel-category {
-    right: -35rem;
-    bottom: -25rem;
+    top: 30vh;
+    left: 5rem;
   }
 }

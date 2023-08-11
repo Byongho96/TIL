@@ -4,7 +4,7 @@
 
 .category-layout {
   display: grid;
-  grid-template-columns: minmax(310px, 2fr) 9fr;
+  grid-template-columns: minmax(340px, 2fr) 9fr;
   align-items: start;
   padding: 0 0 2rem 0;
   position: relative;
@@ -16,7 +16,7 @@
   align-items: center;
   gap: 2rem;
   position: relative;
-  padding: 2rem 0 3rem 0;
+  padding: 2rem 3rem 3rem 2.5rem;
 }
 
 .category-layout__aside::before {
@@ -39,12 +39,12 @@
 }
 
 .category-layout__profile {
-  width: 70%;
+  width: 75%;
   margin: 1rem 0 1rem 0;
 }
 
 .category-layout__category {
-  padding: 0 2rem 0 2rem;
+  margin: 0 2rem 0 0;
 }
 
 .category-layout__button {
@@ -55,8 +55,8 @@
   display: none;
 }
 
-// 타블렛부터 카테고리 숨기기
-@include tablet {
+// 랩탑부터 카테고리 숨기기
+@include laptop {
   .category-layout {
     grid-template-columns: 1fr; // aside가 fixed로 빠짐
   }

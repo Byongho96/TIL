@@ -112,16 +112,16 @@ const PostPage: React.FC<PageProps<DataProps, PageContextType>> = ({
   return (
     <CategoryLayout defaultCategory={pageContext.relativeDirectory}>
       <main className="post">
-        <article className="post--article">
+        <article className="post__article">
           <PostHeader frontmatter={data.markdownRemark.frontmatter} />
           <div
-            className={`post--article--content markdown-body ${theme}`}
+            className={`post__article__content markdown-body ${theme}`}
             dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
           />
           <AdjacentPosts prevPost={prevPost} nextPost={nextPost} />
           <Giscus theme={theme === 'dark' ? 'dark' : 'light'} />
         </article>
-        <aside className="post--toc">
+        <aside className="post__toc">
           <TableOfContent toc={data.markdownRemark.tableOfContents} />
         </aside>
       </main>

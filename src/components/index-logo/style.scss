@@ -7,8 +7,7 @@ $INDEX_LOGO_I_MARGIN_LEFT: 0.15em;
 .index-logo {
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
-  font-size: 9rem;
+  font-size: 8rem;
 }
 
 .index-logo > div {
@@ -16,7 +15,7 @@ $INDEX_LOGO_I_MARGIN_LEFT: 0.15em;
   display: inline;
   align-self: flex-start;
   font-weight: bold;
-  color: var(--font-gray-color);
+  color: #b8b8b8;
 }
 
 .index-logo > div::first-letter {
@@ -51,19 +50,11 @@ $INDEX_LOGO_I_MARGIN_LEFT: 0.15em;
   }
 }
 
-// 랩탑
-@include laptop {
-  .index-logo {
-    gap: 1rem;
-    font-size: 8rem;
-  }
-}
-
 // 타블렛
 @include tablet {
   .index-logo {
-    gap: 2rem;
-    font-size: 7rem;
+    gap: 1rem;
+    font-size: 6rem;
   }
 }
 
@@ -71,6 +62,6 @@ $INDEX_LOGO_I_MARGIN_LEFT: 0.15em;
 @include mobile {
   .index-logo {
     gap: 1rem;
-    font-size: 4.5rem;
+    font-size: 4rem;
   }
 }

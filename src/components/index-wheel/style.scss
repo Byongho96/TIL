@@ -3,6 +3,7 @@
 
 $INDEX_WHEEL_NUMBER_OF_LISTS: 15; // 카테고리 갯수. tsx 파일에 설정된 수와 동일해야함
 
+/* Mixins */
 // 이중 원 그리는 mixin
 @mixin draw-index-wheel($radius: 38rem) {
   // 바깥 원 그리기
@@ -40,6 +41,7 @@ $INDEX_WHEEL_NUMBER_OF_LISTS: 15; // 카테고리 갯수. tsx 파일에 설정�
     }
   }
 }
+/* */
 
 .index-wheel {
   @include animation-rotate-counter-clockwise(30s); // 회전 애니메이션
@@ -60,14 +62,24 @@ $INDEX_WHEEL_NUMBER_OF_LISTS: 15; // 카테고리 갯수. tsx 파일에 설정�
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 3rem;
-  font-size: 4rem;
+  width: 3.5rem;
+  font-size: 3.2rem;
   font-weight: 600;
 }
 
 .index-wheel__category a {
   color: inherit;
   text-decoration: none;
+}
+
+@include laptop {
+  .index-wheel {
+    --wheel-radius: 37rem;
+  }
+
+  .index-wheel__category {
+    font-size: 3rem;
+  }
 }
 
 @include tablet {
@@ -82,11 +94,11 @@ $INDEX_WHEEL_NUMBER_OF_LISTS: 15; // 카테고리 갯수. tsx 파일에 설정�
 
 @include mobile {
   .index-wheel {
-    --wheel-radius: 28rem;
+    --wheel-radius: 25rem;
   }
 
   .index-wheel__category {
     --wheel-offset: 3rem;
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 }
