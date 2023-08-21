@@ -1,5 +1,5 @@
 ---
-title: '03. React & Redux Toolkit'
+title: 'Redux Toolkit 기본 사용법'
 updatedAt: '2023-05-08'
 createdAt: '2023-05-02'
 isCompleted: true
