@@ -1,12 +1,12 @@
 ---
-title: '00. React 초기 셋팅 정리'
+title: 'Create React App 초기 셋팅 정리'
 updatedAt: '2023-04-28'
 createdAt: '2023-04-23'
 isCompleted: true
 reference:
 ---
 
-> 추후 참고하기 위해, 반복되는 리액트 초기 셋팅 작업을 공식문서를 기반하여 정리한 문서입니다.
+> 추후 참고하기 위해, 반복되는 CRA기반 리액트 초기 셋팅 작업을 공식문서들을 참고하여 정리한 문서입니다.
 
 - [1. Create React App](#1-create-react-app)
 - [2. eslint \& prettier](#2-eslint--prettier)

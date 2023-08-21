@@ -1,8 +1,8 @@
 ---
-title: '04. Recoil'
+title: 'Recoil 기본 사용법'
 updatedAt: '2023-06-05'
 createdAt: '2023-05-02'
-isCompleted: true
+isCompleted: false
 reference: 'Recoil 공식문서: https://recoiljs.org/ko/docs/basic-tutorial/atoms'
 ---
 

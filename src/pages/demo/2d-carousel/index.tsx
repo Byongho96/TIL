@@ -135,7 +135,7 @@ type Props = {
   interval?: number // 슬라이드 시간 간격 (ms)
   transitionTime?: number // 전환 시간(ms)
   infiniteLoop?: boolean // 무한 반복 영부
-  children?: React.ReactNode
+  children?: React.ReactNode[]
 }
 
 const Carousel: React.FC<Props> = ({
@@ -276,7 +276,10 @@ const Carousel: React.FC<Props> = ({
         ref={frameRef}
         style={{ transition: `transform ${transitionTime}ms ease-in-out` }}
       >
-        {children}
+        {children.map((child: React.ReactNode, index: number) => (
+          <div className={index}>{child}</div>
+        ))}
+        {/* {children} */}
       </div>
       {showArrows && (
         <>

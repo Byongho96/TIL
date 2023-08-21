@@ -1,5 +1,5 @@
 ---
-title: '02. React Context API'
+title: 'React Context API 란?'
 updatedAt: '2023-05-08'
 createdAt: '2023-05-02'
 isCompleted: true
