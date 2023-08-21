@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 11 Aug 2023 14:19:50 GMT</lastBuildDate><item><title><![CDATA[SpringBoot 프로젝트 구조 정리]]></title><description><![CDATA[프론트엔드 개발자로써 SpringBoot가 어떻게 돌아가는지 알고 싶어서 정리해보았다. 지난 프로젝트를 참고하고, 친구 Java 개발자의 도움을 받았다. Thanks to. 췐쓰희 1. 개요 SpringBoot는 객체지향적인 Java…]]></description><link>https://byongho96.github.io/TIL/posts/Backend/Spring/Project_Structure/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Backend/Spring/Project_Structure/</guid><pubDate>Wed, 12 Jul 2023 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 21 Aug 2023 10:19:45 GMT</lastBuildDate><item><title><![CDATA[SpringBoot 프로젝트 구조 정리]]></title><description><![CDATA[프론트엔드 개발자로써 SpringBoot가 어떻게 돌아가는지 알고 싶어서 정리해보았다. 지난 프로젝트를 참고하고, 친구 Java 개발자의 도움을 받았다. Thanks to. 췐쓰희 1. 개요 SpringBoot는 객체지향적인 Java…]]></description><link>https://byongho96.github.io/TIL/posts/Backend/Spring/Project_Structure/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Backend/Spring/Project_Structure/</guid><pubDate>Wed, 12 Jul 2023 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
 &lt;p&gt;프론트엔드 개발자로써 SpringBoot가 어떻게 돌아가는지 알고 싶어서 정리해보았다.&lt;br&gt;
 지난 프로젝트를 참고하고, 친구 Java 개발자의 도움을 받았다.&lt;br&gt;
 Thanks to. &lt;a href=&quot;https://velog.io/@chancehee&quot;&gt;췐쓰희&lt;/a&gt;&lt;/p&gt;
@@ -8106,274 +8106,7 @@ def quick_sort(nums):
           &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/b5c0bd27b95b94aa6421c2b377adc475/8c557/Big_O_graph.png&quot; alt=&quot;Big O graph&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
         &lt;/picture&gt;
   &lt;/a&gt;
-    &lt;/span&gt;</content:encoded></item><item><title><![CDATA[04. Recoil]]></title><description><![CDATA[Recoil 공식문서의 내용을 정리했습니다. 1. Atoms 1.1. Atoms 생성 1.2. Atoms 읽기 1.3. Atoms 수정 2. Selectors 2.1. Selectors 생성 2.1. Selectors 읽기 2.2. Selectors…]]></description><link>https://byongho96.github.io/TIL/posts/Frontend/React/04_React_Recoil/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Frontend/React/04_React_Recoil/</guid><pubDate>Tue, 02 May 2023 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://recoiljs.org/ko/docs/basic-tutorial/atoms&quot;&gt;Recoil 공식문서&lt;/a&gt;의 내용을 정리했습니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#1-atoms&quot;&gt;1. Atoms&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#11-atoms-%EC%83%9D%EC%84%B1&quot;&gt;1.1. Atoms 생성&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#12-atoms-%EC%9D%BD%EA%B8%B0&quot;&gt;1.2. Atoms 읽기&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#13-atoms-%EC%88%98%EC%A0%95&quot;&gt;1.3. Atoms 수정&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#2-selectors&quot;&gt;2. Selectors&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#21-selectors-%EC%83%9D%EC%84%B1&quot;&gt;2.1. Selectors 생성&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#21-selectors-%EC%9D%BD%EA%B8%B0&quot;&gt;2.1. Selectors 읽기&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#22-selectors-%EC%88%98%EC%A0%95%ED%95%98%EA%B8%B0&quot;&gt;2.2. Selectors 수정하기&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#3-asynchronous&quot;&gt;3. Asynchronous&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;1-atoms&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-atoms&quot; aria-label=&quot;1 atoms permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Atoms&lt;/h1&gt;
-&lt;p&gt;Atom은 어플리케이션의 &lt;a href=&quot;https://ko.wikipedia.org/wiki/%EB%8B%A8%EC%9D%BC_%EC%A7%84%EC%8B%A4_%EA%B3%B5%EA%B8%89%EC%9B%90&quot;&gt;단일 진실 공급원(source of truth)&lt;/a&gt;이다. 즉, 아톰은 특정 데이터의 으뜸되는 하나의 공급원으로 작동하며, 다른 곳에서는 공급원을 참조해서 사용한다. 이 단일 진실 공급원이 갱신될 경우, 해당 데이터를 참조되는 어플리케이션의 모든 곳으로 갱신된 데이터가 전파된다. &lt;del&gt;어렵게 설명했는데 쉽게 말하면 그냥 전역 useState이다.&lt;/del&gt;&lt;/p&gt;
-&lt;h2 id=&quot;11-atoms-생성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-atoms-%EC%83%9D%EC%84%B1&quot; aria-label=&quot;11 atoms 생성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1. Atoms 생성&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;atom()&lt;/code&gt; 함수를 사용해서 atom을 생성할 수 있다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import { atom } from &apos;recoil&apos;
-
-export default todoListState = atom({
-  key: &apos;TodoList&apos;,
-  default: [],
-})
-
-export { todoListState }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;key&lt;/strong&gt;&lt;br&gt;
-atoms를 식별하는 키로, 어플리케이션의 모든 atoms와 selectors에 대해서 유니크한 값이어야 한다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;default&lt;/strong&gt;&lt;br&gt;
-atoms 생성 시 할당되는 기본값이다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;12-atoms-읽기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-atoms-%EC%9D%BD%EA%B8%B0&quot; aria-label=&quot;12 atoms 읽기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2. Atoms 읽기&lt;/h2&gt;
-&lt;p&gt;리액트 컴포넌트에서는 &lt;code&gt;useRecoilState()&lt;/code&gt; 훅을 이용해서 atoms의 내용을 참조할 수 있다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import { useRecoilState } from &apos;recoil&apos;
-import { todoListState } from &apos;./state/todoListState&apos;
-
-function TodoList() {
-  const todoList = useRecoilValue(todoListState)
-
-  return (
-    &amp;#x3C;&gt;
-      {/* 아래 1.3.  Atoms 수정 항목에서 정의되는 컴포넌트이다. */}
-      &amp;#x3C;TodoItemCreator /&gt;
-      {todoList.map((todoItem) =&gt; (
-        &amp;#x3C;TodoItem key={todoItem.id} item={todoItem} /&gt;
-      ))}
-    &amp;#x3C;/&gt;
-  )
-}
-
-export default TodoList
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;13-atoms-수정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#13-atoms-%EC%88%98%EC%A0%95&quot; aria-label=&quot;13 atoms 수정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.3. Atoms 수정&lt;/h2&gt;
-&lt;p&gt;리액트 컴포넌트에서는 &lt;code&gt;useSetRecoilState()&lt;/code&gt; 훅을 이용해서 atoms의 내용을 수정하는 함수(setter)에 접근할 수 있다. &lt;code&gt;useState()&lt;/code&gt;의 setter 함수와 마찬가지로, 갱신시키고자 하는 값을 인자로 넣어서 데이터를 수정할 수 있다. 또한 아래 예시처럼 updater 함수를 인자로 전달시킴으로써 이전 상태를 참조하며 갱신할 수도 있다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import { useSetRecoilState } from &apos;recoil&apos;
-import { todoListState } from &apos;./state/todoListState&apos;
-
-function TodoItemCreator() {
-  const [inputValue, setInputValue] = useState(&apos;&apos;)
-  const setTodoList = useSetRecoilState(todoListState)
-
-  const addItem = () =&gt; {
-    setTodoList((oldTodoList) =&gt; [
-      ...oldTodoList,
-      {
-        id: new Date(),
-        text: inputValue,
-        isComplete: false,
-      },
-    ])
-    setInputValue(&apos;&apos;)
-  }
-
-  const onChange = ({ target: { value } }) =&gt; {
-    setInputValue(value)
-  }
-
-  return (
-    &amp;#x3C;div&gt;
-      &amp;#x3C;input type=&quot;text&quot; value={inputValue} onChange={onChange} /&gt;
-      &amp;#x3C;button onClick={addItem}&gt;Add&amp;#x3C;/button&gt;
-    &amp;#x3C;/div&gt;
-  )
-}
-
-export default TodoItemCreator
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;리액트 컴포넌트에서는 &lt;code&gt;useRecoilState()&lt;/code&gt; 훅을 이용하면, atoms의 값과 setter함수를 모두 참조할 수 있다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import { useRecoilState } from &apos;recoil&apos;
-import { todoListState } from &apos;./state/todoListState&apos;
-
-function TodoItem({ item }) {
-  const [todoList, setTodoList] = useRecoilState(todoListState)
-  const index = todoList.findIndex((listItem) =&gt; listItem === item)
-
-  const editItemText = ({ target: { value } }) =&gt; {
-    const newList = replaceItemAtIndex(todoList, index, {
-      ...item,
-      text: value,
-    })
-
-    setTodoList(newList)
-  }
-
-  const toggleItemCompletion = () =&gt; {
-    const newList = replaceItemAtIndex(todoList, index, {
-      ...item,
-      isComplete: !item.isComplete,
-    })
-
-    setTodoList(newList)
-  }
-
-  const deleteItem = () =&gt; {
-    const newList = removeItemAtIndex(todoList, index)
-
-    setTodoList(newList)
-  }
-
-  return (
-    &amp;#x3C;div&gt;
-      &amp;#x3C;input type=&quot;text&quot; value={item.text} onChange={editItemText} /&gt;
-      &amp;#x3C;input
-        type=&quot;checkbox&quot;
-        checked={item.isComplete}
-        onChange={toggleItemCompletion}
-      /&gt;
-      &amp;#x3C;button onClick={deleteItem}&gt;X&amp;#x3C;/button&gt;
-    &amp;#x3C;/div&gt;
-  )
-}
-
-function replaceItemAtIndex(arr, index, newValue) {
-  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)]
-}
-
-function removeItemAtIndex(arr, index) {
-  return [...arr.slice(0, index), ...arr.slice(index + 1)]
-}
-
-export default TodoItem
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&quot;2-selectors&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-selectors&quot; aria-label=&quot;2 selectors permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Selectors&lt;/h1&gt;
-&lt;p&gt;selector는 순수함수를 통해 atom으로부터 파생된 값이다. 순수함수란 output이 input에만 종속적인 함수이다. 즉 selector의 값은 참조하는 atom의 값으로 결정된다.&lt;/p&gt;
-&lt;h2 id=&quot;21-selectors-생성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-selectors-%EC%83%9D%EC%84%B1&quot; aria-label=&quot;21 selectors 생성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. Selectors 생성&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import { atom } from &apos;recoil&apos;
-
-const todoListFilterState = atom({
-  key: &apos;TodoListFilter&apos;,
-  default: &apos;Show All&apos;,
-})
-
-const todoListState = atom({
-  key: &apos;TodoList&apos;,
-  default: [],
-})
-
-export { todoListFilterState, todoListState }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import { useRecoilState } from &apos;recoil&apos;
-import { todoListFilterState, todoListState } from &apos;./state/todoListState&apos;
-
-const filteredTodoListState = selector({
-  key: &apos;FilteredTodoList&apos;,
-  get: ({ get }) =&gt; {
-    const filter = get(todoListFilterState)
-    const list = get(todoListState)
-
-    switch (filter) {
-      case &apos;Show Completed&apos;:
-        return list.filter((item) =&gt; item.isComplete)
-      case &apos;Show Uncompleted&apos;:
-        return list.filter((item) =&gt; !item.isComplete)
-      default:
-        return list
-    }
-  },
-})
-
-export { filteredTodoListState }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;a href=&quot;https://recoiljs.org/docs/api-reference/core/selector/&quot;&gt;Selector 세부 문서&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;get&lt;/strong&gt;&lt;br&gt;
-get 속성은 get 함수를 내부적으로 전달받으며, 전달 받은 get 함수를 통해 다른 &lt;strong&gt;atoms&lt;/strong&gt;나 &lt;strong&gt;selectors&lt;/strong&gt;를 구독할 수 있다.&lt;br&gt;
-위의 예시에서 filteredTodoListState 는 &lt;code&gt;todoListFilterState&lt;/code&gt;와 &lt;code&gt;todoListState&lt;/code&gt;를 구독하고 있다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;21-selectors-읽기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-selectors-%EC%9D%BD%EA%B8%B0&quot; aria-label=&quot;21 selectors 읽기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. Selectors 읽기&lt;/h2&gt;
-&lt;p&gt;atoms와 동일하게 컴포넌트 단에서 &lt;code&gt;useRecoilValue&lt;/code&gt;를 이용해서 값을 참조할 수 있다.&lt;/p&gt;
-&lt;p&gt;말했던 것처럼 soure of truth는 atom이고, selector는 atom으로부터 파생된 값이다. 따라서 아래 예시에서 &lt;code&gt;TodoListFilters&lt;/code&gt;컴포넌트에서 &lt;code&gt;filter&lt;/code&gt; atom이 수정되면, &lt;code&gt;filter&lt;/code&gt;를 구독하는 &lt;code&gt;filteredTodoListState&lt;/code&gt;도 자동으로 수정된다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import { useRecoilState } from &apos;recoil&apos;
-import filteredTodoListState from &apos;./selectors/filteredTodoListState&apos;
-import { filter } from &apos;./state/filteredTodoListState&apos;
-
-function TodoList() {
-  // changed from todoListState to filteredTodoListState
-  const todoList = useRecoilValue(filteredTodoListState)
-
-  return (
-    &amp;#x3C;&gt;
-      &amp;#x3C;TodoListFilters /&gt;
-      &amp;#x3C;TodoItemCreator /&gt;
-
-      {todoList.map((todoItem) =&gt; (
-        &amp;#x3C;TodoItem item={todoItem} key={todoItem.id} /&gt;
-      ))}
-    &amp;#x3C;/&gt;
-  )
-}
-
-function TodoListFilters() {
-  const [filter, setFilter] = useRecoilState(todoListFilterState)
-
-  const updateFilter = ({ target: { value } }) =&gt; {
-    setFilter(value)
-  }
-
-  return (
-    &amp;#x3C;&gt;
-      Filter:
-      &amp;#x3C;select value={filter} onChange={updateFilter}&gt;
-        &amp;#x3C;option value=&quot;Show All&quot;&gt;All&amp;#x3C;/option&gt;
-        &amp;#x3C;option value=&quot;Show Completed&quot;&gt;Completed&amp;#x3C;/option&gt;
-        &amp;#x3C;option value=&quot;Show Uncompleted&quot;&gt;Uncompleted&amp;#x3C;/option&gt;
-      &amp;#x3C;/select&gt;
-    &amp;#x3C;/&gt;
-  )
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;22-selectors-수정하기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-selectors-%EC%88%98%EC%A0%95%ED%95%98%EA%B8%B0&quot; aria-label=&quot;22 selectors 수정하기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. Selectors 수정하기&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://recoiljs.org/docs/api-reference/core/selector/&quot;&gt;Selector가 set 속성을 가질 때만 수정할 수 있다.&lt;/a&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;이미 선언된 아톰을 구독하고 있다가 함수를 실행&lt;/li&gt;
-&lt;li&gt;서버와의 비동기적인 통신이 가능&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;비동기 suspense, loadble 알아보기
-recoil은 데이터를 캐싱함!!!&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;구독중인 state가 변경&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;요청 파라미터가 새로운 값으로 바뀐경우 (파라미터를 하나 더 만들고&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=7nwpEiSpPqY&quot;&gt;https://www.youtube.com/watch?v=7nwpEiSpPqY&lt;/a&gt;)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;19:50&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;내 이벤트는 명시적 업데이트&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;아닌 것은 실시간/주기적 업데이트 : 시간 같은 것을 파라미터를 줌.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;이제는 캐싱을 안하는 법이 나온 것 같음. 알아보기&lt;/p&gt;
-&lt;h1 id=&quot;3-asynchronous&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-asynchronous&quot; aria-label=&quot;3 asynchronous permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. Asynchronous&lt;/h1&gt;</content:encoded></item><item><title><![CDATA[03. React & Redux Toolkit]]></title><description><![CDATA[1. Redux Toolkit 기본 사용 2. Redux Toolkit 비동기 2.1. 목표 2.2. createAsyncThunk 실전 예제 1. Redux Toolkit 기본 사용 Slice 생성
+    &lt;/span&gt;</content:encoded></item><item><title><![CDATA[Redux Toolkit 기본 사용법]]></title><description><![CDATA[1. Redux Toolkit 기본 사용 2. Redux Toolkit 비동기 2.1. 목표 2.2. createAsyncThunk 실전 예제 1. Redux Toolkit 기본 사용 Slice 생성
 slice…]]></description><link>https://byongho96.github.io/TIL/posts/Frontend/React/03_React_Redux_Toolkit/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Frontend/React/03_React_Redux_Toolkit/</guid><pubDate>Tue, 02 May 2023 00:00:00 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#1-redux-toolkit-%EA%B8%B0%EB%B3%B8-%EC%82%AC%EC%9A%A9&quot;&gt;1. Redux Toolkit 기본 사용&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#2-redux-toolkit-%EB%B9%84%EB%8F%99%EA%B8%B0&quot;&gt;2. Redux Toolkit 비동기&lt;/a&gt;
@@ -8631,7 +8364,7 @@ function Counter() {
     &amp;#x3C;/div&gt;
   )
 }
-&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[02. React Context API]]></title><description><![CDATA[1. Context 1.1. Props와 비교 1.2. 사용 예시 2. useReducer 1.1. 개념 1.2. 예시 (원시 타입) 1.3. 예시(참조타입) 1. Context…]]></description><link>https://byongho96.github.io/TIL/posts/Frontend/React/02_React_Context_API/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Frontend/React/02_React_Context_API/</guid><pubDate>Tue, 02 May 2023 00:00:00 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[React Context API 란?]]></title><description><![CDATA[1. Context 1.1. Props와 비교 1.2. 사용 예시 2. useReducer 1.1. 개념 1.2. 예시 (원시 타입) 1.3. 예시(참조타입) 1. Context…]]></description><link>https://byongho96.github.io/TIL/posts/Frontend/React/02_React_Context_API/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Frontend/React/02_React_Context_API/</guid><pubDate>Tue, 02 May 2023 00:00:00 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#1-context&quot;&gt;1. Context&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#11-props%EC%99%80-%EB%B9%84%EA%B5%90&quot;&gt;1.1. Props와 비교&lt;/a&gt;&lt;/li&gt;
@@ -10312,7 +10045,367 @@ cache.set(&quot;foo&quot;, &quot;value&quot;, timeout=25)
 cache.get(&quot;foo&quot;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[AWS EC2 초보자를 위한 친절 가이드]]></title><description><![CDATA[AWS 계정을 만들고, EC2를 생성 및 설정하는 기초적인 방법을 정리한 문서이다. 1. AWS 1.1. root 계정 1.2. IAM 계정 2. EC2 2.1. EC2 생성 2.2. Inbound Rule 2.3. ssh connect…]]></description><link>https://byongho96.github.io/TIL/posts/Tools/AWS/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Tools/AWS/</guid><pubDate>Sun, 23 Apr 2023 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[Create React App 초기 셋팅 정리]]></title><description><![CDATA[추후 참고하기 위해, 반복되는 CRA기반 리액트 초기 셋팅 작업을 공식문서들을 참고하여 정리한 문서입니다. 1. Create React App 2. eslint & prettier 2.1. eslint 2.2. prettier 3. React…]]></description><link>https://byongho96.github.io/TIL/posts/Frontend/React/Create_React_App_Initial_Setting/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Frontend/React/Create_React_App_Initial_Setting/</guid><pubDate>Sun, 23 Apr 2023 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;추후 참고하기 위해, 반복되는 CRA기반 리액트 초기 셋팅 작업을 공식문서들을 참고하여 정리한 문서입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#1-create-react-app&quot;&gt;1. Create React App&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#2-eslint--prettier&quot;&gt;2. eslint &amp;#x26; prettier&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#21-eslint&quot;&gt;2.1. eslint&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#22-prettier&quot;&gt;2.2. prettier&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#3-react-router&quot;&gt;3. React Router&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#4-react-global-store&quot;&gt;4. React Global Store&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#41-recoil&quot;&gt;4.1. Recoil&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#42-redux-toolkit&quot;&gt;4.2. Redux Toolkit&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#5-axios&quot;&gt;5. Axios&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#6-css-styling&quot;&gt;6. CSS styling&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#61-sass&quot;&gt;6.1. Sass&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#62-styled-component&quot;&gt;6.2. Styled Component&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;1-create-react-app&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-create-react-app&quot; aria-label=&quot;1 create react app permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Create React App&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://create-react-app.dev/docs/getting-started&quot;&gt;Create React App&lt;/a&gt;은 CSR방식의 리액트 Single Page Application을 쉽게 시작할 수 있도록 도와주는 오픈소스 도구이다. 초기 설정, 구성, 패키지 의존성 등을 자동으로 설정해주기 때문에 개발을 더 빠르게 쉽게 시작할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npx create-react-app my-app --template typescript
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;npx&lt;/strong&gt;&lt;br&gt;
+npm 패키지를 실행하기 위한 도구이다.&lt;br&gt;
+차이점은 npx는 로컬이나 글로벌에 설치되어 있지 않은 node 패키지도 실행할 수 있다. 또한 이 때, 해당 패키지를 설치하지 않기 때문에 항상 최신 버전의 node 패키지를 실행시킨다.&lt;br&gt;
+그러한 관점에서 create-react-app은 자주 업데이트 되는 모듈이기 때문에 npx를 통해 실행시키는 것이 적합하다. 공식문서에서도 만일 &lt;code&gt;npm install -g create-react-app&lt;/code&gt;을 통해 global하게 create-react-app을 설치한 적이 있으면, 이를 uninstall하고 npx로 실행시키길 권장한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;--template typescript&lt;/strong&gt;&lt;br&gt;
+해당 옵션을 이용해 typescript 버전의 리액트 템플릿을 제공받을 수 있다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://create-react-app.dev/docs/importing-a-component/#absolute-imports&quot;&gt;CRA 공식문서&lt;/a&gt;를 보면 &lt;code&gt;tsconfig.json&lt;/code&gt;파일을 수정해서 프로젝트의 절대경로를 수정할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+  &quot;compilerOptions&quot;: {
+    &quot;baseUrl&quot;: &quot;src&quot;
+  },
+  &quot;include&quot;: [&quot;src&quot;]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;2-eslint--prettier&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-eslint--prettier&quot; aria-label=&quot;2 eslint  prettier permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. eslint &amp;#x26; prettier&lt;/h1&gt;
+&lt;p&gt;협업 개발환경에서 개발자들간 코드 스타일링을 통일시키고, 코드의 품질을 높이기 위해서 eslint와 prettier을 사용한다.&lt;/p&gt;
+&lt;h2 id=&quot;21-eslint&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-eslint&quot; aria-label=&quot;21 eslint permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. eslint&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://eslint.org/docs/latest/use/getting-started&quot;&gt;eslint 공식문서&lt;/a&gt;에 따라 설치를 진행한다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;기본 명령어 실행&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm init @eslint/config
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위 명령어를 실행할 경우, 프론트엔드 프레임워크, typescript 사용여부 등 다양한 사용자 선택 요청이 나타난다. 자신의 프로젝트에 맞게 선택하면 된다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;.eslintrc 확인&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+  &quot;extends&quot;: &quot;eslint:recommended&quot;,
+  &quot;rules&quot;: {
+    &quot;semi&quot;: [&quot;error&quot;, &quot;always&quot;],
+    &quot;quotes&quot;: [&quot;error&quot;, &quot;double&quot;]
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;명령어를 통해 eslint를 설치하면 .eslintrc라는 config파일이 생성된다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;extends&lt;/strong&gt;
+일종의 rules 패키지이다. 자주 사용되는 rule 설정을 하나의 이름으로 모아서 제공한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;rules&lt;/strong&gt;&lt;br&gt;
+&lt;a href=&quot;https://eslint.org/docs/latest/rules&quot;&gt;eslint rules&lt;/a&gt;에 기재된 rule을 개별적으로 적용시킬 수 있기 때문에 extends 설정 이후 규칙을 미세조정하는 용도로 사용된다. rule의 강도는 다음과 같이 3가지로 구분된다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&quot;off&quot; or 0: 해당 rule을 적용시키지 않는다.&lt;/li&gt;
+&lt;li&gt;&quot;warn&quot; or 1: 경고 문구만을 표시한다.&lt;/li&gt;
+&lt;li&gt;&quot;error&quot; or 2 - 에러로 처리하고 프로젝트를 실행시키지 않는다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;22-prettier&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-prettier&quot; aria-label=&quot;22 prettier permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. prettier&lt;/h2&gt;
+&lt;p&gt;prettier는 eslint와 비슷하게 개발자들간의 코드 스타일링을 통일시키는데, 기능과 무관한 &lt;strong&gt;코드 스타일&lt;/strong&gt;에 대해서만 작동한다. 보통 eslint와 prettier을 모두 사용하고, 둘 간의 충돌하는 부분에 대해서는 prettier에 설정한 값을 따르도록 한다.&lt;/p&gt;
+&lt;p&gt;아래 내용은 &lt;a href=&quot;https://prettier.io/docs/en/install.html&quot;&gt;prettier 공식문서&lt;/a&gt;를 따라 작성하였다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;prettier 설치&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm install --save-dev --save-exact prettier
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;prettier 설정파일 생성&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;echo {}&gt; .prettierrc.json
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위 명령어로 프로젝트 루트 경로에 .prettierrc.json 파일을 생성한다. &lt;a href=&quot;https://prettier.io/docs/en/options.html&quot;&gt;prettierrc 설정 옵션 문서&lt;/a&gt;에서 설정가능한 옵션들을 확인할 수 있으며, &lt;a href=&quot;https://prettier.io/docs/en/configuration.html&quot;&gt;기본설정&lt;/a&gt;은 다음과 같다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+  &quot;trailingComma&quot;: &quot;es5&quot;,
+  &quot;tabWidth&quot;: 4,
+  &quot;semi&quot;: false,
+  &quot;singleQuote&quot;: true
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;.prettierignore 생성&lt;/strong&gt;&lt;br&gt;
+.prettierignore을 통해 prettier을 적용시키지 않을 문서를 설정할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Ignore artifacts:
+build
+coverage
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;prettier 포맷팅 실행&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npx prettier --write .
+
+# 특정 파일 지정
+npx prettier --write app/components/Button.js
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위 명령어를 통해 모든 파일 혹은 특정 경로의 파일에 대해 prettier 포맷팅을 적용할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npx prettier --check .
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;check 옵션은 prettier 포맷팅에 대해 검사만 하고, 코드를 실제 수정하지는 않는다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;prettier editor 적용&lt;/strong&gt;&lt;br&gt;
+사용하는 editor에 prettier을 적용해, 수정된 코드를 바로 바로 확인할 수도 있다. 각 에디터별 prettier 적용방법을 &lt;a href=&quot;https://prettier.io/docs/en/editors.html&quot;&gt;여기&lt;/a&gt;에서 확인할 수 있고, 대표적인 vsCode의 경우 &lt;strong&gt;Prettier - Code formatter&lt;/strong&gt; 플러그인을 설치하면 된다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;eslint-config-prettier 적용&lt;/strong&gt;&lt;br&gt;
+eslint와 prettier 간 충돌이 일어날 때, prettier의 규칙을 따르도록 eslint-config-prettier 패키지를 설치한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm install --save-dev eslint-config-prettier
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;패키지 설치 후, .eslintrc 파일을 다음과 같이 수정한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+  &quot;extends&quot;: [&quot;some-other-config-you-use&quot;, &quot;prettier&quot;]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Git hook 적용&lt;/strong&gt;&lt;br&gt;
+(최근 리액트 프로젝트에서 해당 내용은 적용하지 못했다. husky를 사용하기 위해서는 package.json과 .git이 동일 위치에 있어야 한다. 하지만 우리 프로젝트는 리액트 프로젝트가 .git위치에 비해 1개 depth 하단에 있다. 이에 대한 해결책이 &lt;a href=&quot;https://typicode.github.io/husky/#/?id=custom-directory&quot;&gt;husky 공식문서&lt;/a&gt;의 custom directory항목에 있었지만, 따라해도 해결되지 않았다.)&lt;/p&gt;
+&lt;p&gt;코드 스타일링이 맞지 않으면 git merge시 불필요한 충돌이 일어난다. 따라서 git pre-commit hook에 &lt;code&gt;prettier --write&lt;/code&gt;명령어를 실행함으로써 모든 커밋의 code 포맷을 맞출 수 있다.&lt;a href=&quot;https://github.com/typicode/husky&quot;&gt;husky&lt;/a&gt;와 &lt;a href=&quot;https://github.com/okonet/lint-staged&quot;&gt;lint-staged&lt;/a&gt;는 각각 Git hook과 Git에 등록된 파일을 관리하기 위한 도구이다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# --save-dev 옵션이 해당 패키지가
+npm install --save-dev husky lint-staged
+npx husky install
+npm pkg set scripts.prepare=&quot;husky install&quot;
+npx husky add .husky/pre-commit &quot;npx lint-staged&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;--save-dev&lt;/strong&gt;&lt;br&gt;
+해당 패키지가 개발환경에만 쓰이는 것을 명시하는 옵션이다. 해당 옵션을 추가할 경우, pacakage.json의 &lt;code&gt;devDependencies&lt;/code&gt;항목에 패키지가 추가된다. 반대의 경우에는 &lt;code&gt;dependencies&lt;/code&gt;항목에 추가된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+  &quot;lint-staged&quot;: {
+    &quot;**/*&quot;: &quot;prettier --write --ignore-unknown&quot;
+    // &quot;**/*&quot;: [&quot;eslint --fix&quot;, &quot;prettier --write&quot;]
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위의 내용을 package.json에 추가한다. 만일 lint-staged에서 eslint관련 작업을 수행할 경우, eslint 작업이 prettier작업보다 선행되어야 한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;3-react-router&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-react-router&quot; aria-label=&quot;3 react router permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. React Router&lt;/h1&gt;
+&lt;p&gt;React 프로젝트에서 가장 보편적으로 쓰이는 라우팅 라이브러리이다. &lt;a href=&quot;https://reactrouter.com/en/main/routers/create-browser-router&quot;&gt;React Router 공식문서&lt;/a&gt;에 튜토리얼이 아주 장황하고 이상하게 설명되어 있다. 임의로 핵심만 골라 정리했다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;react-router-dom 설치&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm install react-router-dom
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;index.tsx 수정&lt;/strong&gt;&lt;br&gt;
+&lt;a href=&quot;https://reactrouter.com/en/main/router-components/browser-router&quot;&gt;&amp;#x3C;BrouserRouter&gt;&lt;/a&gt;는 현재 브라우저의 url주소를 브라우저의 history stack에 저장한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;import React from &apos;react&apos;
+import ReactDOM from &apos;react-dom/client&apos;
+import { BrowserRouter } from &apos;react-router-dom&apos;
+import App from &apos;./App&apos;
+
+const root = ReactDOM.createRoot(
+  document.getElementById(&apos;root&apos;) as HTMLElement
+)
+root.render(
+  &amp;#x3C;React.StrictMode&gt;
+    &amp;#x3C;BrowserRouter&gt;
+      &amp;#x3C;App /&gt;
+    &amp;#x3C;/BrowserRouter&gt;
+  &amp;#x3C;/React.StrictMode&gt;
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;App.tsx 수정&lt;/strong&gt;&lt;br&gt;
+&lt;a href=&quot;https://reactrouter.com/en/main/components/routes&quot;&gt;&amp;#x3C;Rotues&gt;&lt;/a&gt;는 history의 현재 location이 수정될 때마다 하위 &lt;Route&gt; 순회하며 UI에 렌더링할 컴포넌트를 찾는다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;import React from &apos;react&apos;
+import { Routes, Route } from &apos;react-router-dom&apos;
+
+function App() {
+  return (
+    &amp;#x3C;Routes&gt;
+      &amp;#x3C;Route path=&quot;/&quot; element={&amp;#x3C;Main /&gt;} /&gt;
+    &amp;#x3C;/Routes&gt;
+  )
+}
+
+export default App
+
+function Main() {
+  return (
+    ...
+  )
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;4-react-global-store&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-react-global-store&quot; aria-label=&quot;4 react global store permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. React Global Store&lt;/h1&gt;
+&lt;p&gt;Recoil과 Redux Toolkit은 리액트에서 잘 쓰이는 전역 저장소이다. 둘 중 프로젝트에 적합한 전역 저장소를 설치한다.&lt;/p&gt;
+&lt;h2 id=&quot;41-recoil&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#41-recoil&quot; aria-label=&quot;41 recoil permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.1. Recoil&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://recoiljs.org/ko/docs/introduction/getting-started&quot;&gt;Recoil 공식문서&lt;/a&gt;에 따라 recoil을 설치한다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;recoil 설치&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm install recoil
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;App.tsx 수정&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-tsx&quot;&gt;import React from &apos;react&apos;
+import { RecoilRoot } from &apos;recoil&apos;
+
+function App() {
+  return (
+    &amp;#x3C;RecoilRoot&gt;
+      &amp;#x3C;children /&gt;
+    &amp;#x3C;/RecoilRoot&gt;
+  )
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;recoil-persist 설치&lt;/strong&gt;&lt;br&gt;
+새로고침 되었을 때도 recoil의 상태값을 유지하기 위해, recoil의 상태를 local storage에 동기화할 수 있다. 이를 위한 대표적인 라이브러리 중 하나가 &lt;a href=&quot;https://www.npmjs.com/package/recoil-persist&quot;&gt;recoil-persist&lt;/a&gt;이다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm install recoil-persist
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;다음은 recoil-persist를 사용해 access token과 refresh token의 atoms를 설계한 예제이다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-tsx&quot;&gt;import { atom } from &apos;recoil&apos;
+import { recoilPersist } from &apos;recoil-persist&apos;
+
+const { persistAtom } = recoilPersist({
+  key: &apos;recoil-persist&apos;, // this key is using to store data in local storage
+  storage: localStorage, // configurate which stroage will be used to store the data
+})
+
+// JWT 토큰 관련 설정
+const ACCESS_TOKEN_KEY = &apos;AccessToken&apos;
+const REFRESH_TOKEN_KEY = &apos;RefreshToken&apos;
+
+// Recoil atom 정의
+const authTokenState = atom&amp;#x3C;string&gt;({
+  key: ACCESS_TOKEN_KEY,
+  default: localStorage.getItem(ACCESS_TOKEN_KEY) ?? &apos;&apos;,
+  effects_UNSTABLE: [persistAtom],
+})
+
+const refreshTokenState = atom&amp;#x3C;string&gt;({
+  key: REFRESH_TOKEN_KEY,
+  default: localStorage.getItem(REFRESH_TOKEN_KEY) ?? &apos;&apos;,
+  effects_UNSTABLE: [persistAtom],
+})
+
+export { authTokenState, refreshTokenState }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;42-redux-toolkit&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#42-redux-toolkit&quot; aria-label=&quot;42 redux toolkit permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.2. Redux Toolkit&lt;/h2&gt;
+&lt;h1 id=&quot;5-axios&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-axios&quot; aria-label=&quot;5 axios permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5. Axios&lt;/h1&gt;
+&lt;p&gt;Single Page Application으로 동작하는 React 프로젝트에서 서버로 AJAX요청을 날리는 것은 거의 필수이다. Axios는 node.js에서 사용할 수 있는 Promise 기반 HTTP 클라이언트 라이브러리로, 클라이언트(브라우저)에서는 XMLHttpRequests를 생성한다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;axios 설치&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm install axios
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;axios instance 생성&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://axios-http.com/docs/instance&quot;&gt;axios instance&lt;/a&gt;를 생성할 경우, axios interceptor와 같은 편리한 기능을 사용할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// Create instance
+const instance = axios.create({
+  baseURL: &apos;https://some-domain.com/api/&apos;,
+  timeout: 1000,
+  headers: { &apos;X-Custom-Header&apos;: &apos;foobar&apos; },
+})
+
+// Add a request interceptor
+instance.interceptors.request.use(
+  function (config) {
+    // Do something before request is sent
+    return config
+  },
+  function (error) {
+    // Do something with request error
+    return Promise.reject(error)
+  }
+)
+
+// Add a response interceptor
+instance.interceptors.response.use(
+  function (response) {
+    // Any status code that lie within the range of 2xx cause this function to trigger
+    // Do something with response data
+    return response
+  },
+  function (error) {
+    // Any status codes that falls outside the range of 2xx cause this function to trigger
+    // Do something with response error
+    return Promise.reject(error)
+  }
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;6-css-styling&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#6-css-styling&quot; aria-label=&quot;6 css styling permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6. CSS styling&lt;/h1&gt;
+&lt;p&gt;CSS 스타일링 방법은 매우 다양하다. 자신의 프로젝트에 적합한 CSS 스타일링을 찾아 관련 라이브러리를 설치한다.&lt;/p&gt;
+&lt;h2 id=&quot;61-sass&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#61-sass&quot; aria-label=&quot;61 sass permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.1. Sass&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://create-react-app.dev/docs/adding-a-sass-stylesheet&quot;&gt;Create React App 공식문서&lt;/a&gt;에 Sass 관련 설정이 자세하게 나와있다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Sass 설치&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm uninstall node-sass
+ npm install sass
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;node-sass 지원이 중단되었으므로 sass 패키지 사용을 권장하고 있다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;SASS_PATH 추가&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;프로젝트 루트 경로에 .env 파일을 만들고 참조하고자 하는 Sass 상대경로를 아래와 같이 추가한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-env&quot;&gt;# Linux
+SASS_PATH=path1:path2:path3
+
+# Window는 세미콜론(;)으로 경로를 구분한다
+SASS_PATH=path1;path2;path3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;CSS 초기화&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;index.css에 다음을 import함으로써 브라우저별 css를 초기화 할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;@import-normalize; /* bring in normalize.css styles */
+
+/* rest of app styles */
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;62-styled-component&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#62-styled-component&quot; aria-label=&quot;62 styled component permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.2. Styled Component&lt;/h2&gt;</content:encoded></item><item><title><![CDATA[AWS EC2 초보자를 위한 친절 가이드]]></title><description><![CDATA[AWS 계정을 만들고, EC2를 생성 및 설정하는 기초적인 방법을 정리한 문서이다. 1. AWS 1.1. root 계정 1.2. IAM 계정 2. EC2 2.1. EC2 생성 2.2. Inbound Rule 2.3. ssh connect…]]></description><link>https://byongho96.github.io/TIL/posts/Tools/AWS/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Tools/AWS/</guid><pubDate>Sun, 23 Apr 2023 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
 &lt;p&gt;AWS 계정을 만들고, EC2를 생성 및 설정하는 기초적인 방법을 정리한 문서이다.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
@@ -11636,367 +11729,7 @@ snapd는 리눅스의 패키지 관리자 중 하나이다. 우분투는 기본�
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;위 명령어로 원래 작성한 설정파일이 어떻게 바뀌었는 지 확인해보자.&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[00. React 초기 셋팅 정리]]></title><description><![CDATA[추후 참고하기 위해, 반복되는 리액트 초기 셋팅 작업을 공식문서를 기반하여 정리한 문서입니다. 1. Create React App 2. eslint & prettier 2.1. eslint 2.2. prettier 3. React Router…]]></description><link>https://byongho96.github.io/TIL/posts/Frontend/React/00_React_Initial_Setting/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Frontend/React/00_React_Initial_Setting/</guid><pubDate>Sun, 23 Apr 2023 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
-&lt;p&gt;추후 참고하기 위해, 반복되는 리액트 초기 셋팅 작업을 공식문서를 기반하여 정리한 문서입니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#1-create-react-app&quot;&gt;1. Create React App&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#2-eslint--prettier&quot;&gt;2. eslint &amp;#x26; prettier&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#21-eslint&quot;&gt;2.1. eslint&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#22-prettier&quot;&gt;2.2. prettier&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#3-react-router&quot;&gt;3. React Router&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#4-react-global-store&quot;&gt;4. React Global Store&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#41-recoil&quot;&gt;4.1. Recoil&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#42-redux-toolkit&quot;&gt;4.2. Redux Toolkit&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#5-axios&quot;&gt;5. Axios&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#6-css-styling&quot;&gt;6. CSS styling&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#61-sass&quot;&gt;6.1. Sass&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#62-styled-component&quot;&gt;6.2. Styled Component&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;1-create-react-app&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-create-react-app&quot; aria-label=&quot;1 create react app permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Create React App&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;https://create-react-app.dev/docs/getting-started&quot;&gt;Create React App&lt;/a&gt;은 CSR방식의 리액트 Single Page Application을 쉽게 시작할 수 있도록 도와주는 오픈소스 도구이다. 초기 설정, 구성, 패키지 의존성 등을 자동으로 설정해주기 때문에 개발을 더 빠르게 쉽게 시작할 수 있다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npx create-react-app my-app --template typescript
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;npx&lt;/strong&gt;&lt;br&gt;
-npm 패키지를 실행하기 위한 도구이다.&lt;br&gt;
-차이점은 npx는 로컬이나 글로벌에 설치되어 있지 않은 node 패키지도 실행할 수 있다. 또한 이 때, 해당 패키지를 설치하지 않기 때문에 항상 최신 버전의 node 패키지를 실행시킨다.&lt;br&gt;
-그러한 관점에서 create-react-app은 자주 업데이트 되는 모듈이기 때문에 npx를 통해 실행시키는 것이 적합하다. 공식문서에서도 만일 &lt;code&gt;npm install -g create-react-app&lt;/code&gt;을 통해 global하게 create-react-app을 설치한 적이 있으면, 이를 uninstall하고 npx로 실행시키길 권장한다.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;--template typescript&lt;/strong&gt;&lt;br&gt;
-해당 옵션을 이용해 typescript 버전의 리액트 템플릿을 제공받을 수 있다.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://create-react-app.dev/docs/importing-a-component/#absolute-imports&quot;&gt;CRA 공식문서&lt;/a&gt;를 보면 &lt;code&gt;tsconfig.json&lt;/code&gt;파일을 수정해서 프로젝트의 절대경로를 수정할 수 있다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
-  &quot;compilerOptions&quot;: {
-    &quot;baseUrl&quot;: &quot;src&quot;
-  },
-  &quot;include&quot;: [&quot;src&quot;]
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&quot;2-eslint--prettier&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-eslint--prettier&quot; aria-label=&quot;2 eslint  prettier permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. eslint &amp;#x26; prettier&lt;/h1&gt;
-&lt;p&gt;협업 개발환경에서 개발자들간 코드 스타일링을 통일시키고, 코드의 품질을 높이기 위해서 eslint와 prettier을 사용한다.&lt;/p&gt;
-&lt;h2 id=&quot;21-eslint&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-eslint&quot; aria-label=&quot;21 eslint permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. eslint&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://eslint.org/docs/latest/use/getting-started&quot;&gt;eslint 공식문서&lt;/a&gt;에 따라 설치를 진행한다.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;기본 명령어 실행&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm init @eslint/config
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;위 명령어를 실행할 경우, 프론트엔드 프레임워크, typescript 사용여부 등 다양한 사용자 선택 요청이 나타난다. 자신의 프로젝트에 맞게 선택하면 된다.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;.eslintrc 확인&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
-  &quot;extends&quot;: &quot;eslint:recommended&quot;,
-  &quot;rules&quot;: {
-    &quot;semi&quot;: [&quot;error&quot;, &quot;always&quot;],
-    &quot;quotes&quot;: [&quot;error&quot;, &quot;double&quot;]
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;명령어를 통해 eslint를 설치하면 .eslintrc라는 config파일이 생성된다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;extends&lt;/strong&gt;
-일종의 rules 패키지이다. 자주 사용되는 rule 설정을 하나의 이름으로 모아서 제공한다.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;rules&lt;/strong&gt;&lt;br&gt;
-&lt;a href=&quot;https://eslint.org/docs/latest/rules&quot;&gt;eslint rules&lt;/a&gt;에 기재된 rule을 개별적으로 적용시킬 수 있기 때문에 extends 설정 이후 규칙을 미세조정하는 용도로 사용된다. rule의 강도는 다음과 같이 3가지로 구분된다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&quot;off&quot; or 0: 해당 rule을 적용시키지 않는다.&lt;/li&gt;
-&lt;li&gt;&quot;warn&quot; or 1: 경고 문구만을 표시한다.&lt;/li&gt;
-&lt;li&gt;&quot;error&quot; or 2 - 에러로 처리하고 프로젝트를 실행시키지 않는다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;22-prettier&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-prettier&quot; aria-label=&quot;22 prettier permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. prettier&lt;/h2&gt;
-&lt;p&gt;prettier는 eslint와 비슷하게 개발자들간의 코드 스타일링을 통일시키는데, 기능과 무관한 &lt;strong&gt;코드 스타일&lt;/strong&gt;에 대해서만 작동한다. 보통 eslint와 prettier을 모두 사용하고, 둘 간의 충돌하는 부분에 대해서는 prettier에 설정한 값을 따르도록 한다.&lt;/p&gt;
-&lt;p&gt;아래 내용은 &lt;a href=&quot;https://prettier.io/docs/en/install.html&quot;&gt;prettier 공식문서&lt;/a&gt;를 따라 작성하였다.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;prettier 설치&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm install --save-dev --save-exact prettier
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;prettier 설정파일 생성&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;echo {}&gt; .prettierrc.json
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;위 명령어로 프로젝트 루트 경로에 .prettierrc.json 파일을 생성한다. &lt;a href=&quot;https://prettier.io/docs/en/options.html&quot;&gt;prettierrc 설정 옵션 문서&lt;/a&gt;에서 설정가능한 옵션들을 확인할 수 있으며, &lt;a href=&quot;https://prettier.io/docs/en/configuration.html&quot;&gt;기본설정&lt;/a&gt;은 다음과 같다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
-  &quot;trailingComma&quot;: &quot;es5&quot;,
-  &quot;tabWidth&quot;: 4,
-  &quot;semi&quot;: false,
-  &quot;singleQuote&quot;: true
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;.prettierignore 생성&lt;/strong&gt;&lt;br&gt;
-.prettierignore을 통해 prettier을 적용시키지 않을 문서를 설정할 수 있다.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# Ignore artifacts:
-build
-coverage
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;prettier 포맷팅 실행&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npx prettier --write .
-
-# 특정 파일 지정
-npx prettier --write app/components/Button.js
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;위 명령어를 통해 모든 파일 혹은 특정 경로의 파일에 대해 prettier 포맷팅을 적용할 수 있다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npx prettier --check .
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;check 옵션은 prettier 포맷팅에 대해 검사만 하고, 코드를 실제 수정하지는 않는다.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;prettier editor 적용&lt;/strong&gt;&lt;br&gt;
-사용하는 editor에 prettier을 적용해, 수정된 코드를 바로 바로 확인할 수도 있다. 각 에디터별 prettier 적용방법을 &lt;a href=&quot;https://prettier.io/docs/en/editors.html&quot;&gt;여기&lt;/a&gt;에서 확인할 수 있고, 대표적인 vsCode의 경우 &lt;strong&gt;Prettier - Code formatter&lt;/strong&gt; 플러그인을 설치하면 된다.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;eslint-config-prettier 적용&lt;/strong&gt;&lt;br&gt;
-eslint와 prettier 간 충돌이 일어날 때, prettier의 규칙을 따르도록 eslint-config-prettier 패키지를 설치한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm install --save-dev eslint-config-prettier
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;패키지 설치 후, .eslintrc 파일을 다음과 같이 수정한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
-  &quot;extends&quot;: [&quot;some-other-config-you-use&quot;, &quot;prettier&quot;]
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Git hook 적용&lt;/strong&gt;&lt;br&gt;
-(최근 리액트 프로젝트에서 해당 내용은 적용하지 못했다. husky를 사용하기 위해서는 package.json과 .git이 동일 위치에 있어야 한다. 하지만 우리 프로젝트는 리액트 프로젝트가 .git위치에 비해 1개 depth 하단에 있다. 이에 대한 해결책이 &lt;a href=&quot;https://typicode.github.io/husky/#/?id=custom-directory&quot;&gt;husky 공식문서&lt;/a&gt;의 custom directory항목에 있었지만, 따라해도 해결되지 않았다.)&lt;/p&gt;
-&lt;p&gt;코드 스타일링이 맞지 않으면 git merge시 불필요한 충돌이 일어난다. 따라서 git pre-commit hook에 &lt;code&gt;prettier --write&lt;/code&gt;명령어를 실행함으로써 모든 커밋의 code 포맷을 맞출 수 있다.&lt;a href=&quot;https://github.com/typicode/husky&quot;&gt;husky&lt;/a&gt;와 &lt;a href=&quot;https://github.com/okonet/lint-staged&quot;&gt;lint-staged&lt;/a&gt;는 각각 Git hook과 Git에 등록된 파일을 관리하기 위한 도구이다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# --save-dev 옵션이 해당 패키지가
-npm install --save-dev husky lint-staged
-npx husky install
-npm pkg set scripts.prepare=&quot;husky install&quot;
-npx husky add .husky/pre-commit &quot;npx lint-staged&quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;--save-dev&lt;/strong&gt;&lt;br&gt;
-해당 패키지가 개발환경에만 쓰이는 것을 명시하는 옵션이다. 해당 옵션을 추가할 경우, pacakage.json의 &lt;code&gt;devDependencies&lt;/code&gt;항목에 패키지가 추가된다. 반대의 경우에는 &lt;code&gt;dependencies&lt;/code&gt;항목에 추가된다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
-  &quot;lint-staged&quot;: {
-    &quot;**/*&quot;: &quot;prettier --write --ignore-unknown&quot;
-    // &quot;**/*&quot;: [&quot;eslint --fix&quot;, &quot;prettier --write&quot;]
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;위의 내용을 package.json에 추가한다. 만일 lint-staged에서 eslint관련 작업을 수행할 경우, eslint 작업이 prettier작업보다 선행되어야 한다.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;3-react-router&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-react-router&quot; aria-label=&quot;3 react router permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. React Router&lt;/h1&gt;
-&lt;p&gt;React 프로젝트에서 가장 보편적으로 쓰이는 라우팅 라이브러리이다. &lt;a href=&quot;https://reactrouter.com/en/main/routers/create-browser-router&quot;&gt;React Router 공식문서&lt;/a&gt;에 튜토리얼이 아주 장황하고 이상하게 설명되어 있다. 임의로 핵심만 골라 정리했다.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;react-router-dom 설치&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm install react-router-dom
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;index.tsx 수정&lt;/strong&gt;&lt;br&gt;
-&lt;a href=&quot;https://reactrouter.com/en/main/router-components/browser-router&quot;&gt;&amp;#x3C;BrouserRouter&gt;&lt;/a&gt;는 현재 브라우저의 url주소를 브라우저의 history stack에 저장한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;import React from &apos;react&apos;
-import ReactDOM from &apos;react-dom/client&apos;
-import { BrowserRouter } from &apos;react-router-dom&apos;
-import App from &apos;./App&apos;
-
-const root = ReactDOM.createRoot(
-  document.getElementById(&apos;root&apos;) as HTMLElement
-)
-root.render(
-  &amp;#x3C;React.StrictMode&gt;
-    &amp;#x3C;BrowserRouter&gt;
-      &amp;#x3C;App /&gt;
-    &amp;#x3C;/BrowserRouter&gt;
-  &amp;#x3C;/React.StrictMode&gt;
-)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;App.tsx 수정&lt;/strong&gt;&lt;br&gt;
-&lt;a href=&quot;https://reactrouter.com/en/main/components/routes&quot;&gt;&amp;#x3C;Rotues&gt;&lt;/a&gt;는 history의 현재 location이 수정될 때마다 하위 &lt;Route&gt; 순회하며 UI에 렌더링할 컴포넌트를 찾는다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;import React from &apos;react&apos;
-import { Routes, Route } from &apos;react-router-dom&apos;
-
-function App() {
-  return (
-    &amp;#x3C;Routes&gt;
-      &amp;#x3C;Route path=&quot;/&quot; element={&amp;#x3C;Main /&gt;} /&gt;
-    &amp;#x3C;/Routes&gt;
-  )
-}
-
-export default App
-
-function Main() {
-  return (
-    ...
-  )
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;4-react-global-store&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-react-global-store&quot; aria-label=&quot;4 react global store permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. React Global Store&lt;/h1&gt;
-&lt;p&gt;Recoil과 Redux Toolkit은 리액트에서 잘 쓰이는 전역 저장소이다. 둘 중 프로젝트에 적합한 전역 저장소를 설치한다.&lt;/p&gt;
-&lt;h2 id=&quot;41-recoil&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#41-recoil&quot; aria-label=&quot;41 recoil permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.1. Recoil&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://recoiljs.org/ko/docs/introduction/getting-started&quot;&gt;Recoil 공식문서&lt;/a&gt;에 따라 recoil을 설치한다.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;recoil 설치&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm install recoil
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;App.tsx 수정&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-tsx&quot;&gt;import React from &apos;react&apos;
-import { RecoilRoot } from &apos;recoil&apos;
-
-function App() {
-  return (
-    &amp;#x3C;RecoilRoot&gt;
-      &amp;#x3C;children /&gt;
-    &amp;#x3C;/RecoilRoot&gt;
-  )
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;recoil-persist 설치&lt;/strong&gt;&lt;br&gt;
-새로고침 되었을 때도 recoil의 상태값을 유지하기 위해, recoil의 상태를 local storage에 동기화할 수 있다. 이를 위한 대표적인 라이브러리 중 하나가 &lt;a href=&quot;https://www.npmjs.com/package/recoil-persist&quot;&gt;recoil-persist&lt;/a&gt;이다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm install recoil-persist
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;다음은 recoil-persist를 사용해 access token과 refresh token의 atoms를 설계한 예제이다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-tsx&quot;&gt;import { atom } from &apos;recoil&apos;
-import { recoilPersist } from &apos;recoil-persist&apos;
-
-const { persistAtom } = recoilPersist({
-  key: &apos;recoil-persist&apos;, // this key is using to store data in local storage
-  storage: localStorage, // configurate which stroage will be used to store the data
-})
-
-// JWT 토큰 관련 설정
-const ACCESS_TOKEN_KEY = &apos;AccessToken&apos;
-const REFRESH_TOKEN_KEY = &apos;RefreshToken&apos;
-
-// Recoil atom 정의
-const authTokenState = atom&amp;#x3C;string&gt;({
-  key: ACCESS_TOKEN_KEY,
-  default: localStorage.getItem(ACCESS_TOKEN_KEY) ?? &apos;&apos;,
-  effects_UNSTABLE: [persistAtom],
-})
-
-const refreshTokenState = atom&amp;#x3C;string&gt;({
-  key: REFRESH_TOKEN_KEY,
-  default: localStorage.getItem(REFRESH_TOKEN_KEY) ?? &apos;&apos;,
-  effects_UNSTABLE: [persistAtom],
-})
-
-export { authTokenState, refreshTokenState }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;42-redux-toolkit&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#42-redux-toolkit&quot; aria-label=&quot;42 redux toolkit permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.2. Redux Toolkit&lt;/h2&gt;
-&lt;h1 id=&quot;5-axios&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-axios&quot; aria-label=&quot;5 axios permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5. Axios&lt;/h1&gt;
-&lt;p&gt;Single Page Application으로 동작하는 React 프로젝트에서 서버로 AJAX요청을 날리는 것은 거의 필수이다. Axios는 node.js에서 사용할 수 있는 Promise 기반 HTTP 클라이언트 라이브러리로, 클라이언트(브라우저)에서는 XMLHttpRequests를 생성한다.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;axios 설치&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm install axios
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;axios instance 생성&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://axios-http.com/docs/instance&quot;&gt;axios instance&lt;/a&gt;를 생성할 경우, axios interceptor와 같은 편리한 기능을 사용할 수 있다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// Create instance
-const instance = axios.create({
-  baseURL: &apos;https://some-domain.com/api/&apos;,
-  timeout: 1000,
-  headers: { &apos;X-Custom-Header&apos;: &apos;foobar&apos; },
-})
-
-// Add a request interceptor
-instance.interceptors.request.use(
-  function (config) {
-    // Do something before request is sent
-    return config
-  },
-  function (error) {
-    // Do something with request error
-    return Promise.reject(error)
-  }
-)
-
-// Add a response interceptor
-instance.interceptors.response.use(
-  function (response) {
-    // Any status code that lie within the range of 2xx cause this function to trigger
-    // Do something with response data
-    return response
-  },
-  function (error) {
-    // Any status codes that falls outside the range of 2xx cause this function to trigger
-    // Do something with response error
-    return Promise.reject(error)
-  }
-)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;6-css-styling&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#6-css-styling&quot; aria-label=&quot;6 css styling permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6. CSS styling&lt;/h1&gt;
-&lt;p&gt;CSS 스타일링 방법은 매우 다양하다. 자신의 프로젝트에 적합한 CSS 스타일링을 찾아 관련 라이브러리를 설치한다.&lt;/p&gt;
-&lt;h2 id=&quot;61-sass&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#61-sass&quot; aria-label=&quot;61 sass permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.1. Sass&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://create-react-app.dev/docs/adding-a-sass-stylesheet&quot;&gt;Create React App 공식문서&lt;/a&gt;에 Sass 관련 설정이 자세하게 나와있다.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Sass 설치&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm uninstall node-sass
- npm install sass
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;node-sass 지원이 중단되었으므로 sass 패키지 사용을 권장하고 있다.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;SASS_PATH 추가&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;프로젝트 루트 경로에 .env 파일을 만들고 참조하고자 하는 Sass 상대경로를 아래와 같이 추가한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-env&quot;&gt;# Linux
-SASS_PATH=path1:path2:path3
-
-# Window는 세미콜론(;)으로 경로를 구분한다
-SASS_PATH=path1;path2;path3
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;CSS 초기화&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;index.css에 다음을 import함으로써 브라우저별 css를 초기화 할 수 있다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;@import-normalize; /* bring in normalize.css styles */
-
-/* rest of app styles */
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;62-styled-component&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#62-styled-component&quot; aria-label=&quot;62 styled component permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.2. Styled Component&lt;/h2&gt;</content:encoded></item><item><title><![CDATA[최소 신장 트리(Minimum Spaaning Tree) 알고리즘]]></title><description><![CDATA[1. 개요 신장 트리(Spanning Tree)는 그래프 내의 모든 노드를 포함하는 트리를 의미하며, **최소 신장 트리(Minimum Spanning Tree)**란 간선의 가중치 합이 최소가 되는 신장 트리를 말한다. 최소 신장 트리는 Greedy…]]></description><link>https://byongho96.github.io/TIL/posts/CS/Algorithm/MST/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/CS/Algorithm/MST/</guid><pubDate>Mon, 17 Apr 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-개요&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EA%B0%9C%EC%9A%94&quot; aria-label=&quot;1 개요 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 개요&lt;/h1&gt;
+&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[최소 신장 트리(Minimum Spaaning Tree) 알고리즘]]></title><description><![CDATA[1. 개요 신장 트리(Spanning Tree)는 그래프 내의 모든 노드를 포함하는 트리를 의미하며, **최소 신장 트리(Minimum Spanning Tree)**란 간선의 가중치 합이 최소가 되는 신장 트리를 말한다. 최소 신장 트리는 Greedy…]]></description><link>https://byongho96.github.io/TIL/posts/CS/Algorithm/MST/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/CS/Algorithm/MST/</guid><pubDate>Mon, 17 Apr 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-개요&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EA%B0%9C%EC%9A%94&quot; aria-label=&quot;1 개요 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 개요&lt;/h1&gt;
 &lt;p&gt;신장 트리(Spanning Tree)는 그래프 내의 모든 노드를 포함하는 트리를 의미하며, **최소 신장 트리(Minimum Spanning Tree)**란 간선의 가중치 합이 최소가 되는 신장 트리를 말한다.&lt;/p&gt;
 &lt;p&gt;최소 신장 트리는 Greedy 기법을 이용하여 구할 수 있으며, 대표적으로 프림 알고리즘(Prim&apos;s algorithm)과 크루스칼 알고리즘(Kruskal&apos;s algorithm)이 있다.&lt;/p&gt;
 &lt;h1 id=&quot;2-동작&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-%EB%8F%99%EC%9E%91&quot; aria-label=&quot;2 동작 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. 동작&lt;/h1&gt;
