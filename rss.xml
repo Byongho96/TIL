@@ -1,4 +1,634 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 21 Aug 2023 13:35:19 GMT</lastBuildDate><item><title><![CDATA[SpringBoot 프로젝트 구조 정리]]></title><description><![CDATA[프론트엔드 개발자로써 SpringBoot가 어떻게 돌아가는지 알고 싶어서 정리해보았다. 지난 프로젝트를 참고하고, 친구 Java 개발자의 도움을 받았다. Thanks to. 췐쓰희 1. 개요 SpringBoot는 객체지향적인 Java…]]></description><link>https://byongho96.github.io/TIL/posts/Backend/Spring/Project_Structure/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Backend/Spring/Project_Structure/</guid><pubDate>Wed, 12 Jul 2023 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 07 Sep 2023 13:38:20 GMT</lastBuildDate><item><title><![CDATA[JavaScript 비동기 처리 Promise & Async]]></title><description><![CDATA[이 글은 드림코딩님의 자바스크립드 11 ~ 13 비동기 강의를 듣고 정리한 문서입니다. 1. Callback 콜백 함수란, 어떤 함수가 다른 함수의 매개변수로 전달되어 전달된 함수 내부에서 실행될 수 있는 것을 말한다. 1.1. 동기적 콜백 1.…]]></description><link>https://byongho96.github.io/TIL/posts/Language/JavaScript/Promise_Async_2/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Language/JavaScript/Promise_Async_2/</guid><pubDate>Thu, 07 Sep 2023 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;이 글은 &lt;a href=&quot;https://www.youtube.com/@dream-coding&quot;&gt;드림코딩&lt;/a&gt;님의 자바스크립드 11 ~ 13 비동기 강의를 듣고 정리한 문서입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;1-callback&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-callback&quot; aria-label=&quot;1 callback permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Callback&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;콜백 함수란,&lt;/strong&gt; &lt;mark&gt;어떤 함수가 다른 함수의 매개변수로 전달되어 전달된 함수 내부에서 실행&lt;/mark&gt;될 수 있는 것을 말한다.&lt;/p&gt;
+&lt;h2 id=&quot;11-동기적-콜백&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-%EB%8F%99%EA%B8%B0%EC%A0%81-%EC%BD%9C%EB%B0%B1&quot; aria-label=&quot;11 동기적 콜백 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1. 동기적 콜백&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;function runImmediately(cb) {
+  cb()
+}
+
+console.log(1)
+runImmediately(() =&gt; console.log(2))
+console.log(3)
+
+// 1
+// 2
+// 3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;12-비동기적-콜백&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-%EB%B9%84%EB%8F%99%EA%B8%B0%EC%A0%81-%EC%BD%9C%EB%B0%B1&quot; aria-label=&quot;12 비동기적 콜백 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2. 비동기적 콜백&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;function runWithDelay(cb, timeout) {
+  setTimeout(cb, timebout)
+}
+
+console.log(1)
+runWithDelay(() =&gt; console.log(2), 1000)
+console.log(3)
+
+// 1
+// 3
+// 2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;13-api-예시&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#13-api-%EC%98%88%EC%8B%9C&quot; aria-label=&quot;13 api 예시 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.3. api 예시&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;class Api {
+  loginUser(id, password, onSuccess, onError) {
+    setTimeout(() =&gt; {
+      if (id === &apos;user&apos; &amp;#x26;&amp;#x26; password === &apos;1q2w3e4r!&apos;) {
+        onSuccess(id)
+      } else {
+        onError(new Error(&apos;not found&apos;))
+      }
+    })
+  }
+}
+
+Api.loginUSer(
+  id,
+  password,
+  (res) =&gt; console.log(res),
+  (error) =&gt; console.log(err)
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;2-promise&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-promise&quot; aria-label=&quot;2 promise permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Promise&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Promise는&lt;/strong&gt; &lt;mark&gt;JavaScript의 비동기 작업의 대기, 완료, 실패를 나타내는 객체&lt;/mark&gt;이다. 또한 &lt;strong&gt;Chaining을 통해&lt;/strong&gt; &lt;mark&gt;작업의 완료/실패에 따라 실행할 콜백함수를 가독성 있게 작성&lt;/mark&gt;할 수 있다.&lt;/p&gt;
+&lt;h2 id=&quot;21-promise-producer&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-promise-producer&quot; aria-label=&quot;21 promise producer permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. Promise Producer&lt;/h2&gt;
+&lt;p&gt;Promise 객체는 생성 시에, &lt;strong&gt;&lt;code&gt;executor&lt;/code&gt;라는 콜백 함수를 전달&lt;/strong&gt;해줘야 하며, &lt;code&gt;executor&lt;/code&gt;는 다음과 같은 구조를 가진다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;// 두 개의 콜백 함수를 인자로 받는다
+executor: (resolve, reject) =&gt; void
+
+// 동작 시에 promise를 fulfilled 상태로 만들며, 다음 then 체이닝에 value를 전달한다.
+resolve: (value?: any) =&gt; void
+
+
+// 동작 시에 promise를 rejected 상태로 만들며, 다음 catch 체이닝에 reason을 전달한다.
+reject: (reason?: any) =&gt; void
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;executor&lt;/code&gt;는 생성자에 전달 된 이후 &lt;strong&gt;바로 실행&lt;/strong&gt;되며, &lt;code&gt;resolve&lt;/code&gt;와 &lt;code&gt;reject&lt;/code&gt;중 어떤 함수를 내부적으로 실행하느냐에 따라 생성된 promise 객체의 상태를 결정한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;const promise = new Promise((resolve, reject) =&gt; {
+  console.log(&apos;run executor&apos;)
+  setTimeout(() =&gt; {
+    resolve(&apos;success&apos;)
+    // reject(new Error(&apos;no network&apos;))
+  }, 1000)
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;22-promise-consumer&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-promise-consumer&quot; aria-label=&quot;22 promise consumer permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. Promise Consumer&lt;/h2&gt;
+&lt;p&gt;Chaining을 이용하면, &lt;strong&gt;promise의 상태에 따라 이어서 어떤 콜백함수를 이어 실행할 지&lt;/strong&gt; 가독성 높게 작성할 수 있다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;then&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;앞 선 promise가 성공(fulfilled) 상태일 때 실행된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;catch&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;앞 선 promise들 중에서 실패(rejected) 상태가 발생하면 실행된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;finally&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;앞 선 promise들의 상태에 관련 없이 항상 실행된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;위의 모든 메소드들은 똑같이 promise를 반환하기 때문에, 아래 코드처럼 chaining하여 연달아 작성할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;promise
+  .then((value) =&gt; {
+    console.log(value)
+  })
+  .catch((error) =&gt; {
+    console.log(error)
+  })
+  .finally(() =&gt; {
+    console.log(&apos;finally&apos;)
+  })
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;23-에러-핸들링&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#23-%EC%97%90%EB%9F%AC-%ED%95%B8%EB%93%A4%EB%A7%81&quot; aria-label=&quot;23 에러 핸들링 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.3. 에러 핸들링&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;const getHen = () =&gt; {
+  new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; resolve(&apos;🐔&apos;), 1000)
+  })
+}
+const getEgg = (hen) =&gt; {
+  new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; resolve(`${hen} =&gt; 🥚`), 1000)
+  })
+}
+const getCook = (egg) =&gt; {
+  new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; resolve(`${egg} =&gt; 🍳`), 1000)
+  })
+}
+
+getHen()
+  .then((hen) =&gt; getEgg(hen))
+  .then((egg) =&gt; getCook(egg))
+  .then((meal) =&gt; console.log(meal))
+
+// 🐔 =&gt; 🥚 =&gt; 🍳
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;const getHen = () =&gt; {
+  new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; resolve(&apos;🐔&apos;), 1000)
+  })
+}
+const getEgg = (hen) =&gt; {
+  new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; reject(new Error(`error! ${hen} =&gt; 🥚`)), 1000)
+  })
+}
+const getCook = (egg) =&gt; {
+  new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; resolve(`${egg} =&gt; 🍳`), 1000)
+  })
+}
+
+getHen()
+  .then((hen) =&gt; getEgg(hen))
+  .catch((error) =&gt; {
+    return &apos;🍞&apos;
+  })
+  .then((egg) =&gt; getCook(egg))
+  .then((meal) =&gt; console.log(meal))
+
+// 🍞 =&gt; 🍳
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;24-api-예시&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#24-api-%EC%98%88%EC%8B%9C&quot; aria-label=&quot;24 api 예시 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.4. api 예시&lt;/h2&gt;
+&lt;p&gt;위의 &apos;&lt;a href=&quot;#13-api-%EC%98%88%EC%8B%9C&quot;&gt;1.3. api 예시&lt;/a&gt;&apos; 항목에서 콜배함수로 작성되었던 예시 코드를 다음과 같이 수정할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;class Api {
+  loginUser(id, password) {
+    return new Promise((resolve, reject) =&gt; {
+      setTimeout(() =&gt; {
+        if (id === &apos;user&apos; &amp;#x26;&amp;#x26; password === &apos;1q2w3e4r!&apos;) {
+          resolve(id)
+        } else {
+          reject(new Error(&apos;not found&apos;))
+        }
+      }, 1000)
+    })
+  }
+}
+
+Api.loginUSer(id, password)
+  .then((res) =&gt; console.log(res))
+  .catch((err) =&gt; console.log(err))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;3-async--await&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-async--await&quot; aria-label=&quot;3 async  await permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. async / await&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;async와 await&lt;/strong&gt;는 JavaScript의 syntatic sugar로써, &lt;mark&gt;Promise의 생성과 Chaining을 더 쉽게 구현할 수 있도록 도와주는 API&lt;/mark&gt;이다.&lt;/p&gt;
+&lt;h2 id=&quot;21-async&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-async&quot; aria-label=&quot;21 async permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. async&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;async&lt;/code&gt;를 이용하여 함수를 선언하면, &lt;mark&gt;해당 함수를 Promise 객체로 반환하며&lt;/mark&gt; &lt;code&gt;return&lt;/code&gt;문은 &lt;code&gt;resolve&lt;/code&gt;문처럼 &lt;code&gt;throw&lt;/code&gt;문은 &lt;code&gt;reject&lt;/code&gt;문처럼 동작한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;async function fetchUser() {
+  return &apos;user&apos;
+}
+
+const user = fetchUser()
+console.log(user)
+user.then(console.log)
+
+// Promise
+// user
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;22-await&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-await&quot; aria-label=&quot;22 await permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. await&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;await&lt;/code&gt;키워드는 &lt;code&gt;async&lt;/code&gt;로 선언된 함수 내부에서만 사용 가능하며, &lt;mark&gt;비동기 함수의 평가를 대기&lt;/mark&gt;한다. 마치 Promsie 객체의 &lt;code&gt;then&lt;/code&gt;체이닝처럼 동작한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;function delay(ms) {
+  return new Promise((resolve) =&gt; setTimeout(resolve, ms))
+}
+
+async function getBanana() {
+  await delay(3000)
+  return &apos;🍌&apos;
+}
+
+function getBanana() {
+  return delay(3000).then(() =&gt; &apos;🍌&apos;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;23-에러-핸들링-1&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#23-%EC%97%90%EB%9F%AC-%ED%95%B8%EB%93%A4%EB%A7%81-1&quot; aria-label=&quot;23 에러 핸들링 1 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.3. 에러 핸들링&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;async&lt;/code&gt;로 선언된 함수에서는 &lt;code&gt;try&lt;/code&gt;, &lt;code&gt;catch&lt;/code&gt;문을 통해 에러를 핸들링 할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;function delay(ms) {
+  return new Promise((resolve) =&gt; setTimeout(resolve, ms))
+}
+
+async function getApple() {
+  await delay(3000)
+  return &apos;🍎&apos;
+}
+
+async function getBanana() {
+  await delay(3000)
+  return &apos;🍌&apos;
+}
+
+async function pickFruits() {
+  try {
+    const apple = await getApple()
+    const banana = await getBanana()
+  } catch (error) {
+    throw error
+  }
+  return `${apple} + ${banana}`
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;4-promise-vs-async&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-promise-vs-async&quot; aria-label=&quot;4 promise vs async permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. Promise vs async&lt;/h1&gt;
+&lt;p&gt;언뜻 보면 async가 Promise보다 항상 더 나을 것 같지만, 그렇지도 않다. 필요에 따라서 Promise를 적절하게 활용하면 성능 상의 이점을 얻을 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;function delay(ms) {
+  return new Promise((resolve) =&gt; setTimeout(resolve, ms))
+}
+
+async function getApple() {
+  await delay(3000)
+  return &apos;🍎&apos;
+}
+
+async function getBanana() {
+  await delay(3000)
+  return &apos;🍌&apos;
+}
+
+// 아래 코드는 총 6초가 소요된다
+async function pickFruits() {
+  const apple = await getApple()
+  const banana = await getBanana()
+  return `${apple} + ${banana}`
+}
+
+// 아래 코드는 총 3초가 소요된다
+async function pickFruits() {
+  const applePromise = getApple()
+  const bananaPromise = getBanana()
+  const apple = await applePromise()
+  const banana = await bananaPromise()
+  return `${apple} + ${banana}`
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;41-promiseall&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#41-promiseall&quot; aria-label=&quot;41 promiseall permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.1. Promise.all&lt;/h2&gt;
+&lt;p&gt;Promise의 &lt;code&gt;all&lt;/code&gt; 메소드는 여러 개의 Promise 객체를 배열로 받아, &lt;mark&gt;모든 Promise가 완료되었을 때 그 결과값을 동일한 순서의 배열로 반환&lt;/mark&gt;한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;function delay(ms) {
+  return new Promise((resolve) =&gt; setTimeout(resolve, ms))
+}
+
+async function getApple() {
+  await delay(3000)
+  return &apos;🍎&apos;
+}
+
+async function getBanana() {
+  await delay(3000)
+  return &apos;🍌&apos;
+}
+
+function pickAllFruits() {
+  return Promise.all([getApple(), getBanana()]).then((fruits) =&gt;
+    fruits.join(&apos; + &apos;)
+  )
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;42-promiserace&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#42-promiserace&quot; aria-label=&quot;42 promiserace permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.2. Promise.race&lt;/h2&gt;
+&lt;p&gt;Promise의 &lt;code&gt;race&lt;/code&gt; 메소드는 여러 개의 Promise 객체를 배열로 받아, &lt;mark&gt;가장 빨리 완료된 Promise 객체의 결과값을 반환&lt;/mark&gt;한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;function delay(ms) {
+  return new Promise((resolve) =&gt; setTimeout(resolve, ms))
+}
+
+async function getApple() {
+  await delay(3000)
+  return &apos;🍎&apos;
+}
+
+async function getBanana() {
+  await delay(3000)
+  return &apos;🍌&apos;
+}
+
+function pickOnlyone() {
+  return Promise.race([getApple(), getBanana()])
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;5-참고자료&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C&quot; aria-label=&quot;5 참고자료 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5. 참고자료&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=s1vpVCrT8f4&amp;#x26;list=PLv2d7VI9OotTVOL4QmPfvJWPJvkmv6h-2&amp;#x26;index=11&quot;&gt;드림코딩: 자바스크립트 11. 비동기 처리의 시작 콜백 이해하기, 콜백 지옥 체험&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=JB_yU6Oe2eE&amp;#x26;list=PLv2d7VI9OotTVOL4QmPfvJWPJvkmv6h-2&amp;#x26;index=12&quot;&gt;드림코딩: 자바스크립트 12. 프로미스 개념부터 활용까지&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=aoQSOZfz3vQ&amp;#x26;list=PLv2d7VI9OotTVOL4QmPfvJWPJvkmv6h-2&amp;#x26;index=13&quot;&gt;드림코딩: 자바스크립트 13. 비동기의 꽃 JavaScript async 와 await 그리고 유용한 Promise APIs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Sync vs Async, Blocking vs Non-blocking 파헤치기]]></title><description><![CDATA[1. 핵심 요약 각 용어의 핵심 개념을 정리하면 다음과 같다. Sync 두 작업 간의 문맥 교환이 동시적으로 이뤄지는 것을 말한다 Async 두 작업 간의 문맥 교환이 비동시적으로 이뤄지는 것을 말한다 Blocking…]]></description><link>https://byongho96.github.io/TIL/posts/CS/OS/Sync_Async_Blocking_Non-blocking/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/CS/OS/Sync_Async_Blocking_Non-blocking/</guid><pubDate>Tue, 05 Sep 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-핵심-요약&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%ED%95%B5%EC%8B%AC-%EC%9A%94%EC%95%BD&quot; aria-label=&quot;1 핵심 요약 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 핵심 요약&lt;/h1&gt;
+&lt;p&gt;각 용어의 핵심 개념을 정리하면 다음과 같다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Sync&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;두 작업 간의 문맥 교환이 동시적으로 이뤄지는 것을 말한다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Async&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;두 작업 간의 문맥 교환이 비동시적으로 이뤄지는 것을 말한다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Blocking&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;한 작업이 진행되는 동안 다른 작업이 대기하는 것을 말한다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Non-blocking&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;한 작업이 진행되는 동안 다른 작업이 대기하지 않고 진행되는 것을 말한다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;그런데 희한하게 이 개념들에 대한 공식적인 정의를 찾아볼 수 없었다. 그나마 &lt;a href=&quot;https://nodejs.org/en/docs/guides/blocking-vs-non-blocking&quot;&gt;Node.js 공식문서&lt;/a&gt;에서 Blocking의 개념을 정의했는데, 이조차도 Node.js에서의 JavaScript로 범위가 매우 제한적이었다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Blocking is when the execution of additional JavaScript in the Node.js process must wait until a non-JavaScript operation completes. This happens because the event loop is unable to continue running JavaScript while a blocking operation is occurring. [Node.js]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;내 결론은 Sync/Async와 Blocking/Non-Blocking의 개념 차이가 있지만, &lt;strong&gt;이 들의 차이를 분석하려고 애쓰는 것 보다는 유사점에 주목하는 것이 실질적으로 프로그래밍에 더 도움이 될 것 같다.&lt;/strong&gt; 물론 아래 글 부터는 차이점에 집착할 얘정이다&lt;/p&gt;
+&lt;h1 id=&quot;2-sync--async&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-sync--async&quot; aria-label=&quot;2 sync  async permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Sync / Async&lt;/h1&gt;
+&lt;p&gt;&lt;mark&gt;두 작업 간의 문맥 교환이 동기적으로 일어나는지 여부를 말한다.&lt;/mark&gt;&lt;/p&gt;
+&lt;h2 id=&quot;21-sync--async-예시&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-sync--async-%EC%98%88%EC%8B%9C&quot; aria-label=&quot;21 sync  async 예시 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. sync / async 예시&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;호출자와 피호출자의 관점에서 보자면, 피호출자 작업이 끝남과 동시에 호출자의 작업이 재개&lt;/strong&gt;되는 것을 말한다.&lt;br&gt;
+아래 그림에서 Asynchronous의 Continue Working 보다, Server의 작업이 끝난 시간과 Client가 작업을 시작하는 시간에 gap이 있음에 주목하자
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/8ade8cef5ddbcc2bb797689c2e729cb0/ea6ef/Asynchronous-vs-Synchronous.webp&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 52%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/webp;base64,UklGRiYBAABXRUJQVlA4WAoAAAAQAAAAEwAACQAAQUxQSHsAAAABcFzbdqqchD9zdy0Ad51bPRRAD8zphyG/o4QeImICQCD4LxCo0Xax3CQacz9br9bAe3g9h4/mOnzHwy8H2QrhSg1jiTvCyIujafYARl7MTHMpIU8t2CnE+RrmBsTKWuP4a5gYABfTLBRvsnxkZoTag6UAPVgaCfKPBAkAVlA4IIQAAADQAwCdASoUAAoAPtFUo0uoJKMhsAgBABoJYgCsAYvq23G6O/wrxJgA/U1w4DkjG/99k7233w+gNqTml7gBktz6/fAm05BJIKoxWAV+++c8AGPfa9WxO2JzXdKeWiQkCsDQ90xh+PJ8LPOwuXRjlhHppTY0n9PSFQx983+xtfwDOvwAAAA=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/8ade8cef5ddbcc2bb797689c2e729cb0/c54d4/Asynchronous-vs-Synchronous.webp 175w,
+/TIL/static/8ade8cef5ddbcc2bb797689c2e729cb0/a3432/Asynchronous-vs-Synchronous.webp 350w,
+/TIL/static/8ade8cef5ddbcc2bb797689c2e729cb0/426ac/Asynchronous-vs-Synchronous.webp 700w,
+/TIL/static/8ade8cef5ddbcc2bb797689c2e729cb0/c139f/Asynchronous-vs-Synchronous.webp 1050w,
+/TIL/static/8ade8cef5ddbcc2bb797689c2e729cb0/7f403/Asynchronous-vs-Synchronous.webp 1400w,
+/TIL/static/8ade8cef5ddbcc2bb797689c2e729cb0/ea6ef/Asynchronous-vs-Synchronous.webp 1746w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/8ade8cef5ddbcc2bb797689c2e729cb0/c54d4/Asynchronous-vs-Synchronous.webp 175w,
+/TIL/static/8ade8cef5ddbcc2bb797689c2e729cb0/a3432/Asynchronous-vs-Synchronous.webp 350w,
+/TIL/static/8ade8cef5ddbcc2bb797689c2e729cb0/426ac/Asynchronous-vs-Synchronous.webp 700w,
+/TIL/static/8ade8cef5ddbcc2bb797689c2e729cb0/c139f/Asynchronous-vs-Synchronous.webp 1050w,
+/TIL/static/8ade8cef5ddbcc2bb797689c2e729cb0/7f403/Asynchronous-vs-Synchronous.webp 1400w,
+/TIL/static/8ade8cef5ddbcc2bb797689c2e729cb0/ea6ef/Asynchronous-vs-Synchronous.webp 1746w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/8ade8cef5ddbcc2bb797689c2e729cb0/426ac/Asynchronous-vs-Synchronous.webp&quot; alt=&quot;Asynchronous-vs-Synchronous.webp&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;통신의 관점에서 보자면, 두 통신 주체의 정보교환 동기화 되어있는지&lt;/strong&gt;를 말한다.
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/791d8451be929a61611602ee48ddfeaf/263f4/sync-vs-async.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 53.14285714285714%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB0ElEQVR42nVSy3LaQBDU/39EqnzJwTkluYQrVrmMKUzQKyAkIbCEHkboLVYC0a5ZGRUhzlSNZrWz2zs900LbttjtdiiKAk3TgDGGw+GA/X6PqqpQ1zWyLOP5siyR5zmPSZLwNd25NuF0OkEURYxGIwRBAFVVYds2BoMBhsMhNpsN5vM5z08mE0iShOl0ivF4zP+jKOJA5/O5A6TP8XgEAZOFYQjTNDnoer2G4zjwPI+vaZ+qpsvEjOLF+wpxY5fDRJWoUwuKouSR9sn/uYMrQEWVYVkWdF3nvrbXcB23r/jUdtG0DDw9P/GWyIoCWZahKAoMfcmr/kCG8Hsyw1I3sN1u4bouVvYK2uIPWM3615uqgTP3MBvL8AMfcRzz3kW7CLOFBDNYoT13lQvWjwD+OEZRFahLBtnR8M34Ce1N72m8LROod68IZwkkVcKD+AjTssAODN+NX7jT7pGyvAOU7y28PoaIsxht00LzFvjy8hVqsOg7lPg57AcfwTJCXuZ8YFmeoWE1XjwJ4uYZh6ZjJJC+iCpN1/d9Hklf10O6TJH0d6FL2iW/NaFpaiRpwoVKh9M0Q81qtB/DuJYEAaZp2gudIknuL8DPZPM/+yx3u/cOdLFCY5SCD8YAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/791d8451be929a61611602ee48ddfeaf/c54d4/sync-vs-async.webp 175w,
+/TIL/static/791d8451be929a61611602ee48ddfeaf/a3432/sync-vs-async.webp 350w,
+/TIL/static/791d8451be929a61611602ee48ddfeaf/426ac/sync-vs-async.webp 700w,
+/TIL/static/791d8451be929a61611602ee48ddfeaf/c139f/sync-vs-async.webp 1050w,
+/TIL/static/791d8451be929a61611602ee48ddfeaf/7f403/sync-vs-async.webp 1400w,
+/TIL/static/791d8451be929a61611602ee48ddfeaf/ced91/sync-vs-async.webp 1996w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/791d8451be929a61611602ee48ddfeaf/4edbd/sync-vs-async.png 175w,
+/TIL/static/791d8451be929a61611602ee48ddfeaf/13ae7/sync-vs-async.png 350w,
+/TIL/static/791d8451be929a61611602ee48ddfeaf/8c557/sync-vs-async.png 700w,
+/TIL/static/791d8451be929a61611602ee48ddfeaf/e996b/sync-vs-async.png 1050w,
+/TIL/static/791d8451be929a61611602ee48ddfeaf/2cefc/sync-vs-async.png 1400w,
+/TIL/static/791d8451be929a61611602ee48ddfeaf/263f4/sync-vs-async.png 1996w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/791d8451be929a61611602ee48ddfeaf/8c557/sync-vs-async.png&quot; alt=&quot;sync-vs-async.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;위 두 개의 예시가 서로 상호배타적이지는 않지만, 동기/비동기의 개념을 잘 설명할 수 있을 것 같다.&lt;/p&gt;
+&lt;h2 id=&quot;22-sync--async-예시&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-sync--async-%EC%98%88%EC%8B%9C&quot; aria-label=&quot;22 sync  async 예시 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. sync / async 예시..?&lt;/h2&gt;
+&lt;p&gt;아래와 같은 그림은 &apos;동기/비동기&apos; 개념의 의미를 잘 담았다고 생각하지 않는다. &apos;Sync/Async&apos;를 검색했을 많이 나오는 그림이다. 그런데 딱 봐도 아래 그림은 &lt;strong&gt;오히려 싱글 프로세스와 멀티 프로세스&lt;/strong&gt;에 더 적합한 그림이다.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/6f80586cca82e1e7cc4332068f59b711/8efc2/sync-vs-async-wrong.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 52%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsTAAALEwEAmpwYAAABpUlEQVR42o2STY7TQBCFfSBOxAG4AjsQO1ZIrGCBWCHBmjVCYQYJIRYwoMGZBDt24kwcnB87bjt2t9sf6vbYjMSMREmlVleVXr9+9Zy2bdFaYyLLMtI0HbIsS1s3fTPXNA273W6Y2+/3FEXB9XCUUhTiAFoRBj6LxYL5fI7v+yRJYoeKQiDrEiWPeN6kmwlDZrMZq9XqBsCrVwwLaIdmd8cyreua/wlHyQoRv4P8BJ19siBdapsWUCRU21PIRmjxHaNQL0P/6ACY/F6yPX/Awb1P5T+G7RdQedfVyh7L6Qeqb3dR4SNk/BohKqS8mbFjdDICm2jqA/nZc5qLVxC8hbqrL90T1Oge5WxEUUOrm9u/vF6vSdP9lWbaKnj88RLx8SH8fAbZlOj8PfrNHeTXJxyKikap2wHNQnqGnS4ao5zSiuzzU47zU9JkSXn2guMupJLaLq63m7HSdR0dUzS+iqKIyWTCeDxmeuHieb+43AhkS+e/QhJdrmzddV0763kem81m8LEF7NHNGcexBQ6CgDw3i/nLBsO8URiJjE/DMEQI8c+X/wDDb/yuEZYdTwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/6f80586cca82e1e7cc4332068f59b711/c54d4/sync-vs-async-wrong.webp 175w,
+/TIL/static/6f80586cca82e1e7cc4332068f59b711/a3432/sync-vs-async-wrong.webp 350w,
+/TIL/static/6f80586cca82e1e7cc4332068f59b711/426ac/sync-vs-async-wrong.webp 700w,
+/TIL/static/6f80586cca82e1e7cc4332068f59b711/712de/sync-vs-async-wrong.webp 828w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/6f80586cca82e1e7cc4332068f59b711/4edbd/sync-vs-async-wrong.png 175w,
+/TIL/static/6f80586cca82e1e7cc4332068f59b711/13ae7/sync-vs-async-wrong.png 350w,
+/TIL/static/6f80586cca82e1e7cc4332068f59b711/8c557/sync-vs-async-wrong.png 700w,
+/TIL/static/6f80586cca82e1e7cc4332068f59b711/8efc2/sync-vs-async-wrong.png 828w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/6f80586cca82e1e7cc4332068f59b711/8c557/sync-vs-async-wrong.png&quot; alt=&quot;sync-vs-async-wrong.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;p&gt;비동기 프로그래밍에서 멀티 태스킹이 일어나는 경우가 빈번하지만, 멀티 태스킹이 비동기 프로그래밍의 필요조건은 아니다.&lt;/p&gt;
+&lt;h1 id=&quot;3-blocking--non-blocking&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-blocking--non-blocking&quot; aria-label=&quot;3 blocking  non blocking permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. Blocking / Non-blocking&lt;/h1&gt;
+&lt;p&gt;&lt;mark&gt;한 작업이 진행되는 동안 다른 작업이 대기하는지 여부를 말한다.&lt;/mark&gt;&lt;/p&gt;
+&lt;h2 id=&quot;31-blocking--non-blocking-예시&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#31-blocking--non-blocking-%EC%98%88%EC%8B%9C&quot; aria-label=&quot;31 blocking  non blocking 예시 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1. Blocking / Non-blocking 예시&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;호출자와 피호출자의 관점에서 보자면, 피호출자 작업이 진행되는 동안 호출자의 작업이 대기&lt;/strong&gt;하는 것을 말한다.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/7e08268569022d4d98b7a99265937f20/ae694/blocking-vs-non-blocking.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 36%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAAsTAAALEwEAmpwYAAABDUlEQVR42lWR2aqGMAyEff9380bwQlS0biit+95a8zNBPZyB0GDj5EvqlGVJ53nScRwc0zTRsiy0bRt/H8eRhBBUVdVXh3NdV65Dvu+7va6Luq5znTRNqSgKjizLKM9zNpFSslEcxxRFERviDjVJkvwLIYR9al2n73tCoBvoEBAImqZhorZtuUnXdaAhYwx/Rw4yKaXFP1pr16FH72h1XdN932zoeR7N88xG+BF6RmNSnFBZlhb0xhjXQYI9QuislGIzUCOHkIMWDbEzCHQgR61Sigmtta6DjiCCGXaF8H2fd2ct17Gx1vqjBBnuwzCkIAhQb59B/0aG6bsXnGjwahiGz/wdG6TPC/Mrv4Y/jMAVW0i36noAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/7e08268569022d4d98b7a99265937f20/c54d4/blocking-vs-non-blocking.webp 175w,
+/TIL/static/7e08268569022d4d98b7a99265937f20/a3432/blocking-vs-non-blocking.webp 350w,
+/TIL/static/7e08268569022d4d98b7a99265937f20/426ac/blocking-vs-non-blocking.webp 700w,
+/TIL/static/7e08268569022d4d98b7a99265937f20/10237/blocking-vs-non-blocking.webp 850w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/7e08268569022d4d98b7a99265937f20/4edbd/blocking-vs-non-blocking.png 175w,
+/TIL/static/7e08268569022d4d98b7a99265937f20/13ae7/blocking-vs-non-blocking.png 350w,
+/TIL/static/7e08268569022d4d98b7a99265937f20/8c557/blocking-vs-non-blocking.png 700w,
+/TIL/static/7e08268569022d4d98b7a99265937f20/ae694/blocking-vs-non-blocking.png 850w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/7e08268569022d4d98b7a99265937f20/8c557/blocking-vs-non-blocking.png&quot; alt=&quot;sync-vs-async-wrong.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;4-cross-over-table&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-cross-over-table&quot; aria-label=&quot;4 cross over table permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. Cross Over Table&lt;/h1&gt;
+&lt;p&gt;이렇게 4가지 개념을 정리하고 나면, 아래의 괴상망측한 테이블을 마주하게 된다.&lt;/p&gt;
+&lt;p&gt;보자마자 드는 생각이 &lt;strong&gt;Synchronous &amp;#x26; Non-blocking 하고 Asynchronous &amp;#x26; Blocking이 뭐지&lt;/strong&gt;일텐데, 그 말인 즉슨 그만큼 쓰잘데기없다는 뜻이다.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/16ce5f742618f6d6e64623960b16b213/f213e/sync-async-blocking-non-blocking.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 74.28571428571428%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAIAAABr+ngCAAAACXBIWXMAAAsTAAALEwEAmpwYAAABiElEQVR42n1S0W6jMBDk/38tUlvl7vkQqYkJoYCx1/Zu7HVl3KAch24eEB55PKPZrdLfYOaUklLqT11/fl4QsfBEJIRoW1HXdX+/F7L6VxxCICJYQUThCZsBxhhrbQiBmfdiRFRKuSdWgZ2mCQysxx/erKiKW0ERO+d2LwJAjPGViTH+iHfO3mOMUS+LMQYAUkrW2hjj+DUOw9B1nXOOmQGgMsZcLo0QomkasJaIMMPXuTAhpSz3Ukq3rjudTudfvw1YZs7OMUQiejweRMRcnP1hbGaOMa7X8k923t3z3mutich7v0ZAIlJKee+LQfk657TW1TbbTTzPMyLarVnnxnEEAPsCY4xS6qCw0kcIoUTlxIdt59hqntu2vXWdlNIYWCPZS9O8vb2fz+eP94/7MCD6vu+v16uUsr91/a1fFu2crRBRa12SPKtGpWYhxDRNUkrvcV0P0FoD5A1zziLiQWH/afsgNr+gFKaUei3Me5/XE/J6+nzMDAAsy7J3jjFuQ9rgnNsxZXLfK2FmRlQtDRsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/16ce5f742618f6d6e64623960b16b213/c54d4/sync-async-blocking-non-blocking.webp 175w,
+/TIL/static/16ce5f742618f6d6e64623960b16b213/a3432/sync-async-blocking-non-blocking.webp 350w,
+/TIL/static/16ce5f742618f6d6e64623960b16b213/426ac/sync-async-blocking-non-blocking.webp 700w,
+/TIL/static/16ce5f742618f6d6e64623960b16b213/c139f/sync-async-blocking-non-blocking.webp 1050w,
+/TIL/static/16ce5f742618f6d6e64623960b16b213/afd7b/sync-async-blocking-non-blocking.webp 1192w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/16ce5f742618f6d6e64623960b16b213/4edbd/sync-async-blocking-non-blocking.png 175w,
+/TIL/static/16ce5f742618f6d6e64623960b16b213/13ae7/sync-async-blocking-non-blocking.png 350w,
+/TIL/static/16ce5f742618f6d6e64623960b16b213/8c557/sync-async-blocking-non-blocking.png 700w,
+/TIL/static/16ce5f742618f6d6e64623960b16b213/e996b/sync-async-blocking-non-blocking.png 1050w,
+/TIL/static/16ce5f742618f6d6e64623960b16b213/f213e/sync-async-blocking-non-blocking.png 1192w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/16ce5f742618f6d6e64623960b16b213/8c557/sync-async-blocking-non-blocking.png&quot; alt=&quot;sync-async-blocking-non-blocking.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;h1 id=&quot;41-synchronous-blocking&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#41-synchronous-blocking&quot; aria-label=&quot;41 synchronous blocking permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.1. Synchronous blocking&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;일반적인 경우 대부분의 프로그래밍 언어는 Synchronous하고 Blocking하게 동작한다.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;코드가 실행되는 동안 호출되는 함수들은 Call stack에 쌓이게 된다. 이름이 Stack인 만큼 Last in, First Out으로 동작하기 때문에, &lt;strong&gt;나중에 피호출된 함수가 완료되고 나서야, 해당 함수를 호출했던 함수가 바로 이어서 재개&lt;/strong&gt;된다.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 589px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/f99171954b33b6b60638cc1433f90e64/b1665/function-call-stack.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 113.7142857142857%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAXCAIAAACEf/j0AAAACXBIWXMAAAsTAAALEwEAmpwYAAACr0lEQVR42q2UW08aURSF+ZN99aktGoE0RYTKAFUUbdPLQ5s0xoDWooAwwIBgS6MQuaXBPqjVRGuFclEuc2UQBmbmnAYm1NYgPrQrKyc7Ofmy9uzM2TJ4i0DPwyWD/yDZoMxuJMtfVTnqoolXOAJv01WO6gCh3xG4A6Y55hA/+U7nc0zhS2X/gDi56jS7twAMS+6IHSsRXWR3rWzCyiatbMLWSNrY5FI9vlSPv2F2ovQhhFCEQHZjSBDCJt8ysEEjjJlgVLKxX0zD2CSIOJj0rXCLby00Is9g6jlM3vALmJoBMW89MwCG/WRL49M8TMzD+DyIL4CEBcQtYNcCdhdA3CRGB8NSMidws3RIVV2fJFENiT4uOzUUqrsK6tiAroEpKKevvncNi6LI9IXX8CpZmyq4Hh4sTp441afOx8d2fQmb5aKzrR1z/bOCcPyVzDCMx+NBUdTtcfv9fmwzcG9Fez/1drqyNZXzGUpB7akbKQaQYsB4sTleXvOye4O/WeCFJt+aoz+OV+1PmgFtA+vZr2V7rvvGCLvvTxgAIPTECzwEkBPaSMUjz1uV+VVl6YOysKq6WFOTbjW5oSY2HlSWfQOTpYG1hQ6CoxMlt+kyrPuBTmW9M9T2K5h5CTOvYeYRgw6bdg/2GriIpR3VnDknzlzTbMREbZnIsAkPK0nXUFjsIDVUz4aM5RBSwvRFTJfzGiubSAkzlAKKmsM7rO0erCY8cyA2I+x0zW+b+W5h7mwrqaHJLYEzMyEl5VAR69fG16RznHT42K9D/rD2UxJTZe1IwY+Ug4ZyQF/CjHjYUAnqi5iidheswV0jZ+9Gs8vynyvyrE2eWx4rvh/Nr8jPbSOXS86Br0qSCMR99jxdP04zx2nmSDpT9LdefZSmj/KtqrQz/vcOk1oSgHibf++wXxbbuegM8unsAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/f99171954b33b6b60638cc1433f90e64/c54d4/function-call-stack.webp 175w,
+/TIL/static/f99171954b33b6b60638cc1433f90e64/a3432/function-call-stack.webp 350w,
+/TIL/static/f99171954b33b6b60638cc1433f90e64/339cb/function-call-stack.webp 589w&quot; sizes=&quot;(max-width: 589px) 100vw, 589px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/f99171954b33b6b60638cc1433f90e64/4edbd/function-call-stack.png 175w,
+/TIL/static/f99171954b33b6b60638cc1433f90e64/13ae7/function-call-stack.png 350w,
+/TIL/static/f99171954b33b6b60638cc1433f90e64/b1665/function-call-stack.png 589w&quot; sizes=&quot;(max-width: 589px) 100vw, 589px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/f99171954b33b6b60638cc1433f90e64/b1665/function-call-stack.png&quot; alt=&quot;function-call-stack.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;h2 id=&quot;42-asynchronous-non-blocking&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#42-asynchronous-non-blocking&quot; aria-label=&quot;42 asynchronous non blocking permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.2. Asynchronous Non-blocking&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;역시 대부분의 프로그래밍 언어는 I/O작업과 같이 오랜 시간이 걸리는 작업에 대해 Asynchronous하고 Non-blocking하게 동작한다.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;앞 서 말한, 콜 스택 방식의 작업으로 I/O작업을 처리할 경우 너무 많은 시간이 낭비된다. 실질적으로 대부분의 작업은 커널에서 일어나는데, 그 시간 동안 코드를 읽는 작업이 놀고 먹는다는 말이다.&lt;/p&gt;
+&lt;p&gt;따라서 대부분의 언어, 진짜 거의 모든 언어는 &lt;strong&gt;I/O 작업을 대기하지 않고 Non-blocking 방식으로 처리하며, 작업 완료 시 이벤트나 콜백을 사용하여 결과를 비동기적으로 처리한다.&lt;/strong&gt; 아래는 Node.js의 libuv 라이브러리를 이용한 비동기 처리를 나타낸 그림이다.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/b0d5459f64e6e168cf8cc86139a10cde/21b4d/node-js-io-event.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 55.99999999999999%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAACUElEQVR42n2S3U9SYRzH+QO7b+umrc255qWumi9ltharNROn2RyNNtSMgRdpZgqkHkDIFRAvnsPb4R1EBYUDGMmnccRKt7r47HfxPM9n3+9+j+bB42t89OtInGXZq4cQG6JKpCkhn0ZJnsa6RIk2JfbUs6tIRJohAtV9NHrLK7wFIyV2yLY3ybNFsb2F/NOOs7GMpbLI3NE8azULYmuDMg5SbeESclsgj52gEkMTrqco4iTddrHfFjjFzUB8muvhZ5jLS6xXVxCUNVZP3vO69JblygqTkpZBTw/D7tvc/9LHoKcXgzxOUMmg8Z9EKGAne+bEnAxhjEQwlU0YDo2kWg6O8VDCRbk73x2ZGfDdYtR9k4eeHsbcvQzt3kAXvUOglkbzvZqgjA19OMILX4LVvJ95KUWo6iPHFsm/qhU6TVoOxuMjBA82kEo2EocCtvwCM+lRAtUUGrERJ9R00rt+QK7hAKz0WfOsFb9xyDaZtoMsf4i2BLSRft6ktSxkJ1jMTTItDzMlD50nDNfjxH4I6MUYK7kws2KCCV+SQkfGZVkeJ7GWwNPIXT4U9FiLRj4XF5hPPWcqOXIuDCgJSmySadox+D3MfN0lUNlU611Ndy7c5onUjy03hyNrYie3hEnWoZPvEah2hZ00wYqNUNGCuG8hXP5EFhcZBDXlBR1p8syJIT3NVPIRL9NaZtJadPIY5uIsQSWFJqjEKWAlj4MiLvIqDnUh/6LQvXtBgR21ZaDzD73H+/jrYXw1CV9NVPEr0n/x1vbwK+Jv1HdKEO9xiV+I4Pk+MTbMYwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/b0d5459f64e6e168cf8cc86139a10cde/c54d4/node-js-io-event.webp 175w,
+/TIL/static/b0d5459f64e6e168cf8cc86139a10cde/a3432/node-js-io-event.webp 350w,
+/TIL/static/b0d5459f64e6e168cf8cc86139a10cde/426ac/node-js-io-event.webp 700w,
+/TIL/static/b0d5459f64e6e168cf8cc86139a10cde/c139f/node-js-io-event.webp 1050w,
+/TIL/static/b0d5459f64e6e168cf8cc86139a10cde/af3f0/node-js-io-event.webp 1280w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/b0d5459f64e6e168cf8cc86139a10cde/4edbd/node-js-io-event.png 175w,
+/TIL/static/b0d5459f64e6e168cf8cc86139a10cde/13ae7/node-js-io-event.png 350w,
+/TIL/static/b0d5459f64e6e168cf8cc86139a10cde/8c557/node-js-io-event.png 700w,
+/TIL/static/b0d5459f64e6e168cf8cc86139a10cde/e996b/node-js-io-event.png 1050w,
+/TIL/static/b0d5459f64e6e168cf8cc86139a10cde/21b4d/node-js-io-event.png 1280w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/b0d5459f64e6e168cf8cc86139a10cde/8c557/node-js-io-event.png&quot; alt=&quot;node-js-io-event.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;h2 id=&quot;43-synchronous-non-blocking&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#43-synchronous-non-blocking&quot; aria-label=&quot;43 synchronous non blocking permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.3. Synchronous Non-blocking&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;두 작업이 동시에 일어나면서, 끊임없이 서로의 작업상태를 동기화하는 것을 말한다.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;이런 경우가 뭐가 있나 했는데, &lt;a href=&quot;https://inpa.tistory.com/entry/%F0%9F%91%A9%E2%80%8D%F0%9F%92%BB-%EB%8F%99%EA%B8%B0%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%B8%94%EB%A1%9C%ED%82%B9%EB%85%BC%EB%B8%94%EB%A1%9C%ED%82%B9-%EA%B0%9C%EB%85%90-%EC%A0%95%EB%A6%AC#%EB%8F%99%EA%B8%B0synchronous_/_%EB%B9%84%EB%8F%99%EA%B8%B0asynchronous&quot;&gt;Inpa Dev님&lt;/a&gt;이 아주 직관적인 예시를 들어주셨다. 바로 &lt;strong&gt;게임 로딩 화면&lt;/strong&gt;이다. 렌더링 프로세스는 &lt;strong&gt;계속해서 화면을 렌더링&lt;/strong&gt;하는 와 중에, &lt;strong&gt;로딩 진행사항을 전달받아 동기화&lt;/strong&gt;해야한다.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 634px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/32d9459aea6981d1510cacd00d4a38aa/374ac/sync-non-blocking.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 70.85714285714285%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAABzUlEQVR42o1Ui26jQAzM//9ddTSBwJXwCs/whuU91bhHdOlR6VZy1qy94xmvlRMAtG2LNE0RxzHKssQ8zzzGtm0vxjUMg+QkSSI7v/9ep68kBd/zYNs2qqrCuq74abEYc0zTRJ7nGMfxWfwJOC0zoqyA+RHIIZne73dkWSZ+GIaIokjOiqLAsixomuawoACqcUTyKOAHkchn5ev1Kiy4G4YBXdflm4BlWeHX+TfatpOClM+d7AUwrxvYYQrrw4dSSiR3XSfg+17Xtfi8RJleEIt0xnhnvyeA/TAizivco0xosyJlkil9Gh+NZ2TIiwQ6lMyKbOg8T/Jq7A33y+UiMmnn8xmapom/S357t6SX/wBmaQrbD2AGCS7GDUr1mKbpRfLu930vcikvSTMZGbKm+b4vsROTOqVQ1A2yRyFV9rH5Pof7aHBp+g15UQgICRD82cOiaWEHMW5OIAHHccT4cqxM8/7MKftJto4bvBR4GRsGKINsd4a8aFmWABPIdV2RDmxYlhXvV0+YHQJO84yybhHFqYCSAUE4fwSlz3lkr8ZhkBzD8o4fhT+PqobuhtAuDrZtPUzclTDGyfhxbHan7RSCMMP/LAJ//1PYAT8B8RM1nn+zPQEAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/32d9459aea6981d1510cacd00d4a38aa/c54d4/sync-non-blocking.webp 175w,
+/TIL/static/32d9459aea6981d1510cacd00d4a38aa/a3432/sync-non-blocking.webp 350w,
+/TIL/static/32d9459aea6981d1510cacd00d4a38aa/14369/sync-non-blocking.webp 634w&quot; sizes=&quot;(max-width: 634px) 100vw, 634px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/32d9459aea6981d1510cacd00d4a38aa/4edbd/sync-non-blocking.png 175w,
+/TIL/static/32d9459aea6981d1510cacd00d4a38aa/13ae7/sync-non-blocking.png 350w,
+/TIL/static/32d9459aea6981d1510cacd00d4a38aa/374ac/sync-non-blocking.png 634w&quot; sizes=&quot;(max-width: 634px) 100vw, 634px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/32d9459aea6981d1510cacd00d4a38aa/374ac/sync-non-blocking.png&quot; alt=&quot;sync-non-blocking.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;h2 id=&quot;44-asynchronous-blocking&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#44-asynchronous-blocking&quot; aria-label=&quot;44 asynchronous blocking permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.4. Asynchronous Blocking&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;작업 상태를 동기화하지도 않을 거면서, 다른 작업이 끝나기까지 대기하는 괴상한 상태이다.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://interconnection.tistory.com/141&quot;&gt;Ryan&lt;/a&gt;님이 I/O Multiplexing을 위한 OS의 &lt;strong&gt;Select와 Poll 시스템 콜&lt;/strong&gt;을 예시로 들어주셨는데, 솔직히 뭔 말인지 잘 모르겠다.&lt;/p&gt;
+&lt;p&gt;뒤 이어 나온 설명이 그나마 도움이 되었다. Asynchronous Blocking의 작업 효율은 Synchronous Blocking과 비슷하며, &lt;strong&gt;대부분의 경우 의도치 않은 개발 실수&lt;/strong&gt;라고 한다.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/d79d20e7460c182822b2528518c5e2b7/073e9/async-blocking.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 61.71428571428571%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAABnUlEQVR42pVTa6+jIBD1//+8tvul6frCBwoCWqlPPJshofH23s1mJ5mgOJ45zDlEAHAcBy0Ynk9kWYY0TTAMA8K3z5ymCXVdgzGG18vCOYcQEU7h3A6lDDqlse87zs2+1jmM4whr7bvuC6A7DgghIJVCVgkUZYt5njzbsiw9G1qLokCe5x6oUwb9YD0JYjzPs28UhY7btvn1OVpobbBtK9q2RZIkHihNU8Rx7PcIpKgE7g8GrToIIdF1HdZ1RUTUw7zkwPEofqOuOw9IXc9JTJZl8c3pH3r/jKhpGvS9wb46JPUdlcpw7PhnUAMC/hHQGI1xsLjnv9D0Bdx/AJIodFR6JgHfgBRMxshFjGXevB1oXlJKcM59Um3Ttjicg9IGvGmhtfJ1JCqBRiQEzcK5A5ubwDhHxhpYO3plz4BBbWKnTe8F/Hbk4LWXtdDDEw8mkWQc27qAsQLX69Xn5XLB7XbzLNd1QVkLiK7/5tW3bXpjUEuJpBJgrMayzFBKebsEL9LN0Fpj31bkRYOKdz8DnoMGTPm3WxL2gn0+j/wHoOKeutaI13QAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/d79d20e7460c182822b2528518c5e2b7/c54d4/async-blocking.webp 175w,
+/TIL/static/d79d20e7460c182822b2528518c5e2b7/a3432/async-blocking.webp 350w,
+/TIL/static/d79d20e7460c182822b2528518c5e2b7/426ac/async-blocking.webp 700w,
+/TIL/static/d79d20e7460c182822b2528518c5e2b7/05ca6/async-blocking.webp 719w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/d79d20e7460c182822b2528518c5e2b7/4edbd/async-blocking.png 175w,
+/TIL/static/d79d20e7460c182822b2528518c5e2b7/13ae7/async-blocking.png 350w,
+/TIL/static/d79d20e7460c182822b2528518c5e2b7/8c557/async-blocking.png 700w,
+/TIL/static/d79d20e7460c182822b2528518c5e2b7/073e9/async-blocking.png 719w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/d79d20e7460c182822b2528518c5e2b7/8c557/async-blocking.png&quot; alt=&quot;async-blocking.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;h1 id=&quot;5-참고자료&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C&quot; aria-label=&quot;5 참고자료 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5. 참고자료&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://interconnection.tistory.com/141&quot;&gt;Blocking or Non-Blocking, Synchronous and Asynchronous&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://inpa.tistory.com/entry/%F0%9F%91%A9%E2%80%8D%F0%9F%92%BB-%EB%8F%99%EA%B8%B0%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%B8%94%EB%A1%9C%ED%82%B9%EB%85%BC%EB%B8%94%EB%A1%9C%ED%82%B9-%EA%B0%9C%EB%85%90-%EC%A0%95%EB%A6%AC&quot;&gt;👩‍💻 완벽히 이해하는 동기/비동기 &amp;#x26; 블로킹/논블로킹&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://medium.com/from-the-scratch/wtf-is-synchronous-and-asynchronous-1a75afd039df&quot;&gt;WTF is Synchronous and Asynchronous!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=oEIoqGd-Sns&amp;#x26;t=413s&quot;&gt;[10분 테코톡] 🐰 멍토의 Blocking vs Non-Blocking, Sync vs Async&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=ohz7uHnza6A&quot;&gt;[10분 테코톡] 땡칠의 Blocking vs Non-Blocking과 Sync vs Async&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA["P, NP, NP 난해, NP 완전" 이해하기]]></title><description><![CDATA[1. 핵심 요약 P-NP…]]></description><link>https://byongho96.github.io/TIL/posts/CS/Algorithm/P_NP/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/CS/Algorithm/P_NP/</guid><pubDate>Mon, 04 Sep 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-핵심-요약&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%ED%95%B5%EC%8B%AC-%EC%9A%94%EC%95%BD&quot; aria-label=&quot;1 핵심 요약 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 핵심 요약&lt;/h1&gt;
+&lt;p&gt;P-NP 개념에 대해 구글링하면 온갖 수학적 개념이 튀어나와 사람을 기죽인다. 아마 명제만으로 개념을 정의하기 위한 수학자들의 약속 때문인 것 같다.&lt;/p&gt;
+&lt;p&gt;하지만 나 같은 일반 개발자가 이해하기에는 너무나도 고고했기 때문에, 정확성과 전달력 사이에서 적절히 타협하여 다음과 같이 정리했다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;P 문제&lt;/strong&gt;: 다항 시간 이내의 시간 복잡도로 풀이 가능한 문제&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NP 문제&lt;/strong&gt;: 다항 시간 이내의 시간 복잡도로 검증 가능한 문제&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NP 난해&lt;/strong&gt;: 다항 시간 이내의 시간 복잡도로 풀이 불가능한 문제&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NP 완전&lt;/strong&gt;: 다항 시간 이상의 시간 복잡도로 풀이 불가능하지만, 다항 시간의 시간복잡도로 검증 가능한 문제&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;다항시간의 시간복잡도란, &lt;mark&gt;주어진 데이터의 크기가 N이라고 할 때 &lt;code&gt;O(N**n)&lt;/code&gt;(n은 0 이상의 정수)&lt;/mark&gt;으로 나타낼 수 있는 시간복잡도를 말한다.&lt;/p&gt;
+&lt;h1 id=&quot;2-p-문제&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-p-%EB%AC%B8%EC%A0%9C&quot; aria-label=&quot;2 p 문제 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. P 문제&lt;/h1&gt;
+&lt;p&gt;&lt;mark&gt;다항 시간 이내의 시간 복잡도로 풀이 가능한 문제&lt;/mark&gt;를 말한다. 아래 그래프에서 확인할 수 있는 것처럼 &lt;code&gt;O(logN)&lt;/code&gt;의 시간복잡도가 &lt;code&gt;O(N)&lt;/code&gt;보다 낮기 때문에, &lt;strong&gt;다항식에 &lt;code&gt;logN&lt;/code&gt;이 곱해져도 여전히 다항식에 속한다.&lt;/strong&gt;&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/b5c0bd27b95b94aa6421c2b377adc475/7e509/Big_O_graph.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 61.142857142857146%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAAC20lEQVR42lXRT2iTdxzH8Uc2T4MdxYMHYbcdN6aCTpuk1f05iffB2G0IMqYLtQouT/M8T5609bQpwhw6ioeuQpthG23UJu2aDkfpVpY29ckfzb8+TQr50+dJnuZ53qNJV+bhw+fwgxd8fl+h3mjQqlap5vNUi0WaGxtYlQrb2Qz62ENKofuUViQSKxJjvw/w25/DtDY3sDbLWGW9081CGSyTtWQSYdtxqIVC5L69TPHGDWxVpakoFK9fxxRFHFnCCYi0FZGWLGIpgxBUYUgF+SYER7B//hIyd9GyhT1wcoLa1auYigxqgKrPx44i4wQC+6ETtfPuSEEc/xDObS+EL2DHPoD8j6Qyxf/ASar9/RiStA/+H+tG6bZ/GG5+Dw+/gAU3xD3Yz0/A61tomQJCw7apTUx0QFOWsWSZhiiCqr6JSUOd5pevIXoOO36a1qybnehZ6tMfQeoHUtkiQq5SIT86Sv3aNQxZxvT7Mfz+PVDBkYNd7PZ3ED4Pi2cg7saIuMmOn6Iy5aI1cwxyt7qT06US2Xv3qA4MYAUUaqKP9u7/KQGcwRGcEd/ePA9O3MXOrIfGjIvtiIt2zAMLZ7GjXVDbBbdMk/L4OJteL01Fpr47VxrugNy/CLOfYS+cofncRWOmh0akh52oB+Z7IdYH0U+xH5+C7J03r6x7r1ATJaxBFe54ccLnseZPU5/poRb2YDzpxX52DmKfwFwfzlwvzh8f4/x1nPbqETAG0dKl7lGqkyEK3/RjBH0w9hWtp32Yz1w0I70w54alk5D4ELT3IXcUtg6B8Q60DwJvYzYF4BLptI7QBFIPRkn6P2fzyXFy8+9RfHEUPXEYPfsupY2D5MoHyFQE1rcEEmWBFV1gqSjwoiDwdPUtfl0UWNUv8SqrI2wbBq9TSVaWH5FcD6Olp1h/FWItE+Kf9COW1iaZiv5EJD7KsjbNshZmSZvez2IiTOzvEPlKkpfrL/kX0or3SLDTFYoAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/b5c0bd27b95b94aa6421c2b377adc475/c54d4/Big_O_graph.webp 175w,
+/TIL/static/b5c0bd27b95b94aa6421c2b377adc475/a3432/Big_O_graph.webp 350w,
+/TIL/static/b5c0bd27b95b94aa6421c2b377adc475/426ac/Big_O_graph.webp 700w,
+/TIL/static/b5c0bd27b95b94aa6421c2b377adc475/06157/Big_O_graph.webp 745w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/b5c0bd27b95b94aa6421c2b377adc475/4edbd/Big_O_graph.png 175w,
+/TIL/static/b5c0bd27b95b94aa6421c2b377adc475/13ae7/Big_O_graph.png 350w,
+/TIL/static/b5c0bd27b95b94aa6421c2b377adc475/8c557/Big_O_graph.png 700w,
+/TIL/static/b5c0bd27b95b94aa6421c2b377adc475/7e509/Big_O_graph.png 745w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/b5c0bd27b95b94aa6421c2b377adc475/8c557/Big_O_graph.png&quot; alt=&quot;Big_O_graph.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;h1 id=&quot;3-np-문제&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-np-%EB%AC%B8%EC%A0%9C&quot; aria-label=&quot;3 np 문제 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. NP 문제&lt;/h1&gt;
+&lt;p&gt;&lt;mark&gt;다항 시간 이내의 시간 복잡도로 검증 가능한 문제&lt;/mark&gt;를 말한다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;우선 모든 P문제는 NP문제에 포함된다.&lt;/strong&gt; 다항 시간 이내의 시간 복잡도로 문제를 해결할 수 있다면, 당연히 같은 시간 복잡도 내에 검증도 가능하기 때문이다.&lt;br&gt;
+예를 들어, 누군가 제출한 답안이 문제의 정답인지 아닌지 검증해야한다고 가정해보자. 이 때 가장 무식한 방법은 직접 문제를 풀어서 정답을 구한 다음에 이를 제출한 답과 비교하는 것이다. 이렇게 가장 무식한 방법을 고려하면, P문제는 반드시 NP문제에 포함된다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;어떤 문제들은 P문제가 아님에도 NP문제에 포함된다.&lt;/strong&gt; 가장 대표적으로 &lt;a href=&quot;https://www.acmicpc.net/problem/2580&quot;&gt;스도쿠&lt;/a&gt;가 있다.&lt;br&gt;
+스도쿠 문제는 각 칸에 1 ~ 9 까지의 값이 들어갈 수 있다. 따라서 N개의 빈칸이 있을 때, 완전 탐색으로 풀이하면 &lt;code&gt;O(9**N)&lt;/code&gt;의 시간복잡도가 소요된다.&lt;br&gt;
+하지만 누군가가 답안을 제출했을 때 이를 검증하는 것은 훨씬 쉽다. 9개의 열, 행, 사각형을 순차탐색하면 되기 때문이다&lt;br&gt;
+무엇을 N으로 잡느냐에 따라 시간복잡도의 표현식이 달라지겠지만, 똑같이 빈 칸의 갯수를 N이라 하면, 검증에는 빈칸의 갯수와 상관 없이 &lt;code&gt;O(3*9*9)&lt;/code&gt;의 상수시간이 소요된다.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 375px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/2648e2d176dca597d4bb3a65cec5acb1/5ff7e/sudoku.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC4ElEQVR42m3UfUtCSxAG8PP9P0wQQfRHUFBU9F5WZmUvlpqWmqbZ6+7lN3jkXrgHlp2zO7vzPM/MbFGpVNLFxUXudrvp9PQ0Pz8/p8lkkmu1Wn5/f89vb2/55uYmn52dhd3tduP/+/ubb+b78vKSPz4+8u3tbS7Oz8/zwcEB57S1tZUHg0H6/f3Nd3d3+efnJ0+n09xoNHKz2cyfn595PB7Hv28wGGS+o9Eo//39hU8hmsO9Xi9xhpADhJ1OJ8b9/X04m09OTnK9Xo/L2+12sIAaUuvF3t5e3t/f55BEHY1GSTTOl5eXcaF5d3c3bCzszXxjdpnPeiEyLVqtVrLQbrdjJsXsP/Z7vV7M6EJPCnvQtVqtQIptgaav2WymxcXFPBwO08LCQj46OppH//r6Cq0Ibzw9Pc0RLi8vhxQ+FxeiWahWq4kNGZ02NzfnaGjMvrq6ioG+w9VqNR8fH2fV8fj4mA8PD3Nh0+HpdBoaynZKKYIoDcg4CsJGzeGZb2QXA6W3vb2dC1H89Pv9RBf1WNZhWSb21SGK/X4/tFJS9LOvfGQ4ENp0YDKZJE4uFvHh4SGvra2Fo3VI0Jblsg4lii/UdCVXQRPRUUYVZdQ4oIC6fxdCJFn/pmwPM/6VSiUXokEJGYooc7i+vg7KaHKWmJIy1C4SQNZLynOEMqVcJKHT6SRO1lGhkdaUPPbr62sAwEahl0GVD4kKSCBQNrSs1WoJJRdAL7ILaGo2dJekGcBApowiKVD4Go1GWl1dRSG0dJkZWshpyCYH+g47u7KyEvLMC1s7EbdsPfNwOIyipY19Ws18IiGYYDXzj+EJ0/PRegQej8f/eRxctLGxMe8WekG2tLQUL0/ZelhgoDl2dnZyITpEZUF7vlCRFA8mRJBIhiDolRVgnQz2BIT8fxGWGkLK1queOLag5ePA1pICmQNhvV5PHMyiyKLISsU6eqivr6+HLeuKm2ZsWVb8OkhS/wFi1MPir3KK/gAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/2648e2d176dca597d4bb3a65cec5acb1/c54d4/sudoku.webp 175w,
+/TIL/static/2648e2d176dca597d4bb3a65cec5acb1/a3432/sudoku.webp 350w,
+/TIL/static/2648e2d176dca597d4bb3a65cec5acb1/f3a60/sudoku.webp 375w&quot; sizes=&quot;(max-width: 375px) 100vw, 375px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/2648e2d176dca597d4bb3a65cec5acb1/4edbd/sudoku.png 175w,
+/TIL/static/2648e2d176dca597d4bb3a65cec5acb1/13ae7/sudoku.png 350w,
+/TIL/static/2648e2d176dca597d4bb3a65cec5acb1/5ff7e/sudoku.png 375w&quot; sizes=&quot;(max-width: 375px) 100vw, 375px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/2648e2d176dca597d4bb3a65cec5acb1/5ff7e/sudoku.png&quot; alt=&quot;sudoku.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;h1 id=&quot;4-np-난해&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-np-%EB%82%9C%ED%95%B4&quot; aria-label=&quot;4 np 난해 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. NP 난해&lt;/h1&gt;
+&lt;p&gt;&lt;mark&gt;다항 시간 이내의 시간 복잡도로 풀이 불가능한 문제&lt;/mark&gt;를 말한다.&lt;/p&gt;
+&lt;p&gt;위의 문장이 NP난해의 대략적으로 설명할 수 있다고 생각하지만, 명확히 정의는 아니다. 참고로 위키피디아의 정의는 아래와 같은데, 여기서 &lt;strong&gt;다대일 환산&lt;/strong&gt;의 개념이 일대일 환산을 포함하는 것인지 잘 모르겠다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;NP-난해, NP-hard는 NP에 속하는 모든 판정 문제를 다항 시간에 다대일 환산할 수 있는 문제들의 집합이다. 다시 말하면, NP-난해는 적어도 모든 NP 문제만큼은 어려운 문제들의 집합이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;이어서 나온 설명은 더 가관이다. P-NP문제의 판정 결과에 따라 P문제가 NP난해에 속할 수도 있고, 반대로 서로소일 수도 있다고 한다. 이런 것을 보면 NP난해는 NP문제 정의에 의존하는 추상적인 개념일 것이라고 추측한다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;NP-난해 집합에 속하는 문제가 NP에도 속하면 NP-완전에 속한다. 즉, NP-완전은 NP와 NP-난해의 교집합이다. 만약 P-NP 문제가 P=NP로 풀린다면 P=NP=NP-완전이므로 P와 NP는 NP-난해의 부분집합이 되고, P≠NP인 경우는 P와 NP-난해는 서로소가 된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/fae0b4f478dc526d70c1ca439b8225d2/c1b63/p-np-graph.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 62.28571428571429%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA80lEQVR42p2Si6rCQAxET1u7q0W7vh8oiHD//xsv1UkZRRQMBLLJZPLYANRA4iGDnYFWNool83/CNR4cZAqcgYvsALbS9AaXDXcnr8xZyVnLDuDEOn3F1a+EKGEGrIBiOlOsNsKk2FxarPuRcDD2wAk4aJSz7Oii1ai9J8ruVTymugPXcia9g2CqZTfqJitxAxyt+2JF6ICtwI3GrETa2U6XKjAQXYE/4AYsFBslqjdKiI9Yiai3s3jqRFLspEaJKnFfSxGhXXY2TVHBKNA5UWXLzCJe2Cn5LfqZ9dL8hudp9J1+20eYSP291i4TXyR+9Bcf/40HBkBsyRKpAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/fae0b4f478dc526d70c1ca439b8225d2/c54d4/p-np-graph.webp 175w,
+/TIL/static/fae0b4f478dc526d70c1ca439b8225d2/a3432/p-np-graph.webp 350w,
+/TIL/static/fae0b4f478dc526d70c1ca439b8225d2/426ac/p-np-graph.webp 700w,
+/TIL/static/fae0b4f478dc526d70c1ca439b8225d2/c139f/p-np-graph.webp 1050w,
+/TIL/static/fae0b4f478dc526d70c1ca439b8225d2/92f8c/p-np-graph.webp 1200w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/fae0b4f478dc526d70c1ca439b8225d2/4edbd/p-np-graph.png 175w,
+/TIL/static/fae0b4f478dc526d70c1ca439b8225d2/13ae7/p-np-graph.png 350w,
+/TIL/static/fae0b4f478dc526d70c1ca439b8225d2/8c557/p-np-graph.png 700w,
+/TIL/static/fae0b4f478dc526d70c1ca439b8225d2/e996b/p-np-graph.png 1050w,
+/TIL/static/fae0b4f478dc526d70c1ca439b8225d2/c1b63/p-np-graph.png 1200w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/fae0b4f478dc526d70c1ca439b8225d2/8c557/p-np-graph.png&quot; alt=&quot;p-np-graph.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;p&gt;&lt;strong&gt;NP문제 중 다항시간 내에 풀이 불가능한 문제&lt;/strong&gt;가 여기에 속한다. 앞서 설명했던 스도쿠 문제가 포함된다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NP문제에 포함되지 않고 다항시간 내에 풀이 불가능한 문제&lt;/strong&gt;도 여기에 속한다. 가장 유명한 문제로는 외판원 순회가 있다. &lt;a href=&quot;https://www.acmicpc.net/problem/2098&quot;&gt;외판원 문제&lt;/a&gt;는 순열(permutation) 문제의 일종으로 &lt;code&gt;O(N!)&lt;/code&gt;의 시간복잡도를 가지는데, 다항시간 내에 검증할 마땅한 방법이 없어 검증에도 역시 &lt;code&gt;O(N!)&lt;/code&gt;의 시간이 소요된다.&lt;/p&gt;
+&lt;h1 id=&quot;5-np-완전&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-np-%EC%99%84%EC%A0%84&quot; aria-label=&quot;5 np 완전 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5. NP 완전&lt;/h1&gt;
+&lt;p&gt;&lt;mark&gt;다항 시간 이상의 시간 복잡도로 풀이 불가능하지만, 다항 시간의 시간복잡도로 검증 가능한 문제&lt;/mark&gt;를 말한다. NP와 NP난해의 교집합이다.&lt;/p&gt;
+&lt;p&gt;NP문제에 설명했던 스도쿠 문제가 바로 NP 완전의 대표적인 예시이다.&lt;/p&gt;
+&lt;h1 id=&quot;6-p-np-문제&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#6-p-np-%EB%AC%B8%EC%A0%9C&quot; aria-label=&quot;6 p np 문제 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6. P-NP 문제&lt;/h1&gt;
+&lt;p&gt;&lt;mark&gt;P-NP문제는 P문제와 NP문제가 같은지 다른지를 증명하는 것이다.&lt;/mark&gt; 다항시간 내에 검증이 가능한 문제라면, 우리가 아직 발견하지 못한 더 아름다운 알고리즘으로 결국에는 다항시간에 풀이 또한 가능하지 않을까하고 기대할 수 있다.&lt;/p&gt;
+&lt;p&gt;실제 알고리즘을 푸는 과정에서, 시간초과가 났을 때 더 나은 알고리즘을 써서 시간복잡도를 줄인 후 통과한 경험이 있을 것이다. 지금 대표적으로 생각나는 문제는 &lt;a href=&quot;https://www.acmicpc.net/problem/2473&quot;&gt;세 용액&lt;/a&gt;이다. 완전 탐색으로 풀면 모든 경우를 조합하여 &lt;code&gt;O(N**3)&lt;/code&gt;의 시간 복잡도가 소요되는데, 투포인터를 이용하면 &lt;code&gt;O(N**2)&lt;/code&gt;의 시간 복잡도로 줄일 수 있다.&lt;/p&gt;
+&lt;p&gt;하지만 ChatGPT피셜 아직까지 다항 시간 이상의 시간복잡도가 소요되는 문제가, 더 나은 알고리즘으로 다항 시간 이내의 시간복잡도로 풀이된 사례는 없다고 한다. 따라서 P와 NP가 다름을 증명하는게 더 가능성 있다고 생각하는데, 내가 뭘 알겠는가&lt;/p&gt;
+&lt;h1 id=&quot;7-참고자료&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#7-%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C&quot; aria-label=&quot;7 참고자료 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;7. 참고자료&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://ko.wikipedia.org/wiki/P-NP_%EB%AC%B8%EC%A0%9C&quot;&gt;위키피디아: P-NP 문제&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://ko.wikipedia.org/wiki/NP-%EB%82%9C%ED%95%B4#:~:text=NP%2D%EB%82%9C%ED%95%B4%2C%20NP%2Dhard,%ED%95%98%EB%A9%B4%20NP%2D%EC%99%84%EC%A0%84%EC%97%90%20%EC%86%8D%ED%95%9C%EB%8B%A4.&quot;&gt;위키피디아: NP 난해&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[SpringBoot 프로젝트 구조 정리]]></title><description><![CDATA[프론트엔드 개발자로써 SpringBoot가 어떻게 돌아가는지 알고 싶어서 정리해보았다. 지난 프로젝트를 참고하고, 친구 Java 개발자의 도움을 받았다. Thanks to. 췐쓰희 1. 개요 SpringBoot는 객체지향적인 Java…]]></description><link>https://byongho96.github.io/TIL/posts/Backend/Spring/Project_Structure/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Backend/Spring/Project_Structure/</guid><pubDate>Wed, 12 Jul 2023 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
 &lt;p&gt;프론트엔드 개발자로써 SpringBoot가 어떻게 돌아가는지 알고 싶어서 정리해보았다.&lt;br&gt;
 지난 프로젝트를 참고하고, 친구 Java 개발자의 도움을 받았다.&lt;br&gt;
 Thanks to. &lt;a href=&quot;https://velog.io/@chancehee&quot;&gt;췐쓰희&lt;/a&gt;&lt;/p&gt;
