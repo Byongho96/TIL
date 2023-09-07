@@ -1,5 +1,5 @@
 import { useEffect, RefObject } from 'react'
-import { throttle } from 'lodash'
+import throttle from 'lodash/throttle'
 
 /*
 무한스크롤 커스텀 훅

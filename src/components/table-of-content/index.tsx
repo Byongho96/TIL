@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import './style.scss'
-import { throttle } from 'lodash'
+import throttle from 'lodash/throttle'
 
 interface Props {
   toc: string
