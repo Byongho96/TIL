@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import './style.scss'
-import { throttle } from 'lodash'
+import throttle from 'lodash/throttle'
 import Category from '@components/category'
 import ProfileImage from '@components/profile-image'
 
