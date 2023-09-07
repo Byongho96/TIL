@@ -3,8 +3,8 @@ title: 'JavaScript 비동기 처리 Promise & Async'
 updatedAt: '2023-09-07'
 createdAt: '2023-09-07'
 isCompleted: true
-tags: ['promise', 'async', 'await', 'try' 'catch', '비동기']
-reference: "https://www.youtube.com/watch?v=aoQSOZfz3vQ"
+tags: ['promise', 'async', 'await', 'try', 'catch', '비동기']
+reference: 'https://www.youtube.com/watch?v=aoQSOZfz3vQ'
 ---
 
 > 이 글은 [드림코딩](https://www.youtube.com/@dream-coding)님의 자바스크립드 11 ~ 13 비동기 강의를 듣고 정리한 문서입니다.

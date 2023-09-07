@@ -3,7 +3,7 @@ title: 'Sync vs Async, Blocking vs Non-blocking 파헤치기'
 updatedAt: '2023-09-05'
 createdAt: '2023-09-05'
 isCompleted: true
-tags: ['sync', 'async', '동기', '비동기' 'blocking', 'non-blocking']
+tags: ['sync', 'async', '동기', '비동기', 'blocking', 'non-blocking']
 reference:
 ---
 
