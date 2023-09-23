@@ -1,4 +1,484 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 07 Sep 2023 14:31:08 GMT</lastBuildDate><item><title><![CDATA[JavaScript 비동기 처리 Promise & Async]]></title><description><![CDATA[이 글은 드림코딩님의 자바스크립드 11 ~ 13 비동기 강의를 듣고 정리한 문서입니다. 1. Callback 콜백 함수란, 어떤 함수가 다른 함수의 매개변수로 전달되어 전달된 함수 내부에서 실행될 수 있는 것을 말한다. 1.1. 동기적 콜백 1.…]]></description><link>https://byongho96.github.io/TIL/posts/Language/JavaScript/Promise_Async_2/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Language/JavaScript/Promise_Async_2/</guid><pubDate>Thu, 07 Sep 2023 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 23 Sep 2023 06:29:53 GMT</lastBuildDate><item><title><![CDATA[Webpack vs Rollup vs Vite 비교 분석]]></title><description><![CDATA[1. 번들러 1.…]]></description><link>https://byongho96.github.io/TIL/posts/Language/JavaScript/Webpack_Rollup_Vite/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Language/JavaScript/Webpack_Rollup_Vite/</guid><pubDate>Sun, 10 Sep 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-번들러&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EB%B2%88%EB%93%A4%EB%9F%AC&quot; aria-label=&quot;1 번들러 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 번들러&lt;/h1&gt;
+&lt;h2 id=&quot;11-번들러란&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-%EB%B2%88%EB%93%A4%EB%9F%AC%EB%9E%80&quot; aria-label=&quot;11 번들러란 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1. 번들러란?&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://webpack.js.org/&quot;&gt;웹팩 공홈&lt;/a&gt;에 들어가면 있는 아래 그림이 번들러를 가장 잘 표현한 것 같다.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/e79747a157ff215dc60f91b847fc451b/fe8a7/webpack.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 51.42857142857144%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsTAAALEwEAmpwYAAABu0lEQVR42n2Ty2rbUBCG9SwNuHYlWxdLlmXrYl2PLFmq3RgbHBqSQANdpATTkFU2WZU8QVr6CiUEgp8ku7bP8pczvqA2SRcjjeYw38z8miOIvQD/2hvLR8uO0GUlLPYWnWgEI8xhsZLez+VsTZDsCC03eQJUPIbh7D2y+SGS6QG8YopicQQ2PUDD8l8Gyh5DO8zBwdyX+uEO+rrjoqY7eCWb2FMt+q53B0+Kb20DTGGyMdRBCjOdkN/ejNW0I6gew+z8CvnJGUTrbxhvQvFTakT1hxD7IQTFS9HP9mFEBYy4gDV8h05SQupHaBg2Pnz5is+rn7h8eMT4dIm6YZMcfJKmE0MLMij+EDqfkgNll8FMxzDiEmZSQgtzaEFO1WpaF59uf+Dj/S8sV7+xuLiGaLqULLsJmnZMjXCoHo02QI/BiEdQg4wOOgnvckJAqecjnB/j/NsdTm++0wRcKw6iTXBi9LIJSbTNEXhQHqQU5KNLdlzRKURNtyGaHhqGg7rpUdLuh/QCtFwGPSrQdNabQhq6xYw65EFeXaokkW8Fa1AlXj2v5gj8ofgZ6dYOR6QlF1v8z649dxG2e/gHB7JeBHCgrQwAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/e79747a157ff215dc60f91b847fc451b/c54d4/webpack.webp 175w,
+/TIL/static/e79747a157ff215dc60f91b847fc451b/a3432/webpack.webp 350w,
+/TIL/static/e79747a157ff215dc60f91b847fc451b/426ac/webpack.webp 700w,
+/TIL/static/e79747a157ff215dc60f91b847fc451b/c139f/webpack.webp 1050w,
+/TIL/static/e79747a157ff215dc60f91b847fc451b/c77ba/webpack.webp 1223w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/e79747a157ff215dc60f91b847fc451b/4edbd/webpack.png 175w,
+/TIL/static/e79747a157ff215dc60f91b847fc451b/13ae7/webpack.png 350w,
+/TIL/static/e79747a157ff215dc60f91b847fc451b/8c557/webpack.png 700w,
+/TIL/static/e79747a157ff215dc60f91b847fc451b/e996b/webpack.png 1050w,
+/TIL/static/e79747a157ff215dc60f91b847fc451b/fe8a7/webpack.png 1223w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/e79747a157ff215dc60f91b847fc451b/8c557/webpack.png&quot; alt=&quot;webpack.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;p&gt;&lt;strong&gt;번들러는 자바스크립트 코드의 모듈관계를 분석하여 하나의 자바스크립트 파일로 만들어준다.&lt;/strong&gt; 쉽게 말해 내가 참조한 자바스크립트 파일을 다 끌고와 하나의 파일에 쑤셔박는거다. 쑤셔박는다고 표현했지만, 그 복잡한 모듈 의존성을 어떻게 분석하는 것인지 참 신기하다.&lt;/p&gt;
+&lt;p&gt;css, html, 그리고 각종 미디어 파일은 들러리일 뿐이다. &apos;자바스크립트 코드 번들링하는 김에 너도 해줄게!&apos; 이런 느낌이다. 때문에 css파일이나 미디어 파일을 번들링하기 위해서는, 대부분의 경우 별도의 로더를 번들러에 추가해줘야 한다.&lt;/p&gt;
+&lt;h2 id=&quot;12-번들러의-아주-간단한-역사&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-%EB%B2%88%EB%93%A4%EB%9F%AC%EC%9D%98-%EC%95%84%EC%A3%BC-%EA%B0%84%EB%8B%A8%ED%95%9C-%EC%97%AD%EC%82%AC&quot; aria-label=&quot;12 번들러의 아주 간단한 역사 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2. 번들러의 아주 간단한 역사&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Grunt, Gulp, Google Closure Compiler&lt;/strong&gt;&lt;br&gt;
+이것들은 &lt;b&gt;빌드도구 혹은 태스크 러너(task runner)&lt;/b&gt;로 출발했다. 복사, 압축, 최적화, 테스트, CSS 전처리 등의 빌드를 위한 작업을 수행한다. 이러한 작업들이 현대의 번들러에 모두 흡수되었다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Browserify (2011)&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;최초의 번들러&lt;/strong&gt;라고 할 수 있다. commonJS가 자바스크립트의 대표 모듈 시스템이 되어 클라이언트측이 발만 동동 구르고 있을 때, &apos;클라이언트측을 위한 모듈 시스템이 없다면 걍 하나로 합쳐버리면 되지!&apos;라는 혁신적인 아이디어와 함께 등장했다. 현재 번들러와 개념이 거의 동일하다.&lt;br&gt;
+ES6의 등장으로 브라우저에서도 공식적으로 모듈시스템을 지원할 수 있게 되었지만, 여러개의 모듈을 네트워크를 통해 비동기적으로 로드하는 것은 비효율적이기 때문에 여전히 번들러가 사용된다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Webpack (2012)&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;가장 대표적인 번들러&lt;/strong&gt;이다. 풍부한 생태계와 그에 따른 다양한 플러그인을 가진다. 따라서 세세한 커스터마이징 및 안정적인 번들링 작업을 수행할 수 있다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Rollup, Snowpack, Parcel&lt;/strong&gt;&lt;br&gt;
+웹팩과는 각기 다른 장단점으로 선호되는 번들러들이다. 어디서 webpack이 번들러의 춘추전국시대를 마무리 지었다는 글을 보았는데, 내 생각에는 반대 같다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;esbuild(2020)&lt;/strong&gt;&lt;br&gt;
+esbuild는 아직 공식적인 v1.0이 나오지 않았음에도, 엄청나게 빠른 빌드 속도로 주목을 받고 있다. Go언어로 작성되어 멀티스레드를 사용하기 때문에 JavaScript로 작성된 다른 빌드도구보다 월등히 빠른 속도를 자랑한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;2-webpack-vs-rollup&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-webpack-vs-rollup&quot; aria-label=&quot;2 webpack vs rollup permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Webpack vs Rollup&lt;/h1&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/75fa8a8d1fe62d6281d55d9323f8bc2e/176bb/rollup-vs-webpack.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 55.99999999999999%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAADMElEQVR42iXS3U9bBQBA8f4JmkzROJWwAMNiHEJBChSCBieMjQIDJqQr6RDIBgpz+jAmujiymJmI2TLHZ0t723JboKXlo5TSQluGwIDpGFN0RBSHD2w18QGXeY8RX8/D7+nIUjsEUm4IpHQIvNFpRtltIb3Lwl7vEFB0CqR2m0jTm3i5xsuLmimia7zIdQskaddI1Nzhlcq7Ulz1LaJP+SIyVa+VjG4LbxlECkUnxUMu1DYH+YKNLL2F1F4jSrMeRZfA86UzxFXPkNo8TWbzIqr3v0d5LkRy3S0pseonEirv/A8Wiw6q3aM0jI5x1j1G49QU2kkvpfYBsk0CqsEukq6IHCifJb0pTG7rNE36u1zs/4WCy0Eyz/ul5MY5DlatRGQ5eisnhkf4eMLDVo6anTcLCFZpuGCzo/NNcNQucshu5oWzfl49OU/FlXmuB7dwbj7G++AJfbd3OKNfklQtYeLfm4rIjlrtVHs8XJiaZDdGCZfeYTvjIGLVB9QuL6Bx9tM+W8cl03kUp2f42vsrwYegs/5I/rVlbPcfM/LzQ6nkeojkD/0RWfmAg9qAj1avj936I/zde4R1eRpdV7uoX1ygYcLExtxTrIX3cbhlnMuebb5a2EHZFiK9LUz94Abi+p9SRU+QzC8mI7JCqw3t2DgtgUl2hWI2E+Ws7s/m8/kw9dMBtGMWbNNq9GYtaQ0+2j1bjD74h0rjPU4aV7l2+y/G7j+Siq6GeK3ZH5FlGwXKhly03nSz9lkVcwl5bKfk0fNlO5X+SdRuI/EXXTz99iJy3SzH2xb5ZuZ33L89wfeHhLDyiNOdy1L6R2EOaP8DBYFjdjvakWHq3C7OjI/SMD7CqeEhipwiuc4eYptH2Xf4JtEVIZJqZ8k8F6Txxj0+NW2S90kIRVNASqz5ltiK7yKyXItAjkUgr9/MMYeNUtcAJa4BChwWsu16Muw9ezM/kz9LVFGIl8pCyHVBXq9ZQlGzyqG6MHLNspRQvkFc2VpEpjT1oRQMZJj7yLIYUFkNqEQDWaKerMFu0gzGPejZwjBR6hDPqYNElQSIKVsioXyd2ONrxJf+IMWcWGH/u4HIv/UNPsM43MUpAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/75fa8a8d1fe62d6281d55d9323f8bc2e/c54d4/rollup-vs-webpack.webp 175w,
+/TIL/static/75fa8a8d1fe62d6281d55d9323f8bc2e/a3432/rollup-vs-webpack.webp 350w,
+/TIL/static/75fa8a8d1fe62d6281d55d9323f8bc2e/426ac/rollup-vs-webpack.webp 700w,
+/TIL/static/75fa8a8d1fe62d6281d55d9323f8bc2e/c139f/rollup-vs-webpack.webp 1050w,
+/TIL/static/75fa8a8d1fe62d6281d55d9323f8bc2e/7f403/rollup-vs-webpack.webp 1400w,
+/TIL/static/75fa8a8d1fe62d6281d55d9323f8bc2e/940bc/rollup-vs-webpack.webp 2401w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/75fa8a8d1fe62d6281d55d9323f8bc2e/4edbd/rollup-vs-webpack.png 175w,
+/TIL/static/75fa8a8d1fe62d6281d55d9323f8bc2e/13ae7/rollup-vs-webpack.png 350w,
+/TIL/static/75fa8a8d1fe62d6281d55d9323f8bc2e/8c557/rollup-vs-webpack.png 700w,
+/TIL/static/75fa8a8d1fe62d6281d55d9323f8bc2e/e996b/rollup-vs-webpack.png 1050w,
+/TIL/static/75fa8a8d1fe62d6281d55d9323f8bc2e/2cefc/rollup-vs-webpack.png 1400w,
+/TIL/static/75fa8a8d1fe62d6281d55d9323f8bc2e/176bb/rollup-vs-webpack.png 2401w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/75fa8a8d1fe62d6281d55d9323f8bc2e/8c557/rollup-vs-webpack.png&quot; alt=&quot;rollup-vs-webpack.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;p&gt;니중에 설명하겠지만 Vite는 하나의 번들러라고 할 수 없다. 따라서 이 절에서는 Webpakc과 Rollup 만을 비교한다.&lt;/p&gt;
+&lt;h2 id=&quot;21-개요&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-%EA%B0%9C%EC%9A%94&quot; aria-label=&quot;21 개요 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. 개요&lt;/h2&gt;
+&lt;p&gt;Webpack과 Rollup 모두 인기있는 번들러이고, 적절하게 설정해주면 &lt;strong&gt;어떤 번들러로든 원하는 결과물&lt;/strong&gt;을 얻을 수 있다. 다만 설계된 방식에 따라 &lt;strong&gt;장단점의 경향세가 있을 뿐&lt;/strong&gt;이다. &lt;a href=&quot;https://bundlers.tooling.report/&quot;&gt;여기&lt;/a&gt;에 가면, 기능에 따라 각 번들러의 평가 지표를 볼 수 있다.&lt;/p&gt;
+&lt;p&gt;그래서 결론만 말하면, 어플리케이션 만들 땐 webpack으로 빌드하고, 라이브러리 만들 땐 rollup으로 빌드하는게 통상적이란다.&lt;/p&gt;
+&lt;h2 id=&quot;22-비교&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-%EB%B9%84%EA%B5%90&quot; aria-label=&quot;22 비교 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. 비교&lt;/h2&gt;
+&lt;p&gt;Alexey님의 &lt;a href=&quot;https://moiva.io/?npm=rollup+webpack#:~:text=Rollup%20is%20generally%20faster%20than,build,%20especially%20for%20larger%20projects.&quot;&gt;Head-to-Head: Rollup vs Webpack Analysis&lt;/a&gt;글을 아주 많이 참조해서 작성했다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;설정&lt;/strong&gt;&lt;br&gt;
+웹팩이 보다 다양하고 복잡한 기능을 제공하는 만큼 설정이 더 복잡하다. 반면, 롤업은 단순성에 중점을 두기 때문에 더 간편한게 설정할 수 있다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;번들 사이즈&lt;/strong&gt;&lt;br&gt;
+일반적으로 롤업이 웹팩에 비해 더 작은 번들 크기를 생성한다. 이는 롤업이 보다 더 뛰어난 트리쉐이킹 기능을 제공하기 때문이다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;코드 분할&lt;/strong&gt;&lt;br&gt;
+웹팩이 더 뛰어난 코드분할 기능을 제공한다. 롤업 또한 코드 분할 기능이 있지만 웹팩에 비해 제한적이다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;모듈 시스템&lt;/strong&gt;&lt;br&gt;
+웹팩은 다양한 모듈 시스템과 호환된다. 롤업은 ESM모듈에 더 특화되어 있지만, 플러그인을 설치해서 다른 모듈 시스템과도 호환 가능하다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;빌드 속도&lt;/strong&gt;&lt;br&gt;
+일반적으로 롤업이 웹팩보다 빌드 시간이 빠릅니다. 이는 롤업의 빌드 프로세스가 더 간단하기 때문이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;3-vite&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-vite&quot; aria-label=&quot;3 vite permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. Vite&lt;/h1&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/4e2dc99aac9ebb05f0fc08c762cc6935/97a96/vite3.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 50.28571428571429%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAIAAAA7N+mxAAAACXBIWXMAAAsTAAALEwEAmpwYAAACN0lEQVR42k2SS2sTYRSGZ+1vENt831zzZSaZmcwkk5nM5NLmYpo0iSVpMkmT2ECxlZAYL7FNQlqkC5FqilhqwWIqLlVEREQQuhBEEBc1K124cuPWnRBJRPRZHJ4D5129B8P/QfynBE6QOGUlOZ526baZpCN9ns/VHIuX7Ym6HK6ISoKza9j4FFhwCKBlGoeAmOQADgCBk4ijJdUWSjsyF5zVrqexe259Z629EUi1DN+KW0xgOAQUJxKM1SZ4SRpZ4NQ0PGOnXbxVI+08MqL2ZMXoDXz94fZhf/SF/fiyfLH6oTR3EBQLGJg6LQSz0WI/nr6ZifezWk/nUrMo0xD2KNFtC6WFYtPfHeQHo2cv9kYnp368DR02vlX9RylnDYPQwjB8LLHtk0tJ5dqKvBuy5jQ8UkZdUlCs4QVXddPXPCh0vj7Y+fzzDfg+WNoKDVeV+ya/gUEIGYYRBF4UBckpibzIOxxuWfNoAfdMREuXPUudSONxvv76xvKvk1udV8vPW653V+WHJtsahxFCXkP36rrhM1RV9Xq9HlVVNN0IxYy4qczX4uV9s/Kknfp0nB3e0Y/XXU9r/N0FtDYO0zQty7Igis4JkiSzLIeTFMMKrBRw+QrRs21zbn81+Oi2/P6K86jO3yuy1yNMblwVhNAyAQDwZwIIcZIiaGS1SYIYNtzFeaVpylslYbPC9RbRpShjqtQs9vcpJgVPhJjIeCVpimFtSHayQZ1LhVkzhkoRJh+gkwrpdxDSbzrorEa+T8kAAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/4e2dc99aac9ebb05f0fc08c762cc6935/c54d4/vite3.webp 175w,
+/TIL/static/4e2dc99aac9ebb05f0fc08c762cc6935/a3432/vite3.webp 350w,
+/TIL/static/4e2dc99aac9ebb05f0fc08c762cc6935/426ac/vite3.webp 700w,
+/TIL/static/4e2dc99aac9ebb05f0fc08c762cc6935/c139f/vite3.webp 1050w,
+/TIL/static/4e2dc99aac9ebb05f0fc08c762cc6935/7f403/vite3.webp 1400w,
+/TIL/static/4e2dc99aac9ebb05f0fc08c762cc6935/46261/vite3.webp 2400w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/4e2dc99aac9ebb05f0fc08c762cc6935/4edbd/vite3.png 175w,
+/TIL/static/4e2dc99aac9ebb05f0fc08c762cc6935/13ae7/vite3.png 350w,
+/TIL/static/4e2dc99aac9ebb05f0fc08c762cc6935/8c557/vite3.png 700w,
+/TIL/static/4e2dc99aac9ebb05f0fc08c762cc6935/e996b/vite3.png 1050w,
+/TIL/static/4e2dc99aac9ebb05f0fc08c762cc6935/2cefc/vite3.png 1400w,
+/TIL/static/4e2dc99aac9ebb05f0fc08c762cc6935/97a96/vite3.png 2400w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/4e2dc99aac9ebb05f0fc08c762cc6935/8c557/vite3.png&quot; alt=&quot;vite3.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;p&gt;&lt;strong&gt;Vite는 빌드도구로 번들링을 위해 번들러를 사용한다.&lt;/strong&gt; 개발 서버를 제공하기 위해서는 esbuild를 사용하고, 배포를 위한 빌드에는 rollup을 사용한다.&lt;/p&gt;
+&lt;h2 id=&quot;32-vite-개발-서버&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#32-vite-%EA%B0%9C%EB%B0%9C-%EC%84%9C%EB%B2%84&quot; aria-label=&quot;32 vite 개발 서버 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2. Vite 개발 서버&lt;/h2&gt;
+&lt;p&gt;Vite는 매우 특이한 동작으로 빠르게 개발 서버를 제공한다.&lt;/p&gt;
+&lt;h3 id=&quot;321-브라우저-모듈-시스템&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#321-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80-%EB%AA%A8%EB%93%88-%EC%8B%9C%EC%8A%A4%ED%85%9C&quot; aria-label=&quot;321 브라우저 모듈 시스템 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2.1. 브라우저 모듈 시스템&lt;/h3&gt;
+&lt;p&gt;Vite는 개발서버를 제공하기 위해서, 기존에 우리가 생각했던 번들링 작업을 수행하지 않는다. 대신 브라우저의 모듈 시스템 기능을 사용한다.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/a92c75bb9dc1fd6bf604d0804227346e/99072/browser-esm.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 57.714285714285715%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAACaklEQVR42oWSS2sTURiG56/4hwRd+QNE0E29V7EhVaxg1WoXIgiuFJdiRasFLylpYzu1sResSWxiM5O5nDm3OU1t3T2SRMWK4OLhXHnPw/cdz2YhViYYGWOzAJvF/bVVKba3J1OMEoM7SmCM2UfXOnby7T7WGDzX9sk7n8ijDVxQxXXWccFHXGcNF66Rh+vk0WdcuEoe1zHG/g5TVrMc1SlvrbMQbpAqiWdsTp/+xT/m1rLvzOZs90zsNl27jctzoiTjdOUhh17e4mj5Pg0R4EmtGKDRRmOsxtqegf4Dg7GGlujwOd2iLtqkmUQmGj+oMdtepxL8NGR3D77twt4eTjmyWJNFBqscue3VxfXDtLCMVp9w8O0ER8p3eV+vISPNmeXHHH59h2MLD2iIEO9U6RXFyjvOzM7gb7XoGodSmkS3CFWDWG+ipEalhrm1JZ5V3jDtlwiimCzSzMyXeFqaYXruLbFI8bzrFzjw6B7ezUs8Wlrku/5G0snwkwdMN8cph3dpB03iOGFyYoLC8EWKl0ZYXf1IuxVw7fJVLhcKXLtyha2vX/HGF8rcXprnxuIca2FA1+YorZEmIdPRYJSCJEkozZaYmpri+YvnNFst0jThw/IHKpUK/pKPEAKvX7+d3X4du3mO/vklrLHYXte1weY5UmRMTk4ydHKIc+fOUq1WyUTG2NgYhcIIo6OjbG5u4mVa8Qv9q6N/oaXECIGIIuIoIknTvk3PemVlBd9fpFpdHhj+K2AfWqOaTVS9jm40sGmKdQ7nHGEYUiwWOXHiOMPD5weG/w38xwO/zbXhy5cGGxufqNVqSCn5Af12Umv8Z40BAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/a92c75bb9dc1fd6bf604d0804227346e/c54d4/browser-esm.webp 175w,
+/TIL/static/a92c75bb9dc1fd6bf604d0804227346e/a3432/browser-esm.webp 350w,
+/TIL/static/a92c75bb9dc1fd6bf604d0804227346e/426ac/browser-esm.webp 700w,
+/TIL/static/a92c75bb9dc1fd6bf604d0804227346e/6366e/browser-esm.webp 842w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/a92c75bb9dc1fd6bf604d0804227346e/4edbd/browser-esm.png 175w,
+/TIL/static/a92c75bb9dc1fd6bf604d0804227346e/13ae7/browser-esm.png 350w,
+/TIL/static/a92c75bb9dc1fd6bf604d0804227346e/8c557/browser-esm.png 700w,
+/TIL/static/a92c75bb9dc1fd6bf604d0804227346e/99072/browser-esm.png 842w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/a92c75bb9dc1fd6bf604d0804227346e/8c557/browser-esm.png&quot; alt=&quot;browser-esm.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;p&gt;ECMAScript가 ESM을 발표한 이 후, 모든 브라우저가 모듈시스템을 지원하기 시작했다. 그럼에도 이 모듈 시스템을 이용하는 대신, 번들링을 하는 이유는 네트워크 비용을 아끼기 위해서이다. 그런데 어차피 로컬에서 띄우는 개발서버라면 굳이 네트워크 비용을 생각할 필요 없다. 파일 시스템에서 읽는 것마냥 매우 빠르게 제공할 수 있기 때문이다.&lt;/p&gt;
+&lt;p&gt;그러한 이유로 &lt;strong&gt;Vite는 개발서버를 위해 기존의 번들링 작업을 진행하지 않는다.&lt;/strong&gt; 최초 진입점만 알려주고, 브라우저 자체 모듈 시스템 기능에 맡기는 것이다.&lt;/p&gt;
+&lt;h3 id=&quot;322-사전-번들링-작업&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#322-%EC%82%AC%EC%A0%84-%EB%B2%88%EB%93%A4%EB%A7%81-%EC%9E%91%EC%97%85&quot; aria-label=&quot;322 사전 번들링 작업 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2.2 사전 번들링 작업&lt;/h3&gt;
+&lt;p&gt;그러나 개발서버를 띄우기 전에, &lt;strong&gt;esbuild로 사전 번들링이라는 최소한의 작업&lt;/strong&gt;을 수행한다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;ESM 모듈화&lt;/strong&gt;&lt;br&gt;
+브라우저는 ESM 모듈만을 지원한다. 하지만 많은 라이브러리들이 commonJS 방식으로 작성되었다. 따라서 번들리없이 브라우저의 모듈시스템을 사용하기 위해서는 commonJS로 선언된 모듈들을 ESM모듈 형식으로 바꾸는 작업이 선행되어야 한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;모듈 단순화&lt;/strong&gt;&lt;br&gt;
+많은 내부 모듈을 하나의 모듈로 단순화한다. 아무리 로컬 서버에서 모듈을 로드한다고 해도 지나치게 많은 비동기 요청은 성능을 저하시킨다. 대표적으로 &lt;code&gt;lodash-es&lt;/code&gt;라이브러리의 경우 내부모듈이 600개이기 때문에, 그냥 사용할 경우 600번의 HTTP요청이 발생한다. 이러한 모듈을 하나의 모듈로 단순화하면 큰 성능향상을 기대할 수 있다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;32-vite-배포-번들링&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#32-vite-%EB%B0%B0%ED%8F%AC-%EB%B2%88%EB%93%A4%EB%A7%81&quot; aria-label=&quot;32 vite 배포 번들링 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2. Vite 배포 번들링&lt;/h2&gt;
+&lt;p&gt;배포 시에는, &lt;strong&gt;우리가 아는 그 번들링 작업을 Rollup으로 수행&lt;/strong&gt;한다. Rollup으로도 충분한 설정이 가능하다고 판단한 것 같다.&lt;/p&gt;
+&lt;p&gt;&apos;왜 esbuild를 사용하지 않냐?&apos;는 문의가 있었던 것 같은데, 아직 esbuild가 다양한 애플리케이션 빌드를 지원할만큼 충분히 성장하지 않았기 때문인 것 같다. 추후 esbuild가 충분히 성장하면 적용할 것이라고 &lt;a href=&quot;https://ko.vitejs.dev/guide/why.html#why-not-bundle-with-esbuild&quot;&gt;공식문서&lt;/a&gt;에 적혀있다.&lt;/p&gt;
+&lt;h1 id=&quot;4-참고자료&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C&quot; aria-label=&quot;4 참고자료 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. 참고자료&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://ko.vitejs.dev/guide/why.html&quot;&gt;Vite: Vite를 사용해야 하는 이유&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://vitejs.dev/guide/dep-pre-bundling.html&quot;&gt;Vite: Dependency Pre-bundling&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://moiva.io/?npm=rollup+webpack#:~:text=Rollup%20is%20generally%20faster%20than,build%2C%20especially%20for%20larger%20projects.&quot;&gt;Head-to-Head: Rollup vs Webpack Analysis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://yozm.wishket.com/magazine/detail/1261/&quot;&gt;지그재그의 개발 블로그: JavaScript 번들러로 본 조선시대 붕당의 이해&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bundlers.tooling.report/&quot;&gt;Tooling.Report&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[JavaScript 모듈 시스템의 역사]]></title><description><![CDATA[Chullin: 웹팩(3/4); JS모듈화 역사 돌아보기(1)글을 많이 참고했습니다 JavaScript(자바스크립트)를 배운 지…]]></description><link>https://byongho96.github.io/TIL/posts/Language/JavaScript/CommonJS_ES6/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Language/JavaScript/CommonJS_ES6/</guid><pubDate>Sat, 09 Sep 2023 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/@chullino/%EC%9B%B9%ED%8C%A9-3-4-js%EB%AA%A8%EB%93%88%ED%99%94-%EC%97%AD%EC%82%AC-%EB%8F%8C%EC%95%84%EB%B3%B4%EA%B8%B0-1-9df997f82002&quot;&gt;Chullin: 웹팩(3/4); JS모듈화 역사 돌아보기(1)&lt;/a&gt;글을 많이 참고했습니다&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;JavaScript(자바스크립트)를 배운 지 1년도 채 되지 않았다. 따라서 나한테는 지금의 자바스크립트가 전부이자 변함없는 언어라고 느껴지지만, 실상을 파헤쳐보면 자바스크립트만큼 파란만장했던 언어도 없을 것이다. 심지어 그러한 변화는 아직도 현쟁진행 중이다.&lt;/p&gt;
+&lt;h1 id=&quot;1-javascript-모듈&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-javascript-%EB%AA%A8%EB%93%88&quot; aria-label=&quot;1 javascript 모듈 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. JavaScript 모듈&lt;/h1&gt;
+&lt;h2 id=&quot;11-모듈의-부재&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-%EB%AA%A8%EB%93%88%EC%9D%98-%EB%B6%80%EC%9E%AC&quot; aria-label=&quot;11 모듈의 부재 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1. 모듈의 부재&lt;/h2&gt;
+&lt;p&gt;JavaScript는 과거 인터넷 브라우저 회사였던, Netscape(넷스케이프)의 Brendan Eich(브렌던 아이크)에 의해 만들어졌다. 처음 &quot;Mocha&quot;라는 이름으로 개발되었으며, 나중에 &quot;LiveScript&quot; -&gt; &quot;JavaScript&quot;로 이름이 변경되었다.&lt;/p&gt;
+&lt;p&gt;그런데 Eich가 처음 자바스크립트를 만들 때, 이를 &lt;a href=&quot;https://webdevelopmenthistory.com/1995-the-birth-of-javascript/&quot;&gt;웹 디자이너와 &lt;strong&gt;파트타임 개발자&lt;/strong&gt;가 소통할 수 있는 언어&lt;/a&gt;정도로 여겼다고 한다. 따라서 자바스크립트가 진정한 프로그래밍 언어로 거듭나기 위해서는 부족한 부분을 채워나가야했는데, 그 중 하나가 바로 모듈 시스템이다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Eich saw JavaScript at the time as “a ‘glue language’ for the Web designers and part time programmers who were building Web content from components such as images, plugins, and Java applets.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;12-모듈의-필요성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-%EB%AA%A8%EB%93%88%EC%9D%98-%ED%95%84%EC%9A%94%EC%84%B1&quot; aria-label=&quot;12 모듈의 필요성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2. 모듈의 필요성&lt;/h2&gt;
+&lt;p&gt;프로젝트의 확장성을 위해서는 모듈 시스템이 필요하다. 따라서 대부분의 언어는 모듈 기능을 기자고 있다. (C언어는 &lt;code&gt;#include&lt;/code&gt; 자바와 파이썬은 &lt;code&gt;import&lt;/code&gt;)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;전역 스코프 관리&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;모듈시스템이 없으면 변수가 전역스코프에 선언된다. 따라서 아래 예시처럼 나중에 &lt;mark&gt;변수명이 중복될 경우,&lt;/mark&gt; 나중에 선언된 변수가 이전 변수를 덮어씌운다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;#x3C;!DOCTYPE html&gt;
+&amp;#x3C;html&gt;
+  &amp;#x3C;head&gt;
+    &amp;#x3C;script src=&quot;./foo.js&quot;&gt;&amp;#x3C;/script&gt;
+    &amp;#x3C;script src=&quot;./bar.js&quot;&gt;&amp;#x3C;/script&gt;
+    &amp;#x3C;script&gt;
+      console.log(&apos;x =&apos;, x)
+    &amp;#x3C;/script&gt;
+  &amp;#x3C;/head&gt;
+  &amp;#x3C;body&gt;
+    ...
+  &amp;#x3C;/body&gt;
+&amp;#x3C;/html&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// foo.js
+var x = &apos;foo&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// bar.js
+var x = &apos;bar&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 582px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/e7453d19fb713b5f8f8ce700e1b12abe/7c1cd/module-scope-example.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 18.857142857142858%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABJ0AAASdAHeZh94AAAAwUlEQVR42oWM3U6EMBBGef8nMV74Ht5qjIJAoSztdldaCmx2KSHHtIlmvXKSk5nvJ5MVdUeRf9ArRSM7RCs5KE1RVtRNy7RcGKeZXmna7kBZiUTs1aKlrAWVaBLOT2Rv4kxeSippKIUkLz7pep3CSHz2Q9R29L/4efmTxZ2N+oVz88zFvLJeZ663wBoCIWyEbUv3vb73h8HirGOwFuc8t3UlW6onxvwR9/7A4hTWTUze89/s+85Ra07mhDkahi+b/G+w0C3e7047tgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/e7453d19fb713b5f8f8ce700e1b12abe/c54d4/module-scope-example.webp 175w,
+/TIL/static/e7453d19fb713b5f8f8ce700e1b12abe/a3432/module-scope-example.webp 350w,
+/TIL/static/e7453d19fb713b5f8f8ce700e1b12abe/f6aeb/module-scope-example.webp 582w&quot; sizes=&quot;(max-width: 582px) 100vw, 582px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/e7453d19fb713b5f8f8ce700e1b12abe/4edbd/module-scope-example.png 175w,
+/TIL/static/e7453d19fb713b5f8f8ce700e1b12abe/13ae7/module-scope-example.png 350w,
+/TIL/static/e7453d19fb713b5f8f8ce700e1b12abe/7c1cd/module-scope-example.png 582w&quot; sizes=&quot;(max-width: 582px) 100vw, 582px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/e7453d19fb713b5f8f8ce700e1b12abe/7c1cd/module-scope-example.png&quot; alt=&quot;module-scope-example.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;의존성 관리&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;어찌저찌 엄청난 설계로 모듈이름이 한번도 중복되지 않았다고 한들, 모듈간 의존성 관계에 따라 로드하는 순서를 맞춰줘야한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;#x3C;!DOCTYPE html&gt;
+&amp;#x3C;html&gt;
+  &amp;#x3C;head&gt;
+    &amp;#x3C;script src=&quot;./sum_3_5.js&quot;&gt;&amp;#x3C;/script&gt;
+    &amp;#x3C;script src=&quot;./sum.js&quot;&gt;&amp;#x3C;/script&gt;
+  &amp;#x3C;/head&gt;
+  &amp;#x3C;body&gt;
+    ...
+  &amp;#x3C;/body&gt;
+&amp;#x3C;/html&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// sum_3_5.js
+console.log(&apos;3 + 5 =&apos;, sum(3, 5))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// sum.js
+function sum(a, b) {
+  return a + b
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 587px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/ba586549feee2850e24422a6a6228900/d72eb/module-dependency-example.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 19.428571428571427%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABJ0AAASdAHeZh94AAAA3ElEQVR42iXMy26DMBRFUf7/ozrstLNWCQbjGPATMK8koKa7qjtY2lc60i3ey41aaWSj6HqDbrus7Q2Xq8DHgWXbCXHIe6NuiKpG6TarZINUt3wb6yjeyiefQvIlKmrdcZUKoTR9GPBjYlhWpv3OuO7ENOPTjJsSfpyIUyJMKXeYF2yIFM3HhbFRrJVkaxqWUrBJyeOmObuew3meveHZWw5jObTmaHvONLPFgWRdtoaYW3zbjp8YeF1LViFYq4q9rvPjl3MQI/w1+H/WgHUwz5wxshvDwznOGHh4zy9S8Coz90IFTgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/ba586549feee2850e24422a6a6228900/c54d4/module-dependency-example.webp 175w,
+/TIL/static/ba586549feee2850e24422a6a6228900/a3432/module-dependency-example.webp 350w,
+/TIL/static/ba586549feee2850e24422a6a6228900/cf155/module-dependency-example.webp 587w&quot; sizes=&quot;(max-width: 587px) 100vw, 587px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/ba586549feee2850e24422a6a6228900/4edbd/module-dependency-example.png 175w,
+/TIL/static/ba586549feee2850e24422a6a6228900/13ae7/module-dependency-example.png 350w,
+/TIL/static/ba586549feee2850e24422a6a6228900/d72eb/module-dependency-example.png 587w&quot; sizes=&quot;(max-width: 587px) 100vw, 587px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/ba586549feee2850e24422a6a6228900/d72eb/module-dependency-example.png&quot; alt=&quot;module-dependency-example.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;13-모듈의-조건&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#13-%EB%AA%A8%EB%93%88%EC%9D%98-%EC%A1%B0%EA%B1%B4&quot; aria-label=&quot;13 모듈의 조건 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.3. 모듈의 조건&lt;/h2&gt;
+&lt;p&gt;바로 윗절의 이유들을 바탕으로 모듈의 조건을 정의하면 아래와 같다. 이제부터 설명할 모듈 시스템은 모두 아래 조건을 만족한다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;각 모듈은 &lt;strong&gt;독립적인 스코프&lt;/strong&gt;를 가져야 한다. 즉 전역스코프를 오염해선 안된다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;모듈 간의 의존성&lt;/strong&gt;이 관리되어야한다. 즉 하나의 모듈이 다른 모듈을 참조할 때, 모듈들의 로드 순서가 보장되어야 한다.&lt;/li&gt;
+&lt;li&gt;시멘틱하게 임포트할 수 있어야 한다. 즉 모듀를 로드할 때 이름을 새롭게 지을 수 있어야 한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;2-commonjs&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-commonjs&quot; aria-label=&quot;2 commonjs permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. commonJS&lt;/h1&gt;
+&lt;h2 id=&quot;21-역사&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-%EC%97%AD%EC%82%AC&quot; aria-label=&quot;21 역사 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. 역사&lt;/h2&gt;
+&lt;p&gt;가장 먼저 시작된 모듈 시스템은 commonJS이다. 어느 날, Mozilla의 개발자 Kevin Dangoor가 &lt;a href=&quot;https://www.blueskyonmars.com/2009/01/29/what-server-side-javascript-needs/&quot;&gt;JavaScript 서버 사이드 언어가 되기 위해서 필요한 것(What Server Side JavaScript needs)&lt;/a&gt;들을 정리해서 게시했다. 이에 많은 이들이 동참하여 첫 JavaScript 모듈시스템을 만든다. JavaScript의 표준을 정의하는 ECMASCript와 연계하지 않고 진행되었기 때문에 JavaScript 언어 자체가 지원하는 모듈 시스템이 아니다. 하지만 Node.js라는 범용성 있는 JavaScript 런타임 환경이 commonJS 명세를 따랐기 때문에 오랜기간 사실상 표준(de facto standard)으로 작용했다.&lt;/p&gt;
+&lt;h2 id=&quot;22-문법&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-%EB%AC%B8%EB%B2%95&quot; aria-label=&quot;22 문법 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. 문법&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;모듈 선언&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;하나의 모듈(파일)은 하나의 객체로 묶여서 export 된다. 다음 두가지 방법으로 객체의 프로퍼티를 지정할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// 한 개 객체 내보내기
+const math = {
+  num: 1,
+  sum: function (a, b) {
+    console.log(a + b)
+  },
+  sub: function (a, b) {
+    console.log(a - b)
+  },
+}
+
+module.exports = math
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// 각각의 프로퍼티 내보내기
+exports.num = 1
+exports.sum = function (a, b) {
+  console.log(a + b)
+}
+exports.sub = function (a, b) {
+  console.log(a - b)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;모듈 사용&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;전체 객체를 특정 변수에 할당할 수도 있고, destruct해서 사용할 수도 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;const obj = require(&apos;./bar.js&apos;)
+
+console.log(obj.num) // 1
+obj.sum(1, 2) // 3
+obj.sub(1, 2) // -1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;const { num, sum, sub } = require(&apos;./foo.js&apos;)
+
+console.log(num) // 1
+sum(1, 2) // 3
+sub(1, 2) // -1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;23-한계점&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#23-%ED%95%9C%EA%B3%84%EC%A0%90&quot; aria-label=&quot;23 한계점 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.3. 한계점&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;commonJS는 동기적으로 모듈을 로드한다.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.blueskyonmars.com/2009/01/29/what-server-side-javascript-needs/&quot;&gt;Kevin Dangoor가 쓴 글&lt;/a&gt;의 제목에서부터 알 수 있다시피 &lt;b&gt;서버 사이드(server-side)&lt;/b&gt;를 위한 모듈 시스템이다. 처음 이름조차 원래 commonJS가 아닌 serverJS였다고 한다. 그로 인한 발생한 한계점이 바로 모듈을 동기적으로 로드한다는 것이다.&lt;/p&gt;
+&lt;p&gt;서버사이드의 경우 모듈이 정의된 함수가 보통 파일시스템에 존재한다. 컴퓨터에서 파일을 읽는 것도 I/O작업에 포함되지만, 네트워크 통신보다야 훨씬 빠르다. 또한 서버측의 프로세스는 한 번 실행되면 오랫동안 메모리에 머무른다. 반면 클라이언트측은 브라우저를 새로고침할때마다 모듈을 다시 받아와야한다. 이러한 맥락에서 동기적인 모듈로딩은 클라이언트측 JavaScript에게 적합하지 않았다.&lt;/p&gt;
+&lt;h1 id=&quot;3-amd&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-amd&quot; aria-label=&quot;3 amd permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. AMD&lt;/h1&gt;
+&lt;h2 id=&quot;31-역사&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#31-%EC%97%AD%EC%82%AC&quot; aria-label=&quot;31 역사 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1. 역사&lt;/h2&gt;
+&lt;p&gt;AMD(Asynchronous Module Definition)는 commonJS에서 비동기 모듈 로딩에 대한 합의점을 찾지 못한 사람들이 만든 JavaScript 모듈 시스템이다. 이름에서처럼 &lt;strong&gt;비동기 모듈 로딩을 지원&lt;/strong&gt;한다.&lt;/p&gt;
+&lt;p&gt;AMD 모듈 시스템을 사용하기 위해서는 &lt;strong&gt;별도의 라이브러리를 사용&lt;/strong&gt;해야한다. ECMAScript와 Node.js 모두 공식적으로 AMD를 지원하지 않기 때문이다. 그 중 &lt;b&gt;가장 대표적인 것이 &lt;a href=&quot;https://requirejs.org/&quot;&gt;requireJS&lt;/a&gt;&lt;/b&gt;이다. 아래 예시 코드를 보면 모듈을 선언하고 사용하는데 &lt;code&gt;define()&lt;/code&gt;과 &lt;code&gt;require()&lt;/code&gt;함수를 사용한다 (이 때 require는 commonJS의 require가 아니다). 그 말인 즉슨 해당 함수들이 전역적으로 어딘가에 선언되어 있어야 한다는 말이다. 그리고 해당 함수들은 AMD 스펙에 따라 구현한 라이브러리 중 하나가 requireJS이다.&lt;/p&gt;
+&lt;h2 id=&quot;32-문법&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#32-%EB%AC%B8%EB%B2%95&quot; aria-label=&quot;32 문법 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2. 문법&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;모듈 선언&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;AMD는 모듈을 선언할 때 의존하는 모듈을 비동기적으로 로드한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// 의존성이 없을 경우
+define([], function () {
+  return {
+    sum: function (a, b) a + b,
+  }
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// 의존성이 있을 경우
+define([&apos;sum&apos;], function (sum) {
+  return {
+    sub: function (a, b) {
+      return sum.sum(a, -b)
+    },
+  }
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;모듈 사용&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;모듈을 사용할 때 사용하고자 하는 모듈을 비동기적으로 로드한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;require([&apos;sub&apos;], function (sub) {
+  console.log(sub.sub(5, 2))
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;html 예시&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;앞서 말한 것처럼 AMD 모듈을 사용하기 위해서는 이를 구현한 라이브러리를 전역적으로 선언해줘야 한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;#x3C;!DOCTYPE html&gt;
+&amp;#x3C;html lang=&quot;en&quot;&gt;
+  &amp;#x3C;head&gt;
+    &amp;#x3C;meta charset=&quot;UTF-8&quot; /&gt;
+    &amp;#x3C;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &amp;#x3C;title&gt;Document&amp;#x3C;/title&gt;
+    &amp;#x3C;!-- requireJS 라이브러리  --&gt;
+    &amp;#x3C;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js&quot;&gt;&amp;#x3C;/script&gt;
+    &amp;#x3C;!-- AMD 방식의 모듈 사용 --&gt;
+    &amp;#x3C;script&gt;
+      require([&apos;./sub&apos;], function (sub) {
+        console.log(sub.sub(5, 2))
+      })
+    &amp;#x3C;/script&gt;
+  &amp;#x3C;/head&gt;
+  &amp;#x3C;body&gt;&amp;#x3C;/body&gt;
+&amp;#x3C;/html&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 583px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/d5b156350a774494f0e6ece214f93fa2/9fc4b/amd-example.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 16%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABJ0AAASdAHeZh94AAAApUlEQVR42lXMyQ6CMABFUf7/t1y5dGPCIGVGQVpakJbBXCOaGBdnc/PyvGM8cY4rhBAUVU1WlKRZTlnV+GHEtWkx44O2k5T1lSTLCS8xaV7solgg0mzXqR7vEE6c/JwgCPb4HlxEsh/J3qD0QG9GejOgtEFqTac+3u3fiKfMjB4s1lqmyWGtwzrHPC+s28ayrizL1/qzbU+kVNyallvT0N47nJt5AaWs4crqi+iLAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/d5b156350a774494f0e6ece214f93fa2/c54d4/amd-example.webp 175w,
+/TIL/static/d5b156350a774494f0e6ece214f93fa2/a3432/amd-example.webp 350w,
+/TIL/static/d5b156350a774494f0e6ece214f93fa2/92613/amd-example.webp 583w&quot; sizes=&quot;(max-width: 583px) 100vw, 583px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/d5b156350a774494f0e6ece214f93fa2/4edbd/amd-example.png 175w,
+/TIL/static/d5b156350a774494f0e6ece214f93fa2/13ae7/amd-example.png 350w,
+/TIL/static/d5b156350a774494f0e6ece214f93fa2/9fc4b/amd-example.png 583w&quot; sizes=&quot;(max-width: 583px) 100vw, 583px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/d5b156350a774494f0e6ece214f93fa2/9fc4b/amd-example.png&quot; alt=&quot;amd-example.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;33-한계점&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#33-%ED%95%9C%EA%B3%84%EC%A0%90&quot; aria-label=&quot;33 한계점 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.3. 한계점&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;공식적으로 지원하는 환경이 없다&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;앞서 말했듯이 ECMAScript나 Node.js모두 AMD를 공식적으로 지원하지 않기 때문에 AMD를 사용하기 위해서는 requireJS와 같은 라이브러리를 사용해야한다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;이미 대부분의 라이브러리가 commonJS로 작성되었다&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;commonJS가 이미 JavaScript의 모듈시스템을 선점한 뒤 나온터라, 2010년 즈음 등장한 npm은 많은 라이브러리들이 이미 commonJS로 설계되었다. 따라서 해당 라이브러리들을 브라우저에서 사용하기 위해서는 개발자들이 AMD 형식으로 다시 한번 선언해줘야하는 번거로움을 감수해야했다.&lt;/p&gt;
+&lt;h1 id=&quot;4-umd&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-umd&quot; aria-label=&quot;4 umd permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. UMD&lt;/h1&gt;
+&lt;h2 id=&quot;41-역사&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#41-%EC%97%AD%EC%82%AC&quot; aria-label=&quot;41 역사 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.1. 역사&lt;/h2&gt;
+&lt;p&gt;UMD(Universal Module Definition)는 개발자 커뮤니티에서 채택된 &lt;strong&gt;모듈 선언 패턴&lt;/strong&gt;으로, 다양한 &lt;strong&gt;모듈시스템 간 호환&lt;/strong&gt;해서 사용할 수 있다. 아래 코드를 보면 알겠지만 새로운 모듈시스템이 아니다.&lt;/p&gt;
+&lt;h2 id=&quot;42-문법&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#42-%EB%AC%B8%EB%B2%95&quot; aria-label=&quot;42 문법 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.2. 문법&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;모듈 선언&lt;/strong&gt;&lt;br&gt;
+UMD 패턴은 &lt;mark&gt;즉시 실행 함수&lt;/mark&gt;로 구현할 수 있다. 모듈이 로드되는 시점에 실행환경의 모듈시스템을 분기하는 &lt;code&gt;if&lt;/code&gt; 조건문을 실행한다. 그리고 분기된 조건에 맞는 모듈시스템으로 모듈을 선언한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;/* prettier-ignore */
+
+// 즉시 실행 함수
+// 첫번째 인자로 전역 객체, 두번째 인자로 실제 코드 내용을 받는다
+(function (root, factory) {
+  if (typeof define === &apos;function&apos; &amp;#x26;&amp;#x26; define.amd) {
+    // AMD 환경
+    define([&apos;./sum&apos;], factory)
+  } else if (typeof exports === &apos;object&apos;) {
+    // CommonJS 환경
+    module.exports = factory(require(&apos;./sum&apos;))
+  } else {
+    // 브라우저 환경
+    root.sub = factory(root.sum)
+  }
+})(typeof self !== &apos;undefined&apos; ? self : this, function (sum) {
+  // 실제 코드 내용
+  function sub(a, b) {
+    return sum.sum(a, -b)
+  }
+
+  return {
+    sub: sub,
+  }
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;5-esm&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-esm&quot; aria-label=&quot;5 esm permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5. ESM&lt;/h1&gt;
+&lt;h2 id=&quot;51-역사&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#51-%EC%97%AD%EC%82%AC&quot; aria-label=&quot;51 역사 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.1. 역사&lt;/h2&gt;
+&lt;p&gt;2015년 6월, ES6와 함께 ESM(ECMAScript Modules)이 등장했다. (2022년부터 프로그래밍을 배운 나에게는 너무 당연한 ESM이었는데, 실제 역사가 굉장히 짧았다는 사실이 놀라웠다)&lt;/p&gt;
+&lt;p&gt;ECMAScript의 위엄에 힘입어 현재 모든 브라우저가 지원하며, Node.js 또한 14버전부터 공식적으로 ESM을 지원하기 시작했다. 앞으로 ESM이 표준 모듈시스템으로 자리잡을 것이라는 전망이 우세하다. 어떻게 보면 나는 쓰잘데기없는 내용들을 정리한 것이다.&lt;/p&gt;
+&lt;h2 id=&quot;52-문법&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#52-%EB%AC%B8%EB%B2%95&quot; aria-label=&quot;52 문법 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.2. 문법&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;모듈 선언&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;하나의 모듈(파일)은 하나의 객체로 묶여서 export 된다. 다음 두가지 방법으로 객체의 프로퍼티를 지정할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// 한 개 객체 내보내기
+const math = {
+  num: 1,
+  sum: function (a, b) {
+    console.log(a + b)
+  },
+  sub: function (a, b) {
+    console.log(a - b)
+  },
+}
+
+export default math
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// 각각의 프로퍼티 내보내기
+export const num = 1
+export function sum(a, b) {
+  console.log(a + b)
+}
+export function sub(a, b) {
+  console.log(a - b)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;모듈 사용&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;전체 객체를 특정 변수에 할당할 수도 있고, destruct해서 사용할 수도 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import obj from &apos;./foo.mjs&apos;
+
+console.log(obj.num) // 1
+obj.sum(1, 2) // 3
+obj.sub(1, 2) // -1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import { num, sum, sub } from &apos;./bar.mjs&apos;
+
+console.log(num) // 1
+sum(1, 2) // 3
+sub(1, 2) // -1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;53-동적-로딩&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#53-%EB%8F%99%EC%A0%81-%EB%A1%9C%EB%94%A9&quot; aria-label=&quot;53 동적 로딩 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.3. 동적 로딩&lt;/h2&gt;
+&lt;p&gt;ESM은 commonJS처럼 동적 모듈 로딩(dynamic import) 기능을 지원한다. 때때로 어떤 글에서는 esm이 동적 모듈 로딩를 지원하지 않는다고 하는데, 거기서 말하는데 동적로딩은 다른걸 의미하는건지 잘 이해가 안간다.&lt;/p&gt;
+&lt;p&gt;아래 코드처럼 &lt;code&gt;import()&lt;/code&gt;함수는 Promise객체를 반환하고, 성공적으로 로드시 로드된 모듈을 then 체이닝의 인자로 반환한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import(&apos;./myModule.js&apos;)
+  .then((module) =&gt; {
+    const result = module.someFunction()
+    console.log(result)
+  })
+  .catch((error) =&gt; {
+    console.error(error)
+  })
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;8-참고자료&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#8-%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C&quot; aria-label=&quot;8 참고자료 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;8. 참고자료&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://medium.com/@chullino/%EC%9B%B9%ED%8C%A9-3-4-js%EB%AA%A8%EB%93%88%ED%99%94-%EC%97%AD%EC%82%AC-%EB%8F%8C%EC%95%84%EB%B3%B4%EA%B8%B0-1-9df997f82002&quot;&gt;Chullin: 웹팩(3/4); JS모듈화 역사 돌아보기(1)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=5NXEXkIrkAk&quot;&gt;짐코딩: 자바스크립트 모듈 시스템 | ES 모듈 | CommonJS 모듈&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.blueskyonmars.com/2009/01/29/what-server-side-javascript-needs/&quot;&gt;Kevin Dangoor: what-server-side-javascript-needs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.rhostem.com/posts/2019-06-23-universal-module-definition-pattern&quot;&gt;blog.rhostem.com: UMD(Universal Module Definition) 패턴&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[JavaScript 비동기 처리 Promise & Async]]></title><description><![CDATA[이 글은 드림코딩님의 자바스크립드 11 ~ 13 비동기 강의를 듣고 정리한 문서입니다. 1. Callback 콜백 함수란, 어떤 함수가 다른 함수의 매개변수로 전달되어 전달된 함수 내부에서 실행될 수 있는 것을 말한다. 1.1. 동기적 콜백 1.…]]></description><link>https://byongho96.github.io/TIL/posts/Language/JavaScript/Promise_Async_2/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Language/JavaScript/Promise_Async_2/</guid><pubDate>Thu, 07 Sep 2023 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
 &lt;p&gt;이 글은 &lt;a href=&quot;https://www.youtube.com/@dream-coding&quot;&gt;드림코딩&lt;/a&gt;님의 자바스크립드 11 ~ 13 비동기 강의를 듣고 정리한 문서입니다.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1 id=&quot;1-callback&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-callback&quot; aria-label=&quot;1 callback permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Callback&lt;/h1&gt;
@@ -336,9 +816,9 @@ function pickOnlyone() {
 &lt;blockquote&gt;
 &lt;p&gt;Blocking is when the execution of additional JavaScript in the Node.js process must wait until a non-JavaScript operation completes. This happens because the event loop is unable to continue running JavaScript while a blocking operation is occurring. [Node.js]&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;내 결론은 Sync/Async와 Blocking/Non-Blocking의 개념 차이가 있지만, &lt;strong&gt;이 들의 차이를 분석하려고 애쓰는 것 보다는 유사점에 주목하는 것이 실질적으로 프로그래밍에 더 도움이 될 것 같다.&lt;/strong&gt; 물론 아래 글 부터는 차이점에 집착할 얘정이다&lt;/p&gt;
+&lt;p&gt;내 결론은 Sync/Async와 Blocking/Non-Blocking의 개념 차이가 있지만, &lt;strong&gt;이 들의 차이를 분석하려고 애쓰는 것 보다는 유사점에 주목하는 것이 실질적으로 프로그래밍에 더 도움이 될 것 같다.&lt;/strong&gt; 물론 아래 글 부터는 차이점에 집착할 예정이긴 하지만 말이다.&lt;/p&gt;
 &lt;h1 id=&quot;2-sync--async&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-sync--async&quot; aria-label=&quot;2 sync  async permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Sync / Async&lt;/h1&gt;
-&lt;p&gt;&lt;mark&gt;두 작업 간의 문맥 교환이 동기적으로 일어나는지 여부를 말한다.&lt;/mark&gt;&lt;/p&gt;
+&lt;p&gt;&lt;mark&gt;&lt;strong&gt;두 작업 간의 문맥 교환이 동기적으로 일어나는지 여부를 말한다.&lt;/strong&gt;&lt;/mark&gt;&lt;/p&gt;
 &lt;h2 id=&quot;21-sync--async-예시&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-sync--async-%EC%98%88%EC%8B%9C&quot; aria-label=&quot;21 sync  async 예시 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. sync / async 예시&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -410,7 +890,7 @@ function pickOnlyone() {
     &lt;/span&gt;
 &lt;p&gt;비동기 프로그래밍에서 멀티 태스킹이 일어나는 경우가 빈번하지만, 멀티 태스킹이 비동기 프로그래밍의 필요조건은 아니다.&lt;/p&gt;
 &lt;h1 id=&quot;3-blocking--non-blocking&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-blocking--non-blocking&quot; aria-label=&quot;3 blocking  non blocking permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. Blocking / Non-blocking&lt;/h1&gt;
-&lt;p&gt;&lt;mark&gt;한 작업이 진행되는 동안 다른 작업이 대기하는지 여부를 말한다.&lt;/mark&gt;&lt;/p&gt;
+&lt;p&gt;&lt;mark&gt;&lt;strong&gt;한 작업이 진행되는 동안 다른 작업이 대기하는지 여부를 말한다.&lt;/strong&gt;&lt;/mark&gt;&lt;/p&gt;
 &lt;h2 id=&quot;31-blocking--non-blocking-예시&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#31-blocking--non-blocking-%EC%98%88%EC%8B%9C&quot; aria-label=&quot;31 blocking  non blocking 예시 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1. Blocking / Non-blocking 예시&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -434,8 +914,8 @@ function pickOnlyone() {
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&quot;4-cross-over-table&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-cross-over-table&quot; aria-label=&quot;4 cross over table permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. Cross Over Table&lt;/h1&gt;
-&lt;p&gt;이렇게 4가지 개념을 정리하고 나면, 아래의 괴상망측한 테이블을 마주하게 된다.&lt;/p&gt;
-&lt;p&gt;보자마자 드는 생각이 &lt;strong&gt;Synchronous &amp;#x26; Non-blocking 하고 Asynchronous &amp;#x26; Blocking이 뭐지&lt;/strong&gt;일텐데, 그 말인 즉슨 그만큼 쓰잘데기없다는 뜻이다.&lt;/p&gt;
+&lt;p&gt;이렇게 4가지 개념을 정리하고 나면, 높은 확률로 아래와 같은 괴상한 테이블을 마주하게 된다.&lt;/p&gt;
+&lt;p&gt;보자마자 들었던 생각은 &lt;b&gt;Synchronous &amp;#x26; Non-blocking 하고 Asynchronous &amp;#x26; Blocking은 대체 뭐지?&lt;/b&gt;였는데, 결론만 말하면 그 정도로 쓰잘데기 없는 거였다.&lt;/p&gt;
 &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
       &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/16ce5f742618f6d6e64623960b16b213/f213e/sync-async-blocking-non-blocking.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 74.28571428571428%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAIAAABr+ngCAAAACXBIWXMAAAsTAAALEwEAmpwYAAABiElEQVR42n1S0W6jMBDk/38tUlvl7vkQqYkJoYCx1/Zu7HVl3KAch24eEB55PKPZrdLfYOaUklLqT11/fl4QsfBEJIRoW1HXdX+/F7L6VxxCICJYQUThCZsBxhhrbQiBmfdiRFRKuSdWgZ2mCQysxx/erKiKW0ERO+d2LwJAjPGViTH+iHfO3mOMUS+LMQYAUkrW2hjj+DUOw9B1nXOOmQGgMsZcLo0QomkasJaIMMPXuTAhpSz3Ukq3rjudTudfvw1YZs7OMUQiejweRMRcnP1hbGaOMa7X8k923t3z3mutich7v0ZAIlJKee+LQfk657TW1TbbTTzPMyLarVnnxnEEAPsCY4xS6qCw0kcIoUTlxIdt59hqntu2vXWdlNIYWCPZS9O8vb2fz+eP94/7MCD6vu+v16uUsr91/a1fFu2crRBRa12SPKtGpWYhxDRNUkrvcV0P0FoD5A1zziLiQWH/afsgNr+gFKaUei3Me5/XE/J6+nzMDAAsy7J3jjFuQ9rgnNsxZXLfK2FmRlQtDRsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
@@ -455,8 +935,8 @@ function pickOnlyone() {
   &lt;/a&gt;
     &lt;/span&gt;
 &lt;h1 id=&quot;41-synchronous-blocking&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#41-synchronous-blocking&quot; aria-label=&quot;41 synchronous blocking permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.1. Synchronous blocking&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;일반적인 경우 대부분의 프로그래밍 언어는 Synchronous하고 Blocking하게 동작한다.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;코드가 실행되는 동안 호출되는 함수들은 Call stack에 쌓이게 된다. 이름이 Stack인 만큼 Last in, First Out으로 동작하기 때문에, &lt;strong&gt;나중에 피호출된 함수가 완료되고 나서야, 해당 함수를 호출했던 함수가 바로 이어서 재개&lt;/strong&gt;된다.&lt;/p&gt;
+&lt;p&gt;&lt;mark&gt;&lt;strong&gt;일반적으로 프로그래밍 언어는 Synchronous하고 Blocking하게 동작한다.&lt;/strong&gt;&lt;/mark&gt;&lt;/p&gt;
+&lt;p&gt;코드가 실행되면서 호출되는 함수들은 Call stack에 쌓이게 된다. 이름이 Stack인 만큼 Last in, First Out으로 동작하기 때문에, &lt;strong&gt;나중에 호출된 함수가 완료되고 나서야, 그 전에 호출했던 함수가 이어서 동작&lt;/strong&gt;된다.&lt;/p&gt;
 &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 589px; margin-bottom: 20px;&quot;&gt;
       &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/f99171954b33b6b60638cc1433f90e64/b1665/function-call-stack.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 113.7142857142857%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAXCAIAAACEf/j0AAAACXBIWXMAAAsTAAALEwEAmpwYAAACr0lEQVR42q2UW08aURSF+ZN99aktGoE0RYTKAFUUbdPLQ5s0xoDWooAwwIBgS6MQuaXBPqjVRGuFclEuc2UQBmbmnAYm1NYgPrQrKyc7Ofmy9uzM2TJ4i0DPwyWD/yDZoMxuJMtfVTnqoolXOAJv01WO6gCh3xG4A6Y55hA/+U7nc0zhS2X/gDi56jS7twAMS+6IHSsRXWR3rWzCyiatbMLWSNrY5FI9vlSPv2F2ovQhhFCEQHZjSBDCJt8ysEEjjJlgVLKxX0zD2CSIOJj0rXCLby00Is9g6jlM3vALmJoBMW89MwCG/WRL49M8TMzD+DyIL4CEBcQtYNcCdhdA3CRGB8NSMidws3RIVV2fJFENiT4uOzUUqrsK6tiAroEpKKevvncNi6LI9IXX8CpZmyq4Hh4sTp441afOx8d2fQmb5aKzrR1z/bOCcPyVzDCMx+NBUdTtcfv9fmwzcG9Fez/1drqyNZXzGUpB7akbKQaQYsB4sTleXvOye4O/WeCFJt+aoz+OV+1PmgFtA+vZr2V7rvvGCLvvTxgAIPTECzwEkBPaSMUjz1uV+VVl6YOysKq6WFOTbjW5oSY2HlSWfQOTpYG1hQ6CoxMlt+kyrPuBTmW9M9T2K5h5CTOvYeYRgw6bdg/2GriIpR3VnDknzlzTbMREbZnIsAkPK0nXUFjsIDVUz4aM5RBSwvRFTJfzGiubSAkzlAKKmsM7rO0erCY8cyA2I+x0zW+b+W5h7mwrqaHJLYEzMyEl5VAR69fG16RznHT42K9D/rD2UxJTZe1IwY+Ug4ZyQF/CjHjYUAnqi5iidheswV0jZ+9Gs8vynyvyrE2eWx4rvh/Nr8jPbSOXS86Br0qSCMR99jxdP04zx2nmSDpT9LdefZSmj/KtqrQz/vcOk1oSgHibf++wXxbbuegM8unsAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
@@ -472,9 +952,9 @@ function pickOnlyone() {
   &lt;/a&gt;
     &lt;/span&gt;
 &lt;h2 id=&quot;42-asynchronous-non-blocking&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#42-asynchronous-non-blocking&quot; aria-label=&quot;42 asynchronous non blocking permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.2. Asynchronous Non-blocking&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;역시 대부분의 프로그래밍 언어는 I/O작업과 같이 오랜 시간이 걸리는 작업에 대해 Asynchronous하고 Non-blocking하게 동작한다.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;앞 서 말한, 콜 스택 방식의 작업으로 I/O작업을 처리할 경우 너무 많은 시간이 낭비된다. 실질적으로 대부분의 작업은 커널에서 일어나는데, 그 시간 동안 코드를 읽는 작업이 놀고 먹는다는 말이다.&lt;/p&gt;
-&lt;p&gt;따라서 대부분의 언어, 진짜 거의 모든 언어는 &lt;strong&gt;I/O 작업을 대기하지 않고 Non-blocking 방식으로 처리하며, 작업 완료 시 이벤트나 콜백을 사용하여 결과를 비동기적으로 처리한다.&lt;/strong&gt; 아래는 Node.js의 libuv 라이브러리를 이용한 비동기 처리를 나타낸 그림이다.&lt;/p&gt;
+&lt;p&gt;&lt;mark&gt;&lt;strong&gt;대부분의 프로그래밍 언어는 I/O작업과 같이 오랜 시간이 걸리는 작업에 대해 Asynchronous하고 Non-blocking하게 동작한다.&lt;/strong&gt;&lt;/mark&gt;&lt;/p&gt;
+&lt;p&gt;콜 스택 방식으로 I/O작업처럼 오래 걸리는 작업을 처리할 경우, 뒤의 작업이 너무 오랜 시간 지연된다. 그래서 대부분의 프로그래밍 언어는 I/O과 같은 작업을 커널에 넘겨준다.&lt;/p&gt;
+&lt;p&gt;따라서 &lt;strong&gt;커널이 I/O 작업을 다루는 동안, 원래의 프로세스 Non-blocking 방식으로 작업을 이어나걸 수 있다. 또한 I/O 작업 완료 시에는, 그 결과를 이벤트나 콜백을 통해 비동기적으로 처리한다.&lt;/strong&gt;&lt;/p&gt;
 &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
       &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/b0d5459f64e6e168cf8cc86139a10cde/21b4d/node-js-io-event.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 55.99999999999999%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAACUElEQVR42n2S3U9SYRzH+QO7b+umrc255qWumi9ltharNROn2RyNNtSMgRdpZgqkHkDIFRAvnsPb4R1EBYUDGMmnccRKt7r47HfxPM9n3+9+j+bB42t89OtInGXZq4cQG6JKpCkhn0ZJnsa6RIk2JfbUs6tIRJohAtV9NHrLK7wFIyV2yLY3ybNFsb2F/NOOs7GMpbLI3NE8azULYmuDMg5SbeESclsgj52gEkMTrqco4iTddrHfFjjFzUB8muvhZ5jLS6xXVxCUNVZP3vO69JblygqTkpZBTw/D7tvc/9LHoKcXgzxOUMmg8Z9EKGAne+bEnAxhjEQwlU0YDo2kWg6O8VDCRbk73x2ZGfDdYtR9k4eeHsbcvQzt3kAXvUOglkbzvZqgjA19OMILX4LVvJ95KUWo6iPHFsm/qhU6TVoOxuMjBA82kEo2EocCtvwCM+lRAtUUGrERJ9R00rt+QK7hAKz0WfOsFb9xyDaZtoMsf4i2BLSRft6ktSxkJ1jMTTItDzMlD50nDNfjxH4I6MUYK7kws2KCCV+SQkfGZVkeJ7GWwNPIXT4U9FiLRj4XF5hPPWcqOXIuDCgJSmySadox+D3MfN0lUNlU611Ndy7c5onUjy03hyNrYie3hEnWoZPvEah2hZ00wYqNUNGCuG8hXP5EFhcZBDXlBR1p8syJIT3NVPIRL9NaZtJadPIY5uIsQSWFJqjEKWAlj4MiLvIqDnUh/6LQvXtBgR21ZaDzD73H+/jrYXw1CV9NVPEr0n/x1vbwK+Jv1HdKEO9xiV+I4Pk+MTbMYwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
@@ -494,8 +974,8 @@ function pickOnlyone() {
   &lt;/a&gt;
     &lt;/span&gt;
 &lt;h2 id=&quot;43-synchronous-non-blocking&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#43-synchronous-non-blocking&quot; aria-label=&quot;43 synchronous non blocking permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.3. Synchronous Non-blocking&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;두 작업이 동시에 일어나면서, 끊임없이 서로의 작업상태를 동기화하는 것을 말한다.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;이런 경우가 뭐가 있나 했는데, &lt;a href=&quot;https://inpa.tistory.com/entry/%F0%9F%91%A9%E2%80%8D%F0%9F%92%BB-%EB%8F%99%EA%B8%B0%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%B8%94%EB%A1%9C%ED%82%B9%EB%85%BC%EB%B8%94%EB%A1%9C%ED%82%B9-%EA%B0%9C%EB%85%90-%EC%A0%95%EB%A6%AC#%EB%8F%99%EA%B8%B0synchronous_/_%EB%B9%84%EB%8F%99%EA%B8%B0asynchronous&quot;&gt;Inpa Dev님&lt;/a&gt;이 아주 직관적인 예시를 들어주셨다. 바로 &lt;strong&gt;게임 로딩 화면&lt;/strong&gt;이다. 렌더링 프로세스는 &lt;strong&gt;계속해서 화면을 렌더링&lt;/strong&gt;하는 와 중에, &lt;strong&gt;로딩 진행사항을 전달받아 동기화&lt;/strong&gt;해야한다.&lt;/p&gt;
+&lt;p&gt;&lt;mark&gt;&lt;strong&gt;두 작업이 동시에 일어나면서, 끊임없이 서로의 작업상태를 동기화하는 것을 말한다.&lt;/strong&gt;&lt;/mark&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://inpa.tistory.com/entry/%F0%9F%91%A9%E2%80%8D%F0%9F%92%BB-%EB%8F%99%EA%B8%B0%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%B8%94%EB%A1%9C%ED%82%B9%EB%85%BC%EB%B8%94%EB%A1%9C%ED%82%B9-%EA%B0%9C%EB%85%90-%EC%A0%95%EB%A6%AC#%EB%8F%99%EA%B8%B0synchronous_/_%EB%B9%84%EB%8F%99%EA%B8%B0asynchronous&quot;&gt;Inpa Dev님&lt;/a&gt;이 이에 대한 적절한 예시를 들어주셨다. 바로 &lt;mark&gt;게임 로딩 화면&lt;/mark&gt;이다. &lt;strong&gt;렌더링 프로세스는 계속해서 화면을 렌더링하는 와 중에, 로딩 진행률을 전달받아 동기화&lt;/strong&gt;해야한다.&lt;/p&gt;
 &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 634px; margin-bottom: 20px;&quot;&gt;
       &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/32d9459aea6981d1510cacd00d4a38aa/374ac/sync-non-blocking.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 70.85714285714285%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAABzUlEQVR42o1Ui26jQAzM//9ddTSBwJXwCs/whuU91bhHdOlR6VZy1qy94xmvlRMAtG2LNE0RxzHKssQ8zzzGtm0vxjUMg+QkSSI7v/9ep68kBd/zYNs2qqrCuq74abEYc0zTRJ7nGMfxWfwJOC0zoqyA+RHIIZne73dkWSZ+GIaIokjOiqLAsixomuawoACqcUTyKOAHkchn5ev1Kiy4G4YBXdflm4BlWeHX+TfatpOClM+d7AUwrxvYYQrrw4dSSiR3XSfg+17Xtfi8RJleEIt0xnhnvyeA/TAizivco0xosyJlkil9Gh+NZ2TIiwQ6lMyKbOg8T/Jq7A33y+UiMmnn8xmapom/S357t6SX/wBmaQrbD2AGCS7GDUr1mKbpRfLu930vcikvSTMZGbKm+b4vsROTOqVQ1A2yRyFV9rH5Pof7aHBp+g15UQgICRD82cOiaWEHMW5OIAHHccT4cqxM8/7MKftJto4bvBR4GRsGKINsd4a8aFmWABPIdV2RDmxYlhXvV0+YHQJO84yybhHFqYCSAUE4fwSlz3lkr8ZhkBzD8o4fhT+PqobuhtAuDrZtPUzclTDGyfhxbHan7RSCMMP/LAJ//1PYAT8B8RM1nn+zPQEAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
@@ -511,9 +991,9 @@ function pickOnlyone() {
   &lt;/a&gt;
     &lt;/span&gt;
 &lt;h2 id=&quot;44-asynchronous-blocking&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#44-asynchronous-blocking&quot; aria-label=&quot;44 asynchronous blocking permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.4. Asynchronous Blocking&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;작업 상태를 동기화하지도 않을 거면서, 다른 작업이 끝나기까지 대기하는 괴상한 상태이다.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://interconnection.tistory.com/141&quot;&gt;Ryan&lt;/a&gt;님이 I/O Multiplexing을 위한 OS의 &lt;strong&gt;Select와 Poll 시스템 콜&lt;/strong&gt;을 예시로 들어주셨는데, 솔직히 뭔 말인지 잘 모르겠다.&lt;/p&gt;
-&lt;p&gt;뒤 이어 나온 설명이 그나마 도움이 되었다. Asynchronous Blocking의 작업 효율은 Synchronous Blocking과 비슷하며, &lt;strong&gt;대부분의 경우 의도치 않은 개발 실수&lt;/strong&gt;라고 한다.&lt;/p&gt;
+&lt;p&gt;&lt;mark&gt;&lt;strong&gt;작업 상태를 동기화하지도 않을 거면서, 다른 작업이 끝나기까지 대기하는 괴상한 상태이다.&lt;/strong&gt;&lt;/mark&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://interconnection.tistory.com/141&quot;&gt;Ryan&lt;/a&gt;님이 예시로 &lt;strong&gt;I/O Multiplexing을 위한 시스템 콜 Select와 Poll&lt;/strong&gt;을 들어주셨는데, 솔직히 뭔 말인지 잘 모르겠다.&lt;/p&gt;
+&lt;p&gt;뒤이어 나온 설명이 그나마 나한테는 도움이 되었다. Asynchronous Blocking의 작업 효율은 Synchronous Blocking과 비슷하며, 대부분의 경우 의도치 않은 개발 실수라고 한다.&lt;/p&gt;
 &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
       &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/d79d20e7460c182822b2528518c5e2b7/073e9/async-blocking.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 61.71428571428571%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAABnUlEQVR42pVTa6+jIBD1//+8tvul6frCBwoCWqlPPJshofH23s1mJ5mgOJ45zDlEAHAcBy0Ynk9kWYY0TTAMA8K3z5ymCXVdgzGG18vCOYcQEU7h3A6lDDqlse87zs2+1jmM4whr7bvuC6A7DgghIJVCVgkUZYt5njzbsiw9G1qLokCe5x6oUwb9YD0JYjzPs28UhY7btvn1OVpobbBtK9q2RZIkHihNU8Rx7PcIpKgE7g8GrToIIdF1HdZ1RUTUw7zkwPEofqOuOw9IXc9JTJZl8c3pH3r/jKhpGvS9wb46JPUdlcpw7PhnUAMC/hHQGI1xsLjnv9D0Bdx/AJIodFR6JgHfgBRMxshFjGXevB1oXlJKcM59Um3Ttjicg9IGvGmhtfJ1JCqBRiQEzcK5A5ubwDhHxhpYO3plz4BBbWKnTe8F/Hbk4LWXtdDDEw8mkWQc27qAsQLX69Xn5XLB7XbzLNd1QVkLiK7/5tW3bXpjUEuJpBJgrMayzFBKebsEL9LN0Fpj31bkRYOKdz8DnoMGTPm3WxL2gn0+j/wHoOKeutaI13QAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
@@ -537,18 +1017,19 @@ function pickOnlyone() {
 &lt;li&gt;&lt;a href=&quot;https://medium.com/from-the-scratch/wtf-is-synchronous-and-asynchronous-1a75afd039df&quot;&gt;WTF is Synchronous and Asynchronous!&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=oEIoqGd-Sns&amp;#x26;t=413s&quot;&gt;[10분 테코톡] 🐰 멍토의 Blocking vs Non-Blocking, Sync vs Async&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=ohz7uHnza6A&quot;&gt;[10분 테코톡] 땡칠의 Blocking vs Non-Blocking과 Sync vs Async&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA["P, NP, NP 난해, NP 완전" 이해하기]]></title><description><![CDATA[1. 핵심 요약 P-NP…]]></description><link>https://byongho96.github.io/TIL/posts/CS/Algorithm/P_NP/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/CS/Algorithm/P_NP/</guid><pubDate>Mon, 04 Sep 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-핵심-요약&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%ED%95%B5%EC%8B%AC-%EC%9A%94%EC%95%BD&quot; aria-label=&quot;1 핵심 요약 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 핵심 요약&lt;/h1&gt;
-&lt;p&gt;P-NP 개념에 대해 구글링하면 온갖 수학적 개념이 튀어나와 사람을 기죽인다. 아마 명제만으로 개념을 정의하기 위한 수학자들의 약속 때문인 것 같다.&lt;/p&gt;
-&lt;p&gt;하지만 나 같은 일반 개발자가 이해하기에는 너무나도 고고했기 때문에, 정확성과 전달력 사이에서 적절히 타협하여 다음과 같이 정리했다.&lt;/p&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA["P, NP, NP 난해, NP 완전" 이해하기]]></title><description><![CDATA[1. 핵심 요약 P-NP 개념에 대해 구글링하면 온갖 수학적 개념이 튀어나와 사람을 기죽이고 그런다. 명제만으로 개념을 설명하기 위한 수학자들의 변태적 성향 때문인 것 같다. 따라서 나처럼 평범한 사람도 알아들을 법한 언어로 정리하면 다음과 같다. P…]]></description><link>https://byongho96.github.io/TIL/posts/CS/Algorithm/P_NP/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/CS/Algorithm/P_NP/</guid><pubDate>Mon, 04 Sep 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-핵심-요약&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%ED%95%B5%EC%8B%AC-%EC%9A%94%EC%95%BD&quot; aria-label=&quot;1 핵심 요약 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 핵심 요약&lt;/h1&gt;
+&lt;p&gt;P-NP 개념에 대해 구글링하면 온갖 수학적 개념이 튀어나와 사람을 기죽이고 그런다. 명제만으로 개념을 설명하기 위한 수학자들의 변태적 성향 때문인 것 같다.&lt;/p&gt;
+&lt;p&gt;따라서 나처럼 평범한 사람도 알아들을 법한 언어로 정리하면 다음과 같다.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;P 문제&lt;/strong&gt;: 다항 시간 이내의 시간 복잡도로 풀이 가능한 문제&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;NP 문제&lt;/strong&gt;: 다항 시간 이내의 시간 복잡도로 검증 가능한 문제&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;NP 난해&lt;/strong&gt;: 다항 시간 이내의 시간 복잡도로 풀이 불가능한 문제&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;NP 완전&lt;/strong&gt;: 다항 시간 이상의 시간 복잡도로 풀이 불가능하지만, 다항 시간의 시간복잡도로 검증 가능한 문제&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NP 완전&lt;/strong&gt;: 다항 시간 이내의 시간 복잡도로 풀이 불가능하지만, 다항 시간의 시간복잡도로 검증 가능한 문제&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;다항시간의 시간복잡도란, &lt;mark&gt;주어진 데이터의 크기가 N이라고 할 때 &lt;code&gt;O(N**n)&lt;/code&gt;(n은 0 이상의 정수)&lt;/mark&gt;으로 나타낼 수 있는 시간복잡도를 말한다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;다항시간의 시간복잡도&lt;/strong&gt;란, &lt;mark&gt;주어진 데이터의 크기가 N이라고 할 때 &lt;code&gt;O(N**n)&lt;/code&gt;(n은 0 이상의 정수)&lt;/mark&gt;으로 나타낼 수 있는 시간복잡도를 의미한다.&lt;/p&gt;
 &lt;h1 id=&quot;2-p-문제&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-p-%EB%AC%B8%EC%A0%9C&quot; aria-label=&quot;2 p 문제 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. P 문제&lt;/h1&gt;
-&lt;p&gt;&lt;mark&gt;다항 시간 이내의 시간 복잡도로 풀이 가능한 문제&lt;/mark&gt;를 말한다. 아래 그래프에서 확인할 수 있는 것처럼 &lt;code&gt;O(logN)&lt;/code&gt;의 시간복잡도가 &lt;code&gt;O(N)&lt;/code&gt;보다 낮기 때문에, &lt;strong&gt;다항식에 &lt;code&gt;logN&lt;/code&gt;이 곱해져도 여전히 다항식에 속한다.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;mark&gt;&lt;strong&gt;다항 시간 이내의 시간 복잡도로 풀이 가능한 문제&lt;/strong&gt;&lt;/mark&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;O(logN)&lt;/code&gt;의 시간복잡도가 &lt;code&gt;O(N)&lt;/code&gt;보다 낮기 때문에, 다항식에 &lt;code&gt;logN&lt;/code&gt; 등이 곱해져도 여전히 다항식의 시간복잡도 이내에 속한다.&lt;/p&gt;
 &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
       &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/b5c0bd27b95b94aa6421c2b377adc475/7e509/Big_O_graph.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 61.142857142857146%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAAC20lEQVR42lXRT2iTdxzH8Uc2T4MdxYMHYbcdN6aCTpuk1f05iffB2G0IMqYLtQouT/M8T5609bQpwhw6ioeuQpthG23UJu2aDkfpVpY29ckfzb8+TQr50+dJnuZ53qNJV+bhw+fwgxd8fl+h3mjQqlap5vNUi0WaGxtYlQrb2Qz62ENKofuUViQSKxJjvw/w25/DtDY3sDbLWGW9081CGSyTtWQSYdtxqIVC5L69TPHGDWxVpakoFK9fxxRFHFnCCYi0FZGWLGIpgxBUYUgF+SYER7B//hIyd9GyhT1wcoLa1auYigxqgKrPx44i4wQC+6ETtfPuSEEc/xDObS+EL2DHPoD8j6Qyxf/ASar9/RiStA/+H+tG6bZ/GG5+Dw+/gAU3xD3Yz0/A61tomQJCw7apTUx0QFOWsWSZhiiCqr6JSUOd5pevIXoOO36a1qybnehZ6tMfQeoHUtkiQq5SIT86Sv3aNQxZxvT7Mfz+PVDBkYNd7PZ3ED4Pi2cg7saIuMmOn6Iy5aI1cwxyt7qT06US2Xv3qA4MYAUUaqKP9u7/KQGcwRGcEd/ePA9O3MXOrIfGjIvtiIt2zAMLZ7GjXVDbBbdMk/L4OJteL01Fpr47VxrugNy/CLOfYS+cofncRWOmh0akh52oB+Z7IdYH0U+xH5+C7J03r6x7r1ATJaxBFe54ccLnseZPU5/poRb2YDzpxX52DmKfwFwfzlwvzh8f4/x1nPbqETAG0dKl7lGqkyEK3/RjBH0w9hWtp32Yz1w0I70w54alk5D4ELT3IXcUtg6B8Q60DwJvYzYF4BLptI7QBFIPRkn6P2fzyXFy8+9RfHEUPXEYPfsupY2D5MoHyFQE1rcEEmWBFV1gqSjwoiDwdPUtfl0UWNUv8SqrI2wbBq9TSVaWH5FcD6Olp1h/FWItE+Kf9COW1iaZiv5EJD7KsjbNshZmSZvez2IiTOzvEPlKkpfrL/kX0or3SLDTFYoAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
@@ -566,16 +1047,20 @@ function pickOnlyone() {
   &lt;/a&gt;
     &lt;/span&gt;
 &lt;h1 id=&quot;3-np-문제&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-np-%EB%AC%B8%EC%A0%9C&quot; aria-label=&quot;3 np 문제 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. NP 문제&lt;/h1&gt;
-&lt;p&gt;&lt;mark&gt;다항 시간 이내의 시간 복잡도로 검증 가능한 문제&lt;/mark&gt;를 말한다.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;우선 모든 P문제는 NP문제에 포함된다.&lt;/strong&gt; 다항 시간 이내의 시간 복잡도로 문제를 해결할 수 있다면, 당연히 같은 시간 복잡도 내에 검증도 가능하기 때문이다.&lt;br&gt;
-예를 들어, 누군가 제출한 답안이 문제의 정답인지 아닌지 검증해야한다고 가정해보자. 이 때 가장 무식한 방법은 직접 문제를 풀어서 정답을 구한 다음에 이를 제출한 답과 비교하는 것이다. 이렇게 가장 무식한 방법을 고려하면, P문제는 반드시 NP문제에 포함된다.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;어떤 문제들은 P문제가 아님에도 NP문제에 포함된다.&lt;/strong&gt; 가장 대표적으로 &lt;a href=&quot;https://www.acmicpc.net/problem/2580&quot;&gt;스도쿠&lt;/a&gt;가 있다.&lt;br&gt;
-스도쿠 문제는 각 칸에 1 ~ 9 까지의 값이 들어갈 수 있다. 따라서 N개의 빈칸이 있을 때, 완전 탐색으로 풀이하면 &lt;code&gt;O(9**N)&lt;/code&gt;의 시간복잡도가 소요된다.&lt;br&gt;
-하지만 누군가가 답안을 제출했을 때 이를 검증하는 것은 훨씬 쉽다. 9개의 열, 행, 사각형을 순차탐색하면 되기 때문이다&lt;br&gt;
-무엇을 N으로 잡느냐에 따라 시간복잡도의 표현식이 달라지겠지만, 똑같이 빈 칸의 갯수를 N이라 하면, 검증에는 빈칸의 갯수와 상관 없이 &lt;code&gt;O(3*9*9)&lt;/code&gt;의 상수시간이 소요된다.&lt;/p&gt;
+&lt;p&gt;&lt;mark&gt;&lt;strong&gt;다항 시간 이내의 시간 복잡도로 검증 가능한 문제&lt;/strong&gt;&lt;/mark&gt;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;모든 P문제는 NP문제에 포함된다.&lt;/strong&gt;&lt;br&gt;
+다항 시간 이내에 문제를 해결할 수 있다면, 최악의 경우라도 같은 시간 내에 검증 가능하기 때문이다.&lt;br&gt;
+예를 들어 누군가 제출한 답안의 정답 여부를 확인해야한다고 가정해보자. 가장 무식한 방법은, 직접 문제를 풀어서 정답을 구한 다음, 제출된 답과 비교하는 것이다. 같은 논리로 P문제는 항상 NP문제에 포함된다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;어떤 문제들은 P문제가 아님에도 NP문제에 포함된다.&lt;/strong&gt;&lt;br&gt;
+&lt;mark&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/2580&quot;&gt;스도쿠 문제&lt;/a&gt;가 대표적이다.&lt;/mark&gt;&lt;br&gt;
+스도쿠는 각 칸에 1 ~ 9의 숫자가 들어갈 수 있기 때문에 N개의 빈칸이 있을 때, &lt;code&gt;O(9**N)&lt;/code&gt;의 시간복잡도가 소요된다. (완전 탐색 가정)&lt;br&gt;
+하지만 누군가가 제출한 답안을 검증하는 것은 훨씬 간단하다. 9개의 열, 행, 사각형을 순차탐색하면 되기 때문이다. N과 관계 없이 &lt;code&gt;O(3*9*9)&lt;/code&gt;이라는 상수 시간복잡도를 가진다.&lt;br&gt;
 &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 375px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/2648e2d176dca597d4bb3a65cec5acb1/5ff7e/sudoku.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC4ElEQVR42m3UfUtCSxAG8PP9P0wQQfRHUFBU9F5WZmUvlpqWmqbZ6+7lN3jkXrgHlp2zO7vzPM/MbFGpVNLFxUXudrvp9PQ0Pz8/p8lkkmu1Wn5/f89vb2/55uYmn52dhd3tduP/+/ubb+b78vKSPz4+8u3tbS7Oz8/zwcEB57S1tZUHg0H6/f3Nd3d3+efnJ0+n09xoNHKz2cyfn595PB7Hv28wGGS+o9Eo//39hU8hmsO9Xi9xhpADhJ1OJ8b9/X04m09OTnK9Xo/L2+12sIAaUuvF3t5e3t/f55BEHY1GSTTOl5eXcaF5d3c3bCzszXxjdpnPeiEyLVqtVrLQbrdjJsXsP/Z7vV7M6EJPCnvQtVqtQIptgaav2WymxcXFPBwO08LCQj46OppH//r6Cq0Ibzw9Pc0RLi8vhxQ+FxeiWahWq4kNGZ02NzfnaGjMvrq6ioG+w9VqNR8fH2fV8fj4mA8PD3Nh0+HpdBoaynZKKYIoDcg4CsJGzeGZb2QXA6W3vb2dC1H89Pv9RBf1WNZhWSb21SGK/X4/tFJS9LOvfGQ4ENp0YDKZJE4uFvHh4SGvra2Fo3VI0Jblsg4lii/UdCVXQRPRUUYVZdQ4oIC6fxdCJFn/pmwPM/6VSiUXokEJGYooc7i+vg7KaHKWmJIy1C4SQNZLynOEMqVcJKHT6SRO1lGhkdaUPPbr62sAwEahl0GVD4kKSCBQNrSs1WoJJRdAL7ILaGo2dJekGcBApowiKVD4Go1GWl1dRSG0dJkZWshpyCYH+g47u7KyEvLMC1s7EbdsPfNwOIyipY19Ws18IiGYYDXzj+EJ0/PRegQej8f/eRxctLGxMe8WekG2tLQUL0/ZelhgoDl2dnZyITpEZUF7vlCRFA8mRJBIhiDolRVgnQz2BIT8fxGWGkLK1queOLag5ePA1pICmQNhvV5PHMyiyKLISsU6eqivr6+HLeuKm2ZsWVb8OkhS/wFi1MPir3KK/gAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC4ElEQVR42m3UfUtCSxAG8PP9P0wQQfRHUFBU9F5WZmUvlpqWmqbZ6+7lN3jkXrgHlp2zO7vzPM/MbFGpVNLFxUXudrvp9PQ0Pz8/p8lkkmu1Wn5/f89vb2/55uYmn52dhd3tduP/+/ubb+b78vKSPz4+8u3tbS7Oz8/zwcEB57S1tZUHg0H6/f3Nd3d3+efnJ0+n09xoNHKz2cyfn595PB7Hv28wGGS+o9Eo//39hU8hmsO9Xi9xhpADhJ1OJ8b9/X04m09OTnK9Xo/L2+12sIAaUuvF3t5e3t/f55BEHY1GSTTOl5eXcaF5d3c3bCzszXxjdpnPeiEyLVqtVrLQbrdjJsXsP/Z7vV7M6EJPCnvQtVqtQIptgaav2WymxcXFPBwO08LCQj46OppH//r6Cq0Ibzw9Pc0RLi8vhxQ+FxeiWahWq4kNGZ02NzfnaGjMvrq6ioG+w9VqNR8fH2fV8fj4mA8PD3Nh0+HpdBoaynZKKYIoDcg4CsJGzeGZb2QXA6W3vb2dC1H89Pv9RBf1WNZhWSb21SGK/X4/tFJS9LOvfGQ4ENp0YDKZJE4uFvHh4SGvra2Fo3VI0Jblsg4lii/UdCVXQRPRUUYVZdQ4oIC6fxdCJFn/pmwPM/6VSiUXokEJGYooc7i+vg7KaHKWmJIy1C4SQNZLynOEMqVcJKHT6SRO1lGhkdaUPPbr62sAwEahl0GVD4kKSCBQNrSs1WoJJRdAL7ILaGo2dJekGcBApowiKVD4Go1GWl1dRSG0dJkZWshpyCYH+g47u7KyEvLMC1s7EbdsPfNwOIyipY19Ws18IiGYYDXzj+EJ0/PRegQej8f/eRxctLGxMe8WekG2tLQUL0/ZelhgoDl2dnZyITpEZUF7vlCRFA8mRJBIhiDolRVgnQz2BIT8fxGWGkLK1queOLag5ePA1pICmQNhvV5PHMyiyKLISsU6eqivr6+HLeuKm2ZsWVb8OkhS/wFi1MPir3KK/gAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
   &lt;picture&gt;
           &lt;source srcset=&quot;/TIL/static/2648e2d176dca597d4bb3a65cec5acb1/c54d4/sudoku.webp 175w,
 /TIL/static/2648e2d176dca597d4bb3a65cec5acb1/a3432/sudoku.webp 350w,
@@ -585,15 +1070,28 @@ function pickOnlyone() {
 /TIL/static/2648e2d176dca597d4bb3a65cec5acb1/5ff7e/sudoku.png 375w&quot; sizes=&quot;(max-width: 375px) 100vw, 375px&quot; type=&quot;image/png&quot;&gt;
           &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/2648e2d176dca597d4bb3a65cec5acb1/5ff7e/sudoku.png&quot; alt=&quot;sudoku.png&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
         &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;h1 id=&quot;4-np-난해&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-np-%EB%82%9C%ED%95%B4&quot; aria-label=&quot;4 np 난해 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. NP 난해&lt;/h1&gt;
-&lt;p&gt;&lt;mark&gt;다항 시간 이내의 시간 복잡도로 풀이 불가능한 문제&lt;/mark&gt;를 말한다.&lt;/p&gt;
-&lt;p&gt;위의 문장이 NP난해의 대략적으로 설명할 수 있다고 생각하지만, 명확히 정의는 아니다. 참고로 위키피디아의 정의는 아래와 같은데, 여기서 &lt;strong&gt;다대일 환산&lt;/strong&gt;의 개념이 일대일 환산을 포함하는 것인지 잘 모르겠다.&lt;/p&gt;
+&lt;p&gt;&lt;mark&gt;&lt;strong&gt;다항 시간 이내의 시간 복잡도로 풀이 불가능한 문제&lt;/strong&gt;&lt;/mark&gt;&lt;/p&gt;
+&lt;p&gt;위의 문장이 완벽한 정의는 아니지만, &lt;strong&gt;&lt;code&gt;P == NP&lt;/code&gt;가 증명되지 않은 현재 상황에선 큰 문제 없을 것&lt;/strong&gt; 같다. 참고로 Wikipedia에서는 아래와 같이 정의한다.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;NP-난해, NP-hard는 NP에 속하는 모든 판정 문제를 다항 시간에 다대일 환산할 수 있는 문제들의 집합이다. 다시 말하면, NP-난해는 적어도 모든 NP 문제만큼은 어려운 문제들의 집합이다.&lt;/p&gt;
+&lt;p&gt;NP-난해, NP-hard는 NP에 속하는 모든 판정 문제를 다항 시간에 다대일 환산할 수 있는 문제들의 집합이다. 다시 말하면, NP-난해는 적어도 모든 NP 문제만큼은 어려운 문제들의 집합이다. [Wikipida]&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;이어서 나온 설명은 더 가관이다. P-NP문제의 판정 결과에 따라 P문제가 NP난해에 속할 수도 있고, 반대로 서로소일 수도 있다고 한다. 이런 것을 보면 NP난해는 NP문제 정의에 의존하는 추상적인 개념일 것이라고 추측한다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;NP문제 중 다항시간 내에 풀이 불가능한 문제가 포함된다.&lt;/strong&gt;&lt;br&gt;
+앞서 설명했던 스도쿠 문제는 NP문제이면서 &lt;code&gt;O(9**N)&lt;/code&gt;의 시간복잡도를 가지기 때문에 NP난해에 속한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;NP문제가 아니면서 다항시간 내에 풀이 불가능한 문제가 포함된다.&lt;/strong&gt;&lt;br&gt;
+&lt;mark&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/2098&quot;&gt;외판원 문제&lt;/a&gt;가 대표적이다.&lt;/mark&gt;
+외판원 문제는 순열(permutation) 문제의 일종으로 &lt;code&gt;O(N!)&lt;/code&gt;의 시간복잡도를 가진다. 검증을 위한 방법이 따로 존재하지도 않아서, 검증에도 역시 &lt;code&gt;O(N!)&lt;/code&gt;의 시간이 소요된다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;41-p와-np난해&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#41-p%EC%99%80-np%EB%82%9C%ED%95%B4&quot; aria-label=&quot;41 p와 np난해 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.1. P와 NP난해&lt;/h2&gt;
+&lt;p&gt;NP-난해의 정의 자체가 NP에 종속되어 있으므로, P와 NP 관계에 따라서 P와 NP-난해의 관계도 달라진다.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;NP-난해 집합에 속하는 문제가 NP에도 속하면 NP-완전에 속한다. 즉, NP-완전은 NP와 NP-난해의 교집합이다. 만약 P-NP 문제가 P=NP로 풀린다면 P=NP=NP-완전이므로 P와 NP는 NP-난해의 부분집합이 되고, P≠NP인 경우는 P와 NP-난해는 서로소가 된다.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -615,15 +1113,14 @@ function pickOnlyone() {
         &lt;/picture&gt;
   &lt;/a&gt;
     &lt;/span&gt;
-&lt;p&gt;&lt;strong&gt;NP문제 중 다항시간 내에 풀이 불가능한 문제&lt;/strong&gt;가 여기에 속한다. 앞서 설명했던 스도쿠 문제가 포함된다.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;NP문제에 포함되지 않고 다항시간 내에 풀이 불가능한 문제&lt;/strong&gt;도 여기에 속한다. 가장 유명한 문제로는 외판원 순회가 있다. &lt;a href=&quot;https://www.acmicpc.net/problem/2098&quot;&gt;외판원 문제&lt;/a&gt;는 순열(permutation) 문제의 일종으로 &lt;code&gt;O(N!)&lt;/code&gt;의 시간복잡도를 가지는데, 다항시간 내에 검증할 마땅한 방법이 없어 검증에도 역시 &lt;code&gt;O(N!)&lt;/code&gt;의 시간이 소요된다.&lt;/p&gt;
 &lt;h1 id=&quot;5-np-완전&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-np-%EC%99%84%EC%A0%84&quot; aria-label=&quot;5 np 완전 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5. NP 완전&lt;/h1&gt;
-&lt;p&gt;&lt;mark&gt;다항 시간 이상의 시간 복잡도로 풀이 불가능하지만, 다항 시간의 시간복잡도로 검증 가능한 문제&lt;/mark&gt;를 말한다. NP와 NP난해의 교집합이다.&lt;/p&gt;
-&lt;p&gt;NP문제에 설명했던 스도쿠 문제가 바로 NP 완전의 대표적인 예시이다.&lt;/p&gt;
+&lt;p&gt;&lt;mark&gt;&lt;strong&gt;다항 시간 이상의 시간 복잡도로 풀이 불가능하지만, 다항 시간의 시간복잡도로 검증 가능한 문제&lt;/strong&gt;&lt;/mark&gt;.&lt;/p&gt;
+&lt;p&gt;간단히 말해서 NP와 NP난해의 교집합이다. 따라서 앞서 계속 예시로 나왔던 &lt;a href=&quot;https://www.acmicpc.net/problem/2580&quot;&gt;스도쿠 문제&lt;/a&gt;가 또 다시 여기에 포함된다.&lt;/p&gt;
 &lt;h1 id=&quot;6-p-np-문제&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#6-p-np-%EB%AC%B8%EC%A0%9C&quot; aria-label=&quot;6 p np 문제 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6. P-NP 문제&lt;/h1&gt;
-&lt;p&gt;&lt;mark&gt;P-NP문제는 P문제와 NP문제가 같은지 다른지를 증명하는 것이다.&lt;/mark&gt; 다항시간 내에 검증이 가능한 문제라면, 우리가 아직 발견하지 못한 더 아름다운 알고리즘으로 결국에는 다항시간에 풀이 또한 가능하지 않을까하고 기대할 수 있다.&lt;/p&gt;
-&lt;p&gt;실제 알고리즘을 푸는 과정에서, 시간초과가 났을 때 더 나은 알고리즘을 써서 시간복잡도를 줄인 후 통과한 경험이 있을 것이다. 지금 대표적으로 생각나는 문제는 &lt;a href=&quot;https://www.acmicpc.net/problem/2473&quot;&gt;세 용액&lt;/a&gt;이다. 완전 탐색으로 풀면 모든 경우를 조합하여 &lt;code&gt;O(N**3)&lt;/code&gt;의 시간 복잡도가 소요되는데, 투포인터를 이용하면 &lt;code&gt;O(N**2)&lt;/code&gt;의 시간 복잡도로 줄일 수 있다.&lt;/p&gt;
-&lt;p&gt;하지만 ChatGPT피셜 아직까지 다항 시간 이상의 시간복잡도가 소요되는 문제가, 더 나은 알고리즘으로 다항 시간 이내의 시간복잡도로 풀이된 사례는 없다고 한다. 따라서 P와 NP가 다름을 증명하는게 더 가능성 있다고 생각하는데, 내가 뭘 알겠는가&lt;/p&gt;
+&lt;p&gt;&lt;mark&gt;&lt;strong&gt;P-NP문제란, P문제와 NP문제가 같은지 다른지를 증명하는 것이다.&lt;/strong&gt;&lt;/mark&gt;&lt;/p&gt;
+&lt;p&gt;다들 백준에서 시간초과가 났을 때, 다른 알고리즘을 써서 시간복잡도를 줄인 후에야 통과한 경험이 있을 것이다. 예를 들어, 백준의 &lt;a href=&quot;https://www.acmicpc.net/problem/2473&quot;&gt;세 용액&lt;/a&gt;문제는 완전탐색으로 풀면 &lt;code&gt;O(N**3)&lt;/code&gt;의 시간 복잡도가 소요되는데, 투포인터를 이용하면 &lt;code&gt;O(N**2)&lt;/code&gt;으로 시간 복잡도를 줄일 수 있다.&lt;/p&gt;
+&lt;p&gt;같은 맥락에서 &lt;strong&gt;다항시간 내에 검증이 가능한 문제(NP 문제)라면, 더 대단한 알고리즘을 개발해서 결국 다항시간 내에 풀이(P문제)할 수 있지 않을까?&lt;/strong&gt; 하는 기대감이라고 할 수 있겠다.&lt;/p&gt;
+&lt;p&gt;하지만 ChatGPT피셜, &lt;strong&gt;현재까지 다항 시간 이상이 소요되는 문제가 더 나은 알고리즘으로 다항 시간 이내에 풀이된 사례는 없다고 한다.&lt;/strong&gt; 따라서 P와 NP가 다름을 증명하는게, 그 역보다 더 가능성 있다고 생각하는데, 내가 뭘 알겠어&lt;/p&gt;
 &lt;h1 id=&quot;7-참고자료&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#7-%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C&quot; aria-label=&quot;7 참고자료 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;7. 참고자료&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://ko.wikipedia.org/wiki/P-NP_%EB%AC%B8%EC%A0%9C&quot;&gt;위키피디아: P-NP 문제&lt;/a&gt;&lt;/li&gt;
@@ -38537,127 +39034,5 @@ value는 또 다시 json과 같은 key-value형식의 문서로 정의되어 있
 연속된 숫자값을 가지는 데이터&lt;br&gt;
 &lt;mark style=&apos;background-color: #f6f8fa&apos;&gt;Ex) 키, 몸무게, 온도&lt;/mark&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[IP 주소 할당]]></title><description><![CDATA[프로그, "공유기는 어떻게 IP를 할당할까 - 인터넷 공유기 원리", 2020.04.19을 참고하여 작성하였습니다. WAN 측 공인 IP 주소: 인터넷 서비스 제공자(ISP)가 IP관리 기관(IANA)로부터 받은 공인 IP…]]></description><link>https://byongho96.github.io/TIL/posts/CS/Network/모두의_네트워크_1장_2장/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/CS/Network/모두의_네트워크_1장_2장/</guid><pubDate>Fri, 14 Oct 2022 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://m.blog.naver.com/kim04099/221917309214&quot;&gt;프로그, &quot;공유기는 어떻게 IP를 할당할까 - 인터넷 공유기 원리&quot;, 2020.04.19&lt;/a&gt;을 참고하여 작성하였습니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/ad923a76bb9f14ee53b53671d70a4c3a/d0c7b/1-10.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 58.285714285714285%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAMABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAIBAwX/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIQAxAAAAHQVYLBQ//EABcQAQEBAQAAAAAAAAAAAAAAAAABEBH/2gAIAQEAAQUC2uI//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFxAAAwEAAAAAAAAAAAAAAAAAAAEQgf/aAAgBAQAGPwK5Gf/EABsQAAMAAgMAAAAAAAAAAAAAAAABERAxQXGB/9oACAEBAAE/IbGLeErvIaR+G3Y//9oADAMBAAIAAwAAABBLD//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABURAQEAAAAAAAAAAAAAAAAAABAR/9oACAECAQE/EIf/xAAbEAEAAgIDAAAAAAAAAAAAAAABABEhMUFxkf/aAAgBAQABPxBxXVSwlukxNwFfKXRCAGAPmoK7M//Z&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/ad923a76bb9f14ee53b53671d70a4c3a/c54d4/1-10.webp 175w,
-/TIL/static/ad923a76bb9f14ee53b53671d70a4c3a/a3432/1-10.webp 350w,
-/TIL/static/ad923a76bb9f14ee53b53671d70a4c3a/426ac/1-10.webp 700w,
-/TIL/static/ad923a76bb9f14ee53b53671d70a4c3a/c139f/1-10.webp 1050w,
-/TIL/static/ad923a76bb9f14ee53b53671d70a4c3a/7f403/1-10.webp 1400w,
-/TIL/static/ad923a76bb9f14ee53b53671d70a4c3a/bd811/1-10.webp 3477w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/ad923a76bb9f14ee53b53671d70a4c3a/e52aa/1-10.jpg 175w,
-/TIL/static/ad923a76bb9f14ee53b53671d70a4c3a/70ebb/1-10.jpg 350w,
-/TIL/static/ad923a76bb9f14ee53b53671d70a4c3a/29d31/1-10.jpg 700w,
-/TIL/static/ad923a76bb9f14ee53b53671d70a4c3a/9ecec/1-10.jpg 1050w,
-/TIL/static/ad923a76bb9f14ee53b53671d70a4c3a/d165a/1-10.jpg 1400w,
-/TIL/static/ad923a76bb9f14ee53b53671d70a4c3a/d0c7b/1-10.jpg 3477w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/ad923a76bb9f14ee53b53671d70a4c3a/29d31/1-10.jpg&quot; alt=&quot;가정에서의 랜 구성&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;WAN 측&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;공인 IP 주소: 인터넷 서비스 제공자(ISP)가 IP관리 기관(IANA)로부터 받은 공인 IP를 공유기마다 할당&lt;/li&gt;
-&lt;li&gt;인터넷 회선: 광 케이블 등의 회선으로 인터넷 서비스 제공자(ISP)가 가진 인터넷 인프라에 연결&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;LAN 측&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;사설 IP 주소: 공유기와 같은 네트워크 장비에 개별적으로 할당되어 해당 네트워크 장비에 연결된 로컬 네트워크 상에서만 통용되는 IP주소&lt;/li&gt;
-&lt;li&gt;이더넷 케이블(랜선): LAN을 구축하기 위해 사용되는 케이블&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;NAT(Network Address Translation)&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;여러개의 사설 IP주소를 하나의 공인 IP주소에 매핑하는 기능
-&lt;ul&gt;
-&lt;li&gt;장점: 제한된 IP주소(IPv4)를 효율적으로 사용할 수 있고, 외부에 드러나는 IP주소를 다르게 유지함으로써 보안기능을 가진다.&lt;/li&gt;
-&lt;li&gt;단점: 패킷의 IP주소와 IP 주소를 바탕으로 생성된 정보를 재기록해야하기 때문에 지연이 발생한다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;PAT(Port Address Translation)&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;하나의 공인 IP주소로 여러개의 사설 IP주소로 분배해주기 위한 기능&lt;/li&gt;
-&lt;li&gt;출발지와 목적지의 IP주소와 포트번호를 분석하여, 해당 통신을 식별할 수 있는 0~65535범위의 번호를 부여한다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[백트래킹(Backtracking) 알고리즘]]></title><description><![CDATA[1. 개요 상태공간이나 그래프의 노드를 모두 탐색하는 완전탐색 기반의 알고리즘이다. 다만, 가지 치기를 통해 탐색할 필요성이 없는 노드(상태)들을 탐색 대상에서 제외함으로써 효율을 높인다.…]]></description><link>https://byongho96.github.io/TIL/posts/CS/Algorithm/Backtracking/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/CS/Algorithm/Backtracking/</guid><pubDate>Tue, 23 Aug 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-개요&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EA%B0%9C%EC%9A%94&quot; aria-label=&quot;1 개요 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 개요&lt;/h1&gt;
-&lt;p&gt;상태공간이나 그래프의 노드를 모두 탐색하는 &lt;strong&gt;완전탐색&lt;/strong&gt; 기반의 알고리즘이다.&lt;/p&gt;
-&lt;p&gt;다만, &lt;strong&gt;가지 치기&lt;/strong&gt;를 통해 탐색할 필요성이 없는 노드(상태)들을 탐색 대상에서 제외함으로써 효율을 높인다.&lt;/p&gt;
-&lt;h1 id=&quot;2-동작&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-%EB%8F%99%EC%9E%91&quot; aria-label=&quot;2 동작 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. 동작&lt;/h1&gt;
-&lt;ol&gt;
-&lt;li&gt;모든 상태를 트리 형태로 구조화한다.&lt;/li&gt;
-&lt;li&gt;루트 노드부터 탐색을 시작한다.&lt;/li&gt;
-&lt;li&gt;자식 노드 중 탐색하지 않은 노드를 깊이 우선 탐색한다.&lt;/li&gt;
-&lt;li&gt;노드가 유망하지 않다고 판단 되면, 이전 분기점(부모 노드)로 돌아간다.&lt;/li&gt;
-&lt;li&gt;완전 탐색하거나 해를 구할 때까지 3 ~ 4의 과정을 반복한다.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;3-시간-복잡도&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-%EC%8B%9C%EA%B0%84-%EB%B3%B5%EC%9E%A1%EB%8F%84&quot; aria-label=&quot;3 시간 복잡도 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. 시간 복잡도&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;O(V + E)&lt;/strong&gt;&lt;br&gt;
-최대 V개의 노드를 다 탐색하거나, 또는 모든 간선의 연결관계를 탐색해야 한다.
-&lt;ul&gt;
-&lt;li&gt;인접 행렬의 경우, 노드의 갯수가 N^2 이고 간선의 갯수가 4*N^2이므로 &lt;strong&gt;O(N^2)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;4-예시&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-%EC%98%88%EC%8B%9C&quot; aria-label=&quot;4 예시 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. 예시&lt;/h1&gt;
-&lt;p&gt;백트래킹의 경우, 크게 &lt;strong&gt;종료조건, 가지치기(가능할 경우), 자식 상태 탐색&lt;/strong&gt;에 대응하는 로직을 가진다.
-문제 상황에 따라 다양하게 수정 및 적용이 가능하다. 아래는 백트래킹의 예시 중 하나인 백준의 알파 틱택토 문제에 대한 정답 로직을 첨부한다.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/16571&quot;&gt;백준 16571번 알파 틱택토&lt;/a&gt;
-백트래킹이 완전탐색 기반 알고리즘이라는 것을 잘 활용한 문제이다. 다음 자식 상태의 모든 값을 비교하여 최선의 결과를 반환함으로써 최종 결과 또한 최선의 결과를 도출한다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Python&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;&apos;&apos;&apos;
-&amp;#x3C;input&gt;
-N: 최대 단계
-step: 현재 단계
-board: 틱택토 현재 상황
-
-&amp;#x3C;output&gt;
-0: 현재 플레이어의 패배
-1: 비김
-2: 현재 플레이어의 승리
-&apos;&apos;&apos;
-def backtracking(N, step, board, player1, player2):
-
-  current = player1
-  previous = player2
-  if step % 2:
-      current = player2
-      previous = player1
-
-  # 종료조건1: 승패 판정
-  if isWin(board, previous):
-      return 0
-
-  # 종료조건2: 게임이 더 진행될 수 없는 경우
-  if N == step:
-      return 1
-
-  # 내가 둘 수 있는 경우의 수 중 최선을 반납
-  best_result = 0
-  for n in range(9):
-      i, j = divmod(n, 3)
-      if not board[i][j]:
-          board[i][j] = current
-          result = 2 - backtracking(N, step + 1, board, player1, player2)
-          board[i][j] = 0
-          best_result = max(best_result, result)
-          if best_result == 2:
-              break
-
-  return best_result
-&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</content:encoded></item></channel></rss>
