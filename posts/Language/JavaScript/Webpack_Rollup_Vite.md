@@ -41,7 +41,7 @@ css, html, 그리고 각종 미디어 파일은 들러리일 뿐이다. '자바�
 
 <img src="./images/rollup-vs-webpack.png" alt="rollup-vs-webpack.png" width=600/>
 
-니중에 설명하겠지만 Vite는 하나의 번들러라고 할 수 없다. 따라서 이 절에서는 Webpakc과 Rollup 만을 비교한다.
+니중에 설명하겠지만 Vite는 하나의 번들러라고 할 수 없다. 따라서 이 절에서는 Webpack과 Rollup 만을 비교한다.
 
 ## 2.1. 개요
 
