@@ -7,13 +7,15 @@ tags: ['promise', 'async', 'await', 'try', 'catch', '비동기']
 reference: 'https://www.youtube.com/watch?v=aoQSOZfz3vQ'
 ---
 
-> 이 글은 [드림코딩](https://www.youtube.com/@dream-coding)님의 자바스크립드 11 ~ 13 비동기 강의를 듣고 정리한 문서입니다.
+> 이 글은 [드림코딩: 자바스크립드 11 ~ 13 비동기 강의](https://www.youtube.com/@dream-coding)를 듣고 정리한 문서이다.
 
 # 1. Callback
 
-**콜백 함수란,** <mark>어떤 함수가 다른 함수의 매개변수로 전달되어 전달된 함수 내부에서 실행</mark>될 수 있는 것을 말한다.
+콜백 함수란, **다른 함수의 매개변수로 전달되어 전달된 함수 내부에서 실행될 수 있는 함수**를 말한다.
 
 ## 1.1. 동기적 콜백
+
+전달된 콜백함수가 동기적으로 바로 실행되는 것을 말한다.
 
 ```js
 function runImmediately(cb) {
@@ -31,6 +33,8 @@ console.log(3)
 
 ## 1.2. 비동기적 콜백
 
+전달된 콜백함수가 시간차를 두고 비동기적으로 실행되는 것을 말한다. 아래는 `setTimeout`을 썼지만, 보통 프론트에서는 AJAX 요청에 의한 비동기 실행이 더 빈번하다.
+
 ```js
 function runWithDelay(cb, timeout) {
   setTimeout(cb, timebout)
@@ -45,7 +49,9 @@ console.log(3)
 // 2
 ```
 
-## 1.3. api 예시
+## 1.3. 비동기 api 코드 예시
+
+실제 AJAX 통신을 구현하는 대신, 임의로 3초 이후에 콜백함수를 실행시키도록 설계했다.
 
 ```js
 class Api {
@@ -56,7 +62,7 @@ class Api {
       } else {
         onError(new Error('not found'))
       }
-    })
+    }, 3000)
   }
 }
 
@@ -70,11 +76,11 @@ Api.loginUSer(
 
 # 2. Promise
 
-**Promise는** <mark>JavaScript의 비동기 작업의 대기, 완료, 실패를 나타내는 객체</mark>이다. 또한 **Chaining을 통해** <mark>작업의 완료/실패에 따라 실행할 콜백함수를 가독성 있게 작성</mark>할 수 있다.
+Promise는 **비동기 작업의 대기, 완료, 실패를 나타내는 객체**이다. 또한 체이닝을 통해 작업의 완료/실패에 따라 실행할 콜백함수를 가독성 있게 작성할 수 있다.
 
 ## 2.1. Promise Producer
 
-Promise 객체는 생성 시에, **`executor`라는 콜백 함수를 전달**해줘야 하며, `executor`는 다음과 같은 구조를 가진다.
+Promise 객체는 생성 시에, `executor`라는 콜백 함수를 전달해줘야 한다. `executor`는 생성자에 전달 된 이후 **바로 실행되는 함수**이며, 아래와 같이 **두 개의 콜백함수를 인자**로 받는다.
 
 ```ts
 // 두 개의 콜백 함수를 인자로 받는다
@@ -83,12 +89,9 @@ executor: (resolve, reject) => void
 // 동작 시에 promise를 fulfilled 상태로 만들며, 다음 then 체이닝에 value를 전달한다.
 resolve: (value?: any) => void
 
-
 // 동작 시에 promise를 rejected 상태로 만들며, 다음 catch 체이닝에 reason을 전달한다.
 reject: (reason?: any) => void
 ```
-
-`executor`는 생성자에 전달 된 이후 **바로 실행**되며, `resolve`와 `reject`중 어떤 함수를 내부적으로 실행하느냐에 따라 생성된 promise 객체의 상태를 결정한다.
 
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -102,16 +105,16 @@ const promise = new Promise((resolve, reject) => {
 
 ## 2.2. Promise Consumer
 
-Chaining을 이용하면, **promise의 상태에 따라 이어서 어떤 콜백함수를 이어 실행할 지** 가독성 높게 작성할 수 있다.
+체이닝을 이용하면, Promise의 상태에 따라 **어떤 콜백함수를 이어 실행할 지** 가독성 있게 작성할 수 있다.
 
 - **then**
-  - 앞 선 promise가 성공(fulfilled) 상태일 때 실행된다.
+  - 바로 앞 선 Promise가 성공(fulfilled) 상태일 때 실행된다.
 - **catch**
-  - 앞 선 promise들 중에서 실패(rejected) 상태가 발생하면 실행된다.
+  - 앞 선 Promise중 하나라도 실패(rejected) 상태일 때 실행된다.
 - **finally**
-  - 앞 선 promise들의 상태에 관련 없이 항상 실행된다.
+  - Promise상태에 관련없이 마지막에 항상 실행된다.
 
-위의 모든 메소드들은 똑같이 promise를 반환하기 때문에, 아래 코드처럼 chaining하여 연달아 작성할 수 있다.
+위의 모든 메소드들은 **또 다시 Promise를 반환**하기 때문에, 아래 코드처럼 연달아 작성할 수 있다. 따라서 이를 프로미스 체이닝이라고 일컫는다.
 
 ```js
 promise
@@ -127,6 +130,8 @@ promise
 ```
 
 ## 2.3. 에러 핸들링
+
+먼저 정상 동작하는 코드는 다음과 같다.
 
 ```js
 const getHen = () => {
@@ -152,6 +157,8 @@ getHen()
 
 // 🐔 => 🥚 => 🍳
 ```
+
+두번째 `getEgg`에서 임의로 에러를 발생시켰는데, 이를 잡은 `catch`문이 **return 문으로 정상적인 값을 반환**하면, 이어서 `then`문이 정상적으로 동작할 수 있다.
 
 ```js
 const getHen = () => {
@@ -181,9 +188,9 @@ getHen()
 // 🍞 => 🍳
 ```
 
-## 2.4. api 예시
+## 2.4. 비동기 api 코드 예시
 
-위의 '[1.3. api 예시](#13-api-예시)' 항목에서 콜배함수로 작성되었던 예시 코드를 다음과 같이 수정할 수 있다.
+위의 [[1.3. 비동기 api 코드 예시]](#13-api-예시) 항목에서 콜백함수로 작성되었던 코드를 Promise를 이용해서 업데이트했다.
 
 ```js
 class Api {
@@ -207,11 +214,11 @@ Api.loginUSer(id, password)
 
 # 3. async / await
 
-**async와 await**는 JavaScript의 syntatic sugar로써, <mark>Promise의 생성과 Chaining을 더 쉽게 구현할 수 있도록 도와주는 API</mark>이다.
+async와 await는 문법적 설탕(syntatic sugar)로써, **Promise의 생성과 체이닝을 더 쉽게 구현**하도록 도와준다.
 
 ## 2.1. async
 
-`async`를 이용하여 함수를 선언하면, <mark>해당 함수를 Promise 객체로 반환하며</mark> `return`문은 `resolve`문처럼 `throw`문은 `reject`문처럼 동작한다.
+`async`를 이용하여 함수를 선언하면, **해당 함수는 Promise 객체로 반환**된다.>`return`문으로 `resolve` 콜백함수를 대체할 수 있고, `throw`문으로 `reject` 콜백함수를 대체할 수 있다.
 
 ```js
 async function fetchUser() {
@@ -228,7 +235,7 @@ user.then(console.log)
 
 ## 2.2. await
 
-`await`키워드는 `async`로 선언된 함수 내부에서만 사용 가능하며, <mark>비동기 함수의 평가를 대기</mark>한다. 마치 Promsie 객체의 `then`체이닝처럼 동작한다.
+`await`키워드는 `async`로 선언된 함수 내부에서만 사용 가능하다. 비동기 함수가 평가될 때까지 뒤의 코드를 지연시킨다. **Promsie 객체의 `then` 메소드처럼 동작**한다.
 
 ```js
 function delay(ms) {
@@ -247,7 +254,7 @@ function getBanana() {
 
 ## 2.3. 에러 핸들링
 
-`async`로 선언된 함수에서는 `try`, `catch`문을 통해 에러를 핸들링 할 수 있다.
+`async` 함수는 `try... catch...`문을 통해 에러를 핸들링 할 수 있다.
 
 ```js
 function delay(ms) {
@@ -277,7 +284,7 @@ async function pickFruits() {
 
 # 4. Promise vs async
 
-언뜻 보면 async가 Promise보다 항상 더 나을 것 같지만, 그렇지도 않다. 필요에 따라서 Promise를 적절하게 활용하면 성능 상의 이점을 얻을 수 있다.
+언뜻 보면 async가 Promise보다 항상 더 나을 것 같다. 하지만 Promise를 적절하게 활용하면, async보다 성능 상의 이점을 얻을 수 있다.
 
 ```js
 function delay(ms) {
@@ -313,7 +320,7 @@ async function pickFruits() {
 
 ## 4.1. Promise.all
 
-Promise의 `all` 메소드는 여러 개의 Promise 객체를 배열로 받아, <mark>모든 Promise가 완료되었을 때 그 결과값을 동일한 순서의 배열로 반환</mark>한다.
+Promise의 `all` 메소드는 여러 개의 Promise 객체를 배열로 받아, **모든 Promise가 완료되었을 때** 그 결과값을 동일한 순서의 배열로 반환한다.
 
 ```js
 function delay(ms) {
@@ -339,7 +346,7 @@ function pickAllFruits() {
 
 ## 4.2. Promise.race
 
-Promise의 `race` 메소드는 여러 개의 Promise 객체를 배열로 받아, <mark>가장 빨리 완료된 Promise 객체의 결과값을 반환</mark>한다.
+Promise의 `race` 메소드는 여러 개의 Promise 객체를 배열로 받아, **가장 빨리 완료된 Promise 객체**의 결과값을 반환한다.
 
 ```js
 function delay(ms) {
