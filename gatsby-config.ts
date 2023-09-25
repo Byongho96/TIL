@@ -73,13 +73,6 @@ const config: GatsbyConfig = {
         includePaths: ['./src', './src/styles'], // 해당 옵션 작동 안함
       },
     },
-    {
-      resolve: `gatsby-plugin-purgecss`, // Add css related plugins
-      options: {
-        printRejected: true, // Print removed selectors and processed file names
-      },
-    },
-
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp', // Needed for dynamic images
