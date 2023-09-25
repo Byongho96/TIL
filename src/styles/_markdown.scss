@@ -134,9 +134,16 @@
   font-size: 1em;
 }
 
-//  elf-contained content, potentially with an optional caption which is specified using the <figcaption> element.
+// 커스텀
 .markdown-body figure {
-  margin: 1em 40px;
+  margin: 0;
+}
+
+.markdown-body figure figcaption {
+  text-align: center;
+  color: var(--color-fg-subtle);
+  font-size: 0.7rem;
+  transform: translateY(-110%);
 }
 
 // hr의 가상 선택자는 주변 요소를 제거하는 역할
@@ -948,5 +955,9 @@
   .markdown-body p,
   .markdown-body li {
     word-spacing: normal;
+  }
+
+  .markdown-body figure figcaption {
+    font-size: 0.6rem;
   }
 }
