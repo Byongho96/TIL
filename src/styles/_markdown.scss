@@ -49,7 +49,7 @@
   font-family: 'NanumSquareNeo', 'Nanum Gothic', -apple-system,
     BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji';
-  font-size: 0.98rem;
+  font-size: 1.01rem;
   line-height: 190%;
   word-wrap: break-word;
 }
@@ -358,7 +358,7 @@
 .markdown-body ol {
   margin-top: 0;
   margin-bottom: 0;
-  padding-left: 2em;
+  padding-left: 1.5em;
 }
 
 // 커스텀: ul 리스트
@@ -737,7 +737,6 @@
   overflow: auto;
   padding: 16px;
   margin-top: 0;
-  margin-bottom: 0;
   font-size: 85%;
   font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
     Liberation Mono, monospace;
@@ -904,6 +903,14 @@
 .markdown-body .flex {
   display: flex;
   gap: 1rem;
+}
+
+// 커스텀 모바일
+@include tablet {
+  // 커스텀:  font-size,
+  .markdown-body {
+    font-size: 1rem;
+  }
 }
 
 // 커스텀 모바일

@@ -71,6 +71,10 @@
   fill: var(--font-gray-color);
 }
 
+.about-me__content__image__links svg:hover path {
+  fill: var(--font-color);
+}
+
 @include tablet {
   .about-me__title {
     font-size: 3.5rem;

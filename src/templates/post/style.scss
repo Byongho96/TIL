@@ -10,17 +10,17 @@
 }
 
 .post__article {
-  @include animation-slide-in-up('normal', 40px);
+  @include animation-slide-in-up('normal', 50px);
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  margin: 0 3rem 0 4rem;
   max-width: 780px;
-  padding: 0 1rem 0 5rem;
 }
 
 .post__article__content {
   position: relative;
-  padding-bottom: 3rem;
+  margin-bottom: 3rem;
   border-bottom: 6px double var(--bg-gray-color);
 }
 
@@ -42,7 +42,7 @@
 
 @include laptop {
   .post__article {
-    padding: 0 2rem 0 4rem;
+    max-width: 1280px;
   }
 }
 
@@ -53,8 +53,8 @@
   }
 
   .post__article {
-    padding: 0 2rem;
-    max-width: auto;
+    margin: 0 2rem;
+    max-width: 1024px;
   }
 
   .post__toc {
@@ -68,6 +68,6 @@
   }
 
   .post__article {
-    padding: 0 1rem;
+    margin: 0 1rem;
   }
 }

@@ -1,8 +1,9 @@
-@import '@styles/_colors.scss';
 @import '@styles/_responsive.scss';
+@import '@styles/_animations.scss';
 
 .about--layout {
   overflow: hidden;
+  @include animation-slide-in-up(normal, 50px);
 }
 
 .about__article {
