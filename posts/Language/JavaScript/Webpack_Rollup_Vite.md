@@ -61,7 +61,7 @@ Alexey님의 [Head-to-Head: Rollup vs Webpack Analysis](https://moiva.io/?npm=ro
 
 <img src="./images/vite4.png" alt="vite4.png" width=550/>
 
-Vite는 빌드도구이다. 그리고 번들링 기능을 제공하기 위해 번들러를 사용한다. 아래 내용은 **Vite 4버전**을 기준으로 작성되었다.
+아래 내용은 **Vite 4버전**을 기준으로 작성되었다. Vite는 엄밀히 말해서 번들러가 아니라 빌드도구이다. 그리고 번들링 기능을 제공하기 위해서 다른 번들러를 사용한다. 개발서버를 위한 **사전번들링에서는 esbuild를**, 배포를 위한 **번들링에서는 Rollup을** 사용한다.
 
 ## 3.2. Vite 개발 서버
 

@@ -362,5 +362,3 @@ const App: React.FC = () => {
 
 export default App
 ```
-
-[애니메이션 라이브 페이지로 이동!](https://byongho96.github.io/TIL/404/)

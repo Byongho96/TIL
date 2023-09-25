@@ -48,9 +48,9 @@ reference: 'https://www.youtube.com/watch?v=EWfujNzSUmw'
 
 # 2. 호이스팅(Hoisiting)
 
-<img src="./images/hoisting.png" alt="hoisting.png" width="600"/>
+호이스팅이란 **변수/함수 선언이 스코프의 최상단에 끌어올려진 것"처럼" 보이는 현상**을 말한다. 실행 컨텍스트의 Environment Record와 깊은 연관이 있는데, 이는 아래에서 알아볼 것이다.
 
-호이스팅이란, **변수/함수 선언이 스코프의 최상단에 끌어올려진 것"처럼" 보이는 현상**을 말한다. 실행 컨텍스트의 Environment Record와 깊은 연관이 있는데, 이는 아래에서 알아볼 것이다.
+<img src="./images/hoisting.png" alt="hoisting.png" width="600"/>
 
 ## 2.1. 변수 호이스팅
 
@@ -134,9 +134,9 @@ JavaScript가 변수/함수를 참조할 때는 Lexical Environment의 Environme
 
 # 3. 스코프(Scope)
 
-<img src="./images/scope.webp" alt="scope.webp" width="550"/>
+스코프(Scope)는 **변수/함수에 접근할 수 있는 범위**를 말한다.
 
-스코프(Scope)는 한마디로 **변수/함수에 접근할 수 있는 범위**를 말한다.
+<img src="./images/scope.webp" alt="scope.webp" width="550"/>
 
 ## 3.1. 블록 레벨 스코프
 
