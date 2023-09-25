@@ -49,7 +49,7 @@
   font-family: 'NanumSquareNeo', 'Nanum Gothic', -apple-system,
     BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji';
-  font-size: 1.01rem;
+  font-size: 1.05em;
   line-height: 190%;
   word-wrap: break-word;
 }
@@ -142,8 +142,8 @@
 .markdown-body figure figcaption {
   text-align: center;
   color: var(--color-fg-subtle);
-  font-size: 0.7rem;
-  transform: translateY(-110%);
+  font-size: 0.8rem;
+  transform: translateY(-100%);
 }
 
 // hr의 가상 선택자는 주변 요소를 제거하는 역할
@@ -305,26 +305,27 @@
 .markdown-body h5::before,
 .markdown-body h6::before {
   content: '';
-  border-left: 0.25em solid var(--main-color);
+  border-left: 0.45rem solid var(--main-color);
   margin-right: 0.3em;
   opacity: 0.2;
 }
 
 .markdown-body h1 {
-  margin: 1.2em 0 0.8em;
+  margin: 1.6em 0 0.8em;
   font-weight: var(--base-text-weight-extrabold, 800);
   font-size: 2em;
 }
 
 .markdown-body h2 {
-  margin: 1em 0 0.6em;
+  margin: 1.5em 0 0.6em;
   font-weight: var(--base-text-weight-extrabold, 800);
-  font-size: 1.5em;
+  font-size: 1.7em;
 }
 
 .markdown-body h3 {
+  margin: 1.4em 0 0.6em;
   font-weight: var(--base-text-weight-extrabold, 800);
-  font-size: 1.25em;
+  font-size: 1.5em;
 }
 
 .markdown-body h4 {
@@ -922,9 +923,17 @@
 
 // 커스텀 모바일
 @include mobile {
-  // 커스텀: font-family, font-size, line-height
+  // 커스텀
+  .markdown-body h1::before,
+  .markdown-body h2::before,
+  .markdown-body h3::before,
+  .markdown-body h4::before,
+  .markdown-body h5::before,
+  .markdown-body h6::before {
+    border-left: 0.4rem solid var(--main-color);
+  }
   .markdown-body {
-    font-size: 0.9rem;
+    font-size: 0.9em;
     line-height: 180%;
   }
 
@@ -958,6 +967,6 @@
   }
 
   .markdown-body figure figcaption {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
 }
