@@ -85,7 +85,7 @@ reference:
 
 ## 4.4. Asynchronous & Blocking
 
-<mark>작업 상태를 동기화하지도 않을 거면서, 상대 작업이 끝나길 대기하는 괴상한 상태이다.</mark> [Ryan](https://interconnection.tistory.com/141)님이 예시로 **I/O Multiplexing을 위한 시스템 콜 Select와 Poll**을 들어주셨는데, 솔직히 뭔 말인지 잘 모르겠다. 아무튼 Asynchronous & Blocking의 작업 효율은 Synchronous & Blocking과 비슷하며, 대부분의 경우 **의도치 않은 개발 실수**일 것 이란다.
+<mark>작업 상태를 동기화하지도 않을 거면서, 상대 작업이 끝나길 대기하는 괴상한 상태이다.</mark> [Ryan 님](https://interconnection.tistory.com/141)이 예시로 **I/O Multiplexing을 위한 시스템 콜 Select와 Poll**을 들어주셨는데, 솔직히 뭔 말인지 잘 모르겠다. 아무튼 Asynchronous & Blocking의 작업 효율은 Synchronous & Blocking과 비슷하며, 대부분의 경우 **의도치 않은 개발 실수**일 것 이란다.
 
 <img src="./assets/async-blocking.png" alt="async-blocking.png"  width="600"/>
 
