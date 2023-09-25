@@ -1,6 +1,5 @@
 @import '@styles/_responsive.scss';
 @import '@styles/_colors.scss';
-@import '@styles/_animations.scss';
 
 .category-layout {
   display: grid;
@@ -102,7 +101,7 @@
     border: none;
     border-radius: 0 5px 5px 0;
     background-color: var(--main-color);
-    color: $font-white;
+    color: white;
     font-weight: 600;
     font-size: 0.9rem;
     writing-mode: vertical-rl;

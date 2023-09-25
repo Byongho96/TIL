@@ -73,6 +73,13 @@ const config: GatsbyConfig = {
         includePaths: ['./src', './src/styles'], // 해당 옵션 작동 안함
       },
     },
+    {
+      resolve: `gatsby-plugin-purgecss`, // Add css related plugins
+      options: {
+        printRejected: true, // Print removed selectors and processed file names
+      },
+    },
+
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp', // Needed for dynamic images
@@ -155,14 +162,26 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-manifest', // PWA를 위한 mainfest 파일 설정
       options: {
-        name: `Byongho96 TIL`, //
+        name: `Byongho96 TIL`,
         short_name: `Byongho96 TIL`,
         start_url: `/`, //실행시에 시작되는 URL 주소
         background_color: `#fffefd`,
-        theme_color: `#292929`,
+        theme_color: `#000000`,
         display: `standalone`, // 앱 표시 모드
-        theme_color_in_head: false, // This will avoid adding theme-color meta tag.
-        icon: 'src/assets/images/icon.png',
+        icon: './static/favicon.png',
+        icons: [
+          {
+            src: `./static/android-chrome-192x192.png`,
+            sizes: `192x192`,
+            type: `image/png`,
+          },
+          {
+            src: `./static/android-chrome-512x512.png`,
+            sizes: `512x512`,
+            type: `image/png`,
+            purpose: 'any maskable',
+          },
+        ],
       },
     },
     `gatsby-plugin-offline`, // manifest 보다 뒤에 와야 함!

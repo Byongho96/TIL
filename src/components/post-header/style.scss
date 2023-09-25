@@ -17,7 +17,7 @@
 }
 
 .post-header__date-author {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: var(--font-gray-color);
 }
@@ -30,8 +30,8 @@
 }
 
 .post-header__tag {
-  padding: 0.3rem 0.4rem 0.3rem 0.4rem;
-  border-radius: 10px;
+  padding: 0.45em 0.7em 0.45em 0.7em;
+  border-radius: 0.6em;
   background-color: var(--bg-gray-color);
   color: var(--main-color);
   font-size: 1rem;
@@ -88,6 +88,10 @@
 
   .post-header__date-author {
     font-size: 1rem;
+  }
+
+  .post-header__tag {
+    font-size: 0.8rem;
   }
 
   .post-header__tag-list {

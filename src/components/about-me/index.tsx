@@ -17,13 +17,16 @@ const AboutMe: React.FC = () => {
         <div className="about-me__content__image">
           <ProfileImage />
           <nav className="about-me__content__image__links">
-            <a href="https://github.com/Byongho96/">
+            <a href="https://github.com/Byongho96/" title="깃헙으로">
               <GithubIcon />
             </a>
-            <a href="https://www.linkedin.com/in/byongho-lee-b445ba22a">
+            <a
+              href="https://www.linkedin.com/in/byongho-lee-b445ba22a"
+              title="링크드인으로"
+            >
               <LinkedinIcon />
             </a>
-            <a href="mailto:unlike96@gmail.com">
+            <a href="mailto:unlike96@gmail.com" title="구글메일전송">
               <GmailIcon />
             </a>
           </nav>
@@ -38,11 +41,11 @@ const AboutMe: React.FC = () => {
           </p>
           <p>
             컴퓨터와 인터넷만 있으면, 내 생각을 가시화해서 모든 사람들에게
-            보여줄 수 있다는 점에서 개발은 매력적입니다.
+            보여줄 수 있다는 점이 개발이 매력이라고 생각합니다.
           </p>
           <p>
-            생각한 것을 온전하게 구현하기 위해서 공부하고 생각합니다. 그리고 그
-            내용을 정리하고자 TIL 블로그를 만들었습니다.
+            생각한 것을 온전하게 구현하내기 위해서 공부하고 생각합니다. 공부한
+            내용을 정리하기 위해 TIL 블로그를 만들었습니다.
           </p>
         </div>
       </div>
