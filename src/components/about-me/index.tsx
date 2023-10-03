@@ -17,16 +17,19 @@ const AboutMe: React.FC = () => {
         <div className="about-me__content__image">
           <ProfileImage />
           <nav className="about-me__content__image__links">
-            <a href="https://github.com/Byongho96/" title="깃헙으로">
+            <a href="https://github.com/Byongho96/" aria-label="작성자의 깃헙">
               <GithubIcon />
             </a>
             <a
               href="https://www.linkedin.com/in/byongho-lee-b445ba22a"
-              title="링크드인으로"
+              aria-label="작성자의 링크드인"
             >
               <LinkedinIcon />
             </a>
-            <a href="mailto:unlike96@gmail.com" title="구글메일전송">
+            <a
+              href="mailto:unlike96@gmail.com"
+              aria-label="작성자에게 구글 메일 전송"
+            >
               <GmailIcon />
             </a>
           </nav>

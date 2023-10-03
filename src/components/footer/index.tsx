@@ -7,14 +7,24 @@ const Footer: React.FC = () => {
 
   return (
     <footer className={`footer ${theme}`}>
-      Copyright © 2023&nbsp;
-      <a className="footer--link" href="https://github.com/Byongho96">
-        Byongho96
-      </a>
-      &nbsp; & Powered by&nbsp;
-      <a className="footer--link" href="https://www.gatsbyjs.com/">
-        Gatsby
-      </a>
+      <p>
+        Copyright © 2023&nbsp;
+        <a
+          className="footer--link"
+          href="https://github.com/Byongho96"
+          aria-label="작성자의 깃헙"
+        >
+          Byongho96
+        </a>
+        &nbsp; & Powered by&nbsp;
+        <a
+          className="footer--link"
+          href="https://www.gatsbyjs.com/"
+          aria-label="개츠비 홈페이지"
+        >
+          Gatsby
+        </a>
+      </p>
     </footer>
   )
 }

@@ -112,6 +112,9 @@ const PostPage: React.FC<PageProps<DataProps, PageContextType>> = ({
   return (
     <CategoryLayout defaultCategory={pageContext.relativeDirectory}>
       <main className="post">
+        <aside className="post__toc">
+          <TableOfContent toc={data.markdownRemark.tableOfContents} />
+        </aside>
         <article className="post__article">
           <PostHeader frontmatter={data.markdownRemark.frontmatter} />
           <div
@@ -121,9 +124,6 @@ const PostPage: React.FC<PageProps<DataProps, PageContextType>> = ({
           <AdjacentPosts prevPost={prevPost} nextPost={nextPost} />
           <Giscus theme={theme === 'dark' ? 'dark' : 'light'} />
         </article>
-        <aside className="post__toc">
-          <TableOfContent toc={data.markdownRemark.tableOfContents} />
-        </aside>
       </main>
       <ToTheTop />
     </CategoryLayout>

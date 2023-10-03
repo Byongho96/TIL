@@ -7,7 +7,7 @@ const ProfileImage: React.FC = () => {
     <StaticImage
       className="profile-image"
       src="../../assets/images/profile-image.png"
-      alt="profile image"
+      alt="작성자 프로필"
     />
   )
 }

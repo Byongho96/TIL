@@ -20,20 +20,17 @@ const PostHeader: React.FC<Props> = ({ frontmatter }) => {
     <div className="post-header">
       <h1 className="post-header__title">{frontmatter.title}</h1>
       <div className="post-header__date-author">
-        {'📅\u00a0' +
-          frontmatter.createdAt +
-          '\u00a0\u00B7\u00a0' +
-          '🖋️\u00a0' +
-          author}
+        <time dateTime={frontmatter.createdAt}>📅 {frontmatter.createdAt}</time>
+        <div aria-label={`작성자 ${author}`}>🖋️ {author}</div>
       </div>
       {frontmatter.tags && (
-        <div className="post-header__tag-list">
+        <ul className="post-header__tag-list" aria-label="관련 태그 목록">
           {frontmatter.tags.map((tag) => (
-            <div key={tag} className="post-header__tag">
+            <li key={tag} className="post-header__tag">
               {tag}
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       )}
     </div>
   )

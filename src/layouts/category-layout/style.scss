@@ -1,15 +1,26 @@
 @import '@styles/_responsive.scss';
 @import '@styles/_colors.scss';
+@import '@styles/_animations.scss';
 
 .category-layout {
   display: grid;
-  grid-template-columns: minmax(340px, 2fr) 9fr;
+  grid-template-columns: minmax(320px, 2fr) 9fr;
   align-items: start;
   padding: 0 0 2rem 0;
   position: relative;
+
+  > aside {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+
+  > * {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  }
 }
 
-.category-layout__aside {
+.category-layout__sidebar {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,115 +29,125 @@
   padding: 2rem 3rem 3rem 2.5rem;
 }
 
-.category-layout__aside::before {
+.category-layout__sidebar::before {
   content: '';
-  background-color: var(--bg-gray-color);
-  // background-image: url('@assets/images/celebrity.jpg');
-  background-size: cover;
   position: absolute;
+  inset: 0 0 0 0;
   z-index: -1;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  background-color: var(--bg-gray-color);
+  background-size: cover;
   opacity: 0.3;
   mask-image: linear-gradient(rgba(0, 0, 0, 1), 95%, rgba(0, 0, 0, 0));
 }
 
-.category-layout__aside::-webkit-scrollbar {
+.category-layout__sidebar__profile {
+  width: 80%;
+  margin: 2rem 0 1.5rem;
+}
+
+input[id='category-layout-modal'] {
   display: none;
 }
 
-.category-layout__profile {
-  width: 75%;
-  margin: 1rem 0 1rem 0;
-}
-
-.category-layout__category {
-  margin: 0 2rem 0 0;
-}
-
-.category-layout__button {
+input[id='category-layout-modal'] ~ label {
   display: none;
 }
 
-.category-layout__modal {
+.category-layout__modal-bg {
   display: none;
 }
 
 // 랩탑부터 카테고리 숨기기
 @include laptop {
   .category-layout {
-    grid-template-columns: 1fr; // aside가 fixed로 빠짐
-  }
+    grid-template-columns: 1fr;
 
-  .category-layout__aside {
-    position: fixed;
-    top: var(--position-top);
-    left: 0;
-    z-index: 99; // 포스트 보다 위에 보이도록
-    max-width: 70vw;
-    height: calc(100vh - var(--position-top));
-    padding: 0 0 0 0;
-    background-color: var(--bg-color);
-    transform: translateX(-100%); //  asdie의 마진을 고려
-    transition: transform 0.2s ease-in-out;
-    // font-family: 'NanumSquareNeo';
-  }
-
-  .category-layout__aside::before {
-    display: none;
-  }
-
-  .category-layout__aside.active {
-    overflow-y: scroll;
-    transform: translate(0%, 0%);
-  }
-
-  .category-layout__category {
-    padding: 2rem 2rem 2rem 1rem;
-  }
-
-  .category-layout__profile {
-    display: none;
-  }
-
-  .category-layout__button {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    padding: 0.5em 0.4em;
-    border: none;
-    border-radius: 0 5px 5px 0;
-    background-color: var(--main-color);
-    color: white;
-    font-weight: 600;
-    font-size: 0.9rem;
-    writing-mode: vertical-rl;
-    cursor: pointer;
-    transform: translate(100%, 0%);
-    // animation: category-layout__button--floating 5s infinite ease-in-out;
-  }
-
-  @keyframes category-layout__button--floating {
-    50% {
-      transform: translate(100%, 10%);
+    > aside {
+      display: block;
+      position: sticky;
+      top: 0;
+      left: 0;
     }
   }
 
-  .category-layout__button.active {
+  .category-layout__sidebar {
+    @include animation-slide-in-right($speed: 'normal', $distance: 100%);
+    display: none;
+    overflow: scroll;
+    background-color: var(--bg-color);
+  }
+
+  .category-layout__sidebar::before {
     display: none;
   }
 
-  .category-layout__modal.active {
+  .category-layout__sidebar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .category-layout__sidebar__profile {
+    display: none;
+  }
+
+  input[id='category-layout-modal'] {
     display: block;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+  }
+
+  input[id='category-layout-modal'] + label {
+    display: inline-block;
+    padding: 0.7em 0.8em;
+    margin: 0.1em;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 0.5em 0.5em 0 0;
+    background-color: var(--main-color);
+    transform: rotate(90deg) translate(20%, 48%);
+    cursor: pointer;
+  }
+
+  input[id='category-layout-modal'] + label + label {
+    @include animation-slide-in-right($speed: 'normal', $distance: 65vw);
+    display: none;
+  }
+
+  input[id='category-layout-modal']:focus ~ label {
+    outline: 2px solid black;
+  }
+
+  input[id='category-layout-modal']:checked + label {
+    display: none;
+  }
+
+  input[id='category-layout-modal']:checked + label + label {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    left: 65vw;
+    z-index: 5;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  input[id='category-layout-modal']:checked ~ .category-layout__modal-bg {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #4a4a4a77;
+    cursor: pointer;
+  }
+
+  input[id='category-layout-modal']:checked ~ .category-layout__sidebar {
+    display: block;
+    width: 70vw;
+    height: 100vh;
+    box-sizing: border-box;
   }
 }

@@ -31,7 +31,7 @@
 }
 
 // 아래로 내려오면서 보이는 애니메이션
-@mixin animation-slide-in-down($speed: 'normal', $distance: 100%, $delay: 0) {
+@mixin animation-slide-in-down($speed: 'normal', $distance: 100%, $delay: 0s) {
   @include animation(
     $delay,
     func-animation-speed($speed),
@@ -52,7 +52,7 @@
 }
 
 // 위로 올라오면서 보이는 애니메이션
-@mixin animation-slide-in-up($speed: 'normal', $distance: 100%, $delay: 0) {
+@mixin animation-slide-in-up($speed: 'normal', $distance: 100%, $delay: 0s) {
   @include animation(
     $delay,
     func-animation-speed($speed),
@@ -73,7 +73,7 @@
 }
 
 // 왼쪽으로 들어오면서 보이는 애니메이션
-@mixin animation-slide-in-left($speed: 'normal', $distance: 100%, $delay: 0) {
+@mixin animation-slide-in-left($speed: 'normal', $distance: 100%, $delay: 0s) {
   @include animation(
     $delay,
     func-animation-speed($speed),
@@ -94,7 +94,7 @@
 }
 
 // 오른쪽으로 들어오면서 보이는 애니메이션
-@mixin animation-slide-in-right($speed: 'normal', $distance: 100%, $delay: 0) {
+@mixin animation-slide-in-right($speed: 'normal', $distance: 100%, $delay: 0s) {
   @include animation(
     $delay,
     func-animation-speed($speed),
@@ -115,7 +115,7 @@
 }
 
 // 아래로 나가면서 안보이는 애니메이션
-@mixin animation-slide-out-down($speed: 'normal', $distance: 100%, $delay: 0) {
+@mixin animation-slide-out-down($speed: 'normal', $distance: 100%, $delay: 0s) {
   @include animation(
     $delay,
     func-animation-speed($speed),
@@ -136,7 +136,7 @@
 }
 
 // 위로 올라가면서 안보이는 애니메이션
-@mixin animation-slide-out-up($speed: 'normal', $distance: 100%, $delay: 0) {
+@mixin animation-slide-out-up($speed: 'normal', $distance: 100%, $delay: 0s) {
   @include animation(
     $delay,
     func-animation-speed($speed),
@@ -157,7 +157,7 @@
 }
 
 // 왼쪽으로 나가면서 안보이는 애니메이션
-@mixin animation-slide-out-left($speed: 'normal', $distance: 100%, $delay: 0) {
+@mixin animation-slide-out-left($speed: 'normal', $distance: 100%, $delay: 0s) {
   @include animation(
     $delay,
     func-animation-speed($speed),
@@ -178,7 +178,11 @@
 }
 
 // 오른쪽으로 나가면서 안보이는 애니메이션
-@mixin animation-slide-out-right($speed: 'normal', $distance: 100%, $delay: 0) {
+@mixin animation-slide-out-right(
+  $speed: 'normal',
+  $distance: 100%,
+  $delay: 0s
+) {
   @include animation(
     $delay,
     func-animation-speed($speed),
@@ -199,7 +203,7 @@
 }
 
 // 흐려졌다가 선명해지는 애니메이션
-@mixin animation-clear($speed: 'normal', $delay: 0) {
+@mixin animation-clear($speed: 'normal', $delay: 0s) {
   @include animation(
     $delay,
     func-animation-speed($speed),
@@ -222,7 +226,7 @@
   $speed: 10s,
   $start: 0%,
   $end: 100%,
-  $delay: 0s
+  $delay: 0ss
 ) {
   @include animation(
     $delay,
@@ -246,7 +250,7 @@
 }
 
 // 오른쪽으로 흐르는 애니메이션
-@mixin animation-left-flowing($speed: 2s, $start: 0%, $end: 100%, $delay: 0s) {
+@mixin animation-left-flowing($speed: 2s, $start: 0%, $end: 100%, $delay: 0ss) {
   @include animation(
     $delay,
     $speed,
@@ -269,7 +273,7 @@
 }
 
 // 둥둥 떠있는 애니메이션
-@mixin animation-floating($speed: 2s, $distance: 100%, $delay: 0s) {
+@mixin animation-floating($speed: 2s, $distance: 100%, $delay: 0ss) {
   @include animation(
     $delay,
     $speed,
@@ -294,7 +298,7 @@
 }
 
 // 시계 방향으로 회전하는 애니메이션
-@mixin animation-rotate-clockwise($speed: 10s, $delay: 0s) {
+@mixin animation-rotate-clockwise($speed: 10s, $delay: 0ss) {
   @include animation(
     $delay,
     $speed,
@@ -317,7 +321,7 @@
 }
 
 // 반시계 방향으로 회전하는 애니메이션
-@mixin animation-rotate-counter-clockwise($speed: 2s, $delay: 0s) {
+@mixin animation-rotate-counter-clockwise($speed: 2s, $delay: 0ss) {
   @include animation(
     $delay,
     $speed,

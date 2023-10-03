@@ -17,9 +17,11 @@
 }
 
 .post-header__date-author {
+  display: flex;
+  gap: 1em;
+  color: var(--font-gray-color);
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--font-gray-color);
 }
 
 .post-header__tag-list {

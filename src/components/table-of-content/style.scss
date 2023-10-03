@@ -6,7 +6,6 @@
 
 .toc li {
   overflow: hidden;
-  margin: 0.4em 0 0 0;
   text-overflow: ellipsis;
 }
 
@@ -17,8 +16,8 @@
   font-weight: 300;
   text-overflow: ellipsis;
   white-space: nowrap;
-
   transition: all 0.25s ease-in-out;
+  line-height: 190%;
 }
 
 .toc a.active {

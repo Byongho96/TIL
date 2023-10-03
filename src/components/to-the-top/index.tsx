@@ -15,7 +15,7 @@ const ToTheTop: React.FC = () => {
     <button
       className="to-the-top"
       onClick={handleClick}
-      aria-label="페이지 최상단으로 이동"
+      aria-label="페이지 최상단 이동"
     >
       <UpIcon />
       <span style={{ '--i': 0 }} />

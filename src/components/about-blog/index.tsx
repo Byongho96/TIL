@@ -8,7 +8,11 @@ const AboutBlog: React.FC = () => {
     <article className="about-blog">
       <section className="about-blog__header">
         <h1 className="about-blog__header__title">About Blog</h1>
-        <a href="/TIL/posts/Gatsby/" className="about-blog__header__typing">
+        <a
+          href="/TIL/posts/Gatsby/"
+          className="about-blog__header__typing"
+          tabIndex={-1}
+        >
           <TypeAnimation phrases={['블로그 제작 시리즈 Click Here!']} />
         </a>
       </section>

@@ -21,9 +21,9 @@ const Navigation: React.FC = () => {
 
   return (
     <nav className="navbar">
-      <div className="navbar__logoColor">
-        <div className="navbar__logo">
-          <Link to="/">{author}</Link>
+      <div className="navbar__logo-color">
+        <div className="navbar__logo" aria-label="작성자 병호96">
+          {author}
         </div>
         <div className="navbar__color">
           <ColorChange />
@@ -31,17 +31,25 @@ const Navigation: React.FC = () => {
       </div>
       <ul className="navbar__menu" ref={navbarMenu}>
         <li>
-          <Link to="/" onClick={handleLinkClick}>
+          <Link to="/" onClick={handleLinkClick} aria-label="홈페이지">
             Home
           </Link>
         </li>
         <li>
-          <Link to="/about" onClick={handleLinkClick}>
+          <Link
+            to="/about"
+            onClick={handleLinkClick}
+            aria-label="블로그 어바웃 페이지"
+          >
             About
           </Link>
         </li>
         <li>
-          <Link to="/posts" onClick={handleLinkClick}>
+          <Link
+            to="/posts"
+            onClick={handleLinkClick}
+            aria-label="전체 글 목록 페이지"
+          >
             Posts
           </Link>
         </li>

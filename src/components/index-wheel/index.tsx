@@ -31,7 +31,9 @@ const IndexWheel: React.FC = () => {
     >
       {selectedCategories.map((category) => (
         <li className="index-wheel__category" key={category.id}>
-          <Link to={`/posts/${category.name}`}>{category.name}</Link>
+          <Link to={`/posts/${category.name}`} tabIndex={-1}>
+            {category.name}
+          </Link>
         </li>
       ))}
     </ul>

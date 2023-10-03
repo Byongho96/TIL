@@ -63,7 +63,13 @@ const TableOfContent: React.FC<Props> = ({ toc }) => {
     }
   }, [])
 
-  return <div className={`toc`} dangerouslySetInnerHTML={{ __html: toc }} />
+  return (
+    <div
+      className={`toc`}
+      dangerouslySetInnerHTML={{ __html: toc }}
+      aria-label="글 목차"
+    />
+  )
 }
 
 export default TableOfContent

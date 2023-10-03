@@ -91,10 +91,11 @@ const PostsPage: React.FC<PageProps<DataProps>> = ({ data }) => {
             type="text"
             placeholder="Search Here!"
             value={query}
+            autoFocus
             onChange={(e) => setQuery(e.target.value)}
           />
         </div>
-        <ul className="posts__post-list">
+        <ul className="posts__post-list" aria-live="assertive">
           {showingData.map((post) => (
             <li key={post.item.id}>
               <PostItem post={post.item} />

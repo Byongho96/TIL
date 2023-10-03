@@ -1,6 +1,5 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 import './style.scss'
-import throttle from 'lodash/throttle'
 import Category from '@components/category'
 import ProfileImage from '@components/profile-image'
 
@@ -11,70 +10,85 @@ interface Props {
 
 const CategoryLayout: React.FC<Props> = ({ defaultCategory, children }) => {
   const asideRef = useRef<HTMLElement>(null)
-  const asideButtonRef = useRef<HTMLButtonElement>(null)
-  const modalRef = useRef<HTMLDivElement>(null)
 
-  const handleClickToggle = (event: ClickEvent<HTMLElement>) => {
-    event.stopPropagation()
-    asideRef.current.classList.toggle('active')
-    asideButtonRef.current.classList.toggle('active')
-    modalRef.current.classList.toggle('active')
+  // 포커스 트랩 메인 함수
+  const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    const aside = asideRef.current
+    if (!aside) return
+
+    const focusableElements = aside.querySelectorAll(`input, a[href]`)
+    const inputElement = aside.querySelector(`input`)
+
+    const firstEle = focusableElements[0]
+    const lastEle = focusableElements[focusableElements.length - 1]
+
+    if (event.key === 'Tab') {
+      if (document.activeElement === lastEle && !event.shiftKey) {
+        // eslint-disable-next-line
+        firstEle.focus()
+        event.preventDefault()
+      } else if (document.activeElement === firstEle && event.shiftKey) {
+        // eslint-disable-next-line
+        lastEle.focus()
+        event.preventDefault()
+      }
+    } else if (event.key === 'Escape') {
+      inputElement.checked = false
+    }
+  }, [])
+
+  // 카테고리 모달창 on/off에 따라 포커스 트랩 토글
+  const handleChange = function toggleFocusTrap(event: InputEvent) {
+    if (event.target.checked) {
+      document.addEventListener('keydown', handleKeyDown)
+    } else {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
   }
 
+  // input(type="checkbox") Enter키로 토글 가능
   useEffect(() => {
-    const navbar = document.querySelector('.navbar')
-    const asideEle = asideRef.current
+    const aside = asideRef.current
+    if (!aside) return
 
-    if (!(asideEle instanceof HTMLElement)) return
+    const inputElement = aside.querySelector(`input`)
+    if (!inputElement) return
 
-    function handleScroll() {
-      const navbarHeight: number =
-        navbar instanceof HTMLElement
-          ? navbar.offsetTop + navbar.offsetHeight
-          : 0
-
-      if (window.scrollY > navbarHeight) {
-        asideEle.style.setProperty('--position-top', '0px')
-        return
+    const handleKeyDown = function toggleWithEnter(event: KeyboardEvent) {
+      if (event.key === 'Enter') {
+        inputElement.checked = !inputElement.checked
       }
-      asideEle.style.setProperty(
-        '--position-top',
-        navbarHeight.toString() + 'px'
-      )
     }
 
-    const throttledHandleScroll = throttle(handleScroll, 100) // 연속해서 이벤트 발생 시, 최소 0.1초 간격으로 실행
-
-    window.addEventListener('scroll', throttledHandleScroll)
-
+    inputElement.addEventListener('keydown', handleKeyDown)
     return () => {
-      window.removeEventListener('scroll', throttledHandleScroll)
+      inputElement.removeEventListener('keydown', handleKeyDown)
     }
   }, [])
 
   return (
     <div className="category-layout">
-      <aside ref={asideRef} className="category-layout__aside">
-        <figure className="category-layout__profile">
-          <ProfileImage />
-        </figure>
-        <div className="category-layout__category">
+      {children}
+      <aside ref={asideRef}>
+        <input
+          id="category-layout-modal"
+          type="checkbox"
+          onChange={handleChange}
+        />
+        <label htmlFor="category-layout-modal" aria-label="카테고리바 열기">
+          POSTS
+        </label>
+        <label htmlFor="category-layout-modal" aria-label="카테고리바 닫기">
+          X
+        </label>
+        <div className="category-layout__modal-bg" />
+        <div className="category-layout__sidebar">
+          <div className="category-layout__sidebar__profile">
+            <ProfileImage />
+          </div>
           <Category defaultCategory={defaultCategory} />
         </div>
-        <button
-          ref={asideButtonRef}
-          className="category-layout__button"
-          onClick={handleClickToggle}
-        >
-          POSTS
-        </button>
       </aside>
-      {children}
-      <div
-        ref={modalRef}
-        className="category-layout__modal"
-        onClick={handleClickToggle}
-      />
     </div>
   )
 }

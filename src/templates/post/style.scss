@@ -7,6 +7,16 @@
   align-items: start;
   position: relative;
   margin: 4rem 0 0 0;
+
+  > article {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+
+  > aside {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  }
 }
 
 .post__article {
@@ -21,6 +31,7 @@
 .post__article__content {
   position: relative;
   margin-bottom: 3rem;
+  padding-bottom: 1rem;
   border-bottom: 6px double var(--bg-gray-color);
 }
 
