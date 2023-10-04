@@ -39,7 +39,7 @@ const AboutMe: React.FC = () => {
         </div>
         <div className="about-me__content__writing">
           <p>
-            건축공학과 전기전자공학을 이중전공하는 난리를 치고서는, 하라는
+            건축공학과 전기전자공학을 이중전공하는 패기를 부리고서는, 하라는
             취직은 안하고 프로그래밍을 공부하고 있다.
           </p>
           <p>
