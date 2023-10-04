@@ -14,13 +14,13 @@ const AboutPage: React.FC<PageProps> = () => {
       </div>
       <Taping
         color="white"
-        phrase="Chicken Pizza Burger"
+        phrase="Why it's not working..."
         rotationDeg={5}
         direction="right"
       />
       <Taping
         color="black"
-        phrase="Lorem Ipsum"
+        phrase="Why am I crying"
         rotationDeg={-9}
         direction="left"
       />
@@ -29,7 +29,7 @@ const AboutPage: React.FC<PageProps> = () => {
       </div>
       <Taping
         color="white"
-        phrase="I never make the same mistake twice"
+        phrase="Why it's working..."
         rotationDeg={6}
         direction="right"
       />
