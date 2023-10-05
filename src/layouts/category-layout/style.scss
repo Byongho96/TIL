@@ -60,9 +60,10 @@ input[id='category-layout-modal'] ~ label {
 // 랩탑부터 카테고리 숨기기
 @include laptop {
   .category-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: 0 1fr;
 
     > aside {
+      grid-column: 1 /1;
       display: block;
       position: sticky;
       top: 0;
