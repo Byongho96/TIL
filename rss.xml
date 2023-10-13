@@ -1,4 +1,330 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 06 Oct 2023 04:55:28 GMT</lastBuildDate><item><title><![CDATA[웹 표준이란 무엇인가]]></title><description><![CDATA[1. 개요 취업 시즌을 맞아 채용공고가 많이 올라온다. 그 중 프론트 채용공고에서는 W3C 웹 표준이 자주 언급된다. 항상 크게 개의치 않고 넘겼는데, 어느 날 문득 생각해보니 웹표준에 대해 아는 바가 전혀 없었다. HTML, CSS…]]></description><link>https://byongho96.github.io/TIL/posts/Knowledge/Web/web_standards/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Knowledge/Web/web_standards/</guid><pubDate>Tue, 03 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-개요&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EA%B0%9C%EC%9A%94&quot; aria-label=&quot;1 개요 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 개요&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 13 Oct 2023 15:19:09 GMT</lastBuildDate><item><title><![CDATA[자바스크립트 Prototype 이해하기]]></title><description><![CDATA[1. 개요 자바스크립트는 프로토타입 기반의 객체 지향 언어이다. ES6부터 클래스형 문법이 도입되었다고 하지만, 이는 "다른 객체 지향 언어처럼" 사용하도록 도와주는 API…]]></description><link>https://byongho96.github.io/TIL/posts/Language/JavaScript/prototype/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Language/JavaScript/prototype/</guid><pubDate>Thu, 12 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-개요&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EA%B0%9C%EC%9A%94&quot; aria-label=&quot;1 개요 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 개요&lt;/h1&gt;
+&lt;figure&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/b83948e7c7d993fd70eeb2daebf5a2ad/c1b63/prototype.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 66.85714285714286%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAIAAAAmMtkJAAAACXBIWXMAAAsTAAALEwEAmpwYAAACHUlEQVR42n2R32vTUBTH+xeJvvmkj6MPOlGZRXGCs1nb5Oama8vGsJvuhz4pQ4Y6oSAbUxF90aLO7cWB002dOru12q1sbX7cNE2ydG2aJrmJ0MJwPywczoHL+XAun6/HFkCzMKJqW2F1ZXincNvg4rZANt7p3YWD5WkOSwA2AmaBUVZiWv5GjY1ZfBAjYPOBVjAWABYpRwxhRGIUdKVQOUcU/9y0eKaaBxXujsnD/19Gwe3VfjV1q1KI1dgBLAS09UFd+KalEygVMtCoUYAYUYfDSu5hcW1CTcPSxpCOHnDpqPC5x/0etz4GdjJdddbf6ttGoc8Uoq4UrOW79S3CRlDP+SufzitfrpU3Ixi1FIZRyBZIS6Abe7TF03W+zy4ySg6KG4kqO1Dn/BZPmSxl8cDigclRdZay/rXdTAWjkLZ5vVpKStl+LRczUUTnoJYZw+KgW4ZYgo4EHZnBStgW6X0wwAjUOULJRuXVkezi5eW5jvnX595NXVye6Vx6f6G4Riy86fg661ua9cm/CUek98AWTyrZR9yPYTUVTz5pn3txNjl9+uVj7/OEd+p+2/rilbfPzkyOtw31Hv81f8mVGc9eB6SWvWuwvVjsxiXoqmFnO+yoPa7M2DLj6tEPMz4YPAb8R9mfXa4E98HAEQmMyIY5sGuo2V2FGRs5cW/0JHn1yNMJr1uJeA4EcHg2GNFGgUxOt2cWOl9Nnmpe/gvLbkPJMfNJ0QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/b83948e7c7d993fd70eeb2daebf5a2ad/c54d4/prototype.webp 175w,
+/TIL/static/b83948e7c7d993fd70eeb2daebf5a2ad/a3432/prototype.webp 350w,
+/TIL/static/b83948e7c7d993fd70eeb2daebf5a2ad/426ac/prototype.webp 700w,
+/TIL/static/b83948e7c7d993fd70eeb2daebf5a2ad/c139f/prototype.webp 1050w,
+/TIL/static/b83948e7c7d993fd70eeb2daebf5a2ad/92f8c/prototype.webp 1200w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/b83948e7c7d993fd70eeb2daebf5a2ad/4edbd/prototype.png 175w,
+/TIL/static/b83948e7c7d993fd70eeb2daebf5a2ad/13ae7/prototype.png 350w,
+/TIL/static/b83948e7c7d993fd70eeb2daebf5a2ad/8c557/prototype.png 700w,
+/TIL/static/b83948e7c7d993fd70eeb2daebf5a2ad/e996b/prototype.png 1050w,
+/TIL/static/b83948e7c7d993fd70eeb2daebf5a2ad/c1b63/prototype.png 1200w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/b83948e7c7d993fd70eeb2daebf5a2ad/8c557/prototype.png&quot; alt=&quot;자바스크립트 프로토타입 개요&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+    &lt;figcaption&gt;From debuggr.io/ By Sagiv Ben Giat..&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;자바스크립트는 &lt;strong&gt;프로토타입 기반의 객체 지향 언어&lt;/strong&gt;이다. ES6부터 클래스형 문법이 도입되었다고 하지만, 이는 &quot;다른 객체 지향 언어처럼&quot; 사용하도록 도와주는 API일 뿐이다. 실제 내부 동작은 여전히 프로토타입에 기반한다. 따라서 프로토타입을 빼고서는 자바스크립트의 객체 지향을 이해했다고 말할 수 없다.&lt;/p&gt;
+&lt;h1 id=&quot;2-프로토타입&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85&quot; aria-label=&quot;2 프로토타입 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. 프로토타입&lt;/h1&gt;
+&lt;p&gt;프로토타입이란 &lt;strong&gt;생성자 함수가 참조하는 &lt;code&gt;prototype&lt;/code&gt;&lt;/strong&gt; 혹은 **객체가 참조하는 &lt;code&gt;__proto__&lt;/code&gt;**를 의미한다. 하나의 셍성자 함수와 해당 함수로 생성된 모든 객체들은 동일한 프로토타입 객체를 바라보고 있다. 다시 말해 동일한 프로토타입 객체가 생성자 함수 입장에서는 &lt;code&gt;prototype&lt;/code&gt;이라 불리고, 생성된 객체의 입장에서는 &lt;code&gt;__proto__&lt;/code&gt;라고 불린다.&lt;/p&gt;
+&lt;p&gt;보통은 프로토타입을 생성된 객체의 입장에서 이해하려고 한다. 그런데 그러면 함수의 &lt;code&gt;prototype&lt;/code&gt; 속성이 헷갈리고 어렵게 느껴진다. 그보다는 함수 입장에서 이해를 시작하는 것이 더 바람직하다. 선후관계를 따지더라도 함수가 &lt;code&gt;prototype&lt;/code&gt;을 속성을 가지기 때문에, 객체가 &lt;code&gt;__proto__&lt;/code&gt; 속성을 가지게 된다.&lt;/p&gt;
+&lt;h2 id=&quot;22-prototype&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-prototype&quot; aria-label=&quot;22 prototype permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. prototype&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;함수 만이 가지고 있는 속성이다.&lt;/li&gt;
+&lt;li&gt;생성자 함수로 실행될 경우, 생성되는 객체가 &lt;code&gt;__proto__&lt;/code&gt;로 참조할 프로토타입을 참조하고 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;new&lt;/code&gt; 키워드로 함수를 실행하면, 생성자 함수로 실행되어 객체를 생성한다. &lt;code&gt;new&lt;/code&gt; 키워드가 익숙하지 않다면 &lt;a href=&quot;https://byongho96.github.io/TIL/posts/Language/JavaScript/new/&quot;&gt;&apos;자바스크립트 생성자 함수 &amp;#x26; new 키워드&apos; 포스팅&lt;/a&gt;을 참고하길 바란다.&lt;/p&gt;
+&lt;p&gt;모든 함수는 &lt;code&gt;new&lt;/code&gt; 키워드와 함께 객체를 생성할 수 있다. 따라서 자신이 생성한 객체가 참조해야할 프로토타입 객체를 미리 &lt;code&gt;prototype&lt;/code&gt; 속성으로 가리키고 있다. 일반적으로 함수를 선언할 경우에는 자동으로 빈 객체를 가리킨다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;function MyFunction() {}
+
+console.log(MyFunction.prototype) // {}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;22-__proto__&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-__proto__&quot; aria-label=&quot;22 __proto__ permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. __proto__&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;객체가 자신의 프로토타입 객체를 참조하는 속성이다.&lt;/li&gt;
+&lt;li&gt;내부적으로는 &lt;code&gt;Object.getPrototypeOf&lt;/code&gt;가 메서드가 호출되어 Prototype 객체를 반환한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;아래 &lt;code&gt;mike&lt;/code&gt;객체는 &lt;code&gt;Person&lt;/code&gt;함수에 의해 생성이 되었기 때문에 &lt;code&gt;Person.prototype&lt;/code&gt;을 자신의 프로토타입으로 참조하고 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;function Person(name, gender) {
+  this.name = name
+  this.gender = gender
+  this.sayHelllo = function () {
+    console.log(&apos;Hi&apos;)
+  }
+}
+
+const mike = new Person(&apos;mike&apos;, &apos;male&apos;)
+console.log(Person.prototype === mike.__proto__) // true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;23-object&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#23-object&quot; aria-label=&quot;23 object permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.3. Object()&lt;/h2&gt;
+&lt;p&gt;그렇다면 함수로 생성되지 않은 객체는 무엇을 프로토타입으로 가리켜야 할까? 그런데 이건 전제가 틀린 질문이다. 사실 &lt;strong&gt;모든 객체는 생성자 함수로 만들어진다.&lt;/strong&gt; 우리가 객체 리터럴 &lt;code&gt;{}&lt;/code&gt; 방식으로 객체를 선언하더라도, 자바스크립트가 내부적으로 &lt;code&gt;Object()&lt;/code&gt; 함수를 실행해서 객체를 생성한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;const obj = {
+  name: &apos;mike&apos;,
+  sayHello: function () {
+    console.log(&apos;Hello&apos;)
+  },
+}
+
+// 위 방식으로 객체를 선언하더라도 자바스크립트는 아래처럼 객체를 생성한다.
+
+const obj = new Object()
+obj.name = &apos;mike&apos;
+obj.sayHello = function () {
+  console.log(&apos;Hello&apos;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;따라서 객체 리터럴 방식으로 생성된 객체는 &lt;code&gt;Object.prototype&lt;/code&gt;을 자신의 프로토타입으로 참조한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;let student = {
+  name: &apos;Lee&apos;,
+  score: 90,
+}
+
+console.log(student.__proto__ === Object.prototype) // true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;24-constructor&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#24-constructor&quot; aria-label=&quot;24 constructor permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.4. constructor&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;constructor&lt;/code&gt;는 프로토타입 객체가 함수를 가리키는 속성 값이다. 이처럼 &lt;strong&gt;프로토타입은 함수와 일대일로 대응된다.&lt;/strong&gt;&lt;/p&gt;
+&lt;figure&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/54f7ab1d438929db5ba911b7a11ef341/fd28b/prototype_constructor.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 52%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsTAAALEwEAmpwYAAABzklEQVR42m2R0YsSURjF/fd6WCIoqKforZcgaImeg6DYeonYZXfrZdlKQpeKCoqyHHarcdPVNm21zDZzHI1WG2d0HL87v5hRbFMPHC738vHjO+dGgOUJ3wZWZrwf9hLwBngK3Do8H2EsH1CAjKxGb7OllAo9qQg+4qme3MmdlavaUbmxdXKwkDwlV7QjkqguhfROx5JAzUZDHqyvy8NYTB7F4/J4Y0PdX1uTumGEc0opCTd0pEW8cJlkMUr87U2epFd5sbfK89Iibq9PzajRbrf5Vi6zqWl8SKV4nUiwretsaRr7lcowo+8TAsX3eFa5RrQ4z938BaJ7F7lXPE/KiNH544RAx3EwTZNMOk0hn2dbT7Gb+8hOJkOz2fwfOLyoID1210aUh/IHYYciQr/fD89Ag65NyzTo2RYoD8Sb6HBCTrc3VbYa/c1XWzH3rsPx9xan9TZndnrM6V0KloznpoC28w8YRAgsI+LLusuJZJNzmz+5lG0xr5scSxgkTJdhdTOAfc9jf7+KUTfDbW2ni2V3Gbg9Xv1ok/7ynWpOp3PQ4KD8mfSnArnf7mhDfxoYyHXdsLfJyCVrwPVsg8VsjeX8L1Z2TRYyBiXLG0f+CxFa4LlcpLszAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/54f7ab1d438929db5ba911b7a11ef341/c54d4/prototype_constructor.webp 175w,
+/TIL/static/54f7ab1d438929db5ba911b7a11ef341/a3432/prototype_constructor.webp 350w,
+/TIL/static/54f7ab1d438929db5ba911b7a11ef341/426ac/prototype_constructor.webp 700w,
+/TIL/static/54f7ab1d438929db5ba911b7a11ef341/a63ac/prototype_constructor.webp 811w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/54f7ab1d438929db5ba911b7a11ef341/4edbd/prototype_constructor.png 175w,
+/TIL/static/54f7ab1d438929db5ba911b7a11ef341/13ae7/prototype_constructor.png 350w,
+/TIL/static/54f7ab1d438929db5ba911b7a11ef341/8c557/prototype_constructor.png 700w,
+/TIL/static/54f7ab1d438929db5ba911b7a11ef341/fd28b/prototype_constructor.png 811w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/54f7ab1d438929db5ba911b7a11ef341/8c557/prototype_constructor.png&quot; alt=&quot;생성자 함수, 프로토타입 객체, 생성된 객체 간의 관계 그래프&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+    &lt;figcaption&gt;From 모던 자바스크립트 Deep Dive. By 이웅모.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h1 id=&quot;3-함수-vs-객체&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-%ED%95%A8%EC%88%98-vs-%EA%B0%9D%EC%B2%B4&quot; aria-label=&quot;3 함수 vs 객체 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. 함수 vs 객체&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;이 절의 내용은 이해할 필요가 없을 것 같다. 그냥 순수한 호기심에 작성해봤다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;자바스크립트에서 함수와 객체는 마치 닭과 달걀의 관계 같다. 서로가 서로로 인해 존재하기 때문에 선후 관계를 파악하기 매우 어렵다.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/612f7320a9ca34455d6efde60e53503e/71ee9/function_object_circular_reference.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 64%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAACxklEQVR42n1TO08UURidzg4rE63tTCxs7E2sTAyJlQ2Jf8DEihgrCysbLa2MCCziLiQgghIWlfDYRJhVXNh1H7x2gR12d3Zm7tx53ccx9/IwRuOXnJw5d27Od+Z+d4yY1Inz6QY6H67Jzux1tKevwK/PIGJAGFIEQaARhiHiONasdKvVgm3bWlNKpZQSAIThNtdJ990lNN+ck1bmPI5GDPhbKSQSiKMAQghwzhFFEY4sC1EYgguBJEnAkgSCMSRxLANKAc6F0W4dEqexCP9wQQbWEo5qH+G7TRCfwnUdbai6K2aMaTPVQEMI6FhCSJVaJ/Q8j+zsNlGu1GWxtAMFy2ohDI/TWc0myqUStmo1VCsVtCwL1PfhUgpSq6GRyWBvYkLuptOwczlhdNptMjGextvUoEy/GUJq8CVq1QoIIfqsFubnMTwwgLHRUYy8fo3P2Sy6to0OpdhOpfC1txdrfX3y6507KPT3C8MnPvm5UcFGvijLG1WUC1V4LsFp7TcaKG5uapirq1qHQYCu56FbLOIgk8Hh5KQ8HBtD68sXYQQRJWV7BevWnCw7i9j2c4jEb0PieTjY38fe3p42VZNVdTLV05InZymMeqtKXhTu4ln+lnxu3sbT1Zsod5bQbRPQgCK3soLBVwMYT6cxMjSM3PLymaGGEBCcK6EGJYxGc5uMFh9iqHRfDpceKMaO/R1Oh8BxHWys/0B2ZhoL2TnNxULh/wnVVykRJYEMQgoJrjd7ngdKfYRcoh0JHLgUpYYFL4x/O/zLUEA4akFwdU8ZB8CllFwA+vnRZsh73rv88qzLe6Zc3l8IOCA5E1LvUwDATvySs4QCkOoyqz8A2vW49b18AmMywoW5WHNf/s/3fyWM43iJMfZNCL7mOI5JCDE552aYMBPg5pNNal6c6phXZ23z0lTHfFwgej1KmMnYGdYYY3nG2Oov8++t2NX8agQAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/612f7320a9ca34455d6efde60e53503e/c54d4/function_object_circular_reference.webp 175w,
+/TIL/static/612f7320a9ca34455d6efde60e53503e/a3432/function_object_circular_reference.webp 350w,
+/TIL/static/612f7320a9ca34455d6efde60e53503e/426ac/function_object_circular_reference.webp 700w,
+/TIL/static/612f7320a9ca34455d6efde60e53503e/c139f/function_object_circular_reference.webp 1050w,
+/TIL/static/612f7320a9ca34455d6efde60e53503e/c5fc0/function_object_circular_reference.webp 1081w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/612f7320a9ca34455d6efde60e53503e/4edbd/function_object_circular_reference.png 175w,
+/TIL/static/612f7320a9ca34455d6efde60e53503e/13ae7/function_object_circular_reference.png 350w,
+/TIL/static/612f7320a9ca34455d6efde60e53503e/8c557/function_object_circular_reference.png 700w,
+/TIL/static/612f7320a9ca34455d6efde60e53503e/e996b/function_object_circular_reference.png 1050w,
+/TIL/static/612f7320a9ca34455d6efde60e53503e/71ee9/function_object_circular_reference.png 1081w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/612f7320a9ca34455d6efde60e53503e/8c557/function_object_circular_reference.png&quot; alt=&quot;함수와 객체의 순환참조 그래프&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+    &lt;figcaption&gt;From 모던 자바스크립트 Deep Dive. By 이웅모.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Function.prototype.__proto__ === Object.prototype&lt;/strong&gt;
+모든 함수는 일급 객체로써 객체를 상속받는다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Object.__proto__ === Function.prototype&lt;/strong&gt;&lt;br&gt;
+&lt;code&gt;Object()&lt;/code&gt; 또한 함수이기 때문에 &lt;code&gt;Function()&lt;/code&gt;으로 생성된다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;4-프로토타입-체이닝&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EC%B2%B4%EC%9D%B4%EB%8B%9D&quot; aria-label=&quot;4 프로토타입 체이닝 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. 프로토타입 체이닝&lt;/h1&gt;
+&lt;p&gt;프로토타입 체인이란 찾는 속성이나 메소드가 현재 객체에 없을 경우, 객체의 &lt;code&gt;__proto__&lt;/code&gt;링크를 따라 프로토타입 객체를 거슬러가며 탐색한다. 이러한 탐색은 최종적으로 &lt;code&gt;Object.prototype&lt;/code&gt;까지 이어진 후 종료된다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;자바스크립트의 모든 객체는 &lt;code&gt;Object.prototype&lt;/code&gt;를 상속받는다.&lt;/li&gt;
+&lt;li&gt;최종적으로 &lt;code&gt;Object.prototype.__proto__&lt;/code&gt;는 &lt;code&gt;null&lt;/code&gt;을 참조하고 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;41-객체-리터럴-방식의-생성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#41-%EA%B0%9D%EC%B2%B4-%EB%A6%AC%ED%84%B0%EB%9F%B4-%EB%B0%A9%EC%8B%9D%EC%9D%98-%EC%83%9D%EC%84%B1&quot; aria-label=&quot;41 객체 리터럴 방식의 생성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.1. 객체 리터럴 방식의 생성&lt;/h2&gt;
+&lt;p&gt;객체를 리터럴 방식으로 생성하면 다음과 같은 프로토타입 체인을 가진다. 객체 리터럴 방식으로 객체를 생성할지라도 내부적으로 &lt;code&gt;Object()&lt;/code&gt;생성자 함수를 호출하기 때문에 최종적으로 &lt;code&gt;Object.prototype&lt;/code&gt;까지 탐색한다.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/7307acda63d70f66b532eb32eaea5a61/914ae/prototype_by_object_literal.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 54.285714285714285%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAACUUlEQVR42m2SS09TURSF+Rn+DAcMcGD8CZoaEifGgUMH/gEHDo0MwDjRmdHgQBmofYhgW6FSikiBFgstfd6+brktvX3dnt7H+UzbKwNhJys5ydln7bX2OjMgmZTIY9XeIirvEZVlhsobbM2HlNN76cJx4b66VDNIZ3pqfKEdvE599Qat0C2awTlGiQdo2hmVapWOUsbW/uC0ojjNbaxWDDq70N0HU3fpJDOTSaZFt1bkqLxFsrRBRU+iGilaQwXbsrAkyHYGpx5Gb9Zoq3ka5TTnjQKdRhrU72D1pwqlq/CkHWZxZ56l6H2e/7jHQmSed6nHjCwDvTvEbCXQir/5uOIl4PUT8AbwfvqM3x9iWI+BoUzWcEGYbKwRy/qIJ2OEtn2kiwm+Hb+ica6gNjr063sUEutsRmL82okRCgbZj+8R3d6jV46CqLqE7nqbhkJSDXJcjxIvBEnVf5JuRej1dJrtPqPaPkYtTjlXoJo9IZM4IJs8oJjJYam7MKy4oVxR/YFxke44tImHbgbRPWWzCxttyWpJZyXbZL00wFG2LhOOlTpj+1K6hO7nkA72uGGYJVpMcc3fZW5N5Wa4xey6xmzYoKYewrA8GTwmFP+j1x8Iy3aEaVnCNEdCOAh6JyJeTImtXMNUjuKm3jwza5mEGcnrolBLCoyScEBcaXkwMNA0Ddu2JyonlkWRfD3O8mkfb6rC13ybQEbFl6vQGv9Ju/0vZem5BMvyCCE8EjxMcRe4TWbhoZFaXNKLH57o6dfPOscvXg4Pnz5CWb4z7pXS8vwFPaQeVRTz+jIAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/7307acda63d70f66b532eb32eaea5a61/c54d4/prototype_by_object_literal.webp 175w,
+/TIL/static/7307acda63d70f66b532eb32eaea5a61/a3432/prototype_by_object_literal.webp 350w,
+/TIL/static/7307acda63d70f66b532eb32eaea5a61/426ac/prototype_by_object_literal.webp 700w,
+/TIL/static/7307acda63d70f66b532eb32eaea5a61/31b17/prototype_by_object_literal.webp 860w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/7307acda63d70f66b532eb32eaea5a61/4edbd/prototype_by_object_literal.png 175w,
+/TIL/static/7307acda63d70f66b532eb32eaea5a61/13ae7/prototype_by_object_literal.png 350w,
+/TIL/static/7307acda63d70f66b532eb32eaea5a61/8c557/prototype_by_object_literal.png 700w,
+/TIL/static/7307acda63d70f66b532eb32eaea5a61/914ae/prototype_by_object_literal.png 860w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/7307acda63d70f66b532eb32eaea5a61/8c557/prototype_by_object_literal.png&quot; alt=&quot;객체 리터럴에 의해 생성된 객체의 프로토타입 체인&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+    &lt;figcaption&gt;From 모던 자바스크립트 Deep Dive. By 이웅모.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id=&quot;42-생성자-함수-방식의-생성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#42-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98-%EB%B0%A9%EC%8B%9D%EC%9D%98-%EC%83%9D%EC%84%B1&quot; aria-label=&quot;42 생성자 함수 방식의 생성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.2. 생성자 함수 방식의 생성&lt;/h2&gt;
+&lt;p&gt;객체를 생성자 함수를 통해 생성하면 다음과 같은 프로토타입 체인을 가진다. 모든 객체는 &lt;code&gt;Object.prototype&lt;/code&gt;을 상속받기 때문에 최종적으로 &lt;code&gt;Object.prototype&lt;/code&gt;까지 탐색한다.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/778338bf673ce5181361f0cc79718b80/1cfc2/prototype_by_constructor_function.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 61.142857142857146%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAACl0lEQVR42o2Sy2sTURjFB/wfxIXgQpciIooL/xddCYIIuvW10JWCaBVLrVBaRahVq60FH2nTNLVp1U4nNbVpTU0fqdY0nSQz6bwy996fJNOg7jyXw/347uHw3XOvppQ0lMJQoWVgvjIw+6N965mhrJTheXXDcetGWFudIdU+R+flIt3XXHquO3Rd8xm/vy79gq7AaHhpKEETdpJgRMN5q+G+24UzpCH0YziepGa7+G4OLp4m2LMf9+ARnENH8XfvQ509BRRANkwUGlI0SkltVgaTh6Q93uBhaY0ekPWvJ6OzBsN1GfbckGu376r8k8fkH/Ww1vGAsPOWIshJGgspNXYgNreomNtslbdxHK/ZU6pBGQlqSxGBej3ALJUwqzbOeg6KU5FGSTSFatZlb41Hc+fpSp+jO32Bh8YZYqv3IoOGp5OnMD/KyEiS5Gic5FiC2PsY+YUMVPXIRSm01gQrls7r+TvEjD5ejHcwln3GQPYmnufws1im9muWucmXxOPjJOIjxIeHScQTzE5Pgj3zl+HOhJvOMnphiEw+RSrzhvnCFNPrg9h2lU3Txt9Is5IZxsh8Y3pG57Ouk858ZXkpC9XpP4b8hUBuY/smFbeEK6qEMkAKgR+CqCyAnYvyDhzsUhF7c4NgYxmKE38ybJm1Jq2HIa7n7/QiUfNjed/pXcyyLy44nrA4MWazN+bQvmhCdSrSRBkq0SIoUQ/romrbwnFd4Xq+8DxPuAFCVBZE75dZ8VAvqP5MXr399kN1fFySfUtbIZVPQoBQUop/rtyC7/tYlvXv7F6eeCHHxPcy6dUScz8tUrkNPvwyobbzykQZXvkPXoXyxWymq7Mt+fJF+8RAb/vE4NO20ef9nz+23cfNXRJNnbjyG2FeWawM7fa4AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/778338bf673ce5181361f0cc79718b80/c54d4/prototype_by_constructor_function.webp 175w,
+/TIL/static/778338bf673ce5181361f0cc79718b80/a3432/prototype_by_constructor_function.webp 350w,
+/TIL/static/778338bf673ce5181361f0cc79718b80/426ac/prototype_by_constructor_function.webp 700w,
+/TIL/static/778338bf673ce5181361f0cc79718b80/131f1/prototype_by_constructor_function.webp 900w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/778338bf673ce5181361f0cc79718b80/4edbd/prototype_by_constructor_function.png 175w,
+/TIL/static/778338bf673ce5181361f0cc79718b80/13ae7/prototype_by_constructor_function.png 350w,
+/TIL/static/778338bf673ce5181361f0cc79718b80/8c557/prototype_by_constructor_function.png 700w,
+/TIL/static/778338bf673ce5181361f0cc79718b80/1cfc2/prototype_by_constructor_function.png 900w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/778338bf673ce5181361f0cc79718b80/8c557/prototype_by_constructor_function.png&quot; alt=&quot;생성자 함수에 의해 생성된 객체의 프로토타입 체인&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+    &lt;figcaption&gt;From 모던 자바스크립트 Deep Dive. By 이웅모.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h1 id=&quot;5-프로토타입-활용&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%ED%99%9C%EC%9A%A9&quot; aria-label=&quot;5 프로토타입 활용 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5. 프로토타입 활용&lt;/h1&gt;
+&lt;p&gt;프로토타입은 객체 간에 &lt;strong&gt;속성과 메소드를 공유&lt;/strong&gt;하는데 활용할 수 있다. 동일한 생성자 함수에 의해 생성된 객체들은 모두 동일한 프로토타입 객체를 바라본다. 따라서 프로토타입 객체에 추가된 속성과 메소드는 &lt;strong&gt;프로토타입 체이닝 방식으로 공유&lt;/strong&gt;된다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;function Person(name) {
+  this.name = name
+}
+
+const mike = new Person(&apos;mike&apos;)
+const james = new Person(&apos;james&apos;)
+
+Person.prototype.sayHello = function () {
+  console.log(&apos;Hello, I am &apos; + this.name)
+}
+
+mike.sayHello() // Hello, I am mike
+james.sayHello() // Hello, I am james
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;헷갈리지 말아야할 것이 &lt;strong&gt;생성자 함수 자체에 추가된 메소드는 공유되지 않는다.&lt;/strong&gt; 생성자 함수는 프르토타입 체이닝에 포함되지 않기 때문이다. 이처럼 생성자 함수 자체에 할당된 메소드를 ES6의 클래스 문법에서는 정적 메소드라 지칭하며 &lt;code&gt;static&lt;/code&gt; 키워드로 구현된다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;function Person(name) {
+  this.name = name
+}
+
+const mike = new Person(&apos;mike&apos;)
+
+Person.sayHello = function () {
+  console.log(&apos;Hello, I am &apos; + this.name)
+}
+
+mike.sayHello() // TypeError: mike.sayHello is not a function
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;6-참고자료&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#6-%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C&quot; aria-label=&quot;6 참고자료 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6. 참고자료&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://poiemaweb.com/js-prototype&quot;&gt;이웅모: 모던 자바스크립트 Deep Dive, 19장 프로토타입&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=TqFwNFTa3c4&quot;&gt;10분 테코톡: 아놀드의 프로토타입 뽀개기&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[자바스크립트 생성자 함수 & new 키워드]]></title><description><![CDATA[1. 생성자 함수 & new 키워드 new 키워드와 생성자 함수를 사용하면 손쉽게 객체를 찍어낼 수 있다. 자바스크립트 버전의 OOP라고 생각할 수 있다. 자바가 객체를 찍어내기 위해 class 키워드를 사용한다면, 자바스크립트는 생성자 함수와 new…]]></description><link>https://byongho96.github.io/TIL/posts/Language/JavaScript/new/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Language/JavaScript/new/</guid><pubDate>Wed, 11 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-생성자-함수--new-키워드&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98--new-%ED%82%A4%EC%9B%8C%EB%93%9C&quot; aria-label=&quot;1 생성자 함수  new 키워드 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 생성자 함수 &amp;#x26; new 키워드&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;new 키워드와 생성자 함수를 사용하면 손쉽게 객체를 찍어낼 수 있다.&lt;/strong&gt; 자바스크립트 버전의 OOP라고 생각할 수 있다. 자바가 객체를 찍어내기 위해 &lt;code&gt;class&lt;/code&gt; 키워드를 사용한다면, 자바스크립트는 생성자 함수와 &lt;code&gt;new&lt;/code&gt; 키워드를 사용한다. (ES6 버전부터 자바스크립트도 &lt;code&gt;class&lt;/code&gt;키워드를 지원하지만, 내부 동작은 바뀌지 않았다.)&lt;/p&gt;
+&lt;h2 id=&quot;11-정의&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-%EC%A0%95%EC%9D%98&quot; aria-label=&quot;11 정의 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1. 정의&lt;/h2&gt;
+&lt;p&gt;생성자 함수는 &lt;strong&gt;객체를 생성(반환)하는 함수&lt;/strong&gt;이다. 사실 다른 일반 함수와 기술적으로 동일하다. 다만 다음 2개의 관례를 통해 구분되어 사용된다. (관례라는 것에서 추측할 수 있듯이 강제성은 없다.)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;함수 이름의 첫 글자는 대문자로 시작한다.&lt;/li&gt;
+&lt;li&gt;new 키워드를 붙여 실행한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// 생성자 함수
+function User(name) {
+  this.name = name
+  this.sayHi = function () {
+    console.log(&apos;제 이름은 &apos; + this.name + &apos;입니다.&apos;)
+  }
+}
+
+const mike = new User(&apos;mike&apos;)
+console.log(mike.name) // mike
+mike.sayHi() // 제 이름은 mike입니다.
+
+const sally = new User(&apos;sally&apos;)
+console.log(sally.name) // sally
+sally.sayHi() // 제 이름은 sally입니다.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;12-동작-원리&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%AC&quot; aria-label=&quot;12 동작 원리 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2. 동작 원리&lt;/h2&gt;
+&lt;p&gt;앞서 말했다시피 생성자 함수는 일반 함수와 다르지 않다. 차이를 만드는 것은 &lt;code&gt;new&lt;/code&gt; 키워드이다. &lt;code&gt;new&lt;/code&gt; 키워드가 내부적으로 다음 2가지 동작을 추가한다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;함수 코드 실행 전, &lt;code&gt;this&lt;/code&gt;에 빈 객체를 할당한다.&lt;/li&gt;
+&lt;li&gt;함수 코드 실행 후, &lt;code&gt;this&lt;/code&gt;를 반환한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;new&lt;/code&gt; 키워드가 아래처럼 2줄의 주석 코드가 내부적으로 실행한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;function User(name) {
+  // this = {}
+
+  this.name = name
+  this.sayHi = function () {
+    console.log(&apos;제 이름은 &apos; + this.name + &apos;입니다.&apos;)
+  }
+
+  // return this
+}
+
+const mike = new User(&apos;mike&apos;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;13-관례-벗어나보기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#13-%EA%B4%80%EB%A1%80-%EB%B2%97%EC%96%B4%EB%82%98%EB%B3%B4%EA%B8%B0&quot; aria-label=&quot;13 관례 벗어나보기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.3. 관례 벗어나보기&lt;/h2&gt;
+&lt;p&gt;앞 서 말한 2개의 관례를 벗어나보자.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;함수 이름의 첫 글자는 대문자로 시작한다.&lt;/strong&gt;&lt;br&gt;
+아래와 같이 코드를 작성해도 전혀 무리없이 동작한다. 그럼에도 생성자 함수를 대문자로 작성하는 것은, 해당 함수를 &lt;code&gt;new&lt;/code&gt;키워드로 실행하라는 힌트를 주기 위해서인 것 같다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;function user(name) {
+  this.name = name
+  this.sayHi = function () {
+    console.log(&apos;제 이름은 &apos; + this.name + &apos;입니다.&apos;)
+  }
+}
+
+const mike = new user(&apos;mike&apos;)
+console.log(mike.name) // mike
+mike.sayHi() // 제 이름은 mike입니다.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;new 키워드를 붙여 실행한다.&lt;/strong&gt;&lt;br&gt;
+new 키워드 없이 실행하면 에러가 난다. 내부적으로 &lt;code&gt;this&lt;/code&gt;가 선언되지 않았기 때문에 &lt;code&gt;undefinend&lt;/code&gt;에 속성을 추가할 수 없기 때문이다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;function User(name) {
+  this.name = name
+  this.sayHi = function () {
+    console.log(&apos;제 이름은 &apos; + this.name + &apos;입니다.&apos;)
+  }
+}
+
+const mike = User(&apos;mike&apos;) // TypeError: Cannot set properties of undefined (setting &apos;name&apos;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;2-return문&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-return%EB%AC%B8&quot; aria-label=&quot;2 return문 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. return문&lt;/h1&gt;
+&lt;p&gt;그런데 만약 &lt;code&gt;return&lt;/code&gt;문이 있는 함수를 &lt;code&gt;new&lt;/code&gt; 키워드로 실행시키면 어떻게 될까?&lt;/p&gt;
+&lt;h2 id=&quot;21-원시-타입&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-%EC%9B%90%EC%8B%9C-%ED%83%80%EC%9E%85&quot; aria-label=&quot;21 원시 타입 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. 원시 타입&lt;/h2&gt;
+&lt;p&gt;리턴하는 값이 원시 타입일 경우, 원래 &lt;code&gt;return&lt;/code&gt;문을 무시하고 &lt;code&gt;this&lt;/code&gt;를 반환한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;function sum(a, b) {
+  return a + b
+}
+
+const result = new sum(1, 1)
+console.log(result) // {}
+console.log(typeof result) // object
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;22-객체-타입&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-%EA%B0%9D%EC%B2%B4-%ED%83%80%EC%9E%85&quot; aria-label=&quot;22 객체 타입 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. 객체 타입&lt;/h2&gt;
+&lt;p&gt;리턴하는 값이 객체 타입일 경우, 원래 &lt;code&gt;return&lt;/code&gt;문을 그대로 반환한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;function sum(a, b) {
+  return { result: a + b }
+}
+
+const result = new sum(1, 1)
+console.log(result) // { result: 2 }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;참고로 자바스크립트에서는 배열이나 함수도 모두 객체이다. 부디 기억해주길 바란다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;function sum(a, b) {
+  return [a + b]
+}
+
+const result = new sum(1, 1)
+console.log(result) // [ 2 ]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;3-참고자료&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C&quot; aria-label=&quot;3 참고자료 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. 참고자료&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://ko.javascript.info/constructor-new&quot;&gt;Ilya Kantor: new 연산자와 생성자 함수&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=8hrSkOihmBI&amp;#x26;t=1s&quot;&gt;코딩앙마: 자바스크립트 중급 강좌 #2 - 생성자 함수&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[웹 표준이란 무엇인가]]></title><description><![CDATA[1. 개요 취업 시즌을 맞아 채용공고가 많이 올라온다. 그 중 프론트 채용공고에서는 W3C 웹 표준이 자주 언급된다. 항상 크게 개의치 않고 넘겼는데, 어느 날 문득 생각해보니 웹표준에 대해 아는 바가 전혀 없었다. HTML, CSS…]]></description><link>https://byongho96.github.io/TIL/posts/Knowledge/Web/web_standards/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Knowledge/Web/web_standards/</guid><pubDate>Tue, 03 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-개요&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EA%B0%9C%EC%9A%94&quot; aria-label=&quot;1 개요 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 개요&lt;/h1&gt;
 &lt;figure&gt;
     &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
       &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/e81a1e5bc59906df2ab2645e7d85c084/e619b/frontend-recruitment-notice.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
@@ -291,18 +617,18 @@
 &lt;h2 id=&quot;21-페이지-언어&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-%ED%8E%98%EC%9D%B4%EC%A7%80-%EC%96%B8%EC%96%B4&quot; aria-label=&quot;21 페이지 언어 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. 페이지 언어&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;&amp;#x3C;html&gt;&lt;/code&gt;의 페이지 언어 &lt;code&gt;lang&lt;/code&gt;속성을 설정함으로써, 스크린리더와 같은 보조기술이 해당 문서를 어떤 언어로 읽을지 선택할 수 있다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;#x3C;html lang=&quot;en&quot;&gt;
-    ...
-    &amp;#x3C;body&gt;
-        &amp;#x3C;p&gt;한글&amp;#x3C;/p&gt;
-    &amp;#x3C;/body&gt;
+  ...
+  &amp;#x3C;body&gt;
+    &amp;#x3C;p&gt;한글&amp;#x3C;/p&gt;
+  &amp;#x3C;/body&gt;
 &amp;#x3C;/html&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;📢 한글 쎄이 한 한글 쎄이 글&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;#x3C;html lang=&quot;ko&quot;&gt;
-        ...
-    &amp;#x3C;body&gt;
-        &amp;#x3C;p&gt;한글&amp;#x3C;/p&gt;
-    &amp;#x3C;/body&gt;
+  ...
+  &amp;#x3C;body&gt;
+    &amp;#x3C;p&gt;한글&amp;#x3C;/p&gt;
+  &amp;#x3C;/body&gt;
 &amp;#x3C;/html&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;📢 한글&lt;/p&gt;
@@ -354,23 +680,26 @@
 &lt;p&gt;📢 장바구니 추가 버튼&lt;/p&gt;
 &lt;h3 id=&quot;232-중첩-사용&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#232-%EC%A4%91%EC%B2%A9-%EC%82%AC%EC%9A%A9&quot; aria-label=&quot;232 중첩 사용 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.3.2. 중첩 사용&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;#x3C;button&gt;
-    &amp;#x3C;img
+  &amp;#x3C;img
     src=&quot;https://cdn-icons-png.flaticon.com/512/6276/6276043.png&quot;
-    alt=&quot;장바구니 이모티콘&quot; /&gt;
+    alt=&quot;장바구니 이모티콘&quot;
+  /&gt;
 &amp;#x3C;/button&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;📢 장바구니 이모티콘 그래픽 버튼&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;#x3C;button&gt;
-    &amp;#x3C;img
+  &amp;#x3C;img
     src=&quot;https://cdn-icons-png.flaticon.com/512/6276/6276043.png&quot;
-    alt=&quot;장바구니 추가&quot; /&gt;
+    alt=&quot;장바구니 추가&quot;
+  /&gt;
 &amp;#x3C;/button&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;📢 장바구니 추가 그래픽 버튼&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;#x3C;button aria-label=&quot;장바구니 추가&quot;&gt;
-    &amp;#x3C;img
+  &amp;#x3C;img
     src=&quot;https://cdn-icons-png.flaticon.com/512/6276/6276043.png&quot;
-    alt=&quot;장바구니 이모티콘&quot; /&gt;
+    alt=&quot;장바구니 이모티콘&quot;
+  /&gt;
 &amp;#x3C;/button&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;📢 장바구니 추가 버튼&lt;/p&gt;
@@ -384,19 +713,19 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;📢 다음 포스트 보기 링크&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;#x3C;p&gt;
-    더 자세한 사항을 보려면
-    &amp;#x3C;a href=&quot;#&quot;&gt;여기&amp;#x3C;/a&gt;를 클릭하세요.
+  더 자세한 사항을 보려면
+  &amp;#x3C;a href=&quot;#&quot;&gt;여기&amp;#x3C;/a&gt;를 클릭하세요.
 &amp;#x3C;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;📢 여기 링크&lt;/p&gt;
 &lt;h3 id=&quot;252-중첩-사용&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#252-%EC%A4%91%EC%B2%A9-%EC%82%AC%EC%9A%A9&quot; aria-label=&quot;252 중첩 사용 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.5.2. 중첩 사용&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;#x3C;a href=&quot;#&quot;&gt;
-    &amp;#x3C;img src=&quot;btn_next.png&quot; alt=&quot;오른쪽 화살표&quot; /&gt;
+  &amp;#x3C;img src=&quot;btn_next.png&quot; alt=&quot;오른쪽 화살표&quot; /&gt;
 &amp;#x3C;/a&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;📢 오른쪽 화살표 그래픽 링크&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;#x3C;a href=&quot;#&quot; aria-label=&quot;다음 포스트 보기&quot;&gt;
-    &amp;#x3C;img src=&quot;btn_next.png&quot; alt=&quot;오른쪽 화살표&quot; /&gt;
+  &amp;#x3C;img src=&quot;btn_next.png&quot; alt=&quot;오른쪽 화살표&quot; /&gt;
 &amp;#x3C;/a&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;📢 다음 포스트 보기 링크&lt;/p&gt;
@@ -428,42 +757,41 @@
         &lt;/picture&gt;
   &lt;/a&gt;
     &lt;/span&gt;
-&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt; &amp;#x3C;table&gt;
-      &amp;#x3C;caption&gt;
-        &amp;#x3C;span style=&quot;opacity: 0&quot;
-          &gt;부부합산 연소득과 임차보증금 기준 구간별 일반가구 상품 대출
-          금리&amp;#x3C;/span
-        &gt;
-      &amp;#x3C;/caption&gt;
-      &amp;#x3C;colgroup&gt;
-        &amp;#x3C;col width=&quot;166px&quot; /&gt;
-        &amp;#x3C;col width=&quot;95px&quot; /&gt;
-        &amp;#x3C;col width=&quot;95px&quot; /&gt;
-        &amp;#x3C;col width=&quot;95px&quot; /&gt;
-      &amp;#x3C;/colgroup&gt;
-      &amp;#x3C;thead&gt;
-        &amp;#x3C;tr&gt;
-          &amp;#x3C;th scope=&quot;col&quot;&gt;부부합산 연소득&amp;#x3C;/th&gt;
-          &amp;#x3C;th scope=&quot;col&quot;&gt;임차보증금 5천만원 이하&amp;#x3C;/th&gt;
-          &amp;#x3C;th scope=&quot;col&quot;&gt;5천만원 초과 ~ 1억이하&amp;#x3C;/th&gt;
-          &amp;#x3C;th scope=&quot;col&quot;&gt;1억원 초과&amp;#x3C;/th&gt;
-        &amp;#x3C;/tr&gt;
-      &amp;#x3C;/thead&gt;
-      &amp;#x3C;tbody&gt;
-        &amp;#x3C;tr&gt;
-          &amp;#x3C;th scope=&quot;row&quot;&gt;~2천만원&amp;#x3C;/th&gt;
-          &amp;#x3C;td&gt;1.8%&amp;#x3C;/td&gt;
-          &amp;#x3C;td&gt;1.9%&amp;#x3C;/td&gt;
-          &amp;#x3C;td&gt;1.5%&amp;#x3C;/td&gt;
-        &amp;#x3C;/tr&gt;
-        &amp;#x3C;tr&gt;
-          &amp;#x3C;th scope=&quot;row&quot;&gt;2천만원 초과 ~ 4천만원 이하&amp;#x3C;/th&gt;
-          &amp;#x3C;td&gt;2.0%&amp;#x3C;/td&gt;
-          &amp;#x3C;td&gt;2.1%&amp;#x3C;/td&gt;
-          &amp;#x3C;td&gt;2.2%&amp;#x3C;/td&gt;
-        &amp;#x3C;/tr&gt;
-      &amp;#x3C;/tbody&gt;
-    &amp;#x3C;/table&gt;
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;#x3C;table&gt;
+  &amp;#x3C;caption&gt;
+    &amp;#x3C;span style=&quot;opacity: 0&quot;
+      &gt;부부합산 연소득과 임차보증금 기준 구간별 일반가구 상품 대출 금리&amp;#x3C;/span
+    &gt;
+  &amp;#x3C;/caption&gt;
+  &amp;#x3C;colgroup&gt;
+    &amp;#x3C;col width=&quot;166px&quot; /&gt;
+    &amp;#x3C;col width=&quot;95px&quot; /&gt;
+    &amp;#x3C;col width=&quot;95px&quot; /&gt;
+    &amp;#x3C;col width=&quot;95px&quot; /&gt;
+  &amp;#x3C;/colgroup&gt;
+  &amp;#x3C;thead&gt;
+    &amp;#x3C;tr&gt;
+      &amp;#x3C;th scope=&quot;col&quot;&gt;부부합산 연소득&amp;#x3C;/th&gt;
+      &amp;#x3C;th scope=&quot;col&quot;&gt;임차보증금 5천만원 이하&amp;#x3C;/th&gt;
+      &amp;#x3C;th scope=&quot;col&quot;&gt;5천만원 초과 ~ 1억이하&amp;#x3C;/th&gt;
+      &amp;#x3C;th scope=&quot;col&quot;&gt;1억원 초과&amp;#x3C;/th&gt;
+    &amp;#x3C;/tr&gt;
+  &amp;#x3C;/thead&gt;
+  &amp;#x3C;tbody&gt;
+    &amp;#x3C;tr&gt;
+      &amp;#x3C;th scope=&quot;row&quot;&gt;~2천만원&amp;#x3C;/th&gt;
+      &amp;#x3C;td&gt;1.8%&amp;#x3C;/td&gt;
+      &amp;#x3C;td&gt;1.9%&amp;#x3C;/td&gt;
+      &amp;#x3C;td&gt;1.5%&amp;#x3C;/td&gt;
+    &amp;#x3C;/tr&gt;
+    &amp;#x3C;tr&gt;
+      &amp;#x3C;th scope=&quot;row&quot;&gt;2천만원 초과 ~ 4천만원 이하&amp;#x3C;/th&gt;
+      &amp;#x3C;td&gt;2.0%&amp;#x3C;/td&gt;
+      &amp;#x3C;td&gt;2.1%&amp;#x3C;/td&gt;
+      &amp;#x3C;td&gt;2.2%&amp;#x3C;/td&gt;
+    &amp;#x3C;/tr&gt;
+  &amp;#x3C;/tbody&gt;
+&amp;#x3C;/table&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&quot;28-모달&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#28-%EB%AA%A8%EB%8B%AC&quot; aria-label=&quot;28 모달 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.8. 모달&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;&amp;#x3C;dialog&gt;&lt;/code&gt;의 &lt;code&gt;showModal()&lt;/code&gt;메서드로 모달 기능을 구현하면 다음 이점을 얻을 수 있다.&lt;/p&gt;
@@ -483,19 +811,19 @@
 &amp;#x3C;/dialog&gt;
 &amp;#x3C;button&gt;Show the dialog&amp;#x3C;/button&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;const dialog = document.querySelector(&quot;dialog&quot;);
-const showButton = document.querySelector(&quot;dialog + button&quot;);
-const closeButton = document.querySelector(&quot;dialog button&quot;);
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;const dialog = document.querySelector(&apos;dialog&apos;)
+const showButton = document.querySelector(&apos;dialog + button&apos;)
+const closeButton = document.querySelector(&apos;dialog button&apos;)
 
 // &quot;Show the dialog&quot; button opens the dialog modally
-showButton.addEventListener(&quot;click&quot;, () =&gt; {
-  dialog.showModal();
-});
+showButton.addEventListener(&apos;click&apos;, () =&gt; {
+  dialog.showModal()
+})
 
 // &quot;Close&quot; button closes the dialog
-closeButton.addEventListener(&quot;click&quot;, () =&gt; {
-  dialog.close();
-});
+closeButton.addEventListener(&apos;click&apos;, () =&gt; {
+  dialog.close()
+})
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&quot;29-라이브-메시지&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#29-%EB%9D%BC%EC%9D%B4%EB%B8%8C-%EB%A9%94%EC%8B%9C%EC%A7%80&quot; aria-label=&quot;29 라이브 메시지 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.9. 라이브 메시지&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;aria-live&lt;/code&gt;속성을 통해 요소가 가진 턴텐츠가 바뀌었을 때, 이를 실시간으로 사용자에게 알려줄 수 있다.&lt;/p&gt;
@@ -514,15 +842,15 @@ closeButton.addEventListener(&quot;click&quot;, () =&gt; {
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;#x3C;div&gt;
-   &amp;#x3C;input type=&quot;text&quot; name=&quot;이름&quot; /&gt;
-   &amp;#x3C;p arial-live=&quot;assertive&quot;&gt;실시간으로 변하는 에러 메시지&amp;#x3C;/p&gt;
+  &amp;#x3C;input type=&quot;text&quot; name=&quot;이름&quot; /&gt;
+  &amp;#x3C;p arial-live=&quot;assertive&quot;&gt;실시간으로 변하는 에러 메시지&amp;#x3C;/p&gt;
 &amp;#x3C;/div&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id=&quot;3-도구&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-%EB%8F%84%EA%B5%AC&quot; aria-label=&quot;3 도구 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. 도구&lt;/h1&gt;
 &lt;p&gt;개발과정에서 사용자 접근성을 테스트하기 위해서 다음 도구들을 사용할 수 있다.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://wave.webaim.org/extension/&quot;&gt;WAVE(Web Accessibility Evaluatioin Tool)&lt;/a&gt;&lt;/strong&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://wave.webaim.org/extension/&quot;&gt;WAVE(Web Accessibility Evaluatioin Tool)&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;
 웹 페이지에 대한 접근성 준수 여부 테스트할 수 있다.&lt;br&gt;
 &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
       &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/d7da73a21b1cc93f4a3a589992bcf7a5/764d0/wave-accessibility-test.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
@@ -38118,433 +38446,4 @@ def likes(request, article_pk):
         }
         return JsonResponse(context)
     return redirect(&apos;accounts:login&apos;)
-&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[06. 관계 데이터 연산]]></title><description><![CDATA[관계 데이터 연산을 일반 집합 연산자와 순수 관계 연산자로 나누어 학습한다. 6.1. 관계 데이터 연산의 개념 6.2. 관계 대수 6.2.1. 관계 대수의 개념과 연산자 6.2.2. 일반 집합 연산자 6.2.3. 순수 관계 연산자 6.2.…]]></description><link>https://byongho96.github.io/TIL/posts/Knowledge/Database/Ch06_관계_데이터_연산/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Knowledge/Database/Ch06_관계_데이터_연산/</guid><pubDate>Tue, 25 Oct 2022 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
-&lt;p&gt;관계 데이터 연산을 일반 집합 연산자와 순수 관계 연산자로 나누어 학습한다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#61-%EA%B4%80%EA%B3%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%97%B0%EC%82%B0%EC%9D%98-%EA%B0%9C%EB%85%90&quot;&gt;6.1. 관계 데이터 연산의 개념&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#62-%EA%B4%80%EA%B3%84-%EB%8C%80%EC%88%98&quot;&gt;6.2. 관계 대수&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#621-%EA%B4%80%EA%B3%84-%EB%8C%80%EC%88%98%EC%9D%98-%EA%B0%9C%EB%85%90%EA%B3%BC-%EC%97%B0%EC%82%B0%EC%9E%90&quot;&gt;6.2.1. 관계 대수의 개념과 연산자&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#622-%EC%9D%BC%EB%B0%98-%EC%A7%91%ED%95%A9-%EC%97%B0%EC%82%B0%EC%9E%90&quot;&gt;6.2.2. 일반 집합 연산자&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#623-%EC%88%9C%EC%88%98-%EA%B4%80%EA%B3%84-%EC%97%B0%EC%82%B0%EC%9E%90&quot;&gt;6.2.3. 순수 관계 연산자&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#624-%EA%B4%80%EA%B3%84-%EB%8C%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%A7%88%EC%9D%98-%ED%91%9C%ED%98%84&quot;&gt;6.2.4. 관계 대수를 이용한 질의 표현&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#625-%ED%99%95%EC%9E%A5%EB%90%9C-%EA%B4%80%EA%B3%84-%EB%8C%80%EC%88%98-%EC%97%B0%EC%82%B0%EC%9E%90&quot;&gt;6.2.5. 확장된 관계 대수 연산자&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#63-%EA%B4%80%EA%B3%84-%ED%95%B4%EC%84%9D&quot;&gt;6.3. 관계 해석&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;61-관계-데이터-연산의-개념&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#61-%EA%B4%80%EA%B3%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%97%B0%EC%82%B0%EC%9D%98-%EA%B0%9C%EB%85%90&quot; aria-label=&quot;61 관계 데이터 연산의 개념 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.1. 관계 데이터 연산의 개념&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;관계 데이터 모델에서 원하는 데이터를 추출하기 위해 릴레이션에 처리를 요구하는 것으로, 관계 대수와 관계 해석으로 나눌 수 있다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;관계 대수(relational algebra)는 데이터의 처리 과정을 순서대로 기술하는 절차 언어이고,&lt;br&gt;
-관계 해석(relational calculus)는 원하는 데이터가 무엇인지만 기술하는 비절차적 언어이다.&lt;/p&gt;
-&lt;p&gt;이 둘은 개념적 언어로 실제 사용되지는 않는다. 하지만 데이터 언어의 유용성을 검증하는 도구로써 쓰인다.&lt;/p&gt;
-&lt;h2 id=&quot;62-관계-대수&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#62-%EA%B4%80%EA%B3%84-%EB%8C%80%EC%88%98&quot; aria-label=&quot;62 관계 대수 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.2. 관계 대수&lt;/h2&gt;
-&lt;h3 id=&quot;621-관계-대수의-개념과-연산자&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#621-%EA%B4%80%EA%B3%84-%EB%8C%80%EC%88%98%EC%9D%98-%EA%B0%9C%EB%85%90%EA%B3%BC-%EC%97%B0%EC%82%B0%EC%9E%90&quot; aria-label=&quot;621 관계 대수의 개념과 연산자 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.2.1. 관계 대수의 개념과 연산자&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;관계 대수는 원하는 결과를 얻기 위해 릴레이션을 처리하는 과정을 순서대로 기술하는 절차적 언어이다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;관계대수는 연산자들의 집합으로 정의될 수 있고, 피연산자와 연산의 결과값은 모두 릴레이션이다.&lt;/p&gt;
-&lt;h3 id=&quot;622-일반-집합-연산자&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#622-%EC%9D%BC%EB%B0%98-%EC%A7%91%ED%95%A9-%EC%97%B0%EC%82%B0%EC%9E%90&quot; aria-label=&quot;622 일반 집합 연산자 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.2.2. 일반 집합 연산자&lt;/h3&gt;
-&lt;p&gt;다음 중 합집합, 교집합, 차집합의 경우 피연산자인 2개의 릴레이션이 &lt;mark&gt;합병 가능(union-compatible)&lt;/mark&gt;해야 한다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;합병 가능
-&lt;ul&gt;
-&lt;li&gt;두 릴레이션의 속성 갯수(차수)가 같다.&lt;/li&gt;
-&lt;li&gt;서로 대응되는 속성의 도메인(데이터 타입)이 같다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;img src=&quot;./images/%EC%9D%BC%EB%B0%98%EC%A7%91%ED%95%A9%EC%97%B0%EC%82%B0%EC%9E%90.png&quot; alt=&quot;일반 집합 연산자&quot; width=700 /&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;합집합&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;R ∪ S&lt;/li&gt;
-&lt;li&gt;R ∪ S = S ∪ R&lt;/li&gt;
-&lt;li&gt;(R ∪ S) ∪ T = R ∪ (S ∪ T)&lt;/li&gt;
-&lt;li&gt;중복 데이터는 배제한다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;교집합&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;R ∩ S&lt;/li&gt;
-&lt;li&gt;R ∩ S = S ∩ R&lt;/li&gt;
-&lt;li&gt;(R ∩ S) ∩ T = R ∩ (S ∩ T)&lt;/li&gt;
-&lt;li&gt;중복 데이터는 배제한다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;차집합&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;R - S&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;카티션 프로덕트(Cartesian Product)&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;R X S&lt;/li&gt;
-&lt;li&gt;R X S = S X R&lt;/li&gt;
-&lt;li&gt;(R X S) X T = R X (S X T)&lt;/li&gt;
-&lt;li&gt;동일한 이름의 속성의 경우 릴레이션 이름을 앞에 붙인다(Ex. R.번호)&lt;/li&gt;
-&lt;li&gt;차수 = R의 차수 + S의 차수&lt;/li&gt;
-&lt;li&gt;카디널리티 = R의 카디널리티 * S의 카디널리티&lt;br&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 542px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/98954cb514b08104616e8debf1dcca94/c0388/%EC%B9%B4%ED%8B%B0%EC%85%98%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 108.57142857142857%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAWCAYAAADAQbwGAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAC7UlEQVR42o1Ua2+cMBC8///b2g9toippL0E94I6HDRjMywammuVxaZNWRVrhxfZ4dmfMqShLjM7BTRM8w69v572852XB/tR1jW4Y1vltvXsT0zzjVPUDQl3i8TWA6kektsO1Mnh8CWTcje4AtMOIxFo8nF+R1BZZ2yFvO/yIrriaBmYYcWqGAY1toXWBznlkTYs0V/j584JEaXTuDtiODrYfoJRGPzpkjUU3jJLbfoTpepy89xj6DlmWYZ5nOOdhqgov5zP6vkfbtvIeeHDTgOuzNMU4jhLTNKHQGo5tcx4nfui6DrfkhmmeZAN7FQSBbCBgWZbQWsv3afJQKt8AnAByjmu59w54u4kAzOumxutrIAs4R6A9WEWe56to3q8Mi2ITdAMkujG1TEoLhh5KK2HAOYIsyyI5x9baY+3kvVSxg5/wH88wjEiTBFEU4XK5IIpCqYgAfz4H4C1JUBoDuo5edHLiLLmpG9Cv/DYKaydCcX6eFyl32fwqgCzjpht8fQ7w+fEZYW4kvp0v+PTwjEjViHWDby8hPj9+l7lI13gKYnx5CiQfRn8H5Em67qALg1uaIa9aXJICYRTj/BIgTDRiVUPpAmmmoEyLODdQukSmCsnbfvydIftBMerayJillVojy9LDY13XigN4xaT0gT61mJdZyv4NcJ4nNI1FlucCyEjTVESg96hiYxvxJNf7acur6iD0jiHlp0nnDTDPM8RxLGAM2qXaAMh69+iHgAzSL8piZTjPciN2e6wHWpRlJYrupud13C/EO4bGVHILaJu3DHcTk01R6CMn43+WbIxBrtTBiOA7IEskw6oyaw+dl5x7PgRkGbZh04sjZz/TLJPxeudbAVitNom5rW2P/D3DqpLf2M6Q4zAMD1EIplgBGe4lb6p/KIq1jfw5OMmc/YqOHq4Md1VFlL4TX/L6fQjIxWSw51opxNfrG5Vb6eGq8v2AZVn+xnAtYQfgmObeS27tXQTmaw+ttIDfCPgLwKmpuKA1CtcAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/98954cb514b08104616e8debf1dcca94/c54d4/%EC%B9%B4%ED%8B%B0%EC%85%98%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8.webp 175w,
-/TIL/static/98954cb514b08104616e8debf1dcca94/a3432/%EC%B9%B4%ED%8B%B0%EC%85%98%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8.webp 350w,
-/TIL/static/98954cb514b08104616e8debf1dcca94/3f954/%EC%B9%B4%ED%8B%B0%EC%85%98%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8.webp 542w&quot; sizes=&quot;(max-width: 542px) 100vw, 542px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/98954cb514b08104616e8debf1dcca94/4edbd/%EC%B9%B4%ED%8B%B0%EC%85%98%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8.png 175w,
-/TIL/static/98954cb514b08104616e8debf1dcca94/13ae7/%EC%B9%B4%ED%8B%B0%EC%85%98%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8.png 350w,
-/TIL/static/98954cb514b08104616e8debf1dcca94/c0388/%EC%B9%B4%ED%8B%B0%EC%85%98%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8.png 542w&quot; sizes=&quot;(max-width: 542px) 100vw, 542px&quot; type=&quot;image/png&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/98954cb514b08104616e8debf1dcca94/c0388/%EC%B9%B4%ED%8B%B0%EC%85%98%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8.png&quot; alt=&quot;카티션 프로덕트&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;623-순수-관계-연산자&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#623-%EC%88%9C%EC%88%98-%EA%B4%80%EA%B3%84-%EC%97%B0%EC%82%B0%EC%9E%90&quot; aria-label=&quot;623 순수 관계 연산자 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.2.3. 순수 관계 연산자&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;셀렉트&lt;/strong&gt;&lt;br&gt;
-조건식을 만족하는 투플(행)을 선택하여 새로운 릴레이션으로 반환&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span style=&quot;font-size:120%&quot;&gt;σ&lt;/span&gt;&lt;span style=&quot;font-size:70%&quot;&gt;조건식&lt;/span&gt;(릴레이션)&lt;/li&gt;
-&lt;li&gt;&lt;mark style=&apos;background-color: #f6f8fa&apos;&gt;&lt;span style=&quot;font-size:120%&quot;&gt;σ&lt;/span&gt;&lt;span style=&quot;font-size:70%&quot;&gt;height&gt;170&lt;/span&gt;&lt;/span&gt;(Person)&lt;/mark&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span style=&quot;font-size:120%&quot;&gt;σ&lt;/span&gt;&lt;span style=&quot;font-size:70%&quot;&gt;조건식1&lt;/span&gt;(&lt;span style=&quot;font-size:120%&quot;&gt;σ&lt;/span&gt;&lt;span style=&quot;font-size:70%&quot;&gt;조건식2&lt;/span&gt;(릴레이션)) = &lt;span style=&quot;font-size:120%&quot;&gt;σ&lt;/span&gt;&lt;span style=&quot;font-size:70%&quot;&gt;조건식2&lt;/span&gt;(&lt;span style=&quot;font-size:120%&quot;&gt;σ&lt;/span&gt;&lt;span style=&quot;font-size:70%&quot;&gt;조건식1&lt;/span&gt;(릴레이션)) = &lt;span style=&quot;font-size:120%&quot;&gt;σ&lt;/span&gt;&lt;span style=&quot;font-size:70%&quot;&gt;조건식1 ^ 조건식2&lt;/span&gt;(릴레이션)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;프로젝트&lt;/strong&gt;&lt;br&gt;
-조건식을 만족하는 속성(열)을 선택하여 새로운 릴레이션으로 반환&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span style=&quot;font-size:120%&quot;&gt;π&lt;/span&gt;&lt;span style=&quot;font-size:70%&quot;&gt;속성리스트&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;mark style=&apos;background-color: #f6f8fa&apos;&gt;&lt;span style=&quot;font-size:120%&quot;&gt;π&lt;/span&gt;&lt;span style=&quot;font-size:70%&quot;&gt;name, height&lt;/span&gt;&lt;/span&gt;(Person)&lt;/mark&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;조인&lt;/strong&gt;&lt;br&gt;
-두 릴레이션에서 조인 속성 값이 조건식을 만족하는 투플에 대해 새로운 릴레이션을 만들어 반환. 동일한 속성 이름의 경우 &apos;릴레이션이름.속성이름&apos; 형식으로 표기한다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;세타 조인&lt;/strong&gt;
-조건식을 만족하는 투플끼리만 연결하여 새로운 릴레이션을 만들어 반환
-&lt;ul&gt;
-&lt;li&gt;R &lt;span style=&quot;font-size:120%&quot;&gt;⋈&lt;/span&gt;&lt;span style=&quot;font-size:70%&quot;&gt;AθB&lt;/span&gt; S&lt;/li&gt;
-&lt;li&gt;A는 릴레이션 R의 속성, B는 릴레이션 S의 속성&lt;/li&gt;
-&lt;li&gt;θ에는 비교연산자(&gt;, &gt;=, &amp;#x3C;, &amp;#x3C;=, =, !=)가 들어간다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;동등 조인&lt;/strong&gt;&lt;br&gt;
-세타 조인 중 θ가 = 인 조인
-&lt;ul&gt;
-&lt;li&gt;R &lt;span style=&quot;font-size:120%&quot;&gt;⋈&lt;/span&gt;&lt;span style=&quot;font-size:70%&quot;&gt;A=B&lt;/span&gt; S&lt;br&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 597px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/abc6749920e5a6a95af66b41f707b7c1/17602/%EC%84%B8%ED%83%80%EC%A1%B0%EC%9D%B8.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 82.28571428571429%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADEklEQVR42n2S228bVRCH86fygGQJQgNBNEUUCK0qeKpAPFABKSHk2qRJi9qohJa4sWM5TnN3srGd2muvrxt77157vev90G5DqCLMkY5mNOfMd+b8Zoa4snquS75YQsidYdgddLvDuaphOQ5628bsdEOrmhZ937+aztDVgO54JMQma+kCWxWdeF7m6W6G7apJLN8gKanE8w2i2Qpmzwtz/EFAxe6wI53z6eImH0095+bjbcYWE4yG/ivGFjf5bHmLG0sJPlmIU2gab4BvVXoJ9Po+VcPi5Nzg1sszbj5Lc2ezyPhfGW78vsOdhBT6tzfyfLWe5fM/Tyio9mBgoEdJs7DaNppuUKnVMKw2iqZRksphXFFVdMOkpSjUZRnb7gzWMABKuoXTc+nYNp1uB9d18fs+/X7/0vc8D891QxvEBwKDL0t6m67TI5PLIZxmsB0H1TAwgwd6LoqmY3W62E4Pw7b/v8sBsKxbmI5HSqwTz0ocyQYvhQIpscFhQ+fFQYbtosxBXSeZr2M47uAuu32fmtEmp3W5lazwZbzEN/sqX2yI3E7Vwz22esj4psTXuy3GkzXONOdCrivAoHLP92lYbXbK53y8EGNkep3rK9sMT64xOh9j7OEWwz+v8uFMlOvLKUbm4wg19VL/gYPdcz1amklLN1H0N7apGlTqMlKtEcbUi7Oggf5FQf7bQN00kVsqmmHyX8txHAxdo2O3w2r6F7oF8xfufv9yFoeCwwOxTCKdIXVWJCe3OC1VKasmYlOlILcQzxVEuUVaqnJYbrD3usi+WOWwVOW0WA7vVFX9Auj7RF/LPNjKspKuMv/qjLnNNE9OKqwciCzvFXi4V+DRvsh0Ksej4yoPkgKP0xWmEgJz8SOWD4ps5Gr/fvm79WPeubfKyNIW701HiUw8Y3QpyfszG1ybizE8G+PabIzIVDS8E5n4gw8WErx7f43Ij0+JzMT59sXRP0CfJ0WDu7s1fjhucv9Y5pejOtNZjUlB4VehxeRJiylBYeK4yT1B4fv9Gj8JCpNHdWbTDX7L6jwvWyHwb9UZjFyasMuPAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/abc6749920e5a6a95af66b41f707b7c1/c54d4/%EC%84%B8%ED%83%80%EC%A1%B0%EC%9D%B8.webp 175w,
-/TIL/static/abc6749920e5a6a95af66b41f707b7c1/a3432/%EC%84%B8%ED%83%80%EC%A1%B0%EC%9D%B8.webp 350w,
-/TIL/static/abc6749920e5a6a95af66b41f707b7c1/9e35d/%EC%84%B8%ED%83%80%EC%A1%B0%EC%9D%B8.webp 597w&quot; sizes=&quot;(max-width: 597px) 100vw, 597px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/abc6749920e5a6a95af66b41f707b7c1/4edbd/%EC%84%B8%ED%83%80%EC%A1%B0%EC%9D%B8.png 175w,
-/TIL/static/abc6749920e5a6a95af66b41f707b7c1/13ae7/%EC%84%B8%ED%83%80%EC%A1%B0%EC%9D%B8.png 350w,
-/TIL/static/abc6749920e5a6a95af66b41f707b7c1/17602/%EC%84%B8%ED%83%80%EC%A1%B0%EC%9D%B8.png 597w&quot; sizes=&quot;(max-width: 597px) 100vw, 597px&quot; type=&quot;image/png&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/abc6749920e5a6a95af66b41f707b7c1/17602/%EC%84%B8%ED%83%80%EC%A1%B0%EC%9D%B8.png&quot; alt=&quot;세타조인&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;자연 조인&lt;/strong&gt;&lt;br&gt;
-두 릴레이션의 중복된 속성이 모두 일치하는 투플만을 합친 릴레이션
-&lt;ul&gt;
-&lt;li&gt;R &lt;span style=&quot;font-size:120%&quot;&gt;⋈&lt;/span&gt;&lt;span style=&quot;font-size:70%&quot;&gt;N&lt;/span&gt; S&lt;br&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 678px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/012a3995c0f5af788d5f35fe015a93e8/38cea/%EC%9E%90%EC%97%B0%EC%A1%B0%EC%9D%B8.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 71.42857142857143%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACh0lEQVR42o2TW2/bRhCF9f9/QV5apE4aIE9FmxR5qOLEjl07dR0nhm+KZYkUdaF4We4ur1py+RUkZKOBgSADHMzBYOZgFnN2ANC2LS3baNttslhrO4bMC3ypqZu6r3e47237Dh7mB3Vd94JdNC10raaxVKamthZTNzRdNoaiqvpauTHUje17m4dNtoIqTUmLApEXzGTKUmlWOsXXKYtEskpzNtaSbQyzRLKQiqXOmEvNPFG4MkVkOTovqIxhMJMFJ7OYY09wPJecOAFnS8nnZcLRxOdyrcgqgyoNN2HKibPmMtB8WQo+uWv+WSpO5zGfFgJflwxEVuFGmnGoGcc5TpDgJXkPJ1J4MkcVJSIrOF0oPkwiPs41R57i0InZcxUHbsIHR+DJksHXOOftXcRwKtidKd7dhRx4igNPMhwHnPophamRZcUfY8HTc5+XI8GLq4jn5z4714JfLwKengdchDmDkSgYThJ2Xcnvd5JXtxGvJ0mP30Yh7z1FaQxJXvLvUrN7u+bjIuVwlrA/CXnnafYcwfupYKYqBvxgZKZBVRWyO2JZovK8590xN5sSayqsbRi0//PhPWfL7b1YlhEEAYvViiCKqW2L7SzWtjTdbMsDHm2o05RYCKqt15rGIrUmL0s2xvSom6ZHY+2jlzwSjLOCcSCYRhJHaEarEDdJcWLFzTLo+SRKuF3HhGnx8LMeCd6XXVmyP435e5b09uhs0lnkyJPsTyOOF5qjmWRvKhjHRT/Zfk/wNs75cxTw113MriN5MwoYTpPeVm++Brx1FcNJzOubgMsw/47gtnq6znhytuKXi5Dn14Kfv/jsXMXsXEX89HnFs2vBs8uQJ2c+h4v0m2U6wf8AZEkj5b/29rAAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/012a3995c0f5af788d5f35fe015a93e8/c54d4/%EC%9E%90%EC%97%B0%EC%A1%B0%EC%9D%B8.webp 175w,
-/TIL/static/012a3995c0f5af788d5f35fe015a93e8/a3432/%EC%9E%90%EC%97%B0%EC%A1%B0%EC%9D%B8.webp 350w,
-/TIL/static/012a3995c0f5af788d5f35fe015a93e8/7e03f/%EC%9E%90%EC%97%B0%EC%A1%B0%EC%9D%B8.webp 678w&quot; sizes=&quot;(max-width: 678px) 100vw, 678px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/012a3995c0f5af788d5f35fe015a93e8/4edbd/%EC%9E%90%EC%97%B0%EC%A1%B0%EC%9D%B8.png 175w,
-/TIL/static/012a3995c0f5af788d5f35fe015a93e8/13ae7/%EC%9E%90%EC%97%B0%EC%A1%B0%EC%9D%B8.png 350w,
-/TIL/static/012a3995c0f5af788d5f35fe015a93e8/38cea/%EC%9E%90%EC%97%B0%EC%A1%B0%EC%9D%B8.png 678w&quot; sizes=&quot;(max-width: 678px) 100vw, 678px&quot; type=&quot;image/png&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/012a3995c0f5af788d5f35fe015a93e8/38cea/%EC%9E%90%EC%97%B0%EC%A1%B0%EC%9D%B8.png&quot; alt=&quot;자연조인&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;디비전&lt;/strong&gt;&lt;br&gt;
-R의 속성이 S이 속성값을 모두 가진 투플에서 S가 가진 속성을 제외한 속성만을 구해서 새로운 릴레이션으로 반환.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;R ÷ S&lt;br&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 622px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/d1ebe323fa8bdc881fba288505772694/604ec/%EB%94%94%EB%B9%84%EC%A0%BC.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 55.42857142857143%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABiElEQVR42o2SiWrjMBBA8/8/1y0lh+sjqe3gS7VsST4j5y0SBMoeIQPDzAjpzaHZXYuCfRAQX75Qw0jbK/Q4McwLUilvl3UlTBL2xxOdNkzzTBDHHD9DHw/zjFSaaVnZtdoQXFKqTtEozfvhRN58UyvNRxCS1YKbtRSt5P0UUPeKxVryRvC2P/h7aVXz63iikh27eZpoRIOzgzEkcUwnJdM4cr6ckVKybRt93xNFIUop7vc7wzAgRMMyz95v25ZpmtgZY7her2hjcH4Yhggh/KUoipCy84B5nj3M2Weyc9SyLBjH0UPiOPZVudhV5Pyf4uBOH/7Pcw90GR/lOkiWZyitWJaFNEvpuv4v0NMK3Xwe6h642am+R2vtkzgx2lBVFVma+jlrrbDW/hv450FvDMfkTJxmlG1HVtXktcDajVIIDlFCnOZ+lV4CrjdLXpZU3y2dGfyuZUXJzW6YaSL5ShGyw27ba0DXuluFdV2wtxvrsni9b5v/4aIo/DhebvmZuI96bMD/gL8BR5lR1naHBFYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/d1ebe323fa8bdc881fba288505772694/c54d4/%EB%94%94%EB%B9%84%EC%A0%BC.webp 175w,
-/TIL/static/d1ebe323fa8bdc881fba288505772694/a3432/%EB%94%94%EB%B9%84%EC%A0%BC.webp 350w,
-/TIL/static/d1ebe323fa8bdc881fba288505772694/5bf66/%EB%94%94%EB%B9%84%EC%A0%BC.webp 622w&quot; sizes=&quot;(max-width: 622px) 100vw, 622px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/d1ebe323fa8bdc881fba288505772694/4edbd/%EB%94%94%EB%B9%84%EC%A0%BC.png 175w,
-/TIL/static/d1ebe323fa8bdc881fba288505772694/13ae7/%EB%94%94%EB%B9%84%EC%A0%BC.png 350w,
-/TIL/static/d1ebe323fa8bdc881fba288505772694/604ec/%EB%94%94%EB%B9%84%EC%A0%BC.png 622w&quot; sizes=&quot;(max-width: 622px) 100vw, 622px&quot; type=&quot;image/png&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/d1ebe323fa8bdc881fba288505772694/604ec/%EB%94%94%EB%B9%84%EC%A0%BC.png&quot; alt=&quot;디비전&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;624-관계-대수를-이용한-질의-표현&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#624-%EA%B4%80%EA%B3%84-%EB%8C%80%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%A7%88%EC%9D%98-%ED%91%9C%ED%98%84&quot; aria-label=&quot;624 관계 대수를 이용한 질의 표현 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.2.4. 관계 대수를 이용한 질의 표현&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;등급이 gold인 고객의 이름과 나이를 검색하시오.&lt;/strong&gt;&lt;br&gt;
-&lt;span style=&quot;font-size:120%&quot;&gt;π&lt;/span&gt;&lt;span style=&quot;font-size:70%&quot;&gt;이름, 나이&lt;/span&gt;(&lt;span style=&quot;font-size:120%&quot;&gt;σ&lt;/span&gt;&lt;span style=&quot;font-size:70%&quot;&gt;등급=gold&lt;/span&gt;(고객))&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;고객이름이 원유선인 고객의 등급과, 원유선 고객이 주문한 주문제품, 수량을 검색하시오.&lt;/strong&gt;&lt;br&gt;
-&lt;span style=&quot;font-size:120%&quot;&gt;π&lt;/span&gt;&lt;span style=&quot;font-size:70%&quot;&gt;등급, 주문제품, 수량&lt;/span&gt;(&lt;span style=&quot;font-size:120%&quot;&gt;σ&lt;/span&gt;&lt;span style=&quot;font-size:70%&quot;&gt;고객이름=원유선&lt;/span&gt;(고객))&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;주문수량이 10개 미만인 주문 내역을 제외하고 검색하시오.&lt;/strong&gt;&lt;br&gt;
-&lt;span style=&quot;font-size:120%&quot;&gt;σ&lt;/span&gt;&lt;span style=&quot;font-size:70%&quot;&gt;수량&gt;10&lt;/span&gt;(주문)&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;625-확장된-관계-대수-연산자&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#625-%ED%99%95%EC%9E%A5%EB%90%9C-%EA%B4%80%EA%B3%84-%EB%8C%80%EC%88%98-%EC%97%B0%EC%82%B0%EC%9E%90&quot; aria-label=&quot;625 확장된 관계 대수 연산자 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.2.5. 확장된 관계 대수 연산자&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;세미 조인&lt;/strong&gt;&lt;br&gt;
-두 릴레이션이 모든 속성을 표현하지 않고, 연산자 앞의 릴레이션의 속성만을 표기하는 조인방법&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;R ⋉ S&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;R ⋉ S&lt;/strong&gt; != &lt;strong&gt;S ⋉ R&lt;/strong&gt;&lt;br&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/f90ed9ff919f2b1293b422ba49cfce9f/6e9ba/%EC%84%B8%EB%AF%B8%EC%A1%B0%EC%9D%B8.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 56.57142857142857%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABsUlEQVR42pWSiU7bQBRF/f8/VoqEWpWShRASJ3Zix7PaHu/2qTwQChJt1Su9We+7b5kJ0iRlvXpECElZlGSZoCwdxljatkNKyWKx4HLJMNoipcK5yvO1NkwTnrN5fOJ8PhMYbdjt9gipmMWXyxXGWuL4RFGW3nm+V0oTRRH78EBuC1bLFWF4YJomH3y7fcbanKBpGtI0pWlqqqry62EYcK6kbVtvQghmnjEGrbXnhocQKQW6acmdI8su1HVNoJTykYSUpEnCZvPkHeM4Js9zuq7zglVdM3Pn8mbH4/HofSYmSudIkvRFcLVec/P1lvv7n9x9/8GXm1seHpbc3X3jdEqYMWc8jqMvb8Y8T+PIMI5+X7Q9RdvNFwS8QzWM6G7EvJpuB1TTo9oBWfdEOifMFEdl/dnVRNPTjS/BgmvEK35n4ce3fd/35EXh+1xXNX9C8NnhVaRwju0+ZB/FlE2LKR15VVM2HdZVjO8S+bvg69z0PWGSsovPaFezft5zOKdkNuck5FsP/yl4xfwYSkmkEAx9T3Q8Yo3xZRd5/qFV/yGoyLLMf584jrDW4pzzX+ozwV/U7k+EzghwxAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/f90ed9ff919f2b1293b422ba49cfce9f/c54d4/%EC%84%B8%EB%AF%B8%EC%A1%B0%EC%9D%B8.webp 175w,
-/TIL/static/f90ed9ff919f2b1293b422ba49cfce9f/a3432/%EC%84%B8%EB%AF%B8%EC%A1%B0%EC%9D%B8.webp 350w,
-/TIL/static/f90ed9ff919f2b1293b422ba49cfce9f/426ac/%EC%84%B8%EB%AF%B8%EC%A1%B0%EC%9D%B8.webp 700w,
-/TIL/static/f90ed9ff919f2b1293b422ba49cfce9f/feeb6/%EC%84%B8%EB%AF%B8%EC%A1%B0%EC%9D%B8.webp 731w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/f90ed9ff919f2b1293b422ba49cfce9f/4edbd/%EC%84%B8%EB%AF%B8%EC%A1%B0%EC%9D%B8.png 175w,
-/TIL/static/f90ed9ff919f2b1293b422ba49cfce9f/13ae7/%EC%84%B8%EB%AF%B8%EC%A1%B0%EC%9D%B8.png 350w,
-/TIL/static/f90ed9ff919f2b1293b422ba49cfce9f/8c557/%EC%84%B8%EB%AF%B8%EC%A1%B0%EC%9D%B8.png 700w,
-/TIL/static/f90ed9ff919f2b1293b422ba49cfce9f/6e9ba/%EC%84%B8%EB%AF%B8%EC%A1%B0%EC%9D%B8.png 731w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/f90ed9ff919f2b1293b422ba49cfce9f/8c557/%EC%84%B8%EB%AF%B8%EC%A1%B0%EC%9D%B8.png&quot; alt=&quot;세미조인&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;외부 조인&lt;/strong&gt;&lt;br&gt;
-두 릴레이션에서 공통 속성이 있는 튜플 뿐만 아니라, 그렇지 않은 튜플들도 가져와 빈 데이터를 null로 채워 표시한다.&lt;br&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/a083be6cfd1e073472043a55dfd28880/6a6e9/%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8%EB%8D%B0%EC%9D%B4%ED%84%B0.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 31.428571428571427%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABaElEQVR42jWLu27bMAAA9XNBu7dLl66d+21FhwCpiyRoAqQd7ATxM7FjiXqQsi2LkkiRtHsFBHQ44Ia7KElTnqYzNnGCcZ6mM1S6oesdjbED5/OZOBWMn56I04zO9lS1Rndm6Oqm5di09N4TyaNmut6wigW71rBKUsazBUq3bGXJW6FwPqDqhvF8QVLuEOWeyXzJplBD97hYMVmuOLQdkbWWoig4Ho+EEFBKkiTJ4LWu0VoTfMA5TyELjLX8fzpjMMaQCIEQgr7viZw1lLKgrg6cg6fa7yjyjL+nQNtoukZzCoFTcOzyjOAsvjdUMsdbM7jYvKLShOAdkdIdK1GwlXvK1rGMM57XW3adY6sOA9YHHvcdt+uM37LhPqu4eUm5SyseZMP1YsvPZcJ03xHdxRXfnwWX85zruOZylvFt8jb41UvJ1WvJwXg+3ys+3ua8H2W8G2V8+iW5GOVc/Ej58iD5cJPz9Y/iH8I/uUh0Uk7SAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/a083be6cfd1e073472043a55dfd28880/c54d4/%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8%EB%8D%B0%EC%9D%B4%ED%84%B0.webp 175w,
-/TIL/static/a083be6cfd1e073472043a55dfd28880/a3432/%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8%EB%8D%B0%EC%9D%B4%ED%84%B0.webp 350w,
-/TIL/static/a083be6cfd1e073472043a55dfd28880/426ac/%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8%EB%8D%B0%EC%9D%B4%ED%84%B0.webp 700w,
-/TIL/static/a083be6cfd1e073472043a55dfd28880/40616/%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8%EB%8D%B0%EC%9D%B4%ED%84%B0.webp 826w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/a083be6cfd1e073472043a55dfd28880/4edbd/%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8%EB%8D%B0%EC%9D%B4%ED%84%B0.png 175w,
-/TIL/static/a083be6cfd1e073472043a55dfd28880/13ae7/%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8%EB%8D%B0%EC%9D%B4%ED%84%B0.png 350w,
-/TIL/static/a083be6cfd1e073472043a55dfd28880/8c557/%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8%EB%8D%B0%EC%9D%B4%ED%84%B0.png 700w,
-/TIL/static/a083be6cfd1e073472043a55dfd28880/6a6e9/%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8%EB%8D%B0%EC%9D%B4%ED%84%B0.png 826w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/a083be6cfd1e073472043a55dfd28880/8c557/%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8%EB%8D%B0%EC%9D%B4%ED%84%B0.png&quot; alt=&quot;외부 조인 데이터&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;R ⟕ S (왼쪽 외부 조인)&lt;/strong&gt;&lt;br&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/fde5f7d617af64edfa13b6e429cf284b/5e3a3/%EC%99%BC%EC%AA%BD%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 38.285714285714285%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABoklEQVR42k2MaWvbQBRF/f9/TaEf3JTQJoUSWkPtQB0rihZrRvtol2wttnWCBhr64DLn3XfnrlzHRggPIYR+pZRkSmkFvk+SJCwz324wz/ybeZ61/jO0Vm4Ys3+zsfyQqKwJ8pJX18MUPlHVEJc1bhSj2hNRVWN6EsP1SOqWrD3hJYq9ZSPSjKYfWPlKsX+zEEmiA2ndsHs5YLhH8u6Ealps6X+w4TgYjqu5OJ2xhGSze8YNI9qlsOtapBB0bcvQ91rG4UCWZUzjSH8+o1Sq/WVXaYLKlOZx6AmCANM0UUoxjiOrqq4JgpCyqhiWgr5HSElRlozjRD8MLJnlNk4TeVGQ5bnmxVuKbMfRvi6chp40DhnOJ67TyGXscW2Trq64XSau00CZK327XS+aC5UyXy8sf0Pp4TkWuUq4ThOr3zLn8eCxkTm7uOFPWPF1a/DkxDzHDduo1rzcdgvbMU9u8rH/tCN+GIJffsGx6Fh9eU34vLW5MyIevZLvbs6njcH6xefRq/jm5NwZIQ/Hkgc3Z/1X6qzevZJ7K2W9l9w7BQfV8g7RXFPmqDMSqAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/fde5f7d617af64edfa13b6e429cf284b/c54d4/%EC%99%BC%EC%AA%BD%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.webp 175w,
-/TIL/static/fde5f7d617af64edfa13b6e429cf284b/a3432/%EC%99%BC%EC%AA%BD%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.webp 350w,
-/TIL/static/fde5f7d617af64edfa13b6e429cf284b/426ac/%EC%99%BC%EC%AA%BD%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.webp 700w,
-/TIL/static/fde5f7d617af64edfa13b6e429cf284b/0c209/%EC%99%BC%EC%AA%BD%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.webp 763w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/fde5f7d617af64edfa13b6e429cf284b/4edbd/%EC%99%BC%EC%AA%BD%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.png 175w,
-/TIL/static/fde5f7d617af64edfa13b6e429cf284b/13ae7/%EC%99%BC%EC%AA%BD%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.png 350w,
-/TIL/static/fde5f7d617af64edfa13b6e429cf284b/8c557/%EC%99%BC%EC%AA%BD%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.png 700w,
-/TIL/static/fde5f7d617af64edfa13b6e429cf284b/5e3a3/%EC%99%BC%EC%AA%BD%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.png 763w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/fde5f7d617af64edfa13b6e429cf284b/8c557/%EC%99%BC%EC%AA%BD%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.png&quot; alt=&quot;왼쪽 외부 조인&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;R ⟖ S (오른쪽 외부 조인)&lt;/strong&gt;&lt;br&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/3a0f88cf9856773a42fe34ffb3d1d7fc/7e509/%EC%98%A4%EB%A5%B8%EC%AA%BD%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 38.285714285714285%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAB00lEQVR42jWRz27TQBCH/WbAAZUDEhy5gITgAThyDkGFnnkAnoMKWiSoKiAtSQttmsR2Eq/Xznodx39jp86H7NKRRvv7dkar38wak8mY6dTGNCc4jkPDKlC4rkBr3XJVVTSx3W65jUa3/P/ulo2JkPyZWFjSR6U5crnir2kzmjvorMCLYmzPJ0hzFknKpWVzYdn4cYLOC+Yq4PxqhCl94rLEmPuKi4mFowKiYs1iFXM2HDGeOayKkiBJsYREZzlhmjFsHjQtdJK1/VMp6Q3OGc3mpGWFkWcZUkrKsqSu6/Ycj0ZEy6gdoRk31JrN5prttmYVRYRh2Naafh0E7cp832vZkL6PaVkoHZKXFXGacjUe46uAoqxI8rzV2XpNXpZ4iwWO67a6SeFKLodXzISgqCqMzbogVj6ban3jqFwjbZM8jWFbU19XJEtNXV83qyeJQqJg0X5G4ziQAm82JQrUjcPOb5/dX1M6fUV3oOn2FW9/2HROfd4MNHtnir1TQXcQ0Blo3vc93p2Ittbkbs/hw4lNt+fycbzEeHDg8vJYcv+Ly719wc6By4tjycNDyZ1PgkeHgudHLjufRctPvkmefr/pvbsveHbk8brn8fir5NXPBf8ABYRDa2B1ENQAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/3a0f88cf9856773a42fe34ffb3d1d7fc/c54d4/%EC%98%A4%EB%A5%B8%EC%AA%BD%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.webp 175w,
-/TIL/static/3a0f88cf9856773a42fe34ffb3d1d7fc/a3432/%EC%98%A4%EB%A5%B8%EC%AA%BD%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.webp 350w,
-/TIL/static/3a0f88cf9856773a42fe34ffb3d1d7fc/426ac/%EC%98%A4%EB%A5%B8%EC%AA%BD%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.webp 700w,
-/TIL/static/3a0f88cf9856773a42fe34ffb3d1d7fc/06157/%EC%98%A4%EB%A5%B8%EC%AA%BD%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.webp 745w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/3a0f88cf9856773a42fe34ffb3d1d7fc/4edbd/%EC%98%A4%EB%A5%B8%EC%AA%BD%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.png 175w,
-/TIL/static/3a0f88cf9856773a42fe34ffb3d1d7fc/13ae7/%EC%98%A4%EB%A5%B8%EC%AA%BD%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.png 350w,
-/TIL/static/3a0f88cf9856773a42fe34ffb3d1d7fc/8c557/%EC%98%A4%EB%A5%B8%EC%AA%BD%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.png 700w,
-/TIL/static/3a0f88cf9856773a42fe34ffb3d1d7fc/7e509/%EC%98%A4%EB%A5%B8%EC%AA%BD%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.png 745w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/3a0f88cf9856773a42fe34ffb3d1d7fc/8c557/%EC%98%A4%EB%A5%B8%EC%AA%BD%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.png&quot; alt=&quot;오른쪽 외부 조인&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;R ⟗ S (완전 외부 조인)&lt;/strong&gt;&lt;br&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/36509cd2cf9d9a922173d910da5e9d38/01267/%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 45.142857142857146%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACD0lEQVR42k2RS2vbUBCF9cNC00UpFAqldNdFINCXU0iWXXRV6F/qokmTOqkfKWneOI5dW5Zl3SvJkmVbsq2H5XzlijZ0YOCce8+cgTOaEAJd72JZA8yBiWEYDIdDbCnxfZ+eoTNfzFG1Wq34V3d3d/f9P9f8aE57YHGjG/SHHv4ixhz6XLc79Ic+/jzG9HwGfkCQpOjS5rzZwvQDRnGCHE84v2nSMi3GSYIWxQmW69LWDbxpyFSJ/BEXjSZOMCZKM6TnI0dBgdVbs9MttGGS4gZjLhoNOqZJlKRo+XLJdDJGWBZZmrHKc8LplNZti3ix+MsnRGFY4CSOUTFlWYqaVdp2u4UtBcs0Q0vTrMhKSEk0m5HnK6ZhiNHvs1gsCh5GEbPZvMCxMrRt4iRlucwJwxC910PaNspLy/O8MHJchzRNi+AnkwmdTueeqwWqFVaGlrDIsgw1qw6oDimlJM1StFsvotZx+H6tczoYc+XOOO66fDm+5pc54sqdU9ddfhpe8Xdi+JQbJmdiyqUTcWIG7F32OO4H3HoztM/nHq/KJqX937z+ISnVXLYqgq2DLm8qNqWaw05N8L4ieVd1KVUEO0d9SlWHt1WH7brDx2qP7Zrk05mHtllzeFKWbNQl6/uSB7sWTw8Vt3n4TbK+a/GyKnh+KFjbtXh8INmsSx7tS9a+WjwrCz6cSl4cCTYqNn8AUGKICEruF3wAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/36509cd2cf9d9a922173d910da5e9d38/c54d4/%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.webp 175w,
-/TIL/static/36509cd2cf9d9a922173d910da5e9d38/a3432/%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.webp 350w,
-/TIL/static/36509cd2cf9d9a922173d910da5e9d38/426ac/%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.webp 700w,
-/TIL/static/36509cd2cf9d9a922173d910da5e9d38/69b3e/%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.webp 713w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/36509cd2cf9d9a922173d910da5e9d38/4edbd/%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.png 175w,
-/TIL/static/36509cd2cf9d9a922173d910da5e9d38/13ae7/%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.png 350w,
-/TIL/static/36509cd2cf9d9a922173d910da5e9d38/8c557/%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.png 700w,
-/TIL/static/36509cd2cf9d9a922173d910da5e9d38/01267/%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.png 713w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/36509cd2cf9d9a922173d910da5e9d38/8c557/%EC%99%B8%EB%B6%80%EC%A1%B0%EC%9D%B8.png&quot; alt=&quot;완전 외부 조인&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;63-관계-해석&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#63-%EA%B4%80%EA%B3%84-%ED%95%B4%EC%84%9D&quot; aria-label=&quot;63 관계 해석 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.3. 관계 해석&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;원하는 데이터가 무엇인지만 기술하는 비절차적 언어로, 데이터를 처리하는 기능과 처리를 요구하는 표현력은 관계대수와 동일하다. 즉 이 둘은 서로 번역될 수 있다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;관계 해석은 프레디킷 해석(&lt;a href=&quot;https://ko.wikipedia.org/wiki/%EC%88%A0%EC%96%B4_%EB%85%BC%EB%A6%AC&quot;&gt;술어논리&lt;/a&gt;, &lt;a href=&quot;https://chayan-memorias.tistory.com/50&quot;&gt;Example&lt;/a&gt;)에 기반을 두고 있다. 또한 관계해석은 투플 관계 해석과 도메인 관계 해석으로 나뉠 수 있다. &lt;a href=&quot;https://velog.io/@blacklandbird/%EA%B4%80%EA%B3%84-%ED%95%B4%EC%84%9D&quot;&gt;참고&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;관계 해석에 관한 더 자세한 내용은 Ch7에서 정리한다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[05. 관계 데이터 모델]]></title><description><![CDATA[관계 데이터 모델과 관계 데이터 모델의 핵심인 릴레이션에 대해 학습한다. 5.1. 관계 데이터 모델의 개념 5.1.1. 관계 데이터 모델의 기본 용어 5.1.2. 릴레이션과 데이터베이스 구성 5.1.3. 릴레이션의 특징 5.1.4. 키의 종류 5.…]]></description><link>https://byongho96.github.io/TIL/posts/Knowledge/Database/Ch05_관계_데이터_모델/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Knowledge/Database/Ch05_관계_데이터_모델/</guid><pubDate>Mon, 24 Oct 2022 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
-&lt;p&gt;관계 데이터 모델과 관계 데이터 모델의 핵심인 릴레이션에 대해 학습한다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#51-%EA%B4%80%EA%B3%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%AA%A8%EB%8D%B8%EC%9D%98-%EA%B0%9C%EB%85%90&quot;&gt;5.1. 관계 데이터 모델의 개념&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#511-%EA%B4%80%EA%B3%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%AA%A8%EB%8D%B8%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EC%9A%A9%EC%96%B4&quot;&gt;5.1.1. 관계 데이터 모델의 기본 용어&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#512-%EB%A6%B4%EB%A0%88%EC%9D%B4%EC%85%98%EA%B3%BC-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EA%B5%AC%EC%84%B1&quot;&gt;5.1.2. 릴레이션과 데이터베이스 구성&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#513-%EB%A6%B4%EB%A0%88%EC%9D%B4%EC%85%98%EC%9D%98-%ED%8A%B9%EC%A7%95&quot;&gt;5.1.3. 릴레이션의 특징&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#514-%ED%82%A4%EC%9D%98-%EC%A2%85%EB%A5%98&quot;&gt;5.1.4. 키의 종류&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#52-%EA%B4%80%EA%B3%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%AA%A8%EB%8D%B8%EC%9D%98-%EC%A0%9C%EC%95%BD&quot;&gt;5.2. 관계 데이터 모델의 제약&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#521-%EA%B0%9C%EC%B2%B4-%EB%AC%B4%EA%B2%B0%EC%84%B1-%EC%A0%9C%EC%95%BD%EC%A1%B0%EA%B1%B4&quot;&gt;5.2.1. 개체 무결성 제약조건&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#522-%EC%B0%B8%EC%A1%B0-%EB%AC%B4%EA%B2%B0%EC%84%B1-%EC%A0%9C%EC%95%BD%EC%A1%B0%EA%B1%B4&quot;&gt;5.2.2. 참조 무결성 제약조건&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;51-관계-데이터-모델의-개념&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#51-%EA%B4%80%EA%B3%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%AA%A8%EB%8D%B8%EC%9D%98-%EA%B0%9C%EB%85%90&quot; aria-label=&quot;51 관계 데이터 모델의 개념 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.1. 관계 데이터 모델의 개념&lt;/h2&gt;
-&lt;h3 id=&quot;511-관계-데이터-모델의-기본-용어&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#511-%EA%B4%80%EA%B3%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%AA%A8%EB%8D%B8%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EC%9A%A9%EC%96%B4&quot; aria-label=&quot;511 관계 데이터 모델의 기본 용어 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.1.1. 관계 데이터 모델의 기본 용어&lt;/h3&gt;
-&lt;p&gt;관계 데이터 모델에서는 하나의 객체에 대한 데이터를 릴레이션(테이블) 하나에 담아 데이터베이스에 저장한다
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/ba077fbe9988fe207e7c06b79cb7e7b6/612f7/%EB%A6%B4%EB%A0%88%EC%9D%B4%EC%85%98_%EA%B5%AC%EC%A1%B0.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 30.857142857142854%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAABNUlEQVR42l2R207CQBCG+7Jq5ELFx/OGGPVC1EjLQUCwnNm1LW1hS0tp+5mtgsZJZv5k/jmPAZCmKfLTYbZwiLaJdlEURYl+GCGdAM9X7PMC7f1mfvEgOsfQRudm6YY0tEh8i0JZ7IImycoE1SQJWuSqxT40j3waNtmHTbJEoqKYosjLogY/kxTxFPFYwb49Je5cM6ydMLk/J25XmdbOCF4vCcwrRncVolYVUb9g9nCCWtyU08fbiCRJMJbLJUKIskv7bUz9uY3r73h66WB1bBx3y2S4QIiQmQgxWwOku8WeOHyMJCtf4boOSik2mw1GlmVo1Xd87/cwG68E/grLbNDvdQk8l/mgjycFUgq6bx1Wnst0MmZs22WRKIrI88PK/46qiQNqWa/XyPkc3/OOMX/1/1O+AKvcwW6bgQflAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/ba077fbe9988fe207e7c06b79cb7e7b6/c54d4/%EB%A6%B4%EB%A0%88%EC%9D%B4%EC%85%98_%EA%B5%AC%EC%A1%B0.webp 175w,
-/TIL/static/ba077fbe9988fe207e7c06b79cb7e7b6/a3432/%EB%A6%B4%EB%A0%88%EC%9D%B4%EC%85%98_%EA%B5%AC%EC%A1%B0.webp 350w,
-/TIL/static/ba077fbe9988fe207e7c06b79cb7e7b6/426ac/%EB%A6%B4%EB%A0%88%EC%9D%B4%EC%85%98_%EA%B5%AC%EC%A1%B0.webp 700w,
-/TIL/static/ba077fbe9988fe207e7c06b79cb7e7b6/c99d1/%EB%A6%B4%EB%A0%88%EC%9D%B4%EC%85%98_%EA%B5%AC%EC%A1%B0.webp 773w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/ba077fbe9988fe207e7c06b79cb7e7b6/4edbd/%EB%A6%B4%EB%A0%88%EC%9D%B4%EC%85%98_%EA%B5%AC%EC%A1%B0.png 175w,
-/TIL/static/ba077fbe9988fe207e7c06b79cb7e7b6/13ae7/%EB%A6%B4%EB%A0%88%EC%9D%B4%EC%85%98_%EA%B5%AC%EC%A1%B0.png 350w,
-/TIL/static/ba077fbe9988fe207e7c06b79cb7e7b6/8c557/%EB%A6%B4%EB%A0%88%EC%9D%B4%EC%85%98_%EA%B5%AC%EC%A1%B0.png 700w,
-/TIL/static/ba077fbe9988fe207e7c06b79cb7e7b6/612f7/%EB%A6%B4%EB%A0%88%EC%9D%B4%EC%85%98_%EA%B5%AC%EC%A1%B0.png 773w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/ba077fbe9988fe207e7c06b79cb7e7b6/8c557/%EB%A6%B4%EB%A0%88%EC%9D%B4%EC%85%98_%EA%B5%AC%EC%A1%B0.png&quot; alt=&quot;릴레이션 구조&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;속성&lt;/strong&gt;&lt;br&gt;
-릴레이션의 열을 속성 또는 attribute라고 부른다. 각 속성에 대한 도메인이 정해져있다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;투플&lt;/strong&gt;&lt;br&gt;
-릴레이션의 행, 릴레이션의 개체 인스턴스이다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;도메인&lt;/strong&gt;&lt;br&gt;
-속성 하나가 가질 수 있는 모든 값의 집합. 속성이 가질 수 있는 모든 값을 일일이 나열하기 어려운 경우, 데이터 타입으로 정의된다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;널 값&lt;/strong&gt;&lt;br&gt;
-릴레이션에 있는 특정 투플 속성의 적절한 값이 없을 경우, null값이 대입된다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;차수&lt;/strong&gt;
-하나의 릴레이션에서 속성 전체의 갯수&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;카디널리티(cardinality)&lt;/strong&gt;
-하나의 릴레이션에서 투플 전체의 갯수&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;512-릴레이션과-데이터베이스-구성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#512-%EB%A6%B4%EB%A0%88%EC%9D%B4%EC%85%98%EA%B3%BC-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EA%B5%AC%EC%84%B1&quot; aria-label=&quot;512 릴레이션과 데이터베이스 구성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.1.2. 릴레이션과 데이터베이스 구성&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;릴레이션 스키마&lt;/strong&gt;&lt;br&gt;
-릴레이션 스키마는 릴레이션의 이름과 릴레이션에 포함된 모든 속성의 이름으로 정의하는 논리적 구조&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;릴레이션 인스턴스&lt;/strong&gt;&lt;br&gt;
-릴레이션 인스턴스는 어느 한 시점에 릴레이션에 존재하는 투플들의 집합&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;데이터베이스 스키마와 데이터베이스 인스턴스&lt;/strong&gt;&lt;br&gt;
-데이터베이스 스키마는 데이터베이스에 존재하는 릴레이셔의 스키마를 모아놓은 것, 데이터베이스 인스턴스는 어느 한 시점에서 데이터베이스에 저장된 데이터 내용의 전체 집합&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;513-릴레이션의-특징&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#513-%EB%A6%B4%EB%A0%88%EC%9D%B4%EC%85%98%EC%9D%98-%ED%8A%B9%EC%A7%95&quot; aria-label=&quot;513 릴레이션의 특징 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.1.3. 릴레이션의 특징&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;투플의 유일성&lt;/strong&gt;&lt;br&gt;
-하나의 릴레이션에는 동일한 투플이 존재할 수 없다.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;투플의 무순서&lt;/strong&gt;&lt;br&gt;
-하나의 릴레이션에서 투플 사이의 순서는 무의미하다.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;속성의 무순서&lt;/strong&gt;&lt;br&gt;
-하나의 릴레이션에서 투플 사이의 순서는 무의미하다.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;속성의 원자성&lt;/strong&gt;&lt;br&gt;
-속성 값으로 하나의 값만 가질 수 있다.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;514-키의-종류&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#514-%ED%82%A4%EC%9D%98-%EC%A2%85%EB%A5%98&quot; aria-label=&quot;514 키의 종류 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.1.4. 키의 종류&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;투플을 유일하기 구별해주는 역할의 속성, 혹은 속성들의 집합.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;슈퍼키&lt;/strong&gt;&lt;br&gt;
-유일성을 만족하는 속성 또는 속성들의 집합&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;후보키&lt;/strong&gt;&lt;br&gt;
-유일성과 최소성을 만족하는 최소한의 속성들의 집합. 즉 하나의 속성으로 구성된 슈퍼키는 후보키이다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;기본키&lt;/strong&gt;&lt;br&gt;
-여러 후보키 중에서 기본적으로 사용할 키
-&lt;ul&gt;
-&lt;li&gt;널 값을 가지지 않는 후보키&lt;/li&gt;
-&lt;li&gt;값이 자주 변경되지 않는 후보키&lt;/li&gt;
-&lt;li&gt;단순한 후보키&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;대체키&lt;/strong&gt;&lt;br&gt;
-기본키로 선택되지 못한 후보키들&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;외래키&lt;/strong&gt;&lt;br&gt;
-속성 값으로 자기 자신 혹은 다른 릴레이션의 기본키를 가지는 속성
-&lt;ul&gt;
-&lt;li&gt;참조하는 릴레이션: 외래키 속성을 가진 릴레이션&lt;/li&gt;
-&lt;li&gt;참조되는 릴레이션: 기본키를 가진 릴레이션&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;52-관계-데이터-모델의-제약&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#52-%EA%B4%80%EA%B3%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%AA%A8%EB%8D%B8%EC%9D%98-%EC%A0%9C%EC%95%BD&quot; aria-label=&quot;52 관계 데이터 모델의 제약 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.2. 관계 데이터 모델의 제약&lt;/h2&gt;
-&lt;p&gt;무결성이란 데이터가 정확하고 유효하게 유지된 상태를 말한다.&lt;/p&gt;
-&lt;h3 id=&quot;521-개체-무결성-제약조건&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#521-%EA%B0%9C%EC%B2%B4-%EB%AC%B4%EA%B2%B0%EC%84%B1-%EC%A0%9C%EC%95%BD%EC%A1%B0%EA%B1%B4&quot; aria-label=&quot;521 개체 무결성 제약조건 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.2.1. 개체 무결성 제약조건&lt;/h3&gt;
-&lt;p&gt;&lt;mark&gt;기본키를 구성하는 모든 속성은 널 값을 가질 수 없다.&lt;/mark&gt;
-투플이 삽임되는 연산과 투플의 기본키 속성 값이 변경되는 연산이 발생할 때, 기본키에 널 값이 포함되는 상황에서는 연산을 거부한다.&lt;/p&gt;
-&lt;h3 id=&quot;522-참조-무결성-제약조건&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#522-%EC%B0%B8%EC%A1%B0-%EB%AC%B4%EA%B2%B0%EC%84%B1-%EC%A0%9C%EC%95%BD%EC%A1%B0%EA%B1%B4&quot; aria-label=&quot;522 참조 무결성 제약조건 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.2.2. 참조 무결성 제약조건&lt;/h3&gt;
-&lt;p&gt;&lt;mark&gt;외래키는 참조할 수 없는 값을 가질 수 없다.&lt;/mark&gt;
-널 값을 외래키로 가지는 것은 참조 무결성 제약조건을 위반하지 않는다.&lt;br&gt;
-참조되는 릴레이션에 존재하는 투플을 삭제하거나, 기본키를 변경하는 연산은 참조 무결성 제약조건을 위반하지 않는 경우에만 수행한다. 이는 연산을 수행하지 않거나, 참조되는 릴레이션을 함께 수정하는 방법으로 구현된다.&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item></channel></rss>
