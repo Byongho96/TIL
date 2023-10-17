@@ -3,7 +3,8 @@ title: '자바스크립트 생성자 함수 & new 키워드'
 updatedAt: '2023-10-11'
 createdAt: '2023-10-11'
 isCompleted: true
-tags: ['JavaScript', '자바스크립트', 'new', '생성자 함수']
+description: '자바스크립트 new 키워드와 생성자 함수의 역할'
+tags: ['JavaScript', '자바스크립트', 'new', '생성자 함수', '객체지향']
 reference:
 ---
 

@@ -3,6 +3,7 @@ title: '자바스크립트 this 정복하기'
 updatedAt: '2023-09-24'
 createdAt: '2023-09-24'
 isCompleted: true
+description: '자바스크립트 this의 동작원리'
 tags: ['this', 'bind', 'apply', 'new', '화살표 함수', '바인딩']
 reference:
 ---

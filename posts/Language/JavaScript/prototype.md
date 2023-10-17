@@ -3,6 +3,7 @@ title: '자바스크립트 Prototype 이해하기'
 updatedAt: '2023-10-12'
 createdAt: '2023-10-12'
 isCompleted: true
+description: '자바스크립트 prototype의 개념과 원리를 정리'
 tags:
   ['JavaScript', '자바스크립트', 'prototype', '프로토타입', '객체지향', 'OOP']
 reference:
@@ -19,7 +20,7 @@ reference:
 
 # 2. 프로토타입
 
-프로토타입이란 **생성자 함수가 참조하는 `prototype`** 혹은 **객체가 참조하는 `__proto__`**를 의미한다. 하나의 셍성자 함수와 해당 함수로 생성된 모든 객체들은 동일한 프로토타입 객체를 바라보고 있다. 다시 말해 동일한 프로토타입 객체가 생성자 함수 입장에서는 `prototype`이라 불리고, 생성된 객체의 입장에서는 `__proto__`라고 불린다.
+프로토타입이란 <b>생성자 함수가 참조하는 `prototype`</b> 혹은 <b>객체가 참조하는 `__proto__`</b>를 의미한다. 하나의 셍성자 함수와 해당 함수로 생성된 모든 객체들은 동일한 프로토타입 객체를 바라보고 있다. 다시 말해 동일한 프로토타입 객체가 생성자 함수 입장에서는 `prototype`이라 불리고, 생성된 객체의 입장에서는 `__proto__`라고 불린다.
 
 보통은 프로토타입을 생성된 객체의 입장에서 이해하려고 한다. 그런데 그러면 함수의 `prototype` 속성이 헷갈리고 어렵게 느껴진다. 그보다는 함수 입장에서 이해를 시작하는 것이 더 바람직하다. 선후관계를 따지더라도 함수가 `prototype`을 속성을 가지기 때문에, 객체가 `__proto__` 속성을 가지게 된다.
 
@@ -179,5 +180,5 @@ mike.sayHello() // TypeError: mike.sayHello is not a function
 
 # 6. 참고자료
 
-- [이웅모: 모던 자바스크립트 Deep Dive, 19장 프로토타입](https://poiemaweb.com/js-prototype)
+- [이웅모: 모던 자바스크립트 Deep Dive, 25장 클래스](https://poiemaweb.com/es6-class)
 - [10분 테코톡: 아놀드의 프로토타입 뽀개기](https://www.youtube.com/watch?v=TqFwNFTa3c4)

@@ -3,6 +3,7 @@ title: '브라우저 렌더링 과정'
 updatedAt: '2023-09-23'
 createdAt: '2023-09-23'
 isCompleted: true
+description: '브라우저의 렌더링과정을 정리하고, 효율적인 CSS 속성을 알아본다'
 tags: ['DOM', 'CSSOM', 'AST', 'Repaint', 'Reflow', '렌더트리', 'async', 'defer']
 reference: '이웅모: 모던 자바스크립트 Deep Dive, 38장 브라우저의 렌더링 과정'
 ---

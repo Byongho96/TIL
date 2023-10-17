@@ -3,6 +3,7 @@ title: 'Webpack vs Rollup vs Vite 비교 분석'
 updatedAt: '2023-09-10'
 createdAt: '2023-09-10'
 isCompleted: true
+description: '자바스크립트 번들러의 역사와 기능을 정리하고, 대표 번들러 webpack, rollup, vite를 비교 분석'
 tags: ['Webpack', 'Rollup', 'Vite', '번들러']
 reference:
 ---

@@ -3,6 +3,7 @@ title: 'JavaScript 모듈 시스템 비교'
 updatedAt: '2023-09-09'
 createdAt: '2023-09-09'
 isCompleted: true
+description: '자바스크립트 모듈 시스템의 역사를 정리하고, 대표적인 모듈 시스템 commonJS, AMD, UMD, ESM을 정리'
 tags: ['모듈', 'Module', 'CommonJS', 'AMD', 'UMD', 'ES6', 'ESM']
 reference: 'https://medium.com/@chullino/%EC%9B%B9%ED%8C%A9-3-4-js%EB%AA%A8%%99%94-%EC%97%AD%EC%82%AC-%EB%8F%8C%EC%95%84%EB%B3%B4%EA%B8%B0-1-9df997f82002'
 ---

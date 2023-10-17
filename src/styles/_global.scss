@@ -4,7 +4,7 @@
 // sass variable을 css variable로 사용하기 위해서는 interpolation
 // 라이트 모드
 :root {
-  --main-color: #ffffff00;
+  --main-color: #000000;
   --bg-color: #{$bg-white};
   --font-color: #{$font-black};
   --font-gray-color: #{$font-gray};

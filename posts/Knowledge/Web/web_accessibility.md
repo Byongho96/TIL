@@ -3,6 +3,7 @@ title: '웹 접근성이란 무엇인가'
 updatedAt: '2023-10-02'
 createdAt: '2023-10-02'
 isCompleted: true
+description: '웹 접근성의 개념 & 웹 접근성 개선방법'
 tags: ['웹표준', 'W3C', 'SEO', '웹접근성']
 reference:
 ---
