@@ -10,12 +10,30 @@
   --font-gray-color: #{$font-gray};
   --bg-gray-color: #{$bg-gray};
 }
+
 // 다크 모드
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main-color: #000000;
+    --bg-color: #{$bg-black};
+    --font-color: #{$font-white};
+    --font-gray-color: #{$font-dark-gray};
+    --bg-gray-color: #{$bg-dark-gray};
+  }
+}
+
+:root.light {
+  --bg-color: #{$bg-white};
+  --font-color: #{$font-black};
+  --font-gray-color: #{$font-gray};
+  --bg-gray-color: #{$bg-gray};
+}
+
 :root.dark {
-  --bg-color: #{$bg-black};
-  --font-color: #{$font-white};
-  --font-gray-color: #{$font-dark-gray};
-  --bg-gray-color: #{$bg-dark-gray};
+  --bg-color: #{$bg-white};
+  --font-color: #{$font-black};
+  --font-gray-color: #{$font-gray};
+  --bg-gray-color: #{$bg-gray};
 }
 
 body {

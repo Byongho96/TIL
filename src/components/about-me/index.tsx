@@ -35,7 +35,7 @@ const AboutMe: React.FC = () => {
           </nav>
         </div>
         <div className="about-me__content__typing">
-          <TypeAnimation phrases={['상상을 구현하려고 공부합니다']} />
+          <TypeAnimation phrases={['상상을 구현하는 개발자']} />
         </div>
         <div className="about-me__content__writing">
           <p>

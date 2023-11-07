@@ -13,7 +13,7 @@ const AboutBlog: React.FC = () => {
           className="about-blog__header__typing"
           tabIndex={-1}
         >
-          <TypeAnimation phrases={['블로그 제작 시리즈 Click Here!']} />
+          <TypeAnimation phrases={['블로그 제작기 Click Here!']} />
         </a>
       </section>
       <section className="about-blog__content">
@@ -82,15 +82,6 @@ const AboutBlog: React.FC = () => {
             기본기를 착실하게 다져야한다.
           </p>
         </div>
-        <h3>다크 모드</h3>
-        <div>
-          <p>
-            나름 다크모드를 설계하는데 공을 들였다. prefers-color-scheme 미디어
-            쿼리랑 세션 스토리지를 혼용했는데, 그럼에도 flicker 현상을 막을
-            방법은 찾지 못했다. SSG방식의 웹사이트에서 flicker 현상을 막는
-            방법을 아시면 제발 메일로 알려줬으면 좋겠다.
-          </p>
-        </div>
         <h3>검색 기능</h3>
         <div>
           <p>
@@ -106,6 +97,15 @@ const AboutBlog: React.FC = () => {
             giscus라는 Git API 기반 라이브러리를 이용해서 구현했다. 서버가
             없어서 당연히 댓글 기능 같은 건 구현 못할 줄 알았는데, 다른
             개발자들이 다 방법을 만들어놓았다.
+          </p>
+        </div>
+        <h3>웹 접근성</h3>
+        <div>
+          <p>
+            라이트하우스 수치를 낮추려고 깨작거리고는 있었는데, 어느 날 그건
+            정말 보여주기 식일 뿐이란 것을 깨달았다. aria-label을 달고, html
+            순서를 조절하고, 포커스 트랩을 구현했다. 프론트는 디테일을 놓치지
+            않는 장인정신으로 임해야하는 것 같다.
           </p>
         </div>
       </section>

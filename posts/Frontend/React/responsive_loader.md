@@ -8,9 +8,9 @@ isCompleted: true
 reference:
 ---
 
-> 이 글에서는 responsive-loader를 적용하는 법을 중심적으로 다룬다. 원리에 대해서 알고 싶다면 ['정적 이미지를 로딩하는 가장 완벽한 방법'](https://byongho96.github.io/TIL/posts/Knowledge/Web/image_lazy_loading/) 포스팅에 정리했다.
+> 이 글에서는 responsive-loader를 적용하는 법을 중심적으로 다룬다. 원리에 대한 내용은 ['정적 이미지를 로딩하는 가장 완벽한 방법'](https://byongho96.github.io/TIL/posts/Knowledge/Web/image_lazy_loading/) 포스팅에 정리했다.
 
-# 1. responsive-laoder
+# 1. responsive-loader
 
 자바스크립트로 만들어진 웹팩 플러그인이다. [npm 패키지](https://www.npmjs.com/package/responsive-loader)로 배포되어 바로 설치해 사용할 수 있다.
 
@@ -52,7 +52,7 @@ module.exports = {
 import imgSrc from './images/example.png'
 ```
 
-가장 기본적인 file-loader 등을 사용하면, `imgSrc`변수에 바로 `string`타입의 url 주소가 할당된다. 하지만 responsive-loader는 다양한 기능을 제공하므로 더 복잡한 타입을 반환한다. 따라서 타입스크립트를 사용할 경우, 별도의 타입선언이 필요하다
+가장 기본적인 file-loader 등을 사용하면, `imgSrc`변수에 바로 `string`타입의 url 주소가 할당된다. 하지만 responsive-loader는 다양한 기능을 제공하므로 더 복잡한 타입을 반환한다. 따라서 타입스크립트를 사용할 경우, 다음과 같이 타입선언이 필요하다
 
 ```ts
 interface ResponsiveImageOutput {
@@ -78,7 +78,7 @@ declare module '*.png' {
 
 ## 2.3. 기본 사용
 
-그러면 아래와 같이 사용할 수 있다.
+아래와 같이 사용할 수 있다.
 
 ```js
 import responsiveImage from 'img/myImage.png?format=jpg';
@@ -101,15 +101,15 @@ import responsiveImageWebp from 'img/myImage.jpg?format=webp';
 실제로 빌드를 해보면 아래 그림처럼 하나의 이미지에 대해서
 
 1. webpack에 설정한 너비 폭에 대응하는 파일을 만들고
-2. 사용한 포맷(jpg, webp) 각각에 대한 이미즐 생성했다.
+2. 사용한 포맷(jpg, webp) 각각에 대한 이미지를 생성한다.
 
 <img src="./images/responsive-loader-build.png" alt="responsive loader를 사용해서 이미지 빌드한 결과 비교" width="800"/>
 
 # 3. 커스텀 컴포넌트
 
-정적 이미지는 프로젝트 전체에서 자주 사용될 것이므로, 하나의 독립적인 컴포넌트로 만들자.
+정적 이미지는 프로젝트 전체에서 자주 사용될 것이므로, 하나의 독립적인 컴포넌트로 만들 수 있다.
 
-## 4.1. 소스 코드
+## 3.1. 소스 코드
 
 ```js
 import React, { useRef } from 'react'
@@ -219,7 +219,7 @@ export default StaticImage
 }
 ```
 
-## 4.2. 사용 예시
+## 3.2. 사용 예시
 
 아래처럼 손쉽게 사용할 수 있다.
 
