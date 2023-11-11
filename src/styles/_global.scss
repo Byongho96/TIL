@@ -30,10 +30,10 @@
 }
 
 :root.dark {
-  --bg-color: #{$bg-white};
-  --font-color: #{$font-black};
-  --font-gray-color: #{$font-gray};
-  --bg-gray-color: #{$bg-gray};
+  --bg-color: #{$bg-black};
+  --font-color: #{$font-white};
+  --font-gray-color: #{$font-dark-gray};
+  --bg-gray-color: #{$bg-dark-gray};
 }
 
 body {
