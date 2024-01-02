@@ -133,6 +133,27 @@ const AboutBlog: React.FC = () => {
             구현하는 등의 작업을 했다.
           </p>
         </div>
+        <h3>자동 배포</h3>
+        <div>
+          <p>
+            Github Action을 등록해서 매인 브랜치에 푸시하면 자동으로 빌드하고
+            Github Pages에 배포되도록 설정했다. 구글링을 해보면 보통 이 과정에서
+            Personal Access Token을 발급받아 등록하는데, 나는 이것이 불필요하게
+            느껴졌다. 왜냐하면 워크플로우가 시작되었던 동일한 레포지토리로
+            재접근하려는 상황이기 때문이다. 더구나 토큰은 만료되어 주기적으로
+            재발급 받아야 하는 번거로움이 있다. 결국 Personal Access Token을
+            사용하지 않는{' '}
+            <a
+              href="https://github.com/peaceiris/actions-gh-pages"
+              title="peaceiris의 actions-gh-pages 깃헙"
+            >
+              액션
+            </a>
+            을 찾을 수 있었는데, 대신 깃헙 토큰을 사용한다. 깃헙 토큰이란
+            워크플로우 내에서 본인인증을 위해 GitHub Actions Runner가 자동
+            생성하는 값이다.
+          </p>
+        </div>
       </section>
       <section className="about-blog__content">
         <h2>개발 후기</h2>
