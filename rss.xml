@@ -1,4 +1,257 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 02 Jan 2024 13:14:14 GMT</lastBuildDate><item><title><![CDATA[자바스크립트 ES6 class 문법]]></title><description><![CDATA[1. 클래스란? 1.1. 정의 자바스크립트의 클래스를 흔히 문법적 설탕(synthetic sugar…]]></description><link>https://byongho96.github.io/TIL/posts/Language/JavaScript/class/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Language/JavaScript/class/</guid><pubDate>Tue, 17 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-클래스란&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%9E%80&quot; aria-label=&quot;1 클래스란 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 클래스란?&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 17 Jan 2024 03:13:48 GMT</lastBuildDate><item><title><![CDATA[React에서 formData 활용하기]]></title><description><![CDATA[1. useState란 무엇인가 리액트의 useState는 대표적으로 2가지 기능을 제공한다. 1. 컴포넌트가 리렌더링 되더라도 값을 유지하고,…]]></description><link>https://byongho96.github.io/TIL/posts/Frontend/React/react_form_data/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Frontend/React/react_form_data/</guid><pubDate>Tue, 16 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-usestate란-무엇인가&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-usestate%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80&quot; aria-label=&quot;1 usestate란 무엇인가 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. useState란 무엇인가&lt;/h1&gt;
+&lt;p&gt;리액트의 useState는 대표적으로 2가지 기능을 제공한다. &lt;mark&gt;1. 컴포넌트가 리렌더링 되더라도 값을 유지하고&lt;/mark&gt;, &lt;mark&gt;2. 값이 업데이트 되면 컴포넌트를 리렌더링한다&lt;/mark&gt;. 프론트의 데이터 변화는 대부분 화면 업데이트를 요구하기 때문에, useState는 가장 유용한 리액트 훅이 되었다. 하지만 같은 이유로 가장 &lt;strong&gt;남용되는 훅&lt;/strong&gt;이기도 하다.&lt;/p&gt;
+&lt;p&gt;useState 두번째 기능, 컴포넌트를 리렌더링하는 것은 결국 자원 소모를 말한다. 따라서 useState 불필요하게 사용하지 않도록 주의할 필요가 있다. useRef는 useState의 가장 대표적인 대체재이다. &lt;mark&gt;useRef로 생성된 객체의 current 속성은 컴포넌트가 리렌더링 되어도 값을 유지하고, 값이 업데이트 되어도 컴포넌트를 리렌더링 하지 않는다.&lt;/mark&gt; 즉 useState의 첫번째 기능만을 가지는 셈이다.&lt;/p&gt;
+&lt;p&gt;아래 예시코드를 통해 useState와 useRef의 쓰임새를 더 명확히 구분할 수 있다. &lt;code&gt;count&lt;/code&gt;는 현재 카운트를 화면에 보여준다. 따라서 화면 렌더링과 관련된 변수이기 때문에 useState로 선언해야 한다. 반면 &lt;code&gt;isStop&lt;/code&gt;은 화면과 관계없이 내부 로직에서 쓰이는 변수이면서, 컴포넌트가 리렌더링되더라도 값이 초기화되서는 안된다. 따라서 useRef로 선언해야한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;import { useState, useRef, useEffect, useCallback } from &apos;react&apos;
+
+export default function Component() {
+  const [count, setCount] = useState(1) // 화면에 보여지는 값
+  const isStop = useRef(false) // 컴포넌트 내부 로직에서 쓰이는 값
+
+  // 1초마다 count의 값을 1씩 증가하는 interval 실행
+  useEffect(() =&gt; {
+    setInterval(() =&gt; {
+      if (isStop.current) return // 단, isStop이 가리키는 변수가 true이면 증가시키지 않음
+      setCounter((cnt) =&gt; cnt + 1)
+    }, 1000)
+  }, [])
+
+  // 클릭할 때마다 isStop이 가리키는 변수를 토글
+  const handleClick = useCallback(() =&gt; {
+    isStop.current = !isStop.current
+  }, [])
+
+  return (
+    &amp;#x3C;div&gt;
+      &amp;#x3C;p&gt;{count}&amp;#x3C;/p&gt;
+      &amp;#x3C;button onClick={handleClick}&gt;카운터 토글&amp;#x3C;/button&gt;
+    &amp;#x3C;/div&gt;
+  )
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;/TIL/b6c8e8d9e460140fba504bb11fe951d5/counter-example.gif&quot; alt=&quot;카운터 예시코드 화면&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;2-usestate-양방향-바인딩&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-usestate-%EC%96%91%EB%B0%A9%ED%96%A5-%EB%B0%94%EC%9D%B8%EB%94%A9&quot; aria-label=&quot;2 usestate 양방향 바인딩 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. useState 양방향 바인딩&lt;/h1&gt;
+&lt;p&gt;useState가 자주 쓰이지만 useRef로 대체하기 어려운 상황도 있다. 바로 &lt;code&gt;&amp;#x3C;input&gt;&lt;/code&gt;의 값을 양방향 바인딩할 때이다. 리액트로 처음 배우면, 보통 아래와 같이 &lt;code&gt;&amp;#x3C;input&lt;/code&gt;&gt;의 값을 useState로 선언하고 onChange로 바인딩한다. 이 방법이 잘못되었다는 말은 아니다. 실제 &lt;a href=&quot;https://react.dev/learn/reacting-to-input-with-state#step-5-connect-the-event-handlers-to-set-state&quot;&gt;리액트 공식문서&lt;/a&gt;에서도 이러한 방법을 예시 코드로 보여주고 있다.&lt;/p&gt;
+&lt;p&gt;공식문서에서는 이를 선언적(declarative) 방식이라 표현하며, 명령적(imperative) 방식보다 편의성과 직관성이 뛰어나고 소개한다. 그리고 좀 더 찾아보니 useState를 사용하면, 단일 진실 공급원(Single Source of Truth)을 확보할 수 있다고 한다. 한 마디로 표현하면 &lt;strong&gt;변수의 origin을 보장&lt;/strong&gt;한다는 말인데, 겨우 하나의 컴포넌트 내에서 데이터의 공급원을 보장하는게 정말 중요할지는 의문이다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;import { useState } from &apos;react&apos;
+
+export default function Component() {
+  const [answer, setAnswer] = useState(&apos;&apos;) // input의 값
+
+  // input 변화를 감지해서 answer 업데이트 (양방향 바인딩)
+  const handleChange = (event) =&gt; {
+    setAnswer(event.target.value)
+  }
+
+  // form 제출
+  const handleSubmit = (event) =&gt; {
+    e.preventDefault()
+    submit(answer) // answer 값을 제출
+  }
+
+  return (
+    &amp;#x3C;form onSubmit={handleSubmit}&gt;
+      &amp;#x3C;input type=&quot;text&quot; value={answer} onChange={handleChange} /&gt;
+      &amp;#x3C;button type=&quot;submit&quot;&gt;제출&amp;#x3C;/button&gt;
+    &amp;#x3C;/form&gt;
+  )
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;21-form-항목-증가에-따른-문제&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-form-%ED%95%AD%EB%AA%A9-%EC%A6%9D%EA%B0%80%EC%97%90-%EB%94%B0%EB%A5%B8-%EB%AC%B8%EC%A0%9C&quot; aria-label=&quot;21 form 항목 증가에 따른 문제 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. form 항목 증가에 따른 문제&lt;/h2&gt;
+&lt;p&gt;아무튼 편리한 useState의 사용이, form에서 관리해야할 데이터가 많아지만 단점이 되어버린다. form에서 관리해야하는 데이터가 한 50개 정도라고 가정해보자. 아래 코드처럼 단순히 &lt;strong&gt;데이터를 선언하고, 바인딩하는 코드만 200줄&lt;/strong&gt;이다. 무슨 하나의 form에서 50개의 값을 제출하냐 싶겠지만, 목록형 데이터를 다루면 가뿐하게 뛰어넘을 수 있다. 실제 가장 최근에 진행한 프로젝트에서 5개의 값을 가진 10개의 목록 데이터를 제출해야했다.&lt;/p&gt;
+&lt;p&gt;이로 인한 문제를 다시 정리하자면, &lt;mark&gt;1. 코드의 복잡도가 증가한다&lt;/mark&gt;. 일단 코드가 길어지니까 당연히 코드가 복잡해질 수 밖에 없다. &lt;mark&gt;2. 불필요한 리렌더링이 빈번하게 발생한다&lt;/mark&gt;. 50개의 변수 중 하나라도 값이 바뀌면, 해당 컴포넌트가 리렌더링된다. 더군다나 50개의 데이터를 다루는 컴포넌트는 간단하지도 않을 것이다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;import { useState } from &apos;react&apos;
+
+export default function Component() {
+  // 50줄
+  const [answer1, setAnswer1] = useState(&apos;&apos;)
+  ...
+  const [answer50, setAnswer50] = useState(&apos;&apos;)
+
+  // 150줄
+  const handleChange1 = (event) =&gt; {
+    setAnswer1(event.target.value)
+  }
+  ...
+  const handleChange50 = (event) =&gt; {
+    setAnswer50(event.target.value)
+  }
+
+  ...
+
+  return (
+    &amp;#x3C;form onSubmit={handleSubmit}&gt;
+      &amp;#x3C;input type=&quot;text&quot; value={answer1} onChange={handleChange1} /&gt;
+      ...
+      &amp;#x3C;input type=&quot;text&quot; value={answer50} onChange={handleChange50} /&gt;
+      &amp;#x3C;button type=&quot;submit&quot;&gt;제출&amp;#x3C;/button&gt;
+    &amp;#x3C;/form&gt;
+  )
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;3-formdata로의-전환&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-formdata%EB%A1%9C%EC%9D%98-%EC%A0%84%ED%99%98&quot; aria-label=&quot;3 formdata로의 전환 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. formData로의 전환&lt;/h1&gt;
+&lt;p&gt;웹페이지의 3요소는 html, css, javaScript이고, 이 중에서 html은 가장 유구한 전통을 자랑한다. &lt;del&gt;반면 javaScript은 요즘 어떻게든 줄이려고들 난리이다.&lt;/del&gt; 때문에 html은 그 자체만으로도 웹페이지를 운영할 수 있도록 기본적인 기능을 가지고 있다. 그 중에 하나가 &lt;code&gt;&amp;#x3C;input&gt;&lt;/code&gt;과 &lt;code&gt;&amp;#x3C;form&gt;&lt;/code&gt;의 조합을 이용한 데이터 제출이다.&lt;/p&gt;
+&lt;h2 id=&quot;21-input-태그-활용&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-input-%ED%83%9C%EA%B7%B8-%ED%99%9C%EC%9A%A9&quot; aria-label=&quot;21 input 태그 활용 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. input 태그 활용&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;&amp;#x3C;input&gt;&lt;/code&gt;는 사용자의 입력값을 받을 수 있는 태그이다. 브라우저가 자체적으로 input의 변화를 감지해서 화면에 반영하기 때문에, 컴포넌트 리렌더링을 따로 고려하지 않아도 된다.&lt;/p&gt;
+&lt;input/&gt;
+&lt;p&gt;위에 있는 텍스트 필드가 그냥 &lt;code&gt;&amp;#x3C;input&gt;&lt;/code&gt;을 선언한 것이다. 별도의 javaScript 코드가 없지만, 자유롭게 텍스트를 입력할 수 있고, 그 값이 화면에 반영된다.&lt;/p&gt;
+&lt;h2 id=&quot;22-formdata-활용&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-formdata-%ED%99%9C%EC%9A%A9&quot; aria-label=&quot;22 formdata 활용 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. formData 활용&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;&amp;#x3C;input&gt;&lt;/code&gt;의 값들은 &lt;code&gt;&amp;#x3C;form&gt;&lt;/code&gt;으로 모을 수 있다. JavaScript의 &lt;code&gt;FormData&lt;/code&gt; 생성자에 &lt;code&gt;&amp;#x3C;form&gt;&lt;/code&gt; 요소에 넣어 객체를 생성하면, &lt;mark&gt;해당 form 내부에 있는 입력값들을 모은 FormData 객체가 생성된다&lt;/mark&gt;. 참고로 formData 객체는 콘솔에 찍어도 내부 값을 확인할 수 없다. 번거롭지만 for문을 돌려서 안에 있는 요소를 확인해야 한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;export default function Component() {
+  const handleSubmit = async (e: React.FormEvent&amp;#x3C;HTMLFormElement&gt;) =&gt; {
+    e.preventDefault()
+    e.stopPropagation()
+
+    const form = e.currentTarget // HTML form 요소
+    const formData = new FormData(form) // FormData 객체 생성
+
+    // 내부 값 출력
+    for (let key of formData.keys()) {
+      console.log(key, &apos;:&apos;, formData.get(key))
+    }
+
+    // 콘솔 예시
+    // name : 홍길동
+    // age : 25
+    // phone : 01012345678
+  }
+
+  return (
+    &amp;#x3C;form onSubmit={handleSubmit}&gt;
+      &amp;#x3C;input type=&quot;text&quot; name=&quot;name&quot; /&gt;
+      &amp;#x3C;input type=&quot;number&quot; name=&quot;age&quot; /&gt;
+      &amp;#x3C;input type=&quot;text&quot; name=&quot;phone&quot; /&gt;
+      &amp;#x3C;button type=&quot;submit&quot;&gt;제출&amp;#x3C;/button&gt;
+    &amp;#x3C;/form&gt;
+  )
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;23-유효성-검사&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#23-%EC%9C%A0%ED%9A%A8%EC%84%B1-%EA%B2%80%EC%82%AC&quot; aria-label=&quot;23 유효성 검사 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.3. 유효성 검사&lt;/h2&gt;
+&lt;p&gt;formData에 대한 유효성 검사는 정해진 방법이 없다. 아래는 내가 사용한 유효성 검사 방식 중 하나이다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javaScript&quot;&gt;export function validate(formData: FormData) {
+  // 이름 유효성 검사
+  const name = formData.get(&apos;name&apos;) as string
+  if (!/^[A-Za-z\dㄱ-ㅎㅏ-ㅣ가-힣]{2,10}$/.test(name)) {
+    return false
+  }
+
+  // 나이 유효성 검사
+  const age = formData.get(&apos;age&apos;) as string
+  if (!/^[0-9]{1,3}$/.test(age)) {
+    return false
+  }
+
+  // 휴대폰 유효성 검사
+  const phone = formData.get(&apos;phone&apos;) as string
+  if (/^(010)-?[0-9]{3,4}-?[0-9]{4}$/.test(phone)) {
+    return false
+  }
+
+  return formData
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;24-서버-전송&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#24-%EC%84%9C%EB%B2%84-%EC%A0%84%EC%86%A1&quot; aria-label=&quot;24 서버 전송 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.4. 서버 전송&lt;/h2&gt;
+&lt;p&gt;formData 형식 그대로 서버에 전송할 때는 Content-Type을 &lt;code&gt;&apos;multipart/form-data&apos;&lt;/code&gt;으로 설정해야한다. 그래야지만 백서버에서 데이터를 추출할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javaScript&quot;&gt;import axios from &apos;axios&apos;
+
+export async function submit(formData: FormData) {
+  return axios.post(&apos;/api&apos;, formData, {
+        headers: {
+          &apos;Content-Type&apos;: &apos;multipart/form-data&apos;,
+        },
+      })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;3-추가-고려사항&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-%EC%B6%94%EA%B0%80-%EA%B3%A0%EB%A0%A4%EC%82%AC%ED%95%AD&quot; aria-label=&quot;3 추가 고려사항 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. 추가 고려사항&lt;/h1&gt;
+&lt;h2 id=&quot;31-checkbox&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#31-checkbox&quot; aria-label=&quot;31 checkbox permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1. checkbox&lt;/h2&gt;
+&lt;p&gt;보통 체크박스를 사용해서 불리언 값을 다룬다. 체크박스가 체크되었을 때의 값은 value 속성을 이용해서 &lt;code&gt;true&lt;/code&gt; 외에도 마음대로 지정해줄 수 있다. 그런데 문제는 체크박스가 체크되지 않았을 때이다. 보통 체크가 되지 않으면 &lt;code&gt;false&lt;/code&gt;나 &lt;code&gt;null&lt;/code&gt;등의 값으로 formData에 수집되길 기대할텐데, 실제로는 아예 formData에서 제외된다. 이에 대해 &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#value&quot;&gt;MDN 공식문서&lt;/a&gt;는 javaScript를 이용해서 &lt;mark&gt;unchecked 상태일 때의 값을 &lt;code&gt;&amp;#x3C;input type=&quot;hidden&quot;&gt;&lt;/code&gt;로 동적으로 추가&lt;/mark&gt;하라고 한다. 그래서 체크박스에 한해 useState를 사용할 수 밖에 없었다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javaSCript&quot;&gt;import { useState } from &apos;react&apos;
+
+export default function Component() {
+  const [isAdult, setIsAdult] = useState(false)
+
+  const handleChange = (e) =&gt; {
+    setIsAdult(e.target.checked)
+  }
+
+  return (
+    &amp;#x3C;form onSubmit={handleSubmit}&gt;
+      &amp;#x3C;input type=&quot;checkbox&quot; name=&quot;isAdult&quot; value={isAdult} onChange={handleChange}/&gt;
+      {!isActive &amp;#x26;&amp;#x26; &amp;#x3C;input type=&quot;hidden&quot; name=&quot;isAdult&quot; value={isAdult} /&gt;}
+      &amp;#x3C;button type=&quot;submit&quot;&gt;제출&amp;#x3C;/button&gt;
+    &amp;#x3C;/form&gt;
+  )
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;32-목록-데이터&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#32-%EB%AA%A9%EB%A1%9D-%EB%8D%B0%EC%9D%B4%ED%84%B0&quot; aria-label=&quot;32 목록 데이터 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2. 목록 데이터&lt;/h2&gt;
+&lt;p&gt;목록 데이터를 수집하기 위해서는 아래 코드와 같이 인덱싱 &lt;code&gt;[]&lt;/code&gt; 을 사용하면 된다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javaScript&quot;&gt;&amp;#x3C;form&gt;
+  &amp;#x3C;input type=&quot;text&quot; name=&quot;names[0]&quot;/&gt;
+  &amp;#x3C;input type=&quot;text&quot; name=&quot;names[1]&quot;/&gt;
+  &amp;#x3C;input type=&quot;text&quot; name=&quot;names[2]&quot;/&gt;
+&amp;#x3C;/form&gt;
+
+// javaScript 객체로 표현하면 다음과 같다.
+data : {
+  names: [&quot;name0&quot;, &quot;name1&quot;, &quot;name2&quot;]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;아래와 같은 방식으로 &lt;strong&gt;객체 목록 데이터&lt;/strong&gt;를 수집할 수도 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javaScript&quot;&gt;&amp;#x3C;form&gt;
+  &amp;#x3C;input type=&quot;text&quot; name=&quot;people[0].name&quot;/&gt;
+  &amp;#x3C;input type=&quot;number&quot; name=&quot;people[0].age&quot;/&gt;
+  &amp;#x3C;input type=&quot;phone&quot; name=&quot;people[0].phone&quot;/&gt;
+  &amp;#x3C;input type=&quot;text&quot; name=&quot;people[1].name&quot;/&gt;
+  &amp;#x3C;input type=&quot;number&quot; name=&quot;people[1].age&quot;/&gt;
+  &amp;#x3C;input type=&quot;phone&quot; name=&quot;people[1].phone&quot;/&gt;
+&amp;#x3C;/form&gt;
+
+// javaScript 객체로 표현하면 다음과 같다.
+data : {
+  people: [
+    {
+      name: &quot;홍길동&quot;,
+      number: 25,
+      phone: &quot;01012345678&quot;
+    },
+    {
+      name: &quot;고길동&quot;,
+      number: 45,
+      phone: &quot;01087654321&quot;
+    },
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;4-한계점&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-%ED%95%9C%EA%B3%84%EC%A0%90&quot; aria-label=&quot;4 한계점 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. 한계점&lt;/h1&gt;
+&lt;p&gt;입력값이 &lt;code&gt;&amp;#x3C;input&gt;&lt;/code&gt;이외에서도 사용된다면 useState를 사용해야 한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javaScript&quot;&gt;import { useState } from &apos;react&apos;
+
+export default function Component() {
+  const [color, setColor] = useState(&apos;&apos;)
+
+  const handleChange = (e) =&gt; {
+    setColor(e.target.value)
+  }
+
+  return (
+    &amp;#x3C;div&gt;
+      &amp;#x3C;form&gt;
+        &amp;#x3C;input type=&quot;text&quot; name=&quot;color&quot; onChange={handleChange} /&gt;
+        &amp;#x3C;button type=&quot;submit&quot;&gt;제출&amp;#x3C;/button&gt;
+      &amp;#x3C;/form&gt;
+      &amp;#x3C;p style={{ color: color, fontSize: &apos;2rem&apos;, fontWeight: 800 }}&gt;{color}&amp;#x3C;/p&gt;
+    &amp;#x3C;/div&gt;
+  )
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;/TIL/61a22a586db4c87fe5bc76b2003d28c1/useState.gif&quot; alt=&quot;useState 활용 예시&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;5-참고자료&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C&quot; aria-label=&quot;5 참고자료 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5. 참고자료&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://react.dev/learn/state-a-components-memory&quot;&gt;React 공식문서 &quot;State: A Component&apos;s Memory&quot; &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://react.dev/learn/reacting-to-input-with-state&quot;&gt;React 공식문서 &quot;Reacting to Input with State&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData&quot;&gt;MDN &quot;FormData() constructor&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#value&quot;&gt;MDN &quot;&amp;#x3C;input type=&quot;checkbox&quot;&gt;&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[자바스크립트 ES6 class 문법]]></title><description><![CDATA[1. 클래스란? 1.1. 정의 자바스크립트의 클래스를 흔히 문법적 설탕(synthetic sugar…]]></description><link>https://byongho96.github.io/TIL/posts/Language/JavaScript/class/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Language/JavaScript/class/</guid><pubDate>Tue, 17 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-클래스란&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%9E%80&quot; aria-label=&quot;1 클래스란 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 클래스란?&lt;/h1&gt;
 &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 640px; margin-bottom: 20px;&quot;&gt;
       &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/eefddadab706dc91f212bfc5329795c4/6af66/es6-logo.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 62.28571428571429%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsTAAALEwEAmpwYAAABpUlEQVR42n2Q3yukURjH5w+RdbXM+T5HDEpKUts2Ihfyo3AhSpLsFReu2DtqrrYk5IIrF6MkrsTWTrFJuxga7IzmfV/zOjOLZEM479nOK+THTH16Os8553ue7/l6lIVnTDgPWC4mXpy+wfOit6EE1AkcAcfWC3XsbiZc7DRiPcRGageHIWZusNg6s38zYxNXf3C+h38HuIjgbBfS0NzHta9nsTSgUvi5iIkAgpMsMMQmAmz6m3dxxjs77h0dZqtBNjfFbqKP1t6xbUGauIvjzsKtoRfSwHUU5oau0oIUSG5ppNBOX4v1JxNwnqpAKowaP3W3022cDfajoIB/zOUdrbjcZ54MYeogBOxfyM3jzY30PYisD7yulob6MTaix2QS6yAExDby83lrE+2soKSYGHhHC9aXmEpmFGvnNqJrzFfI62pI/UVogQ18QZ6XFxfx03AasXQNx9ZQ7aeKcp6dw3s7aWsZ/k/U10M+Hy8rpYtIGrHjJncTQ+Arqj7zlgbaD+EghK42qqyg5nr6MQ/XtkFpsUglcR9z30qQOiElII/cVugL/wG8/bFgNWqA4AAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
@@ -36694,643 +36947,4 @@ B = copy.deepcopy(A)
 &lt;td&gt;move bit right == //2&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;</content:encoded></item><item><title><![CDATA[01. Java Basics]]></title><description><![CDATA[1. Program and OS 1.1. Program 1.2. Operating System 2. Data representation 3. JVM(Java Virual Machine) 4. Hello SSAFY 5. Java IDE Intro 5-…]]></description><link>https://byongho96.github.io/TIL/posts/Language/Java/01_Java_Basics/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Language/Java/01_Java_Basics/</guid><pubDate>Tue, 08 Nov 2022 00:00:00 GMT</pubDate><content:encoded>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#1-program-and-os&quot;&gt;1. Program and OS&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#11-program&quot;&gt;1.1. Program&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#12-operating-system&quot;&gt;1.2. Operating System&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#2-data-representation&quot;&gt;2. Data representation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#3-jvmjava-virual-machine&quot;&gt;3. JVM(Java Virual Machine)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#4-hello-ssafy&quot;&gt;4. Hello SSAFY&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#5-java-ide-intro&quot;&gt;5. Java IDE Intro&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#5-1-main-method&quot;&gt;5-1. main method&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#5-2-comment&quot;&gt;5-2. comment&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#5-3-print&quot;&gt;5-3. Print&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#6-variable-and-data-type&quot;&gt;6. Variable and Data type&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#61-variable&quot;&gt;6.1. Variable&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#62-data-type-primitive---reference&quot;&gt;6.2. Data Type (Primitive) &amp;#x3C;-&gt; (Reference)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#63-type-casting&quot;&gt;6.3. Type Casting&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#7-operator&quot;&gt;7. Operator&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#8-control-flow---condition&quot;&gt;8. Control flow - condition&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#81-if&quot;&gt;8.1. if&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#82-switch&quot;&gt;8.2. switch&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#9-control-flow---loop&quot;&gt;9. Control flow - loop&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#91-if&quot;&gt;9.1. if&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#92-while&quot;&gt;9.2. while&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#93-continue-and-break&quot;&gt;9.3. continue and break&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#10-array&quot;&gt;10. Array&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#101-declaration&quot;&gt;10.1. Declaration&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#102-usage&quot;&gt;10.2. Usage&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#11-multidimensional-array&quot;&gt;11. Multidimensional Array&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#111-declaration&quot;&gt;11.1. Declaration&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#112-search&quot;&gt;11.2. Search&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;1-program-and-os&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-program-and-os&quot; aria-label=&quot;1 program and os permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Program and OS&lt;/h1&gt;
-&lt;h2 id=&quot;11-program&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-program&quot; aria-label=&quot;11 program permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1. Program&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;the collection of commands to perfrom sepcific task&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;12-operating-system&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-operating-system&quot; aria-label=&quot;12 operating system permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2. Operating System&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Software that manage computer hardware and provide service and platform for application SW&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;2-data-representation&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-data-representation&quot; aria-label=&quot;2 data representation permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Data representation&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Binary data&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;1Byte as numerical value(==the first one is sign bit==)
-&lt;ul&gt;
-&lt;li&gt;-128 ~ 127&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;3-jvmjava-virual-machine&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-jvmjava-virual-machine&quot; aria-label=&quot;3 jvmjava virual machine permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. JVM(Java Virual Machine)&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Subjects executing Java Byte code&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Java Byte Code&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;the middle file(.class) between source code and binary code&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Makes Java Byte code be able to excuted on every OS&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;4-hello-ssafy&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-hello-ssafy&quot; aria-label=&quot;4 hello ssafy permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. Hello SSAFY&lt;/h1&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public class Hello {
-    public static void main(String[] args){
-        System.out.println(&quot;Hello SSAFY&quot;)
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;javac Hello.java
-&lt;ul&gt;
-&lt;li&gt;Hello.java -&gt; Hello.class&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;java Hello
-&lt;ul&gt;
-&lt;li&gt;excuting Hello.class&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;eclipse&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;IDE(Integrated Developmend Environment)&lt;/li&gt;
-&lt;li&gt;Support programming including upper procedures&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;5-java-ide-intro&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-java-ide-intro&quot; aria-label=&quot;5 java ide intro permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5. Java IDE Intro&lt;/h1&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;&amp;#x3C;package&gt; // folder
-    &amp;#x3C;library&gt;
-    &amp;#x3C;src&gt; // source code folder
-        &amp;#x3C;.java&gt; //make class in the package.src
-    &amp;#x3C;bin&gt; // java byte code folder
-        &amp;#x3C;.clss&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;5-1-main-method&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-1-main-method&quot; aria-label=&quot;5 1 main method permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5-1. main method&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;where the code starts!!&lt;/li&gt;
-&lt;li&gt;fixed form
-&lt;code&gt;public static void main(String[] args){}&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;5-2-comment&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-2-comment&quot; aria-label=&quot;5 2 comment permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5-2. comment&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;line comment: &lt;code&gt;//&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;range comment: &lt;code&gt;/* */&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;documentation comment: &lt;code&gt;/** */&lt;/code&gt;
-&lt;ul&gt;
-&lt;li&gt;explanation for the function&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;5-3-print&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-3-print&quot; aria-label=&quot;5 3 print permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5-3. Print&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;System.out.&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;print&lt;/code&gt;: print&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;println&lt;/code&gt;: print and change the line&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;printf&lt;/code&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public static void main(String[] args) {
-    System.out.printf(&quot;%d \n&quot;, 10);     // 10
-    System.out.printf(&quot;%o \n&quot;, 10);     // 12
-    System.out.printf(&quot;%x \n&quot;, 10);     // a
-    System.out.printf(&quot;%X \n&quot;, 10);     // A
-
-    System.out.printf(&quot;%4d \n&quot;, 10);    //  10
-    System.out.printf(&quot;%-4d \n&quot;, 10);   //10
-    System.out.printf(&quot;%04d \n&quot;, 10);   //0010
-
-    System.out.printf(&quot;%f \n&quot;, 10.1);   //10.100000
-    System.out.printf(&quot;%.2f \n&quot;, 10.1); //10.10
-
-    System.out.printf(&quot;%s \n&quot;, &quot;Kim&quot;);  //Kim
-    System.out.printf(&quot;%c \n&quot;, &quot;O&quot;);    //O
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;6-variable-and-data-type&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#6-variable-and-data-type&quot; aria-label=&quot;6 variable and data type permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6. Variable and Data type&lt;/h1&gt;
-&lt;h2 id=&quot;61-variable&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#61-variable&quot; aria-label=&quot;61 variable permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.1. Variable&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;name of the memory that contains the data&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Rules
-&lt;ul&gt;
-&lt;li&gt;Letters and numbers &apos;$&apos; and &apos;_&apos;&lt;/li&gt;
-&lt;li&gt;can&apos;t start with numbers&lt;/li&gt;
-&lt;li&gt;camelCase
-&lt;ul&gt;
-&lt;li&gt;for variable and functions&lt;/li&gt;
-&lt;li&gt;PascalCase: for class&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;62-data-type-primitive---reference&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#62-data-type-primitive---reference&quot; aria-label=&quot;62 data type primitive   reference permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.2. Data Type (Primitive) &amp;#x3C;-&gt; (Reference)&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Primitive Type&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;pre-fixed memory size&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;variable itself has the data&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;types&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Bool&lt;/li&gt;
-&lt;li&gt;char(2B)&lt;/li&gt;
-&lt;li&gt;byte(1B), short(2B), ==int(4B)==, long(8B)&lt;/li&gt;
-&lt;li&gt;float(4B), ==double(8B)==&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;declaration -&gt; assgining&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;int age;
-age = 30;
-
-int age = 30; // initilazation = declaration + assigning
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;63-type-casting&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#63-type-casting&quot; aria-label=&quot;63 type casting permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.3. Type Casting&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;byte &amp;#x3C; short &amp;#x3C; int &amp;#x3C; long &amp;#x3C; float &amp;#x3C; double
-&lt;ul&gt;
-&lt;li&gt;==float is bigger than long==&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Implicit Casting
-&lt;ul&gt;
-&lt;li&gt;put smaller data type into bigger data type&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Explicit Casting
-&lt;ul&gt;
-&lt;li&gt;put bigger data type into smaller data type&lt;/li&gt;
-&lt;li&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;int i = 100;
-byte b = (byte)i;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;7-operator&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#7-operator&quot; aria-label=&quot;7 operator permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;7. Operator&lt;/h1&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/TIL/static/ed8bf8b5a55bb1bc88ac18ec239363b0/5f194/operator.jpg&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 69.71428571428572%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAOABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAgAF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAB2GGGo//EABgQAQEBAQEAAAAAAAAAAAAAAAABEhEh/9oACAEBAAEFAvHIzErTT//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABYQAAMAAAAAAAAAAAAAAAAAABAgMf/aAAgBAQAGPwIRP//EABsQAAIDAAMAAAAAAAAAAAAAAAABETFBIVFh/9oACAEBAAE/IVCzgo8Qt5RDogsP/9oADAMBAAIAAwAAABDzz//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABoQAQADAQEBAAAAAAAAAAAAAAEAETEhYUH/2gAIAQEAAT8QKWN8nU175BwhqL42WCWmRU//2Q==&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source
-              srcset=&quot;/TIL/static/ed8bf8b5a55bb1bc88ac18ec239363b0/c54d4/operator.webp 175w,
-/TIL/static/ed8bf8b5a55bb1bc88ac18ec239363b0/a3432/operator.webp 350w,
-/TIL/static/ed8bf8b5a55bb1bc88ac18ec239363b0/426ac/operator.webp 700w,
-/TIL/static/ed8bf8b5a55bb1bc88ac18ec239363b0/4c2b6/operator.webp 927w&quot;
-              sizes=&quot;(max-width: 700px) 100vw, 700px&quot;
-              type=&quot;image/webp&quot;
-            /&gt;
-          &lt;source
-            srcset=&quot;/TIL/static/ed8bf8b5a55bb1bc88ac18ec239363b0/e52aa/operator.jpg 175w,
-/TIL/static/ed8bf8b5a55bb1bc88ac18ec239363b0/70ebb/operator.jpg 350w,
-/TIL/static/ed8bf8b5a55bb1bc88ac18ec239363b0/29d31/operator.jpg 700w,
-/TIL/static/ed8bf8b5a55bb1bc88ac18ec239363b0/5f194/operator.jpg 927w&quot;
-            sizes=&quot;(max-width: 700px) 100vw, 700px&quot;
-            type=&quot;image/jpeg&quot;
-          /&gt;
-          &lt;img
-            class=&quot;gatsby-resp-image-image&quot;
-            src=&quot;/TIL/static/ed8bf8b5a55bb1bc88ac18ec239363b0/29d31/operator.jpg&quot;
-            alt=&quot;Java operator&quot;
-            title=&quot;&quot;
-            loading=&quot;lazy&quot;
-            decoding=&quot;async&quot;
-            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-          /&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Equality comparison operator
-&lt;ul&gt;
-&lt;li&gt;==: compare the value &lt;strong&gt;in the variable&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;==not suitable for reference data type==&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;equals(): compare the value &lt;strong&gt;in the object&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;==suitable for reference data type==&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;8-control-flow---condition&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#8-control-flow---condition&quot; aria-label=&quot;8 control flow   condition permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;8. Control flow - condition&lt;/h1&gt;
-&lt;h2 id=&quot;81-if&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#81-if&quot; aria-label=&quot;81 if permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;8.1. if&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public class example {
-    public static void main(String[] args) {
-        if(conditional statement) {
-            statement to run;
-        }else if(conditional statement2) {
-            statement to run;
-        }else {
-            statement to run;
-        }
-
-        if(conditional statement)
-            statement to run; // when there&apos;s only one statement {}can be skipped
-            statement to run2; // it isn&apos;t included regardless of the index. Not Python!!!
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;82-switch&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#82-switch&quot; aria-label=&quot;82 switch permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;8.2. switch&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public class example {
-    public static void main(String[] args) {
-        switch(variable) {
-            case value1:
-                statement;
-                break   // break is not mandotry
-                        // but from here all the statements under will be excuted until meet another break
-            case value2:
-                statement;
-                break
-            default:
-                statement;
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Example.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public class example {
-    public static void main(String[] args) {
-
-        int month = 12
-
-        switch(month) {
-            case 1:
-            case 3:
-            case 5:
-            case 7:
-            case 8:
-            case 10:
-            case 12:
-                System.Out.println(&quot;31&quot;);
-                break
-            case 4:
-            case 6:
-            case 9:
-            case 11:
-                System.Out.println(&quot;30&quot;);
-            case 2:
-                System.Out.println(&quot;28&quot;);
-                break
-            default:
-                System.Out.println(&quot;Wrong input&quot;);
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&quot;9-control-flow---loop&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#9-control-flow---loop&quot; aria-label=&quot;9 control flow   loop permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;9. Control flow - loop&lt;/h1&gt;
-&lt;h2 id=&quot;91-if&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#91-if&quot; aria-label=&quot;91 if permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;9.1. if&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public class example {
-    public static void main(String[] args) {
-        for (intialization; condition; Incre/Dcre){
-            statement
-        }
-        // intialization, Incre/Decre can be expressed with more than 2 vairables!!
-
-        for(int i = 0; i &amp;#x3C; 10; i++){
-            System.outl.println(i); // 0 ~ 9
-        }
-
-        for(int i = 0, j = 10; i &amp;#x3C; 10; i += 2, j--){
-            System.outl.println(i); // 0, 2, 4, 6, 8
-            System.outl.println(j); // 10, 9, 8, 7, 6
-
-        // multiplication table
-        for (int i = 2; i &amp;#x3C;= 9; i++){
-            for (int j = 2; j &amp;#x3C;= 9; j++)
-                System.outl.printf(&quot;%d * %d = %d\n&quot;, i, j, i * j);
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;92-while&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#92-while&quot; aria-label=&quot;92 while permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;9.2. while&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public class example {
-    public static void main(String[] args) {
-        while(conditional statement) {
-            statement;
-        } // while conditional statement is true
-
-        do {
-            statement;
-        } while (conditional statement);
-        // the statement is excuted at least once
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;93-continue-and-break&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#93-continue-and-break&quot; aria-label=&quot;93 continue and break permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;9.3. continue and break&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;can be used with ==label=&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public class example {
-    public static void main(String[] args) {
-        label:
-        for (int i = 2; i &amp;#x3C;= 9; i++){
-            for (int j = 2; j &amp;#x3C;= 9; j++)
-                System.outl.printf(&quot;%d * %d = %d\n&quot;, i, j, i * j);
-                if (j==3){
-                    continue label;
-                }
-        }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&quot;10-array&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#10-array&quot; aria-label=&quot;10 array permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;10. Array&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Data structure for saving the same type of data&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;==The size is &lt;strong&gt;fixed&lt;/strong&gt;==&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;It&apos;s an &lt;strong&gt;object&lt;/strong&gt; == &lt;strong&gt;reference data&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The data is saved &lt;strong&gt;in heap&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;The variable &lt;strong&gt;in stack&lt;/strong&gt; has the address pointing the data&lt;/li&gt;
-&lt;li&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;String c = &quot;Hi&quot;;
-String d = &quot;Hi&quot;;
-String e = new String(&quot;Hi&quot;);
-
-System.out.println(c == d); //true. There&apos;s string pool in heap
-System.out.println(c == e); //false
-System.out.println(c.equals(d)); //true
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;can be referenced with index(int)&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;101-declaration&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#101-declaration&quot; aria-label=&quot;101 declaration permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;10.1. Declaration&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Delacration&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;type[] variable&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;type variable[]
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;int[] iArr;
-char[] cArr;
-boolean[] bArr;
-String[] strArr;
-Date[] dateArr;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Creation&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;type[] variable = {v1, v2, v3, }&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;variable = new type[] {v1, v2, v3, }&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;variable = new type[len]&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;default value
-&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 662px; margin-bottom: 20px;&quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/TIL/static/9d346eb72adce2a4d6ef82934ce26ebe/7bfef/array.jpg&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 46.28571428571429%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAJABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAECAwX/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/aAAwDAQACEAMQAAAB2WJJFBX/xAAaEAACAgMAAAAAAAAAAAAAAAAAAgESETEy/9oACAEBAAEFAqrmilFI7bR//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFREBAQAAAAAAAAAAAAAAAAAAABH/2gAIAQIBAT8BV//EABgQAAMBAQAAAAAAAAAAAAAAAAABMRCB/9oACAEBAAY/AoiEQzuf/8QAGhAAAgIDAAAAAAAAAAAAAAAAAAEQETGR8f/aAAgBAQABPyFXUSow0cqUkf/aAAwDAQACAAMAAAAQDM//xAAWEQADAAAAAAAAAAAAAAAAAAAAARH/2gAIAQMBAT8QiIj/xAAXEQADAQAAAAAAAAAAAAAAAAAAEVEB/9oACAECAQE/EHtGp//EAB0QAQACAgIDAAAAAAAAAAAAAAEAESExUXGhwdH/2gAIAQEAAT8QUxALqo527aCjEKcs80njfJq7e5rP/9k=&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source
-              srcset=&quot;/TIL/static/9d346eb72adce2a4d6ef82934ce26ebe/c54d4/array.webp 175w,
-/TIL/static/9d346eb72adce2a4d6ef82934ce26ebe/a3432/array.webp 350w,
-/TIL/static/9d346eb72adce2a4d6ef82934ce26ebe/90cc3/array.webp 662w&quot;
-              sizes=&quot;(max-width: 662px) 100vw, 662px&quot;
-              type=&quot;image/webp&quot;
-            /&gt;
-          &lt;source
-            srcset=&quot;/TIL/static/9d346eb72adce2a4d6ef82934ce26ebe/e52aa/array.jpg 175w,
-/TIL/static/9d346eb72adce2a4d6ef82934ce26ebe/70ebb/array.jpg 350w,
-/TIL/static/9d346eb72adce2a4d6ef82934ce26ebe/7bfef/array.jpg 662w&quot;
-            sizes=&quot;(max-width: 662px) 100vw, 662px&quot;
-            type=&quot;image/jpeg&quot;
-          /&gt;
-          &lt;img
-            class=&quot;gatsby-resp-image-image&quot;
-            src=&quot;/TIL/static/9d346eb72adce2a4d6ef82934ce26ebe/7bfef/array.jpg&quot;
-            alt=&quot;default array&quot;
-            title=&quot;&quot;
-            loading=&quot;lazy&quot;
-            decoding=&quot;async&quot;
-            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-          /&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public class array {
-    public static void main(String[] args) {
-        //1-dimensional array
-        int[] score1;
-        int score2[];
-
-        score1 = {1, 2, 3, 4, 5}; // Impossible
-        score1 = new int[] {1, 2, 3, 4, 5};
-
-        int[] score2 = {1, 2, 3, 4, 5}
-
-        int[] score3 = new int[5];
-        score3[0] = 1;
-        score3[1] = 2;
-        score3[2] = 3;
-        score3[3] = 4;
-        score3[4] = 5;
-     }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;102-usage&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#102-usage&quot; aria-label=&quot;102 usage permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;10.2. Usage&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;Arr[index]&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;Arr.length&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;for-each&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;access to the elements in the array&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;take the elements ==&lt;strong&gt;by copying&lt;/strong&gt; it==&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public class foreach{
-    public static void main(String[] args) {
-        int[] arr = {77, 50, 10, 12, 64, 15}
-
-        for(int x : arr) {
-            System.out.println(X); // 77, 50, 10, 12, 64, 15
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;Arrays.toString(arr)&lt;/code&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;change the arr into &apos;[v1, v2, v3, ...]&apos;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;System.arraycopy(Object src, int srcPos, Object dest, int destPos, int length)&lt;/code&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;   public class copy{
-       public static void main(String[] args) {
-           int[] arr = {77, 50, 10, 12, 64, 15}
-
-           int[] tmp = new int[arr.length*2];
-
-           System.arraycopy(arr, 0, tmp, 0, arr.length);
-           //[77, 50, 10, 12, 64, 15, 0, 0, 0, 0, 0, 0]
-       }
-   }
-   ```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;11-multidimensional-array&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-multidimensional-array&quot; aria-label=&quot;11 multidimensional array permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;11. Multidimensional Array&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;elements of the array have the address of another array&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;111-declaration&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#111-declaration&quot; aria-label=&quot;111 declaration permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;11.1. Declaration&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Declaration&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;int[][] iArr&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;int iArr[][]&lt;/li&gt;
-&lt;li&gt;int[] iARr[]&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Creation&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;variable = new type[num_of_1st_array][size_of_1st_array]&lt;/li&gt;
-&lt;li&gt;variable = new type[num_of_1st_array][]&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;int a = 10;
-
-int[] arr = new int[4]; //[0, 0, 0, 0]
-
-int[][] arr2 = new int[2][];
-arr2[0] = new int[3];
-arr2[1] = new int[3];
-arr2[1][1] = 100; // [[0, 0, 0], [0, 100, 0]]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;112-search&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#112-search&quot; aria-label=&quot;112 search permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;11.2. Search&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;arr[i][j]&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;x-search
-&lt;ul&gt;
-&lt;li&gt;arr[i][j+1]: right&lt;/li&gt;
-&lt;li&gt;arr[i][j-1]: left&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;y-search
-&lt;ul&gt;
-&lt;li&gt;arr[i+1][j]: bottom&lt;/li&gt;
-&lt;li&gt;arr[i-1][j]: top&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item></channel></rss>
+&lt;/table&gt;</content:encoded></item></channel></rss>
