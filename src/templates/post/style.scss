@@ -3,7 +3,7 @@
 
 .post {
   display: grid;
-  grid-template-columns: 9fr minmax(280px, 2fr);
+  grid-template-columns: 9fr minmax(260px, 2fr);
   position: relative;
   margin: 4rem 0 0 0;
 
@@ -26,7 +26,7 @@
   flex-direction: column;
   gap: 3rem;
   margin: 0 3rem 0 4rem;
-  max-width: 780px;
+  max-width: 760px;
 }
 
 .post__article__content {
