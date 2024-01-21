@@ -1,4 +1,150 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 17 Jan 2024 03:13:48 GMT</lastBuildDate><item><title><![CDATA[React에서 formData 활용하기]]></title><description><![CDATA[1. useState란 무엇인가 리액트의 useState는 대표적으로 2가지 기능을 제공한다. 1. 컴포넌트가 리렌더링 되더라도 값을 유지하고,…]]></description><link>https://byongho96.github.io/TIL/posts/Frontend/React/react_form_data/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Frontend/React/react_form_data/</guid><pubDate>Tue, 16 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-usestate란-무엇인가&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-usestate%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80&quot; aria-label=&quot;1 usestate란 무엇인가 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. useState란 무엇인가&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 21 Jan 2024 09:02:27 GMT</lastBuildDate><item><title><![CDATA[k3s 배포하기 (1) : 프로젝트 개요 & 사전 준비]]></title><description><![CDATA[1. 프로젝트 개요 백엔드 개발자 친구와 함께 쿠버네티스를 연습하기 위한 토이프로젝트를 만들었다. 명색이 쿠버네티스 프로젝트인데 MSA를 안할 수 없었다. 백엔드가 MSA를 적용하느라 바쁜데, 나라고 놀고 있을 수만은 없어 Three.js…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_1_intro/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_1_intro/</guid><pubDate>Sun, 21 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-프로젝트-개요&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B0%9C%EC%9A%94&quot; aria-label=&quot;1 프로젝트 개요 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 프로젝트 개요&lt;/h1&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/f15a3f6bc1f8ad128ddea7349aa96980/c1b63/the-gallery.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 52.57142857142857%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAACFklEQVR42q2TTWgTQRTHk7QIFlGzkczbGD9ARCiIUigKSksPHosHCXhtsdnuzuw20cQ0B1lR0EoVCoog+Hn1KgUpsTmoWHoQqeLBgwfbJu7Mppo0lrTWPtnNpqRgPYgP/gy89+Y378F/fD430O9DT/8h/HU1YJtB0b95bWNjIGLws0Ct+zKzTrgpEwONy5Jub48Ml0P1nDfA3zYBVorJRmVGPr/8ERJLSJg1Jpvzbb4Ytrh1nXcTKi4Tamdh0Dqz/mA3tro9Dtw5Y09b6kBjcQr0b1+A8teQqKKcQgRWmozQuZBTJ4PFMGhCIaroAa2wjyjF/aAWOttjH7Z48FZP9a2A2WuEillgdh6GfiDReA0u/ELCFsZdILX7iC6eEGYz0PiInKzdldP4CPTS7TDj14DxS4SJNNF4f31CfWGVUD4HTEyAUUFCxXJYtWpyahWjmZWubX2F9uAAvyPFeSKk8Oe7lK/XJaWYDSr88c4B696O/mKPpH2/FVRLcQ9YzsFQtRxJVCfcdY3Fn5BcQTDK89K52Sgibk2O4+GxGSSORt9h+MpbPDgyhdGrr/DAjWk81HWzEj/9cGmPCySq6AUq3shMPACNfwbK3xNqfYrootepK89wdzaHp4Yn8djF/NrxzAs8ksrj0XQOOzJ5POlodBo7zZe417fRd3+ywr8YHRuGbfotphlo+A4R/SZiYF1mk5ry6HnzNyyhISQVAq22AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/f15a3f6bc1f8ad128ddea7349aa96980/c54d4/the-gallery.webp 175w,
+/TIL/static/f15a3f6bc1f8ad128ddea7349aa96980/a3432/the-gallery.webp 350w,
+/TIL/static/f15a3f6bc1f8ad128ddea7349aa96980/426ac/the-gallery.webp 700w,
+/TIL/static/f15a3f6bc1f8ad128ddea7349aa96980/c139f/the-gallery.webp 1050w,
+/TIL/static/f15a3f6bc1f8ad128ddea7349aa96980/92f8c/the-gallery.webp 1200w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/f15a3f6bc1f8ad128ddea7349aa96980/4edbd/the-gallery.png 175w,
+/TIL/static/f15a3f6bc1f8ad128ddea7349aa96980/13ae7/the-gallery.png 350w,
+/TIL/static/f15a3f6bc1f8ad128ddea7349aa96980/8c557/the-gallery.png 700w,
+/TIL/static/f15a3f6bc1f8ad128ddea7349aa96980/e996b/the-gallery.png 1050w,
+/TIL/static/f15a3f6bc1f8ad128ddea7349aa96980/c1b63/the-gallery.png 1200w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/f15a3f6bc1f8ad128ddea7349aa96980/8c557/the-gallery.png&quot; alt=&quot;더 갤러리 로고&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;p&gt;백엔드 개발자 친구와 함께 &lt;strong&gt;쿠버네티스를 연습하기 위한 토이프로젝트&lt;/strong&gt;를 만들었다. 명색이 쿠버네티스 프로젝트인데 MSA를 안할 수 없었다. 백엔드가 MSA를 적용하느라 바쁜데, 나라고 놀고 있을 수만은 없어 Three.js를 적용했다. 당초 한달만에 마무리하기로한 프로젝트는 어쩌다보니 반년 가까이 이어졌다. 오늘(2024.01.21) 기준으로 접속은 가능한데 아직 자잘한 에러가 많아서 수정 중이다.&lt;/p&gt;
+&lt;h1 id=&quot;2-아키텍쳐-구상도&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-%EC%95%84%ED%82%A4%ED%85%8D%EC%B3%90-%EA%B5%AC%EC%83%81%EB%8F%84&quot; aria-label=&quot;2 아키텍쳐 구상도 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. 아키텍쳐 구상도&lt;/h1&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/fc3bb6d932ce940358bcdd5d266b396f/081ff/architecture.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 70.28571428571428%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAADKUlEQVR42l2U+2scVRTH81+KphINtoKltIiSVqJi1R8EwSbGWhssKCWFoC1KDdY+aKl5x4Zmk2yazD5ndue9j9nd2XncOR+ZbKTFH75wOdzzuffc+z1nDDiDUu8Ck8B4rm7IxNVr1z/aNQfnPl/Lvo5h3DvcuHBUKH7QaU7NqOT5WeB14NQrehN4ZwyOYW9nXf2z2CgsZl5jLmnu/XC4srTgVnZ+el48+JV2ZU4v3l842L6/2C7O302a6zfwqt/hHH1/LPvwGl55DjU8NwaMgD3/MtpNQZsHc0OUtSVibUJjWTDXUfqqxNWnhKXVLGuuCvYKNJ7mEsxlxFgOCb3p/244KWE4RfVOQvCQNLGl09ynUvqHOHXIaAM+/X6NKLbJgiMSewNUFZKygIH4hZCOlQM5DUwQ2hel8UxBiOAjgxqBe8COX+cPvwI4DAcWUdbCefI75uIN8r2Z8gUC8HdDOs3psf3d3ffvLv051TK0j7svHqlBr4rXKrFm1XH9Er3UpRYaoFyK5kP29Cf4XoUgqNEamhhOUeJYh/b+CFgul8+vbWxdUIF9Ka2vKjKHYWyy7dTwWlX8oIAX7NBr6+yZf6G31/HdCq6nIeLhdOuSZB609kbAY9vARA4UY02BC+KSKps0sqi665S9FfqdGl5vjyDSsC2dWk1DiUscN0TynJfAEw++AhRx6Q1sJPPIxCNKDPodg83qbQ6cx+j1GlrpBUFsopn7EiWNlyW/Csz0HOgwCB3mfnPo9h3yA1RqEfZ1BnGFJK3jO2UcWwM8VOYJuQu8wv+AffcijfUIfBWlrfRZyVXDxE/BTxVeOuxb2d/arWzbfKD8biP1e/W0HTmp2dKSKG5ktA966uQNT4DeJbE2FFn+owYqqSPpaI3SAVvCUJMk0ECZo3iqM+yXRbK85MKQ/siHZ0TkNCo5S7syg6vNpo42e7T9+FavsjWPW5rJOtUrrCz93FmY/+Xe/u07DWvzR/zKFXxtlnZpFlf7llb1m+PWO4adQNWoyd8w+7z11c1Hl7cOjffyIaDgNXX1+jQffvrFJ/G9Lx9Eh+fJY3BKYFxGQyXPnfwXX57bqE8W1bEAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/fc3bb6d932ce940358bcdd5d266b396f/c54d4/architecture.webp 175w,
+/TIL/static/fc3bb6d932ce940358bcdd5d266b396f/a3432/architecture.webp 350w,
+/TIL/static/fc3bb6d932ce940358bcdd5d266b396f/426ac/architecture.webp 700w,
+/TIL/static/fc3bb6d932ce940358bcdd5d266b396f/c139f/architecture.webp 1050w,
+/TIL/static/fc3bb6d932ce940358bcdd5d266b396f/7f403/architecture.webp 1400w,
+/TIL/static/fc3bb6d932ce940358bcdd5d266b396f/79080/architecture.webp 2182w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/fc3bb6d932ce940358bcdd5d266b396f/4edbd/architecture.png 175w,
+/TIL/static/fc3bb6d932ce940358bcdd5d266b396f/13ae7/architecture.png 350w,
+/TIL/static/fc3bb6d932ce940358bcdd5d266b396f/8c557/architecture.png 700w,
+/TIL/static/fc3bb6d932ce940358bcdd5d266b396f/e996b/architecture.png 1050w,
+/TIL/static/fc3bb6d932ce940358bcdd5d266b396f/2cefc/architecture.png 1400w,
+/TIL/static/fc3bb6d932ce940358bcdd5d266b396f/081ff/architecture.png 2182w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/fc3bb6d932ce940358bcdd5d266b396f/8c557/architecture.png&quot; alt=&quot;프로젝트 아키텍쳐 구상도&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;p&gt;&lt;mark&gt;AWS Lightsail 인스턴스에 k3s를 직접 설치해서 클러스터를 구성했다&lt;/mark&gt;. 이러한 결정에는 금전적인 요인이 크게 작용했다. EKS의 시간당 사용료가 0.1달러에서 시작했는데, 한달을 서비스하면 최소 72달러(약 97000원)이다. 안그래도 요즘 주머니 사정이 안좋아 유튜브 프리미엄도 해지했는데 말이다. 그래서 우리가 생각해낸 것이 바로 Lightsail과 k3s다! 24시간 운영한다 가졍했을 때 Lightsail은 EC2보다 더 저렴했고, k3s는 쿠버네티스의 경량화 버전으로 메모리 사용량이 적다.&lt;/p&gt;
+&lt;h2 id=&quot;21-lightsail-이란&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-lightsail-%EC%9D%B4%EB%9E%80&quot; aria-label=&quot;21 lightsail 이란 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. Lightsail 이란?&lt;/h2&gt;
+&lt;p&gt;지금까지 항상 EC2를 사용했는데 이번 기회로 Lightsail을 구매했다. EC2는 사용량(시간, 트래픽)에 따라 과금되는 방식이라면, Lightsail은 구독형 서비스처럼 월 요금에 따라 가용자원이 달라진다. 단순 계산 결과만 보면 CPU 2 코어, 메모리 4GB를 24시간 30일 구동했을 때, &lt;mark&gt;EC2는 30달러 / Ligthsail은 20달러이다.&lt;/mark&gt; 거기에 Ligthsail의&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/17bdc655c9bc1bd0841debdf0de8ba70/76823/ec2-pricing.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 43.99999999999999%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABiElEQVR42mVR7Y7bIBD087a/gvokfau+Q08X27nkEhsw32DAU+0mPVUq0or9YGfG4+Hz845xmjBfPjCOI6Zpxvk8YhwnTPOMlBJqrdj3/SsqRa1orf03G5TWUErBWsfhvId1lFs455BzRikFZd/5pqUQI8+11jwn0BgjzwdjDC9SkxohBFb1l5HylPPzTgm5FHjvn8TWwr/eEzDF8P5+xv3x4GLbNvx+e8NjWRg8pgStN1akt43zkjOkVF+KrtcbWxZfoAOxEAOdzI8le3McB/rLI8rJBgLuvTMg7xwHqyXLjLGMMdDn+hC5IEapNHo/uKZlAqfjnGfwJ6BmG+gEH6D0xv4/Aa2EcxLAjpIt1vUDrUUcKOgtotVAVHB2Ra2Be1LekJLhvvcKSt1gzYIDDYN7/IS+fMNhfqBIATWf0DaBwwj0TaBpAVgBexOoSqBrATmfkNYT98NdQF8EzPU7sP+ivyyZhdhKNljXK3qPwJHQW0CrntyF2RbU6v9RuHHfO1J4hzELmYQ/2Gytp2QQrTEAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/17bdc655c9bc1bd0841debdf0de8ba70/c54d4/ec2-pricing.webp 175w,
+/TIL/static/17bdc655c9bc1bd0841debdf0de8ba70/a3432/ec2-pricing.webp 350w,
+/TIL/static/17bdc655c9bc1bd0841debdf0de8ba70/426ac/ec2-pricing.webp 700w,
+/TIL/static/17bdc655c9bc1bd0841debdf0de8ba70/6a022/ec2-pricing.webp 1038w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/17bdc655c9bc1bd0841debdf0de8ba70/4edbd/ec2-pricing.png 175w,
+/TIL/static/17bdc655c9bc1bd0841debdf0de8ba70/13ae7/ec2-pricing.png 350w,
+/TIL/static/17bdc655c9bc1bd0841debdf0de8ba70/8c557/ec2-pricing.png 700w,
+/TIL/static/17bdc655c9bc1bd0841debdf0de8ba70/76823/ec2-pricing.png 1038w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/17bdc655c9bc1bd0841debdf0de8ba70/8c557/ec2-pricing.png&quot; alt=&quot;AWS EC2 가격표&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/f7a804e1ad883c19890c37321c7505c9/0d0e4/lightsail-pricing.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 32%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAABLUlEQVR42n2QO2/kMAyE/f/rtEl+SdpUV1wRIOvsJvBrDb/ktSxLlOQAX2Dtpb2C4ABDzgyZxW3iW1c4c6NWgt48+x6J8be+iVGIMfzD8b+VBTG4dcLLhhOPc44QAiIO53aCnHG3R2R5JvgGa++cDwFrLd57RITN2rSXHSJVXbPZQ8DS9z0hRpblRteN7PJK332hpg92/5e2HVjXNQk1dY14j14012uTTLKDOJyC92noEP1NKOKJ/gMnknCQd5yTNBdSwvs19707zoah53Q6odRM13Wcz2fMulKWBUXRoOcXLpectvnDbXolz78Yx4Gh78lPOfM8U1UVl8tnSp5prSmKgqNP40hZVhhjaNsrbTtiljfqzweG6xOrrpLJrBRKKcqiZFmW9KbjbcZs/ADgjsd2Ns74QwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/f7a804e1ad883c19890c37321c7505c9/c54d4/lightsail-pricing.webp 175w,
+/TIL/static/f7a804e1ad883c19890c37321c7505c9/a3432/lightsail-pricing.webp 350w,
+/TIL/static/f7a804e1ad883c19890c37321c7505c9/426ac/lightsail-pricing.webp 700w,
+/TIL/static/f7a804e1ad883c19890c37321c7505c9/c139f/lightsail-pricing.webp 1050w,
+/TIL/static/f7a804e1ad883c19890c37321c7505c9/fc6cc/lightsail-pricing.webp 1230w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/f7a804e1ad883c19890c37321c7505c9/4edbd/lightsail-pricing.png 175w,
+/TIL/static/f7a804e1ad883c19890c37321c7505c9/13ae7/lightsail-pricing.png 350w,
+/TIL/static/f7a804e1ad883c19890c37321c7505c9/8c557/lightsail-pricing.png 700w,
+/TIL/static/f7a804e1ad883c19890c37321c7505c9/e996b/lightsail-pricing.png 1050w,
+/TIL/static/f7a804e1ad883c19890c37321c7505c9/0d0e4/lightsail-pricing.png 1230w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/f7a804e1ad883c19890c37321c7505c9/8c557/lightsail-pricing.png&quot; alt=&quot;AWS 라이트세일 가격표&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;p&gt;물론 모든 것이 다 좋을 수는 없다. Ligthsail은 CPU 사용에 대해서만큼은 아주 엄격하다. Lightsail은 기본적으로 CPU 사용량을 Burst Zone과 Sustainable Zone을 나눈다. CPU 사용량에 높아져 Burst zone에 들어서게 되면 나에게 할당된 CPU 크레딧을 줄어들기 시작한다. 그리고 CPU 크레딧이 0까지 모두 소모하게 되면 인스턴스가 멈춘다😱. 반대로 CPU 사용량이 Sustainable Zone에 있을 때는 소모된 CPU 크레딧이 채워진다.&lt;/p&gt;
+&lt;p&gt;따라서 Lightsail은 CPU 사용량이 많은 서비스에는 적합하지 않다고 한다. 우리도 한번 Burst Zone에 계속 머무르면서 인스턴스가 한 번 멈췄다. Kafka같은 프로그램이 무한루프에 빠진 것인지, 아니면 외부 공격이 있었는지 모르겠다. 일단 다시 재가동했을 때 Sustainable Zone에 있어서 한 번 더 믿어보기로 했다. 또 다시 인스턴스가 멈추면 EC2로 넘어갈 예정이다.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/3495c5d28e123e00a981a2df66169464/4b446/lightsail-cpu-burst.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 63.42857142857142%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABJ0AAASdAHeZh94AAABvklEQVR42p1S246bMBTk//+n732pVLW72iSkuwTIpU1zww6+AMbGdqayw1ZZrVqlfRjNMLbH5/iQEErBhACXEjUXEUEzISGaBtoY9Frfha7rkDDGMJgeF6cjvNW42KsODGd+861+5/kB3jkkIVU3NZwKYBi6KwfYUQe2ozfceJFHz/cczg5I6rqGCoG9iLCKv9P3eF7La2CnFHTH4YKhBWy4aUSs6ob/5nktxgoZgxIVnNzByT1sS8eb/y3wYiQOvAtvqKAlgROvgeS/AkOFddtfp6waNrYs/9By+Gb3tRyn3NbXhX6cYjwcJljfMB+nWr9Ze/W85rAhkLEauhPwfA/fnuFNB28aeNPGioN2uoELk4xavuW4r8FlaOGsRaI6hdOpxGr2AZv8I3b7OWhVgFY5KClBaQl63oBsvoB8fwClK1BSgJJl3EN2KcgpBzsvsa4YEqMNTrsVBN3guH3BYbuIP+1hs0AvCZrzDmS/hm0Iqh8vaPkJih9x/FnGdul2AXnexzdszYAkyzLkRYlyuY5Y5EGvIufFEkW5xGSaYjKbI53Pkc2ekKUTzJ8eUXxLMZtO8enzVzynM+TTR/wC0jHitIm4qQAAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/3495c5d28e123e00a981a2df66169464/c54d4/lightsail-cpu-burst.webp 175w,
+/TIL/static/3495c5d28e123e00a981a2df66169464/a3432/lightsail-cpu-burst.webp 350w,
+/TIL/static/3495c5d28e123e00a981a2df66169464/426ac/lightsail-cpu-burst.webp 700w,
+/TIL/static/3495c5d28e123e00a981a2df66169464/d7666/lightsail-cpu-burst.webp 877w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/3495c5d28e123e00a981a2df66169464/4edbd/lightsail-cpu-burst.png 175w,
+/TIL/static/3495c5d28e123e00a981a2df66169464/13ae7/lightsail-cpu-burst.png 350w,
+/TIL/static/3495c5d28e123e00a981a2df66169464/8c557/lightsail-cpu-burst.png 700w,
+/TIL/static/3495c5d28e123e00a981a2df66169464/4b446/lightsail-cpu-burst.png 877w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/3495c5d28e123e00a981a2df66169464/8c557/lightsail-cpu-burst.png&quot; alt=&quot;라이트세일 CPU 사용량 그래프&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;h2 id=&quot;22-k3s-이란&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-k3s-%EC%9D%B4%EB%9E%80&quot; aria-label=&quot;22 k3s 이란 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. k3s 이란?&lt;/h2&gt;
+&lt;p&gt;k3s는 쉽게 말해 쿠버네티스(k8s)의 경량화 버전이다. 기존 쿠버네티스보다 절반밖에 메모리를 사용하지 않으며, 가볍고 ARM 아키텍처를 지원하는 탓에 IoT 디바이스에도 적합하다고 한다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;CPU 최소&lt;/th&gt;
+&lt;th&gt;CPU 권장&lt;/th&gt;
+&lt;th&gt;RAM 최소&lt;/th&gt;
+&lt;th&gt;RAM 권장&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;k3s&lt;/td&gt;
+&lt;td&gt;1 코어&lt;/td&gt;
+&lt;td&gt;2 코어&lt;/td&gt;
+&lt;td&gt;512MB&lt;/td&gt;
+&lt;td&gt;1GB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;k8s&lt;/td&gt;
+&lt;td&gt;2 코어&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;2GB&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;기본적인 아키텍쳐는 쿠버네티스와 동일하다. 쿠버네티스와 똑같이 마스터 노드와 워커 노드가 있다. k3s에서는 이것을 서버 노드와 에이전트 노드라고 부른다. 하지만 우리는 어차피 인스턴스가 하나밖에 없으므로 마스터 노드 하나로 단일 클러스터를 구성했다. 그 외 쿠버네티스의 일부 기능을 포함하지 않는다고는 하는데, 이제 막 입문하는 수준에서는 차이를 경험하지 못했다.&lt;/p&gt;
+&lt;img src=&quot;./assets/k3s-architecture.svg&quot; alt=&quot;k3s 아키텍쳐&quot;&gt;
+&lt;p&gt;재밌는 것은 가볍기 때문에 기존 쿠버네티스의 일부 기능을 포함하지 않지만, 반대로 일부 편의 기능은 이미 구현되어 있다. 대표적으로 인그레스가 기본 탑재되어 있다. 이걸 몰랐던 우리는 엄청난 삽질과 좌절의 시간을 거쳐야만 했다. k3s를 사용하면 쿠버네티스가 아닌 &lt;a href=&quot;https://docs.k3s.io/&quot;&gt;k3s 공식문서&lt;/a&gt;를 보도록 하자...&lt;/p&gt;
+&lt;h1 id=&quot;3-사전-준비&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-%EC%82%AC%EC%A0%84-%EC%A4%80%EB%B9%84&quot; aria-label=&quot;3 사전 준비 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. 사전 준비&lt;/h1&gt;
+&lt;h2 id=&quot;31-lightsail-구매&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#31-lightsail-%EA%B5%AC%EB%A7%A4&quot; aria-label=&quot;31 lightsail 구매 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1. Lightsail 구매&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://inpa.tistory.com/entry/AWS-%F0%9F%93%9A-Amazon-Lightsail-%EC%82%AC%EC%9A%A9%EB%B2%95-%EC%9B%B9%EC%84%9C%EB%B9%84%EC%8A%A4%EB%A5%BC-%EB%9A%9D%EB%94%B1-%EA%B5%AC%EC%B6%95%ED%95%98%EC%9E%90&quot;&gt;Inpa Dev님의 &quot;Lightsail 사용법 총정리&quot;&lt;/a&gt; 문서에 너무나도 잘 정리되어 있다. 우리는 20달러 플랜, Ubuntu 20.04, 추가구성 없이 구매했다.&lt;/p&gt;
+&lt;h2 id=&quot;32-k3s-설치&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#32-k3s-%EC%84%A4%EC%B9%98&quot; aria-label=&quot;32 k3s 설치 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2. k3s 설치&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;최신 내용은 꼭 &lt;a href=&quot;https://docs.k3s.io/quick-start&quot;&gt;k3s 공식문서&lt;/a&gt;를 확인하기 바람&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;다음 명령어로 손쉽게 k3s를 설치할 수 있다. 기본적으로 마스터노드 하나로 이루어진 &lt;strong&gt;단일 노드 클러스터&lt;/strong&gt;를 만든다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;curl -sfL https://get.k3s.io | sh -
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;만약 에이전트 노드를 구성하고자 하면 아래 명령어를 실행한다. (에이전트 노드이기 때문에 마스터 노드가 이미 구성되어 있어야 한다.) &lt;code&gt;K3S_URL&lt;/code&gt;은 마스터 노드의 URL을 의미하며, &lt;code&gt;K3S_TOKEN&lt;/code&gt;은 일종의 인증토큰으로 마스터 서버의 &lt;code&gt;/var/lib/rancher/k3s/server/node-token&lt;/code&gt; 경로에서 확인할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;# 예시코드
+curl -sfL https://get.k3s.io | K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetoken sh -
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;4-참고자료&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C&quot; aria-label=&quot;4 참고자료 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. 참고자료&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.k3s.io/&quot;&gt;k3s 공식문서&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://inpa.tistory.com/entry/AWS-%F0%9F%93%9A-Amazon-Lightsail-%EC%82%AC%EC%9A%A9%EB%B2%95-%EC%9B%B9%EC%84%9C%EB%B9%84%EC%8A%A4%EB%A5%BC-%EB%9A%9D%EB%94%B1-%EA%B5%AC%EC%B6%95%ED%95%98%EC%9E%90&quot;&gt;Inpa Dev : &quot;Lightsail 사용법 총정리&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[React에서 formData 활용하기]]></title><description><![CDATA[1. useState란 무엇인가 리액트의 useState는 대표적으로 2가지 기능을 제공한다. 1. 컴포넌트가 리렌더링 되더라도 값을 유지하고,…]]></description><link>https://byongho96.github.io/TIL/posts/Frontend/React/react_form_data/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Frontend/React/react_form_data/</guid><pubDate>Tue, 16 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-usestate란-무엇인가&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-usestate%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80&quot; aria-label=&quot;1 usestate란 무엇인가 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. useState란 무엇인가&lt;/h1&gt;
 &lt;p&gt;리액트의 useState는 대표적으로 2가지 기능을 제공한다. &lt;mark&gt;1. 컴포넌트가 리렌더링 되더라도 값을 유지하고&lt;/mark&gt;, &lt;mark&gt;2. 값이 업데이트 되면 컴포넌트를 리렌더링한다&lt;/mark&gt;. 프론트의 데이터 변화는 대부분 화면 업데이트를 요구하기 때문에, useState는 가장 유용한 리액트 훅이 되었다. 하지만 같은 이유로 가장 &lt;strong&gt;남용되는 훅&lt;/strong&gt;이기도 하다.&lt;/p&gt;
 &lt;p&gt;useState 두번째 기능, 컴포넌트를 리렌더링하는 것은 결국 자원 소모를 말한다. 따라서 useState 불필요하게 사용하지 않도록 주의할 필요가 있다. useRef는 useState의 가장 대표적인 대체재이다. &lt;mark&gt;useRef로 생성된 객체의 current 속성은 컴포넌트가 리렌더링 되어도 값을 유지하고, 값이 업데이트 되어도 컴포넌트를 리렌더링 하지 않는다.&lt;/mark&gt; 즉 useState의 첫번째 기능만을 가지는 셈이다.&lt;/p&gt;
 &lt;p&gt;아래 예시코드를 통해 useState와 useRef의 쓰임새를 더 명확히 구분할 수 있다. &lt;code&gt;count&lt;/code&gt;는 현재 카운트를 화면에 보여준다. 따라서 화면 렌더링과 관련된 변수이기 때문에 useState로 선언해야 한다. 반면 &lt;code&gt;isStop&lt;/code&gt;은 화면과 관계없이 내부 로직에서 쓰이는 변수이면서, 컴포넌트가 리렌더링되더라도 값이 초기화되서는 안된다. 따라서 useRef로 선언해야한다.&lt;/p&gt;
@@ -35742,1209 +35888,4 @@ In the case of combinatorial characters, the results are reflected only when one
     },
   })
 &amp;#x3C;/script&gt;
-&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[01. Python Datatypes & Operators]]></title><description><![CDATA[1. Code Style 2. Variables 2.1. Naming Rules 2.2. Type Hint (after python 3.5) 3. Non-Container Data Types 3.1. Boolean Type 3.2. Numeric…]]></description><link>https://byongho96.github.io/TIL/posts/Language/Python/01_Python_Basics_Datatypes_Operators/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Language/Python/01_Python_Basics_Datatypes_Operators/</guid><pubDate>Tue, 08 Nov 2022 00:00:00 GMT</pubDate><content:encoded>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#1-code-style&quot;&gt;1. Code Style&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#2-variables&quot;&gt;2. Variables&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#21-naming-rules&quot;&gt;2.1. Naming Rules&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#22-type-hint-after-python-35&quot;&gt;2.2. Type Hint (after python 3.5)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#3-non-container-data-types&quot;&gt;3. Non-Container Data Types&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#31-boolean-type&quot;&gt;3.1. Boolean Type&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#32-numeric-type&quot;&gt;3.2. Numeric Type&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#33-string-type&quot;&gt;3.3. String Type&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#34-none&quot;&gt;3.4. None&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#4-container-data-types&quot;&gt;4. Container Data Types&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#41-list-type&quot;&gt;4.1. List Type&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#42-tuple-type&quot;&gt;4.2. Tuple Type&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#43-range-type&quot;&gt;4.3. Range Type&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#44-dictionary-type&quot;&gt;4.4. Dictionary Type&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#45-set-type&quot;&gt;4.5. Set Type&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#45-typecasting-table&quot;&gt;4.5. Typecasting table&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#46-copy-mutable-data&quot;&gt;4.6. Copy Mutable Data&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#5-operators&quot;&gt;5. Operators&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#51-priority-of-operators&quot;&gt;5.1. Priority of operators&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#52-arithmetic-operators&quot;&gt;5.2. Arithmetic Operators&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#53-comparison-operators&quot;&gt;5.3. Comparison Operators&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#54-logician-operators&quot;&gt;5.4. Logician Operators&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#541-short-circuit-evaluation&quot;&gt;5.4.1. Short Circuit Evaluation&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#55-membership-operators&quot;&gt;5.5. Membership Operators&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#56-bit-operators&quot;&gt;5.6. Bit Operators&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;1-code-style&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-code-style&quot; aria-label=&quot;1 code style permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Code Style&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0008/&quot;&gt;PEP8&lt;/a&gt;, The style guide provided by Python&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id=&quot;2-variables&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-variables&quot; aria-label=&quot;2 variables permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Variables&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;The name of data&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Developers can handle data without memorizing memory addresses.&lt;/li&gt;
-&lt;li&gt;Developers can intuitively understand the meaning of the data.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;21-naming-rules&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-naming-rules&quot; aria-label=&quot;21 naming rules permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. Naming Rules&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;a combination of English, numbers, and &apos;_&apos;&lt;/li&gt;
-&lt;li&gt;can&apos;t start with numbers&lt;/li&gt;
-&lt;li&gt;can&apos;t use keywords or reserved words&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;22-type-hint-after-python-35&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-type-hint-after-python-35&quot; aria-label=&quot;22 type hint after python 35 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. Type Hint (after python 3.5)&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Ex. &lt;code&gt;count_point: int = 10&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;3-non-container-data-types&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-non-container-data-types&quot; aria-label=&quot;3 non container data types permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. Non-Container Data Types&lt;/h1&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/5376f8e056aeb93a358e6c5aa0a478ad/be796/python-datatype.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 46.28571428571429%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAJABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAgABBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAe8WDZR//8QAFxAAAwEAAAAAAAAAAAAAAAAAAAEQMf/aAAgBAQABBQIVWn//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAWEAEBAQAAAAAAAAAAAAAAAAABEAD/2gAIAQEABj8CzWf/xAAbEAACAQUAAAAAAAAAAAAAAAAAAREgITFRsf/aAAgBAQABPyG+jKHRNtUT/9oADAMBAAIAAwAAABDzz//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABwQAQEAAgIDAAAAAAAAAAAAAAERABAhQaGx8f/aAAgBAQABPxC20B03JJgbzK+ZYInPZryz0a//2Q==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/5376f8e056aeb93a358e6c5aa0a478ad/c54d4/python-datatype.webp 175w,
-/TIL/static/5376f8e056aeb93a358e6c5aa0a478ad/a3432/python-datatype.webp 350w,
-/TIL/static/5376f8e056aeb93a358e6c5aa0a478ad/426ac/python-datatype.webp 700w,
-/TIL/static/5376f8e056aeb93a358e6c5aa0a478ad/8369b/python-datatype.webp 780w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/5376f8e056aeb93a358e6c5aa0a478ad/e52aa/python-datatype.jpg 175w,
-/TIL/static/5376f8e056aeb93a358e6c5aa0a478ad/70ebb/python-datatype.jpg 350w,
-/TIL/static/5376f8e056aeb93a358e6c5aa0a478ad/29d31/python-datatype.jpg 700w,
-/TIL/static/5376f8e056aeb93a358e6c5aa0a478ad/be796/python-datatype.jpg 780w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/5376f8e056aeb93a358e6c5aa0a478ad/29d31/python-datatype.jpg&quot; alt=&quot;non-container-datatype&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-&lt;h2 id=&quot;31-boolean-type&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#31-boolean-type&quot; aria-label=&quot;31 boolean type permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1. Boolean Type&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Basics&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;True&lt;/code&gt; &lt;code&gt;False&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;bool(data)&lt;/code&gt;&lt;br&gt;
-Return &lt;code&gt;True&lt;/code&gt; or &lt;code&gt;False&lt;/code&gt; based on the data&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;not data&lt;/code&gt;&lt;br&gt;
-The opposite of the boolean result of the data&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Characteristics&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;immutable&lt;/li&gt;
-&lt;li&gt;non-iterable&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Falsy value&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;0, 0.0, (), [], {}, &apos;&apos;, None&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Typecasting&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;int(True) == 1&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;int(false) == 0&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;32-numeric-type&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#32-numeric-type&quot; aria-label=&quot;32 numeric type permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2. Numeric Type&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Characteristics&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;immutable&lt;/li&gt;
-&lt;li&gt;non-iterable&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;integer&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Decimal numbers are the default expression
-&lt;ul&gt;
-&lt;li&gt;binary: &lt;code&gt;42 == 0b101010&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Octal: &lt;code&gt;42 = 0o52&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Hexa: &lt;code&gt;42 == 0x2a&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Typecasting
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;int(&apos;3&apos;) == 3
-int(&apos;3.5&apos;) == error
-int(3.5) == 3
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;float&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Expressions
-&lt;ul&gt;
-&lt;li&gt;3.14&lt;/li&gt;
-&lt;li&gt;314e-2&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ul&gt;
-&lt;li&gt;Python uses a floating point technique&lt;br&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/4df4b0b8d06ed74e87ed90ea3ed7a393/4658e/python-float.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 52%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAMCBf/EABYBAQEBAAAAAAAAAAAAAAAAAAIAAf/aAAwDAQACEAMQAAAB7M1TmViv/8QAGBABAAMBAAAAAAAAAAAAAAAAAQAQEUP/2gAIAQEAAQUCx1YTrX//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAVEQEBAAAAAAAAAAAAAAAAAAAREP/aAAgBAgEBPwFZ/8QAFRABAQAAAAAAAAAAAAAAAAAAEAH/2gAIAQEABj8Ca//EABsQAAIBBQAAAAAAAAAAAAAAAAERABAxQYHB/9oACAEBAAE/IbrsM0zuCCMxlDr/AP/aAAwDAQACAAMAAAAQm9//xAAVEQEBAAAAAAAAAAAAAAAAAAAAIf/aAAgBAwEBPxBX/8QAGBEAAgMAAAAAAAAAAAAAAAAAAAERMVH/2gAIAQIBAT8QVhL0/8QAGxAAAgIDAQAAAAAAAAAAAAAAAREAIRAxQYH/2gAIAQEAAT8Q7HsAGSXoo2gI+mC6FdODYx//2Q==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/4df4b0b8d06ed74e87ed90ea3ed7a393/c54d4/python-float.webp 175w,
-/TIL/static/4df4b0b8d06ed74e87ed90ea3ed7a393/a3432/python-float.webp 350w,
-/TIL/static/4df4b0b8d06ed74e87ed90ea3ed7a393/426ac/python-float.webp 700w,
-/TIL/static/4df4b0b8d06ed74e87ed90ea3ed7a393/468da/python-float.webp 722w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/4df4b0b8d06ed74e87ed90ea3ed7a393/e52aa/python-float.jpg 175w,
-/TIL/static/4df4b0b8d06ed74e87ed90ea3ed7a393/70ebb/python-float.jpg 350w,
-/TIL/static/4df4b0b8d06ed74e87ed90ea3ed7a393/29d31/python-float.jpg 700w,
-/TIL/static/4df4b0b8d06ed74e87ed90ea3ed7a393/4658e/python-float.jpg 722w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/4df4b0b8d06ed74e87ed90ea3ed7a393/29d31/python-float.jpg&quot; alt=&quot;floating-point&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Floating point error&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# use round()
-round(3.141592, 2) == 3.14
-
-# use sys.float_info.epsilon
-import sys
-abs(a - b) &amp;#x3C;= sys.float_info.epsilon
-
-# use math.isclose
-import math
-math.isclose(a, b)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Typecasting&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;float(&apos;3.5&apos;) == 3.5
-int(&apos;3&apos;) == 3.0
-int(3) == 3.0
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;33-string-type&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#33-string-type&quot; aria-label=&quot;33 string type permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.3. String Type&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Basics&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;Expressed with &apos;&apos; or &quot;&quot;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;multiple lines&lt;/strong&gt; string data is expressed with triple quotes&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Characteristics&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;immutable
-&lt;ul&gt;
-&lt;li&gt;error: &lt;code&gt;(a = &apos;hello&apos;);  a[0]=&apos;b&apos;&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Iterable
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;for char in a:&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Escape sequences&lt;/strong&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&quot;center&quot;&gt;reserved key&lt;/th&gt;
-&lt;th align=&quot;center&quot;&gt;meaning&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&quot;center&quot;&gt;\n&lt;/td&gt;
-&lt;td align=&quot;center&quot;&gt;Enter&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&quot;center&quot;&gt;\t&lt;/td&gt;
-&lt;td align=&quot;center&quot;&gt;tab&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&quot;center&quot;&gt;\r&lt;/td&gt;
-&lt;td align=&quot;center&quot;&gt;carriage return&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&quot;center&quot;&gt;\0&lt;/td&gt;
-&lt;td align=&quot;center&quot;&gt;Null&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&quot;center&quot;&gt;\\&lt;/td&gt;
-&lt;td align=&quot;center&quot;&gt;|&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&quot;center&quot;&gt;\&apos;&lt;/td&gt;
-&lt;td align=&quot;center&quot;&gt;&apos;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&quot;center&quot;&gt;\&quot;&lt;/td&gt;
-&lt;td align=&quot;center&quot;&gt;&quot;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td align=&quot;center&quot;&gt;\n&lt;/td&gt;
-&lt;td align=&quot;center&quot;&gt;Enter&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Typecasting&lt;/strong&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;s = &apos;string&apos;
-print(list(s))  # [&apos;s&apos;, &apos;t&apos;, &apos;r&apos;, &apos;i&apos;, &apos;n&apos;, &apos;g&apos;]
-print(tuple(s)) # (&apos;s&apos;, &apos;t&apos;, &apos;r&apos;, &apos;i&apos;, &apos;n&apos;, &apos;g&apos;)
-print(dict(s))  # error
-print(set(s))   # {&apos;r&apos;, &apos;i&apos;, &apos;n&apos;, &apos;s&apos;, &apos;g&apos;, &apos;t&apos;}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Methods&lt;/strong&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Method&lt;/th&gt;
-&lt;th&gt;description&lt;/th&gt;
-&lt;th&gt;output&lt;/th&gt;
-&lt;th&gt;change(immuatble)&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;.upper()&lt;/td&gt;
-&lt;td&gt;change to upper letter&lt;/td&gt;
-&lt;td&gt;str&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.lower()&lt;/td&gt;
-&lt;td&gt;change to upper letter&lt;/td&gt;
-&lt;td&gt;str&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.swapcase()&lt;/td&gt;
-&lt;td&gt;swap upper-&gt;lower, lower-&gt;upper&lt;/td&gt;
-&lt;td&gt;str&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.title()&lt;/td&gt;
-&lt;td&gt;change the first letter to upper&lt;/td&gt;
-&lt;td&gt;str&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.count(&apos;s&apos;, start, end)&lt;/td&gt;
-&lt;td&gt;count &apos;s&apos; between srint[start:end]&lt;/td&gt;
-&lt;td&gt;int&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.find(&apos;s&apos;, start, end)&lt;/td&gt;
-&lt;td&gt;find index of &apos;s&apos; from the left&lt;/br&gt;return -1 when doesn&apos;t exist&lt;/td&gt;
-&lt;td&gt;int&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.rfind(&apos;s&apos;, start, end)&lt;/td&gt;
-&lt;td&gt;find index of &apos;s&apos; from the right&lt;/br&gt;return -1 when doesn&apos;t exist&lt;/td&gt;
-&lt;td&gt;int&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.index(&apos;s&apos;, start, end)&lt;/td&gt;
-&lt;td&gt;find index of &apos;s&apos; from the left&lt;/br&gt;error when doesn&apos;t exist&lt;/td&gt;
-&lt;td&gt;int&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.rindex(&apos;s&apos;, start, end)&lt;/td&gt;
-&lt;td&gt;find index of &apos;s&apos; from the right&lt;/br&gt;error when doesn&apos;t exist&lt;/td&gt;
-&lt;td&gt;int&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.startswith(&apos;s&apos;, start, end)&lt;/td&gt;
-&lt;td&gt;whether the string starts with&lt;/td&gt;
-&lt;td&gt;Bool&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.endsswith(&apos;s&apos;, start, end)&lt;/td&gt;
-&lt;td&gt;whether the string endss with&lt;/td&gt;
-&lt;td&gt;Bool&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.strip()&lt;/td&gt;
-&lt;td&gt;remove space bf/af of the string&lt;/td&gt;
-&lt;td&gt;str&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.strip(&apos;s&apos;)&lt;/td&gt;
-&lt;td&gt;remove the chr bf/af of the string&lt;/td&gt;
-&lt;td&gt;str&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.rstrip()&lt;/td&gt;
-&lt;td&gt;remove space af of the string&lt;/td&gt;
-&lt;td&gt;str&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.lstrip()&lt;/td&gt;
-&lt;td&gt;remove space bf of the string&lt;/td&gt;
-&lt;td&gt;str&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.replace(&apos;s1&apos;,&apos;s2&apos;,[count])&lt;/td&gt;
-&lt;td&gt;replace &apos;s1&apos; to &apos;s2&apos; in the str object [count]times&lt;/td&gt;
-&lt;td&gt;str&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.split(&apos;s&apos;)&lt;/td&gt;
-&lt;td&gt;divide string by &apos;s&apos;&lt;/td&gt;
-&lt;td&gt;list&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.splitlines()&lt;/td&gt;
-&lt;td&gt;divide string by line&lt;/td&gt;
-&lt;td&gt;list&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.join(iterbale)&lt;/td&gt;
-&lt;td&gt;combine iterbale object with string&lt;/td&gt;
-&lt;td&gt;str&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.center(i, &apos;c&apos;)&lt;/td&gt;
-&lt;td&gt;center aligned with i-width filled with &apos;c&apos;&lt;/td&gt;
-&lt;td&gt;str&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.ljust(i, &apos;c&apos;)&lt;/td&gt;
-&lt;td&gt;left aligned with i-width filled with &apos;c&apos;&lt;/td&gt;
-&lt;td&gt;str&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.rjust(i, &apos;c&apos;)&lt;/td&gt;
-&lt;td&gt;right aligned with i-width filled with &apos;c&apos;&lt;/td&gt;
-&lt;td&gt;str&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.zfill(i)&lt;/td&gt;
-&lt;td&gt;right aligned with i-width filled with &apos;0&apos;&lt;/td&gt;
-&lt;td&gt;str&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;34-none&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#34-none&quot; aria-label=&quot;34 none permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.4. None&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Basic&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;Means that there is no value&lt;/li&gt;
-&lt;li&gt;use &lt;code&gt;is&lt;/code&gt; instead of &lt;code&gt;==&lt;/code&gt; when compared to other data&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;4-container-data-types&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-container-data-types&quot; aria-label=&quot;4 container data types permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. Container Data Types&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;Can contain multiple different data types&lt;/strong&gt;&lt;/p&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/55f19c66d76590a4c54b416d3995c1da/332df/python-container.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 42.285714285714285%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAIABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAd6EUV//xAAXEAEAAwAAAAAAAAAAAAAAAAAAARFB/9oACAEBAAEFAm3D/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFhAAAwAAAAAAAAAAAAAAAAAAABAx/9oACAEBAAY/AlT/xAAWEAADAAAAAAAAAAAAAAAAAAAAEGH/2gAIAQEAAT8hSQ//2gAMAwEAAgADAAAAEPgP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQIBAT8QZ//EABsQAAICAwEAAAAAAAAAAAAAAAERACExQXGR/9oACAEBAAE/EC0XXMykL1uAuPSf/9k=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/55f19c66d76590a4c54b416d3995c1da/c54d4/python-container.webp 175w,
-/TIL/static/55f19c66d76590a4c54b416d3995c1da/a3432/python-container.webp 350w,
-/TIL/static/55f19c66d76590a4c54b416d3995c1da/426ac/python-container.webp 700w,
-/TIL/static/55f19c66d76590a4c54b416d3995c1da/0a92e/python-container.webp 1002w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/55f19c66d76590a4c54b416d3995c1da/e52aa/python-container.jpg 175w,
-/TIL/static/55f19c66d76590a4c54b416d3995c1da/70ebb/python-container.jpg 350w,
-/TIL/static/55f19c66d76590a4c54b416d3995c1da/29d31/python-container.jpg 700w,
-/TIL/static/55f19c66d76590a4c54b416d3995c1da/332df/python-container.jpg 1002w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/55f19c66d76590a4c54b416d3995c1da/29d31/python-container.jpg&quot; alt=&quot;classificaton of containers&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Sequence&lt;/strong&gt;&lt;br&gt;
-data is ordered == can use index&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Non-Sequence&lt;/strong&gt;&lt;br&gt;
-data isn&apos;t ordered == can&apos;t use index&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;41-list-type&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#41-list-type&quot; aria-label=&quot;41 list type permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.1. List Type&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Basics&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;produce
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;my_list = []
-another_list = list()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Characteristics&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Ordered
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;my_list[0]&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Mutable
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;my_list = [1, 2, 3];  list1[0]=&apos;a&apos;&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Iterable
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;for _ in my_list:&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Typecasting&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;l = [1, 2, 3, 4]
-print(str(l))   # [1, 2, 3, 4]
-print(tuple(l)) # (1, 2, 3, 4)
-print(dict(l))  # error
-print(set(l))   # {1, 2, 3, 4}
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Operators&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;[2, 3] + [4, 5, 6] == [2, 3, 4, 5, 60]
-[&apos;Python&apos;] * 3 == [&apos;Python&apos;, &apos;Python&apos;, &apos;Python&apos;]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Methods&lt;/strong&gt;&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Method&lt;/th&gt;
-&lt;th&gt;description&lt;/th&gt;
-&lt;th&gt;output&lt;/th&gt;
-&lt;th&gt;change&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;.append(object)&lt;/td&gt;
-&lt;td&gt;add object&lt;/td&gt;
-&lt;td&gt;None&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.extend(iterbale)&lt;/td&gt;
-&lt;td&gt;add elements of an iterable&lt;/br&gt;items in the outmost iterbale obj&lt;/td&gt;
-&lt;td&gt;None&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.clear()&lt;/td&gt;
-&lt;td&gt;clear the list&lt;/td&gt;
-&lt;td&gt;None&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.copy()&lt;/td&gt;
-&lt;td&gt;return the shallow copy&lt;/td&gt;
-&lt;td&gt;list&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.count()&lt;/td&gt;
-&lt;td&gt;number of elements&lt;/td&gt;
-&lt;td&gt;int&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.index(obj, start, end)&lt;/td&gt;
-&lt;td&gt;find index of &apos;s&apos; from the left&lt;/br&gt;error when doesn&apos;t exist&lt;/td&gt;
-&lt;td&gt;int&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.insert(i, obj)&lt;/td&gt;
-&lt;td&gt;insert obj in l[i];&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;if [i]is bigger than length &gt;&gt; insert at the last&lt;/td&gt;
-&lt;td&gt;None&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.pop(i)&lt;/td&gt;
-&lt;td&gt;pop l[i]&lt;/td&gt;
-&lt;td&gt;obj&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.remove(obj)&lt;/td&gt;
-&lt;td&gt;remove obj in l&lt;/td&gt;
-&lt;td&gt;None&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.reverse()&lt;/td&gt;
-&lt;td&gt;reverse the list&lt;/td&gt;
-&lt;td&gt;None&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.sort(reverse=False)&lt;/td&gt;
-&lt;td&gt;sor the list&lt;/td&gt;
-&lt;td&gt;None&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;42-tuple-type&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#42-tuple-type&quot; aria-label=&quot;42 tuple type permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.2. Tuple Type&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Basics&lt;/strong&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;my_tuple = ()
-my_tuple_2 = 1,       # (1,)
-my_tuple_3 = &apos;hello&apos;, # (&apos;hello&apos;,)
-my_tuple_3 = 1, 2, 3  # (1, 2, 3)
-another_list = tuple()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Characteristics&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;Ordered
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;my_tuple[0]&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Immutable
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;my_tuple = (1, 2, 3);  my_tuple[0]=&apos;a&apos;; # error&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;day_name = (&apos;월&apos;, &apos;화&apos;, &apos;수&apos;)
-day_name += True, False
-&gt;&gt;&gt; (&apos;월&apos;, &apos;화&apos;, &apos;수&apos;, True, False) # original day_name is deleted
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Iterable
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;for _ in my_tuple:&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Typecasting&lt;/strong&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;t = (1, 2, 3, 4)
-print(str(t))   # (1, 2, 3, 4
-print(list(t))  # [1, 2, 3, 4]
-print(dict(t))  # error
-print(set(t))   # {1, 2, 3, 4}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Operators&lt;/strong&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;(2, 3) + (4, 5, 6) = (2, 3, 4, 5, 60)
-(&apos;Python&apos;) * 3 = (&apos;Python&apos;, &apos;Python&apos;, &apos;Python&apos;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Methods&lt;/strong&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Method&lt;/th&gt;
-&lt;th&gt;description&lt;/th&gt;
-&lt;th&gt;output&lt;/th&gt;
-&lt;th&gt;change&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;.count()&lt;/td&gt;
-&lt;td&gt;number of elements&lt;/td&gt;
-&lt;td&gt;int&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.index(obj, start, end)&lt;/td&gt;
-&lt;td&gt;find index of &apos;s&apos; from the left&lt;/br&gt;error when doesn&apos;t exist&lt;/td&gt;
-&lt;td&gt;int&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;43-range-type&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#43-range-type&quot; aria-label=&quot;43 range type permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.3. Range Type&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Basics&lt;/strong&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;range(n)        # 0 ~ (n-1) : +1
-range(n, m)     # n ~ (m-1) : +1
-range(n, m, s)  # n ~ (m-1) : +s
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Characteristics&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;Ordered
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;my_range[0]&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Immutable
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;my_range = range(3);  my_range[0]=&apos;a&apos;; # error&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Iterable
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;for _ in range(5):&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Typecasting&lt;/strong&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;r = (1, 5)
-print(str(t))   # (1, 2, 3, 4)
-print(list(t))  # [1, 2, 3, 4]
-print(tuple(t)) # (1, 2, 3, 4)
-print(dict(t))  # error
-print(set(t))   # {1, 2, 3, 4}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;44-dictionary-type&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#44-dictionary-type&quot; aria-label=&quot;44 dictionary type permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.4. Dictionary Type&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Basics&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;key&lt;/strong&gt;: immutable data&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;value&lt;/strong&gt;: any data&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;my_dict = {}
-another_list = dict()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Characteristics&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Mutable
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;my_dict = {&apos;Jerry&apos;:45};  my_dict[&apos;Jerry&apos;]=&apos;a&apos;;&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Iterable
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;for _ in my_dict:&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Typecasting&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;d = {&apos;name&apos;: &apos;ssafy&apos;, &apos;year&apos;: 2020}
-print(str(d))   # {&apos;name&apos;: &apos;ssafy&apos;, &apos;year&apos;: 2020}
-print(list(d))  # [&apos;name&apos;, &apos;year&apos;]
-print(tuple(d)) # (&apos;name&apos;, &apos;year&apos;)
-print(set(d))   # {&apos;name&apos;, &apos;year&apos;}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Methods&lt;/strong&gt;&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Method&lt;/th&gt;
-&lt;th&gt;description&lt;/th&gt;
-&lt;th&gt;output&lt;/th&gt;
-&lt;th&gt;change&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;.clear()&lt;/td&gt;
-&lt;td&gt;clear the dict&lt;/td&gt;
-&lt;td&gt;None&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.copy()&lt;/td&gt;
-&lt;td&gt;return the shallow copy&lt;/td&gt;
-&lt;td&gt;dict&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;dict.fromkeys(iterable, value)&lt;/td&gt;
-&lt;td&gt;make dict that has itms of iterable as key&lt;/td&gt;
-&lt;td&gt;dict&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.get(key,[default=None])&lt;/td&gt;
-&lt;td&gt;get value of key;if there is no key return [default]&lt;/td&gt;
-&lt;td&gt;obj&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.items()&lt;/td&gt;
-&lt;td&gt;return [(key, items)]&lt;/td&gt;
-&lt;td&gt;dict_items&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.keys()&lt;/td&gt;
-&lt;td&gt;return [keys,]&lt;/td&gt;
-&lt;td&gt;dict_keys&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.values()&lt;/td&gt;
-&lt;td&gt;return [items,]&lt;/td&gt;
-&lt;td&gt;dict_values&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.pop(key)&lt;/td&gt;
-&lt;td&gt;pop dict(key)&lt;/td&gt;
-&lt;td&gt;obj&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.popitem()&lt;/td&gt;
-&lt;td&gt;pop the last inserted (key,value)&lt;/td&gt;
-&lt;td&gt;tuple&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.setdefault({key:value})&lt;/td&gt;
-&lt;td&gt;if alreayd exist return original dict(key)&lt;/td&gt;
-&lt;td&gt;obj or None&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.update()&lt;/td&gt;
-&lt;td&gt;update dict&lt;/td&gt;
-&lt;td&gt;None&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;update()&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;if key is a string
-&lt;code&gt;x.update(a=900, f=60)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;if key is a number
-&lt;code&gt;x.update({1:900, 2:800})&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;45-set-type&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#45-set-type&quot; aria-label=&quot;45 set type permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.5. Set Type&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Basics&lt;/strong&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;{1, 2, 3}
-set()       # print: set()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Characteristics&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;Mutable
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;my_set.pop()&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Iterable
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;for _ in my_set:&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Typecasting&lt;/strong&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;s = {1, 2, 3, 4}
-print(str(d))   # {1, 2, 3, 4}
-print(list(d))  # [1, 2, 3, 4]
-print(tuple(d)) # (1, 2, 3, 4)
-print(dict(d))  # error
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Methods&lt;/strong&gt;&lt;br&gt;
-&lt;mark&gt;B is an iterable object(set, tuple, list ...)&lt;/mark&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Method&lt;/th&gt;
-&lt;th&gt;description&lt;/th&gt;
-&lt;th&gt;output&lt;/th&gt;
-&lt;th&gt;change&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;.add(obj)&lt;/td&gt;
-&lt;td&gt;add obj&lt;/td&gt;
-&lt;td&gt;None&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.clear()&lt;/td&gt;
-&lt;td&gt;clear the set&lt;/td&gt;
-&lt;td&gt;None&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.copy()&lt;/td&gt;
-&lt;td&gt;return shallow copy&lt;/td&gt;
-&lt;td&gt;None&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;A.difference(B)&lt;/td&gt;
-&lt;td&gt;return &lt;code&gt;A - B&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;set&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;A.difference_update(B)&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;A = A - B&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;None&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.discard(obj)&lt;/td&gt;
-&lt;td&gt;remove obj&lt;/br&gt;No error even if there is no obj&lt;/td&gt;
-&lt;td&gt;None&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;A.intersection(B)&lt;/td&gt;
-&lt;td&gt;return &lt;code&gt;A &amp;#x26; B&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;set&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.intersection_update()&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;A = A &amp;#x26; B&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;None&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;A.isdisjoint(B)&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;A &amp;#x26; B == None&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;bool&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;A.issubset(B)&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;A &amp;#x26; B == B&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;bool&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;A.issuperset(B)&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;A &amp;#x26; B == A&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;bool&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.pop()&lt;/td&gt;
-&lt;td&gt;pop ==arbitary==&lt;/td&gt;
-&lt;td&gt;obj&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.remove()&lt;/td&gt;
-&lt;td&gt;remove obj&lt;/br&gt;error when there is no obj&lt;/td&gt;
-&lt;td&gt;None&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;A.symmetric_differnece(B)&lt;/td&gt;
-&lt;td&gt;return &lt;code&gt;A ^ B&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;set&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;A.symmetric_differnece_update(B)&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;A = A ^ B&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;None&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;A.union(B)&lt;/td&gt;
-&lt;td&gt;return &lt;code&gt;A + B&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;set&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;A.update(B)&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;A = A + B&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;None&lt;/td&gt;
-&lt;td&gt;O&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;45-typecasting-table&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#45-typecasting-table&quot; aria-label=&quot;45 typecasting table permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.5. Typecasting table&lt;/h2&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 501px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/2e4b53d41da7055581a005f911f03cfb/305fc/python-typecasting.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 60%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAMABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAwAE/8QAFQEBAQAAAAAAAAAAAAAAAAAAAgH/2gAMAwEAAhADEAAAAdrnoYOWN//EABoQAAIDAQEAAAAAAAAAAAAAAAACAQMREyH/2gAIAQEAAQUCqSGjkhyUp8XTT//EABcRAAMBAAAAAAAAAAAAAAAAAAABEQL/2gAIAQMBAT8BylCI/8QAGBEAAgMAAAAAAAAAAAAAAAAAAAECERL/2gAIAQIBAT8Bk3Zpn//EABwQAAEEAwEAAAAAAAAAAAAAAAABEUGSEDFScf/aAAgBAQAGPwJXffRNibC+5//EABoQAAIDAQEAAAAAAAAAAAAAAAABESFh8DH/2gAIAQEAAT8hf0z0OjHZhqYnfhPD/9oADAMBAAIAAwAAABD7P//EABcRAQEBAQAAAAAAAAAAAAAAAAEAEWH/2gAIAQMBAT8QUNLlf//EABcRAQEBAQAAAAAAAAAAAAAAAAEAEWH/2gAIAQIBAT8QEsbpf//EAB4QAAEEAgMBAAAAAAAAAAAAAAEAESFhMfBBUXHB/9oACAEBAAE/ECnCEBB9VW61XqtFZAZGR4oCaD8LBGHS/9k=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/2e4b53d41da7055581a005f911f03cfb/c54d4/python-typecasting.webp 175w,
-/TIL/static/2e4b53d41da7055581a005f911f03cfb/a3432/python-typecasting.webp 350w,
-/TIL/static/2e4b53d41da7055581a005f911f03cfb/52d01/python-typecasting.webp 501w&quot; sizes=&quot;(max-width: 501px) 100vw, 501px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/2e4b53d41da7055581a005f911f03cfb/e52aa/python-typecasting.jpg 175w,
-/TIL/static/2e4b53d41da7055581a005f911f03cfb/70ebb/python-typecasting.jpg 350w,
-/TIL/static/2e4b53d41da7055581a005f911f03cfb/305fc/python-typecasting.jpg 501w&quot; sizes=&quot;(max-width: 501px) 100vw, 501px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/2e4b53d41da7055581a005f911f03cfb/305fc/python-typecasting.jpg&quot; alt=&quot;typecasting of containers&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-&lt;h2 id=&quot;46-copy-mutable-data&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#46-copy-mutable-data&quot; aria-label=&quot;46 copy mutable data permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.6. Copy Mutable Data&lt;/h2&gt;
-&lt;p&gt;The mutable data type has several methods of copying.&lt;br&gt;
-It&apos;s divided into three stages according to the degree of connection between the copied data and the original data.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;A is an mutable data&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Not Copied&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;B = A
-
-# Not copied
-B is A == True
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Shallow Copy&lt;/strong&gt;&lt;br&gt;
-The elements which depth are more than one are not copied&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import copy
-
-B = copy.copy(A)
-
-# In the case of list
-B = A[:]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Deep Copy&lt;/strong&gt;&lt;br&gt;
-All the elements are copied regardless of their depth&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import copy
-
-B = copy.deepcopy(A)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;5-operators&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-operators&quot; aria-label=&quot;5 operators permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5. Operators&lt;/h1&gt;
-&lt;h2 id=&quot;51-priority-of-operators&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#51-priority-of-operators&quot; aria-label=&quot;51 priority of operators permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.1. Priority of operators&lt;/h2&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/3fcfad9d704d6dcc86bcc50d08140c36/b81d4/python-operator-table.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 62.28571428571429%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAMABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIBBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAe5NA0f/xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAEFAl//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAWEAEBAQAAAAAAAAAAAAAAAAABEAD/2gAIAQEAAT8hxSf/2gAMAwEAAgADAAAAEHMP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGRABAAMBAQAAAAAAAAAAAAAAAQARMSEQ/9oACAEBAAE/EAIbVo2HMhkFHPP/2Q==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/3fcfad9d704d6dcc86bcc50d08140c36/c54d4/python-operator-table.webp 175w,
-/TIL/static/3fcfad9d704d6dcc86bcc50d08140c36/a3432/python-operator-table.webp 350w,
-/TIL/static/3fcfad9d704d6dcc86bcc50d08140c36/426ac/python-operator-table.webp 700w,
-/TIL/static/3fcfad9d704d6dcc86bcc50d08140c36/c139f/python-operator-table.webp 1050w,
-/TIL/static/3fcfad9d704d6dcc86bcc50d08140c36/36bbb/python-operator-table.webp 1090w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/3fcfad9d704d6dcc86bcc50d08140c36/e52aa/python-operator-table.jpg 175w,
-/TIL/static/3fcfad9d704d6dcc86bcc50d08140c36/70ebb/python-operator-table.jpg 350w,
-/TIL/static/3fcfad9d704d6dcc86bcc50d08140c36/29d31/python-operator-table.jpg 700w,
-/TIL/static/3fcfad9d704d6dcc86bcc50d08140c36/9ecec/python-operator-table.jpg 1050w,
-/TIL/static/3fcfad9d704d6dcc86bcc50d08140c36/b81d4/python-operator-table.jpg 1090w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/3fcfad9d704d6dcc86bcc50d08140c36/29d31/python-operator-table.jpg&quot; alt=&quot;Priority of operators&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-&lt;h2 id=&quot;52-arithmetic-operators&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#52-arithmetic-operators&quot; aria-label=&quot;52 arithmetic operators permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.2. Arithmetic Operators&lt;/h2&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;arithmetic operator&lt;/th&gt;
-&lt;th&gt;meaning&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;+&lt;/td&gt;
-&lt;td&gt;plus&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;-&lt;/td&gt;
-&lt;td&gt;minus&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;*&lt;/td&gt;
-&lt;td&gt;multiplication&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;/&lt;/td&gt;
-&lt;td&gt;division&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;//&lt;/td&gt;
-&lt;td&gt;quotient&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;%&lt;/td&gt;
-&lt;td&gt;remainder&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;**&lt;/td&gt;
-&lt;td&gt;square&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&quot;53-comparison-operators&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#53-comparison-operators&quot; aria-label=&quot;53 comparison operators permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.3. Comparison Operators&lt;/h2&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;comparision operator&lt;/th&gt;
-&lt;th&gt;meaning&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&amp;#x3C;&lt;/td&gt;
-&lt;td&gt;under&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&amp;#x3C;=&lt;/td&gt;
-&lt;td&gt;or less&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&gt;&lt;/td&gt;
-&lt;td&gt;above&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&gt;=&lt;/td&gt;
-&lt;td&gt;or more&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;==&lt;/td&gt;
-&lt;td&gt;same(value)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;!=&lt;/td&gt;
-&lt;td&gt;different(value)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;is&lt;/td&gt;
-&lt;td&gt;same(object)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;is not&lt;/td&gt;
-&lt;td&gt;different(object)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&quot;54-logician-operators&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#54-logician-operators&quot; aria-label=&quot;54 logician operators permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.4. Logician Operators&lt;/h2&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;logician operator&lt;/th&gt;
-&lt;th&gt;meaning&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;and&lt;/td&gt;
-&lt;td&gt;both True?&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;or&lt;/td&gt;
-&lt;td&gt;either True?&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;not&lt;/td&gt;
-&lt;td&gt;toggle the bool&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;541-short-circuit-evaluation&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#541-short-circuit-evaluation&quot; aria-label=&quot;541 short circuit evaluation permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.4.1. Short Circuit Evaluation&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;returns the value that confirm the result of the logical operation&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;&apos;a&apos; and &apos;b&apos;            # &apos;b&apos;
-&apos;a&apos; or &apos;b&apos;             # &apos;a&apos;
-&apos;a&apos; and &apos;b&apos; in &apos;aeiou&apos; # False
-&apos;b&apos; and &apos;a&apos; in &apos;aeiou&apos; # True
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;55-membership-operators&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#55-membership-operators&quot; aria-label=&quot;55 membership operators permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.5. Membership Operators&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;check whether the data is in an iterable data&lt;/strong&gt;&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;membership operator&lt;/th&gt;
-&lt;th&gt;meaning&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;in&lt;/td&gt;
-&lt;td&gt;is in ?&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;not in&lt;/td&gt;
-&lt;td&gt;isn&apos;t in ?&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&quot;56-bit-operators&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#56-bit-operators&quot; aria-label=&quot;56 bit operators permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.6. Bit Operators&lt;/h2&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;bit operator&lt;/th&gt;
-&lt;th&gt;meaning&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&amp;#x26;&lt;/td&gt;
-&lt;td&gt;bit and&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;|&lt;/td&gt;
-&lt;td&gt;bit or&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;^&lt;/td&gt;
-&lt;td&gt;bit xor&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;~&lt;/td&gt;
-&lt;td&gt;bit not&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&amp;#x3C;&amp;#x3C;&lt;/td&gt;
-&lt;td&gt;move bit left == *2&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&gt;&gt;&lt;/td&gt;
-&lt;td&gt;move bit right == //2&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</content:encoded></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item></channel></rss>
