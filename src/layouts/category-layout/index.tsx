@@ -79,9 +79,13 @@ const CategoryLayout: React.FC<Props> = ({ defaultCategory, children }) => {
           POSTS
         </label>
         <label htmlFor="category-layout-modal" aria-label="카테고리바 닫기">
-          X
+          <span />
+          <span />
         </label>
-        <div className="category-layout__modal-bg" />
+        <label
+          htmlFor="category-layout-modal"
+          className="category-layout__modal-bg"
+        />
         <div className="category-layout__sidebar">
           <div className="category-layout__sidebar__profile">
             <ProfileImage />

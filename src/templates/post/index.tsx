@@ -143,7 +143,7 @@ export const query = graphql`
         frontmatter: { isCompleted: { eq: true } }
         fileAbsolutePath: { regex: $siblingPostsPathRegex }
       }
-      sort: { frontmatter: { title: ASC } }
+      sort: { frontmatter: { createdAt: DESC } }
     ) {
       nodes {
         id

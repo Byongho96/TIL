@@ -67,11 +67,11 @@ curl -sfL https://get.k3s.io | sh -
 만약 에이전트 노드(워커 노드)를 구성하고자 하면 아래 명령어를 실행한다. (에이전트 노드이기 때문에 마스터 노드가 이미 구성되어 있어야 한다.) `K3S_URL`은 마스터 노드의 URL을 의미하며, `K3S_TOKEN`은 일종의 인증 토큰으로 마스터 서버의 `/var/lib/rancher/k3s/server/node-token` 경로에서 확인할 수 있다.
 
 ```sh
-# 예시코드
+# 예시 코드
 curl -sfL https://get.k3s.io | K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetoken sh -
 ```
 
-# 4. 참고자료
+# 참고자료
 
 - [k3s 공식문서](https://docs.k3s.io/)
 - [Inpa Dev : "Lightsail 사용법 총정리"](https://inpa.tistory.com/entry/AWS-%F0%9F%93%9A-Amazon-Lightsail-%EC%82%AC%EC%9A%A9%EB%B2%95-%EC%9B%B9%EC%84%9C%EB%B9%84%EC%8A%A4%EB%A5%BC-%EB%9A%9D%EB%94%B1-%EA%B5%AC%EC%B6%95%ED%95%98%EC%9E%90)

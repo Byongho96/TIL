@@ -114,7 +114,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
     const path = '/posts/' + node.name
     // 상대 경로에 있는 md 파일들만 필터링(READEME.md 제외)
     const postPathRegex = new RegExp(
-      `^(?!.*README).*${node.relativePath}.*$`
+      `^(?!.*README).*${node.relativePath}/.*$`
     ).toString()
     createPage({
       path,
@@ -136,7 +136,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
         allMarkdownRemark(
           filter: {
             frontmatter: { isCompleted: { eq: true } }
-            fileAbsolutePath: { regex: "/^(?!.*README).*posts.*$/" }
+            fileAbsolutePath: { regex: "/^(?!.*README).*posts/.*$/" }
           }
         ) {
           nodes {
@@ -175,7 +175,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
     const path = node.fields.slug
     // 같은 디렉토리에 있는 형제 md 파일들을 필터링(READEME.md 제외)하는 regex
     const siblingPostsPathRegex = new RegExp(
-      `^(?!.*README).*${relativeDirectoryPath}.*$`
+      `^(?!.*README).*${relativeDirectoryPath}/.*$`
     ).toString()
     createPage({
       path,
