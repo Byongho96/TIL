@@ -1,8 +1,8 @@
 ---
-title: 'k3s 배포하기 (4) : 백엔드(Redis, Spring, Kafka) 배포'
-updatedAt: '2024-01-21'
-createdAt: '2024-01-21'
-description: 'AWS 인스턴스에 k3s 단일 노드 클러스터를 구축해본다.  MSA 구조를 가진 백엔드 아키텍쳐를 k3s에 등록해보자'
+title: 'k3s 배포하기(4) : 백엔드(Redis, Spring, Kafka) 배포'
+updatedAt: '2024-01-22'
+createdAt: '2024-01-22'
+description: 'AWS 인스턴스에 k3s 단일 노드 클러스터를 구축해본다. MSA 구조를 가진 백엔드 아키텍쳐를 k3s에 등록해보자'
 tags:
   [
     'kubernetes',
@@ -73,11 +73,11 @@ spec:
       port: 6379
 ```
 
-# 4. Spring
+# 3. Spring
 
 3개의 Spring Boot 마이크로 서비스 어플리케이션과, Spring Cloud 게이트웨이 하나로 이루어져 있다. 각각의 도커 이미지는 빌드하여 도커허브에 푸쉬했다.
 
-## 4.1. 도커 이미지 빌드
+## 3.1. 도커 이미지 빌드
 
 Spring Boot의 Dockerfile은 다음과 같은 형식이다.
 
@@ -98,7 +98,7 @@ EXPOSE { 포트 번호 }
 CMD ["java", "-jar", "app.jar"]
 ```
 
-## 4.2. 환경변수 정의
+## 3.2. 환경변수 정의
 
 다른 서비스에 접근하기 위해서는 IP/Port를 알아야한다. 예를 들어, 게이트웨이가 라우팅을 하려면 각 Spring Boot 서버의 IP 주소 정보가 있어야 한다. 그런데 쿠버네티스에는 IP 주소가 동적으로 할당되기 때문에 service 이름으로 접근한다. 그런데 어플리케이션 수준에서 쿠버네티스의 정보(서비스 이름)를 사용하는 것은 이상하다. 그래서 반대로 가기로 했다.
 
@@ -133,7 +133,7 @@ spec:
         ...
 ```
 
-## 4.3. Spring Boot 마이크로 서버
+## 3.3. Spring Boot 마이크로 서버
 
 아래 예시 코드에서 환경변수는 application.properties에서 어떤 식으로 정의했느냐에 따라 달라진다. 예를 들어, REDIS는 Host(IP주소)와 Port를 따로따로 정의했지만, MySQL같은 경우에는 한번에 내려줬다.
 
@@ -184,7 +184,7 @@ spec:
     app: member
 ```
 
-## 4.2. Spring Cloud 게이트웨이
+## 3.4. Spring Cloud 게이트웨이
 
 Spring Cloud도 Spring Boot 서버와 동일한 방식으로 작성했다.
 
@@ -234,12 +234,12 @@ spec:
     app: gateway
 ```
 
-# 5. Kafka
+# 4. Kafka
 
 Kafka를 쿠버네티스에 올리는 것은 다른 어플리케이션과 다른 모양이다. 이를 위해서
 Confluent나 Strimzi와 같은 오픈소스 프로젝트도 따로 제공된다. 따라서 이 부분에서는 아직 부족한점이 있을 것으로 생각된다. 일단 [Confluent 도커 설정](https://docs.confluent.io/platform/current/installation/docker/config-reference.html)을 참고하여 작성했다.
 
-## 5.1. Zookeeper
+## 4.1. Zookeeper
 
 `ZOOKEEPER_CLIENT_PORT`는 Kafka의 요청을 수신할 포트로, Zookeeper 자기 자신의 클러스터 포트와 일치시키면 된다. `ZOOKEEPER_TICK_TIME`는 주키퍼 하트비트로 시간(ms)로, 이 클럭에 따라 주키퍼 내의 각 서버(노드) 간에 정보가 교환된다.
 
@@ -283,7 +283,7 @@ spec:
       port: 2181
 ```
 
-## 5.2. Kafka Broker
+## 4.2. Kafka Broker
 
 `KAFKA_ZOOKEEPER_CONNECT`는 연결할 Zookeeper 의 IP/Port 정보를 기입한다. `KAFKA_ADVERTISED_LISTENERS`는 외부에서 접근할 수 있는 Kafka의 IP/Port 정보를 기입한다.
 

@@ -1,5 +1,5 @@
 ---
-title: 'k3s 배포하기 (2) : 프론트(React) 배포'
+title: 'k3s 배포하기(2) : 프론트(React) 배포'
 updatedAt: '2024-01-21'
 createdAt: '2024-01-21'
 description: 'AWS 인스턴스에 k3s 단일 노드 클러스터를 구축해본다. 프론트 리액트 어플리케이션을 k3s에 등록해보자'
