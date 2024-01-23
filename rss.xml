@@ -1,4 +1,206 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 22 Jan 2024 09:03:22 GMT</lastBuildDate><item><title><![CDATA[k3s 배포하기 (4) : 백엔드(Redis, Spring, Kafka) 배포]]></title><description><![CDATA[본래 DB의 아이디와 패스워드는 쿠버네티스에서 Secret 등으로 관리해야 한다. Secret 생성과 적용은 이후 포스팅에서 따로 다룰 예정이다. 1. MSA 구조 백엔드는 MSA 구조로 설계되어 총 3개의 Spring Boot…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_4_back/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_4_back/</guid><pubDate>Sun, 21 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 23 Jan 2024 11:03:56 GMT</lastBuildDate><item><title><![CDATA[k3s 배포하기(6) : Cert Manager 등록]]></title><description><![CDATA[1. Cert Manager Cert Manager는 쿠버네티스에서 SSL/TLS 인증서를 관리하기 위한 오픈 소스 도구이다. Let's Encrypt와 같은 인증 기관을 사용하여 인증서를 발급하고 갱신하는 작업을 자동화한다. 개인적으로 Certbot…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_6_cert_manager/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_6_cert_manager/</guid><pubDate>Tue, 23 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/830c1399665218f03c26d1757fa48d67/2bef9/architecture-cert-manager.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 70.28571428571428%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB3klEQVR42n2UXY7bMAyEc/8j9CC9QF8X7Xv70KJYZJMadvwjifqh+BWS0yRYbCpgAJseDWZI0AfAeHdqrSzLQizKEKwTaomkGKnliFnkybHD7akWLAdMM5Yj0S2UGPBBQDNZNkKrhXPnUTKUdIem7u1wt6XY+hvWXyATVS6YTBAnLIwQJqofUTeBXDqn1e4YW7QHQavgT1gZeqQsKyEsVIsYGUioBrRGTAM1uV67Ia/d1IOggsyAdkK7pNmxpsDb9bKqAIU0npDXnzvXmmC+C6YUcc5RNVO2gaoenzZe/oxssnZ3XgNYZIsDqwyk5NASKDXi44rWAHnbBUsppJSuDqfuJKnw9dwEHaVs5Ibsu2AoF0oT624TWYVqTyNfbj1pfTRLhDTh80TJgawbWj0SPCK+97dWwYh3h88EfZQu2MjVpAvOctpdBt/R3Lno0CofC9o1spPIp88zs5Or27T3TB1qgZx30Jy17/w3ciaXxMsPh+R9gm0wWoRLOLLEgZjaQITSWpJdT/BxZD+Cuo6+Xm26/X2DFrs4arvY675Di8MaJ87vBNvG6r5CtSTejq/4dQQrWM3Q1m44M8s+5baO//g3XFfPHiT7iVn58u07wzTf68sCpzNn2wg1Pfs51L9sTklKW6cUCAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/830c1399665218f03c26d1757fa48d67/c54d4/architecture-cert-manager.webp 175w,
+/TIL/static/830c1399665218f03c26d1757fa48d67/a3432/architecture-cert-manager.webp 350w,
+/TIL/static/830c1399665218f03c26d1757fa48d67/426ac/architecture-cert-manager.webp 700w,
+/TIL/static/830c1399665218f03c26d1757fa48d67/a9a89/architecture-cert-manager.webp 1024w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/830c1399665218f03c26d1757fa48d67/4edbd/architecture-cert-manager.png 175w,
+/TIL/static/830c1399665218f03c26d1757fa48d67/13ae7/architecture-cert-manager.png 350w,
+/TIL/static/830c1399665218f03c26d1757fa48d67/8c557/architecture-cert-manager.png 700w,
+/TIL/static/830c1399665218f03c26d1757fa48d67/2bef9/architecture-cert-manager.png 1024w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/830c1399665218f03c26d1757fa48d67/8c557/architecture-cert-manager.png&quot; alt=&quot;프로젝트 아키텍쳐 구상도&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;h1 id=&quot;1-cert-manager&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-cert-manager&quot; aria-label=&quot;1 cert manager permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Cert Manager&lt;/h1&gt;
+&lt;p&gt;Cert Manager는 쿠버네티스에서 SSL/TLS 인증서를 관리하기 위한 오픈 소스 도구이다. Let&apos;s Encrypt와 같은 인증 기관을 사용하여 인증서를 발급하고 갱신하는 작업을 자동화한다. 개인적으로 Certbot의 쿠버네티스 클러스터 버전이라고 생각한다.&lt;/p&gt;
+&lt;p&gt;아래 명령어로 Cert Manager 컴포넌트를 설치하고 실행할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# 공식문서의 최신 명령어를 따를 것을 권장
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.3/cert-manager.yaml
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Cert Manager 컴포넌트는 아래처럼 총 3개의 파드를 띄운다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Cert Manager 관련 파드 확인
+$ kubectl get pods --namespace cert-manager
+
+NAME                                       READY   STATUS    RESTARTS   AGE
+cert-manager-5c6866597-zw7kh               1/1     Running   0          2m
+cert-manager-cainjector-577f6d9fd7-tr77l   1/1     Running   0          2m
+cert-manager-webhook-787858fcdb-nlzsq      1/1     Running   0          2m
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;2-cluster-issuer-등록&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-cluster-issuer-%EB%93%B1%EB%A1%9D&quot; aria-label=&quot;2 cluster issuer 등록 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Cluster Issuer 등록&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://cert-manager.io/docs/concepts/issuer/&quot;&gt;Cert Manager 공식문서&lt;/a&gt;를 보면 Isseur와 Cluser Issuer는 모두 인증서를 생성할 수 있는 인증 기관(CA)을 나타내는 Kubernetes 리소스이다. Issuer는 특정 네임스페이스 내에서만 사용 가능하고, Cluster Issuer는 클러스터 전체에 적용되는 인증서를 발급한다. 우리는 Let&apos;s Encrypt를 인증기관으로 지정하는 Cluser Issuer를 생성했다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-yml&quot;&gt;# cluster-issuer.yaml
+
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: { 클러스터 이슈어 이름 } # 원하는 대로 지정
+  namespace: default
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory # Let&apos;s Encrypt 인증기관
+    email: { 이메일 등록 } # 유효한 이메일 주소 입력
+    privateKeySecretRef:
+      name: letsencrypt
+    solvers:
+      - selector: {}
+        http01:
+          ingress:
+            class: traefik
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Cluster Issuer 등록
+kubectl apply -f cluster-issuer.yaml
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# 등록된 Cluster Issuer 확인
+kubectl get ClusterIssuer -A
+
+# 특정 Cluster Issuer 상세정보 조회
+kubectl describe clusterissuer { 클러스터 이슈어 이름 }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;3-traefik-ingress-적용&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-traefik-ingress-%EC%A0%81%EC%9A%A9&quot; aria-label=&quot;3 traefik ingress 적용 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. Traefik Ingress 적용&lt;/h1&gt;
+&lt;p&gt;등록한 Cluser Issuer를 바로 Traefik 인그레스 설정에 적용할 수 있다. 다음과 같이 &lt;code&gt;annotations&lt;/code&gt;과 &lt;code&gt;tls&lt;/code&gt; 항목을 입력해서 TLS 인증서를 발급받고, HTTPS 연결을 활성화할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-yml&quot;&gt;apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myingress
+  annotations:
+    cert-manager.io/cluster-issuer: { 클러스터 이슈어 이름 } # 위의 2번 항목에서 등록한 이름과 일치
+    kubernetes.io/ingress.class: traefik
+spec:
+  tls:
+    - secretName: { TLS 인증서 이름 } # 원하는대로 지정
+      hosts:
+        - { 도메인 네임 }
+  rules:
+    - host: thegallery.site
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: react-svc
+                port:
+                  number: 80
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: gateway-svc
+                port:
+                  number: 8000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;참고자료&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C&quot; aria-label=&quot;참고자료 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;참고자료&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://cert-manager.io/docs/installation/kubectl/#steps&quot;&gt;Cert Manager : &quot;Installation&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;ttps://cert-manager.io/docs/concepts/issuer/&quot;&gt;Cert Manager : &quot;Issuer&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://levelup.gitconnected.com/easy-steps-to-install-k3s-with-ssl-certificate-by-traefik-cert-manager-and-lets-encrypt-d74947fe7a8&quot;&gt;Albert Colom : &quot;Easy steps to install K3s with SSL certificate by traefik, cert manager and Let’s Encrypt&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[k3s 배포하기(5) : Traefik 인그레스 설정]]></title><description><![CDATA[1. 인그레스 삽질기⚒️ 이 항목은 k3s를 사용할 경우 참고하지 않아도 되는 삽질기입니다. 우리는 k3s…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_5_ingress/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_5_ingress/</guid><pubDate>Tue, 23 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/c6d88d67d00854eaafdfb5ad9420fe8f/2bef9/architecture-ingress.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 70.28571428571428%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAAByUlEQVR42n2UC27bQAxEc/+zFegR+kGR2hUkW9J+uSRfsCvXDoI4CwwgccnRDAnqBXA+HDNjXVdKU6bkI8FaoZaCtVfcC0+Ov9yfrOGScBVcCiWstJKIKYMKkndSj6XzyKMJtPqA1qHt5SFL8e03bD8hL1i+4HmBsuBphrRgcUbDAvkycnrsgblbe0foBvGEt2lYkryR0op5wRGgoppQK7gmrIYRu0O2IeodoUK+AjoSepFKYKuJv7di1Qw06nwi//lx5HonlAdhrYUQAqZC2ydMI7HufPs3s+dtqIuawAt7mdjyRK0BbYlmhVg21BLIfhC21qi13hQuQ0nVzPdBGGhtRzokDsLULrRONtRWRDPmTy1f7j3pfXSvpLoQZaFJQnRHLZJTJOc4+muWccpD4TNC1XIQUzDPg/CaT4fKFAe6ulACavlrQrXKr3O3c1PbY8NmQD0hcgDK/f4Ly4K5cAkH8ZgggrbMJb2ylolS+0AyrbdEwnDwucI4g4YBtwgab+87dNstYL2wT12Pe20B7znl+oGwb6weK+RayWFDaxxrhwn0tZvOXPMx5RG/5d9xW71Pfg7OvEaqyP9PwbrC6czZd9JoxafH3gAh2EsnGsQx6QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source srcset=&quot;/TIL/static/c6d88d67d00854eaafdfb5ad9420fe8f/c54d4/architecture-ingress.webp 175w,
+/TIL/static/c6d88d67d00854eaafdfb5ad9420fe8f/a3432/architecture-ingress.webp 350w,
+/TIL/static/c6d88d67d00854eaafdfb5ad9420fe8f/426ac/architecture-ingress.webp 700w,
+/TIL/static/c6d88d67d00854eaafdfb5ad9420fe8f/a9a89/architecture-ingress.webp 1024w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
+          &lt;source srcset=&quot;/TIL/static/c6d88d67d00854eaafdfb5ad9420fe8f/4edbd/architecture-ingress.png 175w,
+/TIL/static/c6d88d67d00854eaafdfb5ad9420fe8f/13ae7/architecture-ingress.png 350w,
+/TIL/static/c6d88d67d00854eaafdfb5ad9420fe8f/8c557/architecture-ingress.png 700w,
+/TIL/static/c6d88d67d00854eaafdfb5ad9420fe8f/2bef9/architecture-ingress.png 1024w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/png&quot;&gt;
+          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/c6d88d67d00854eaafdfb5ad9420fe8f/8c557/architecture-ingress.png&quot; alt=&quot;프로젝트 아키텍쳐 구상도&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;h1 id=&quot;1-인그레스-삽질기️&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EC%9D%B8%EA%B7%B8%EB%A0%88%EC%8A%A4-%EC%82%BD%EC%A7%88%EA%B8%B0%EF%B8%8F&quot; aria-label=&quot;1 인그레스 삽질기️ permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 인그레스 삽질기⚒️&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;이 항목은 k3s를 사용할 경우 참고하지 않아도 되는 삽질기입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;우리는 k3s가 그저 쿠버네티스의 경량화 버전인줄로만 알았다. 그래서 &lt;strong&gt;추가 편의 기능이 구현&lt;/strong&gt;되어있을 줄 꿈에도 몰랐다. 그저 쿠버네티스 공식문서를 따라 인그레스 컨트롤러를 설치했을 뿐인데 희한한 에러를 경험했고, 나중에 가서야 &lt;mark&gt;이것이 k3s의 기본 탑재된 Traefik 인그레스 컨트롤러 때문이었음을 깨달았다.&lt;/mark&gt;&lt;/p&gt;
+&lt;h2 id=&quot;11-인그레스-컨트롤러-설치&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-%EC%9D%B8%EA%B7%B8%EB%A0%88%EC%8A%A4-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC-%EC%84%A4%EC%B9%98&quot; aria-label=&quot;11 인그레스 컨트롤러 설치 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1. 인그레스 컨트롤러 설치&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/&quot;&gt;쿠버네티스 공식문서&lt;/a&gt;를 보면, 인그레스 사용하기 위해서는 인그레스 컨트롤러를 추가 설치하라고 한다. 많은 컨트롤러 중에 가장 익숙해 보이는 Nginx Ingress Controller를 선택했다.&lt;/p&gt;
+&lt;p&gt;Nginx Ingress Controller는 사용 환경에 따라 다양한 설치방법을 제공한다. 그 중에서 AWS와 Bare Metal 두가지 방식이 있는데, AWS 인스턴스에 직접 클러스트를 구성하는 경우에는 어떤 것을 선택해야하는지 아직도 확신이 안선다. 일단 우리는 &lt;a href=&quot;https://kubernetes.github.io/ingress-nginx/deploy/#bare-metal-clusters&quot;&gt;Bare Metal 방식&lt;/a&gt;으로 진행했다.&lt;/p&gt;
+&lt;p&gt;아래 명령어를 실행하면 30000-32767 중 임의의 NodePort로 인그레스가 노출된다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/baremetal/deploy.yaml
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;12-인그레스-컨트롤러-nodeport-고정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-%EC%9D%B8%EA%B7%B8%EB%A0%88%EC%8A%A4-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC-nodeport-%EA%B3%A0%EC%A0%95&quot; aria-label=&quot;12 인그레스 컨트롤러 nodeport 고정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2. 인그레스 컨트롤러 NodePort 고정&lt;/h2&gt;
+&lt;p&gt;MetalLB를 사용해서 인그레스가 열리는 NodePort를 80번으로 고정시킬 수 있다. 그런데 &lt;a href=&quot;https://kubernetes.github.io/ingress-nginx/deploy/baremetal/&quot;&gt;문서&lt;/a&gt;를 읽어보면 신세계가 열린다. Layer2 설정까지 내려가는데 무엇인가 잘못되었음을 직감했다.&lt;/p&gt;
+&lt;p&gt;이 때 잠시 멈춰 되돌아 보았어야 했는데, 우리는 열심히 직진 페달을 밟았다. 위에 1.1 항목의 &lt;code&gt;deploy.yml&lt;/code&gt;파일을 다운받아 분석한 다음, 일부를 수정해서 인그레스가 열리는 NodePort를 30000번으로 고정해내고야 만다. (NodePort는 30000번 이상의 포트로만 열수 있기 때문에 80번 포트로는 열지 못했다.)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-yml&quot;&gt;# deploy.yml 356번째 줄
+nodePort: 30000 # 30000번 포트로 고정해서 오픈
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;12-간이-로드-밸런서-구현&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-%EA%B0%84%EC%9D%B4-%EB%A1%9C%EB%93%9C-%EB%B0%B8%EB%9F%B0%EC%84%9C-%EA%B5%AC%ED%98%84&quot; aria-label=&quot;12 간이 로드 밸런서 구현 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2. 간이 로드 밸런서 구현&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#external-load-balancer-providers&quot;&gt;로드 밸런서&lt;/a&gt;는 쿠버네티스의 외부에서 동작하며, 보통 클라우드 서비스 EKS, GKE 등에서 제공한다. 하지만 우리는 Ligthsail 인스턴스에서 단일 노드 클러스터를 구축했다. 그리고 1.2.항목에서 MetalLB를 사용하지 않고 인그레스를 30000번으로 열어두었다. 또 한번의 질주로 결심하고, 호스트에 Nginx를 설치해 80번 포트로 수신하는 모든 요청을 인그레스로 넘겨주기로 했다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Nginx 설치
+sudo apt-get update
+sudo apt-get install -y nginx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-conf&quot;&gt;# nginx.conf
+upstream ingress {
+	server 127.0.0.1:30000; # 30000번으로 열린 인그레스로 전달
+}
+
+server {
+	listen 80;
+	listen [::]:80;
+
+	server_name 3.35.238.150 thegallery.site;
+
+	location / {
+		proxy_pass http://ingress;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;13-이상-동작과-원인&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#13-%EC%9D%B4%EC%83%81-%EB%8F%99%EC%9E%91%EA%B3%BC-%EC%9B%90%EC%9D%B8&quot; aria-label=&quot;13 이상 동작과 원인 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.3. 이상 동작과 원인&lt;/h2&gt;
+&lt;p&gt;그런데 요청이 아예 호스트 Nginx에 도달하지 않았다. 프로세스를 검색해봐도 80번 포트를 점유하고 있는 것은 호스트에 설치한 Nginx 뿐이었다. 몇 번의 테스트 끝에, k3s가 실행되는 즉시 Nginx의 80번 포트 수신이 막히는 것을 확인했다. 구글링한 결과 알게 된 사실은 &lt;mark&gt;&apos;k3s에는 Traefik 인그레스 컨트롤러가 기본 탑재되어 80과 443 포트를 점유한다는 것&apos;이었다..&lt;/mark&gt;&lt;/p&gt;
+&lt;h1 id=&quot;2-traefik-인그레스-컨트롤러&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-traefik-%EC%9D%B8%EA%B7%B8%EB%A0%88%EC%8A%A4-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC&quot; aria-label=&quot;2 traefik 인그레스 컨트롤러 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Traefik 인그레스 컨트롤러&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.k3s.io/kr/networking&quot;&gt;Traefik 인그레스 컨트롤러&lt;/a&gt;는 포트 80과 443을 사용하는 로드밸런서 서비스를 배포한다. 이를 이용해서 HTTP 역방향 프록시 및 로드밸런서가 손쉽게 구현된다. 서버를 시작할 때 기본적으로 Traefik이 실행되기 때문에 80과 443포트는 다른 서비스에서 사용할 수 없다. 이를 비활성화 하려면 &lt;code&gt;--disable=traefik&lt;/code&gt; 플래그를 사용해서 k3s를 시작해야한다.&lt;/p&gt;
+&lt;h2 id=&quot;21-traefik-인그레스-규칙&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-traefik-%EC%9D%B8%EA%B7%B8%EB%A0%88%EC%8A%A4-%EA%B7%9C%EC%B9%99&quot; aria-label=&quot;21 traefik 인그레스 규칙 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. Traefik 인그레스 규칙&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://doc.traefik.io/traefik/providers/kubernetes-ingress/&quot;&gt;Traefik 공식문서&lt;/a&gt;에서 쿠버네티스 인그레스 설정을 확인할 수 있다. Nginx 파일과 유사한 형식으로 쉽게 설정할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-yml&quot;&gt;# traefik-ingress.yml
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myingress
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  rules:
+    - host: { 도메인 네임 }
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: react-svc # 프론트 서비스 이름
+                port:
+                  number: 80
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: gateway-svc # 백엔드 게이트웨이 서비스 이름
+                port:
+                  number: 8000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# 인그레스 규칙 적용
+kubectl apply -f traefik-ingress.yml
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;참고자료&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C&quot; aria-label=&quot;참고자료 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;참고자료&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/&quot;&gt;kubernetes : &quot;Intress Controllers&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://kubernetes.github.io/ingress-nginx/deploy/#bare-metal-clusters&quot;&gt;Ingress Nginx : &quot;Getting Started&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.k3s.io/networkings&quot;&gt;k3s : &quot;Networking&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://doc.traefik.io/traefik/providers/kubernetes-ingress/&quot;&gt;traefiklabs : &quot;Traefik &amp;#x26; Kubernetes&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/questions/45079988/ingress-vs-load-balancer&quot;&gt;Stack Overflow : &quot;Ingress vs Load Balancer&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[k3s 배포하기(4) : 백엔드(Redis, Spring, Kafka) 배포]]></title><description><![CDATA[본래 DB의 아이디와 패스워드는 쿠버네티스에서 Secret 등으로 관리해야 한다. Secret 생성과 적용은 이후 포스팅에서 따로 다룰 예정이다. 1. MSA 구조 백엔드는 MSA 구조로 설계되어 총 3개의 Spring Boot…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_4_back/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_4_back/</guid><pubDate>Mon, 22 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
       &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/093ff517666b3653fd78d3e28b98a1d9/2bef9/architecture-back.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 70.28571428571428%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB9UlEQVR42oWU227UMBCG+/4PwR0vwQXiDpDKBQiBql6wZbttl2wO3vjs8XwoTktL1cNIVmJ7/PmfyUxOAOWR1VoxxhCL0HltDrVEUozUcoVq5BnTk39vtaDZo5LRHInWUKLH+QCSyWHGL2t+jxbf1pD0/0A5uZcl6PE3HDcQBjSMaBggDqjvwQ9U1yN2gDBCHMEfHox+Ce0BUCu4G7R0LaQcjnhvqBpRMpAo4hCNiOvJ3QUQoTpQD/nYRD0ACoQJkHZYl8PZYpLjOtm2Vkturv3HD1y+fXOrY8lnvgemFLHWUiUjc4eII2XLlAIxzSgFL6FddH44ZTN8R6KnBEOpERePSF0UziuwlEJK6VbhsCrRyJQ8uUQmv+PgNiDCWfeZ7fSDnCIx2TU1Eqiangt5bMAVuqraTWdsxm/t649+hysHdpdbttsLRHzza2V0p/A5oEhcn9WTytTK5OvVe877U65312w2v4jZ4ZJFangZKDVxsU9kWeGqmSqBOe4JZcDOE8YM1AW07PNiyJmqmdGu4GWurTyEL5fv+Nl9QqSQxVM04ZNd0/OkQteD2DZ0qS9x67zMoJGQBnKaYFEm674Uiy4+cXoEXDr2toVUEsEekeTWFqsZrEG6P0xhpLzSek/8HJTeLPWY764CY+Bmz15nfEvFk1b/AhYdRkDAhuXnAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
   &lt;picture&gt;
@@ -58,9 +260,9 @@ spec:
     - protocol: TCP
       port: 6379
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&quot;4-spring&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-spring&quot; aria-label=&quot;4 spring permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. Spring&lt;/h1&gt;
+&lt;h1 id=&quot;3-spring&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-spring&quot; aria-label=&quot;3 spring permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. Spring&lt;/h1&gt;
 &lt;p&gt;3개의 Spring Boot 마이크로 서비스 어플리케이션과, Spring Cloud 게이트웨이 하나로 이루어져 있다. 각각의 도커 이미지는 빌드하여 도커허브에 푸쉬했다.&lt;/p&gt;
-&lt;h2 id=&quot;41-도커-이미지-빌드&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#41-%EB%8F%84%EC%BB%A4-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%B9%8C%EB%93%9C&quot; aria-label=&quot;41 도커 이미지 빌드 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.1. 도커 이미지 빌드&lt;/h2&gt;
+&lt;h2 id=&quot;31-도커-이미지-빌드&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#31-%EB%8F%84%EC%BB%A4-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%B9%8C%EB%93%9C&quot; aria-label=&quot;31 도커 이미지 빌드 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1. 도커 이미지 빌드&lt;/h2&gt;
 &lt;p&gt;Spring Boot의 Dockerfile은 다음과 같은 형식이다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;# 기반 이미지 선택
 FROM openjdk:11
@@ -77,7 +279,7 @@ EXPOSE { 포트 번호 }
 # JAR 파일 실행
 CMD [&quot;java&quot;, &quot;-jar&quot;, &quot;app.jar&quot;]
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;42-환경변수-정의&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#42-%ED%99%98%EA%B2%BD%EB%B3%80%EC%88%98-%EC%A0%95%EC%9D%98&quot; aria-label=&quot;42 환경변수 정의 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.2. 환경변수 정의&lt;/h2&gt;
+&lt;h2 id=&quot;32-환경변수-정의&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#32-%ED%99%98%EA%B2%BD%EB%B3%80%EC%88%98-%EC%A0%95%EC%9D%98&quot; aria-label=&quot;32 환경변수 정의 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2. 환경변수 정의&lt;/h2&gt;
 &lt;p&gt;다른 서비스에 접근하기 위해서는 IP/Port를 알아야한다. 예를 들어, 게이트웨이가 라우팅을 하려면 각 Spring Boot 서버의 IP 주소 정보가 있어야 한다. 그런데 쿠버네티스에는 IP 주소가 동적으로 할당되기 때문에 service 이름으로 접근한다. 그런데 어플리케이션 수준에서 쿠버네티스의 정보(서비스 이름)를 사용하는 것은 이상하다. 그래서 반대로 가기로 했다.&lt;/p&gt;
 &lt;p&gt;먼저 SpringBoot의 application.properties 파일에서 필요한 정보를 &lt;mark&gt;하드코딩하지 않고 환경변수로 정의했다.&lt;/mark&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-properties&quot;&gt;spring.redis.host=${REDIS_HOST}
@@ -104,7 +306,7 @@ spec:
             value: { redis 클러스터 포트 } # 위 3번 항목 설정대로라면 6379
         ...
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;43-spring-boot-마이크로-서버&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#43-spring-boot-%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C-%EC%84%9C%EB%B2%84&quot; aria-label=&quot;43 spring boot 마이크로 서버 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.3. Spring Boot 마이크로 서버&lt;/h2&gt;
+&lt;h2 id=&quot;33-spring-boot-마이크로-서버&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#33-spring-boot-%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C-%EC%84%9C%EB%B2%84&quot; aria-label=&quot;33 spring boot 마이크로 서버 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.3. Spring Boot 마이크로 서버&lt;/h2&gt;
 &lt;p&gt;아래 예시 코드에서 환경변수는 application.properties에서 어떤 식으로 정의했느냐에 따라 달라진다. 예를 들어, REDIS는 Host(IP주소)와 Port를 따로따로 정의했지만, MySQL같은 경우에는 한번에 내려줬다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-yml&quot;&gt;apiVersion: apps/v1
 kind: Deployment
@@ -151,7 +353,7 @@ spec:
   selector:
     app: member
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;42-spring-cloud-게이트웨이&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#42-spring-cloud-%EA%B2%8C%EC%9D%B4%ED%8A%B8%EC%9B%A8%EC%9D%B4&quot; aria-label=&quot;42 spring cloud 게이트웨이 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.2. Spring Cloud 게이트웨이&lt;/h2&gt;
+&lt;h2 id=&quot;34-spring-cloud-게이트웨이&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#34-spring-cloud-%EA%B2%8C%EC%9D%B4%ED%8A%B8%EC%9B%A8%EC%9D%B4&quot; aria-label=&quot;34 spring cloud 게이트웨이 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.4. Spring Cloud 게이트웨이&lt;/h2&gt;
 &lt;p&gt;Spring Cloud도 Spring Boot 서버와 동일한 방식으로 작성했다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-yml&quot;&gt;apiVersion: apps/v1
 kind: Deployment
@@ -197,10 +399,10 @@ spec:
   selector:
     app: gateway
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&quot;5-kafka&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-kafka&quot; aria-label=&quot;5 kafka permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5. Kafka&lt;/h1&gt;
+&lt;h1 id=&quot;4-kafka&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-kafka&quot; aria-label=&quot;4 kafka permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. Kafka&lt;/h1&gt;
 &lt;p&gt;Kafka를 쿠버네티스에 올리는 것은 다른 어플리케이션과 다른 모양이다. 이를 위해서
 Confluent나 Strimzi와 같은 오픈소스 프로젝트도 따로 제공된다. 따라서 이 부분에서는 아직 부족한점이 있을 것으로 생각된다. 일단 &lt;a href=&quot;https://docs.confluent.io/platform/current/installation/docker/config-reference.html&quot;&gt;Confluent 도커 설정&lt;/a&gt;을 참고하여 작성했다.&lt;/p&gt;
-&lt;h2 id=&quot;51-zookeeper&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#51-zookeeper&quot; aria-label=&quot;51 zookeeper permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.1. Zookeeper&lt;/h2&gt;
+&lt;h2 id=&quot;41-zookeeper&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#41-zookeeper&quot; aria-label=&quot;41 zookeeper permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.1. Zookeeper&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;ZOOKEEPER_CLIENT_PORT&lt;/code&gt;는 Kafka의 요청을 수신할 포트로, Zookeeper 자기 자신의 클러스터 포트와 일치시키면 된다. &lt;code&gt;ZOOKEEPER_TICK_TIME&lt;/code&gt;는 주키퍼 하트비트로 시간(ms)로, 이 클럭에 따라 주키퍼 내의 각 서버(노드) 간에 정보가 교환된다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-yml&quot;&gt;apiVersion: apps/v1
 kind: Deployment
@@ -240,7 +442,7 @@ spec:
     - protocol: TCP
       port: 2181
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;52-kafka-broker&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#52-kafka-broker&quot; aria-label=&quot;52 kafka broker permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.2. Kafka Broker&lt;/h2&gt;
+&lt;h2 id=&quot;42-kafka-broker&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#42-kafka-broker&quot; aria-label=&quot;42 kafka broker permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.2. Kafka Broker&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;KAFKA_ZOOKEEPER_CONNECT&lt;/code&gt;는 연결할 Zookeeper 의 IP/Port 정보를 기입한다. &lt;code&gt;KAFKA_ADVERTISED_LISTENERS&lt;/code&gt;는 외부에서 접근할 수 있는 Kafka의 IP/Port 정보를 기입한다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-yml&quot;&gt;apiVersion: apps/v1
 kind: Deployment
@@ -295,7 +497,7 @@ spec:
 &lt;li&gt;&lt;a href=&quot;https://docs.confluent.io/platform/current/installation/docker/config-reference.html#&quot;&gt;Confluent 플랫폼 도커 사용 설명서&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.confluent.io/blog/apache-kafka-kubernetes-could-you-should-you/&quot;&gt;Confluent : &quot;Apache Kafka on Kubernetes – Could You? Should You?&quot;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://kgw7401.tistory.com/106&quot;&gt;오몰내알 : &quot;쿠버네티스에서 카프카(kafka on k8s) 정말 좋은 선택일까?&quot;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[k3s 배포하기 (3) : 데이터베이스(MySQL) 배포]]></title><description><![CDATA[본래 DB의 아이디와 패스워드는 쿠버네티스에서 Secret 등으로 관리해야 한다. Secret 생성과 적용은 이후 포스팅에서 따로 다룰 예정이다. 1. PV, PVC 쿠버네티스에서는 파드가 죽으면 알아서 다시 띄워준다. 그런데 MySQL…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_3_mysql/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_3_mysql/</guid><pubDate>Sun, 21 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[k3s 배포하기(3) : 데이터베이스(MySQL) 배포]]></title><description><![CDATA[본래 DB의 아이디와 패스워드는 쿠버네티스에서 Secret 등으로 관리해야 한다. Secret 생성과 적용은 이후 포스팅에서 따로 다룰 예정이다. 1. PV, PVC 쿠버네티스에서는 파드가 죽으면 알아서 다시 띄워준다. 그런데 MySQL…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_3_mysql/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_3_mysql/</guid><pubDate>Mon, 22 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
       &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/d19be23512ec1d8b8365333801fe3680/2bef9/architecture-db.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 70.28571428571428%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB30lEQVR42oWUAXPbIAyF+/9/5K7ttixZajt2QIAQ+nbgrE279sYdZyzg+T1Jzw+A82G01ljXlVyNs/g40Gqm5EyrB9wzXwx/eF21iqvgprhmclipWYiSwBRNV6TH5IRXGTGsvJ84D2+0DN+eYXuENONpwdMMecZlAplpccLCPPZJLyD3c+rS7gC9QTzi9TwkadoQWWmecRQomAnWMl4DLS/ggrc4nug2SN0BGqQLYOOyW8Q0sBXhVwk3wARUynQk/XjqsnCvI/YKWEomhEAzxa5nzCJFA5eSKCXQUKIJeOaaz2zpTC4Bq4K2wuPpmZQmqGEHrLVSSrkxnAeTLvNShKwRrRtqV1TjAJS6UFWog21hSRu5r/X6meRlHBqSe+68IGUm6jxAOrC1SJJISpHmhVRWmoX/A5rlHZhM8zQAL+m4s5SISKBY4tvvA5IvQ7J/BWit8HQqqN3Y9ljtMgPmguo+oavQvQs+r3IHVJorS9iBGS2jWE0scmDNvShCbUJ15fvLT0pvoRq7nT4Axgl6Pizs/WXx9n6FLrv3X89Vr7rt+ylttF7hLvsdw+7Ym4XcCilsWIm7xZpCt935xCUt1HvrNf3Hep/8HJxp7f2ofz8F6wrHEye/IiMVvO3dXf0DdE9Kl7HBYYsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
   &lt;picture&gt;
@@ -444,7 +646,7 @@ kubectl apply -f mysql.yml
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://kubernetes.io/ko/docs/concepts/storage/persistent-volumes/&quot;&gt;쿠버네티스 공식문서 : &quot;퍼시스트 볼륨&quot;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://kubernetes.io/ko/docs/concepts/storage/persistent-volumes/&quot;&gt;MySQL 도커 이미지&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[k3s 배포하기 (2) : 프론트(React) 배포]]></title><description><![CDATA[프론트는 너무 간단하다. Next.js같은 풀스텍 프레임워크를 사용하면 좀 더 흥미로울 것 같다. 1. 도커 이미지 리액트 프로젝트를 빌드하면 정적 파일이 생성된다. 이러한 정적 컨텐츠를 서비스하기 위해서는 웹서버가 필요하다. 그래서 Nginx…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_2_front/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_2_front/</guid><pubDate>Sun, 21 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[k3s 배포하기(2) : 프론트(React) 배포]]></title><description><![CDATA[프론트는 너무 간단하다. Next.js같은 풀스텍 프레임워크를 사용하면 좀 더 흥미로울 것 같다. 1. 도커 이미지 리액트 프로젝트를 빌드하면 정적 파일이 생성된다. 이러한 정적 컨텐츠를 서비스하기 위해서는 웹서버가 필요하다. 그래서 Nginx…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_2_front/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_2_front/</guid><pubDate>Sun, 21 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
       &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/b9f4578ab1c98f7332a232a35c28ef1b/2bef9/architecture-front.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 70.28571428571428%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAABy0lEQVR42n2UDW7bMAyFc//b7EAF1mErEjiJY1ui/kh+g5SsyYo0AghbFPX0HkVqBzhfhpmxLAu5KZP4CLCWKTlj7QP3zDfDd59/1vAquFa8ZnJYaFmIkkArNW1I98kBbzJ8aPnfcHZ3Woqvv2D9CemMpxlPZ8hnLJ5Arl8N57FOOoI82qlLewB0g7jH2zQk1bQisqCWMRpQUJUx9xawPAMCHsEF6jpIPQAqpAugY7NrhBp4E+HH8c/wNe25a5TTnvT7vcsC71LrHbCUTAgB04puE6qRUgNzSdQSiF55i0fwzJYn1jRRSkCb0CwT84paZ7hdAVtrlFJuDM+DiXlmKUKukdZWzCK1ygCUNtM6mKYRWzVhneVzyfMIGpI9416I5UwoJ1oVqm6oRZJEUorjYLOEk+8MvwPUka8ygs3TALyk/ZWlxGGdXcgBtfQaUK3wfuhybmy7b8gMqMuQ3w3y5/oLyRXzyhyuwOMGqWhLzPLBkidy6ReSaF6QGoaC5wx7AWsY5hahl86Yb9Bl9/rrG1VuaxFtAe8x+fIFsHfsrYVcCymsaInXFrMKve2mA5d0veVXrffkcXBOS6/H+u8oWBbYHzj4hoxUPB32F5t1Sw0FF2zpAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
   &lt;picture&gt;
@@ -556,7 +758,7 @@ spec:
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;# 쿠버네티스 등록
 kubectl apply -f react.yml
-&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[k3s 배포하기 (1) : 프로젝트 개요 & 사전 준비]]></title><description><![CDATA[1. 프로젝트 개요 백엔드 개발자 친구와 함께 쿠버네티스를 연습하기 위한 토이프로젝트를 만들었다. 명색이 쿠버네티스 프로젝트인데 MSA를 안할 수 없었다. 백엔드가 MSA로 바쁜데, 프론트가 가만히 있을 수 없어 Three.js…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_1_intro/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_1_intro/</guid><pubDate>Sun, 21 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-프로젝트-개요&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B0%9C%EC%9A%94&quot; aria-label=&quot;1 프로젝트 개요 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 프로젝트 개요&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[k3s 배포하기(1) : 프로젝트 개요 & 사전 준비]]></title><description><![CDATA[1. 프로젝트 개요 백엔드 개발자 친구와 함께 쿠버네티스를 연습하기 위한 토이프로젝트를 만들었다. 명색이 쿠버네티스 프로젝트인데 MSA를 안할 수 없었다. 백엔드가 MSA로 바쁜데, 프론트가 가만히 있을 수 없어 Three.js…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_1_intro/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_1_intro/</guid><pubDate>Sun, 21 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-프로젝트-개요&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B0%9C%EC%9A%94&quot; aria-label=&quot;1 프로젝트 개요 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 프로젝트 개요&lt;/h1&gt;
 &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
       &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/f15a3f6bc1f8ad128ddea7349aa96980/c1b63/the-gallery.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 52.57142857142857%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAACFklEQVR42q2TTWgTQRTHk7QIFlGzkczbGD9ARCiIUigKSksPHosHCXhtsdnuzuw20cQ0B1lR0EoVCoog+Hn1KgUpsTmoWHoQqeLBgwfbJu7Mppo0lrTWPtnNpqRgPYgP/gy89+Y378F/fD430O9DT/8h/HU1YJtB0b95bWNjIGLws0Ct+zKzTrgpEwONy5Jub48Ml0P1nDfA3zYBVorJRmVGPr/8ERJLSJg1Jpvzbb4Ytrh1nXcTKi4Tamdh0Dqz/mA3tro9Dtw5Y09b6kBjcQr0b1+A8teQqKKcQgRWmozQuZBTJ4PFMGhCIaroAa2wjyjF/aAWOttjH7Z48FZP9a2A2WuEillgdh6GfiDReA0u/ELCFsZdILX7iC6eEGYz0PiInKzdldP4CPTS7TDj14DxS4SJNNF4f31CfWGVUD4HTEyAUUFCxXJYtWpyahWjmZWubX2F9uAAvyPFeSKk8Oe7lK/XJaWYDSr88c4B696O/mKPpH2/FVRLcQ9YzsFQtRxJVCfcdY3Fn5BcQTDK89K52Sgibk2O4+GxGSSORt9h+MpbPDgyhdGrr/DAjWk81HWzEj/9cGmPCySq6AUq3shMPACNfwbK3xNqfYrootepK89wdzaHp4Yn8djF/NrxzAs8ksrj0XQOOzJ5POlodBo7zZe417fRd3+ywr8YHRuGbfotphlo+A4R/SZiYF1mk5ry6HnzNyyhISQVAq22AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
@@ -32354,615 +32556,6 @@ greet(whisper)
 add_15 = create_adder(15)
 
 print (add_15(10))  # 25
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[03. CSS Advanced (Flex & Grid)]]></title><description><![CDATA[1. Float 2. Flexbox 2.1. Declaration 2.2. From Definition 2.2.1. flex-direction 2.2.2. flex-wrap 2.2.3. flex-flow 2.3. Align 2.3.1. justify…]]></description><link>https://byongho96.github.io/TIL/posts/Language/CSS/03_CSS_Advanced/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Language/CSS/03_CSS_Advanced/</guid><pubDate>Tue, 08 Nov 2022 00:00:00 GMT</pubDate><content:encoded>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#1-float&quot;&gt;1. Float&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#2-flexbox&quot;&gt;2. Flexbox&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#21-declaration&quot;&gt;2.1. Declaration&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#22-from-definition&quot;&gt;2.2. From Definition&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#221-flex-direction&quot;&gt;2.2.1. flex-direction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#222-flex-wrap&quot;&gt;2.2.2. flex-wrap&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#223-flex-flow&quot;&gt;2.2.3. flex-flow&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#23-align&quot;&gt;2.3. Align&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#231-justify-content&quot;&gt;2.3.1. justify-content&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#232-justify-items&quot;&gt;2.3.2. justify-items&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#233-justify-self&quot;&gt;2.3.3. justify-self&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#234-align-content&quot;&gt;2.3.4. align-content&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#235-align-items&quot;&gt;2.3.5. align-items&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#236-align-self&quot;&gt;2.3.6. align-self&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#24-width&quot;&gt;2.4. Width&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#241-flex-basis&quot;&gt;2.4.1. flex-basis&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#242-flex-grow&quot;&gt;2.4.2. flex-grow&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#243-flex-shrink&quot;&gt;2.4.3. flex-shrink&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#244-flex&quot;&gt;2.4.4. flex&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#3-grid&quot;&gt;3. Grid&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#31-declaration&quot;&gt;3.1. Declaration&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#32-shape-definition&quot;&gt;3.2. Shape Definition&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#321-grid-template-columnsrows&quot;&gt;3.2.1. grid-template-columns/rows&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#322-grid-auto-columnsrows&quot;&gt;3.2.2. grid-auto-columns/rows&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#323-grid-auto-flow&quot;&gt;3.2.3. grid-auto-flow&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#324-gap&quot;&gt;3.2.4. gap&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#33-cell-placement&quot;&gt;3.3. Cell Placement&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#331-grid-columnrows-&quot;&gt;3.3.1. grid-column/rows-*&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#332-grid-template-areas&quot;&gt;3.3.2. grid-template-areas&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#34-align&quot;&gt;3.4. Align&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#341-justify-content&quot;&gt;3.4.1. justify-content&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#342-justify-items&quot;&gt;3.4.2. justify-items&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#343-justify-self&quot;&gt;3.4.3. justify-self&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#344-align-content&quot;&gt;3.4.4. align-content&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#345-align-items&quot;&gt;3.4.5. align-items&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#346-align-self&quot;&gt;3.4.6. align-self&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#4-%EA%B0%80%EC%83%81-%EC%84%A0%ED%83%9D%EC%9E%90&quot;&gt;4. 가상 선택자&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#5-%EC%95%A0%EB%8B%88%EB%A9%94%EC%9D%B4%EC%85%98&quot;&gt;5. 애니메이션&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#6-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A7%80%EC%A0%95-%EC%86%8D%EC%84%B1&quot;&gt;6. 사용자 지정 속성&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;1-float&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-float&quot; aria-label=&quot;1 float permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Float&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/CSS/float&quot;&gt;CSS Float Mozilla&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&quot;2-flexbox&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-flexbox&quot; aria-label=&quot;2 flexbox permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Flexbox&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;https://studiomeal.com/archives/197&quot;&gt;flexbox에 관한 블로그 글&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;21-declaration&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-declaration&quot; aria-label=&quot;21 declaration permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. Declaration&lt;/h2&gt;
-&lt;p&gt;컨테이너에 &lt;code&gt;display: flex&lt;/code&gt;를 적용한다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;width&lt;/strong&gt;는 content 크기만큼 차지한다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;height&lt;/strong&gt;는 container 높이만큼 늘어난다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  display: flex;
-  display: inline-flex; /* 컨테이너 자체가 inline-block */
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;22-from-definition&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-from-definition&quot; aria-label=&quot;22 from definition permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. From Definition&lt;/h2&gt;
-&lt;h3 id=&quot;221-flex-direction&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#221-flex-direction&quot; aria-label=&quot;221 flex direction permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2.1. flex-direction&lt;/h3&gt;
-&lt;p&gt;main axis의 방향을 결정한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  display: flex;
-  flex-direction: row; /*default*/
-  flex-direction: row-reverse;
-  flex-direction: column;
-  flex-direction: column-reverse;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/02b5245517eafe8834ee73bbb2157340/a48ce/flex-direction.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 22.285714285714285%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAEABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAECBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHBqEiT/8QAFRABAQAAAAAAAAAAAAAAAAAAARD/2gAIAQEAAQUCb//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABQQAQAAAAAAAAAAAAAAAAAAABD/2gAIAQEABj8Cf//EABgQAAIDAAAAAAAAAAAAAAAAAAARASFh/9oACAEBAAE/IaSMeH//2gAMAwEAAgADAAAAEHA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGBABAAMBAAAAAAAAAAAAAAAAABFBcZH/2gAIAQEAAT8QoJMOP//Z&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/02b5245517eafe8834ee73bbb2157340/c54d4/flex-direction.webp 175w,
-/TIL/static/02b5245517eafe8834ee73bbb2157340/a3432/flex-direction.webp 350w,
-/TIL/static/02b5245517eafe8834ee73bbb2157340/426ac/flex-direction.webp 700w,
-/TIL/static/02b5245517eafe8834ee73bbb2157340/c139f/flex-direction.webp 1050w,
-/TIL/static/02b5245517eafe8834ee73bbb2157340/7f403/flex-direction.webp 1400w,
-/TIL/static/02b5245517eafe8834ee73bbb2157340/26f96/flex-direction.webp 1755w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/02b5245517eafe8834ee73bbb2157340/e52aa/flex-direction.jpg 175w,
-/TIL/static/02b5245517eafe8834ee73bbb2157340/70ebb/flex-direction.jpg 350w,
-/TIL/static/02b5245517eafe8834ee73bbb2157340/29d31/flex-direction.jpg 700w,
-/TIL/static/02b5245517eafe8834ee73bbb2157340/9ecec/flex-direction.jpg 1050w,
-/TIL/static/02b5245517eafe8834ee73bbb2157340/d165a/flex-direction.jpg 1400w,
-/TIL/static/02b5245517eafe8834ee73bbb2157340/a48ce/flex-direction.jpg 1755w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/02b5245517eafe8834ee73bbb2157340/29d31/flex-direction.jpg&quot; alt=&quot;flex direction&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-&lt;h3 id=&quot;222-flex-wrap&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#222-flex-wrap&quot; aria-label=&quot;222 flex wrap permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2.2. flex-wrap&lt;/h3&gt;
-&lt;p&gt;줄바꿈 속성을 결정한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  display: flex;
-  flex-wrap: nowrap; /*default*/
-  flex-wrap: wrap;
-  flex-wrap: wrap-reverse;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/c2f61500eefd3a62a0b54b6fbbb42062/a52aa/flex-wrap.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 52.57142857142857%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAIDBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHYlYoI/8QAGBABAAMBAAAAAAAAAAAAAAAAAQAREhP/2gAIAQEAAQUC6FbMxLlCAE//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAbEAACAgMBAAAAAAAAAAAAAAAAAREhAhASkf/aAAgBAQAGPwJ1l4dQ9WQ0Uf/EABoQAQEBAAMBAAAAAAAAAAAAAAERACFBUbH/2gAIAQEAAT8hsiQF5yDgLOTDS/MAQUenMgJ5gIADo3//2gAMAwEAAgADAAAAEKPP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFhEAAwAAAAAAAAAAAAAAAAAAARAR/9oACAECAQE/EKF//8QAGhABAAMBAQEAAAAAAAAAAAAAAQARITFRcf/aAAgBAQABPxAYPbVMKz7sF3iCD2jPIZBEeKsgVBU6CTlAdFmcgvKwFBP/2Q==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/c2f61500eefd3a62a0b54b6fbbb42062/c54d4/flex-wrap.webp 175w,
-/TIL/static/c2f61500eefd3a62a0b54b6fbbb42062/a3432/flex-wrap.webp 350w,
-/TIL/static/c2f61500eefd3a62a0b54b6fbbb42062/426ac/flex-wrap.webp 700w,
-/TIL/static/c2f61500eefd3a62a0b54b6fbbb42062/3b46e/flex-wrap.webp 932w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/c2f61500eefd3a62a0b54b6fbbb42062/e52aa/flex-wrap.jpg 175w,
-/TIL/static/c2f61500eefd3a62a0b54b6fbbb42062/70ebb/flex-wrap.jpg 350w,
-/TIL/static/c2f61500eefd3a62a0b54b6fbbb42062/29d31/flex-wrap.jpg 700w,
-/TIL/static/c2f61500eefd3a62a0b54b6fbbb42062/a52aa/flex-wrap.jpg 932w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/c2f61500eefd3a62a0b54b6fbbb42062/29d31/flex-wrap.jpg&quot; alt=&quot;flex wrap&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-&lt;h3 id=&quot;223-flex-flow&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#223-flex-flow&quot; aria-label=&quot;223 flex flow permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2.3. flex-flow&lt;/h3&gt;
-&lt;p&gt;flex-direction과 flex-wrap을 한 번에 지정한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  flex-flow: row nowrap;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;23-align&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#23-align&quot; aria-label=&quot;23 align permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.3. Align&lt;/h2&gt;
-&lt;h3 id=&quot;231-justify-content&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#231-justify-content&quot; aria-label=&quot;231 justify content permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.3.1. justify-content&lt;/h3&gt;
-&lt;p&gt;메인축 방향으로 컨텐츠 배열방식 지정&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  justify-content: flex-start;
-  justify-content: flex-end;
-  justify-content: center;
-  justify-content: space-between;
-  justify-content: space-around;
-  justify-content: space-evenly;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 636px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/cb7fa0e8cb2bd6959e1e17ca481a0cae/c60f3/assign_space.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 53.714285714285715%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAECAwT/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/2gAMAwEAAhADEAAAAd6VRIDU/8QAGRABAQEAAwAAAAAAAAAAAAAAAQADESIy/9oACAEBAAEFAhY4ZC0s/ej2/8QAFhEAAwAAAAAAAAAAAAAAAAAAARAx/9oACAEDAQE/ATV//8QAFhEAAwAAAAAAAAAAAAAAAAAAAhAx/9oACAECAQE/ARq//8QAGxAAAgEFAAAAAAAAAAAAAAAAAAECECIxMnH/2gAIAQEABj8CueRo1ZEfaf/EABsQAQADAQADAAAAAAAAAAAAAAEAESExYXGB/9oACAEBAAE/IatGIw5HoeEuCav+zKzsd+xGMKZP/9oADAMBAAIAAwAAABD73//EABYRAAMAAAAAAAAAAAAAAAAAABARIf/aAAgBAwEBPxCUH//EABYRAQEBAAAAAAAAAAAAAAAAAAEAEf/aAAgBAgEBPxCnBv/EABwQAQADAQADAQAAAAAAAAAAAAEAESFBMVFxsf/aAAgBAQABPxBj2SSxPM16F/rEIEdFTFUjTqXyKJreB6hYMpg/Z//Z&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/cb7fa0e8cb2bd6959e1e17ca481a0cae/c54d4/assign_space.webp 175w,
-/TIL/static/cb7fa0e8cb2bd6959e1e17ca481a0cae/a3432/assign_space.webp 350w,
-/TIL/static/cb7fa0e8cb2bd6959e1e17ca481a0cae/6d494/assign_space.webp 636w&quot; sizes=&quot;(max-width: 636px) 100vw, 636px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/cb7fa0e8cb2bd6959e1e17ca481a0cae/e52aa/assign_space.jpg 175w,
-/TIL/static/cb7fa0e8cb2bd6959e1e17ca481a0cae/70ebb/assign_space.jpg 350w,
-/TIL/static/cb7fa0e8cb2bd6959e1e17ca481a0cae/c60f3/assign_space.jpg 636w&quot; sizes=&quot;(max-width: 636px) 100vw, 636px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/cb7fa0e8cb2bd6959e1e17ca481a0cae/c60f3/assign_space.jpg&quot; alt=&quot;assign space&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-&lt;h3 id=&quot;232-justify-items&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#232-justify-items&quot; aria-label=&quot;232 justify items permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.3.2. justify-items&lt;/h3&gt;
-&lt;p&gt;flex에서는 쓰이지 않음&lt;/p&gt;
-&lt;h3 id=&quot;233-justify-self&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#233-justify-self&quot; aria-label=&quot;233 justify self permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.3.3. justify-self&lt;/h3&gt;
-&lt;p&gt;flex에서는 쓰이지 않음&lt;/p&gt;
-&lt;h3 id=&quot;234-align-content&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#234-align-content&quot; aria-label=&quot;234 align content permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.3.4. align-content&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;flex-wrap: wrap;&lt;/code&gt;인 상태에서 행이 2줄 이상일 때, 수직축 방향으로 컨텐츠 배열방식 지정&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  align-content: flex-start;
-  align-content: flex-end;
-  align-content: center;
-  align-content: space-between;
-  align-content: space-around;
-  align-content: space-evenly;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 612px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/bde3c92bd4b834f36834378536f9e60c/a18e1/align-content.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 82.85714285714286%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAARABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAMCAQT/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/2gAMAwEAAhADEAAAAffzFUyspIKDT//EABoQAAIDAQEAAAAAAAAAAAAAAAACARMxEBL/2gAIAQEAAQUCsVjyslfF0bE2T//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8BH//EABcRAQADAAAAAAAAAAAAAAAAAAABEBH/2gAIAQIBAT8BZUP/xAAcEAABAwUAAAAAAAAAAAAAAAAAARGhICExMuL/2gAIAQEABj8CYssmynJiKf/EABoQAAIDAQEAAAAAAAAAAAAAAAABETFhIXH/2gAIAQEAAT8hsKZFiJ5I4sE2+ROBYavMDeF/pZ4WP//aAAwDAQACAAMAAAAQLOg//8QAFxEBAAMAAAAAAAAAAAAAAAAAABAhQf/aAAgBAwEBPxBbI//EABgRAQADAQAAAAAAAAAAAAAAAAABEVEx/9oACAECAQE/EFsY4h//xAAgEAEAAgEDBQEAAAAAAAAAAAABABEhMVGBEEFhobHB/9oACAEBAAE/EBGY7i1j8jRPVyYedoU1Ycx4RtyxrA3tTmIJZtLTWune5nzJ/9k=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/bde3c92bd4b834f36834378536f9e60c/c54d4/align-content.webp 175w,
-/TIL/static/bde3c92bd4b834f36834378536f9e60c/a3432/align-content.webp 350w,
-/TIL/static/bde3c92bd4b834f36834378536f9e60c/d1d8c/align-content.webp 612w&quot; sizes=&quot;(max-width: 612px) 100vw, 612px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/bde3c92bd4b834f36834378536f9e60c/e52aa/align-content.jpg 175w,
-/TIL/static/bde3c92bd4b834f36834378536f9e60c/70ebb/align-content.jpg 350w,
-/TIL/static/bde3c92bd4b834f36834378536f9e60c/a18e1/align-content.jpg 612w&quot; sizes=&quot;(max-width: 612px) 100vw, 612px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/bde3c92bd4b834f36834378536f9e60c/a18e1/align-content.jpg&quot; alt=&quot;align content&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-&lt;h3 id=&quot;235-align-items&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#235-align-items&quot; aria-label=&quot;235 align items permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.3.5. align-items&lt;/h3&gt;
-&lt;p&gt;한 개의 열에서 컨텐츠들의 수직 정렬을 지정한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  align-items: stretch;
-  align-items: flex-start;
-  align-items: flex-end;
-  align-items: center;
-  align-items: baseline;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 655px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/52660fb030109e6e3ca2e3679be1be0c/22635/align-items.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 74.28571428571428%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMEAQL/xAAVAQEBAAAAAAAAAAAAAAAAAAABA//aAAwDAQACEAMQAAABuYrUpOhn/8QAGRAAAwEBAQAAAAAAAAAAAAAAAQIRABIy/9oACAEBAAEFAiWrqKvnpcHpm//EABURAQEAAAAAAAAAAAAAAAAAAAEQ/9oACAEDAQE/AWf/xAAVEQEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAgEBPwEn/8QAGRABAAIDAAAAAAAAAAAAAAAAAAEQETFB/9oACAEBAAY/AmZQ63X/xAAbEAEAAwADAQAAAAAAAAAAAAABACExEUFRcf/aAAgBAQABPyHT4Dq43BCHBkQdb9lIq/JTtn//2gAMAwEAAgADAAAAEFcP/8QAFxEBAQEBAAAAAAAAAAAAAAAAAQAhMf/aAAgBAwEBPxDpnW//xAAXEQEAAwAAAAAAAAAAAAAAAAABECFh/9oACAECAQE/ELBkf//EABwQAQADAAIDAAAAAAAAAAAAAAEAESExcZHR8P/aAAgBAQABPxDHCqpT1EW0ebx7gEbBjkaIpzVKhBqA+VACjzz/2Q==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/52660fb030109e6e3ca2e3679be1be0c/c54d4/align-items.webp 175w,
-/TIL/static/52660fb030109e6e3ca2e3679be1be0c/a3432/align-items.webp 350w,
-/TIL/static/52660fb030109e6e3ca2e3679be1be0c/09ab1/align-items.webp 655w&quot; sizes=&quot;(max-width: 655px) 100vw, 655px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/52660fb030109e6e3ca2e3679be1be0c/e52aa/align-items.jpg 175w,
-/TIL/static/52660fb030109e6e3ca2e3679be1be0c/70ebb/align-items.jpg 350w,
-/TIL/static/52660fb030109e6e3ca2e3679be1be0c/22635/align-items.jpg 655w&quot; sizes=&quot;(max-width: 655px) 100vw, 655px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/52660fb030109e6e3ca2e3679be1be0c/22635/align-items.jpg&quot; alt=&quot;align items&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-&lt;h3 id=&quot;236-align-self&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#236-align-self&quot; aria-label=&quot;236 align self permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.3.6. align-self&lt;/h3&gt;
-&lt;p&gt;한 개의 열에서 개별 컨텐츠의 수직 정렬을 지정한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  align-self: stretch;
-  align-self: flex-start;
-  align-self: flex-end;
-  align-self: center;
-  align-self: baseline;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;24-width&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#24-width&quot; aria-label=&quot;24 width permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.4. Width&lt;/h2&gt;
-&lt;h3 id=&quot;241-flex-basis&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#241-flex-basis&quot; aria-label=&quot;241 flex basis permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.4.1. flex-basis&lt;/h3&gt;
-&lt;p&gt;아이템의 기본(최소)너비를 설정한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.item {
-  flex-basis: auto; /* 기본값 */
-  flex-basis: 0;
-  flex-basis: 50%;
-  flex-basis: 300px;
-  flex-basis: 10rem;
-  flex-basis: content;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;242-flex-grow&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#242-flex-grow&quot; aria-label=&quot;242 flex grow permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.4.2. flex-grow&lt;/h3&gt;
-&lt;p&gt;한 행을 채우도록하는 컨텐츠 너비를 분배방식을 지정&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;flex-basis를 제외한 여백 부분&lt;/strong&gt;을 flex-grow에 지정된 숫자의 비율로 아이템이 나누어 가진다. 따라서 원하는 비율대로 너비를 나누기 위해서는 flex-basis를 0으로 설정한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.item {
-  flex-grow: 1;
-  /* flex-grow: 0; */ /* 기본값 */
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/24c181d18b5794c85efe900a38c41ace/51568/flex-grow.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 53.14285714285714%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIBBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHuVGxQr//EABcQAAMBAAAAAAAAAAAAAAAAAAAQEQH/2gAIAQEAAQUCcwi//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFRABAQAAAAAAAAAAAAAAAAAAIDH/2gAIAQEABj8Cq//EABoQAAICAwAAAAAAAAAAAAAAAAAhEBExUfH/2gAIAQEAAT8hfAodgpqP/9oADAMBAAIAAwAAABA4D//EABYRAAMAAAAAAAAAAAAAAAAAAAEQMf/aAAgBAwEBPxA1f//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABsQAQADAQADAAAAAAAAAAAAAAEAETEhUWFx/9oACAEBAAE/EAu3bueEEHCL6mzX2B8xAAon/9k=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/24c181d18b5794c85efe900a38c41ace/c54d4/flex-grow.webp 175w,
-/TIL/static/24c181d18b5794c85efe900a38c41ace/a3432/flex-grow.webp 350w,
-/TIL/static/24c181d18b5794c85efe900a38c41ace/426ac/flex-grow.webp 700w,
-/TIL/static/24c181d18b5794c85efe900a38c41ace/9d646/flex-grow.webp 882w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/24c181d18b5794c85efe900a38c41ace/e52aa/flex-grow.jpg 175w,
-/TIL/static/24c181d18b5794c85efe900a38c41ace/70ebb/flex-grow.jpg 350w,
-/TIL/static/24c181d18b5794c85efe900a38c41ace/29d31/flex-grow.jpg 700w,
-/TIL/static/24c181d18b5794c85efe900a38c41ace/51568/flex-grow.jpg 882w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/24c181d18b5794c85efe900a38c41ace/29d31/flex-grow.jpg&quot; alt=&quot;flex grow&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-&lt;h3 id=&quot;243-flex-shrink&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#243-flex-shrink&quot; aria-label=&quot;243 flex shrink permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.4.3. flex-shrink&lt;/h3&gt;
-&lt;p&gt;아이템이 flex-basis보다 작아질 수 있는지를 결정합니다.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;기본값이 1이기 때문에 아이템의 크기는 flex-basis보다 작아질 수 있다.&lt;/strong&gt; flex-shrink가 0일 경우, 아이템의 크기가 flex-basis보다 작아지지 않는다.&lt;/p&gt;
-&lt;h3 id=&quot;244-flex&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#244-flex&quot; aria-label=&quot;244 flex permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.4.4. flex&lt;/h3&gt;
-&lt;p&gt;flex-grow, flex-shrink, flex-basis를 한 번에 쓸 수 있는 축약형 속성.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.item {
-  flex: 1;
-  /* flex-grow: 1; flex-shrink: 1; flex-basis: 0%; */
-  flex: 1 1 auto;
-  /* flex-grow: 1; flex-shrink: 1; flex-basis: auto; */
-  flex: 1 500px;
-  /* flex-grow: 1; flex-shrink: 1; flex-basis: 500px; */
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&quot;3-grid&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-grid&quot; aria-label=&quot;3 grid permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. Grid&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;https://studiomeal.com/archives/533&quot;&gt;Grid System에 관한 블로그 글&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;https://www.youtube.com/watch?v=9zBsdzdE4sM&quot;&gt;Grid System Youtube&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;31-declaration&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#31-declaration&quot; aria-label=&quot;31 declaration permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1. Declaration&lt;/h2&gt;
-&lt;p&gt;Grid 컨테이너에 &lt;code&gt;display: grid;&lt;/code&gt;를 선언한다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  display: grid;
-  display: inline-grid; /* 컨테이너 자체가 inline-block */
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;32-shape-definition&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#32-shape-definition&quot; aria-label=&quot;32 shape definition permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2. Shape Definition&lt;/h2&gt;
-&lt;h3 id=&quot;321-grid-template-columnsrows&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#321-grid-template-columnsrows&quot; aria-label=&quot;321 grid template columnsrows permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2.1. grid-template-columns/rows&lt;/h3&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  grid-template-columns: 200px 200px 500px;
-  /* grid-template-columns: 1fr 1fr 1fr */
-  /* grid-template-columns: repeat(3, 1fr) */
-  /* grid-template-columns: 200px 1fr */
-  /* grid-template-columns: 100px 200px auto */
-
-  grid-template-rows: 200px 200px 500px;
-  /* grid-template-rows: 1fr 1fr 1fr */
-  /* grid-template-rows: repeat(3, 1fr) */
-  /* grid-template-rows: 200px 1fr */
-  /* grid-template-rows: 100px 200px auto */
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;repeat(반복횟수, 반복값)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;minmax(최소, 최대)&lt;/strong&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, minmax(100px, auto));
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;auto-fill&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;설정된 너비가 허용하는 최대한 컬럼 생성
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  grid-template-columns: repeat(auto-fill, minmax(20%, auto));
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;auto-fit&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;설정된 너비가 허용하는 최대한 컬럼 생성하고, 남는 공간을 채움&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;322-grid-auto-columnsrows&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#322-grid-auto-columnsrows&quot; aria-label=&quot;322 grid auto columnsrows permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2.2. grid-auto-columns/rows&lt;/h3&gt;
-&lt;p&gt;지정하지 않은 column, row에 대한 값을 설정&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;grid-auto-columns&lt;/strong&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  grid-template-columns: 50px;
-  grid-auto-columns: 1fr 2fr;
-}
-.item:nth-child(1) {
-  grid-column: 2;
-}
-.item:nth-child(2) {
-  grid-column: 3;
-}
-.item:nth-child(3) {
-  grid-column: 4;
-}
-.item:nth-child(4) {
-  grid-column: 5;
-}
-.item:nth-child(5) {
-  grid-column: 6;
-}
-.item:nth-child(6) {
-  grid-column: 7;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
-      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/2d8a5440292eec023da77ff1f4c9780d/a4b7e/grid-auto-columns.jpg&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 14.857142857142858%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAADABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAEDBP/EABcBAAMBAAAAAAAAAAAAAAAAAAIDBAX/2gAMAwEAAhADEAAAAbNhm0wAX//EABcQAQEBAQAAAAAAAAAAAAAAAAEAEiH/2gAIAQEAAQUCOuSyX//EABURAQEAAAAAAAAAAAAAAAAAAAIQ/9oACAEDAQE/AVP/xAAXEQEBAQEAAAAAAAAAAAAAAAABAAMR/9oACAECAQE/AdXkLf/EABYQAAMAAAAAAAAAAAAAAAAAAAAQMf/aAAgBAQAGPwIi/8QAGRAAAgMBAAAAAAAAAAAAAAAAAREAEEFR/9oACAEBAAE/ISQ9NY8Z/9oADAMBAAIAAwAAABDwP//EABYRAQEBAAAAAAAAAAAAAAAAAAEAEf/aAAgBAwEBPxBpmSt//8QAFxEBAQEBAAAAAAAAAAAAAAAAAQARMf/aAAgBAgEBPxBkY2Lt/8QAGRABAAMBAQAAAAAAAAAAAAAAAQARITFh/9oACAEBAAE/EGU1ove7PNBOGf/Z&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source srcset=&quot;/TIL/static/2d8a5440292eec023da77ff1f4c9780d/c54d4/grid-auto-columns.webp 175w,
-/TIL/static/2d8a5440292eec023da77ff1f4c9780d/a3432/grid-auto-columns.webp 350w,
-/TIL/static/2d8a5440292eec023da77ff1f4c9780d/426ac/grid-auto-columns.webp 700w,
-/TIL/static/2d8a5440292eec023da77ff1f4c9780d/184c4/grid-auto-columns.webp 833w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/webp&quot;&gt;
-          &lt;source srcset=&quot;/TIL/static/2d8a5440292eec023da77ff1f4c9780d/e52aa/grid-auto-columns.jpg 175w,
-/TIL/static/2d8a5440292eec023da77ff1f4c9780d/70ebb/grid-auto-columns.jpg 350w,
-/TIL/static/2d8a5440292eec023da77ff1f4c9780d/29d31/grid-auto-columns.jpg 700w,
-/TIL/static/2d8a5440292eec023da77ff1f4c9780d/a4b7e/grid-auto-columns.jpg 833w&quot; sizes=&quot;(max-width: 700px) 100vw, 700px&quot; type=&quot;image/jpeg&quot;&gt;
-          &lt;img class=&quot;gatsby-resp-image-image&quot; src=&quot;/TIL/static/2d8a5440292eec023da77ff1f4c9780d/29d31/grid-auto-columns.jpg&quot; alt=&quot;grid auto columns&quot; title=&quot;&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;grid-auto-rows&lt;/strong&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  /* 1 ~ 3 행 */
-  grid-template-rows: repeat(3, minmax(100px, auto));
-  /* 4 ~ 행 */
-  grid-auto-rows: minmax(100px, auto);
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;323-grid-auto-flow&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#323-grid-auto-flow&quot; aria-label=&quot;323 grid auto flow permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2.3. grid-auto-flow&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow&quot;&gt;grid-auto-flow Mozilla&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;아이템이 배치되는 순서를 설정&lt;/p&gt;
-&lt;h3 id=&quot;324-gap&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#324-gap&quot; aria-label=&quot;324 gap permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2.4. gap&lt;/h3&gt;
-&lt;p&gt;셀 사이의 간격을 설정&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  row-gap: 10px;
-  /* row의 간격을 10px로 */
-  column-gap: 20px;
-  /* column의 간격을 20px로 */
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  gap: 10px 20px;
-  /* row-gap: 10px; column-gap: 20px; */
-  gap: 20px;
-  /* row-gap: 20px; column-gap: 20px; */
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;33-cell-placement&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#33-cell-placement&quot; aria-label=&quot;33 cell placement permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.3. Cell Placement&lt;/h2&gt;
-&lt;h3 id=&quot;331-grid-columnrows-&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#331-grid-columnrows-&quot; aria-label=&quot;331 grid columnrows  permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.3.1. grid-column/rows-*&lt;/h3&gt;
-&lt;p&gt;해당 셀의 그리드 시작 라인과 끝 라인 을 지정&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.item:nth-child(1) {
-  grid-column-start: 1;
-  grid-column-end: 3; /* -1일 경우 가장 끝 라인 */
-  grid-row-start: 1;
-  grid-row-end: 2; /* -1일 경우 가장 끝 라인 */
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.item:nth-child(1) {
-  grid-column: 1 / 3;
-  grid-row: 1; /* end를 생략하면 1칸 */
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.item:nth-child(1) {
-  /* 1번 라인에서 2칸 */
-  grid-column: 1 / span 2;
-  /* 1번 라인에서 3칸 */
-  grid-row: 1 / span 3;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;332-grid-template-areas&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#332-grid-template-areas&quot; aria-label=&quot;332 grid template areas permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.3.2. grid-template-areas&lt;/h3&gt;
-&lt;p&gt;셀의 각 영역에 이름을 붙이고, 해당 영역을 요소에서 &lt;code&gt;grid-area&lt;/code&gt;속성의 값을 준다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  grid-template-areas:
-    &apos;header header header&apos;
-    &apos;   a    main    b   &apos;
-    &apos;   .     .      .   &apos;
-    &apos;footer footer footer&apos;;
-}
-
-/* 속성 값에 따옴표 생략 */
-.header {
-  grid-area: header;
-}
-.sidebar-a {
-  grid-area: a;
-}
-.main-content {
-  grid-area: main;
-}
-.sidebar-b {
-  grid-area: b;
-}
-.footer {
-  grid-area: footer;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;34-align&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#34-align&quot; aria-label=&quot;34 align permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.4. Align&lt;/h2&gt;
-&lt;h3 id=&quot;341-justify-content&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#341-justify-content&quot; aria-label=&quot;341 justify content permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.4.1. justify-content&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Grid 아이템들의 너비를 모두 합한 값이 Grid 컨테이너의 너비보다 작을 때,&lt;/strong&gt; 모든 아이템을 가로 방향으로 정렬.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  justify-content: stretch;
-  /* justify-content: start; */
-  /* justify-content: center; */
-  /* justify-content: end; */
-  /* justify-content: space-between; */
-  /* justify-content: space-around; */
-  /* justify-content: space-evenly; */
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;342-justify-items&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#342-justify-items&quot; aria-label=&quot;342 justify items permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.4.2. justify-items&lt;/h3&gt;
-&lt;p&gt;컨텐츠를 각 셀 안에서, 가로축 방향으로 정렬&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  justify-items: stretch;
-  /* justify-items: start; */
-  /* justify-items: center; */
-  /* justify-items: end; */
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;343-justify-self&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#343-justify-self&quot; aria-label=&quot;343 justify self permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.4.3. justify-self&lt;/h3&gt;
-&lt;p&gt;개별 아이템의 셀 안에서, 가로축 방향으로 정렬&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.item {
-  justify-self: stretch;
-  /* justify-self: start; */
-  /* justify-self: center; */
-  /* justify-self: end; */
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;344-align-content&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#344-align-content&quot; aria-label=&quot;344 align content permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.4.4. align-content&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Grid 아이템들의 높이를 모두 합한 값이 Grid 컨테이너의 높이보다 작을 때&lt;/strong&gt;, 모든 아이템을 세로 방향으로 정렬&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  align-content: stretch;
-  /* align-content: start; */
-  /* align-content: center; */
-  /* align-content: end; */
-  /* align-content: space-between; */
-  /* align-content: space-around; */
-  /* align-content: space-evenly; */
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;345-align-items&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#345-align-items&quot; aria-label=&quot;345 align items permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.4.5. align-items&lt;/h3&gt;
-&lt;p&gt;컨텐츠를 각 셀 안에서, 세로축 방향으로 정렬&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.container {
-  align-items: stretch;
-  /* align-items: start; */
-  /* align-items: center; */
-  /* align-items: end; */
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;346-align-self&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#346-align-self&quot; aria-label=&quot;346 align self permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.4.6. align-self&lt;/h3&gt;
-&lt;p&gt;개별 아이템의 셀 안에서, 세로축 방향으로 정렬&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.item {
-  align-self: stretch;
-  /* align-self: start; */
-  /* align-self: center; */
-  /* align-self: end; */
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&quot;4-가상-선택자&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-%EA%B0%80%EC%83%81-%EC%84%A0%ED%83%9D%EC%9E%90&quot; aria-label=&quot;4 가상 선택자 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. 가상 선택자&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=zGiirUiWslI&quot;&gt;YouTube part1&lt;/a&gt;
-&lt;a href=&quot;https://www.youtube.com/watch?v=xoRbkm8XgfQ&quot;&gt;YouTube part2&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&quot;5-애니메이션&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-%EC%95%A0%EB%8B%88%EB%A9%94%EC%9D%B4%EC%85%98&quot; aria-label=&quot;5 애니메이션 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5. 애니메이션&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=YszONjKpgg4&amp;#x26;t=731s&quot;&gt;YouTube&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&quot;6-사용자-지정-속성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#6-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A7%80%EC%A0%95-%EC%86%8D%EC%84%B1&quot; aria-label=&quot;6 사용자 지정 속성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6. 사용자 지정 속성&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/CSS/Using_CSS_custom_properties#%EA%B8%B0%EB%B3%B8_%EC%82%AC%EC%9A%A9%EB%B2%95&quot;&gt;MDN Docs&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[02. Python Control Statements]]></title><description><![CDATA[1. Conditional Statement 1.1. if... elif... else 1.2. Ternary Operators 2. Loop Statement 2.1. while 2.2. for 2.2.1. Comprehension…]]></description><link>https://byongho96.github.io/TIL/posts/Language/Python/02_Python_Basics_ControlStatements/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Language/Python/02_Python_Basics_ControlStatements/</guid><pubDate>Tue, 08 Nov 2022 00:00:00 GMT</pubDate><content:encoded>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#1-conditional-statement&quot;&gt;1. Conditional Statement&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#11-if-elif-else&quot;&gt;1.1. if... elif... else&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#12-ternary-operators&quot;&gt;1.2. Ternary Operators&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#2-loop-statement&quot;&gt;2. Loop Statement&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#21-while&quot;&gt;2.1. while&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#22-for&quot;&gt;2.2. for&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#221-comprehension-expression&quot;&gt;2.2.1. Comprehension Expression&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#23-loop-control-keyword&quot;&gt;2.3. Loop Control Keyword&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;1-conditional-statement&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-conditional-statement&quot; aria-label=&quot;1 conditional statement permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Conditional Statement&lt;/h1&gt;
-&lt;h2 id=&quot;11-if-elif-else&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-if-elif-else&quot; aria-label=&quot;11 if elif else permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1. if... elif... else&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;if conditional_statement:     # if
-  &amp;#x3C;code_block&gt;
-elif conditional_statement_2: # else if
-  &amp;#x3C;code_block&gt;
-else:                           # else
-  &amp;#x3C;code_block&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;12-ternary-operators&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-ternary-operators&quot; aria-label=&quot;12 ternary operators permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2. Ternary Operators&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;true_value if condtional_statement else false_value
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&quot;2-loop-statement&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-loop-statement&quot; aria-label=&quot;2 loop statement permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Loop Statement&lt;/h1&gt;
-&lt;h2 id=&quot;21-while&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-while&quot; aria-label=&quot;21 while permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. while&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;while conditional_statement:
-  &amp;#x3C;code_block&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;22-for&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-for&quot; aria-label=&quot;22 for permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. for&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;for temp_var in iterable_object:
-  &amp;#x3C;code_block&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;221-comprehension-expression&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#221-comprehension-expression&quot; aria-label=&quot;221 comprehension expression permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2.1. Comprehension Expression&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;List Comprehension&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt; [&amp;#x3C;expression&gt; for temp_var in iterable_object (if conditional_statement)]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt; list(&amp;#x3C;expression&gt; for temp_var in iterable_object (if conditional_statement))
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Dict comprehension&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;  {&amp;#x3C;expression1&gt;: &amp;#x3C;expression2&gt; for temp_var in iterable_object (if conditional_statement)}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;  dict(expression1&gt;: &amp;#x3C;expression2&gt; for temp_var in iterable_object (if conditional_statement))
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Set comprehension&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;  {&amp;#x3C;expression&gt; for temp_var in iterable_object (if conditional_statement)}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;  set(&amp;#x3C;expression&gt; for temp_var in iterable_object (if conditional_statement))
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;23-loop-control-keyword&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#23-loop-control-keyword&quot; aria-label=&quot;23 loop control keyword permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.3. Loop Control Keyword&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;break&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;end a loop&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;continue&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;back to the &lt;strong&gt;beginning&lt;/strong&gt; of the loop with &lt;strong&gt;the next element&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;else:&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;It runs when the loop is completed without break&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;while:
-  ...
-else:
-  &amp;#x3C;code_block&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</content:encoded></item></channel></rss>
