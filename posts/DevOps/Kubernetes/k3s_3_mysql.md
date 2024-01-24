@@ -1,5 +1,5 @@
 ---
-title: 'k3s 배포하기(3) : 데이터베이스(MySQL) 배포'
+title: 'k3s 배포하기 (3) : 데이터베이스(MySQL) 배포'
 updatedAt: '2024-01-22'
 createdAt: '2024-01-22'
 description: 'AWS 인스턴스에 k3s 단일 노드 클러스터를 구축해본다. MySQL 데이터베이스를 k3s에 등록해보자'

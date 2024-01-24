@@ -1,5 +1,5 @@
 ---
-title: 'k3s 배포하기(5) : Traefik 인그레스 설정'
+title: 'k3s 배포하기 (5) : Traefik 인그레스 설정'
 updatedAt: '2024-01-23'
 createdAt: '2024-01-23'
 description: 'AWS 인스턴스에 k3s 단일 노드 클러스터를 구축해본다. Traefik 인그레스 설정을 통해 요청을 프록시패스 해보자'

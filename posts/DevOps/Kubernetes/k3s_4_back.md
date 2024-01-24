@@ -1,5 +1,5 @@
 ---
-title: 'k3s 배포하기(4) : 백엔드(Redis, Spring, Kafka) 배포'
+title: 'k3s 배포하기 (4) : 백엔드(Redis, Spring, Kafka) 배포'
 updatedAt: '2024-01-22'
 createdAt: '2024-01-22'
 description: 'AWS 인스턴스에 k3s 단일 노드 클러스터를 구축해본다. MSA 구조를 가진 백엔드 아키텍쳐를 k3s에 등록해보자'

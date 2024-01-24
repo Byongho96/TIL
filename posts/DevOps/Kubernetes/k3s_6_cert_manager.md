@@ -1,5 +1,5 @@
 ---
-title: 'k3s 배포하기(6) : Cert Manager 등록'
+title: 'k3s 배포하기 (6) : Cert Manager 등록'
 updatedAt: '2024-01-23'
 createdAt: '2024-01-23'
 description: 'AWS 인스턴스에 k3s 단일 노드 클러스터를 구축해본다. Cert Manager를 이용해서 쿠버네티스 클러스터의 SSL 인증서를 관리하고, Traefik 인그레스에 등록해보자'
