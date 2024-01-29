@@ -1,4 +1,66 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 24 Jan 2024 02:02:44 GMT</lastBuildDate><item><title><![CDATA[k3s 배포하기 (6) : Cert Manager 등록]]></title><description><![CDATA[1. Cert Manager Cert Manager는 쿠버네티스에서 SSL/TLS 인증서를 관리하기 위한 오픈 소스 도구이다. Let's Encrypt와 같은 인증 기관을 사용하여 인증서를 발급하고 갱신하는 작업을 자동화한다. 개인적으로 Certbot…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_6_cert_manager/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_6_cert_manager/</guid><pubDate>Tue, 23 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 29 Jan 2024 04:27:36 GMT</lastBuildDate><item><title><![CDATA[k3s 배포하기 (7) : Secret 등록]]></title><description><![CDATA[1. Secret 이란? Secret은 쿠버네티스 클러스터에서 비밀번호와 같은 민감한 데이터를 관리하기 위한 객체이다. 쿠버네티스 클러스터 내에서 마치 환경변수처럼 동작하기 때문에, 여러 Pod에서 독립적으로 값을 참조할 수 있다. 값을 yml…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_7_secret/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_7_secret/</guid><pubDate>Sun, 28 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-secret-이란&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-secret-%EC%9D%B4%EB%9E%80&quot; aria-label=&quot;1 secret 이란 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Secret 이란?&lt;/h1&gt;
+&lt;p&gt;&lt;mark&gt;Secret은 쿠버네티스 클러스터에서 비밀번호와 같은 민감한 데이터를 관리하기 위한 객체이다.&lt;/mark&gt; 쿠버네티스 클러스터 내에서 마치 환경변수처럼 동작하기 때문에, 여러 Pod에서 독립적으로 값을 참조할 수 있다. 값을 yml 파일 등에 하드코딩 하지 않기 때문에 보안상의 이점이 있으며, Secret값을 하나의 공급원에서 관리할 수 있다는 편의성이 있다.&lt;/p&gt;
+&lt;p&gt;ConfigMap도 환경변수를 포함한 다양한 설정파일을 관리할 수 있는 쿠버네티스 객체이다. 다만 Secret은 몇가지 보안기능을 추가 제공하며, 데이터를 Base64 인코딩하여 관리한다. 이때 Base64 인코딩은 암호화가 아니기 때문에 누구나 해독해서 값을 파악할 수 있다. 하지만 애초에 외부인이 쿠버네티스 클러스터에 접근할 수 있는 시나리오라면, 그때는 Secret이 문제가 아니라 그냥 총체적 난국일 것이다.&lt;/p&gt;
+&lt;p&gt;다만 내부 사용자 중에서도 권한에 따라 Secret에 대한 접근을 제한하고 싶을 수 있다. 기본 설정대로라면 etcd에 Secret값이 저장되기 때문에 API 서버에 요청 권한이 있는 누구나 Secret값을 조회할 수 있고, 특정 namespace에 Pod 생성권한이 있는 사람도 속한 namespace의 Secret값을 조회할 수 있다. 따라서 Secret에 대한 내부 접근을 제한하기 위해서는 &lt;a href=&quot;https://kubernetes.io/docs/concepts/configuration/secret/&quot;&gt;추가 보안 절차&lt;/a&gt;가 필요하다.&lt;/p&gt;
+&lt;h1 id=&quot;2-secret-등록&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-secret-%EB%93%B1%EB%A1%9D&quot; aria-label=&quot;2 secret 등록 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Secret 등록&lt;/h1&gt;
+&lt;p&gt;쿠버네티스는 주요 사용 시나리오에 대해 몇 가지 내장 타입을 제공한다. 각 타입마다 쿠버네티스가 내부적으로 유효성 검사 및 제약 조건을 부여한다. &lt;mark&gt;이번 포스팅에서는 DB 패스워드와 같은 일반 인증데이터를 Secret으로 등록할 것이기 때문에 &lt;a href=&quot;https://kubernetes.io/docs/concepts/configuration/secret/#basic-authentication-secret&quot;&gt;Basic Auth&lt;/a&gt;을 사용했다.&lt;/mark&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-yml&quot;&gt;apiVersion: v1
+kind: Secret
+metadata:
+  name: { 시크릿 이름 }
+type: kubernetes.io/basic-auth
+stringData:
+  { MySQL 비밀번호 키 }: { MySQL 비밀번호 값 } # key는 이후 값을 참조하기 위한 용도로 자유롭게 지정
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;3-secret-사용&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-secret-%EC%82%AC%EC%9A%A9&quot; aria-label=&quot;3 secret 사용 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. Secret 사용&lt;/h1&gt;
+&lt;p&gt;위에 생성한 Secret의 값을 &lt;code&gt;시크릿 이름&lt;/code&gt;과 &lt;code&gt;키&lt;/code&gt;로 참조할 수 있다. 아래 예시 코드에서 &lt;code&gt;secretKeyRef&lt;/code&gt;항목이 이에 해당한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-dp
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - image: mysql
+          name: mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: { 시크릿 이름 } # 생성한 Secret의 이름
+                  key: { MySQL 비밀번호 키 } # 참조하려는 값의 키
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-svc
+spec:
+  type: NodePort
+  ports:
+    - port: 3306
+      nodePort: { 오픈할 노드포트 }
+  selector:
+    app: mysql
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;참고자료&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C&quot; aria-label=&quot;참고자료 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;참고자료&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://kubernetes.io/docs/concepts/configuration/secret/&quot;&gt;Kubernetes : &quot;Secrets&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[k3s 배포하기 (6) : Cert Manager 등록]]></title><description><![CDATA[1. Cert Manager Cert Manager는 쿠버네티스에서 SSL/TLS 인증서를 관리하기 위한 오픈 소스 도구이다. Let's Encrypt와 같은 인증 기관을 사용하여 인증서를 발급하고 갱신하는 작업을 자동화한다. 개인적으로 Certbot…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_6_cert_manager/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_6_cert_manager/</guid><pubDate>Tue, 23 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
       &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/830c1399665218f03c26d1757fa48d67/2bef9/architecture-cert-manager.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 70.28571428571428%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB3klEQVR42n2UXY7bMAyEc/8j9CC9QF8X7Xv70KJYZJMadvwjifqh+BWS0yRYbCpgAJseDWZI0AfAeHdqrSzLQizKEKwTaomkGKnliFnkybHD7akWLAdMM5Yj0S2UGPBBQDNZNkKrhXPnUTKUdIem7u1wt6XY+hvWXyATVS6YTBAnLIwQJqofUTeBXDqn1e4YW7QHQavgT1gZeqQsKyEsVIsYGUioBrRGTAM1uV67Ia/d1IOggsyAdkK7pNmxpsDb9bKqAIU0npDXnzvXmmC+C6YUcc5RNVO2gaoenzZe/oxssnZ3XgNYZIsDqwyk5NASKDXi44rWAHnbBUsppJSuDqfuJKnw9dwEHaVs5Ibsu2AoF0oT624TWYVqTyNfbj1pfTRLhDTh80TJgawbWj0SPCK+97dWwYh3h88EfZQu2MjVpAvOctpdBt/R3Lno0CofC9o1spPIp88zs5Or27T3TB1qgZx30Jy17/w3ciaXxMsPh+R9gm0wWoRLOLLEgZjaQITSWpJdT/BxZD+Cuo6+Xm26/X2DFrs4arvY675Di8MaJ87vBNvG6r5CtSTejq/4dQQrWM3Q1m44M8s+5baO//g3XFfPHiT7iVn58u07wzTf68sCpzNn2wg1Pfs51L9sTklKW6cUCAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
   &lt;picture&gt;
@@ -30,7 +92,7 @@ cert-manager-cainjector-577f6d9fd7-tr77l   1/1     Running   0          2m
 cert-manager-webhook-787858fcdb-nlzsq      1/1     Running   0          2m
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id=&quot;2-cluster-issuer-등록&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-cluster-issuer-%EB%93%B1%EB%A1%9D&quot; aria-label=&quot;2 cluster issuer 등록 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Cluster Issuer 등록&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;https://cert-manager.io/docs/concepts/issuer/&quot;&gt;Cert Manager 공식문서&lt;/a&gt;를 보면 Isseur와 Cluser Issuer는 모두 인증서를 생성할 수 있는 인증 기관(CA)을 나타내는 Kubernetes 리소스이다. Issuer는 특정 네임스페이스 내에서만 사용 가능하고, Cluster Issuer는 클러스터 전체에 적용되는 인증서를 발급한다. 우리는 Let&apos;s Encrypt를 인증기관으로 지정하는 Cluser Issuer를 생성했다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://cert-manager.io/docs/concepts/issuer/&quot;&gt;Cert Manager 공식문서&lt;/a&gt;를 보면 Isseur와 Cluster Issuer는 모두 인증서를 생성할 수 있는 인증 기관(CA)을 나타내는 Kubernetes 리소스이다. Issuer는 특정 네임스페이스 내에서만 사용 가능하고, Cluster Issuer는 클러스터 전체에 적용되는 인증서를 발급한다. 우리는 Let&apos;s Encrypt를 인증기관으로 지정하는 Cluster Issuer를 생성했다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-yml&quot;&gt;# cluster-issuer.yaml
 
 apiVersion: cert-manager.io/v1
@@ -60,7 +122,7 @@ kubectl get ClusterIssuer -A
 kubectl describe clusterissuer { 클러스터 이슈어 이름 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id=&quot;3-traefik-ingress-적용&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-traefik-ingress-%EC%A0%81%EC%9A%A9&quot; aria-label=&quot;3 traefik ingress 적용 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. Traefik Ingress 적용&lt;/h1&gt;
-&lt;p&gt;등록한 Cluser Issuer를 바로 Traefik 인그레스 설정에 적용할 수 있다. 다음과 같이 &lt;code&gt;annotations&lt;/code&gt;과 &lt;code&gt;tls&lt;/code&gt; 항목을 입력해서 TLS 인증서를 발급받고, HTTPS 연결을 활성화할 수 있다.&lt;/p&gt;
+&lt;p&gt;등록한 Cluster Issuer를 바로 Traefik 인그레스 설정에 적용할 수 있다. 다음과 같이 &lt;code&gt;annotations&lt;/code&gt;과 &lt;code&gt;tls&lt;/code&gt; 항목을 입력해서 TLS 인증서를 발급받고, HTTPS 연결을 활성화할 수 있다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-yml&quot;&gt;apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -200,7 +262,7 @@ kubectl apply -f traefik-ingress.yml
 &lt;li&gt;&lt;a href=&quot;https://docs.k3s.io/networkings&quot;&gt;k3s : &quot;Networking&quot;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://doc.traefik.io/traefik/providers/kubernetes-ingress/&quot;&gt;traefiklabs : &quot;Traefik &amp;#x26; Kubernetes&quot;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/questions/45079988/ingress-vs-load-balancer&quot;&gt;Stack Overflow : &quot;Ingress vs Load Balancer&quot;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[k3s 배포하기 (4) : 백엔드(Redis, Spring, Kafka) 배포]]></title><description><![CDATA[본래 DB의 아이디와 패스워드는 쿠버네티스에서 Secret 등으로 관리해야 한다. Secret 생성과 적용은 이후 포스팅에서 따로 다룰 예정이다. 1. MSA 구조 백엔드는 MSA 구조로 설계되어 총 3개의 Spring Boot…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_4_back/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_4_back/</guid><pubDate>Mon, 22 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[k3s 배포하기 (4) : 백엔드(Redis, Spring, Kafka) 배포]]></title><description><![CDATA[본래 DB의 아이디와 패스워드는 쿠버네티스에서 Secret으로 관리하는 것을 권장한다. Secret 생성과 적용은 이후 포스팅에서 따로 다룰 예정이다. 1. MSA 구조 백엔드는 MSA 구조로 설계되어 총 3개의 Spring Boot…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_4_back/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_4_back/</guid><pubDate>Mon, 22 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
       &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/TIL/static/093ff517666b3653fd78d3e28b98a1d9/2bef9/architecture-back.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
     &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 70.28571428571428%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB9UlEQVR42oWU227UMBCG+/4PwR0vwQXiDpDKBQiBql6wZbttl2wO3vjs8XwoTktL1cNIVmJ7/PmfyUxOAOWR1VoxxhCL0HltDrVEUozUcoVq5BnTk39vtaDZo5LRHInWUKLH+QCSyWHGL2t+jxbf1pD0/0A5uZcl6PE3HDcQBjSMaBggDqjvwQ9U1yN2gDBCHMEfHox+Ce0BUCu4G7R0LaQcjnhvqBpRMpAo4hCNiOvJ3QUQoTpQD/nYRD0ACoQJkHZYl8PZYpLjOtm2Vkturv3HD1y+fXOrY8lnvgemFLHWUiUjc4eII2XLlAIxzSgFL6FddH44ZTN8R6KnBEOpERePSF0UziuwlEJK6VbhsCrRyJQ8uUQmv+PgNiDCWfeZ7fSDnCIx2TU1Eqiangt5bMAVuqraTWdsxm/t649+hysHdpdbttsLRHzza2V0p/A5oEhcn9WTytTK5OvVe877U65312w2v4jZ4ZJFangZKDVxsU9kWeGqmSqBOe4JZcDOE8YM1AW07PNiyJmqmdGu4GWurTyEL5fv+Nl9QqSQxVM04ZNd0/OkQteD2DZ0qS9x67zMoJGQBnKaYFEm674Uiy4+cXoEXDr2toVUEsEekeTWFqsZrEG6P0xhpLzSek/8HJTeLPWY764CY+Bmz15nfEvFk1b/AhYdRkDAhuXnAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
   &lt;picture&gt;
@@ -217,7 +279,7 @@ kubectl apply -f traefik-ingress.yml
   &lt;/a&gt;
     &lt;/span&gt;
 &lt;blockquote&gt;
-&lt;p&gt;본래 DB의 아이디와 패스워드는 쿠버네티스에서 Secret 등으로 관리해야 한다. Secret 생성과 적용은 이후 포스팅에서 따로 다룰 예정이다.&lt;/p&gt;
+&lt;p&gt;본래 DB의 아이디와 패스워드는 쿠버네티스에서 Secret으로 관리하는 것을 권장한다. Secret 생성과 적용은 &lt;a href=&quot;https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_7_secret/&quot;&gt;이후 포스팅&lt;/a&gt;에서 따로 다룰 예정이다.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1 id=&quot;1-msa-구조&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-msa-%EA%B5%AC%EC%A1%B0&quot; aria-label=&quot;1 msa 구조 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. MSA 구조&lt;/h1&gt;
 &lt;p&gt;백엔드는 MSA 구조로 설계되어 총 3개의 Spring Boot 앱을 사용한다. 앞단에서 Spring Cloud 게이트웨이가 사용자 요청을 Prefix에 따라 라우팅해준다.&lt;/p&gt;
@@ -514,7 +576,7 @@ spec:
   &lt;/a&gt;
     &lt;/span&gt;
 &lt;blockquote&gt;
-&lt;p&gt;본래 DB의 아이디와 패스워드는 쿠버네티스에서 Secret 등으로 관리해야 한다. Secret 생성과 적용은 이후 포스팅에서 따로 다룰 예정이다.&lt;/p&gt;
+&lt;p&gt;본래 DB의 아이디와 패스워드는 쿠버네티스에서 Secret 등으로 관리해야 한다. Secret 생성과 적용은 &lt;a href=&quot;https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_7_secret/&quot;&gt;이후 포스팅&lt;/a&gt;에서 따로 다룰 예정이다.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1 id=&quot;1-pv-pvc&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-pv-pvc&quot; aria-label=&quot;1 pv pvc permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. PV, PVC&lt;/h1&gt;
 &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;&gt;
@@ -32383,179 +32445,4 @@ print(std.age)              # 11
 
 std.age = -1                # ValueError
 print(std.age)
-&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[03. Python Function]]></title><description><![CDATA[1. Function 1.1. Type of Function 1.2. Parameters and Arguments 1.2.1. Default Parameter Value 1.2.2. Arbitrary Arguments, *args 1.2.…]]></description><link>https://byongho96.github.io/TIL/posts/Language/Python/03_Python_Function/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Language/Python/03_Python_Function/</guid><pubDate>Tue, 08 Nov 2022 00:00:00 GMT</pubDate><content:encoded>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#1-function&quot;&gt;1. Function&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#11-type-of-function&quot;&gt;1.1. Type of Function&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#12-parameters-and-arguments&quot;&gt;1.2. Parameters and Arguments&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#121-default-parameter-value&quot;&gt;1.2.1. Default Parameter Value&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#122-arbitrary-arguments-args&quot;&gt;1.2.2. Arbitrary Arguments, *args&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#123-keyword-arguments&quot;&gt;1.2.3. Keyword Arguments&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#124-arbitrary-keyword-arguments-kwargs&quot;&gt;1.2.4. Arbitrary Keyword Arguments, **kwargs&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#125-mutable--immutable-parameter&quot;&gt;1.2.5. Mutable &amp;#x26; Immutable Parameter&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#2-scope&quot;&gt;2. Scope&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#21-legb-resolution-rule&quot;&gt;2.1. LEGB Resolution Rule&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#22-global-keyword&quot;&gt;2.2. global keyword&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#24-nonlocal-keyword&quot;&gt;2.4. nonlocal keyword&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#3-first-class-function&quot;&gt;3. First-Class Function&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;1-function&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-function&quot; aria-label=&quot;1 function permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Function&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;Code block that excutes the specific logic&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;11-type-of-function&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-type-of-function&quot; aria-label=&quot;11 type of function permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1. Type of Function&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Built-in function&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;functions bascially installed in Python&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;External function&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;functions that can be used after being imported&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;User-defined function&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;functions defined by the user&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;12-parameters-and-arguments&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-parameters-and-arguments&quot; aria-label=&quot;12 parameters and arguments permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2. Parameters and Arguments&lt;/h2&gt;
-&lt;p&gt;A &lt;strong&gt;parameter&lt;/strong&gt; is the variable listed inside the parentheses in the function definition.
-An &lt;strong&gt;argument&lt;/strong&gt; is the value that is sent to the function when it is called.&lt;/p&gt;
-&lt;h3 id=&quot;121-default-parameter-value&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#121-default-parameter-value&quot; aria-label=&quot;121 default parameter value permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2.1. Default Parameter Value&lt;/h3&gt;
-&lt;p&gt;If the function is called without argument, it uses the default value&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;def my_function(country = &quot;Norway&quot;):
-    print(&quot;I am from &quot; + country)
-
-my_function(&quot;Sweden&quot;)   # I am from Sweden
-my_function()           # I am from Norway
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;122-arbitrary-arguments-args&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#122-arbitrary-arguments-args&quot; aria-label=&quot;122 arbitrary arguments args permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2.2. Arbitrary Arguments, *args&lt;/h3&gt;
-&lt;p&gt;The function will receive a tuple of arguments, and can access the items accordingly.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;def my_function(*kids):
-    print(kids)
-    print(type(kids))
-    print(&apos;The youngest child is &apos; + kids[2])
-
-my_function(&apos;Emil&apos;, &apos;Tobias&apos;, &apos;Linus&apos;)
-# (&apos;Emil&apos;, &apos;Tobias&apos;, &apos;Linus&apos;)
-# &amp;#x3C;class &apos;tuple&apos;&gt;
-# The youngest child is Linus
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;123-keyword-arguments&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#123-keyword-arguments&quot; aria-label=&quot;123 keyword arguments permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2.3. Keyword Arguments&lt;/h3&gt;
-&lt;p&gt;If you send arguments with the key = value syntax, the order of the arguments does not matter.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;def my_function(child3, child2, child1):
-    print(&quot;The youngest child is &quot; + child3)
-
-my_function(child1 = &quot;Emil&quot;, child2 = &quot;Tobias&quot;, child3 = &quot;Linus&quot;)
-# The youngest child is Linus
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;124-arbitrary-keyword-arguments-kwargs&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#124-arbitrary-keyword-arguments-kwargs&quot; aria-label=&quot;124 arbitrary keyword arguments kwargs permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2.4. Arbitrary Keyword Arguments, **kwargs&lt;/h3&gt;
-&lt;p&gt;This way the function will receive a dictionary of arguments, and can access the items accordingly.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;def my_function(**kid):
-    print(&quot;His last name is &quot; + kid[&quot;lname&quot;])
-
-my_function(fname = &quot;Tobias&quot;, lname = &quot;Refsnes&quot;)
-# His last name is Refsnes
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;125-mutable--immutable-parameter&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#125-mutable--immutable-parameter&quot; aria-label=&quot;125 mutable  immutable parameter permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2.5. Mutable &amp;#x26; Immutable Parameter&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Mutable Data&lt;/strong&gt;&lt;br&gt;
-&lt;strong&gt;passed by value parameter.&lt;/strong&gt;&lt;br&gt;
-The operations in the function don&apos;t affect the original data.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Immutable Data&lt;/strong&gt;&lt;br&gt;
-&lt;strong&gt;passed by reference parameter.&lt;/strong&gt;&lt;br&gt;
-The operations in the function &lt;mark&gt;affect the original data.&lt;/mark&gt; To prevent this, the data should be deep copied&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;2-scope&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-scope&quot; aria-label=&quot;2 scope permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Scope&lt;/h1&gt;
-&lt;h2 id=&quot;21-legb-resolution-rule&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-legb-resolution-rule&quot; aria-label=&quot;21 legb resolution rule permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. LEGB Resolution Rule&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;The variables are searched in the following order.&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Local Scope&lt;/strong&gt;&lt;br&gt;
-Inside of the cuurent function&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Enclosed Scope&lt;/strong&gt;
-Inside of the outer function, outside of the current function.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Global Scope&lt;/strong&gt;
-Inside of the module(.py), outside of the enclosed scope.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Built-in Scope&lt;/strong&gt;
-Python built-in varibles&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;22-global-keyword&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-global-keyword&quot; aria-label=&quot;22 global keyword permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. global keyword&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Drives the varibale from the nearest outer function&lt;/strong&gt;&lt;br&gt;
-If there is no corresponding variable, a global variable of that name is created.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;def myfunc():
-    global x
-    x = &quot;fantastic&quot;
-
-myfunc()
-
-print(&quot;Python is &quot; + x)     # Python is fantastic
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;24-nonlocal-keyword&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#24-nonlocal-keyword&quot; aria-label=&quot;24 nonlocal keyword permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.4. nonlocal keyword&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Drives the varibale from the nearest outer function&lt;/strong&gt;&lt;br&gt;
-The variable must be defined in the enclosing function.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;def myfunc1():
-    x = &quot;John&quot;
-    def myfunc2():
-        nonlocal x
-        x = &quot;hello&quot;
-    myfunc2()
-    return x
-
-print(myfunc1())    # hello
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&quot;3-first-class-function&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-first-class-function&quot; aria-label=&quot;3 first class function permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. First-Class Function&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Functions are objects&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;def shout(text):
-    return text.upper()
-
-yell = shout
-
-print (yell(&apos;Hello&apos;))   # HELLO
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Functions can be passed as arguments to other functions&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;def shout(text):
-    return text.upper()
-
-def whisper(text):
-    return text.lower()
-
-def greet(func):
-    # storing the function in a variable
-    greeting = func(&quot;&quot;&quot;Hi, I am created by a function
-                    passed as an argument.&quot;&quot;&quot;)
-    print (greeting)
-
-greet(shout)
-# HI, I AM CREATED BY A FUNCTION PASSED AS AN ARGUMENT.
-greet(whisper)
-# hi, i am created by a function passed as an argument.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Functions can return another function&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;def create_adder(x):
-    def adder(y):
-        return x+y
-
-    return adder
-
-add_15 = create_adder(15)
-
-print (add_15(10))  # 25
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item></channel></rss>
