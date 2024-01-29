@@ -49,17 +49,12 @@ const ColorChange: React.FC = () => {
 
   return (
     <div className="color-change">
-      <label
-        className="color-change__picker--label"
-        htmlFor="primary-color-picker"
-      >
-        메인 컬러 선택
-      </label>
       <input
         id="primary-color-picker"
         ref={colorInputRef}
         className="color-change__picker"
         type="color"
+        aria-label="메인 컬러 선택"
         onChange={handleColorChange}
       />
       <button

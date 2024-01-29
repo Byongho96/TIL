@@ -22,9 +22,9 @@ const Navigation: React.FC = () => {
   return (
     <nav className="navbar">
       <div className="navbar__logo-color">
-        <div className="navbar__logo" aria-label="작성자 병호96">
+        <label className="navbar__logo" htmlFor="primary-color-picker">
           {author}
-        </div>
+        </label>
         <div className="navbar__color">
           <ColorChange />
         </div>

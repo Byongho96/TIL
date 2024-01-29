@@ -45,7 +45,7 @@ cert-manager-webhook-787858fcdb-nlzsq      1/1     Running   0          2m
 
 # 2. Cluster Issuer 등록
 
-[Cert Manager 공식문서](https://cert-manager.io/docs/concepts/issuer/)를 보면 Isseur와 Cluser Issuer는 모두 인증서를 생성할 수 있는 인증 기관(CA)을 나타내는 Kubernetes 리소스이다. Issuer는 특정 네임스페이스 내에서만 사용 가능하고, Cluster Issuer는 클러스터 전체에 적용되는 인증서를 발급한다. 우리는 Let's Encrypt를 인증기관으로 지정하는 Cluser Issuer를 생성했다.
+[Cert Manager 공식문서](https://cert-manager.io/docs/concepts/issuer/)를 보면 Isseur와 Cluster Issuer는 모두 인증서를 생성할 수 있는 인증 기관(CA)을 나타내는 Kubernetes 리소스이다. Issuer는 특정 네임스페이스 내에서만 사용 가능하고, Cluster Issuer는 클러스터 전체에 적용되는 인증서를 발급한다. 우리는 Let's Encrypt를 인증기관으로 지정하는 Cluster Issuer를 생성했다.
 
 ```yml
 # cluster-issuer.yaml
@@ -83,7 +83,7 @@ kubectl describe clusterissuer { 클러스터 이슈어 이름 }
 
 # 3. Traefik Ingress 적용
 
-등록한 Cluser Issuer를 바로 Traefik 인그레스 설정에 적용할 수 있다. 다음과 같이 `annotations`과 `tls` 항목을 입력해서 TLS 인증서를 발급받고, HTTPS 연결을 활성화할 수 있다.
+등록한 Cluster Issuer를 바로 Traefik 인그레스 설정에 적용할 수 있다. 다음과 같이 `annotations`과 `tls` 항목을 입력해서 TLS 인증서를 발급받고, HTTPS 연결을 활성화할 수 있다.
 
 ```yml
 apiVersion: networking.k8s.io/v1
