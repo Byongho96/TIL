@@ -11,7 +11,7 @@ reference:
 
 <img src="./assets/architecture-db.png" alt="프로젝트 아키텍쳐 구상도">
 
-> 본래 DB의 아이디와 패스워드는 쿠버네티스에서 Secret 등으로 관리해야 한다. Secret 생성과 적용은 [이후 포스팅](https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_7_secret/)에서 따로 다룰 예정이다.
+> 본래 DB의 아이디와 패스워드는 쿠버네티스에서 Secret으로 관리하는 것을 권장한다. Secret 생성과 적용은 [이후 포스팅](https://byongho96.github.io/TIL/posts/DevOps/Kubernetes/k3s_7_secret/)에서 따로 다룰 예정이다.
 
 # 1. PV, PVC
 
