@@ -18,7 +18,7 @@ const ColorChange: React.FC = () => {
     // localstorage 값에 따라 컬러 속성 추가
     let primaryColor = localStorage.getItem('main-color')
     if (!primaryColor) {
-      primaryColor = '#ff0000'
+      primaryColor = '#5ca0c1'
     }
     colorInput.value = primaryColor
 

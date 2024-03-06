@@ -33,7 +33,7 @@ kustomize는 <mark>원본 쿠버네티스 설정 파일을 유지한 채, 손쉬
 
 **argoCD에는 기본적으로 kustomize가 탑재되어 있다.** 따라서 타겟 폴더에 `kustomization.yml`파일이 있다면, 자동으로 `kustomize` 명령어를 활용해서 클러스터를 동기화한다.
 
-### 1.2.1. 도커 어미지 업데이트
+### 1.2.1. 도커 이미지 업데이트
 
 kustomize로 기존 설정파일을 유지한 채 손쉽게 이미지 버전을 업데이트 할 수 있다. 아래와 같이 설정파일을 작성하고 `kustomize` 명령어를 실행하면 8.0버전의 mySQL 파드가 실행된다.
 
@@ -273,7 +273,7 @@ Github Actions에서 Dockerhub에 이미지를 푸시하기 위해서는 Dockerh
 
 ![Github 파일 단위 Secret 등록](./assets/github-register-application-properties.png)
 
-# 3.4. Github Actions 워크플로우 작성
+## 3.4. Github Actions 워크플로우 작성
 
 앞서 등록한 Secret을 참조하여 워크플로우의 상세내용은 각자 커스텀하면 된다. 전체적인 플로우는 <mark>**"프로젝트 빌드 -> 도커 이미지 생성 -> 도커 이미지 푸시 -> argoCD 타겟 브랜치 yml파일 업데이트"**</mark>를 따른다.
 
@@ -289,7 +289,7 @@ name: CI
 on:
   push:
     branches:
-      - front
+      - front # 워크 플로우를 트리거할 브랜치
 
 env:
   IMAGE_NAME: gallery-react
@@ -377,7 +377,7 @@ name: CI
 on:
   push:
     branches:
-      - back-gateway
+      - back-gateway # 워크 플로우를 트리거할 브랜치
 
 env:
   IMAGE_NAME: gallery-gateway
@@ -457,6 +457,21 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }} # 워크 플로우 자체 생성 토큰
           branch: gateway-argo
 ```
+
+# 4. 실행화면
+
+1. **github-actions 워크플로우 실행**  
+   git 레포지토리의 특정 브랜치에 소스코드가 푸시되면, 해당 브랜치에 연결된 워크플로우가 자동으로 실행된다.  
+   ![github-actions 워크플로우 실행](./assets/argo-workflow.png)
+2. **kustomization.yml 파일 업데이트**  
+   argoCD 타겟 브랜치에 있는 kustomization 파일의 이미지 버전이 업데이트 된 것을 확인할 수 있다.  
+   ![kustomization 파일 업데이트](./assets/kustomization-update.png)
+3. **Dockerhub 이미지 푸쉬**  
+   kustomization 파일과 동일한 이미지 버전이 Dockerhub에 푸시되었다.  
+   ![Dockerhub 이미지 푸쉬](./assets/dockerhub-update.png)
+4. **argoCD 자동 실행**  
+   3분 이내에 argoCD가 타겟 브랜치의 설정파일과 쿠버네티스를 동기화한다. 파드는 자동으로 교체되지만, 레플리카 셋은 기본으로 최근 10개까지를 기억한다.  
+   ![argoCD 자동 실행](./assets/argo-update.png)
 
 # 참고자료
 
