@@ -1,4 +1,440 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 04 Mar 2024 14:54:22 GMT</lastBuildDate><item><title><![CDATA[github-actions와 argoCD로 쿠버네티스 GitOps 관리하기]]></title><description><![CDATA[1. CI/CD 구상도  개인적으로 CI/CD를 구축하는 데 있어 가장 큰 어려움은, 기술적인 난이도보다 전체 아키텍쳐 구성의 이해에 있는 것 같다. 위 아키텍쳐의 실제 동작 순서는 아래와 같다. Github…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/CI&amp;CD/github_actions_argoCD/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/CI&amp;CD/github_actions_argoCD/</guid><pubDate>Mon, 04 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-cicd-구상도&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-cicd-%EA%B5%AC%EC%83%81%EB%8F%84&quot; aria-label=&quot;1 cicd 구상도 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. CI/CD 구상도&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 06 Mar 2024 12:41:22 GMT</lastBuildDate><item><title><![CDATA[Radio에 React Context 활용하기]]></title><description><![CDATA[1. Context 란? 나는 일종의 React 자체 전역 데이터 저장소라고 생각한다. 일반적으로 React에서 데이터를 하위 컴포넌트로 전달하기 위해서는 props…]]></description><link>https://byongho96.github.io/TIL/posts/Frontend/React/contextAPI_practice/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Frontend/React/contextAPI_practice/</guid><pubDate>Wed, 06 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-context-란&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-context-%EB%9E%80&quot; aria-label=&quot;1 context 란 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Context 란?&lt;/h1&gt;
+&lt;p&gt;나는 일종의 &lt;mark&gt;React 자체 전역 데이터 저장소&lt;/mark&gt;라고 생각한다. 일반적으로 React에서 데이터를 하위 컴포넌트로 전달하기 위해서는 props로 일일히 내려줘야 한다. 따라서 데이터를 손자, 증손자, 고조손자까지 넘겨주려고 하면 코드가 지저분해지고 불필요한 리렌더링이 발생한다. 이를 &lt;strong&gt;Props-Drilling&lt;/strong&gt;이라고 한다.&lt;/p&gt;
+&lt;p&gt;Context를 이용하면 Provider로 감싼 모든 컴포넌트에서 depth에 관계없이 데이터에 접근 할 수 있다. 여기에 &lt;code&gt;reducer&lt;/code&gt;를 이용해서 상태 업데이트를 제한하면 일종의 Flux Pattern을 가진 미니 전역 저장소나 다름이 없다. 물론 데이터를 읽지 않는 중간 컴포넌트에서 불필요한 리렌더링이 일어나는 한계가 있지만, 이는 &lt;strong&gt;&lt;code&gt;children&lt;/code&gt; prop으로 극복 가능&lt;/strong&gt;하다. 이에 대해서는 아래에서 다시 다룰 예정이다.&lt;/p&gt;
+&lt;h2 id=&quot;11-간단한-예시-themeprovider&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-%EA%B0%84%EB%8B%A8%ED%95%9C-%EC%98%88%EC%8B%9C-themeprovider&quot; aria-label=&quot;11 간단한 예시 themeprovider permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1. 간단한 예시 (ThemeProvider)&lt;/h2&gt;
+&lt;p&gt;다음과 같이 &lt;code&gt;useContext&lt;/code&gt;를 이용하여 프로젝트 전체의 Theme을 관리할 수 있다. 기본적으로 Context의 변화는 Provider 하위 컴포넌트의 리렌더링을 유발하기 때문에, 테마처럼 제한적으로 바뀌는 값을 사용하기 적합하다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import React, { useState, useContext, createContext } from &apos;react&apos;
+import { ThemeContext } from &apos;./context/ThemeContext&apos;
+
+export const ThemeContext = createContext(false) // 초깃값
+
+function App() {
+  const [isDark, setIsDark] = useState(false)
+
+  return (
+    &amp;#x3C;ThemeContext.Provider value={{ isDark, setIsDark }}&gt;
+      &amp;#x3C;Page /&gt;
+    &amp;#x3C;/ThemeContext.Provider&gt;
+  )
+}
+
+function Page() {
+  return &amp;#x3C;div&gt;Page&amp;#x3C;/div&gt;
+}
+
+function Component() {
+  const { isDark, setIsDark } = useContext(ThemeContext)
+
+  return (
+    &amp;#x3C;div&gt;
+      &amp;#x3C;div&gt;{isDark ? &apos;dark&apos; : &apos;light&apos;}&amp;#x3C;/div&gt;
+      &amp;#x3C;button onClick={() =&gt; setIsDark((theme) =&gt; !theme)}&gt;모드 전환&amp;#x3C;/button&gt;
+    &amp;#x3C;/div&gt;
+  )
+}
+
+export default App
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;/TIL/220fa81f3d265bc271873f983548830e/useContext-theme.gif&quot; alt=&quot;useContext 테마 전환&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;12-usereducer-란&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-usereducer-%EB%9E%80&quot; aria-label=&quot;12 usereducer 란 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2. useReducer 란?&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;reducer&lt;/code&gt;는 &lt;mark&gt;상태를 업데이트를 제한하는 함수로, 전역 상태의 무분별한 접근과 수정을 방지&lt;/mark&gt;한다. Redux의 &lt;code&gt;Dispatcher&lt;/code&gt;에 대응된다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;useReducer&lt;/code&gt;는 &lt;code&gt;reducer&lt;/code&gt;함수로 구현된 리액트 훅이다. &lt;code&gt;useState&lt;/code&gt;와 아주 유사하여 &lt;a href=&quot;https://react.dev/learn/extracting-state-logic-into-a-reducer#comparing-usestate-and-usereducer&quot;&gt;공식문서&lt;/a&gt;에는 이 둘을 비교정리하기도 했다. &lt;code&gt;useState&lt;/code&gt;가 상태를 자유롭게 수정할 수 있는 &lt;code&gt;setState&lt;/code&gt;를 반환하는 한편, &lt;code&gt;useReducer&lt;/code&gt;는 앞서 말한 것처럼 미리 정의된 &lt;code&gt;reducer&lt;/code&gt;에 맞춰 동작하는 &lt;code&gt;dispatcher&lt;/code&gt;를 반환한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import React, { useState, useReducer } from &apos;react&apos;
+
+/**
+ *
+ * @param state 기존 상태
+ * @param action dispatch로 전달 받은 인자
+ * @returns
+ */
+const reducer = (state, action) =&gt; {
+  switch (action.type) {
+    case &apos;deposit&apos;:
+      return state + action.payload
+    case &apos;withdraw&apos;:
+      return state - action.payload
+    default:
+      return state
+  }
+}
+
+function App() {
+  const [balance, dispatch] = useReducer(reducer, 0) // reducer, 초깃값
+
+  function deposit() {
+    dispatch({ type: &apos;deposit&apos;, payload: number })
+  }
+
+  function withdraw() {
+    dispatch({ type: &apos;withdraw&apos;, payload: number })
+  }
+
+  return (
+    &amp;#x3C;div&gt;
+      &amp;#x3C;p&gt;{balance}원&amp;#x3C;/p&gt;
+      &amp;#x3C;button onClick={deposit}&gt;예금&amp;#x3C;/button&gt;
+      &amp;#x3C;button onClick={withdraw}&gt;출금&amp;#x3C;/button&gt;
+    &amp;#x3C;/div&gt;
+  )
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;/TIL/be828b262dd7e63853cf876dd3047b5b/useReducer-balance.gif&quot; alt=&quot;useContext 테마 전환&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;12-context와-usereducer&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-context%EC%99%80-usereducer&quot; aria-label=&quot;12 context와 usereducer permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2. Context와 useReducer&lt;/h2&gt;
+&lt;p&gt;따라서 &lt;code&gt;Context&lt;/code&gt;와 &lt;code&gt;useReducer&lt;/code&gt;을 결합하면, 안정적으로 상태를 관리할 수 있는 간이 전역 저장소를 구현할 수 있다. 아래 코드는 어쩌다보니 TypeScript로 작성했다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;// types.ts
+import React, { createContext, useReducer } from &apos;react&apos;
+
+type TState = {
+  name: string
+  count: number
+}
+
+type TAction = {
+  type: &apos;UP&apos; | &apos;DOWN&apos;
+  pyload?: any
+}
+
+type TContext = {
+  state: TState
+  dispatch: React.Dispatch&amp;#x3C;TAction&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;// Context.ts
+import { createContext } from &apos;react&apos;
+import { TContext } from &apos;./types&apos;
+
+export const Context = createContext&amp;#x3C;TContext | null&gt;(null)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-tsx&quot;&gt;// ContextProvider.tsx
+import React, { useReducer } from &apos;react&apos;
+import { TAction, TState } from &apos;./types&apos;
+import { Context } from &apos;./Context&apos;
+
+const initState: TState = {
+  name: &apos;sample-name&apos;,
+  count: 0,
+}
+
+const reducer = (state: TState, action: TAction) =&gt; {
+  switch (action.type) {
+    case &apos;UP&apos;:
+      return {
+        ...state,
+        count: state.count + 1,
+      }
+    case &apos;DOWN&apos;:
+      return {
+        ...state,
+        count: state.count - 1,
+      }
+  }
+}
+
+const ContextProvider = ({ children }: React.PropsWithChildren) =&gt; {
+  const [state, dispatch] = useReducer(reducer, initState)
+
+  return (
+    &amp;#x3C;Context.Provider value={{ state, dispatch }}&gt;{children}&amp;#x3C;/Context.Provider&gt;
+  )
+}
+
+export default ContextProvider
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-tsx&quot;&gt;// App.tsx
+import { useContext } from &apos;react&apos;
+import ContextProvider from &apos;./ContextProvider&apos;
+import { Context } from &apos;./Context&apos;
+
+const App = () =&gt; {
+  return (
+    &amp;#x3C;ContextProvider&gt;
+      &amp;#x3C;Parent /&gt;
+    &amp;#x3C;/ContextProvider&gt;
+  )
+}
+
+const Parent = () =&gt; {
+  return &amp;#x3C;Child /&gt;
+}
+
+const Child = () =&gt; {
+  const context = useContext(Context)
+
+  if (!context) return
+
+  return (
+    &amp;#x3C;div&gt;
+      &amp;#x3C;div&gt;{context.state.count}&amp;#x3C;/div&gt;
+      &amp;#x3C;button onClick={() =&gt; context.dispatch({ type: &apos;UP&apos; })}&gt;+&amp;#x3C;/button&gt;
+      &amp;#x3C;button onClick={() =&gt; context.dispatch({ type: &apos;DOWN&apos; })}&gt;-&amp;#x3C;/button&gt;
+    &amp;#x3C;/div&gt;
+  )
+}
+
+export default App
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;/TIL/20b4eeefbe9d7f472af621166ca8afab/useContext-useReducer.gif&quot; alt=&quot;useContext와 useReducer 결합&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;2-context의-한계&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-context%EC%9D%98-%ED%95%9C%EA%B3%84&quot; aria-label=&quot;2 context의 한계 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Context의 한계&lt;/h1&gt;
+&lt;p&gt;흔히 Context의 한계로 &lt;strong&gt;중간 컴포넌트의 불필요한 리렌더링을 꼽는다.&lt;/strong&gt; 이게 맞으면서도 틀린 말이다. 다음 두 개의 코드는 &lt;code&gt;children&lt;/code&gt; 프롭을 제외하면 완벽하게 동작한다. 하지만 &lt;mark&gt;&lt;code&gt;children&lt;/code&gt;을 사용할 경우, 중간 컴포넌트의 리렌더링이 발생하지 않는다.&lt;/mark&gt;&lt;/p&gt;
+&lt;p&gt;아래 두 코드는 &lt;code&gt;Context.Provider&lt;/code&gt;에서 직접 하위 컴포넌트를 렌더링 하느냐, 아니면 &lt;code&gt;children&lt;/code&gt;으로 전달받냐의 차이밖에 없다. 그러나 실제 콘솔을 찍어보면 &lt;code&gt;children&lt;/code&gt;을 사용할 경우, 중간 컴포넌트의 불필요한 렌더링이 발생하지 않는다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-jsx&quot;&gt;// children 사용 안함
+import { useState, createContext, useContext } from &apos;react&apos;
+
+const MyContext = createContext(null)
+
+const App = () =&gt; {
+  console.log(&apos;App is Rendered&apos;)
+
+  const [number, setNumber] = useState(0)
+
+  return (
+    &amp;#x3C;MyContext.Provider value={{ number, setNumber }}&gt;
+      &amp;#x3C;Parent /&gt;
+    &amp;#x3C;/MyContext.Provider&gt;
+  )
+}
+
+const Parent = () =&gt; {
+  console.log(&apos;Parent is Rendered&apos;)
+
+  return &amp;#x3C;Child /&gt;
+}
+
+const Child = () =&gt; {
+  const { number, setNumber } = useContext(MyContext)
+
+  console.log(&apos;Child is Rendered&apos;)
+
+  return (
+    &amp;#x3C;div&gt;
+      &amp;#x3C;p&gt;{number}&amp;#x3C;/p&gt;
+      &amp;#x3C;button onClick={() =&gt; setNumber((prev) =&gt; prev + 1)}&gt;+&amp;#x3C;/button&gt;
+      &amp;#x3C;button onClick={() =&gt; setNumber((prev) =&gt; prev - 1)}&gt;-&amp;#x3C;/button&gt;
+    &amp;#x3C;/div&gt;
+  )
+}
+
+export default App
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;/TIL/769461c21bc8b52bc22bf28622eb1194/provider-without-children.gif&quot; alt=&quot;children 사용하지 않은 Context&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-jsx&quot;&gt;// children 시영힘
+import { useState, createContext, useContext } from &apos;react&apos;
+
+const MyContext = createContext(null)
+
+const MyProvider = ({ children }) =&gt; {
+  console.log(&apos;Provider is Rendered&apos;)
+
+  const [number, setNumber] = useState(0)
+
+  return (
+    &amp;#x3C;MyContext.Provider value={{ number, setNumber }}&gt;
+      {children}
+    &amp;#x3C;/MyContext.Provider&gt;
+  )
+}
+
+const App = () =&gt; {
+  console.log(&apos;App is Rendered&apos;)
+
+  return (
+    &amp;#x3C;MyProvider&gt;
+      &amp;#x3C;Parent /&gt;
+    &amp;#x3C;/MyProvider&gt;
+  )
+}
+
+const Parent = () =&gt; {
+  console.log(&apos;Parent is Rendered&apos;)
+
+  return &amp;#x3C;Child /&gt;
+}
+
+const Child = () =&gt; {
+  const { number, setNumber } = useContext(MyContext)
+
+  console.log(&apos;Child is Rendered&apos;)
+
+  return (
+    &amp;#x3C;div&gt;
+      &amp;#x3C;p&gt;{number}&amp;#x3C;/p&gt;
+      &amp;#x3C;button onClick={() =&gt; setNumber((prev) =&gt; prev + 1)}&gt;+&amp;#x3C;/button&gt;
+      &amp;#x3C;button onClick={() =&gt; setNumber((prev) =&gt; prev - 1)}&gt;-&amp;#x3C;/button&gt;
+    &amp;#x3C;/div&gt;
+  )
+}
+
+export default App
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;/TIL/ee934987fd3a16ffd33e24b77ef12984/provider-with-children.gif&quot; alt=&quot;children 사용한 Context&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;21-children-에-대한-고찰&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-children-%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B3%A0%EC%B0%B0&quot; aria-label=&quot;21 children 에 대한 고찰 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. Children 에 대한 고찰&lt;/h2&gt;
+&lt;p&gt;위와 같이 동작하는 정확한 이유는 react의 가상 DOM과 관련있다. 이에 대해서는 추후에 다시 공부할 예정이다. &lt;mark&gt;간단하게 말하면 &lt;code&gt;children&lt;/code&gt;으로 &lt;code&gt;ReactNode&lt;/code&gt;를 넘겨주는 행위는, 마치 컴포넌트를 완성하고 prop으로 내려주는 것과 같다.&lt;/mark&gt; 아래 두 코드는 서로 동일한 코드이다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-jsx&quot;&gt;const Parent = ({ children }) =&gt; {
+  return &amp;#x3C;div&gt;{children}&amp;#x3C;/div&gt;
+}
+
+const Container = () =&gt; {
+  return (
+    &amp;#x3C;Parent&gt;
+      &amp;#x3C;Child /&gt;
+    &amp;#x3C;/Parent&gt;
+  )
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-jsx&quot;&gt;const Parent = ({ children }) =&gt; {
+  return &amp;#x3C;div&gt;{children}&amp;#x3C;/div&gt;
+}
+
+const Container = () =&gt; {
+  return &amp;#x3C;Parent children={&amp;#x3C;Child /&gt;} /&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;하위 컴포넌트가 먼저 만들어지고, 상위 컴포넌트에 prop으로 넘겨지는 형식이기 때문에 하위 컴포넌트의 렌더링은 더이상 상위 컴포넌트에 종속적이지 않다.&lt;/p&gt;
+&lt;h1 id=&quot;3-radio에-context-적용&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-radio%EC%97%90-context-%EC%A0%81%EC%9A%A9&quot; aria-label=&quot;3 radio에 context 적용 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. Radio에 Context 적용&lt;/h1&gt;
+&lt;p&gt;돌고 돌아서 오늘의 핵심 주제에 도착했다. &lt;code&gt;Context&lt;/code&gt;는 분명 편리한 기능임에도 다른 전역 상태 라이브러리에 가려져 잘 사용되지 않는다. 그나마 &lt;code&gt;ThemeProvider&lt;/code&gt;정도랄까. 그러던 중 아주 좋은 사용처를 발견했다. 바로 Radio 인풋 버튼이다.&lt;/p&gt;
+&lt;p&gt;Radio 버튼은 동일한 &lt;code&gt;name&lt;/code&gt;에 대해 상호배타적이라는 점에서 데이터 연관성이 강하다. 하지만 전역 상태로 관리하기에는 너무 사소하다. 즉, &lt;code&gt;Context&lt;/code&gt;를 적용하기 아주 적절하다. &lt;mark&gt; 또한 Radio 그룹을 &lt;code&gt;Context&lt;/code&gt;로 관리하면 여러 개의 Radio 버튼을 UI 상에서 자유롭게 배치할 수 있다.&lt;/mark&gt; 자세한 내용은 아래 코드를 참조하길 바란다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;import { ChangeEventHandler, createContext } from &apos;react&apos;
+
+type TRadioContext = {
+  name: string
+  value: string
+  onChange: ChangeEventHandler
+}
+
+export const RadioContext = createContext&amp;#x3C;TRadioContext | null&gt;(null)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-tsx&quot;&gt;import { ChangeEventHandler, PropsWithChildren, useState } from &apos;react&apos;
+import { RadioContext } from &apos;./RadioContext&apos;
+
+type RadioGroupProps = {
+  name: string
+  defaultValue: string
+  onChange?: ChangeEventHandler
+}
+
+const RadioGroup = ({
+  children,
+  name,
+  defaultValue,
+  onChange,
+}: PropsWithChildren&amp;#x3C;RadioGroupProps&gt;) =&gt; {
+  const [value, setValue] = useState&amp;#x3C;string&gt;(defaultValue)
+
+  /**
+   * 하위 Radio 버튼 change 이벤트 처리
+   * 1. 데이터(vlaue) 업데이트
+   * 2. 지정된 함수(onChange) 동작
+   */
+  const handleChange: ChangeEventHandler&amp;#x3C;HTMLInputElement&gt; = (e) =&gt; {
+    setValue(e.currentTarget.value)
+    onChange &amp;#x26;&amp;#x26; onChange(e)
+  }
+
+  return (
+    &amp;#x3C;RadioContext.Provider value={{ name, value, onChange: handleChange }}&gt;
+      &amp;#x3C;div&gt;{name}&amp;#x3C;/div&gt;
+      &amp;#x3C;div&gt;{children}&amp;#x3C;/div&gt;
+    &amp;#x3C;/RadioContext.Provider&gt;
+  )
+}
+
+export default RadioGroup
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-tsx&quot;&gt;import { ChangeEventHandler, useContext } from &apos;react&apos;
+import { RadioContext } from &apos;./RadioContext&apos;
+
+type RadioProps = {
+  value: string
+  label?: string
+}
+
+const Radio = ({ value, label }: RadioProps) =&gt; {
+  const radioContext = useContext(RadioContext)
+
+  if (!radioContext) return
+
+  return (
+    &amp;#x3C;label&gt;
+      &amp;#x3C;input
+        type=&quot;radio&quot;
+        name={radioContext.name} // context의 name으로 통일
+        value={value}
+        checked={!!radioContext &amp;#x26;&amp;#x26; radioContext.value === value}
+        onChange={radioContext.onChange}
+      /&gt;
+      {label ? label : value}
+    &amp;#x3C;/label&gt;
+  )
+}
+
+export default Radio
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;31-사용-방법&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#31-%EC%82%AC%EC%9A%A9-%EB%B0%A9%EB%B2%95&quot; aria-label=&quot;31 사용 방법 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1. 사용 방법&lt;/h2&gt;
+&lt;p&gt;위에 구현한 코드를 아래처럼 사용할 수 있다. &lt;code&gt;RadioGroup&lt;/code&gt; 안에만 있다면, 더 이상 &lt;code&gt;Radio&lt;/code&gt; 버튼의 위치를 신경쓰지 않아도 된다. 제대로 데이터가 수집되는지 확인하기 위해 &lt;code&gt;submit&lt;/code&gt;이벤트 발생 시 &lt;code&gt;form&lt;/code&gt; 데이터를 수집해서 콘솔로 출력했다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-tsx&quot;&gt;import React from &apos;react&apos;
+import RadioGroup from &apos;./RadioGroup&apos;
+import Radio from &apos;./Radio&apos;
+
+const App = () =&gt; {
+  const handleSubmit: React.FormEventHandler&amp;#x3C;HTMLFormElement&gt; = (e) =&gt; {
+    e.preventDefault()
+
+    // formData 콘솔 출력
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    for (let key of formData.keys()) {
+      console.log(key, &apos;:&apos;, formData.get(key))
+    }
+  }
+
+  return (
+    &amp;#x3C;div&gt;
+      &amp;#x3C;form onSubmit={handleSubmit}&gt;
+        &amp;#x3C;RadioGroup
+          name=&quot;좋아하는 과일&quot;
+          defaultValue=&quot;사과&quot;
+          onChange={() =&gt; {
+            console.log(&apos;좋아하는 과일 change&apos;)
+          }}
+        &gt;
+          &amp;#x3C;Radio value=&quot;사과&quot; /&gt;
+          &amp;#x3C;Radio value=&quot;바나나&quot; /&gt;
+          &amp;#x3C;Radio value=&quot;딸기&quot; /&gt;
+        &amp;#x3C;/RadioGroup&gt;
+        &amp;#x3C;RadioGroup
+          name=&quot;좋아하는 스타일&quot;
+          defaultValue=&quot;아메카지&quot;
+          onChange={() =&gt; {
+            console.log(&apos;좋아하는 스타일 change&apos;)
+          }}
+        &gt;
+          &amp;#x3C;StyleList /&gt;
+        &amp;#x3C;/RadioGroup&gt;
+        &amp;#x3C;button type=&quot;submit&quot;&gt;제출&amp;#x3C;/button&gt;
+      &amp;#x3C;/form&gt;
+    &amp;#x3C;/div&gt;
+  )
+}
+
+const StyleList = () =&gt; {
+  return (
+    &amp;#x3C;div&gt;
+      &amp;#x3C;Radio value=&quot;댄디&quot; /&gt;
+      &amp;#x3C;Radio value=&quot;아메카지&quot; /&gt;
+      &amp;#x3C;Radio value=&quot;스트릿&quot; /&gt;
+    &amp;#x3C;/div&gt;
+  )
+}
+
+export default App
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;/TIL/120c8aac48c921a2cd1283144239b486/useContext-radio.gif&quot; alt=&quot;Context 사용한 Radio 동작&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;4-참조&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-%EC%B0%B8%EC%A1%B0&quot; aria-label=&quot;4 참조 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. 참조&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://react.dev/learn/passing-data-deeply-with-context&quot;&gt;React : &quot;Passing Data Deeply with Context&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://react.dev/learn/extracting-state-logic-into-a-reducer&quot;&gt;React : &quot;Extracting State Logic into a Reducer&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://velog.io/@2ast/React-children-prop%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B3%A0%EC%B0%B0feat.-%EB%A0%8C%EB%8D%94%EB%A7%81-%EC%B5%9C%EC%A0%81%ED%99%94&quot;&gt;2ast : &quot;React) children prop에 대한 고찰(feat. 렌더링 최적화)&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[github-actions와 argoCD로 쿠버네티스 GitOps 관리하기]]></title><description><![CDATA[1. CI/CD 구상도  개인적으로 CI/CD를 구축하는 데 있어 가장 큰 어려움은, 기술적인 난이도보다 전체 아키텍쳐 구성의 이해에 있는 것 같다. 위 아키텍쳐의 실제 동작 순서는 아래와 같다. Github…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/Docker/CI&amp;CD/github_actions_argoCD/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/Docker/CI&amp;CD/github_actions_argoCD/</guid><pubDate>Mon, 04 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-cicd-구상도&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-cicd-%EA%B5%AC%EC%83%81%EB%8F%84&quot; aria-label=&quot;1 cicd 구상도 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. CI/CD 구상도&lt;/h1&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;
@@ -60,7 +496,7 @@
 &lt;h2 id=&quot;12-kustomize-란&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-kustomize-%EB%9E%80&quot; aria-label=&quot;12 kustomize 란 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2. kustomize 란?&lt;/h2&gt;
 &lt;p&gt;kustomize는 &lt;mark&gt;원본 쿠버네티스 설정 파일을 유지한 채, 손쉬운 편집을 도와주는 도구&lt;/mark&gt;이다. git이 업데이트 되면 프로젝트가 다시 빌드되고 도커 이미지 버전이 업데이트된다. 그러면 쿠버네티스 설정 파일의 이미지 버전 또한 수정해줘야한다. 다른 설정은 유지한 채 어떻게 이미지 버전만 업데이트할 수 있을까? CLI 명령어로 장인정신을 발휘해야하나 고민하던 찰나 kustomize를 알게 되었다.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;argoCD에는 기본적으로 kustomize가 탑재되어 있다.&lt;/strong&gt; 따라서 타겟 폴더에 &lt;code&gt;kustomization.yml&lt;/code&gt;파일이 있다면, 자동으로 &lt;code&gt;kustomize&lt;/code&gt; 명령어를 활용해서 클러스터를 동기화한다.&lt;/p&gt;
-&lt;h3 id=&quot;121-도커-어미지-업데이트&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#121-%EB%8F%84%EC%BB%A4-%EC%96%B4%EB%AF%B8%EC%A7%80-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8&quot; aria-label=&quot;121 도커 어미지 업데이트 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2.1. 도커 어미지 업데이트&lt;/h3&gt;
+&lt;h3 id=&quot;121-도커-이미지-업데이트&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#121-%EB%8F%84%EC%BB%A4-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8&quot; aria-label=&quot;121 도커 이미지 업데이트 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2.1. 도커 이미지 업데이트&lt;/h3&gt;
 &lt;p&gt;kustomize로 기존 설정파일을 유지한 채 손쉽게 이미지 버전을 업데이트 할 수 있다. 아래와 같이 설정파일을 작성하고 &lt;code&gt;kustomize&lt;/code&gt; 명령어를 실행하면 8.0버전의 mySQL 파드가 실행된다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-yml&quot;&gt;# mysql.yml
 apiVersion: apps/v1
@@ -725,7 +1161,7 @@ images:
         &lt;/picture&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;h1 id=&quot;34-github-actions-워크플로우-작성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#34-github-actions-%EC%9B%8C%ED%81%AC%ED%94%8C%EB%A1%9C%EC%9A%B0-%EC%9E%91%EC%84%B1&quot; aria-label=&quot;34 github actions 워크플로우 작성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.4. Github Actions 워크플로우 작성&lt;/h1&gt;
+&lt;h2 id=&quot;34-github-actions-워크플로우-작성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#34-github-actions-%EC%9B%8C%ED%81%AC%ED%94%8C%EB%A1%9C%EC%9A%B0-%EC%9E%91%EC%84%B1&quot; aria-label=&quot;34 github actions 워크플로우 작성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.4. Github Actions 워크플로우 작성&lt;/h2&gt;
 &lt;p&gt;앞서 등록한 Secret을 참조하여 워크플로우의 상세내용은 각자 커스텀하면 된다. 전체적인 플로우는 &lt;mark&gt;&lt;strong&gt;&quot;프로젝트 빌드 -&gt; 도커 이미지 생성 -&gt; 도커 이미지 푸시 -&gt; argoCD 타겟 브랜치 yml파일 업데이트&quot;&lt;/strong&gt;&lt;/mark&gt;를 따른다.&lt;/p&gt;
 &lt;p&gt;한가지 주의할 점은 아래 워크 플로우의 &lt;code&gt;secrets.GITHUB_TOKEN&lt;/code&gt;는 따로 등록해준 Secret이 아니다. 이는 워크플로우가 자체적으로 생성하는 토큰값으로, 워크플로우가 트리거된 레포지토리에 재접근할 수 있는 권한을 부여한다. 다만 이를 위해서는 &apos;Settings &gt; Actions &gt; General&apos;에서 다음과 같이 체크되어 있어야 한다.&lt;/p&gt;
 &lt;p&gt;&lt;span
@@ -782,7 +1218,7 @@ images:
 on:
   push:
     branches:
-      - front
+      - front # 워크 플로우를 트리거할 브랜치
 
 env:
   IMAGE_NAME: gallery-react
@@ -867,7 +1303,7 @@ jobs:
 on:
   push:
     branches:
-      - back-gateway
+      - back-gateway # 워크 플로우를 트리거할 브랜치
 
 env:
   IMAGE_NAME: gallery-gateway
@@ -947,6 +1383,203 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }} # 워크 플로우 자체 생성 토큰
           branch: gateway-argo
 &lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;4-실행화면&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-%EC%8B%A4%ED%96%89%ED%99%94%EB%A9%B4&quot; aria-label=&quot;4 실행화면 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. 실행화면&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;github-actions 워크플로우 실행&lt;/strong&gt;&lt;br&gt;
+git 레포지토리의 특정 브랜치에 소스코드가 푸시되면, 해당 브랜치에 연결된 워크플로우가 자동으로 실행된다.&lt;br&gt;
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/TIL/static/e35237d794aba0550a20f59ed7651090/229ad/argo-workflow.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 64%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABJ0AAASdAHeZh94AAABpklEQVR42n1S2Y4cIQzs///DKFJeIiW72ycYbHN1rXAPs5NJJpYswJiiKGr6WHZ8+/4DuyPM6w4fGKIZURJYEwIrdhdsv+/1euQEigJihY+CgyKWg/D+02EKUaz58MFy2x0oMLZ1w3GvE9Zbvfc6irZmSXa5pAJJ2S6aZr8iMkNVISJf422umnCep2WPMR/r1k6IKEQTamuYfu8z5mXBtu1Y1w37fsAdDiEEOOfAzLiO/jtaa/AUQCGi1IopxowY2dBrO1FqM4CsGeTpzl5LRW5AUkVKF2tPhNqqgQ7G09sxgwIZo944IqUComCAXYIoCq0nNCWwCGqtNnZWPWtt15MX2uHJg/lqGjc5Cvj19oGliz+E12xzvrmg1/ihpqlgEhYDe47+gxTkfnAcltvBZ7A4ALs+FILRfQwvjPnY4H3AfnSLqIGt5LAc3VIeomrPlUeGwwp/MUzZTD3SDN1Zs4JYEFhu5s9mbkdsXpxe2SHljBAZKZe78F/Z/ljn7oBcr095Bdil6J5sT1L8L/pLXwLWksxK3pPp1S1VSrkyF+TBfNTK5cdPbbb30wfYsH0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/TIL/static/e35237d794aba0550a20f59ed7651090/c54d4/argo-workflow.webp 175w,
+/TIL/static/e35237d794aba0550a20f59ed7651090/a3432/argo-workflow.webp 350w,
+/TIL/static/e35237d794aba0550a20f59ed7651090/426ac/argo-workflow.webp 700w,
+/TIL/static/e35237d794aba0550a20f59ed7651090/c139f/argo-workflow.webp 1050w,
+/TIL/static/e35237d794aba0550a20f59ed7651090/08aa0/argo-workflow.webp 1356w&quot;
+              sizes=&quot;(max-width: 700px) 100vw, 700px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/TIL/static/e35237d794aba0550a20f59ed7651090/4edbd/argo-workflow.png 175w,
+/TIL/static/e35237d794aba0550a20f59ed7651090/13ae7/argo-workflow.png 350w,
+/TIL/static/e35237d794aba0550a20f59ed7651090/8c557/argo-workflow.png 700w,
+/TIL/static/e35237d794aba0550a20f59ed7651090/e996b/argo-workflow.png 1050w,
+/TIL/static/e35237d794aba0550a20f59ed7651090/229ad/argo-workflow.png 1356w&quot;
+            sizes=&quot;(max-width: 700px) 100vw, 700px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/TIL/static/e35237d794aba0550a20f59ed7651090/8c557/argo-workflow.png&quot;
+            alt=&quot;github-actions 워크플로우 실행&quot;
+            title=&quot;&quot;
+            loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;kustomization.yml 파일 업데이트&lt;/strong&gt;&lt;br&gt;
+argoCD 타겟 브랜치에 있는 kustomization 파일의 이미지 버전이 업데이트 된 것을 확인할 수 있다.&lt;br&gt;
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/TIL/static/bd954ab011a659d959ded646d76eaa7c/951a4/kustomization-update.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 58.285714285714285%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAABrklEQVR42oWS644TMQxG5/1fDgkQqoBVWcp2u9OZ3O/JzIGk/EHbCktHnxNHjuN4Onx9Yr4KhDKDmCs+ZkIq+FTQNiC0RRmHC2nEutqOTyjrUdbxNhuuL45JSYVQdiRbhEJqhxwJPItUaOtZpR773ZfKjLhU9nZpzDf6ZT4zSSEopdBt3/eH3Ivfs0lbh3WeEBO5Vkpt5FIfU9+vfYi4ENn2nen4fOJ0euG6ytEL68Io3/3F32P0OI8kzsfRqnkR1NqYrLUorXHO0f2uOeeHT+rWWhtnemXGOlLKeO/H/hS9wyg5kmmthyqlyCnTamXftn9g30kxYYxFm15MLyKM9ajwMCeOV8ebjrxIx1l5LiZy1oGLSSyhvmONDZE2RLrpEhtLaOS2Ma1+w+QN6QM2tkFqOw2oQNkg3yHdofVP0esPvLkg5IXn4xe+Hz5w/PaR0/EzP58+ocUrJVly1P9BsbXKdJZvzHpllgu/lldmuyKTZg2KNUh8jeS93qEMjS0jnUZYRamFyZzDcPo4pFRo/bl1v2nbKaUNcq44FwkhEfvY9LHyEe8Txvrhtz89/A0wkqJWskyowAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/TIL/static/bd954ab011a659d959ded646d76eaa7c/c54d4/kustomization-update.webp 175w,
+/TIL/static/bd954ab011a659d959ded646d76eaa7c/a3432/kustomization-update.webp 350w,
+/TIL/static/bd954ab011a659d959ded646d76eaa7c/426ac/kustomization-update.webp 700w,
+/TIL/static/bd954ab011a659d959ded646d76eaa7c/c139f/kustomization-update.webp 1050w,
+/TIL/static/bd954ab011a659d959ded646d76eaa7c/d1c11/kustomization-update.webp 1355w&quot;
+              sizes=&quot;(max-width: 700px) 100vw, 700px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/TIL/static/bd954ab011a659d959ded646d76eaa7c/4edbd/kustomization-update.png 175w,
+/TIL/static/bd954ab011a659d959ded646d76eaa7c/13ae7/kustomization-update.png 350w,
+/TIL/static/bd954ab011a659d959ded646d76eaa7c/8c557/kustomization-update.png 700w,
+/TIL/static/bd954ab011a659d959ded646d76eaa7c/e996b/kustomization-update.png 1050w,
+/TIL/static/bd954ab011a659d959ded646d76eaa7c/951a4/kustomization-update.png 1355w&quot;
+            sizes=&quot;(max-width: 700px) 100vw, 700px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/TIL/static/bd954ab011a659d959ded646d76eaa7c/8c557/kustomization-update.png&quot;
+            alt=&quot;kustomization 파일 업데이트&quot;
+            title=&quot;&quot;
+            loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dockerhub 이미지 푸쉬&lt;/strong&gt;&lt;br&gt;
+kustomization 파일과 동일한 이미지 버전이 Dockerhub에 푸시되었다.&lt;br&gt;
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/TIL/static/e7d58a4d8e41477e31ade9869de2f661/b5a09/dockerhub-update.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 62.28571428571429%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAAB5ElEQVR42n2Ta27VMBCFs/81wEq6A34APxAtCNTeR/O4N4kTO37b+ZDdi4pQwdLRjDXHZ44nTnO+bAhpcc5hrEMbgzYWY23NS7TOk3ImxPQm/A0lbw5T5L5z3LeWh9byrXM8dI6nOXIUkUPBXBBqfrzhWUbO6wtalfhxjZzmQCNtYJSOcX3FdXXMW2BWf2B74Q1CM8ya1QR0yCiXWG1iNQllE822bQxDz2XomcYrYp5wzvPWMsZUXt89s4gZ7x3sO8u20887xmUaax3TLBBiYZUKrTXGWHLe3xC0HE8tx3PH4fjM0+FM2104nXva7oq1nialXA+/IBNjIsZY878RQsQYRzFhb7HsS6OSex9pNiWRciWlSAyenBP/WkV0EQvDZWCaprrf93yLOymlcmWPkqVbRJtQO5dCIRQUt79jOdi2HY+PT5xPJ7q+o+s6+r5nHMfKaaz9ipIf0NtngvvIngVqM7dZGpZlqW/0eh1ro1VcuQwtXd/XuQshKkdKRRlf44JgUSOTGNF6BEL9ytZZtN6qsLUWpVR1+OWn5tN3yXU2DGOpG0zhmYAPO42LCaF2pgW0fX0expoapZSE4KuT4uD9nePdnfvHjG+CUmcWlbEu10K5Yv0Vja4Ovfes61oF/7eK4C8uCp+QeZ9VAQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/TIL/static/e7d58a4d8e41477e31ade9869de2f661/c54d4/dockerhub-update.webp 175w,
+/TIL/static/e7d58a4d8e41477e31ade9869de2f661/a3432/dockerhub-update.webp 350w,
+/TIL/static/e7d58a4d8e41477e31ade9869de2f661/426ac/dockerhub-update.webp 700w,
+/TIL/static/e7d58a4d8e41477e31ade9869de2f661/c139f/dockerhub-update.webp 1050w,
+/TIL/static/e7d58a4d8e41477e31ade9869de2f661/90e3c/dockerhub-update.webp 1360w&quot;
+              sizes=&quot;(max-width: 700px) 100vw, 700px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/TIL/static/e7d58a4d8e41477e31ade9869de2f661/4edbd/dockerhub-update.png 175w,
+/TIL/static/e7d58a4d8e41477e31ade9869de2f661/13ae7/dockerhub-update.png 350w,
+/TIL/static/e7d58a4d8e41477e31ade9869de2f661/8c557/dockerhub-update.png 700w,
+/TIL/static/e7d58a4d8e41477e31ade9869de2f661/e996b/dockerhub-update.png 1050w,
+/TIL/static/e7d58a4d8e41477e31ade9869de2f661/b5a09/dockerhub-update.png 1360w&quot;
+            sizes=&quot;(max-width: 700px) 100vw, 700px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/TIL/static/e7d58a4d8e41477e31ade9869de2f661/8c557/dockerhub-update.png&quot;
+            alt=&quot;Dockerhub 이미지 푸쉬&quot;
+            title=&quot;&quot;
+            loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;argoCD 자동 실행&lt;/strong&gt;&lt;br&gt;
+3분 이내에 argoCD가 타겟 브랜치의 설정파일과 쿠버네티스를 동기화한다. 파드는 자동으로 교체되지만, 레플리카 셋은 기본으로 최근 10개까지를 기억한다.&lt;br&gt;
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/TIL/static/81357b521d9d9aeca2c328e74613e6c2/2af5b/argo-update.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 50.857142857142854%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABJ0AAASdAHeZh94AAAB/klEQVR42l2RS2sUQRSF240gGIxGXEjUgDgRghKTqChEBNG/IBp1Iy4URlTUbPyVwZjM9LyS6cd0V1VXd9U8s5hPushI4oVDL6rqO+ee9u5uPmdh5SFvqz+odwKCWLDX6PC71mS33mJn32e31uKP32Znv4HODeVMp1Nm0x8O6WUFyli85UfPuFBZ592XbWRREGtNJwhJdUZmDLm1tERCqCQqL5hMJvw/J+HezccvOLt0h/fffx27jVA6JzMWbQf0h2NEboiEROqCLC/oj8aMj44YjMbY4djdmcm7VFnFW1jk9advZGZIJDKCNKMVCTqx5CCVDizNgFYsSLICOxhhhmN33ggSmk4pzTDFu7h0G+/cPC8/VIl1n9phTL2b0AhS2iW0J51BJxbucZBIdGHJ7cAB/RKaKvxE0UwU3pWVDc5cvs6rj19phIJuotyKodDOsUx68hvKzHUpdOHM9qKUutLsJ5JaLPEWHzzhfOUeW9Vt/DBxK6bacJjIU6BSZequUK5fmRsHbIeC1kyRwLu68ZS5yhpb1Z/0tHVrNY4Bs5W7admrdj1FUqNtH236HPTUP9OZvGtrm8wvr/Pm8zahMg7oUkWCg57kMJVkZkCscve4pzTaWLLCuvNmKE4Db9zfZO7WqksYnQDOoKXKxH43wS9/ilCowrgO2/FpWAn8C2/Kr1P062t8AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/TIL/static/81357b521d9d9aeca2c328e74613e6c2/c54d4/argo-update.webp 175w,
+/TIL/static/81357b521d9d9aeca2c328e74613e6c2/a3432/argo-update.webp 350w,
+/TIL/static/81357b521d9d9aeca2c328e74613e6c2/426ac/argo-update.webp 700w,
+/TIL/static/81357b521d9d9aeca2c328e74613e6c2/c139f/argo-update.webp 1050w,
+/TIL/static/81357b521d9d9aeca2c328e74613e6c2/7f403/argo-update.webp 1400w,
+/TIL/static/81357b521d9d9aeca2c328e74613e6c2/017f8/argo-update.webp 1697w&quot;
+              sizes=&quot;(max-width: 700px) 100vw, 700px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/TIL/static/81357b521d9d9aeca2c328e74613e6c2/4edbd/argo-update.png 175w,
+/TIL/static/81357b521d9d9aeca2c328e74613e6c2/13ae7/argo-update.png 350w,
+/TIL/static/81357b521d9d9aeca2c328e74613e6c2/8c557/argo-update.png 700w,
+/TIL/static/81357b521d9d9aeca2c328e74613e6c2/e996b/argo-update.png 1050w,
+/TIL/static/81357b521d9d9aeca2c328e74613e6c2/2cefc/argo-update.png 1400w,
+/TIL/static/81357b521d9d9aeca2c328e74613e6c2/2af5b/argo-update.png 1697w&quot;
+            sizes=&quot;(max-width: 700px) 100vw, 700px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/TIL/static/81357b521d9d9aeca2c328e74613e6c2/8c557/argo-update.png&quot;
+            alt=&quot;argoCD 자동 실행&quot;
+            title=&quot;&quot;
+            loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;h1 id=&quot;참고자료&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C&quot; aria-label=&quot;참고자료 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;참고자료&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://argo-cd.readthedocs.io/en/stable/getting_started/#getting-started&quot;&gt;argoCD 공식문서: Getting Started&lt;/a&gt;&lt;/li&gt;
@@ -13335,7 +13968,7 @@ static 폴더 안에 든 파일은 webpack에 의해 처리되지 않고, 그대
 &lt;li&gt;&lt;a href=&quot;https://www.gatsbyjs.com/docs/how-to/routing/client-only-routes-and-user-authentication/&quot;&gt;Gatsby Client Only Routing&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.gatsbyjs.com/docs/how-to/rendering-options/using-server-side-rendering/&quot;&gt;Gatsby using SSR&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.gatsbyjs.com/docs/reference/gatsby-project-structure/&quot;&gt;Gatsby Project Structure&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Django와 Vue 프로젝트 Github SSH Action으로 자동 배포하기]]></title><description><![CDATA[시작하기 전에... Django와 Vue를 이용해서 만든 Boogie 프로젝트의 기초적인 배포 과정을 정리한 문서이다. Boogie 웹사이트 링크 .pem 키를 이용해 원격 EC2에 SSH(Secure Shell…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/CI&amp;CD/django_and_vue_with_ssh_actions/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/CI&amp;CD/django_and_vue_with_ssh_actions/</guid><pubDate>Sat, 20 May 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;시작하기-전에---omit-in-toc---&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-%EC%A0%84%EC%97%90---omit-in-toc---&quot; aria-label=&quot;시작하기 전에   omit in toc    permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;시작하기 전에...&lt;!-- omit in toc --&gt;&lt;/h1&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Django와 Vue 프로젝트 Github SSH Action으로 자동 배포하기]]></title><description><![CDATA[시작하기 전에... Django와 Vue를 이용해서 만든 Boogie 프로젝트의 기초적인 배포 과정을 정리한 문서이다. Boogie 웹사이트 링크 .pem 키를 이용해 원격 EC2에 SSH(Secure Shell…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/Docker/CI&amp;CD/django_and_vue_with_ssh_actions/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/Docker/CI&amp;CD/django_and_vue_with_ssh_actions/</guid><pubDate>Sat, 20 May 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;시작하기-전에---omit-in-toc---&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-%EC%A0%84%EC%97%90---omit-in-toc---&quot; aria-label=&quot;시작하기 전에   omit in toc    permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;시작하기 전에...&lt;!-- omit in toc --&gt;&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Django와 Vue를 이용해서 만든 &lt;a href=&quot;https://github.com/Byongho96/boogie-project&quot;&gt;Boogie 프로젝트&lt;/a&gt;의 &lt;strong&gt;기초적인&lt;/strong&gt; 배포 과정을 정리한 문서이다.&lt;br&gt;
 &lt;a href=&quot;https://boogie-movie.site/&quot;&gt;Boogie 웹사이트 링크&lt;/a&gt;&lt;/p&gt;
@@ -32439,209 +33072,4 @@ for i in product(_list, repeat=3):
 &lt;li&gt;.load&lt;/li&gt;
 &lt;li&gt;.dumps&lt;/li&gt;
 &lt;li&gt;.loads&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Appendix 01. Python Built-in Functions]]></title><description><![CDATA[1. Built-in functions 2. Built-in functions2 2.1. del 2.2. print 2.3. enumerate(iterable, start=0) 2.4. map(function, iterable) 2.5. filter…]]></description><link>https://byongho96.github.io/TIL/posts/Language/Python/Appendix_01_Python_Builtin_Functions/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Language/Python/Appendix_01_Python_Builtin_Functions/</guid><pubDate>Tue, 08 Nov 2022 00:00:00 GMT</pubDate><content:encoded>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#1-built-in-functions&quot;&gt;1. Built-in functions&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#2-built-in-functions2&quot;&gt;2. Built-in functions2&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#21-del&quot;&gt;2.1. del&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#22-print&quot;&gt;2.2. print&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#23-enumerateiterable-start0&quot;&gt;2.3. enumerate(iterable, start=0)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#24-mapfunction-iterable&quot;&gt;2.4. map(function, iterable)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#25-filterfunction-iterable&quot;&gt;2.5. filter(function, iterable)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#26-zipiterable&quot;&gt;2.6. zip(*iterable)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#27-lambda-paramter-function&quot;&gt;2.7. lambda paramter: function&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;1-built-in-functions&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-built-in-functions&quot; aria-label=&quot;1 built in functions permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Built-in functions&lt;/h1&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Function&lt;/th&gt;
-&lt;th&gt;description&lt;/th&gt;
-&lt;th&gt;input&lt;/th&gt;
-&lt;th&gt;output&lt;/th&gt;
-&lt;th&gt;change&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;dir()&lt;/td&gt;
-&lt;td&gt;show all the varibales and functions(mehtods) in the object&lt;/td&gt;
-&lt;td&gt;object&lt;/td&gt;
-&lt;td&gt;list;[&apos;variables&apos;, fucntions]&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;id()&lt;/td&gt;
-&lt;td&gt;return the memory address&lt;/td&gt;
-&lt;td&gt;object&lt;/td&gt;
-&lt;td&gt;int&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;len()&lt;/td&gt;
-&lt;td&gt;return the number of imtes in container&lt;/td&gt;
-&lt;td&gt;container&lt;/td&gt;
-&lt;td&gt;int&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;min()&lt;/td&gt;
-&lt;td&gt;return the minimum of an iterable data&lt;/td&gt;
-&lt;td&gt;iterable&lt;/td&gt;
-&lt;td&gt;object&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;max()&lt;/td&gt;
-&lt;td&gt;return the maximum of an iterable data&lt;/td&gt;
-&lt;td&gt;iterable&lt;/td&gt;
-&lt;td&gt;object&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;ord()&lt;/td&gt;
-&lt;td&gt;return the unicode poinit&lt;/td&gt;
-&lt;td&gt;chr&lt;/td&gt;
-&lt;td&gt;int&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;sum()&lt;/td&gt;
-&lt;td&gt;return the sum of an iterable data&lt;/td&gt;
-&lt;td&gt;iterable&lt;/td&gt;
-&lt;td&gt;int&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;type()&lt;/td&gt;
-&lt;td&gt;return the type of object&lt;/td&gt;
-&lt;td&gt;object&lt;/td&gt;
-&lt;td&gt;type&lt;/td&gt;
-&lt;td&gt;X&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h1 id=&quot;2-built-in-functions2&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-built-in-functions2&quot; aria-label=&quot;2 built in functions2 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Built-in functions2&lt;/h1&gt;
-&lt;h2 id=&quot;21-del&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-del&quot; aria-label=&quot;21 del permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. del&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;delete object&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;del obj_name
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;delete (items in list) or (key in dict)&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;del my_list[0]
-del my_dict[&apos;name&apos;]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;22-print&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-print&quot; aria-label=&quot;22 print permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. print&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;formating&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;print(&apos;%d %f&apos;, %(200, 3.4))
-print(&apos;{:d} {:f}&apos; .format(200, 3.4))
-print(f&apos;{200:d} {3.4:f}&apos;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;conversion specifier&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;specifier&lt;/th&gt;
-&lt;th&gt;conversion&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;%d, :d&lt;/td&gt;
-&lt;td&gt;decimal&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;%o, :o&lt;/td&gt;
-&lt;td&gt;octal&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;%x, :x&lt;/td&gt;
-&lt;td&gt;hexadecimal_lower&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;%X, :X&lt;/td&gt;
-&lt;td&gt;hexadecimal_upper&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;%f, :f&lt;/td&gt;
-&lt;td&gt;float&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;%c, &lt;del&gt;:c&lt;/del&gt;&lt;/td&gt;
-&lt;td&gt;character&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;%s, :s&lt;/td&gt;
-&lt;td&gt;string&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;conversion specifier applications&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;specifier&lt;/th&gt;
-&lt;th&gt;conversion&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;%10d, %5f, %20s&lt;/br&gt;%&gt;10d, %&gt;5f, %&gt;20s&lt;/td&gt;
-&lt;td&gt;width of the field&lt;/br&gt;right aligned&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;%010d, %05f, %020s&lt;/td&gt;
-&lt;td&gt;width of the field&lt;/br&gt;right aligned&lt;/br&gt;fill left with 0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;%-10d, %-5f, %-20s&lt;/br&gt;%&amp;#x3C;10d, %&amp;#x3C;5f, %&amp;#x3C;20s&lt;/td&gt;
-&lt;td&gt;width of the field&lt;/br&gt;left aligned&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;%^10d, %^5f, %^20s&lt;/td&gt;
-&lt;td&gt;width of the field&lt;/br&gt;center aligned&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;%.2f, %5.2f&lt;/td&gt;
-&lt;td&gt;width of the field&lt;/br&gt;decimal place of the float&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;%.3s, %10.2s&lt;/td&gt;
-&lt;td&gt;width of the field&lt;/br&gt;num of printed chr from the left&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;23-enumerateiterable-start0&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#23-enumerateiterable-start0&quot; aria-label=&quot;23 enumerateiterable start0 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.3. enumerate(iterable, start=0)&lt;/h2&gt;
-&lt;p&gt;return iterable elements paired with int that start with &apos;start&apos; parameter&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;return &lt;strong&gt;enumerbate object&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;tuples&lt;/strong&gt; are in the object&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;24-mapfunction-iterable&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#24-mapfunction-iterable&quot; aria-label=&quot;24 mapfunction iterable permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.4. map(function, iterable)&lt;/h2&gt;
-&lt;p&gt;apply the function to all the elements of iterable object * return &lt;strong&gt;map object&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;25-filterfunction-iterable&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#25-filterfunction-iterable&quot; aria-label=&quot;25 filterfunction iterable permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.5. filter(function, iterable)&lt;/h2&gt;
-&lt;p&gt;apply the function to all the elments of iterable object, and remain elemetns which are ture * return &lt;strong&gt;filter object&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;26-zipiterable&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#26-zipiterable&quot; aria-label=&quot;26 zipiterable permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.6. zip(*iterable)&lt;/h2&gt;
-&lt;p&gt;pair elements in different iterable object according to its index number&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;when the len of iterable objects are different &gt;&gt; take short as a standard&lt;/li&gt;
-&lt;li&gt;return &lt;strong&gt;zip object&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;27-lambda-paramter-function&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#27-lambda-paramter-function&quot; aria-label=&quot;27 lambda paramter function permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.7. lambda paramter: function&lt;/h2&gt;
-&lt;p&gt;used for defining a simple function&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;/ul&gt;</content:encoded></item></channel></rss>
