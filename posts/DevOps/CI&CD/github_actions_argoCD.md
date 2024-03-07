@@ -251,7 +251,7 @@ images:
 
 Secret는 Github Actions에서 사용되는 **비밀 환경변수**이다. key-value 형식으로 접근할 수 있으며, 외부에 공개되지 않기 때문에 application.properties와 같은 민감정보를 담을 수 있다.
 
-### 3.3.1. Docker 토근 등록
+### 3.3.1. Docker 토큰 등록
 
 Github Actions에서 Dockerhub에 이미지를 푸시하기 위해서는 Dockerhub 토큰을 등록해줘야 한다.
 

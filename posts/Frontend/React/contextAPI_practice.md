@@ -1,28 +1,28 @@
 ---
-title: 'Radio에 React Context 활용하기'
+title: 'Radio 버튼에 React Context 적용하기'
 updatedAt: '2024-03-06'
 createdAt: '2024-03-06'
 description: 'React 프로젝트의 Radio 인풋에 ContextAPI를 활용하여 손쉽게 관리해보자'
-tags: ['React', 'ContextAPI', 'Radio', '상태 관리']
+tags: ['React', 'ContextAPI', 'Radio', '상태 관리', 'children']
 isCompleted: true
 reference:
 ---
 
 # 1. Context 란?
 
-나는 일종의 <mark>React 자체 전역 데이터 저장소</mark>라고 생각한다. 일반적으로 React에서 데이터를 하위 컴포넌트로 전달하기 위해서는 props로 일일히 내려줘야 한다. 따라서 데이터를 손자, 증손자, 고조손자까지 넘겨주려고 하면 코드가 지저분해지고 불필요한 리렌더링이 발생한다. 이를 **Props-Drilling**이라고 한다.
+나는 <mark>React 자체 전역 데이터 저장소</mark>라고 생각한다. 일반적으로 React에서 데이터를 하위 컴포넌트로 전달하기 위해서는 props로 일일히 내려줘야 한다. 따라서 데이터를 손자, 증손자, 고조손자까지 넘겨주려고 하면 코드가 지저분해질 뿐 아니라 불필요한 리렌더링이 발생한다. 이를 **Props-Drilling**이라고 한다.
 
-Context를 이용하면 Provider로 감싼 모든 컴포넌트에서 depth에 관계없이 데이터에 접근 할 수 있다. 여기에 `reducer`를 이용해서 상태 업데이트를 제한하면 일종의 Flux Pattern을 가진 미니 전역 저장소나 다름이 없다. 물론 데이터를 읽지 않는 중간 컴포넌트에서 불필요한 리렌더링이 일어나는 한계가 있지만, 이는 **`children` prop으로 극복 가능**하다. 이에 대해서는 아래에서 다시 다룰 예정이다.
+`Context`를 이용하면 `Provider`로 감싼 모든 하위 컴포넌트에서 자유롭게 데이터에 접근 할 수 있다. 여기에 `reducer`를 이용해서 상태 업데이트를 규격화하면 일종의 Flux Pattern을 가진 미니 전역 저장소를 만들 수 있다. 중간 컴포넌트에서의 **불필요한 리렌더링 또한 `children` prop으로 극복 가능**하다. 이에 대해서는 아래에서 한 번 더 다룰 예정이다.
 
 ## 1.1. 간단한 예시 (ThemeProvider)
 
-다음과 같이 `useContext`를 이용하여 프로젝트 전체의 Theme을 관리할 수 있다. 기본적으로 Context의 변화는 Provider 하위 컴포넌트의 리렌더링을 유발하기 때문에, 테마처럼 제한적으로 바뀌는 값을 사용하기 적합하다.
+`useContext`를 사용하는 가장 대표적인 경우는 **다크모드 관리**이다. 아마 Context의 기본 동작이 Provider 하위 컴포넌트의 리렌더링을 유발하기 때문에, 다크모드처럼 제한적으로 바뀌는 값을 관리하는 것 같다.
 
 ```js
 import React, { useState, useContext, createContext } from 'react'
 import { ThemeContext } from './context/ThemeContext'
 
-export const ThemeContext = createContext(false) // 초깃값
+export const ThemeContext = createContext()
 
 function App() {
   const [isDark, setIsDark] = useState(false)
@@ -56,9 +56,9 @@ export default App
 
 ## 1.2. useReducer 란?
 
-`reducer`는 <mark>상태를 업데이트를 제한하는 함수로, 전역 상태의 무분별한 접근과 수정을 방지</mark>한다. Redux의 `Dispatcher`에 대응된다.
+`reducer`는 <mark>상태를 업데이트를 제한하는 함수로써, 전역 상태의 무분별한 접근과 수정을 방지</mark>한다.
 
-`useReducer`는 `reducer`함수로 구현된 리액트 훅이다. `useState`와 아주 유사하여 [공식문서](https://react.dev/learn/extracting-state-logic-into-a-reducer#comparing-usestate-and-usereducer)에는 이 둘을 비교정리하기도 했다. `useState`가 상태를 자유롭게 수정할 수 있는 `setState`를 반환하는 한편, `useReducer`는 앞서 말한 것처럼 미리 정의된 `reducer`에 맞춰 동작하는 `dispatcher`를 반환한다.
+`useReducer`를 사용하면 `reducer`로 관리되는 데이터를 쉽게 생성할 수 있다. `useState`와 아주 유사하여 [공식문서](https://react.dev/learn/extracting-state-logic-into-a-reducer#comparing-usestate-and-usereducer)에도 이 둘을 비교 정리했다. `useState`가 상태를 자유롭게 수정할 수 있는 `setState`를 반환하는 한편, `useReducer`는 미리 정의된 `reducer`에 맞춰 동작하는 `dispatcher`를 반환한다.
 
 ```js
 import React, { useState, useReducer } from 'react'
@@ -105,7 +105,7 @@ function App() {
 
 ## 1.2. Context와 useReducer
 
-따라서 `Context`와 `useReducer`을 결합하면, 안정적으로 상태를 관리할 수 있는 간이 전역 저장소를 구현할 수 있다. 아래 코드는 어쩌다보니 TypeScript로 작성했다.
+`Context`에 `useReducer`을 결합하면, Flux Pattern의 전역 저장소를 구현할 수 있다. 아래 예시 코드는 어쩌다보니 TypeScript로 작성했다.
 
 ```ts
 // types.ts
@@ -211,9 +211,9 @@ export default App
 
 # 2. Context의 한계
 
-흔히 Context의 한계로 **중간 컴포넌트의 불필요한 리렌더링을 꼽는다.** 이게 맞으면서도 틀린 말이다. 다음 두 개의 코드는 `children` 프롭을 제외하면 완벽하게 동작한다. 하지만 <mark>`children`을 사용할 경우, 중간 컴포넌트의 리렌더링이 발생하지 않는다.</mark>
+흔히 Context의 한계로 **중간 컴포넌트의 불필요한 리렌더링을 꼽는다.** 맞으면서도 틀린 말이다.
 
-아래 두 코드는 `Context.Provider`에서 직접 하위 컴포넌트를 렌더링 하느냐, 아니면 `children`으로 전달받냐의 차이밖에 없다. 그러나 실제 콘솔을 찍어보면 `children`을 사용할 경우, 중간 컴포넌트의 불필요한 렌더링이 발생하지 않는다.
+아래 두 개의 코드는 `children` Prop 사용유무를 제외하면 완벽하게 동일하다. 하지만 콘솔을 찍어보면, `children`을 사용한 경우에 중간 컴포넌트의 불필요한 리렌더링을 발생하지 않는다.
 
 ```jsx
 // children 사용 안함
@@ -259,7 +259,7 @@ export default App
 ![children 사용하지 않은 Context](./images/provider-without-children.gif)
 
 ```jsx
-// children 시영힘
+// children 사용함
 import { useState, createContext, useContext } from 'react'
 
 const MyContext = createContext(null)
@@ -311,15 +311,18 @@ export default App
 
 ![children 사용한 Context](./images/provider-with-children.gif)
 
-## 2.1. Children 에 대한 고찰
+## 2.1. children 에 대한 고찰
 
-위와 같이 동작하는 정확한 이유는 react의 가상 DOM과 관련있다. 이에 대해서는 추후에 다시 공부할 예정이다. <mark>간단하게 말하면 `children`으로 `ReactNode`를 넘겨주는 행위는, 마치 컴포넌트를 완성하고 prop으로 내려주는 것과 같다.</mark> 아래 두 코드는 서로 동일한 코드이다.
+간단하게 말하면 `children`으로 `ReactNode`를 넘겨주는 행위는, **완성된 컴포넌트를 전달**해주는 것과 같다.</mark> 하위 컴포넌트가 별개로 완성되어 상위 컴포넌트에 prop으로 넘겨졌기 때문에, 하위 컴포넌트의 렌더링이 더이상 상위 컴포넌트에 종속되지 않는다. (더 정확한 원인을 알기 위해서는 React 가상 DOM을 학습해야 할 것 같다.)
+
+기존
 
 ```jsx
 const Parent = ({ children }) => {
   return <div>{children}</div>
 }
 
+// 아래 두 형식이 동일하다.
 const Container = () => {
   return (
     <Parent>
@@ -327,25 +330,17 @@ const Container = () => {
     </Parent>
   )
 }
-```
-
-```jsx
-const Parent = ({ children }) => {
-  return <div>{children}</div>
-}
 
 const Container = () => {
   return <Parent children={<Child />} />
 }
 ```
 
-하위 컴포넌트가 먼저 만들어지고, 상위 컴포넌트에 prop으로 넘겨지는 형식이기 때문에 하위 컴포넌트의 렌더링은 더이상 상위 컴포넌트에 종속적이지 않다.
-
 # 3. Radio에 Context 적용
 
-돌고 돌아서 오늘의 핵심 주제에 도착했다. `Context`는 분명 편리한 기능임에도 다른 전역 상태 라이브러리에 가려져 잘 사용되지 않는다. 그나마 `ThemeProvider`정도랄까. 그러던 중 아주 좋은 사용처를 발견했다. 바로 Radio 인풋 버튼이다.
+드디어 오늘의 주제에 도착했다. `Context`는 분명 편리한 기능이지만, 다른 전역 상태 라이브러리에 가려져 잘 사용하지 않는다. 그나마 앞서 말한 `ThemeProvider` 정도랄까. 그러던 중 최근에 아주 좋은 사용처를 발견했다. 바로 **Radio 인풋 버튼**이다.
 
-Radio 버튼은 동일한 `name`에 대해 상호배타적이라는 점에서 데이터 연관성이 강하다. 하지만 전역 상태로 관리하기에는 너무 사소하다. 즉, `Context`를 적용하기 아주 적절하다. <mark> 또한 Radio 그룹을 `Context`로 관리하면 여러 개의 Radio 버튼을 UI 상에서 자유롭게 배치할 수 있다.</mark> 자세한 내용은 아래 코드를 참조하길 바란다.
+동일한 `name`의 Radio 버튼들은 서로 배타적이어야 하기 때문에 강한 연관성을 가진다. 하지만 이를 전역 상태로 관리하기에는 너무 지엽적이다. 이때 >Radio 버튼 그룹을 `Context`로 관리하면, 여러 개의 Radio 버튼 컴포넌트를 **UI나 depth에 상관없이 자유롭게 배치**할 수 있다. 구체적인 동작은 아래 코드에서 확인할 수 있다.
 
 ```ts
 import { ChangeEventHandler, createContext } from 'react'
@@ -431,7 +426,7 @@ export default Radio
 
 ## 3.1. 사용 방법
 
-위에 구현한 코드를 아래처럼 사용할 수 있다. `RadioGroup` 안에만 있다면, 더 이상 `Radio` 버튼의 위치를 신경쓰지 않아도 된다. 제대로 데이터가 수집되는지 확인하기 위해 `submit`이벤트 발생 시 `form` 데이터를 수집해서 콘솔로 출력했다.
+위 코드는 아래와 같이 사용할 수 있다. <mark>`RadioGroup` 안에 있는 `Radio` 버튼들은 depth에 관계없이 결합된다.</mark> 정말로 데이터가 잘 선택되었는지 확인하기 위해 `submit`이벤트 발생 시 `form`안의 데이터를 수집해서 콘솔로 출력했다.
 
 ```tsx
 import React from 'react'
