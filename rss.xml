@@ -1,12 +1,584 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 06 Mar 2024 12:41:22 GMT</lastBuildDate><item><title><![CDATA[Radio에 React Context 활용하기]]></title><description><![CDATA[1. Context 란? 나는 일종의 React 자체 전역 데이터 저장소라고 생각한다. 일반적으로 React에서 데이터를 하위 컴포넌트로 전달하기 위해서는 props…]]></description><link>https://byongho96.github.io/TIL/posts/Frontend/React/contextAPI_practice/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Frontend/React/contextAPI_practice/</guid><pubDate>Wed, 06 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-context-란&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-context-%EB%9E%80&quot; aria-label=&quot;1 context 란 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Context 란?&lt;/h1&gt;
-&lt;p&gt;나는 일종의 &lt;mark&gt;React 자체 전역 데이터 저장소&lt;/mark&gt;라고 생각한다. 일반적으로 React에서 데이터를 하위 컴포넌트로 전달하기 위해서는 props로 일일히 내려줘야 한다. 따라서 데이터를 손자, 증손자, 고조손자까지 넘겨주려고 하면 코드가 지저분해지고 불필요한 리렌더링이 발생한다. 이를 &lt;strong&gt;Props-Drilling&lt;/strong&gt;이라고 한다.&lt;/p&gt;
-&lt;p&gt;Context를 이용하면 Provider로 감싼 모든 컴포넌트에서 depth에 관계없이 데이터에 접근 할 수 있다. 여기에 &lt;code&gt;reducer&lt;/code&gt;를 이용해서 상태 업데이트를 제한하면 일종의 Flux Pattern을 가진 미니 전역 저장소나 다름이 없다. 물론 데이터를 읽지 않는 중간 컴포넌트에서 불필요한 리렌더링이 일어나는 한계가 있지만, 이는 &lt;strong&gt;&lt;code&gt;children&lt;/code&gt; prop으로 극복 가능&lt;/strong&gt;하다. 이에 대해서는 아래에서 다시 다룰 예정이다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 07 Mar 2024 11:49:50 GMT</lastBuildDate><item><title><![CDATA[옵저버(Observer) 패턴 (feat. React TypeScript)]]></title><description><![CDATA[1. 옵저버 패턴  옵저버 패턴은 구조는 위와 같다. 아주 직관적이다. 발행자가 Observer(관측자)를 모아 관리하고, 이벤트가 발생할 때마다 Observer에게 알려준다. 알려주는 방법도 간단하다. 미리 약속된 함수 이름(update…]]></description><link>https://byongho96.github.io/TIL/posts/Knowledge/Design Pattern/observer_pattern/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Knowledge/Design Pattern/observer_pattern/</guid><pubDate>Wed, 06 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-옵저버-패턴&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EC%98%B5%EC%A0%80%EB%B2%84-%ED%8C%A8%ED%84%B4&quot; aria-label=&quot;1 옵저버 패턴 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 옵저버 패턴&lt;/h1&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/TIL/static/7234fe5abbc0a5e696b7b2bc78b291da/2bef9/observer-pattern-structure.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 57.14285714285714%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAACQklEQVR42nVT+08TQRDm/098JIpGjDGgBo2Ue7ZCQaSBAj8Qc0IgGk1L77DXe9C93t3u3u7t3JirLSkYf/gyk9ndbx7f7BIiGlxy2yduOyBeO5h4UyuVtBDRvAcDEfV7uHO+hIhaL/zeXe08KBonL9mH7nO+1nnMfOLtzx7cEjOR2dc3/W2fuNtDcrU9It4WANxJWhNuIuKJlBLDKKyiOELGWYWIHUTckFKanHMbATWnf+S8OXyEH49W1LuDJ9X742VOi3RrsdI54RGlTLquV7iuK7I85zXhaDTaI4S0GWN2nudmURRdKaUXR/FVMpkMyrL8BQCtukoAsOaEBgA0AdWuUnJXCvEZAXYAVMv3/eOiKHZmszMRwFBKanmeTS2A0hD/bblmN5lQZsaEmWTM4kJNByyE0AHQyJiwkoxbJKX2OKEtIaTNhaj9ZkyyJmXSYlzeVqj9GIwPH66f5q+ss/SF9i17uH6a9v1kX4lcv/KTzrMNp1htnrPX9jl9uuGIYZzvHTrXZ8sNp3y7dZGvaE6x9ukiklLZ0xkyASf9UY6XvaC67IX40xtXGS0OOGObhZBfYpLfeMMw6g+GUZzkYyHULmXFaTTOSG/wO7z2oxuSUhcA7AWVBQYjvwoDHxmjc5UbMwUbSgpdKanPYvN9bHDODPgb1+Yt61VVdTnnPI5jGkUxY4zRsiz3J5NJOwiCr2matrMss5MkaVFKm4uoY0ope7av1tKMWZdS6rUINWofAHSllFlfrndRKWX8Dwu/RvsDICMU/b5msxoAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/TIL/static/7234fe5abbc0a5e696b7b2bc78b291da/c54d4/observer-pattern-structure.webp 175w,
+/TIL/static/7234fe5abbc0a5e696b7b2bc78b291da/a3432/observer-pattern-structure.webp 350w,
+/TIL/static/7234fe5abbc0a5e696b7b2bc78b291da/426ac/observer-pattern-structure.webp 700w,
+/TIL/static/7234fe5abbc0a5e696b7b2bc78b291da/a9a89/observer-pattern-structure.webp 1024w&quot;
+              sizes=&quot;(max-width: 700px) 100vw, 700px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/TIL/static/7234fe5abbc0a5e696b7b2bc78b291da/4edbd/observer-pattern-structure.png 175w,
+/TIL/static/7234fe5abbc0a5e696b7b2bc78b291da/13ae7/observer-pattern-structure.png 350w,
+/TIL/static/7234fe5abbc0a5e696b7b2bc78b291da/8c557/observer-pattern-structure.png 700w,
+/TIL/static/7234fe5abbc0a5e696b7b2bc78b291da/2bef9/observer-pattern-structure.png 1024w&quot;
+            sizes=&quot;(max-width: 700px) 100vw, 700px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/TIL/static/7234fe5abbc0a5e696b7b2bc78b291da/8c557/observer-pattern-structure.png&quot;
+            alt=&quot;옵저버 디자인 패턴 구조&quot;
+            title=&quot;&quot;
+            loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;옵저버 패턴은 구조는 위와 같다. 아주 직관적이다. 발행자가 Observer(관측자)를 모아 관리하고, 이벤트가 발생할 때마다 Observer에게 알려준다.&lt;/p&gt;
+&lt;p&gt;알려주는 방법도 간단하다. 미리 약속된 함수 이름(&lt;code&gt;update&lt;/code&gt;)를 정의하고, 실제 로직은 Observer측에서 구현한다. 발행자를 이를 단순히 실행시킨다.&lt;/p&gt;
+&lt;h1 id=&quot;2-옵저버-패턴-구현-with-typescript&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-%EC%98%B5%EC%A0%80%EB%B2%84-%ED%8C%A8%ED%84%B4-%EA%B5%AC%ED%98%84-with-typescript&quot; aria-label=&quot;2 옵저버 패턴 구현 with typescript permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. 옵저버 패턴 구현 with TypeScript&lt;/h1&gt;
+&lt;h2 id=&quot;21-구독자-subscriber&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-%EA%B5%AC%EB%8F%85%EC%9E%90-subscriber&quot; aria-label=&quot;21 구독자 subscriber permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. 구독자 (Subscriber)&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// 인터페이스
+export interface IObserver {
+  update: () =&gt; void;
+}
+
+// 구현체 1
+export class ObserverA implements IObserver {
+  update() {
+    console.log(&apos;Observer A 한테 이벤트 알림이 왔습니다.&apos;)
+  }
+
+  toString() {
+    return &apos;Observer A&apos;
+  }
+}
+
+// 구현체 2
+export class ObserverB implements IObserver {
+  update() {
+    console.log(&apos;ObserverB 한테 이벤트 알림이 왔습니다.&apos;)
+  }
+
+  toString() {
+    return &apos;Observer B&apos;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;22-발행자-publisher&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-%EB%B0%9C%ED%96%89%EC%9E%90-publisher&quot; aria-label=&quot;22 발행자 publisher permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. 발행자 (Publisher)&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import { IObserver } from &apos;./observer&apos;
+
+// 인터페이스
+interface IPublisher {
+  registerObserver: (o: IObserver) =&gt; void
+  removeObserver: (o: IObserver) =&gt; void
+  notifyObservers: () =&gt; void
+}
+
+// 구현체
+export class Publisher implements IPublisher {
+  observers: IObserver[] = []  // 관찰자 리스트
+
+  // 관찰자 등록
+  registerObserver(o: IObserver) {
+    this.observers.push(o)
+    console.log(o + &apos; 구독 완료&apos;)
+  }
+
+  // 관찰자 제거
+  removeObserver(o: IObserver) {
+    for (let i = 0; i &amp;#x3C; this.observers.length; i++) {
+      if (this.observers[i] === o) {
+        this.observers.splice(i, 1)
+        i--
+      }
+    }
+    console.log(o + &apos; 구독 취소&apos;)
+  }
+
+  // 관찰자 알림
+  notifyObservers() {
+    this.observers.forEach((o) =&gt; {
+      o.update()
+    })
+  }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;21-사용-예시&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-%EC%82%AC%EC%9A%A9-%EC%98%88%EC%8B%9C&quot; aria-label=&quot;21 사용 예시 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. 사용 예시&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;PublisherManager&lt;/code&gt;는 반드시 필요하지는 않다. 나는 앞서 구현한 &lt;code&gt;Publisher&lt;/code&gt;에 대해 &lt;strong&gt;하나의 객체를 생성 및 관리&lt;/strong&gt;하고 싶어 &lt;code&gt;Manager&lt;/code&gt;를 생성했다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;import { IObserver } from &apos;./observer.ts&apos;
+import { Publisher } from &apos;./subject.ts&apos;
+
+export class PublisherManager {
+  static publisher = new Publisher() // 하나의 Publisher 객체 관리
+
+  // 새 이벤트 발생
+  static addEvent(e: string) {
+    console.log(`${e} 발생`)
+    PublisherManager.publisher.notifyObservers()
+  }
+
+  // 구독
+  static subscribe(o: IObserver) {
+    PublisherManager.publisher.registerObserver(o)
+  }
+
+  // 구독 취소
+  static unsubscribe(o: IObserver) {
+    PublisherManager.publisher.removeObserver(o)
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;아래와 같은 코드를 실행시키면, 예상하는 콘솔 결과를 확인할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;import { PublisherManager } from &apos;./manager.ts&apos;
+import { ObserverA, ObserverB } from &apos;./observer.ts&apos;
+
+const observerA = new ObserverA()
+const observerB = new ObserverB()
+
+PublisherManager.subscribe(observerA)
+PublisherManager.subscribe(observerB)
+PublisherManager.addEvent(&apos;이벤트 1&apos;)
+
+PublisherManager.unsubscribe(observerA)
+PublisherManager.addEvent(&apos;이벤트 2&apos;)
+
+PublisherManager.unsubscribe(observerB)
+PublisherManager.addEvent(&apos;이벤트 3&apos;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# typscript 파일을 바로 실행시키려면, ts-node를 사용해야 한다.
+npx ts-node { ts 파일 }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;Observer A 구독 완료
+Observer B 구독 완료
+이벤트 1 발생
+Observer A 한테 이벤트 알림이 왔습니다.
+ObserverB 한테 이벤트 알림이 왔습니다.
+Observer A 구독 취소
+이벤트 2 발생
+ObserverB 한테 이벤트 알림이 왔습니다.
+Observer B 구독 취소
+이벤트 3 발생
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;3-옵저버-패턴-활용-react&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-%EC%98%B5%EC%A0%80%EB%B2%84-%ED%8C%A8%ED%84%B4-%ED%99%9C%EC%9A%A9-react&quot; aria-label=&quot;3 옵저버 패턴 활용 react permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. 옵저버 패턴 활용 (React)&lt;/h1&gt;
+&lt;p&gt;팀원 중 한 분이 토스트 메시지를 옵저버 패턴을 구현했다. 내가 구현하는 방식과는 전혀 달라서 처음 이해하는데 애를 먹었다. 옵저버 패턴을 적용하니까, 토스트 메시지의 비즈니스 로직이 UI와 완전히 구분할 수 있었다.&lt;/p&gt;
+&lt;h2 id=&quot;31-함수형-react&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#31-%ED%95%A8%EC%88%98%ED%98%95-react&quot; aria-label=&quot;31 함수형 react permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1. 함수형 React&lt;/h2&gt;
+&lt;p&gt;먼저 익숙한 함수형 React 구현 방식부터 살펴보려고 한다. 함수형 React인 만큼 커스텀 훅으로 구현되었다.&lt;/p&gt;
+&lt;h3 id=&quot;311-array-프로토타입-메소드-추가&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#311-array-%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-%EC%B6%94%EA%B0%80&quot; aria-label=&quot;311 array 프로토타입 메소드 추가 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1.1. Array 프로토타입 메소드 추가&lt;/h3&gt;
+&lt;p&gt;시작하기 앞서 &lt;code&gt;Array.__proto__&lt;/code&gt;에 메소드 하나만 추가하려고 한다. 그냥 array에서 특정 요소를 제거하는 로직인데, 이후 작성할 코드들의 간결성을 위해 &lt;strong&gt;간이적으로 추가&lt;/strong&gt;했다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;// Array에서 element 요소를 찾아 제거하는 메소드
+Array.prototype.removeElement = function &amp;#x3C;T&gt;(this: T[], element: T): void {
+  for (let i = 0; i &amp;#x3C; this.length; i++) {
+    if (this[i] === element) {
+      this.splice(i, 1)
+      i--
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;312-usetoast-구현&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#312-usetoast-%EA%B5%AC%ED%98%84&quot; aria-label=&quot;312 usetoast 구현 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1.2. useToast 구현&lt;/h3&gt;
+&lt;p&gt;커스텀 훅은 컴포넌트(관찰자) 측에서 쓰이기 때문에, &lt;code&gt;useToast&lt;/code&gt;를 Observer측의 구현체로 생각할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;// 타입 정의
+type TToast = {
+  id: string
+  message: string
+}
+
+const observers: (() =&gt; void)[] = [] // 관찰자 알림 함수 리스트
+const toasts: TToast[] = [] // 토스트 메시지 리스트
+
+// 토스트 메시지 추가
+function addToast(message: string) {
+  const newToast = {
+    id: new Date().toDateString(),
+    message,
+  }
+  toasts.push(newToast)
+  notifyObservers()
+
+  // 3초 후 자동 삭제
+  setTimeout(() =&gt; {
+    deleteToast(newToast)
+  }, 3000)
+}
+
+// 토스트 메시지 삭제
+function deleteToast(toast: TToast) {
+  toasts.removeElement(toast)
+  notifyObservers()
+}
+
+// 관찰자들에게 알림
+function notifyObservers() {
+  observers.forEach((update) =&gt; update())
+}
+
+// 커스텀 훅
+export default function useToast() {
+  const [_, forceUpdate] = useState({})
+
+  useEffect(() =&gt; {
+    const curUpdate = () =&gt; forceUpdate({}) // 현재 컴포넌트 강제 업데이트 함수 생성
+    observers.push(curUpdate) // 구독
+
+    return () =&gt; {
+      observers.removeElement(curUpdate) // 구독 취소
+    }
+  }, [])
+
+  return { toasts, addToast }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;313-실제-사용&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#313-%EC%8B%A4%EC%A0%9C-%EC%82%AC%EC%9A%A9&quot; aria-label=&quot;313 실제 사용 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1.3. 실제 사용&lt;/h3&gt;
+&lt;p&gt;아래와 같이 &lt;code&gt;useToast&lt;/code&gt; 커스텀 훅을 가져와 사용할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-tsx&quot;&gt;import { FormEventHandler } from &apos;react&apos;
+import useToast from &apos;./useToast&apos;
+
+function ToastContainer() {
+  // 커스텀 훅
+  const { toasts, addToast } = useToast()
+
+  const handleSubmit: FormEventHandler&amp;#x3C;HTMLFormElement&gt; = (e) =&gt; {
+    e.preventDefault()
+    e.stopPropagation()
+
+    // form 태그 내에서 메시지 정보 추출
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    const message = formData.get(&apos;message&apos;) as string
+
+    // 이벤트 발생
+    addToast(message)
+  }
+
+  return (
+    &amp;#x3C;div&gt;
+      &amp;#x3C;ul&gt;
+        {toasts.map((toast) =&gt; (
+          &amp;#x3C;li key={toast.id}&gt;{toast.message}&amp;#x3C;/li&gt;
+        ))}
+      &amp;#x3C;/ul&gt;
+      &amp;#x3C;form onSubmit={handleSubmit}&gt;
+        &amp;#x3C;input name=&quot;message&quot; /&gt;
+        &amp;#x3C;button type=&quot;submit&quot;&gt;토스트 추가&amp;#x3C;/button&gt;
+      &amp;#x3C;/form&gt;
+    &amp;#x3C;/div&gt;
+  )
+}
+
+export default ToastContainer
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;/TIL/168d0b04b014eef1732d1d6d625f28b5/function-toast.gif&quot; alt=&quot;함수형 옵저버 패턴 토스트 메시지 시연&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;32-클래스형-react&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#32-%ED%81%B4%EB%9E%98%EC%8A%A4%ED%98%95-react&quot; aria-label=&quot;32 클래스형 react permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2. 클래스형 React&lt;/h2&gt;
+&lt;p&gt;클래스형 React로 구현할 경우, 옵저버 패턴이 더 명확하게 보인다.&lt;/p&gt;
+&lt;h3 id=&quot;321-array-프로토타입-메소드-추가&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#321-array-%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-%EC%B6%94%EA%B0%80&quot; aria-label=&quot;321 array 프로토타입 메소드 추가 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2.1. Array 프로토타입 메소드 추가&lt;/h3&gt;
+&lt;p&gt;마찬가지로 이후 작성할 코드들의 간결성을 위해 &lt;code&gt;Array.__proto__&lt;/code&gt;에 메소드 하나만 추가 &lt;strong&gt;간이적으로 추가&lt;/strong&gt;했다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;// Array에서 element 요소를 찾아 제거하는 메소드
+Array.prototype.removeElement = function &amp;#x3C;T&gt;(this: T[], element: T): void {
+  for (let i = 0; i &amp;#x3C; this.length; i++) {
+    if (this[i] === element) {
+      this.splice(i, 1)
+      i--
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;321-발행자-publisher-구현&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#321-%EB%B0%9C%ED%96%89%EC%9E%90-publisher-%EA%B5%AC%ED%98%84&quot; aria-label=&quot;321 발행자 publisher 구현 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2.1. 발행자 (Publisher) 구현&lt;/h3&gt;
+&lt;p&gt;이번에는 마지막에 단일 객체를 생성해서 export 하였기 때문에, &lt;a href=&quot;##21-%EC%82%AC%EC%9A%A9-%EC%98%88%EC%8B%9C&quot;&gt;3-2절&lt;/a&gt;처럼 &lt;code&gt;Manager&lt;/code&gt;클래스를 구현하지 않았다.&lt;/p&gt;
+&lt;p&gt;또한 리액트 컴포넌트 자체를 관찰자 리스트(&lt;code&gt;observers&lt;/code&gt;)로 수집했다. 토스트 메시지 리스트(&lt;code&gt;toasts&lt;/code&gt;)에 변화가 생기면 컴포넌트 프로토타입의 &lt;code&gt;forceUpdate&lt;/code&gt; 메소드를 호출하여 강제 업데이트 했다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;import { Component } from &apos;react&apos;
+
+// 타입 정의
+export type TToast = {
+  id: string
+  message: string
+}
+
+// 발행자 인터페이스
+interface IPublisher&amp;#x3C;T&gt; {
+  registerObserver: (o: T) =&gt; void
+  removeObserver: (o: T) =&gt; void
+  notifyObservers: () =&gt; void
+}
+
+// 발행자 구현체
+class ToastPublihser implements IPublisher&amp;#x3C;Component&gt; {
+  observers: Component[] = [] // 관찰하는 React 컴포넌트 리스트
+  toasts: TToast[] = []
+
+  // 토스트 메시지 추가
+  addToast(message: string) {
+    const newToast = {
+      id: new Date().toDateString(),
+      message,
+    }
+    this.toasts.push(newToast)
+    this.notifyObservers()
+
+    // 3초 후 삭제
+    setTimeout(() =&gt; {
+      this.deleteToast(newToast)
+    }, 3000)
+  }
+
+  // 토스트 메시지 삭제
+  deleteToast(toast: TToast) {
+    this.toasts.removeElement(toast)
+    this.notifyObservers()
+  }
+
+  // 구독자 등록
+  registerObserver(component: Component) {
+    this.observers.push(component)
+  }
+
+  // 구독자 제거
+  removeObserver(component: Component) {
+    this.observers.removeElement(component)
+  }
+
+  // 구독자들에게 알림
+  notifyObservers() {
+    this.observers.forEach((component) =&gt; component.forceUpdate())
+  }
+}
+
+export default new ToastPublihser() // 단일 객체 export
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;322-실제-사용&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#322-%EC%8B%A4%EC%A0%9C-%EC%82%AC%EC%9A%A9&quot; aria-label=&quot;322 실제 사용 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2.2. 실제 사용&lt;/h3&gt;
+&lt;p&gt;컴포넌트 측에서 아래와 같이 사용할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-tsx&quot;&gt;import { Component, FormEvent } from &apos;react&apos;
+import ToastPublisher, { TToast } from &apos;./ToastPublisher&apos;
+
+class ToastContainer extends Component {
+  state: {
+    toasts: TToast[]
+  }
+
+  constructor(props: {} | Readonly&amp;#x3C;{}&gt;) {
+    super(props)
+    this.state = {
+      toasts: ToastPublisher.toasts,
+    }
+  }
+
+  componentDidMount(): void {
+    ToastPublisher.registerObserver(this) // 토스트 메시지 구독
+  }
+
+  componentWillUnmount(): void {
+    ToastPublisher.removeObserver(this) // 토스트 메시지 구독 취소
+  }
+
+  handleSubmit(e: FormEvent&amp;#x3C;HTMLFormElement&gt;) {
+    e.preventDefault()
+    e.stopPropagation()
+
+    // form 태그 내에서 메시지 데이터 추출
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    const message = formData.get(&apos;message&apos;) as string
+
+    // 토스트 메시지 추가
+    ToastPublisher.addToast(message)
+  }
+
+  render() {
+    return (
+      &amp;#x3C;div&gt;
+        &amp;#x3C;ul&gt;
+          {this.state.toasts.map((toast) =&gt; (
+            &amp;#x3C;li key={toast.id}&gt;{toast.message}&amp;#x3C;/li&gt;
+          ))}
+        &amp;#x3C;/ul&gt;
+        &amp;#x3C;form onSubmit={this.handleSubmit}&gt;
+          &amp;#x3C;input name=&quot;message&quot; /&gt;
+          &amp;#x3C;button type=&quot;submit&quot;&gt;토스트 추가&amp;#x3C;/button&gt;
+        &amp;#x3C;/form&gt;
+      &amp;#x3C;/div&gt;
+    )
+  }
+}
+
+export default ToastContainer
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;/TIL/4db8de3ad22a2bc0bea63108e46c6fa6/class-toast.gif&quot; alt=&quot;클래스형 옵저버 패턴 토스트 메시지 시연&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;4-다른-토스트-메시지-구현-방식&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-%EB%8B%A4%EB%A5%B8-%ED%86%A0%EC%8A%A4%ED%8A%B8-%EB%A9%94%EC%8B%9C%EC%A7%80-%EA%B5%AC%ED%98%84-%EB%B0%A9%EC%8B%9D&quot; aria-label=&quot;4 다른 토스트 메시지 구현 방식 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. 다른 토스트 메시지 구현 방식&lt;/h1&gt;
+&lt;p&gt;아래는 평소 내가 사용하는 토스트 메시지 구현 방식이다. 더 직관적이지만 로직과 UI가 강하게 결합된다는 한계점이 존재한다. 그러나 토스트 메시지의 로직과 UI가 분리되는 경우는 보지 못했기 때문에, 나는 괜찮은 방식이라고 생각한다.&lt;/p&gt;
+&lt;h2 id=&quot;41-toast-컴포넌트&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#41-toast-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8&quot; aria-label=&quot;41 toast 컴포넌트 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.1. Toast 컴포넌트&lt;/h2&gt;
+&lt;p&gt;먼저 Toast 메시지 컴포넌트를 생성한다. 이후 설계할 &lt;code&gt;ToastManger&lt;/code&gt;에서 이 컴포넌트를 직접 &lt;code&gt;import&lt;/code&gt;하여 사용할 것이다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-tsx&quot;&gt;import { useRef, useEffect, useMemo } from &apos;react&apos;
+import InfoIcon from &apos;@/assets/svgs/lighthouse.svg&apos;
+import SuccessIcon from &apos;@/assets/svgs/sail.svg&apos;
+import ErrorIcon from &apos;@/assets/svgs/wreck.svg&apos;
+import &apos;./Toast.scss&apos;
+
+export type ToastProps = {
+  type: &apos;success&apos; | &apos;error&apos; | &apos;info&apos;
+  message: string
+  destroy: () =&gt; void
+  duration?: number
+}
+
+const Toast = ({ type, message, destroy, duration = 3000 }: ToastProps) =&gt; {
+  // type에 대응하는 아이콘 선택
+  const icon = useMemo(() =&gt; {
+    return {
+      success: &amp;#x3C;SuccessIcon /&gt;,
+      error: &amp;#x3C;ErrorIcon /&gt;,
+      info: &amp;#x3C;InfoIcon /&gt;,
+    }[type]
+  }, [type])
+
+  // duration 이후 자동 삭제
+  useEffect(() =&gt; {
+    const timer = setTimeout(() =&gt; {
+      destroy()
+    }, duration)
+
+    return () =&gt; {
+      clearTimeout(timer)
+    }
+  }, [])
+
+  return (
+    &amp;#x3C;div className={`toast ${type}`} onClick={destroy}&gt;
+      &amp;#x3C;div className=&quot;toast__message&quot;&gt;
+        {icon}
+        &amp;#x3C;p aria-live=&quot;assertive&quot;&gt;{message}&amp;#x3C;/p&gt;
+      &amp;#x3C;/div&gt;
+      &amp;#x3C;div className=&quot;toast__progress&quot; ref={progressRef} /&gt;
+    &amp;#x3C;/div&gt;
+  )
+}
+
+export default Toast
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;42-toastmanager-클래스&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#42-toastmanager-%ED%81%B4%EB%9E%98%EC%8A%A4&quot; aria-label=&quot;42 toastmanager 클래스 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.2. ToastManager 클래스&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-tsx&quot;&gt;import React from &apos;react&apos;
+import { Root, createRoot } from &apos;react-dom/client&apos;
+import Toast from &apos;@/atoms/ui/Toast&apos;
+import { ToastProps } from &apos;@/atoms/ui/Toast/Toast&apos;
+import &apos;./toastManager.scss&apos;
+
+type ToastOption = ToastProps &amp;#x26; {
+  id?: number
+}
+
+class ToastManager {
+  private container: Root
+  private toasts: ToastOption[] = [] // 토스트 메시지 리스트
+
+  /**
+   * 토스트 메시지를 렌더링할 DOM을 지정한다.
+   * 프로젝트의 다른 컴포넌트와 다른 위치에서 렌더링하기 위함이다.
+   * 미리 html에 id=&quot;toast&quot;인 요소가 존재해야 한다.
+   */
+  constructor() {
+    this.container = createRoot(document.getElementById(&apos;toast&apos;)!)
+  }
+
+  // 토스트 메시지 추가
+  addToast(
+    type: &apos;error&apos; | &apos;success&apos; | &apos;info&apos;,
+    message: string,
+    duration: number = 3000
+  ) {
+    const id = Date.now()
+    this.toasts.push({
+      id,
+      type,
+      message,
+      duration,
+      destroy: () =&gt; this.deleteToast(id),
+    })
+    this.render()
+  }
+
+  // 토스트 메시지 삭제
+  deleteToast(id: number) {
+    this.toasts = this.toasts.filter((toast) =&gt; toast.id !== id)
+    this.render()
+  }
+
+  // 토스트 메시지 렌더링
+  private render(): void {
+    const toastsList = this.toasts.map((toast) =&gt; (
+      &amp;#x3C;Toast key={toast.id} {...toast} /&gt;
+    ))
+    this.container.render(toastsList)
+  }
+}
+
+export default new ToastManager()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;42-실제-사용&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#42-%EC%8B%A4%EC%A0%9C-%EC%82%AC%EC%9A%A9&quot; aria-label=&quot;42 실제 사용 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.2. 실제 사용&lt;/h2&gt;
+&lt;p&gt;컴포넌트에서는 아래와 같은 방식으로 사용할 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-tsx&quot;&gt;import toastManager from &apos;@/utils/toastManager&apos;
+
+type GalleryFormProps = {
+  onSuccess?: () =&gt; void
+  onError?: () =&gt; void
+}
+
+const GalleryCreateForm = ({ onSuccess, onError }: GalleryFormProps) =&gt; {
+  ...
+
+  const handleSubmit = (e: React.FormEvent&amp;#x3C;HTMLFormElement&gt;) =&gt; {
+    e.preventDefault()
+    e.stopPropagation()
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+
+    // 유효성 검사
+    const result = validateGalleryForm(formData)
+    if (!result.result) {
+      // 유효성 검사 통과 못할 경우, 에러 토스트 메시지 추가
+      toastManager.addToast(&apos;error&apos;, result.reason)
+      return
+    }
+
+    ...
+  }
+
+  return (
+    &amp;#x3C;Form className=&quot;gallery-create-form&quot; onSubmit={handleSubmit}&gt;
+      &amp;#x3C;Text label=&quot;전시회 이름&quot; name=&quot;name&quot; initialValue=&quot;&quot; /&gt;
+      &amp;#x3C;Textarea label=&quot;소개글&quot; name=&quot;content&quot; initialValue=&quot;&quot; maxLen={150} /&gt;
+      &amp;#x3C;PlacesRadio placeList={placeList} showSelected={false} /&gt;
+      &amp;#x3C;Button type=&quot;submit&quot; direction=&quot;left&quot; ariaLabel=&quot;전시회 생성&quot; text=&quot;전시회 개관&quot; /&gt;
+    &amp;#x3C;/Form&gt;
+  )
+}
+
+export default GalleryCreateForm
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;/TIL/b124252dd422819ca2f3c02da7bd48b4/toast-manager.gif&quot; alt=&quot;클래스형 옵저버 패턴 토스트 메시지 시연&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;참조&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%B0%B8%EC%A1%B0&quot; aria-label=&quot;참조 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;참조&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://inpa.tistory.com/entry/GOF-%F0%9F%92%A0-%EC%98%B5%EC%A0%80%EB%B2%84Observer-%ED%8C%A8%ED%84%B4-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EC%9E%90#:~:text=%EC%98%B5%EC%A0%80%EB%B2%84%20%ED%8C%A8%ED%84%B4(Observer%20Pattern)%EC%9D%80,%EB%A5%BC%20%EC%B7%A8%ED%95%98%EB%8A%94%20%ED%96%89%EB%8F%99%20%ED%8C%A8%ED%84%B4%EC%9D%B4%EB%8B%A4.&quot;&gt;Inpa Dev : &quot;옵저버(Observer) 패턴 - 완벽 마스터하기&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://react.dev/reference/react-dom/client/createRoot&quot;&gt;React : &quot;createRoot&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Radio 버튼에 React Context 적용하기]]></title><description><![CDATA[1. Context 란? 나는 React 자체 전역 데이터 저장소라고 생각한다. 일반적으로 React에서 데이터를 하위 컴포넌트로 전달하기 위해서는 props…]]></description><link>https://byongho96.github.io/TIL/posts/Frontend/React/contextAPI_practice/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Frontend/React/contextAPI_practice/</guid><pubDate>Wed, 06 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-context-란&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-context-%EB%9E%80&quot; aria-label=&quot;1 context 란 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Context 란?&lt;/h1&gt;
+&lt;p&gt;나는 &lt;mark&gt;React 자체 전역 데이터 저장소&lt;/mark&gt;라고 생각한다. 일반적으로 React에서 데이터를 하위 컴포넌트로 전달하기 위해서는 props로 일일히 내려줘야 한다. 따라서 데이터를 손자, 증손자, 고조손자까지 넘겨주려고 하면 코드가 지저분해질 뿐 아니라 불필요한 리렌더링이 발생한다. 이를 &lt;strong&gt;Props-Drilling&lt;/strong&gt;이라고 한다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Context&lt;/code&gt;를 이용하면 &lt;code&gt;Provider&lt;/code&gt;로 감싼 모든 하위 컴포넌트에서 자유롭게 데이터에 접근 할 수 있다. 여기에 &lt;code&gt;reducer&lt;/code&gt;를 이용해서 상태 업데이트를 규격화하면 일종의 Flux Pattern을 가진 미니 전역 저장소를 만들 수 있다. 중간 컴포넌트에서의 &lt;strong&gt;불필요한 리렌더링 또한 &lt;code&gt;children&lt;/code&gt; prop으로 극복 가능&lt;/strong&gt;하다. 이에 대해서는 아래에서 한 번 더 다룰 예정이다.&lt;/p&gt;
 &lt;h2 id=&quot;11-간단한-예시-themeprovider&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-%EA%B0%84%EB%8B%A8%ED%95%9C-%EC%98%88%EC%8B%9C-themeprovider&quot; aria-label=&quot;11 간단한 예시 themeprovider permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1. 간단한 예시 (ThemeProvider)&lt;/h2&gt;
-&lt;p&gt;다음과 같이 &lt;code&gt;useContext&lt;/code&gt;를 이용하여 프로젝트 전체의 Theme을 관리할 수 있다. 기본적으로 Context의 변화는 Provider 하위 컴포넌트의 리렌더링을 유발하기 때문에, 테마처럼 제한적으로 바뀌는 값을 사용하기 적합하다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;useContext&lt;/code&gt;를 사용하는 가장 대표적인 경우는 &lt;strong&gt;다크모드 관리&lt;/strong&gt;이다. 아마 Context의 기본 동작이 Provider 하위 컴포넌트의 리렌더링을 유발하기 때문에, 다크모드처럼 제한적으로 바뀌는 값을 관리하는 것 같다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import React, { useState, useContext, createContext } from &apos;react&apos;
 import { ThemeContext } from &apos;./context/ThemeContext&apos;
 
-export const ThemeContext = createContext(false) // 초깃값
+export const ThemeContext = createContext()
 
 function App() {
   const [isDark, setIsDark] = useState(false)
@@ -37,8 +609,8 @@ export default App
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&quot;/TIL/220fa81f3d265bc271873f983548830e/useContext-theme.gif&quot; alt=&quot;useContext 테마 전환&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;12-usereducer-란&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-usereducer-%EB%9E%80&quot; aria-label=&quot;12 usereducer 란 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2. useReducer 란?&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;reducer&lt;/code&gt;는 &lt;mark&gt;상태를 업데이트를 제한하는 함수로, 전역 상태의 무분별한 접근과 수정을 방지&lt;/mark&gt;한다. Redux의 &lt;code&gt;Dispatcher&lt;/code&gt;에 대응된다.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;useReducer&lt;/code&gt;는 &lt;code&gt;reducer&lt;/code&gt;함수로 구현된 리액트 훅이다. &lt;code&gt;useState&lt;/code&gt;와 아주 유사하여 &lt;a href=&quot;https://react.dev/learn/extracting-state-logic-into-a-reducer#comparing-usestate-and-usereducer&quot;&gt;공식문서&lt;/a&gt;에는 이 둘을 비교정리하기도 했다. &lt;code&gt;useState&lt;/code&gt;가 상태를 자유롭게 수정할 수 있는 &lt;code&gt;setState&lt;/code&gt;를 반환하는 한편, &lt;code&gt;useReducer&lt;/code&gt;는 앞서 말한 것처럼 미리 정의된 &lt;code&gt;reducer&lt;/code&gt;에 맞춰 동작하는 &lt;code&gt;dispatcher&lt;/code&gt;를 반환한다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;reducer&lt;/code&gt;는 &lt;mark&gt;상태를 업데이트를 제한하는 함수로써, 전역 상태의 무분별한 접근과 수정을 방지&lt;/mark&gt;한다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;useReducer&lt;/code&gt;를 사용하면 &lt;code&gt;reducer&lt;/code&gt;로 관리되는 데이터를 쉽게 생성할 수 있다. &lt;code&gt;useState&lt;/code&gt;와 아주 유사하여 &lt;a href=&quot;https://react.dev/learn/extracting-state-logic-into-a-reducer#comparing-usestate-and-usereducer&quot;&gt;공식문서&lt;/a&gt;에도 이 둘을 비교 정리했다. &lt;code&gt;useState&lt;/code&gt;가 상태를 자유롭게 수정할 수 있는 &lt;code&gt;setState&lt;/code&gt;를 반환하는 한편, &lt;code&gt;useReducer&lt;/code&gt;는 미리 정의된 &lt;code&gt;reducer&lt;/code&gt;에 맞춰 동작하는 &lt;code&gt;dispatcher&lt;/code&gt;를 반환한다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import React, { useState, useReducer } from &apos;react&apos;
 
 /**
@@ -80,7 +652,7 @@ function App() {
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&quot;/TIL/be828b262dd7e63853cf876dd3047b5b/useReducer-balance.gif&quot; alt=&quot;useContext 테마 전환&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;12-context와-usereducer&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-context%EC%99%80-usereducer&quot; aria-label=&quot;12 context와 usereducer permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2. Context와 useReducer&lt;/h2&gt;
-&lt;p&gt;따라서 &lt;code&gt;Context&lt;/code&gt;와 &lt;code&gt;useReducer&lt;/code&gt;을 결합하면, 안정적으로 상태를 관리할 수 있는 간이 전역 저장소를 구현할 수 있다. 아래 코드는 어쩌다보니 TypeScript로 작성했다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Context&lt;/code&gt;에 &lt;code&gt;useReducer&lt;/code&gt;을 결합하면, Flux Pattern의 전역 저장소를 구현할 수 있다. 아래 예시 코드는 어쩌다보니 TypeScript로 작성했다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;// types.ts
 import React, { createContext, useReducer } from &apos;react&apos;
 
@@ -175,8 +747,8 @@ export default App
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&quot;/TIL/20b4eeefbe9d7f472af621166ca8afab/useContext-useReducer.gif&quot; alt=&quot;useContext와 useReducer 결합&quot;&gt;&lt;/p&gt;
 &lt;h1 id=&quot;2-context의-한계&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-context%EC%9D%98-%ED%95%9C%EA%B3%84&quot; aria-label=&quot;2 context의 한계 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Context의 한계&lt;/h1&gt;
-&lt;p&gt;흔히 Context의 한계로 &lt;strong&gt;중간 컴포넌트의 불필요한 리렌더링을 꼽는다.&lt;/strong&gt; 이게 맞으면서도 틀린 말이다. 다음 두 개의 코드는 &lt;code&gt;children&lt;/code&gt; 프롭을 제외하면 완벽하게 동작한다. 하지만 &lt;mark&gt;&lt;code&gt;children&lt;/code&gt;을 사용할 경우, 중간 컴포넌트의 리렌더링이 발생하지 않는다.&lt;/mark&gt;&lt;/p&gt;
-&lt;p&gt;아래 두 코드는 &lt;code&gt;Context.Provider&lt;/code&gt;에서 직접 하위 컴포넌트를 렌더링 하느냐, 아니면 &lt;code&gt;children&lt;/code&gt;으로 전달받냐의 차이밖에 없다. 그러나 실제 콘솔을 찍어보면 &lt;code&gt;children&lt;/code&gt;을 사용할 경우, 중간 컴포넌트의 불필요한 렌더링이 발생하지 않는다.&lt;/p&gt;
+&lt;p&gt;흔히 Context의 한계로 &lt;strong&gt;중간 컴포넌트의 불필요한 리렌더링을 꼽는다.&lt;/strong&gt; 맞으면서도 틀린 말이다.&lt;/p&gt;
+&lt;p&gt;아래 두 개의 코드는 &lt;code&gt;children&lt;/code&gt; Prop 사용유무를 제외하면 완벽하게 동일하다. 하지만 콘솔을 찍어보면, &lt;code&gt;children&lt;/code&gt;을 사용한 경우에 중간 컴포넌트의 불필요한 리렌더링을 발생하지 않는다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-jsx&quot;&gt;// children 사용 안함
 import { useState, createContext, useContext } from &apos;react&apos;
 
@@ -217,7 +789,7 @@ const Child = () =&gt; {
 export default App
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&quot;/TIL/769461c21bc8b52bc22bf28622eb1194/provider-without-children.gif&quot; alt=&quot;children 사용하지 않은 Context&quot;&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-jsx&quot;&gt;// children 시영힘
+&lt;pre&gt;&lt;code class=&quot;language-jsx&quot;&gt;// children 사용함
 import { useState, createContext, useContext } from &apos;react&apos;
 
 const MyContext = createContext(null)
@@ -267,12 +839,14 @@ const Child = () =&gt; {
 export default App
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&quot;/TIL/ee934987fd3a16ffd33e24b77ef12984/provider-with-children.gif&quot; alt=&quot;children 사용한 Context&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;21-children-에-대한-고찰&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-children-%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B3%A0%EC%B0%B0&quot; aria-label=&quot;21 children 에 대한 고찰 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. Children 에 대한 고찰&lt;/h2&gt;
-&lt;p&gt;위와 같이 동작하는 정확한 이유는 react의 가상 DOM과 관련있다. 이에 대해서는 추후에 다시 공부할 예정이다. &lt;mark&gt;간단하게 말하면 &lt;code&gt;children&lt;/code&gt;으로 &lt;code&gt;ReactNode&lt;/code&gt;를 넘겨주는 행위는, 마치 컴포넌트를 완성하고 prop으로 내려주는 것과 같다.&lt;/mark&gt; 아래 두 코드는 서로 동일한 코드이다.&lt;/p&gt;
+&lt;h2 id=&quot;21-children-에-대한-고찰&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-children-%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B3%A0%EC%B0%B0&quot; aria-label=&quot;21 children 에 대한 고찰 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. children 에 대한 고찰&lt;/h2&gt;
+&lt;p&gt;간단하게 말하면 &lt;code&gt;children&lt;/code&gt;으로 &lt;code&gt;ReactNode&lt;/code&gt;를 넘겨주는 행위는, &lt;strong&gt;완성된 컴포넌트를 전달&lt;/strong&gt;해주는 것과 같다.&lt;/mark&gt; 하위 컴포넌트가 별개로 완성되어 상위 컴포넌트에 prop으로 넘겨졌기 때문에, 하위 컴포넌트의 렌더링이 더이상 상위 컴포넌트에 종속되지 않는다. (더 정확한 원인을 알기 위해서는 React 가상 DOM을 학습해야 할 것 같다.)&lt;/p&gt;
+&lt;p&gt;기존&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-jsx&quot;&gt;const Parent = ({ children }) =&gt; {
   return &amp;#x3C;div&gt;{children}&amp;#x3C;/div&gt;
 }
 
+// 아래 두 형식이 동일하다.
 const Container = () =&gt; {
   return (
     &amp;#x3C;Parent&gt;
@@ -280,19 +854,14 @@ const Container = () =&gt; {
     &amp;#x3C;/Parent&gt;
   )
 }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&quot;language-jsx&quot;&gt;const Parent = ({ children }) =&gt; {
-  return &amp;#x3C;div&gt;{children}&amp;#x3C;/div&gt;
-}
 
 const Container = () =&gt; {
   return &amp;#x3C;Parent children={&amp;#x3C;Child /&gt;} /&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;하위 컴포넌트가 먼저 만들어지고, 상위 컴포넌트에 prop으로 넘겨지는 형식이기 때문에 하위 컴포넌트의 렌더링은 더이상 상위 컴포넌트에 종속적이지 않다.&lt;/p&gt;
 &lt;h1 id=&quot;3-radio에-context-적용&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-radio%EC%97%90-context-%EC%A0%81%EC%9A%A9&quot; aria-label=&quot;3 radio에 context 적용 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. Radio에 Context 적용&lt;/h1&gt;
-&lt;p&gt;돌고 돌아서 오늘의 핵심 주제에 도착했다. &lt;code&gt;Context&lt;/code&gt;는 분명 편리한 기능임에도 다른 전역 상태 라이브러리에 가려져 잘 사용되지 않는다. 그나마 &lt;code&gt;ThemeProvider&lt;/code&gt;정도랄까. 그러던 중 아주 좋은 사용처를 발견했다. 바로 Radio 인풋 버튼이다.&lt;/p&gt;
-&lt;p&gt;Radio 버튼은 동일한 &lt;code&gt;name&lt;/code&gt;에 대해 상호배타적이라는 점에서 데이터 연관성이 강하다. 하지만 전역 상태로 관리하기에는 너무 사소하다. 즉, &lt;code&gt;Context&lt;/code&gt;를 적용하기 아주 적절하다. &lt;mark&gt; 또한 Radio 그룹을 &lt;code&gt;Context&lt;/code&gt;로 관리하면 여러 개의 Radio 버튼을 UI 상에서 자유롭게 배치할 수 있다.&lt;/mark&gt; 자세한 내용은 아래 코드를 참조하길 바란다.&lt;/p&gt;
+&lt;p&gt;드디어 오늘의 주제에 도착했다. &lt;code&gt;Context&lt;/code&gt;는 분명 편리한 기능이지만, 다른 전역 상태 라이브러리에 가려져 잘 사용하지 않는다. 그나마 앞서 말한 &lt;code&gt;ThemeProvider&lt;/code&gt; 정도랄까. 그러던 중 최근에 아주 좋은 사용처를 발견했다. 바로 &lt;strong&gt;Radio 인풋 버튼&lt;/strong&gt;이다.&lt;/p&gt;
+&lt;p&gt;동일한 &lt;code&gt;name&lt;/code&gt;의 Radio 버튼들은 서로 배타적이어야 하기 때문에 강한 연관성을 가진다. 하지만 이를 전역 상태로 관리하기에는 너무 지엽적이다. 이때 &gt;Radio 버튼 그룹을 &lt;code&gt;Context&lt;/code&gt;로 관리하면, 여러 개의 Radio 버튼 컴포넌트를 &lt;strong&gt;UI나 depth에 상관없이 자유롭게 배치&lt;/strong&gt;할 수 있다. 구체적인 동작은 아래 코드에서 확인할 수 있다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;import { ChangeEventHandler, createContext } from &apos;react&apos;
 
 type TRadioContext = {
@@ -370,7 +939,7 @@ const Radio = ({ value, label }: RadioProps) =&gt; {
 export default Radio
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&quot;31-사용-방법&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#31-%EC%82%AC%EC%9A%A9-%EB%B0%A9%EB%B2%95&quot; aria-label=&quot;31 사용 방법 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1. 사용 방법&lt;/h2&gt;
-&lt;p&gt;위에 구현한 코드를 아래처럼 사용할 수 있다. &lt;code&gt;RadioGroup&lt;/code&gt; 안에만 있다면, 더 이상 &lt;code&gt;Radio&lt;/code&gt; 버튼의 위치를 신경쓰지 않아도 된다. 제대로 데이터가 수집되는지 확인하기 위해 &lt;code&gt;submit&lt;/code&gt;이벤트 발생 시 &lt;code&gt;form&lt;/code&gt; 데이터를 수집해서 콘솔로 출력했다.&lt;/p&gt;
+&lt;p&gt;위 코드는 아래와 같이 사용할 수 있다. &lt;mark&gt;&lt;code&gt;RadioGroup&lt;/code&gt; 안에 있는 &lt;code&gt;Radio&lt;/code&gt; 버튼들은 depth에 관계없이 결합된다.&lt;/mark&gt; 정말로 데이터가 잘 선택되었는지 확인하기 위해 &lt;code&gt;submit&lt;/code&gt;이벤트 발생 시 &lt;code&gt;form&lt;/code&gt;안의 데이터를 수집해서 콘솔로 출력했다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-tsx&quot;&gt;import React from &apos;react&apos;
 import RadioGroup from &apos;./RadioGroup&apos;
 import Radio from &apos;./Radio&apos;
@@ -434,7 +1003,7 @@ export default App
 &lt;li&gt;&lt;a href=&quot;https://react.dev/learn/passing-data-deeply-with-context&quot;&gt;React : &quot;Passing Data Deeply with Context&quot;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://react.dev/learn/extracting-state-logic-into-a-reducer&quot;&gt;React : &quot;Extracting State Logic into a Reducer&quot;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://velog.io/@2ast/React-children-prop%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B3%A0%EC%B0%B0feat.-%EB%A0%8C%EB%8D%94%EB%A7%81-%EC%B5%9C%EC%A0%81%ED%99%94&quot;&gt;2ast : &quot;React) children prop에 대한 고찰(feat. 렌더링 최적화)&quot;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[github-actions와 argoCD로 쿠버네티스 GitOps 관리하기]]></title><description><![CDATA[1. CI/CD 구상도  개인적으로 CI/CD를 구축하는 데 있어 가장 큰 어려움은, 기술적인 난이도보다 전체 아키텍쳐 구성의 이해에 있는 것 같다. 위 아키텍쳐의 실제 동작 순서는 아래와 같다. Github…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/Docker/CI&amp;CD/github_actions_argoCD/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/Docker/CI&amp;CD/github_actions_argoCD/</guid><pubDate>Mon, 04 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-cicd-구상도&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-cicd-%EA%B5%AC%EC%83%81%EB%8F%84&quot; aria-label=&quot;1 cicd 구상도 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. CI/CD 구상도&lt;/h1&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[github-actions와 argoCD로 쿠버네티스 GitOps 관리하기]]></title><description><![CDATA[1. CI/CD 구상도  개인적으로 CI/CD를 구축하는 데 있어 가장 큰 어려움은, 기술적인 난이도보다 전체 아키텍쳐 구성의 이해에 있는 것 같다. 위 아키텍쳐의 실제 동작 순서는 아래와 같다. Github…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/CI&amp;CD/github_actions_argoCD/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/CI&amp;CD/github_actions_argoCD/</guid><pubDate>Mon, 04 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-cicd-구상도&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-cicd-%EA%B5%AC%EC%83%81%EB%8F%84&quot; aria-label=&quot;1 cicd 구상도 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. CI/CD 구상도&lt;/h1&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;
@@ -903,7 +1472,7 @@ images:
     &lt;/span&gt;&lt;/p&gt;
 &lt;h2 id=&quot;33-github-actions-워크플로우-secret-등록&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#33-github-actions-%EC%9B%8C%ED%81%AC%ED%94%8C%EB%A1%9C%EC%9A%B0-secret-%EB%93%B1%EB%A1%9D&quot; aria-label=&quot;33 github actions 워크플로우 secret 등록 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.3. Github Actions 워크플로우 Secret 등록&lt;/h2&gt;
 &lt;p&gt;Secret는 Github Actions에서 사용되는 &lt;strong&gt;비밀 환경변수&lt;/strong&gt;이다. key-value 형식으로 접근할 수 있으며, 외부에 공개되지 않기 때문에 application.properties와 같은 민감정보를 담을 수 있다.&lt;/p&gt;
-&lt;h3 id=&quot;331-docker-토근-등록&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#331-docker-%ED%86%A0%EA%B7%BC-%EB%93%B1%EB%A1%9D&quot; aria-label=&quot;331 docker 토근 등록 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.3.1. Docker 토근 등록&lt;/h3&gt;
+&lt;h3 id=&quot;331-docker-토큰-등록&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#331-docker-%ED%86%A0%ED%81%B0-%EB%93%B1%EB%A1%9D&quot; aria-label=&quot;331 docker 토큰 등록 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.3.1. Docker 토큰 등록&lt;/h3&gt;
 &lt;p&gt;Github Actions에서 Dockerhub에 이미지를 푸시하기 위해서는 Dockerhub 토큰을 등록해줘야 한다.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -13968,7 +14537,7 @@ static 폴더 안에 든 파일은 webpack에 의해 처리되지 않고, 그대
 &lt;li&gt;&lt;a href=&quot;https://www.gatsbyjs.com/docs/how-to/routing/client-only-routes-and-user-authentication/&quot;&gt;Gatsby Client Only Routing&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.gatsbyjs.com/docs/how-to/rendering-options/using-server-side-rendering/&quot;&gt;Gatsby using SSR&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.gatsbyjs.com/docs/reference/gatsby-project-structure/&quot;&gt;Gatsby Project Structure&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Django와 Vue 프로젝트 Github SSH Action으로 자동 배포하기]]></title><description><![CDATA[시작하기 전에... Django와 Vue를 이용해서 만든 Boogie 프로젝트의 기초적인 배포 과정을 정리한 문서이다. Boogie 웹사이트 링크 .pem 키를 이용해 원격 EC2에 SSH(Secure Shell…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/Docker/CI&amp;CD/django_and_vue_with_ssh_actions/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/Docker/CI&amp;CD/django_and_vue_with_ssh_actions/</guid><pubDate>Sat, 20 May 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;시작하기-전에---omit-in-toc---&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-%EC%A0%84%EC%97%90---omit-in-toc---&quot; aria-label=&quot;시작하기 전에   omit in toc    permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;시작하기 전에...&lt;!-- omit in toc --&gt;&lt;/h1&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Django와 Vue 프로젝트 Github SSH Action으로 자동 배포하기]]></title><description><![CDATA[시작하기 전에... Django와 Vue를 이용해서 만든 Boogie 프로젝트의 기초적인 배포 과정을 정리한 문서이다. Boogie 웹사이트 링크 .pem 키를 이용해 원격 EC2에 SSH(Secure Shell…]]></description><link>https://byongho96.github.io/TIL/posts/DevOps/CI&amp;CD/django_and_vue_with_ssh_actions/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/DevOps/CI&amp;CD/django_and_vue_with_ssh_actions/</guid><pubDate>Sat, 20 May 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;시작하기-전에---omit-in-toc---&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-%EC%A0%84%EC%97%90---omit-in-toc---&quot; aria-label=&quot;시작하기 전에   omit in toc    permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;시작하기 전에...&lt;!-- omit in toc --&gt;&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Django와 Vue를 이용해서 만든 &lt;a href=&quot;https://github.com/Byongho96/boogie-project&quot;&gt;Boogie 프로젝트&lt;/a&gt;의 &lt;strong&gt;기초적인&lt;/strong&gt; 배포 과정을 정리한 문서이다.&lt;br&gt;
 &lt;a href=&quot;https://boogie-movie.site/&quot;&gt;Boogie 웹사이트 링크&lt;/a&gt;&lt;/p&gt;
@@ -31899,1177 +32468,4 @@ urlpatterns = [
     {% csrf_token %}
     &amp;#x3C;input type=&quot;submit&quot; value=&quot;DELETE&quot;&gt;
 &amp;#x3C;/form&gt;
-&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[Appendix 02. Python Modules]]></title><description><![CDATA[1. Terms 2. How to Import Modules 2.1. Install Package 2.2. Import 3. Modules 3.1. sys 3.2. re 3.3. collections 3.4. heapq 3.5. functools…]]></description><link>https://byongho96.github.io/TIL/posts/Language/Python/Appendix_02_Python_Modules/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Language/Python/Appendix_02_Python_Modules/</guid><pubDate>Tue, 08 Nov 2022 00:00:00 GMT</pubDate><content:encoded>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#1-terms&quot;&gt;1. Terms&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#2-how-to-import-modules&quot;&gt;2. How to Import Modules&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#21-install-package&quot;&gt;2.1. Install Package&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#22-import&quot;&gt;2.2. Import&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#3-modules&quot;&gt;3. Modules&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#31-sys&quot;&gt;3.1. sys&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#32-re&quot;&gt;3.2. re&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#33-collections&quot;&gt;3.3. collections&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#34-heapq&quot;&gt;3.4. heapq&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#35-functools&quot;&gt;3.5. functools&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#36-itertools&quot;&gt;3.6. itertools&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#37-math&quot;&gt;3.7. math&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#38-bisect&quot;&gt;3.8. bisect&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#39-copy&quot;&gt;3.9. copy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#310-os&quot;&gt;3.10. os&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#311-pickle&quot;&gt;3.11. pickle&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#312-json&quot;&gt;3.12. json&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;1-terms&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-terms&quot; aria-label=&quot;1 terms permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Terms&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;module&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;mark&gt;Python&lt;/mark&gt; file that contains functionas and vairiables&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;package&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;mark&gt;Folder&lt;/mark&gt; that contains moudules&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ul&gt;
-&lt;li&gt;Package folder contains __init__.py which indciates that the folder is a package.&lt;/li&gt;
-&lt;li&gt;__init__.py also has information about which packages should be imported with the current pacakge Ex.&lt;code&gt;# from . import &amp;#x3C;sub_pacakge_name&gt;&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;library&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;mark&gt;Folder&lt;/mark&gt; that contains packages&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;my_package/
-    __init__.py
-    math/
-        __init__.py
-        tools.py
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&quot;2-how-to-import-modules&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-how-to-import-modules&quot; aria-label=&quot;2 how to import modules permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. How to Import Modules&lt;/h1&gt;
-&lt;h2 id=&quot;21-install-package&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-install-package&quot; aria-label=&quot;21 install package permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. Install Package&lt;/h2&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;CLI cmd&lt;/th&gt;
-&lt;th&gt;meaning&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;pip install {package} (==specific version) (&gt;=minimum version)&lt;/td&gt;
-&lt;td&gt;install a package&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;pip uninstall {package}&lt;/td&gt;
-&lt;td&gt;uninstall a package&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;pip list&lt;/td&gt;
-&lt;td&gt;show installed packages&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;pip show {package}&lt;/td&gt;
-&lt;td&gt;show information of the pacakge&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;pip freeze &gt; requirements.txt&lt;/td&gt;
-&lt;td&gt;save the list of current package status into requirements.txt&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;pip install -r requirements.txt&lt;/td&gt;
-&lt;td&gt;install packages in requirements.txt&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&quot;22-import&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-import&quot; aria-label=&quot;22 import permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. Import&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Import Module&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;(from {directory}) import {module} (as {alias})&lt;/code&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import math as m
-
-print(m.pi)     # 3.141592653589793
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Import Variable, Function or Calss&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;(from {directory}.{module}) import {attribute}&lt;/code&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;from math import pi, sqrt
-
-print(pi)           # 3.141592653589793
-print(sqrt(3.0))    # 1.7320508075688772
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;(from {directory}.{module}) import *&lt;/code&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;from math import *
-
-print(pi)           # 3.141592653589793
-print(sqrt(3.0))    # 1.7320508075688772
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;3-modules&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-modules&quot; aria-label=&quot;3 modules permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. Modules&lt;/h1&gt;
-&lt;h2 id=&quot;31-sys&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#31-sys&quot; aria-label=&quot;31 sys permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1. sys&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;sys.argv&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;return string list that has the parameters handed over by cmd
-&lt;code&gt;C:/User/home&gt;python test.py here you are&lt;/code&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# test.py
-import sys
-print(sys.argv)
-print(type(sys.argv))
-# [&apos;test.py&apos;, &apos;here&apos;, &apos;you&apos;, &apos;are&apos;]
-# &amp;#x3C;class &apos;list&apos;&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;sys.modules&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;give the dictionry {&apos;module on loading&apos;: module class of the directory}
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import sys
-import sys
-m = sys.modules
-print(m[&apos;heapq&apos;])
-print(type(m))
-print(type(m[&apos;heapq&apos;]))
-# &amp;#x3C;module &apos;heapq&apos; from &apos;C:\\Users\\multicampus\\AppData\\Local\\Programs\\Python\\Python39\\lib\\heapq.py&apos;&gt;
-# &amp;#x3C;class &apos;dict&apos;&gt;
-# &amp;#x3C;class &apos;module&apos;&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;sys.exit()&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;end the prgram == ctrl + z&lt;/li&gt;
-&lt;li&gt;arguement is defaulted as 0
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import sys
-print(&quot;hello&quot;)
-sys.exit(&quot;program ended&quot;)
-# hello
-# program ended
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;sys.path&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;give the list of directories of the initially setted modules
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import sys
-p1 = sys.path
-print(p1)
-print(type(p1))
-# [&apos;c:\\Users\\multicampus\\Desktop\\test&apos;, &apos;C:\\Users\\multicampus\\AppData\\Local\\Programs\\Python\\Python39\\python39.zip&apos;,...]
-#&amp;#x3C;class &apos;list&apos;&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;sys.platform&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;give the string about the platform
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import sys
-print(sys.platform)
-print(type(sys.platform))
-# win32
-# &amp;#x3C;class &apos;str&apos;&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;sys.ps1&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;USELESS&lt;/li&gt;
-&lt;li&gt;only can be used &lt;strong&gt;in python console&lt;/strong&gt;
-&lt;pre&gt;&lt;code&gt;&gt;&gt;&gt; import sys
-&gt;&gt;&gt; sys.ps1
-&apos;&gt;&gt;&gt;&apos;
-&gt;&gt;&gt; sys.ps1 = &apos;WWWWHAT&apos;
-WWWHAT print(&apos;hello&apos;)
-hello
-WWWHAT
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;sys.stdin&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;file object
-&lt;ul&gt;
-&lt;li&gt;the buffer waiting for input&lt;/li&gt;
-&lt;li&gt;get data including \n&lt;/li&gt;
-&lt;li&gt;end with &apos;^Z&apos; in cmd
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;nums = []
-for line in sys.stdin:
-    nums.append(line)
-print(nums)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;&gt;&gt;&gt; 1
-&gt;&gt;&gt; 2
-&gt;&gt;&gt; 3
-&gt;&gt;&gt; 4
-&gt;&gt;&gt; 5
-&gt;&gt;&gt; ^Z
-[&apos;1\n&apos;, &apos;2\n&apos;, &apos;3\n&apos;, &apos;4\n&apos;, &apos;5\n&apos;]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;sys.stdin.readline()
-&lt;ul&gt;
-&lt;li&gt;get the input until &lt;code&gt;&apos;/n&apos;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;including &lt;code&gt;&apos;/n&apos;&lt;/code&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import sys
-string = sys.stdin.readline()
-print(f&apos;&amp;#x3C;{string}&gt;&apos;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;&gt;&gt;&gt; input
-&amp;#x3C;input
-&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;sys.stdin.readlines()
-&lt;ul&gt;
-&lt;li&gt;similar as sys.stdin&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;sys.stdout()&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;file object which is used to display output to the screen console&lt;/li&gt;
-&lt;li&gt;Text is default data type&lt;/li&gt;
-&lt;li&gt;sys.stdout.write(str)
-&lt;ul&gt;
-&lt;li&gt;doesn&apos;t including &lt;code&gt;&apos;/n&apos;&lt;/code&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import sys
-sys.stdout.write(&apos;Hello&apos;)
-sys.stdout.write(&apos;Bello\n&apos;)
-sys.stdout.write(&apos;Hola&apos;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;HelloBello
-Hola
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;sys.version&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;give the string about the version fo python
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import sys
-print(sys.version)
-print(type(sys.version))
-# 3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)]
-# &amp;#x3C;class &apos;str&apos;&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;32-re&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#32-re&quot; aria-label=&quot;32 re permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2. re&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;meta charachters&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;&apos;.&apos;&lt;/code&gt;: any one chr except \n&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&apos;c*&apos;&lt;/code&gt;: c can be repeated 0 ~ times&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&apos;c+&apos;&lt;/code&gt;: c can be repeated 1 ~ times&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&apos;c{n}&apos;&lt;/code&gt;: c can be repeated n times&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&apos;c{m, n}&apos;&lt;/code&gt;: c can be repeated m ~ n times&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&apos;c?&apos;&lt;/code&gt;: c can exist, also not&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&apos;|&apos;&lt;/code&gt;: or&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&apos;^abc&apos;&lt;/code&gt;: the line should start with abc&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&apos;abc&amp;#x26;&apos;&lt;/code&gt;: the line should end with abc&lt;/li&gt;
-&lt;li&gt;[]: character class - combined with &lt;code&gt;or&lt;/code&gt; - can be kinked with &lt;code&gt;-&lt;/code&gt;
-`python&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&apos;[abc]&apos; = &apos;a&apos; or &apos;b&apos; or &apos;c&apos;
-&apos;[a-z]&apos; = &apos;a&apos; ~ &apos;z&apos;
-&apos;[0-9]&apos; = 0 ~ 9
-`
-|original|shorten|explanantion|
-|---|---|---|
-|[0-9]|\d|nums|
-|[^0-9]|\D|not nums|
-|[\t\n\r\f\v]|\s|whitespace|
-|[^\t\n\r\f\v]|\S|not whitespace|
-|[a-zA-Z0-9]|\w|words+nums|
-|[^a-za-z0-9]|\W|not words+nums|&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;(): grouping&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;make groups that have index starting from 1&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;p = re.compile(r&quot;(\w+)\s+(\d+[-]\d+[-]\d+)&quot;)
-m = p.search(&quot;park 010-1234-1234&quot;)
-print(m.group(1)) # park
-print(m.group(2)) # 010-1234-1234
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;r&apos;&apos;&lt;/code&gt;: raw-string&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;remain \ as \&lt;/li&gt;
-&lt;li&gt;otherwise, \ have to be repeated twice&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;re.compile(re) -&gt; pattern object (p)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;make pattern object by using the regular expression&lt;/li&gt;
-&lt;li&gt;re.findall(p, str) -&gt; p.findall(str)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;re.findall(p, str) -&gt; list&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;find all the substrings in the str that matches with p&lt;/li&gt;
-&lt;li&gt;return the list
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;string = &apos;The Regular Expresion&apos;
-pattern = re.compile(&apos;[a-z]+&apos;)
-print(pattern.findall(string))
-# [&apos;he&apos;, &apos;egular&apos;, &apos;xpresion&apos;]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;re.finditer(p, str) -&gt; callable-iterator&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;find all the substrings in the str that matches with p&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;return the callable-iterator&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;string = &apos;The Regular Expresion&apos;
-pattern = re.compile(&apos;[a-z]+&apos;)
-iter = pattern.finditer(string)
-print(iter) # &amp;#x3C;callable_iterator object at 0x00000274BD7FB640&gt;
-
-for _ in range(2):
-    for ele in iter:
-        print(ele)
-# &amp;#x3C;re.Match object; span=(1, 3), match=&apos;he&apos;&gt;
-# &amp;#x3C;re.Match object; span=(5, 11), match=&apos;egular&apos;&gt;
-# &amp;#x3C;re.Match object; span=(13, 21), match=&apos;xpresion&apos;&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;re.fullmatch(p, str) -&gt; re.Match&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;return re.match object, when p == str
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;print(type(re.fullmatch(&apos;a&apos;, &apos;a&apos;)))
-print(re.fullmatch(&apos;a&apos;, &apos;a&apos;))
-print(re.fullmatch(&apos;a&apos;, &apos;aaa&apos;))
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;&amp;#x3C;class &apos;re.Match&apos;&gt;
-&amp;#x3C;re.Match object; span=(0, 1), match=&apos;a&apos;&gt;
-None
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;re.search(p, str) -&gt; re.Match&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;return re.match object about the first one in the str
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;print(type(re.search(&apos;a&apos;, &apos;ab aaa ca&apos;)))
-print(re.search(&apos;a&apos;, &apos;ab aaa ca&apos;))
-print(re.search(&apos;a&apos;, &apos;db lkkh&apos;))
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;&amp;#x3C;class &apos;re.Match&apos;&gt;
-&amp;#x3C;re.Match object; span=(0, 1), match=&apos;a&apos;&gt;
-None
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;re.split(p, str, int) -&gt; list&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;p is the breakpoint for splitting the str
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;print(re.split(&apos;a&apos;, &apos;abaabca&apos;)) # [&apos;&apos;, &apos;b&apos;, &apos;&apos;, &apos;bc&apos;, &apos;&apos;]
-print(re.split(&apos;a&apos;, &apos;abaabca&apos;, 2)) # [&apos;&apos;, &apos;b&apos;, &apos;abba&apos;]
-print(re.split(&apos;a&apos;, &apos;abaabca&apos;, 3)) # [&apos;&apos;, &apos;b&apos;, &apos;&apos;, &apos;bca&apos;]
-print(re.split(&apos;a&apos;, &apos;abaabca&apos;, 4)) # [&apos;&apos;, &apos;b&apos;, &apos;&apos;, &apos;bc&apos;, &apos;&apos;]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;re.sub(p, s, str, int) -&gt; str&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;change p in the string into the s for int times
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;print(re.split(&apos;a&apos;, &apos;z&apos;, &apos;aaab&apos;)) # zzzb
-print(re.split(&apos;a&apos;, &apos;z&apos;, &apos;aaab&apos;, 1)) # zaab
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;re.subn(p, str, int) -&gt; tuple(str, int)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;change p in the string into the s for int times
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;print(re.split(&apos;a&apos;, &apos;z&apos;, &apos;aaab&apos;)) # (&apos;zzzb&apos;, 3)
-print(re.split(&apos;a&apos;, &apos;z&apos;, &apos;aaab&apos;, 1)) # (&apos;zaab&apos;, 1)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;re.match(p, str) -&gt; re.Match&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;find p at the string&apos;s start
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;print(re.match(&apos;a&apos;,&apos;abaabca&apos;)) # &amp;#x3C;re.Match object; span=(0, 1), match=&apos;a&apos;&gt;
-print(re.match(&apos;a&apos;,&apos;baabca&apos;)) # None
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;33-collections&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#33-collections&quot; aria-label=&quot;33 collections permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.3. collections&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;collections.ChainMap(dic1t, dict2) -&gt; ChainMap&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;provide the ordered collection of dictionaries&lt;/li&gt;
-&lt;li&gt;the order is following the order of parameters&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import collections
-
-dic1 = {&apos;a&apos;: 1, &apos;b&apos;: 2}
-dic2 = {&apos;b&apos;: 3, &apos;c&apos;: 4}
-
-chain = collections.ChainMap(dic1, dic2)
-print(chain)    # ChainMap({&apos;a&apos;: 1, &apos;b&apos;: 2}, {&apos;b&apos;: 3, &apos;c&apos;: 4})
-print(type(chain))  # &amp;#x3C;class &apos;collections.ChainMap&apos;&gt;
-
-print(chain.maps)   # [{&apos;a&apos;: 1, &apos;b&apos;: 2}, {&apos;b&apos;: 3, &apos;c&apos;: 4}]
-print(chain.keys()) # KeysView(ChainMap({&apos;a&apos;: 1, &apos;b&apos;: 2}, {&apos;b&apos;: 3, &apos;c&apos;: 4}))
-print(chain.values())   # ValuesView(ChainMap({&apos;a&apos;: 1, &apos;b&apos;: 2}, {&apos;b&apos;: 3, &apos;c&apos;: 4}))
-
-print(dict(chain))  # {&apos;b&apos;: 2, &apos;c&apos;: 4, &apos;a&apos;: 1}
-print(list(chain))  # [&apos;b&apos;, &apos;c&apos;, &apos;a&apos;]
-print(list(chain.keys()))   # [&apos;b&apos;, &apos;c&apos;, &apos;a&apos;]
-print(list(chain.values())) # [2, 4, 1]
-print(chain[&apos;b&apos;])   # 2
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;collections.Counter(iterable-or-mapping) -&gt; dict&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;return dict {element: number}&lt;/li&gt;
-&lt;li&gt;.update(iterable-or-mapping) -&gt; None&lt;/li&gt;
-&lt;li&gt;.substract(iterable-or-mapping) -&gt; None&lt;/li&gt;
-&lt;li&gt;.elements() -&gt; itertool.chain&lt;/li&gt;
-&lt;li&gt;.most_common(int) -&gt; tuple in list
-&lt;ul&gt;
-&lt;li&gt;int is omitted: all the elements&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;.total() -&gt; int
-&lt;ul&gt;
-&lt;li&gt;ver 3.10&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;print(Counter(&apos;gallahad&apos;))  # Counter({&apos;a&apos;: 3, &apos;l&apos;: 2, &apos;g&apos;: 1, &apos;h&apos;: 1, &apos;d&apos;: 1})
-print(Counter({&apos;red&apos;: 4, &apos;blue&apos;: 2}))   # Counter({&apos;red&apos;: 4, &apos;blue&apos;: 2})
-print(Counter(cats=4, dogs=8))  # Counter({&apos;dogs&apos;: 8, &apos;cats&apos;: 4})
-print(type(Counter(cats=4, dogs=8)))    # &amp;#x3C;class &apos;collections.Counter&apos;&gt;
-
-c = Counter(a=4, b=2, c=0, d=-2)
-print(list(c.elements()))
-# [&apos;a&apos;, &apos;a&apos;, &apos;a&apos;, &apos;a&apos;, &apos;b&apos;, &apos;b&apos;]
-
-print(Counter(&apos;abracadabra&apos;).most_common(3))
-# [(&apos;a&apos;, 5), (&apos;b&apos;, 2), (&apos;r&apos;, 2)]
-
-c = Counter(a=4, b=2, c=0, d=-2)
-d = Counter(a=1, b=2, c=3, d=4)
-c.subtract(d)
-print(c)
-# Counter({&apos;a&apos;: 3, &apos;b&apos;: 0, &apos;c&apos;: -3, &apos;d&apos;: -6})
-
-c = Counter(a=10, b=5, c=0)
-print(c.total())
-# 15
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;collections.defaultdict(int or list or set or str or dict) -&gt; defaultdict&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;subclass of dict, which overrides one method&lt;/li&gt;
-&lt;li&gt;when try to access the key which doesn&apos;t exist, automatically assgin the defalut value to the key&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;d = defaultdict(str)
-print(d[&apos;a&apos;]) # 0
-print(d)    # defaultdict(&amp;#x3C;class &apos;int&apos;&gt;, {&apos;a&apos;: 0})
-
-s = [(&apos;yellow&apos;, 1), (&apos;blue&apos;, 2), (&apos;yellow&apos;, 3), (&apos;blue&apos;, 4), (&apos;red&apos;, 1)]
-d = defaultdict(list)
-for k, v in s:
-    d[k].append(v)
-
-print(sorted(d.items()))
-# [(&apos;blue&apos;, [2, 4]), (&apos;red&apos;, [1]), (&apos;yellow&apos;, [1, 3])]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;collections.deque(iterable[,maxlen]) -&gt; deque&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;deque(double-ended queue): data structure which is specialized for processing data at the end&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Especially better for processing &lt;strong&gt;the first data&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;O(1)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Indexing is impossible&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Alternatively, provide &lt;code&gt;.rotate(int)&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;d = deque(&apos;ghi&apos;)
-
-d.appendleft(&apos;f&apos;)
-print(d)    # deque([&apos;f&apos;, &apos;g&apos;, &apos;h&apos;, &apos;i&apos;])
-
-print(d.popleft())  # f
-print(d)    # deque([&apos;g&apos;, &apos;h&apos;, &apos;i&apos;])
-
-d.extendleft(&apos;abc&apos;)
-print(d)    # deque([&apos;c&apos;, &apos;b&apos;, &apos;a&apos;, &apos;g&apos;, &apos;h&apos;, &apos;i&apos;])
-
-d.rotate(3)
-print(d)    # deque([&apos;h&apos;, &apos;i&apos;, &apos;c&apos;, &apos;b&apos;, &apos;a&apos;, &apos;g&apos;])
-d.rotate(-1)
-print(d)    # deque([&apos;i&apos;, &apos;c&apos;, &apos;b&apos;, &apos;a&apos;, &apos;g&apos;, &apos;h&apos;])
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;collections.namedtuple(typeName,fieldNames,defaults=None) -&gt; subclass named typeNAme&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;make a specific type of subclass similar to tuple&lt;/li&gt;
-&lt;li&gt;fieldNames
-&lt;ul&gt;
-&lt;li&gt;[&apos;x&apos;, &apos;y&apos;, &apos;z&apos;, ...]&lt;/li&gt;
-&lt;li&gt;&apos;x, y, z&apos;&lt;/li&gt;
-&lt;li&gt;&apos;x y x&apos;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;._make(iterable) -&gt; namedtuple object
-&lt;ul&gt;
-&lt;li&gt;make a new instance&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;._asdict() -&gt; Orderedict&lt;/li&gt;
-&lt;li&gt;._repalce(**kwargs)-&gt; a new namedtuple object&lt;/li&gt;
-&lt;li&gt;._fields -&gt; tuple of strings listing the field names&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;Point = namedtuple(&apos;Point&apos;, &apos;x y z t&apos;, defaults=[0, &apos;0sec&apos;])
-print(type(Point))# &amp;#x3C;class &apos;type&apos;&gt;
-
-p = Point(11, y=22)
-print(p)    # Point(x=11, y=22, z=0, t=&apos;0sec&apos;)
-print(type(p))  # &amp;#x3C;class &apos;__main__.Point&apos;&gt;
-print(p[0], p[1], p[2]) # 11 22 0
-print(p.x, p.y, p.z)    # 11 22 0
-
-p_dict = p._asdict()
-print(p_dict)   # {&apos;x&apos;: 11, &apos;y&apos;: 22, &apos;z&apos;: 0, &apos;t&apos;: &apos;0sec&apos;}
-
-p._replace(z=55)
-print(p)    # Point(x=11, y=22, z=0, t=&apos;0sec&apos;)
-
-print(p._fields)    # (&apos;x&apos;, &apos;y&apos;, &apos;z&apos;, &apos;t&apos;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;collections.OrderedDict(dict) -&gt; OrderedDict&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;dictionary with the order&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.popitem(last=True)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.move_to_end(key, last = True)&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;d = &apos;abc&apos;
-ordered_d = OrderedDict.fromkeys(d)
-print(ordered_d)    # OrderedDict([(&apos;a&apos;, None), (&apos;b&apos;, None), (&apos;c&apos;, None)])
-print(type(ordered_d))  # &amp;#x3C;class &apos;collections.OrderedDict&apos;&gt;
-
-d = {&apos;first&apos;: 0, &apos;a&apos;:1, &apos;b&apos;:2, &apos;c&apos;:3, &apos;end&apos;: 4}
-ordered_d = OrderedDict(d)
-print(ordered_d)    # OrderedDict([(&apos;first&apos;, 0), (&apos;a&apos;, 1), (&apos;b&apos;, 2), (&apos;c&apos;, 3), (&apos;end&apos;, 4)])
-print(type(ordered_d))  # &amp;#x3C;class &apos;collections.OrderedDict&apos;&gt;
-
-print(ordered_d.popitem())  # (&apos;end&apos;, 4)
-print(ordered_d.popitem(last = False))  # (&apos;first&apos;, 0)
-
-ordered_d.move_to_end(&apos;a&apos;)
-print(ordered_d)    # OrderedDict([(&apos;b&apos;, 2), (&apos;c&apos;, 3), (&apos;a&apos;, 1)])
-ordered_d.move_to_end(&apos;c&apos;, last = False)
-print(ordered_d)    # OrderedDict([(&apos;c&apos;, 3), (&apos;b&apos;, 2), (&apos;a&apos;, 1)])
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;34-heapq&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#34-heapq&quot; aria-label=&quot;34 heapq permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.4. heapq&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Module for implementing priority heap&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;left_child: 2k+1
-right_child: 2k+2
-parent: (k-1)//2
-          0
-     1         2
-  3   4     5     6
- 7 8 9 10 11 12 13 14
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.heapify(list) -&gt; None&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;O(N)&lt;/li&gt;
-&lt;li&gt;
-&lt;ol&gt;
-&lt;li&gt;append at the end&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;ol start=&quot;2&quot;&gt;
-&lt;li&gt;compare with the parent&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;ol start=&quot;3&quot;&gt;
-&lt;li&gt;if it&apos;s smaller, swap&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;ol start=&quot;4&quot;&gt;
-&lt;li&gt;Repeat 2~3&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.push(heap, item) -&gt; None&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;O(logN)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.pop(heap[, item]) -&gt; item&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;O(logN)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;lst = [5,7, 4, 5, 6, 2, 1]
-
-heap = heapq.heapify(lst)
-print(heap) # None
-print(lst)  # [1, 5, 2, 7, 6, 5, 4]
-
-heapq.heappush(lst,76)
-print(lst)  # [1, 5, 2, 7, 6, 5, 4, 76]
-heapq.heappush(lst, 0)
-print(lst)  # [0, 1, 2, 5, 6, 5, 4, 76, 7]
-
-print(heapq.heappop(lst)) # None
-print(lst)  # [1, 5, 2, 7, 6, 5, 4, 76]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;35-functools&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#35-functools&quot; aria-label=&quot;35 functools permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.5. functools&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;.partial(func, para, *args, **kwargs) -&gt; partial object(function)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;return the function that combined the func with the parameters&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;from functools import partial
-
-basetwo = partial(int, base=2)
-print(basetwo)  # functools.partial(&amp;#x3C;class &apos;int&apos;&gt;, base=2)
-print(type(basetwo))    # &amp;#x3C;class &apos;functools.partial&apos;&gt;
-print(basetwo(&apos;10010&apos;)) # 18
-#print(basetwo(&apos;5&apos;)) # Error
-
-def xyzw(x, y, z, w = 10):
-    print(f&apos;x:{x}, y:{y}, z:{z}, w:{w}&apos;)
-
-xyzw1 = partial(xyzw, 1)
-xyzw2 = partial(xyzw, 1, 2)
-xyzw3 = partial(xyzw, 1, 2, 3)
-xyzw4 = partial(xyzw, 1, 2, w = 3)
-
-
-xyzw1(2,3) # x:1, y:2, z:3 w:10
-xyzw2(3)   # x:1, y:2, z:3 w:10
-xyzw3()    # x:1, y:2, z:3 w:10
-xyzw4(3)   # x:1, y:2, z:3 w:3
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.reduce(func, iterable[, initializer])&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;repeat func with the data in the iterable&lt;/li&gt;
-&lt;li&gt;if there&apos;s initailizer, use it for the first data
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;reduce(lambda x, y: x+y, [1, 2, 3, 4, 5])
-# ((((1+2)+3)+4)+5)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;@cache&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Caching: save the data to re-use it with higher speed&lt;/li&gt;
-&lt;li&gt;if you use &lt;code&gt;@cahce&lt;/code&gt;above a functon, a dictionary is made which has elements in the shape of {input: output}&lt;/li&gt;
-&lt;li&gt;Therefore, the program doesn&apos;t repeat the same operation&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;@cache
-def factorial(n):
-    return n * factorial(n-1) if n else 1
-
-&gt;&gt;&gt; factorial(10)      # no previously cached result, makes 11 recursive calls
-3628800
-&gt;&gt;&gt; factorial(5)       # just looks up cached value result
-120
-&gt;&gt;&gt; factorial(12)      # makes two new recursive calls, the other 10 are cached
-479001600
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;@lru_cache&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;similar to the @cache, but the maxsizie is limtied to 128, so the data in excess will be removed based on lru rule&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;@lru_cache(maxsize=None)
-def fib(n):
-    if n &amp;#x3C; 2:
-        return n
-    return fib(n-1) + fib(n-2)
-
-[fib(n) for n in range(16)]
-# [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610]
-
-fib.cache_info()
-# CacheInfo(hits=28, misses=16, maxsize=None, currsize=16)
-# hits: how many times have you looked up the dict
-# misses: how many tiems have you operated the function
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.cmp_to_key&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;make key for sorted or sort function&lt;/li&gt;
-&lt;li&gt;+int: latter one goes to the front&lt;/li&gt;
-&lt;li&gt;0: no change&lt;/li&gt;
-&lt;li&gt;-int: former one goes to the front&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;def comp(x, y):
-    if x &amp;#x3C; y:
-        return 1
-    elif x == y:
-        return 0
-    else:
-        return -1
-
-l = [1, 4, 5, 3, 1]
-
-sorted_list = sorted(l, key=cmp_to_key(comp))
-print(sorted_list)# [5, 4, 3, 1, 1]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;36-itertools&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#36-itertools&quot; aria-label=&quot;36 itertools permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.6. itertools&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Infinite iterator&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;count(start[,end]) -&gt; itertools.count&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;generate an infinite iterator&lt;/li&gt;
-&lt;li&gt;start, end can be float
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# start, start+step, start+2*step, …
-# count(10) --&gt; 10 11 12 13 14 ...
-# count(2.5, 0.5) -&gt; 2.5 3.0 3.5 .
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;cycle(iterable)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;infinite iterator that yield an elements in the iterable cycling
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# cycle(&apos;ABCD&apos;) --&gt; A B C D A B C D A B C D ...
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;repeat(obj[,times])&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;generate obj for &apos;times&apos; times&lt;/li&gt;
-&lt;li&gt;if &apos;times&apos; is not defined, generate infinitely
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;for i in repeat([1, 2, 3], 5):
-    print(i)
-    # [1, 2, 3]
-    # [1, 2, 3]
-    # [1, 2, 3]
-    # [1, 2, 3]
-    # [1, 2, 3]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Finite iterator&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;accumulate(iterable[, func, inital=None])&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;generate an iterator which yields the accumulated value of the iterable&lt;/li&gt;
-&lt;li&gt;if the functions is given, apply the function instead of add(x, y )&lt;/li&gt;
-&lt;li&gt;iniitial is used for the first value
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# accumulate([1,2,3,4,5]) --&gt; 1 3 6 10 15
-# accumulate([1,2,3,4,5], initial=100) --&gt; 100 101 103 106 110 115
-# accumulate([1,2,3,4,5], operator.mul) --&gt; 1 2 6 24 120
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;chain(*iterables)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;yields an element in the iterables&lt;/li&gt;
-&lt;li&gt;if the first iterables is thoroughly detected, go to the second one
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# chain.from_iterable([&apos;ABC&apos;, &apos;DEF&apos;]) --&gt; A B C D E F
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;compress(iterable, boolean_list)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;map the iterable with boolean_list, and yied the daty only when the elements in the boolean_list is Truthy&lt;/li&gt;
-&lt;li&gt;yield the data, until the shorter one ends
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# compress(&apos;ABCDEF&apos;, [1,0,True,[],&apos;hahaha&apos;,1]) --&gt; A C E F
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;dropwhile(func, iterable)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;yield from the data that is False for the func&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;lst =[5, 6, -8, -4, 2, 100]
-
-for i in dropwhile(lambda x: x &gt; 0, lst):
-    print(i) # -8, -4, 2, 100
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;filterflase(func, iterable)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;the oppsite of filter(func, iterable)
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# filterfalse(lambda x: x%2, range(10)) --&gt; 0 2 4 6 8
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;islice(iterable, stop) / islice(iterable, start, stop[, step])&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;generator with slicing
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# islice(&apos;ABCDEFG&apos;, 2) --&gt; A B
-# islice(&apos;ABCDEFG&apos;, 2, 4) --&gt; C D
-# islice(&apos;ABCDEFG&apos;, 2, None) --&gt; C D E F G
-# islice(&apos;ABCDEFG&apos;, 0, None, 2) --&gt; A C E G
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;starmap(func, iterable)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;similar to map, but can get *args as paramter
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# starmap(pow, [(2,5), (3,2), (10,3)]) --&gt; 32 9 1000
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;takewhile(func, )&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;yield before the data that is False for the func&lt;/li&gt;
-&lt;li&gt;the opposite fo dropwhile()
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# takewhile(lambda x: x&amp;#x3C;5, [1,4,6,4,1]) --&gt; 1 4
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;zip_logest(*iterables, fillvalue=None) -&gt; tuple&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;yield zipped tuple, when the shorter one is exhausted, fill with &apos;fillvalue&apos;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;for i in zip_longest(&apos;ABCD&apos;, &apos;xy&apos;, fillvalue=&apos;-&apos;):
-    print(i)
-    # (&apos;A&apos;, &apos;x&apos;)
-    # (&apos;B&apos;, &apos;y&apos;)
-    # (&apos;C&apos;, &apos;-&apos;)
-    # (&apos;D&apos;, &apos;-&apos;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;combinational iterator&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;product(*iterables, repeat=1) -&gt; tuple&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;generate the combinations of iter1, iter2, iter3&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;repeat = n: do it for _([iter1, iter2, iter3] _ n)&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;_list = [&quot;012&quot;, &quot;abc&quot;, &quot;!@#&quot;]
-for i in product(*_list):
-    print(i)    # (&apos;0&apos;, &apos;a&apos;, &apos;!&apos;) &gt; (&apos;0&apos;, &apos;a&apos;, &apos;@&apos;) &gt; (&apos;0&apos;, &apos;a&apos;, &apos;#&apos;) &gt; (&apos;0&apos;, &apos;b&apos;, &apos;!&apos;) &gt;&gt;&gt; (&apos;2&apos;, &apos;c&apos;, &apos;#&apos;)
-    # 3**3 combinations
-
-for i in product(*_list, repeat=2):
-    print(i)    # (&apos;0&apos;, &apos;a&apos;, &apos;!&apos;, &apos;0&apos;, &apos;a&apos;, &apos;!&apos;) &gt; (&apos;0&apos;, &apos;a&apos;, &apos;!&apos;, &apos;0&apos;, &apos;a&apos;, &apos;@&apos;) &gt;&gt;&gt; (&apos;2&apos;, &apos;c&apos;, &apos;#&apos;, &apos;2&apos;, &apos;c&apos;, &apos;#&apos;)
-    # 3**(3*2) combinations
-
-for i in product(_list):
-    print(i)    # (&apos;012&apos;,) &gt; (&apos;abc&apos;,) &gt;(&apos;!@#&apos;,)
-    # 3**1 combinations
-
-for i in product(_list, repeat=3):
-    print(i)    # (&apos;012&apos;, &apos;012&apos;, &apos;012&apos;) &gt; (&apos;012&apos;, &apos;012&apos;, &apos;abc&apos;) &gt;&gt;&gt; (&apos;!@#&apos;, &apos;!@#&apos;, &apos;!@#&apos;)
-    # 3**(1*3) combinations
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;permuations(iterable, r=None) -&gt; tuple&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;nCr * r!&lt;/li&gt;
-&lt;li&gt;pick and arrange&lt;/li&gt;
-&lt;li&gt;when r=None, r==len(iterable)
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# permutations(&apos;ABCD&apos;, 2) --&gt; (&apos;A&apos;,&apos;B&apos;) AC AD BA BC BD CA CB CD DA DB DC
-# permutations(range(3)) --&gt; (0, 1, 2) 021 102 120 201 210
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;combinatons(iterable, r) -&gt; tuple&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;nCr&lt;/li&gt;
-&lt;li&gt;pick
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# combinations(&apos;ABCD&apos;, 2) --&gt; (&apos;A&apos;,&apos;B&apos;) AC AD BC BD CD
-# combinations(range(4), 3) --&gt; (0, 1, 2) 013 023 123
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;combinations_with_replacement(iterable, r) -&gt; tuple&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;combinations allowing n-time duplication
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# combinations_with_replacement(&apos;ABC&apos;, 2) --&gt; (&apos;A&apos;, &apos;A&apos;) AB AC BB BC CC
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;37-math&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#37-math&quot; aria-label=&quot;37 math permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.7. math&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;.ceil&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.floor&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.copysign&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.fabs&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.factorial&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.frexp&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.ldexp&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.gcd&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.modf
-*.isclaos(&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.pow&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.sqrt&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.log&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.log1p&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.log2&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.log10&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.cos&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.sin&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.tan&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.acos&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.asin&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.atan&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.degrees&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.radians&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.pi&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.e&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.tau&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;38-bisect&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#38-bisect&quot; aria-label=&quot;38 bisect permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.8. bisect&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;.bisect&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.bisect_left&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.insort&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;.insort_left&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;39-copy&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#39-copy&quot; aria-label=&quot;39 copy permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.9. copy&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;.copy()&lt;/li&gt;
-&lt;li&gt;.deepcopy()&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;310-os&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#310-os&quot; aria-label=&quot;310 os permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.10. os&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;.chdir()&lt;/li&gt;
-&lt;li&gt;.environ&lt;/li&gt;
-&lt;li&gt;.getcwd()&lt;/li&gt;
-&lt;li&gt;.listdir&lt;/li&gt;
-&lt;li&gt;.mkdir&lt;/li&gt;
-&lt;li&gt;.path
-*..exists()
-*isdir()
-*isfile&lt;/li&gt;
-&lt;li&gt;.renmae&lt;/li&gt;
-&lt;li&gt;.remove&lt;/li&gt;
-&lt;li&gt;.removedirs&lt;/li&gt;
-&lt;li&gt;.walk&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;311-pickle&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#311-pickle&quot; aria-label=&quot;311 pickle permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.11. pickle&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;.dump&lt;/li&gt;
-&lt;li&gt;.load&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;312-json&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#312-json&quot; aria-label=&quot;312 json permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.12. json&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;.dump&lt;/li&gt;
-&lt;li&gt;.load&lt;/li&gt;
-&lt;li&gt;.dumps&lt;/li&gt;
-&lt;li&gt;.loads&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item></channel></rss>
