@@ -1,4 +1,285 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 07 Mar 2024 11:49:50 GMT</lastBuildDate><item><title><![CDATA[옵저버(Observer) 패턴 (feat. React TypeScript)]]></title><description><![CDATA[1. 옵저버 패턴  옵저버 패턴은 구조는 위와 같다. 아주 직관적이다. 발행자가 Observer(관측자)를 모아 관리하고, 이벤트가 발생할 때마다 Observer에게 알려준다. 알려주는 방법도 간단하다. 미리 약속된 함수 이름(update…]]></description><link>https://byongho96.github.io/TIL/posts/Knowledge/Design Pattern/observer_pattern/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Knowledge/Design Pattern/observer_pattern/</guid><pubDate>Wed, 06 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-옵저버-패턴&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EC%98%B5%EC%A0%80%EB%B2%84-%ED%8C%A8%ED%84%B4&quot; aria-label=&quot;1 옵저버 패턴 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 옵저버 패턴&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Byongho96's TIL RSS Feed]]></title><description><![CDATA[This is Byongho96's TIL blog website. Since 2022.08]]></description><link>https://byongho96.github.io/TIL</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 08 Mar 2024 11:40:44 GMT</lastBuildDate><item><title><![CDATA[자바스크립트 Proxy & Reflect 객체]]></title><description><![CDATA[진짜 가볍게 작성하려고 했는데 이틀이 걸렸다. 자바스크립트의 모든 문제는 결국 this인 것 같다. 1. Proxy Proxy 객체는 자바스크립트 Object에 대한 기본적인 접근(set, get, define…]]></description><link>https://byongho96.github.io/TIL/posts/Language/JavaScript/proxy/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Language/JavaScript/proxy/</guid><pubDate>Fri, 08 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;진짜 가볍게 작성하려고 했는데 이틀이 걸렸다. 자바스크립트의 모든 문제는 결국 this인 것 같다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;1-proxy&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-proxy&quot; aria-label=&quot;1 proxy permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Proxy&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;Proxy&lt;/code&gt; 객체는 자바스크립트 &lt;code&gt;Object&lt;/code&gt;에 대한 기본적인 접근(set, get, define) 요청에 대해 인터셉터를 구현하여, 특정로직을 수행한다.&lt;/p&gt;
+&lt;p&gt;객체에 대한 접근 로그를 기록하거나, 입력값에 대한 그것을 제공한다. 간다니 말해서 이미 생성된 &lt;code&gt;Object&lt;/code&gt;에 대해 손쉽게 getter와 setter 구현하는 것이다.&lt;/p&gt;
+&lt;h2 id=&quot;11-proxy-트랩-종류&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-proxy-%ED%8A%B8%EB%9E%A9-%EC%A2%85%EB%A5%98&quot; aria-label=&quot;11 proxy 트랩 종류 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1. Proxy 트랩 종류&lt;/h2&gt;
+&lt;p&gt;handler 안에 구현된 인터셉터 함수를 &lt;code&gt;trap&lt;/code&gt;이라고 한다. 각각의 함수들은 특정한 시점에 동작하여, 객체에 대한 접근을 가로챈다. 각 트랩이 받는 인자 정보는 &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy#handler_functions&quot;&gt;MDN 문서&lt;/a&gt;에서 확인할 수 있다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;트랩&lt;/th&gt;
+&lt;th&gt;작동 시점&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;get&lt;/td&gt;
+&lt;td&gt;프로퍼티를 읽을 때&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;set&lt;/td&gt;
+&lt;td&gt;프로퍼티를 쓸 때&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;has&lt;/td&gt;
+&lt;td&gt;in 연산자가 동작할 때&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;deleteProperty&lt;/td&gt;
+&lt;td&gt;delete 연산자가 동작할 때&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;apply&lt;/td&gt;
+&lt;td&gt;함수를 호출할 때&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;construct&lt;/td&gt;
+&lt;td&gt;new 연산자가 동작할 때&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;getPrototypeOf&lt;/td&gt;
+&lt;td&gt;Object.getPrototypeOf 가 작동할 때&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;setPrototypeOf&lt;/td&gt;
+&lt;td&gt;Object.setPrototypeOf 가 작동할 때&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;isExtensible&lt;/td&gt;
+&lt;td&gt;Object.isExtensible 가 작동할 때&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;preventExtensions&lt;/td&gt;
+&lt;td&gt;Object.preventExtensions 가 작동할 때&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;getOwnPropertyDescriptor&lt;/td&gt;
+&lt;td&gt;Object.getOwnPropertyDescriptor 가 작동할 때&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ownKeys&lt;/td&gt;
+&lt;td&gt;Object.getOwnPropertyNames 가 작동할 때 &lt;br/&gt;Object.getOwnPropertySymbols 가 작동할 때&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&quot;12-기본-활용-예제&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-%EA%B8%B0%EB%B3%B8-%ED%99%9C%EC%9A%A9-%EC%98%88%EC%A0%9C&quot; aria-label=&quot;12 기본 활용 예제 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2. 기본 활용 예제&lt;/h2&gt;
+&lt;p&gt;아래 예제들은 &lt;a href=&quot;https://ko.javascript.info/proxy&quot;&gt;JavaScript.info 문서&lt;/a&gt;를 기반으로 작성했다.&lt;/p&gt;
+&lt;h3 id=&quot;121-get&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#121-get&quot; aria-label=&quot;121 get permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2.1. get&lt;/h3&gt;
+&lt;p&gt;get 트랩으로 프로퍼티의 기본값을 설정할 수 있다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;target&lt;/code&gt;: 원본 객체&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;property&lt;/code&gt;: 프로퍼티 네임&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;receiver&lt;/code&gt;: 프록시 혹은 프록시를 상속받은 객체. 이녀석에 대한 자세한 내용은 Reflect에서 확인할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;let numbers = [0, 1, 2]
+
+numbers = new Proxy(numbers, {
+  get(target, prop, receiver) {
+    if (prop in target) {
+      return target[prop]
+    } else {
+      return 0 // 기본값
+    }
+  },
+})
+
+console.log(numbers[1]) // 1
+console.log(numbers[123]) // 0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;122-set&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#122-set&quot; aria-label=&quot;122 set permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2.2. set&lt;/h3&gt;
+&lt;p&gt;set 트랩으로 프로퍼티에 쓰려는 값을 검증할 수 있다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;target&lt;/code&gt;: 원본 객체&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;property&lt;/code&gt;: 프로퍼티 이름&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;value&lt;/code&gt; : 프로퍼티에 쓰려는 값&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;receiver&lt;/code&gt;: 프록시 혹은 프록시를 상속받은 객체. 이녀석에 대한 자세한 내용은 Reflect에서 확인할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;set 트랩이 성공했을 때 반드시 true를 반환해야한다. true이외의 값이 반환되면 TypeError가 발생한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;let numbers = []
+
+numbers = new Proxy(numbers, {
+  set(target, prop, val) {
+    if (typeof val == &apos;number&apos;) {
+      target[prop] = val
+      return true
+    } else {
+      return false
+    }
+  },
+})
+
+numbers.push(1)
+numbers.push(2)
+numbers.push(&apos;test&apos;) // Error: &apos;set&apos; on proxy
+
+console.log(&apos;윗줄에서 에러가 발생했기 때문에 이 줄이 실행되지 않음&apos;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;123-has&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#123-has&quot; aria-label=&quot;123 has permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2.3. has&lt;/h3&gt;
+&lt;p&gt;has 트랩으로 범위 내 여부를 확인하는 프록시 객체를 만들 수 있다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;target&lt;/code&gt;: 원본 객체&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;property&lt;/code&gt;: 프로퍼티 네임&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;let range = {
+  start: 1,
+  end: 10,
+}
+
+range = new Proxy(range, {
+  has(target, prop) {
+    return prop &gt;= target.start &amp;#x26;&amp;#x26; prop &amp;#x3C;= target.end
+  },
+})
+
+console.log(5 in range) // true
+console.log(50 in range) // false
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;124-deleteproperty와-여러-트랩으로-프로퍼티-보호&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#124-deleteproperty%EC%99%80-%EC%97%AC%EB%9F%AC-%ED%8A%B8%EB%9E%A9%EC%9C%BC%EB%A1%9C-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0-%EB%B3%B4%ED%98%B8&quot; aria-label=&quot;124 deleteproperty와 여러 트랩으로 프로퍼티 보호 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2.4. deleteProperty와 여러 트랩으로 프로퍼티 보호&lt;/h3&gt;
+&lt;p&gt;보통 프로그래밍에서 &lt;code&gt;_&lt;/code&gt;가 프로퍼티 이름 앞에 붙으면, 이는 외부에서 접근할 수 없는 내부용 프로퍼티임을 암시한다. &lt;code&gt;deleteProperty&lt;/code&gt;를 포함한 여러 트랩을 조합하여 해당 기능이 구현된 Proxy 객체를 만들 수 있다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;target&lt;/code&gt;: 원본 객체&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;property&lt;/code&gt;: 프로퍼티 네임&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;let user = {
+  name: &apos;John&apos;,
+  _password: &apos;***&apos;,
+}
+
+user = new Proxy(user, {
+  get(target, prop) {
+    if (prop.startsWith(&apos;_&apos;)) {
+      return &apos;접근이 제한되어있습니다.&apos;
+    }
+    let value = target[prop]
+    return typeof value === &apos;function&apos; ? value.bind(target) : value
+  },
+  deleteProperty(target, prop) {
+    if (prop.startsWith(&apos;_&apos;)) {
+      return &apos;접근이 제한되어있습니다.&apos;
+    }
+    delete target[prop]
+    return true
+  },
+  ownKeys(target) {
+    return Object.keys(target).filter((key) =&gt; !key.startsWith(&apos;_&apos;))
+  },
+})
+
+console.log(user._password) // 접근이 제한되어있습니다.
+console.log(delete user._password) // true
+console.log(user.keys()) //[ &apos;name&apos; ]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;125-유의-사항&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#125-%EC%9C%A0%EC%9D%98-%EC%82%AC%ED%95%AD&quot; aria-label=&quot;125 유의 사항 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2.5. 유의 사항&lt;/h3&gt;
+&lt;p&gt;위 코드에서 &lt;code&gt;get&lt;/code&gt; 트랩을 보면 최초 접근하는 프로퍼티가 함수일 경우에 &lt;code&gt;this&lt;/code&gt;를 바인딩 했다. &lt;code&gt;this&lt;/code&gt;에서 직감할 수 있듯이 결국 누가 함수를 호출하는지의 문제이다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;get(target, prop) {
+  // ...
+  let value = target[prop];
+  return (typeof value === &apos;function&apos;) ? value.bind(target) : value;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;만일 user 객체에 다음과 같은 &lt;code&gt;checkPassword&lt;/code&gt;라는 메소드가 있다고 가정해자. &lt;code&gt;checkPassword&lt;/code&gt;는 객체의 메소드이기 때문에 내부 변수에 문제없이 접근할 수 있어야 한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;let user = {
+  // ...
+  checkPassword(value) {
+    return value === this._password // 이 this는 Proxy가 아닌, 원본 객체여야 한다.
+  },
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;즉 아래 코드에서 &lt;code&gt;user&lt;/code&gt;는 Proxy 객체이지만, 실제 &lt;code&gt;checkPassword&lt;/code&gt;를 실행하는 녀석은 Proxy가 아닌 원본 객체여야 한다. 이것을 구현하기 위해 &lt;code&gt;get&lt;/code&gt; 트랩에서 최초 접근 프로퍼티가 함수일 경우 바인딩 하는 것이다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;let user = {...}
+user = new Proxy(user, {...})
+user.checkPassword(&apos;password&apos;)  // user는 Proxy 객체지만, 실제 checkPassword를 호출은 원본 객체가 해야한다.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;물론 메소드간 연관성이 복잡해져서, 애초에 &lt;strong&gt;원본 객체&lt;/strong&gt;가 넘어가거나 &lt;strong&gt;Proxy가 여러번 덧대어진 객체&lt;/strong&gt;가 넘어가면 불상사가 발생한다.&lt;/p&gt;
+&lt;h1 id=&quot;2-reflect&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-reflect&quot; aria-label=&quot;2 reflect permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Reflect&lt;/h1&gt;
+&lt;p&gt;Reflect는 &lt;mark&gt;Proxy의 모든 트랩에 대응하는 함수들을 가진 namespace&lt;/mark&gt;이다. 단순한 namespace이기 때문에 생성자로 객체를 생성하지 않고 바로 사용한다. 정적 클래스라고 생각하면 더 직관적이겠다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;let user = {}
+
+Reflect.set(user, &apos;name&apos;, &apos;John&apos;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Proxy 트랩에 대응하는 모든 함수를 가지고 있다고 하지만, 특별한 기능이 구현되어 있지는 않다. 그런걸 왜 쓰는지는 아래에 정리했다.&lt;/p&gt;
+&lt;h2 id=&quot;21-proxy의-return-값&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-proxy%EC%9D%98-return-%EA%B0%92&quot; aria-label=&quot;21 proxy의 return 값 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. Proxy의 return 값&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;So, return Reflect... provides a safe no-brainer to forward the operation and make sure we don’t forget anything related to that. [Ilya kantor, 모던 JavaScript 튜토리얼 저자]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Proxy 트랩에 반환값을 작성해야 하는데, 늘 대응되는 객체 메소드와 인자를 쓰는 것은 어려운 일이다 (&lt;code&gt;get&lt;/code&gt;하고 &lt;code&gt;set&lt;/code&gt;밖에 안써서 어렵다고 느낄 일이 없지만...). 그럴 때 구글링하지 말고 그냥 &lt;code&gt;Reflect&lt;/code&gt;에서 &lt;strong&gt;동일한 함수&lt;/strong&gt;에 &lt;strong&gt;동일한 인자&lt;/strong&gt;를 넣어 반환하면 된다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;let user = {
+  name: &apos;John&apos;,
+}
+
+user = new Proxy(user, {
+  get(target, prop, receiver) {
+    console.log(`GET ${prop}`)
+    return Reflect.get(target, prop, receiver)
+  },
+  set(target, prop, val, receiver) {
+    console.log(`SET ${prop}=${val}`)
+    return Reflect.set(target, prop, val, receiver)
+  },
+})
+
+let name = user.name // GET name
+user.name = &apos;Pete&apos; // &quot;SET name=Pete
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;22-proxy-상속-객체-핸들링&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-proxy-%EC%83%81%EC%86%8D-%EA%B0%9D%EC%B2%B4-%ED%95%B8%EB%93%A4%EB%A7%81&quot; aria-label=&quot;22 proxy 상속 객체 핸들링 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. Proxy 상속 객체 핸들링&lt;/h2&gt;
+&lt;p&gt;또한 &lt;strong&gt;Proxy를 상속받은 객체&lt;/strong&gt;가 마치 &lt;strong&gt;Proxy가 가장 밖에 둘러싼 것&lt;/strong&gt;처럼 동작하게 만든다.&lt;/p&gt;
+&lt;p&gt;다음과 같이 &lt;code&gt;_name&lt;/code&gt; 프로퍼티에 대한 getter를 Proxy로 구현했다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;let user = {
+  _name: &apos;Guest&apos;,
+  get name() {
+    return this._name
+  },
+}
+
+let userProxy = new Proxy(user, {
+  get(target, prop, receiver) {
+    return target[prop]
+  },
+})
+
+console.log(userProxy.name) // Guest
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위에 정의한 &lt;code&gt;userProxy&lt;/code&gt;를 상속 받고 &lt;code&gt;_name&lt;/code&gt; 프로퍼티가 오버라이딩한 &lt;code&gt;admin&lt;/code&gt;객체가 있다. 이 객체는 Proxy를 프로토타입으로 가지기 때문에 아래와 같이 Proxy가 새로 정의된 프로퍼티를 커버하지 못하는 것이 당연하다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;let admin = {
+  __proto__: userProxy,
+  _name: &apos;Admin&apos;,
+}
+
+alert(admin.name) // Guest
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;하지만 내가 Proxy를 상속받았을지라도, 결국에는 Proxy가 가장 바깥에서 동작하는 것처럼 보이고 싶을 때 &lt;code&gt;Reflect&lt;/code&gt;를 쓰면 된다. 앞 서 Proxy 핸들러 메소드 중 몇개가 &lt;code&gt;receiver&lt;/code&gt;를 인자로 받았다.&lt;/p&gt;
+&lt;p&gt;바로 이 &lt;code&gt;receiver&lt;/code&gt;에 Proxy를 상속받은 객체에 대한 정보가 있기 때문에, &lt;code&gt;Reflect&lt;/code&gt;에 넘겨주면 내부적으로 잘 처리하여 원하는 기능이 구현된다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;let user = {
+  _name: &apos;Guest&apos;,
+  get name() {
+    return this._name
+  },
+}
+
+let userProxy = new Proxy(user, {
+  get(target, prop, receiver) {
+    return Reflect.get(target, prop, receiver) // receiver = admin
+  },
+})
+
+let admin = {
+  __proto__: userProxy,
+  _name: &apos;Admin&apos;,
+}
+
+console.log(admin.name) // Admin
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&quot;참조&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%B0%B8%EC%A1%B0&quot; aria-label=&quot;참조 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;참조&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Proxy&quot;&gt;MDN : &quot;Proxy&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect&quot;&gt;MDN : &quot;Reflect&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://ko.javascript.info/proxy&quot;&gt;JAVASCRIPT.INFO : &quot;Proxy와 Reflect&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://inpa.tistory.com/entry/JS-%F0%9F%93%9A-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-Proxy-Reflect-%EA%B3%A0%EA%B8%89-%EA%B8%B0%EB%B2%95&quot;&gt;Inpa Dev : &quot;자바스크립트 Proxy &amp;#x26; Reflect 고급 기법&quot;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[옵저버(Observer) 패턴 (feat. React TypeScript)]]></title><description><![CDATA[1. 옵저버 패턴  옵저버 패턴은 구조는 위와 같다. 아주 직관적이다. 발행자가 Observer(관측자)를 모아 관리하고, 이벤트가 발생할 때마다 Observer에게 알려준다. 알려주는 방법도 간단하다. 미리 약속된 함수 이름(update…]]></description><link>https://byongho96.github.io/TIL/posts/Knowledge/Design Pattern/observer_pattern/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Knowledge/Design Pattern/observer_pattern/</guid><pubDate>Wed, 06 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-옵저버-패턴&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EC%98%B5%EC%A0%80%EB%B2%84-%ED%8C%A8%ED%84%B4&quot; aria-label=&quot;1 옵저버 패턴 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 옵저버 패턴&lt;/h1&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 700px; margin-bottom: 20px;&quot;
@@ -139,7 +420,7 @@ export class PublisherManager {
   }
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;아래와 같은 코드를 실행시키면, 예상하는 콘솔 결과를 확인할 수 있다.&lt;/p&gt;
+&lt;p&gt;아래와 같은 코드를 실행시키면, 콘솔 결과를 통해 예상처럼 동작함을 확인할 수 있다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;import { PublisherManager } from &apos;./manager.ts&apos;
 import { ObserverA, ObserverB } from &apos;./observer.ts&apos;
 
@@ -171,9 +452,9 @@ Observer B 구독 취소
 이벤트 3 발생
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id=&quot;3-옵저버-패턴-활용-react&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-%EC%98%B5%EC%A0%80%EB%B2%84-%ED%8C%A8%ED%84%B4-%ED%99%9C%EC%9A%A9-react&quot; aria-label=&quot;3 옵저버 패턴 활용 react permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. 옵저버 패턴 활용 (React)&lt;/h1&gt;
-&lt;p&gt;팀원 중 한 분이 토스트 메시지를 옵저버 패턴을 구현했다. 내가 구현하는 방식과는 전혀 달라서 처음 이해하는데 애를 먹었다. 옵저버 패턴을 적용하니까, 토스트 메시지의 비즈니스 로직이 UI와 완전히 구분할 수 있었다.&lt;/p&gt;
+&lt;p&gt;팀원 중 한 분이 토스트 메시지를 옵저버 패턴을 구현했다. 내가 평소 구현하는 방식과 달라서 처음 이해하는데 애를 먹었다. 옵저버 패턴으로 토스트0 메시지를 구현하니까, 비즈니스 로직과 UI와 완전히 구분되었다.&lt;/p&gt;
 &lt;h2 id=&quot;31-함수형-react&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#31-%ED%95%A8%EC%88%98%ED%98%95-react&quot; aria-label=&quot;31 함수형 react permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1. 함수형 React&lt;/h2&gt;
-&lt;p&gt;먼저 익숙한 함수형 React 구현 방식부터 살펴보려고 한다. 함수형 React인 만큼 커스텀 훅으로 구현되었다.&lt;/p&gt;
+&lt;p&gt;익숙한 함수형 React 구현 방식부터 알아보자. 익숙하지만 함수형이기 때문에 옵저버 패턴이 명확하게 보이지 않는다.&lt;/p&gt;
 &lt;h3 id=&quot;311-array-프로토타입-메소드-추가&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#311-array-%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-%EC%B6%94%EA%B0%80&quot; aria-label=&quot;311 array 프로토타입 메소드 추가 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1.1. Array 프로토타입 메소드 추가&lt;/h3&gt;
 &lt;p&gt;시작하기 앞서 &lt;code&gt;Array.__proto__&lt;/code&gt;에 메소드 하나만 추가하려고 한다. 그냥 array에서 특정 요소를 제거하는 로직인데, 이후 작성할 코드들의 간결성을 위해 &lt;strong&gt;간이적으로 추가&lt;/strong&gt;했다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;// Array에서 element 요소를 찾아 제거하는 메소드
@@ -187,7 +468,7 @@ Array.prototype.removeElement = function &amp;#x3C;T&gt;(this: T[], element: T):
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;312-usetoast-구현&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#312-usetoast-%EA%B5%AC%ED%98%84&quot; aria-label=&quot;312 usetoast 구현 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1.2. useToast 구현&lt;/h3&gt;
-&lt;p&gt;커스텀 훅은 컴포넌트(관찰자) 측에서 쓰이기 때문에, &lt;code&gt;useToast&lt;/code&gt;를 Observer측의 구현체로 생각할 수 있다.&lt;/p&gt;
+&lt;p&gt;옵저버 패턴은 최종적으로 함수형 React에서 쓸 수 있는 커스텀 훅으로 구현된다. 훅은 컴포넌트에서 쓰이기 때문에, 관찰자(Observer)측의 구현체이다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;// 타입 정의
 type TToast = {
   id: string
@@ -240,7 +521,7 @@ export default function useToast() {
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;313-실제-사용&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#313-%EC%8B%A4%EC%A0%9C-%EC%82%AC%EC%9A%A9&quot; aria-label=&quot;313 실제 사용 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1.3. 실제 사용&lt;/h3&gt;
-&lt;p&gt;아래와 같이 &lt;code&gt;useToast&lt;/code&gt; 커스텀 훅을 가져와 사용할 수 있다.&lt;/p&gt;
+&lt;p&gt;아래와 같이 &lt;code&gt;useToast&lt;/code&gt; 훅을 컴포넌트에서 사용할 수 있다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-tsx&quot;&gt;import { FormEventHandler } from &apos;react&apos;
 import useToast from &apos;./useToast&apos;
 
@@ -280,9 +561,9 @@ export default ToastContainer
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&quot;/TIL/168d0b04b014eef1732d1d6d625f28b5/function-toast.gif&quot; alt=&quot;함수형 옵저버 패턴 토스트 메시지 시연&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;32-클래스형-react&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#32-%ED%81%B4%EB%9E%98%EC%8A%A4%ED%98%95-react&quot; aria-label=&quot;32 클래스형 react permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2. 클래스형 React&lt;/h2&gt;
-&lt;p&gt;클래스형 React로 구현할 경우, 옵저버 패턴이 더 명확하게 보인다.&lt;/p&gt;
+&lt;p&gt;클래스형 React로 구현할 경우, 옵저버 패턴을 더 명확하게 확인할 수 있다.&lt;/p&gt;
 &lt;h3 id=&quot;321-array-프로토타입-메소드-추가&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#321-array-%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-%EC%B6%94%EA%B0%80&quot; aria-label=&quot;321 array 프로토타입 메소드 추가 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2.1. Array 프로토타입 메소드 추가&lt;/h3&gt;
-&lt;p&gt;마찬가지로 이후 작성할 코드들의 간결성을 위해 &lt;code&gt;Array.__proto__&lt;/code&gt;에 메소드 하나만 추가 &lt;strong&gt;간이적으로 추가&lt;/strong&gt;했다.&lt;/p&gt;
+&lt;p&gt;마찬가지로 이후 작성할 코드들의 간결성을 위해 &lt;code&gt;Array.__proto__&lt;/code&gt;에 메소드 하나를 &lt;strong&gt;간이적으로 추가&lt;/strong&gt;했다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;// Array에서 element 요소를 찾아 제거하는 메소드
 Array.prototype.removeElement = function &amp;#x3C;T&gt;(this: T[], element: T): void {
   for (let i = 0; i &amp;#x3C; this.length; i++) {
@@ -294,8 +575,8 @@ Array.prototype.removeElement = function &amp;#x3C;T&gt;(this: T[], element: T):
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;321-발행자-publisher-구현&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#321-%EB%B0%9C%ED%96%89%EC%9E%90-publisher-%EA%B5%AC%ED%98%84&quot; aria-label=&quot;321 발행자 publisher 구현 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2.1. 발행자 (Publisher) 구현&lt;/h3&gt;
-&lt;p&gt;이번에는 마지막에 단일 객체를 생성해서 export 하였기 때문에, &lt;a href=&quot;##21-%EC%82%AC%EC%9A%A9-%EC%98%88%EC%8B%9C&quot;&gt;3-2절&lt;/a&gt;처럼 &lt;code&gt;Manager&lt;/code&gt;클래스를 구현하지 않았다.&lt;/p&gt;
-&lt;p&gt;또한 리액트 컴포넌트 자체를 관찰자 리스트(&lt;code&gt;observers&lt;/code&gt;)로 수집했다. 토스트 메시지 리스트(&lt;code&gt;toasts&lt;/code&gt;)에 변화가 생기면 컴포넌트 프로토타입의 &lt;code&gt;forceUpdate&lt;/code&gt; 메소드를 호출하여 강제 업데이트 했다.&lt;/p&gt;
+&lt;p&gt;이번에는 마지막에 단일 객체를 생성해서 export 하였기 때문에, 2.1.절처럼 &lt;code&gt;Manager&lt;/code&gt;클래스를 구현하지 않았다.&lt;/p&gt;
+&lt;p&gt;또한 &lt;strong&gt;리액트 컴포넌트 자체&lt;/strong&gt;를 관찰자 리스트(&lt;code&gt;observers&lt;/code&gt;)로 수집했다. 토스트 메시지 리스트(&lt;code&gt;toasts&lt;/code&gt;)에 변화가 생기면 컴포넌트 프로토타입의 &lt;code&gt;forceUpdate&lt;/code&gt; 메소드를 호출하여 강제 업데이트 했다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;import { Component } from &apos;react&apos;
 
 // 타입 정의
@@ -356,7 +637,7 @@ class ToastPublihser implements IPublisher&amp;#x3C;Component&gt; {
 export default new ToastPublihser() // 단일 객체 export
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;322-실제-사용&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#322-%EC%8B%A4%EC%A0%9C-%EC%82%AC%EC%9A%A9&quot; aria-label=&quot;322 실제 사용 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2.2. 실제 사용&lt;/h3&gt;
-&lt;p&gt;컴포넌트 측에서 아래와 같이 사용할 수 있다.&lt;/p&gt;
+&lt;p&gt;컴포넌트 측에서는 아래와 같이 사용할 수 있다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-tsx&quot;&gt;import { Component, FormEvent } from &apos;react&apos;
 import ToastPublisher, { TToast } from &apos;./ToastPublisher&apos;
 
@@ -414,7 +695,7 @@ export default ToastContainer
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&quot;/TIL/4db8de3ad22a2bc0bea63108e46c6fa6/class-toast.gif&quot; alt=&quot;클래스형 옵저버 패턴 토스트 메시지 시연&quot;&gt;&lt;/p&gt;
 &lt;h1 id=&quot;4-다른-토스트-메시지-구현-방식&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-%EB%8B%A4%EB%A5%B8-%ED%86%A0%EC%8A%A4%ED%8A%B8-%EB%A9%94%EC%8B%9C%EC%A7%80-%EA%B5%AC%ED%98%84-%EB%B0%A9%EC%8B%9D&quot; aria-label=&quot;4 다른 토스트 메시지 구현 방식 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. 다른 토스트 메시지 구현 방식&lt;/h1&gt;
-&lt;p&gt;아래는 평소 내가 사용하는 토스트 메시지 구현 방식이다. 더 직관적이지만 로직과 UI가 강하게 결합된다는 한계점이 존재한다. 그러나 토스트 메시지의 로직과 UI가 분리되는 경우는 보지 못했기 때문에, 나는 괜찮은 방식이라고 생각한다.&lt;/p&gt;
+&lt;p&gt;아래는 평소 내가 사용하는 토스트 메시지 구현 방식이다. 더 직관적이지만 로직과 UI가 강하게 결합된다는 한계점이 존재한다. 그러나 토스트 메시지의 로직과 UI가 분리되는 경우는 보지 못했기 때문에, 실질적으로 한계점이라고 느낀 적은 없다.&lt;/p&gt;
 &lt;h2 id=&quot;41-toast-컴포넌트&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#41-toast-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8&quot; aria-label=&quot;41 toast 컴포넌트 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.1. Toast 컴포넌트&lt;/h2&gt;
 &lt;p&gt;먼저 Toast 메시지 컴포넌트를 생성한다. 이후 설계할 &lt;code&gt;ToastManger&lt;/code&gt;에서 이 컴포넌트를 직접 &lt;code&gt;import&lt;/code&gt;하여 사용할 것이다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-tsx&quot;&gt;import { useRef, useEffect, useMemo } from &apos;react&apos;
@@ -523,7 +804,7 @@ class ToastManager {
 export default new ToastManager()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&quot;42-실제-사용&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#42-%EC%8B%A4%EC%A0%9C-%EC%82%AC%EC%9A%A9&quot; aria-label=&quot;42 실제 사용 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.2. 실제 사용&lt;/h2&gt;
-&lt;p&gt;컴포넌트에서는 아래와 같은 방식으로 사용할 수 있다.&lt;/p&gt;
+&lt;p&gt;컴포넌트에서 &lt;code&gt;ToastManager&lt;/code&gt;를 아래와 같은 방식으로 사용할 수 있다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-tsx&quot;&gt;import toastManager from &apos;@/utils/toastManager&apos;
 
 type GalleryFormProps = {
@@ -32257,215 +32538,4 @@ def delete(request, pk):
         article.delete()
         return redirect(&apos;articles:index&apos;)
     return redirect(&apos;articles:detial&apos;, artilce.pk)
-&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[Django Basic CRUD]]></title><description><![CDATA[0. Cross Site Request Forgery(CSRF) 0.1. What is CSRF 0.2. CSRF Token 1. Model 1.1. models.py 2. Create 2.1. urls.py 2.2. views.py 2.…]]></description><link>https://byongho96.github.io/TIL/posts/Backend/Django/02_Django_CRUD/</link><guid isPermaLink="false">https://byongho96.github.io/TIL/posts/Backend/Django/02_Django_CRUD/</guid><pubDate>Tue, 08 Nov 2022 00:00:00 GMT</pubDate><content:encoded>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#0-cross-site-request-forgerycsrf&quot;&gt;0. Cross Site Request Forgery(CSRF)&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#01-what-is-csrf&quot;&gt;0.1. What is CSRF&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#02-csrf-token&quot;&gt;0.2. CSRF Token&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#1-model&quot;&gt;1. Model&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#11-modelspy&quot;&gt;1.1. models.py&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#2-create&quot;&gt;2. Create&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#21-urlspy&quot;&gt;2.1. urls.py&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#22-viewspy&quot;&gt;2.2. views.py&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#23-templateshtml&quot;&gt;2.3. templates.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#3-read&quot;&gt;3. Read&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#31-urlspy&quot;&gt;3.1. urls.py&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#32-viewspy&quot;&gt;3.2. views.py&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#33-templateshtml&quot;&gt;3.3. templates.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#4-update&quot;&gt;4. Update&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#41-urlspy&quot;&gt;4.1. urls.py&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#42-viewspy&quot;&gt;4.2. views.py&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#43-templateshtml&quot;&gt;4.3. templates.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#5-delete&quot;&gt;5. Delete&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#51-urlspy&quot;&gt;5.1. urls.py&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#52-viewspy&quot;&gt;5.2. views.py&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#53-templateshtml&quot;&gt;5.3. templates.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;0-cross-site-request-forgerycsrf&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#0-cross-site-request-forgerycsrf&quot; aria-label=&quot;0 cross site request forgerycsrf permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;0. Cross Site Request Forgery(CSRF)&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;https://codevang.tistory.com/282&quot;&gt;CSRF에 대해 정리된 블로그 글&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;01-what-is-csrf&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#01-what-is-csrf&quot; aria-label=&quot;01 what is csrf permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;0.1. What is CSRF&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;An attack that sends a request to the server that is unrelated to the user&apos;s intention&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;It can be done by creating a fake template that matches the server request format.&lt;/p&gt;
-&lt;h2 id=&quot;02-csrf-token&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#02-csrf-token&quot; aria-label=&quot;02 csrf token permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;0.2. CSRF Token&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;It&apos;s arbitrarily issued token by the server.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Server inserts a CSRF token into the template so that it can be automatically returned with the user&apos;s request. When a user request is received, the server checks the validity of the CSRF token. if the token is not valid, the server considers it as abnormal, and doesn&apos;t accept the data.&lt;/p&gt;
-&lt;h1 id=&quot;1-model&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-model&quot; aria-label=&quot;1 model permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Model&lt;/h1&gt;
-&lt;h2 id=&quot;11-modelspy&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-modelspy&quot; aria-label=&quot;11 modelspy permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1. models.py&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# articles/models.py
-from django.db import models
-
-# Article inherits model.Model
-class Article(models.Model):
-    title = models.CharField(max_length=10)
-    content = models.TextField()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&quot;2-create&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-create&quot; aria-label=&quot;2 create permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Create&lt;/h1&gt;
-&lt;h2 id=&quot;21-urlspy&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-urlspy&quot; aria-label=&quot;21 urlspy permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1. urls.py&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;app_name = &apos;articles&apos;
-urlpatterns = [
-    path(&apos;new/&apos;, views.new, name=&apos;new&apos;),
-    path(&apos;create/&apos;, views.create, name=&apos;create&apos;),
-]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;22-viewspy&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-viewspy&quot; aria-label=&quot;22 viewspy permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2. views.py&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;def new(request):
-    return render(request, &apos;articles/new.html&apos;)
-
-def create(request):
-    title = request.POST.get(&apos;title&apos;)
-    content = request.POST.get(&apos;content&apos;)
-
-    # 1.
-    # article = Article()
-    # article.title = title
-    # article.content = content
-    # article.save()
-
-    # 2.
-    article = Article(tite=title, content=content)
-    article.save()
-
-    # 3.
-    # Article.objects.create(title=title, content=content)
-
-    return redirect(&apos;articles:detail&apos;, article.pk)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;23-templateshtml&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#23-templateshtml&quot; aria-label=&quot;23 templateshtml permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.3. templates.html&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;new.html&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-django&quot;&gt;&amp;#x3C;h1&gt;NEW&amp;#x3C;/h1&gt;
-&amp;#x3C;form action=&quot;{% url &apos;articles:create&apos; %}&quot; method=&quot;POST&quot;&gt;
-    {% csrf_token %}
-    &amp;#x3C;label for=&quot;title&quot;&gt;Title:&amp;#x3C;/label&gt;
-    &amp;#x3C;input type=&quot;text&quot; name=&quot;title&quot;&gt;&amp;#x3C;br&gt;
-    &amp;#x3C;label for=&quot;content&quot;&gt;Content:&amp;#x3C;/label&gt;
-    &amp;#x3C;textarea name=&quot;content&quot;&gt;&amp;#x3C;/textarea&gt;&amp;#x3C;br&gt;
-    &amp;#x3C;input type=&quot;submit&quot;&gt;
-&amp;#x3C;/form&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&quot;3-read&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-read&quot; aria-label=&quot;3 read permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. Read&lt;/h1&gt;
-&lt;h2 id=&quot;31-urlspy&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#31-urlspy&quot; aria-label=&quot;31 urlspy permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1. urls.py&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;app_name = &apos;articles&apos;
-urlpatterns = [
-    path(&apos;index/&apos;, views.index, name=&apos;index&apos;),
-    path(&apos;&amp;#x3C;int:pk&gt;/&apos;, views.detail, name=&apos;detail&apos;),
-]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;32-viewspy&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#32-viewspy&quot; aria-label=&quot;32 viewspy permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2. views.py&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;def index(request):
-    articles = Article.objects.all()
-    context = {
-        &apos;articles&apos;: articles,
-    }
-    return render(request, &apos;articles/index.html&apos;, context)
-
-def detail(request, pk):
-    article = Article.objects.get(pk=pk)
-    context = {
-        &apos;article&apos;: article,
-    }
-    return render(request, &apos;articles/detail.html&apos;, context)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;33-templateshtml&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#33-templateshtml&quot; aria-label=&quot;33 templateshtml permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.3. templates.html&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;index.html&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-django&quot;&gt;&amp;#x3C;h1&gt;Articles&amp;#x3C;/h1&gt;
-&amp;#x3C;hr&gt;
-{% for article in articles %}
-    &amp;#x3C;p&gt; title: {{ article.title }} &amp;#x3C;/p&gt;
-    &amp;#x3C;p&gt; content: {{ article.content }} &amp;#x3C;/p&gt;
-    &amp;#x3C;hr&gt;
-{% endfor %}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;detail.html&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-django&quot;&gt;&amp;#x3C;h1&gt;DETAIL&amp;#x3C;/h1&gt;
-&amp;#x3C;h3&gt;{{ article.pk }}th article&amp;#x3C;/h3&gt;
-&amp;#x3C;hr&gt;
-&amp;#x3C;p&gt; title: {{ article.title }} &amp;#x3C;/p&gt;
-&amp;#x3C;p&gt; content: {{ article.content }} &amp;#x3C;/p&gt;
-&amp;#x3C;p&gt; created at: {{ article.created_at }} &amp;#x3C;/p&gt;
-&amp;#x3C;p&gt; updated at: {{ article.updated_at }} &amp;#x3C;/p&gt;
-&amp;#x3C;hr&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&quot;4-update&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-update&quot; aria-label=&quot;4 update permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. Update&lt;/h1&gt;
-&lt;h2 id=&quot;41-urlspy&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#41-urlspy&quot; aria-label=&quot;41 urlspy permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.1. urls.py&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;app_name = &apos;articles&apos;
-urlpatterns = [
-    path(&apos;&amp;#x3C;int:pk&gt;/edit/&apos;, views.edit, name=&apos;edit&apos;),
-    path(&apos;&amp;#x3C;int:pk&gt;/update/&apos;, views.update, name=&apos;update&apos;),
-]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;42-viewspy&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#42-viewspy&quot; aria-label=&quot;42 viewspy permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.2. views.py&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;def edit(request, pk):
-    article = Article.objects.get(pk=pk)
-    context = {
-        &apos;article&apos;: article,
-    }
-    return render(request, &apos;articles/edit.html&apos;, context)
-
-def update(request, pk):
-    article = Article.objects.get(pk=pk)
-    article.title = request.POST.get(&apos;title&apos;)
-    article.content = request.POST.get(&apos;content&apos;)
-    article.save()
-    return redirect(&apos;articles:detail&apos;, article.pk)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;43-templateshtml&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#43-templateshtml&quot; aria-label=&quot;43 templateshtml permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.3. templates.html&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;edit.html&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-django&quot;&gt;&amp;#x3C;h1&gt;EDIT&amp;#x3C;/h1&gt;
-&amp;#x3C;form action=&quot;{% url &apos;articles:update&apos; article.pk %}&quot; method=&quot;POST&quot;&gt;
-    {% csrf_token %}
-    &amp;#x3C;label for=&quot;title&quot;&gt;Title:&amp;#x3C;/label&gt;
-    &amp;#x3C;input type=&quot;text&quot; name=&quot;title&quot; value={{article.title}}&gt;&amp;#x3C;br&gt;
-    &amp;#x3C;label for=&quot;content&quot;&gt;Content:&amp;#x3C;/label&gt;
-    &amp;#x3C;textarea name=&quot;content&quot;&gt;{{article.content}}&amp;#x3C;/textarea&gt;&amp;#x3C;br&gt;
-    &amp;#x3C;input type=&quot;submit&quot;&gt;
-&amp;#x3C;/form&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&quot;5-delete&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-delete&quot; aria-label=&quot;5 delete permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5. Delete&lt;/h1&gt;
-&lt;h2 id=&quot;51-urlspy&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#51-urlspy&quot; aria-label=&quot;51 urlspy permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.1. urls.py&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;app_name = &apos;articles&apos;
-urlpatterns = [
-    path(&apos;&amp;#x3C;int:pk&gt;/delete/&apos;, views.delete, name=&apos;delete&apos;),
-]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;52-viewspy&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#52-viewspy&quot; aria-label=&quot;52 viewspy permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.2. views.py&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;def delete(request, pk):
-    article = Article.objects.get(pk=pk)
-    article.delete()
-    return redirect(&apos;articles:index&apos;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;53-templateshtml&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#53-templateshtml&quot; aria-label=&quot;53 templateshtml permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; height=&quot;20&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;20&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5.3. templates.html&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;detail.html&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-django&quot;&gt;&amp;#x3C;h1&gt;DETAIL&amp;#x3C;/h1&gt;
-&amp;#x3C;h3&gt;{{ article.pk }}th article&amp;#x3C;/h3&gt;
-&amp;#x3C;hr&gt;
-&amp;#x3C;p&gt; title: {{ article.title }} &amp;#x3C;/p&gt;
-&amp;#x3C;p&gt; content: {{ article.content }} &amp;#x3C;/p&gt;
-&amp;#x3C;p&gt; created at: {{ article.created_at }} &amp;#x3C;/p&gt;
-&amp;#x3C;p&gt; updated at: {{ article.updated_at }} &amp;#x3C;/p&gt;
-&amp;#x3C;hr&gt;
-&amp;#x3C;form action=&quot;{% url &apos;articles:delete&apos; article.pk %}&quot; method=&quot;POST&quot;&gt;
-    {% csrf_token %}
-    &amp;#x3C;input type=&quot;submit&quot; value=&quot;DELETE&quot;&gt;
-&amp;#x3C;/form&gt;
 &lt;/code&gt;&lt;/pre&gt;</content:encoded></item></channel></rss>
