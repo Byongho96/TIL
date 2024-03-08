@@ -121,7 +121,7 @@ export class PublisherManager {
 }
 ```
 
-아래와 같은 코드를 실행시키면, 예상하는 콘솔 결과를 확인할 수 있다.
+아래와 같은 코드를 실행시키면, 콘솔 결과를 통해 예상처럼 동작함을 확인할 수 있다.
 
 ```ts
 import { PublisherManager } from './manager.ts'
@@ -161,11 +161,11 @@ Observer B 구독 취소
 
 # 3. 옵저버 패턴 활용 (React)
 
-팀원 중 한 분이 토스트 메시지를 옵저버 패턴을 구현했다. 내가 구현하는 방식과는 전혀 달라서 처음 이해하는데 애를 먹었다. 옵저버 패턴을 적용하니까, 토스트 메시지의 비즈니스 로직이 UI와 완전히 구분할 수 있었다.
+팀원 중 한 분이 토스트 메시지를 옵저버 패턴을 구현했다. 내가 평소 구현하는 방식과 달라서 처음 이해하는데 애를 먹었다. 옵저버 패턴으로 토스트0 메시지를 구현하니까, 비즈니스 로직과 UI와 완전히 구분되었다.
 
 ## 3.1. 함수형 React
 
-먼저 익숙한 함수형 React 구현 방식부터 살펴보려고 한다. 함수형 React인 만큼 커스텀 훅으로 구현되었다.
+익숙한 함수형 React 구현 방식부터 알아보자. 익숙하지만 함수형이기 때문에 옵저버 패턴이 명확하게 보이지 않는다.
 
 ### 3.1.1. Array 프로토타입 메소드 추가
 
@@ -185,7 +185,7 @@ Array.prototype.removeElement = function <T>(this: T[], element: T): void {
 
 ### 3.1.2. useToast 구현
 
-커스텀 훅은 컴포넌트(관찰자) 측에서 쓰이기 때문에, `useToast`를 Observer측의 구현체로 생각할 수 있다.
+옵저버 패턴은 최종적으로 함수형 React에서 쓸 수 있는 커스텀 훅으로 구현된다. 훅은 컴포넌트에서 쓰이기 때문에, 관찰자(Observer)측의 구현체이다.
 
 ```ts
 // 타입 정의
@@ -242,7 +242,7 @@ export default function useToast() {
 
 ### 3.1.3. 실제 사용
 
-아래와 같이 `useToast` 커스텀 훅을 가져와 사용할 수 있다.
+아래와 같이 `useToast` 훅을 컴포넌트에서 사용할 수 있다.
 
 ```tsx
 import { FormEventHandler } from 'react'
@@ -287,11 +287,11 @@ export default ToastContainer
 
 ## 3.2. 클래스형 React
 
-클래스형 React로 구현할 경우, 옵저버 패턴이 더 명확하게 보인다.
+클래스형 React로 구현할 경우, 옵저버 패턴을 더 명확하게 확인할 수 있다.
 
 ### 3.2.1. Array 프로토타입 메소드 추가
 
-마찬가지로 이후 작성할 코드들의 간결성을 위해 `Array.__proto__`에 메소드 하나만 추가 **간이적으로 추가**했다.
+마찬가지로 이후 작성할 코드들의 간결성을 위해 `Array.__proto__`에 메소드 하나를 **간이적으로 추가**했다.
 
 ```ts
 // Array에서 element 요소를 찾아 제거하는 메소드
@@ -307,9 +307,9 @@ Array.prototype.removeElement = function <T>(this: T[], element: T): void {
 
 ### 3.2.1. 발행자 (Publisher) 구현
 
-이번에는 마지막에 단일 객체를 생성해서 export 하였기 때문에, [3-2절](##21-사용-예시)처럼 `Manager`클래스를 구현하지 않았다.
+이번에는 마지막에 단일 객체를 생성해서 export 하였기 때문에, 2.1.절처럼 `Manager`클래스를 구현하지 않았다.
 
-또한 리액트 컴포넌트 자체를 관찰자 리스트(`observers`)로 수집했다. 토스트 메시지 리스트(`toasts`)에 변화가 생기면 컴포넌트 프로토타입의 `forceUpdate` 메소드를 호출하여 강제 업데이트 했다.
+또한 **리액트 컴포넌트 자체**를 관찰자 리스트(`observers`)로 수집했다. 토스트 메시지 리스트(`toasts`)에 변화가 생기면 컴포넌트 프로토타입의 `forceUpdate` 메소드를 호출하여 강제 업데이트 했다.
 
 ```ts
 import { Component } from 'react'
@@ -374,7 +374,7 @@ export default new ToastPublihser() // 단일 객체 export
 
 ### 3.2.2. 실제 사용
 
-컴포넌트 측에서 아래와 같이 사용할 수 있다.
+컴포넌트 측에서는 아래와 같이 사용할 수 있다.
 
 ```tsx
 import { Component, FormEvent } from 'react'
@@ -437,7 +437,7 @@ export default ToastContainer
 
 # 4. 다른 토스트 메시지 구현 방식
 
-아래는 평소 내가 사용하는 토스트 메시지 구현 방식이다. 더 직관적이지만 로직과 UI가 강하게 결합된다는 한계점이 존재한다. 그러나 토스트 메시지의 로직과 UI가 분리되는 경우는 보지 못했기 때문에, 나는 괜찮은 방식이라고 생각한다.
+아래는 평소 내가 사용하는 토스트 메시지 구현 방식이다. 더 직관적이지만 로직과 UI가 강하게 결합된다는 한계점이 존재한다. 그러나 토스트 메시지의 로직과 UI가 분리되는 경우는 보지 못했기 때문에, 실질적으로 한계점이라고 느낀 적은 없다.
 
 ## 4.1. Toast 컴포넌트
 
@@ -555,7 +555,7 @@ export default new ToastManager()
 
 ## 4.2. 실제 사용
 
-컴포넌트에서는 아래와 같은 방식으로 사용할 수 있다.
+컴포넌트에서 `ToastManager`를 아래와 같은 방식으로 사용할 수 있다.
 
 ```tsx
 import toastManager from '@/utils/toastManager'
