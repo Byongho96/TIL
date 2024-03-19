@@ -8,8 +8,6 @@ tags: ['JavaScript', '자바스크립트', 'Proxy', '프록시', 'Reflect']
 reference:
 ---
 
-> 진짜 가볍게 작성하려고 했는데 이틀이 걸렸다. 자바스크립트의 모든 문제는 결국 this인 것 같다.
-
 # 1. Proxy
 
 `Proxy` 객체는 자바스크립트 `Object`에 대한 기본적인 접근(set, get, define) 요청에 대해 인터셉터를 구현하여, 특정로직을 수행한다.
